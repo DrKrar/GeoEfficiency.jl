@@ -1,3 +1,11 @@
+#**************************************************************************************
+# Input_Interface.jl
+# =============== part of the GeoEfficiency.jl package.
+# 
+# all the input either from the console or from the csv files to the package is handled by some function here. 
+# 
+#**************************************************************************************
+
 const datafolder = ".batch"; 			isdir(datafolder) || mkdir(datafolder)
 
 const Detectors = "Detectors.csv";		
@@ -8,10 +16,11 @@ const srcLengths = "srcLengths.csv";
 
 
 """
+
 	input(prompt::AbstractString = "? ")
 
-Propmpets the user with the massage 'prompt' defaults to '? '
-return a string delimted by new line exclusive.
+Prompt the user with the massage 'prompt' defaults to '? '
+return a string delimited by new line exclusive.
 """
 function input(prompt::AbstractString = "? ")
     print_with_color(:green, prompt)
@@ -20,9 +29,10 @@ end
 
 
 """
+
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 
-Propmpets the user with the massage "prompt" defaults to "? "
+Prompts the user with the massage "prompt" defaults to "? "
 to input a value and asserts that the value is numeric value in the semi open interval [from, to[
 \nNote
 \n*****
@@ -58,9 +68,10 @@ end	#function
 
 
 """
+
 	read_from_csvFile(csv_data::AbstractString)
 	
-reads data from a file and return it as an array. 
+read data from a file and return it as an array. 
 csv_data: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
@@ -76,9 +87,10 @@ end #function
 
 
 """
+
 	read_batch_info()
 	
-read detector and source parameter from predefined csv files.
+read detectors and sources parameters from predefined csv files.
 """
 function read_batch_info()
 	print_with_color(:white, "\n****** The batch mode of the program is starting ******\n")
@@ -136,10 +148,11 @@ end #fumction
 
 
 """
+
 	getDetectors()
 
-prompet the user to input detector parameters from the console.
-return a tuple of the inputed detectors.  
+prompt the user to input detector parameters from the console.
+return a tuple of the inputted detectors.  
 """
 function getDetectors()
 	Detectors_array = GammaDetector[]
@@ -147,26 +160,19 @@ function getDetectors()
 	while(true)
 		try
 			push!(Detectors_array, DetectorFactory())
+			
 		catch
 			break
+			
 		end #try
+		
 		print_with_color(:white,
 		"""\n
-    	- To continue make a choice:-\n
-			> using the same detector Press 'D'
-			> using a new detector Press 'N'
-    	- To quit just press return\n
+    	- To add a new detector just press return\n
+    	- To quit press 'Q' then return\n
 			\n\tyour Choice: """);
 		res = input("")|> lowercase; 
-		if res == "n" 
-            Detector = DetectorFactory()
-        
-		elseif res == "d"
-            continue
-        
-		else
-			break
-		end #if
+		res == "q" && break 
 	
 	end #while
 	return Detectors_array

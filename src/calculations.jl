@@ -1,16 +1,33 @@
+#**************************************************************************************
+# calculations.jl
+# =============== part of the GeoEfficiency.jl package.
+# 
+# this file contains all the required function to calculate the Geometrical efficiency.
+#
+#**************************************************************************************
+
 const relativeError = 0.0001			#set the global relative precession of the Geometrical Efficiency Calculation
 
-function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
+"""
+	GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 	
-	function MaxPhi(theta::Real )
+return the geometrical efficiency for a point source on front of the cylinderical detector 'CylDetector' face.
+if the point is out of the face it throw an Error.
+
+this is the base function that all other function call directly or indirectly.
+"""
+function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
+
+	function MaxPhi(theta::Float64 )
 		side = aPnt.Height * sin(theta)
-		return clamp((aPnt.Rho^2 + side^2 - Detector.CryRadius )/ side / aPnt.Rho /2.0, -1.0, 1.0) |> acos
+		return clamp((aPnt.Rho^2 + side^2 - Detector.CryRadius^2 )/ side / aPnt.Rho /2.0, -1.0, 1.0) |> acos
 	end # function
 
-	func(theta::Real ) = MaxPhi(theta) * sin(theta)
+	func(theta::Float64 ) = MaxPhi(theta) * sin(theta)
 	
 	if 0 == aPnt.Rho
-		strt = 0.0; fine = atan2(Detector.CryRadius , aPnt.Height)
+		strt = 0.0
+		fine = atan2(Detector.CryRadius , aPnt.Height)
 		return quadgk(sin, strt, fine, reltol = relativeError)[1]
 
 	else
@@ -18,12 +35,11 @@ function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 		transtion = atan2(Detector.CryRadius - aPnt.Rho, aPnt.Height)
 		fine = atan2(Detector.CryRadius + aPnt.Rho, aPnt.Height)
 		if transtion >= 0
-			prt1 = quadgk(sin, strt, transtion, reltol = relativeError)[1]
-			prt2 = quadgk(func, transtion, fine, reltol = relativeError)[1]
+		
 			return quadgk(sin, strt, transtion, reltol = relativeError)[1] + quadgk(func, transtion, fine, reltol = relativeError)[1] / pi
 		
 		else
-			Error("Point off-axis: out of the Detector Face, this is not Implemented Yet")
+			Error("Point off-axis: out of the Detector face, this case is not implemented yet")
 		
 		end #if
 	
@@ -36,10 +52,12 @@ function GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	return  quadgk(integrand , 0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2  
 end #function
 
+
 """
+
 	GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
-Returns the Geometrical Efficiency for a gamma source (point, disk or cylinder) with cylindrical detector
+return the Geometrical Efficiency for a gamma source (point, disk or cylinder) with cylindrical detector
 
 aSurfacePNT: a surface point (in case SrcRadius = SrcLength = 0;
 			 the method returns the Geometrical Efficiency at this point ).\n
@@ -57,7 +75,7 @@ example:-
 
 Note
 \n*****
-- point height is measured from the detector surface.
+- point height is measured from the detector face surface.
 """
 function GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aSurfacePnt)
@@ -77,9 +95,12 @@ function GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 	end #if
 end #function
 
+
 """
+
 	GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-returns the Geometrical Efficiency for the given . (point , disk or cylinder) with Bore-Hole Detector
+	
+return the Geometrical Efficiency for the given . (point , disk or cylinder) with Bore-Hole Detector
 
 aCenterPNT: a center point (in case SrcRadius = SrcLength = 0;
 		 the method returns the Geometrical Efficiency at this point ).
@@ -148,9 +169,12 @@ function GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	return res
 end #function
 
+
 """
+
 	GeoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-Returns the Geometrical Efficiency for the given source (point, disk or cylinder) with Well-Type detector
+	
+return the Geometrical Efficiency for the given source (point, disk or cylinder) with Well-Type detector
 
 aWellPNT: a Well point (in case SrcRadius = SrcLength = 0;
 		 the method returns the Geometrical Efficiency at this point ).\n
@@ -162,7 +186,7 @@ SrcLength:  the height of upright cylinder source having a base like described a
 Example:-
 
 	newDet = WellDetector()
-	eff - GeoEff(newDet, aWellPNT, SrcRadius, SrcLength)
+	eff = GeoEff(newDet, aWellPNT, SrcRadius, SrcLength)
 Note
 \n*****
 - point height is measured from the detector hole surface.

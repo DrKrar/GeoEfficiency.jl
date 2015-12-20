@@ -1,3 +1,11 @@
+#**************************************************************************************
+# Output_Interface.jl
+# =============== part of the GeoEfficiency.jl package.
+# 
+# all the output either to the console or to the csv files is handled here. 
+# 
+#**************************************************************************************
+
 const results = "results";  			isdir(datafolder*"\\"*results) || mkdir(datafolder*"\\"*results)
 countDetectors = 1;
 
@@ -5,9 +13,9 @@ countDetectors = 1;
 """
 	calc(Detector::GammaDetector = DetectorFactory())
 
-return the geometrical efficiency of the "Detector",
-if no detector is supplied it ask for a detector from console first.
-then ask for a source from the console.
+display the geometrical efficiency of the "Detector" on the console.
+if no detector is supplied it ask for a detector from the console.
+also prompt the user to input a source via the console.
 """
 function calc(Detector::GammaDetector = DetectorFactory())
 	global countDetectors
@@ -25,30 +33,23 @@ function calc(Detector::GammaDetector = DetectorFactory())
 	end #try
 	countDetectors += 1
 	print_with_color(:red, repeat(" =",36),"\n\n")
-	#println("\n - The ", typeof(Detector), " Detector Geometrical Efficiency = ", geo)
+
 end #function
 
+
 """
+
 	calcN()
-	
-ask for a detector from console, then do so repeatedly until the user choose to quit.
-for each detector return the geometrical efficiency after asking about the source specification.
+
+display the geometrical efficiency. 
+prompt the user to input a detector and a source from the console.
+prompt the user repeatedly until it exit (give a choice to use the same detector or a new detector).	
 """
 function calcN()
 	Detector = DetectorFactory()
 	while (true)
-		#=try	
-			geo = GeoEff(Detector,source()...)
-			println("\n\tGeoEff = ", geo, " of the ", typeof(Detector))
-			#println("\n - The ", typeof(Detector), " Detector Geometrical Efficiency = " geo)
-		
-		catch err
-			println(err)
-			input("\n\t To Procced Press any Button")
-		
-		end #try =#
-		calc(Detector)
-		
+
+		calc(Detector)		
 		print_with_color(:white,"""\n
     	I- To continue make a choice:
 			> using the same detector Press 'D'
@@ -73,23 +74,30 @@ end #function
 
 
 """
+
 	batch()
 
-do a batch calculation of the Geometricel efficiecny based on the 
+batch calculation of the geometrical efficiency based on the data provided from the csv files.
+results are saved on a csv file named after the detector, also results are displayed on the console.
 """
 function batch()
 	batch(read_batch_info()...)
 end #function
-
 """
-	batch(	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
-				srcHeights_array::Array{Float64,1}, 
-				srcRhos_array::Array{Float64,1}=[0.0], 
-				srcRadii_array::Array{Float64,1}=[0.0],
-				srcLengths_array::Array{Float64,1}=[0.0],
-				ispoint::Bool=true)
 
+	 batch( Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
+			srcHeights_array::Array{Float64,1}, 
+			srcRhos_array::Array{Float64,1}=[0.0], 
+			srcRadii_array::Array{Float64,1}=[0.0],
+			srcLengths_array::Array{Float64,1}=[0.0],
+			ispoint::Bool=true)
 
+batch calculation of the Geometricel efficiecny for each detector in the Detectors_array (directly or after applying DetectorFactory() to each raw).
+a set of sources is constructed of every valid combination of parameter in the srcRhos_array, srcRadii_array, srcLengths_array with conjunction with ispoint.
+if ispoint is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+if ispoint is false the parameters in srcRhos_array is completely ignored.
+
+results are saved on a csv file named after the detector, also results are displayed on the console.
 """
 function batch(	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
 				srcHeights_array::Array{Float64,1}, 
@@ -166,6 +174,7 @@ function batch(	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}
 		countDetectors += 1
 	end # for_i_th_line
 	
-	input("\n\t the program termiate, To Procced Press any Button")
+	readline("\n\t the program termiate, To Procced Press any Button")
+	return 
 
 end #function

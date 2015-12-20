@@ -1,8 +1,38 @@
+#**************************************************************************************
+# Pythical_Model.jl
+# =============== part of the GeoEfficiency.jl package.
+# 
+# here is the place where all physical elements is being modeled and created as computer objects.  
+# 
+#**************************************************************************************
+
+"""
+
+	Point(Height::Real, Rho::Real)
+	
+construct and return a point source that can be a source of itself or anchor point of a source.
+Height : point height relative to the detector.
+Rho : point off axis relative to the detector axis of symmetry.
+
+	Point(Height::Real)
+	
+the same as Point(Height::Real, Rho::Real) but return an axial point.
+Height : point height relative to the detector.
+
+	Point()
+	
+the same as Point(Height::Real, Rho::Real) but ask the user to provide data from the console.	
+
+Note
+\n*****
+- each detector interpreted the height in a different way, please consult the help of the detector of interest.
+"""
+
 type Point
 	Height::Float64
 	Rho::Float64
 	
-	Point(Height, Rho) = new(float(Height), float(Rho))
+	Point(Height::Real, Rho::Real) = new(float(Height), float(Rho))
 	function Point(Height::Real)
 		Point(Height, 0.0)
 	end #function
@@ -33,6 +63,17 @@ function setRho(aPnt::Point, xRho::Real)
 end #function
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 
+
+"""
+
+	source(;isPoint=false)
+	
+return a tuple describing the source (aPnt, SrcRadius, SrcLength) based on the user input to the console.
+aPnt : the source anchoring point.
+SrcRadius : source radius.
+SrcLength : source length.
+if isPoint is true both SrcRadius, SrcLength are zero.
+"""
 function source(;isPoint=false)
     aPnt = Point()
 	isPoint && return (aPnt, 0.0, 0.0)
@@ -50,7 +91,31 @@ function source(;isPoint=false)
 end #function
 
 
+"""
+
+abstract base of all the Gamma Detectors. 
+"""
 abstract GammaDetector
+
+
+"""
+
+	CylDetector(CryRadius::Real, CryLength::Real)
+	
+return a cylindrical detector.
+CryRadius : the detector crystal radius.
+CryLength : the detector crystal length.
+	
+	CylDetector(CryRadius::Real)
+	
+return a cylindrical detector with crystal length 0.0.
+CryRadius : the detector crystal radius.
+
+	
+	CylDetector()
+	
+return a cylindrical detector according to the input from the console.
+"""
 immutable CylDetector <: GammaDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64		#Real
@@ -73,6 +138,19 @@ end #type
 id(Detector::CylDetector) = "CylDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength)]"
 
 
+"""
+
+	BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
+	
+return a bore-hole detector.
+CryRadius : the detector crystal radius.
+CryLength : the detector crystal length.
+HoleRadius : the detector hole radius.
+	
+	BoreDetector()
+	
+return a bore-hole detector according to the input from the console.
+"""
 immutable BoreDetector <: GammaDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64    	#Real
@@ -95,6 +173,20 @@ end #type
 id(Detector::BoreDetector) = "BoreDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength), HoleRadius=$(Detector.HoleRadius)]"
 
 
+"""
+
+	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	
+return a Well-Type detector.
+CryRadius : the detector crystal radius.
+CryLength : the detector crystal length.
+HoleRadius : the detector hole radius.
+HoleDepth : the detector hole length.
+	
+	WellDetector()
+	
+return a Well-Type detector according to the input from the console.
+"""
 immutable WellDetector <: GammaDetector
 	CryRadius::Float64	
     CryLength::Float64
@@ -119,11 +211,13 @@ immutable WellDetector <: GammaDetector
 end #type
 id(Detector::WellDetector) = "WellDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength), HoleRadius=$(Detector.HoleRadius), HoleDepth=$(Detector.HoleDepth)]"
 
+
 """
+
 	DetectorFactory()
 
 return an object of the GammaDetector type (CylDetector, BoreDetector or WellDetector) 
-accourding to the input from the console.
+according to the input from the console.
 """
 function DetectorFactory()
 	print_with_color(:yellow, "\n I- The Detector physical Dimensions :-\n")
