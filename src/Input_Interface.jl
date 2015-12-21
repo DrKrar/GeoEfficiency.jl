@@ -6,7 +6,7 @@
 # 
 #**************************************************************************************
 
-const datafolder = ".batch"; 			isdir(datafolder) || mkdir(datafolder)
+const datafolder = joinpath(homedir(), ".batch"); 			isdir(datafolder) || mkdir(datafolder)
 
 const Detectors = "Detectors.csv";		
 const srcHeights = "srcHeights.csv";	
@@ -19,7 +19,7 @@ const srcLengths = "srcLengths.csv";
 
 	input(prompt::AbstractString = "? ")
 
-Prompt the user with the massage 'prompt' defaults to '? '
+Prompt the user with the massage `prompt` defaults to `? `
 return a string delimited by new line exclusive.
 """
 function input(prompt::AbstractString = "? ")
@@ -32,11 +32,11 @@ end
 
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 
-Prompts the user with the massage "prompt" defaults to "? "
-to input a value and asserts that the value is numeric value in the semi open interval [from, to[
-\nNote
-\n*****
-\n\t- a blank input is interpreted as being 0.0.
+Prompts the user with the massage `prompt` defaults to `? `
+to input a value and asserts that the value is numeric value in the semi open interval [`from`, `to`[
+
+`Note Please`
+\n- a blank (just a return) input is interpreted as being `0.0`.
 """
 function getfloat(prompt::AbstractString = "? ",
 					from::Real = 0.0,
@@ -71,15 +71,16 @@ end	#function
 
 	read_from_csvFile(csv_data::AbstractString)
 	
-read data from a file and return it as an array. 
-csv_data: filename of csv file containing data.
+read data from a file and return its content as an array. 
+`csv_data`: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
 	try
 		return readcsv(".\\$(datafolder)\\$(csv_data)",  header=true)[1];
 	
 	catch err
-		input("file '$(csv_data)' is not exist or empty, press return to Exit batch mode\n")
+		print_with_color(:white, 
+		"file '$(csv_data)' is not exist or empty, press return to Exit batch mode\n")
 		return []
 	
 	end #try
@@ -90,7 +91,7 @@ end #function
 
 	read_batch_info()
 	
-read detectors and sources parameters from predefined csv files.
+read `detectors` and `sources` parameters from the predefined csv files.
 """
 function read_batch_info()
 	print_with_color(:white, "\n****** The batch mode of the program is starting ******\n")
@@ -151,8 +152,8 @@ end #fumction
 
 	getDetectors()
 
-prompt the user to input detector parameters from the console.
-return a tuple of the inputted detectors.  
+prompt the user to input detector parameters from the `console`.
+return a `tuple` of the inputted detectors.  
 """
 function getDetectors()
 	Detectors_array = GammaDetector[]

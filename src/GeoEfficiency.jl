@@ -19,7 +19,8 @@ print_with_color(:white,"""\n
   @author: Mohamed Krar
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
   @repositry: https://github.com/DrKrar/GeoEfficiency.jl/
-  @version: v"0.6.7"
+  @documentation: http://geoefficiencyjl.readthedocs.org
+  @version: v"0.6.8"
   Created on Fri Aug 14 20:12:01 2015
   
   loading Package
@@ -39,10 +40,12 @@ export 	input,
 		getDetectors, 
 		
 		Point, 
+		source,
 		GammaDetector, 
 		CylDetector, 
 		BoreDetector,
 		WellDetector,
+		DetectorFactory,
 		
 		GeoEff, 
 		

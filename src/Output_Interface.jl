@@ -13,9 +13,9 @@ countDetectors = 1;
 """
 	calc(Detector::GammaDetector = DetectorFactory())
 
-display the geometrical efficiency of the "Detector" on the console.
-if no detector is supplied it ask for a detector from the console.
-also prompt the user to input a source via the console.
+calculate and display the Geometrical Efficiency of the detector `Detector` on the `console`.
+if no detector is supplied it ask for a detector from the `console`.
+also prompt the user to input a source via the `console`.
 """
 function calc(Detector::GammaDetector = DetectorFactory())
 	global countDetectors
@@ -41,9 +41,9 @@ end #function
 
 	calcN()
 
-display the geometrical efficiency. 
-prompt the user to input a detector and a source from the console.
-prompt the user repeatedly until it exit (give a choice to use the same detector or a new detector).	
+calculate and display the Geometrical Efficiency. 
+prompt the user to input a `detector` and a `source` from the `console`.
+prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).	
 """
 function calcN()
 	Detector = DetectorFactory()
@@ -77,8 +77,8 @@ end #function
 
 	batch()
 
-batch calculation of the geometrical efficiency based on the data provided from the csv files.
-results are saved on a csv file named after the detector, also results are displayed on the console.
+batch calculation of the Geometrical Efficiency based on the data provided from the csv files.
+results are saved on a `csv file` named after the detector, also results are displayed on the `console`.
 """
 function batch()
 	batch(read_batch_info()...)
@@ -92,12 +92,15 @@ end #function
 			srcLengths_array::Array{Float64,1}=[0.0],
 			ispoint::Bool=true)
 
-batch calculation of the Geometricel efficiecny for each detector in the Detectors_array (directly or after applying DetectorFactory() to each raw).
-a set of sources is constructed of every valid combination of parameter in the srcRhos_array, srcRadii_array, srcLengths_array with conjunction with ispoint.
-if ispoint is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
-if ispoint is false the parameters in srcRhos_array is completely ignored.
+batch calculation of the Geometricel efficiecny for each detector in the `Detectors_array` (directly or after applying DetectorFactory() to each raw).
 
-results are saved on a csv file named after the detector, also results are displayed on the console.
+a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+
+if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+
+if `ispoint` is false the parameters in srcRhos_array is completely ignored.
+
+results are saved to a csv file named after the detector, also results are displayed on the `console`.
 """
 function batch(	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
 				srcHeights_array::Array{Float64,1}, 
