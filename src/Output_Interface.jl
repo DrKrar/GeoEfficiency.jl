@@ -6,7 +6,9 @@
 # 
 #**************************************************************************************
 
-const resultsfolder = "results";  	isdir(datafolder*"\\"*resultsfolder) || mkdir(datafolder*"\\"*resultsfolder)
+const resultsfolder = "results";
+const resultdir = joinpath(datadir, resultsfolder)
+isdir(resultdir) || mkdir(resultdir)
 countDetectors = 1;
 
 
@@ -85,7 +87,7 @@ end
 
 provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
 
-results are saved on a `csv file` named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
 function batch()
@@ -109,7 +111,7 @@ if `ispoint` is true the source type is a point source and the parameters in src
 
 if `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
 function batch(	Detector_info_array::Array{Float64,2}, 
@@ -144,7 +146,7 @@ if `ispoint` is true the source type is a point source and the parameters in src
 
 if `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
 return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
 \n*****
@@ -182,7 +184,7 @@ if `ispoint` is true the source type is a point source and the parameters in src
 
 if `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
 function batch(	Detectors_array::Array{GammaDetector,1}, 
@@ -203,7 +205,7 @@ function batch(	Detectors_array::Array{GammaDetector,1},
 	end # Detectors_array
 
 	input("\n\t the program had termiate, To Exit Press any Button")
-	return nothing
+	nothing
 
 end #function
 
@@ -249,15 +251,16 @@ function _batch(::Type{Val{true}},
 	print_with_color(:white,
 			"\nsaving <$countDetectors> to '.$(id(Detector)).csv'......\n")
 	try 
-		writecsv_head("$(datafolder)\\$(resultsfolder)\\.$(id(Detector)).csv", results, ["Height", "Rho", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir, ".$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
 	catch err
 		warn("'.$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head("$(datafolder)\\$(resultsfolder)\\!.$(id(Detector)).csv", results, ["Height", "Rho", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir, "=.$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
 	end #try
 	countDetectors += 1
-		return (Detector, results)
+	return (Detector, results)
+	
 end #function
 function _batch(::Type{Val{false}},
 				Detector::GammaDetector, 
@@ -310,14 +313,15 @@ function _batch(::Type{Val{false}},
 	print_with_color(:white,
 			"\nsaving <$countDetectors> to '$(id(Detector)).csv'......\n")
 	try err
-		writecsv_head("$(datafolder)\\$(resultsfolder)\\$(id(Detector)).csv", results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	
 	catch
 		warn("'$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head("$(datafolder)\\$(resultsfolder)\\=$(id(Detector)).csv", results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir, "=$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	
 	end #try
-	countDetectors += 1
+	countDetectors += 1;
 	return (Detector, results)
+
 end #function
 	   

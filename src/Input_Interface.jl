@@ -6,9 +6,10 @@
 # 
 #**************************************************************************************
 
-const datafolder = joinpath(homedir(), ".batch"); 			isdir(datafolder) || mkdir(datafolder)
+const datafolder = ".batch"
+const datadir = joinpath(homedir(), datafolder); 			isdir(datadir) || mkdir(datadir)
 
-const Detectors = "Detectors.csv";		
+const Detectors = "Detectors.csv";
 const srcHeights = "srcHeights.csv";	
 const srcRhos = "srcRhos.csv";			
 const srcRadii = "srcRadii.csv";		
@@ -79,10 +80,10 @@ function read_from_csvFile()
 	print_with_color(:white,
 			"\nopening '$(Detectors)' ......\n")
 	try
-		Detector_info_array = readcsv("$(datafolder)\\$(Detectors)",  header=true)[1];
+		Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
 	
 	catch err
-		warn("'$(Detectors)' can't be found in '$(datafolder)'")
+		warn("'$(Detectors)' can't be found in '$(datadir)'")
 		return getDetectors()
 	
 	
@@ -102,10 +103,10 @@ function read_from_csvFile(csv_data::AbstractString)
 	print_with_color(:white,
 			"\n opening '$(csv_data)' ......\n")
 	try
-		return readcsv("$(datafolder)\\$(csv_data)",  header=true)[1][:,1];
+		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
 	
 	catch err
-		warn("'$(csv_data)' can't be found in '$(datafolder)'")
+		warn("'$(csv_data)' can't be found in '$(datadir)'")
 		return Float64[0.0]
 	
 	end #try
@@ -128,7 +129,7 @@ function read_batch_info()
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
-		return nothing
+		nothing
 	end
 	
 	Detectors_array::Array{GammaDetector,1} = read_from_csvFile()

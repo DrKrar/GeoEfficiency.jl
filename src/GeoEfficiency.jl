@@ -20,7 +20,7 @@ print_with_color(:black,"""\n
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
   @repositry: https://github.com/DrKrar/GeoEfficiency.jl/
   @documentation: http://geoefficiencyjl.readthedocs.org
-  @version: v"0.7"
+  @version: v"0.7.1"
   Created on Fri Aug 14 20:12:01 2015
   
   loading Package
@@ -59,4 +59,3 @@ include("Output_Interface.jl")
 include("calculations.jl")
 
 end #module
-
