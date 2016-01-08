@@ -248,8 +248,7 @@ function _batch(::Type{Val{true}},
 	end #for_Height
 
 	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
-	print_with_color(:white,
-			"\nsaving <$countDetectors> to '.$(id(Detector)).csv'......\n")
+	println("saving <$countDetectors> to '.$(id(Detector)).csv'......")
 	try 
 		writecsv_head(joinpath(resultdir, ".$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
@@ -310,8 +309,7 @@ function _batch(::Type{Val{false}},
 	end #for_Height
 	
 	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
-	print_with_color(:white,
-			"\nsaving <$countDetectors> to '$(id(Detector)).csv'......\n")
+	println("saving <$countDetectors> to '$(id(Detector)).csv'......")
 	try err
 		writecsv_head(joinpath(resultdir, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	

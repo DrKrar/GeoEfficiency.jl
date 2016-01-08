@@ -4,10 +4,15 @@
 eprintln(x...) = println(STDERR, x...)
 
 
-# try to copy the `.batch` folder and its contents to the home directory.
+# creating `GeoEfficiency` folder at the home directory.
+println("INFO: Creating 'GeoEfficiency' folder at '$(homedir())'.....")
 try
-   cp(joinpath(Pkg.dir("GeoEfficiency"),".batch"), joinpath(homedir(),".batch"))
+	cp(joinpath(Pkg.dir("GeoEfficiency"),".batch"), joinpath(homedir(),"GeoEfficiency"))
+
 catch
-   isdir(joinpath(homedir(),".batch")) || warn(".batch folder: could not be created.")
-   eprintln("copy .batch folder from:-\n\t", Pkg.dir("GeoEfficiency"), "\n\nto the home dirctory at:-\n\t", homedir())
+	if isdir(joinpath(homedir(),"GeoEfficiency"))
+		warn("'GeoEfficiency' folder allready exist.")
+	else
+		warn("'GeoEfficiency' folder: could not be created.")
+	end
 end

@@ -6,7 +6,7 @@
 # 
 #**************************************************************************************
 
-const datafolder = ".batch"
+const datafolder = "GeoEfficiency"
 const datadir = joinpath(homedir(), datafolder); 			isdir(datadir) || mkdir(datadir)
 
 const Detectors = "Detectors.csv";
@@ -77,8 +77,7 @@ read detectors data from predefined file and return its content as an array of d
 """
 function read_from_csvFile()
 	Detector_info_array::Array{Float64,2} = Array(Float64,(0,0))
-	print_with_color(:white,
-			"\nopening '$(Detectors)' ......\n")
+	println("INFO: opening '$(Detectors)'......")
 	try
 		Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
 	
@@ -100,8 +99,7 @@ read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
-	print_with_color(:white,
-			"\n opening '$(csv_data)' ......\n")
+	println("INFO: Opening '$(csv_data)'......")
 	try
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
 	
@@ -121,11 +119,11 @@ read `detectors` and `sources` parameters from the predefined csv files.
 """
 function read_batch_info()
 	
-	print_with_color(:white, "\nstarting the batch mode.....\n")
+	println("INFO: Starting the batch mode.....")
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	function batchfailure()
-		print_with_color(:white,"\t----<( Press return: to treminated batch mode )>----\n"); readline()
+		input("\t----<( Press return: to treminated batch mode )>----\n", :blue)
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
@@ -158,7 +156,7 @@ function read_batch_info()
 		
 		end #if
 	end #if
-	println("\n Result Log\n*************\n=============")
+	println("\n Results log\n=============")
 	return (
 		Detectors_array, 
 		srcHeights_array, 
@@ -179,7 +177,7 @@ return a `tuple` of the inputted detectors.
 """
 function getDetectors()
 	Detectors_array = GammaDetector[]
-	input("----<( Press return: to provid detector specifiction from the console )>----", :white);
+	input("----<( Press return: to provid detector specifiction from the console )>----", :blue);
 	while(true)
 		try
 			push!(Detectors_array, DetectorFactory())
