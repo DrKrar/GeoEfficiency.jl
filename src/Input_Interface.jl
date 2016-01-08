@@ -22,8 +22,8 @@ const srcLengths = "srcLengths.csv";
 Prompt the user with the massage `prompt` defaults to `? `
 return a string delimited by new line exclusive.
 """
-function input(prompt::AbstractString = "? ")
-    print_with_color(:green, prompt)
+function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
+    print_with_color(incolor, prompt)
     chomp(readline())
 end
 
@@ -53,10 +53,10 @@ function getfloat(prompt::AbstractString = "? ",
 				return 0.0			# just pressing return is interapted as <0.0>
 			
 			end #if
-            print_with_color(:white, "Please, Input a valid Numerical Value!")
+            print_with_color(:blue, "Please: input a valid numerical value!")
         
 		elseif isa(err, AssertionError)
-		    print_with_color(:white,"Please, Input a number in the semi open interval [$from, $to[ !")
+		    print_with_color(:blue,"Please: input a number in the semi open interval [$from, $to[.")
 		
 		else 
 			rethrow()
@@ -67,6 +67,30 @@ function getfloat(prompt::AbstractString = "? ",
 end	#function
 
 
+
+"""
+
+	read_from_csvFile()
+	
+read detectors data from predefined file and return its content as an array of detectors. 
+"""
+function read_from_csvFile()
+	Detector_info_array::Array{Float64,2} = Array(Float64,(0,0))
+	print_with_color(:white,
+			"\nopening '$(Detectors)' ......\n")
+	try
+		Detector_info_array = readcsv("$(datafolder)\\$(Detectors)",  header=true)[1];
+	
+	catch err
+		warn("'$(Detectors)' can't be found in '$(datafolder)'")
+		return getDetectors()
+	
+	
+	end #try
+	return getDetectors(Detector_info_array)
+	
+end #function
+
 """
 
 	read_from_csvFile(csv_data::AbstractString)
@@ -75,13 +99,14 @@ read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
+	print_with_color(:white,
+			"\n opening '$(csv_data)' ......\n")
 	try
-		return readcsv(".\\$(datafolder)\\$(csv_data)",  header=true)[1];
+		return readcsv("$(datafolder)\\$(csv_data)",  header=true)[1][:,1];
 	
 	catch err
-		print_with_color(:white, 
-		"file '$(csv_data)' is not exist or empty, press return to Exit batch mode\n")
-		return []
+		warn("'$(csv_data)' can't be found in '$(datafolder)'")
+		return Float64[0.0]
 	
 	end #try
 end #function
@@ -94,47 +119,43 @@ end #function
 read `detectors` and `sources` parameters from the predefined csv files.
 """
 function read_batch_info()
-	print_with_color(:white, "\n****** The batch mode of the program is starting ******\n")
-	print_with_color(:white, "******************************************************\n")
-	ispoint = input("\n Is it a point source {Y:N} ? ") |> lowercase != "n" ? true : false
-
-	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}
-	srcHeights_array::Array{Float64,1}
-	srcRhos_array::Array{Float64,1}
-	srcRadii_array::Array{Float64,1}
-	srcLengths_array ::Array{Float64,1}
-	 
-	Detectors_array  = 	isfile(datafolder*"\\"*Detectors)	? read_from_csvFile(Detectors) : (warn("$Detectors: can not be found\n\n"); GammaDetector[] )
-	if Detectors_array == []  #[] 		# if  'Detectors.csv' has no detector or not fund ask the user to provid a detector.
-		Detectors_array = getDetectors() #[DetectorFactory()]
-	end #if
 	
-	srcHeights_array = 	isfile(datafolder*"\\"*srcHeights)  ? read_from_csvFile(srcHeights)[:,1]: (warn("$srcHeights: can not be found\n\n"); Float64[])
-	if srcHeights_array == []
+	print_with_color(:white, "\nstarting the batch mode.....\n")
+	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
+
+	function batchfailure()
 		print_with_color(:white,"\t----<( Press return: to treminated batch mode )>----\n"); readline()
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
-		srcRadii_array, srcLengths_array = [src[2]],[src[3]]	
+		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
+		return nothing
+	end
 	
-	elseif ispoint #srcRhos_array != []	
+	Detectors_array::Array{GammaDetector,1} = read_from_csvFile()
+	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights)
+	srcRhos_array::Array{Float64,1}
+	srcRadii_array::Array{Float64,1}
+	srcLengths_array ::Array{Float64,1}
+
+	
+	if srcHeights_array == [0.0]
+			batchfailure()
+	
+	elseif ispoint 
 		srcRadii_array  = [0.0]
 		srcLengths_array  = [0.0]
-		srcRhos_array =	isfile(datafolder*"\\"*srcRhos)	? read_from_csvFile(srcRhos)[:,1] :	(warn("$srcRhos: can not be found\n\n"); Float64[])
-		if srcRhos_array == []	
-			srcRhos_array = [0.0]
-		end #if
-		
-	elseif srcRadii_array == [] || srcLengths_array == []
-		print_with_color(:white,"\t----<( Press return: to treminated batch mode )>----\n"); readline()
-		src = source()
-		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
-		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
+		srcRhos_array =	read_from_csvFile(srcRhos)
 
 	else	
 		srcRhos_array = [0.0]
-		srcRadii_array	 = 	isfile(datafolder*"\\"*srcRadii) 	? read_from_csvFile(srcRadii)[:,1] : (warn("$srcRadii: can not be found\n\n"); Float64[])	
-		srcLengths_array = 	isfile(datafolder*"\\"*srcLengths)	? read_from_csvFile(srcLengths)[:,1] : (warn("$srcLengths: can not be found\n\n"); Float64[])
-
+		srcRadii_array	 = 	read_from_csvFile(srcRadii)
+		if srcRadii_array == [0.0] 
+			batchfailure()
+		
+		else
+			srcLengths_array = 	read_from_csvFile(srcLengths)
+		
+		end #if
 	end #if
 	println("\n Result Log\n*************\n=============")
 	return (
@@ -157,7 +178,7 @@ return a `tuple` of the inputted detectors.
 """
 function getDetectors()
 	Detectors_array = GammaDetector[]
-	print_with_color(:white,"\t----<( Press return: to provid detector from console )>----\n"); readline()
+	input("----<( Press return: to provid detector specifiction from the console )>----", :white);
 	while(true)
 		try
 			push!(Detectors_array, DetectorFactory())
@@ -167,14 +188,37 @@ function getDetectors()
 			
 		end #try
 		
-		print_with_color(:white,
-		"""\n
-    	- To add a new detector just press return\n
-    	- To quit press 'Q' then return\n
-			\n\tyour Choice: """);
-		res = input("")|> lowercase; 
+		res = input("""\n
+    	- To add a new detector press return\n
+    	- To quit press 'q'|'Q' then return\n
+			\n\tyour Choice: """, :blue) |> lowercase; 
 		res == "q" && break 
 	
 	end #while
+	return Detectors_array
+end #function
+
+
+"""
+
+	getDetectors(Detector_info_array::Array{Float64,2})
+
+prompt the user to input detector parameters from the `console`.
+return a `tuple` of the inputted detectors.  
+"""
+function getDetectors(Detector_info_array::Array{Float64,2})
+	isempty(Detector_info_array) && return getDetectors()
+	Detectors_array::Array{GammaDetector,1} = GammaDetector[]	
+	for i_th_line = 1:size(Detector_info_array)[1]
+		try
+			push!(Detectors_array, 
+					DetectorFactory((Detector_info_array[i_th_line,:])...))
+			
+		catch err
+			continue
+		
+		end #try		
+	end #for
+
 	return Detectors_array
 end #function

@@ -2,14 +2,14 @@
 # GeoEfficiency.jl package
 # ========================
 # 
-# represent a fast and flexible tool to calculate in batch or individually the Geometrical efficiency
-# for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) measured form a sources.
-# the source can be just a point, a disc, or even a cylinder.
+# represent a fast and flexible tool to calculate in batch or individually the geometrical efficiency
+# for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) as seen form a sources.
+# the source can be a point, a disc or even a cylinder.
 #
 #**************************************************************************************
 
 module GeoEfficiency
-print_with_color(:white,"""\n
+print_with_color(:black,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
@@ -20,7 +20,7 @@ print_with_color(:white,"""\n
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
   @repositry: https://github.com/DrKrar/GeoEfficiency.jl/
   @documentation: http://geoefficiencyjl.readthedocs.org
-  @version: v"0.6.8"
+  @version: v"0.7"
   Created on Fri Aug 14 20:12:01 2015
   
   loading Package

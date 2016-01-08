@@ -6,7 +6,7 @@
 # 
 #**************************************************************************************
 
-const results = "results";  			isdir(datafolder*"\\"*results) || mkdir(datafolder*"\\"*results)
+const resultsfolder = "results";  	isdir(datafolder*"\\"*resultsfolder) || mkdir(datafolder*"\\"*resultsfolder)
 countDetectors = 1;
 
 
@@ -28,12 +28,13 @@ function calc(Detector::GammaDetector = DetectorFactory())
 	catch err
 		println(err)
 		input("\n\t To Procced Press any Button")
-		return 0
+		return nothing
 
 	end #try
 	countDetectors += 1
 	print_with_color(:red, repeat(" =",36),"\n\n")
-
+	return nothing
+	
 end #function
 
 
@@ -50,13 +51,12 @@ function calcN()
 	while (true)
 
 		calc(Detector)		
-		print_with_color(:white,"""\n
+		res = input("""\n
     	I- To continue make a choice:
-			> using the same detector Press 'D'
-			> using a new detector Press 'N'\n
+			> using the same detector Press 'd'|'D'
+			> using a new detector Press 'n'|'N'\n
     	II- To quit just press return\n
-			\n\tyour Choice: """);
-		res = input("")|> lowercase; 
+			\n\tyour Choice: """, :blue)|> lowercase; 
 		if res == "n" 
             Detector = DetectorFactory()
         
@@ -69,30 +69,39 @@ function calcN()
 		end #if    
 	
 	end #while
-	return 0
+	return nothing
 end #function
 
+function writecsv_head(fname::AbstractString, a, head=[])
+	open(fname, "w") do io
+		writedlm(io, head, ',')
+		writedlm(io, a, ',')
+	end
+end
 
 """
 
 	batch()
 
-batch calculation of the Geometrical Efficiency based on the data provided from the csv files.
-results are saved on a `csv file` named after the detector, also results are displayed on the `console`.
+provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
+
+results are saved on a `csv file` named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+\n*****
 """
 function batch()
 	batch(read_batch_info()...)
 end #function
+
 """
 
-	 batch( Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
-			srcHeights_array::Array{Float64,1}, 
+	batch( Detector_info_array::Array{Float64,2}, 
+		srcHeights_array::Array{Float64,1}, 
 			srcRhos_array::Array{Float64,1}=[0.0], 
 			srcRadii_array::Array{Float64,1}=[0.0],
 			srcLengths_array::Array{Float64,1}=[0.0],
 			ispoint::Bool=true)
 
-batch calculation of the Geometricel efficiecny for each detector in the `Detectors_array` (directly or after applying DetectorFactory() to each raw).
+provide batch calculation of the Geometricel efficiecny for each detector in the `Detector_info_array` after applying DetectorFactory() to each raw.
 
 a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -100,84 +109,215 @@ if `ispoint` is true the source type is a point source and the parameters in src
 
 if `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector, also results are displayed on the `console`.
+results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+\n*****
 """
-function batch(	Detectors_array::Union{Array{GammaDetector,1}, Array{Float64,2}}, 
+function batch(	Detector_info_array::Array{Float64,2}, 
 				srcHeights_array::Array{Float64,1}, 
 				srcRhos_array::Array{Float64,1}=[0.0], 
 				srcRadii_array::Array{Float64,1}=[0.0],
 				srcLengths_array::Array{Float64,1}=[0.0],
 				ispoint::Bool=true)
-	global countDetectors
-	Detector::GammaDetector = CylDetector(0.0001); aPnt::Point = Point(0.0, 0.0)
-	for i_th_line = 1:size(Detectors_array)[1]
-
-		try
-			Detector = DetectorFactory((Detectors_array[i_th_line,:])...)
-			
-		catch err
-			#println("incatchDet"); println(err); println(" P2 ", Detector)
-			continue
-		
-		end #try
-		res =Float64[]; src = Float64[];
-		cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
-		for srcHeight = srcHeights_array
-			
-			aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
-			for srcRho = srcRhos_array
-				
-				aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
-				for  srcLength = srcLengths_array; 
-					
-					for srcRadius = srcRadii_array
-						
-						#println(" P2 multiple for")
-						try
-							#println(" P3 ", Detector)
-							x = GeoEff(Detector, aPnt, srcRadius , srcLength)
-							push!(res,x);
-							push!(src, aPnt.Height, aPnt.Rho, srcRadius , srcLength, x)
-						
-						catch err
-							#println("in catch Geo", err)
-							#rethrow()
-							#break
-							if isa(err, AssertionError)
-								println("in catch Geo", err)
-								ispoint && @goto(Next_Height)
-								break								
-								
-							end #if
-						end #try
-						
-						print_with_color(:yellow,cellLabel)
-						println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
-						println("\n - The Detector Geometrical Efficiency = ", res[end])
-						print_with_color(:red, repeat(" =",36),"\n\n")
-					
-					end #for_srcRadius
-				
-				@label(Next_srcLength)	
-				end #for_srcLength
-			
-			end #for_Rho
-		
-		@label(Next_Height)	
-		end #for_Height
-		
-		SRC::Array{Float64,2} = reshape(src, 5, length(res))
-		try 
-			writecsv(".\\$(datafolder)\\$(results)\\$(ispoint?"PointSRC_":"")$(id(Detector)).csv",SRC')
-		
-		catch
-			writecsv(".\\$(datafolder)\\$(results)\\=$(ispoint?"PointSRC_":"")$(id(Detector)).csv",SRC')
-		
-		end #try
-		countDetectors += 1
-	end # for_i_th_line
 	
-	readline("\n\t the program termiate, To Procced Press any Button")
-	return 
+	return  batch(	getDetectors(Detector_info_array), 
+					srcHeights_array, 
+					srcRhos_array, 
+					srcRadii_array,
+					srcLengths_array,
+					ispoint)
+end #function
+
+"""
+
+	 batch( Detector::GammaDetector, 
+			srcHeights_array::Array{Float64,1}, 
+			srcRhos_array::Array{Float64,1}=[0.0], 
+			srcRadii_array::Array{Float64,1}=[0.0],
+			srcLengths_array::Array{Float64,1}=[0.0],
+			ispoint::Bool=true)
+
+provide batch calculation of the Geometricel efficiecny for the detector `Detector` .
+
+a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+
+if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+
+if `ispoint` is false the parameters in srcRhos_array is completely ignored.
+
+results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+
+return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
+\n*****
+"""
+function batch(	Detector::GammaDetector, 
+				srcHeights_array::Array{Float64,1}, 
+				srcRhos_array::Array{Float64,1}=[0.0], 
+				srcRadii_array::Array{Float64,1}=[0.0],
+				srcLengths_array::Array{Float64,1}=[0.0],
+				ispoint::Bool=true)
+				
+	return _batch(Val{ispoint},
+				Detector::GammaDetector, 
+				srcHeights_array, 
+				srcRhos_array, 
+				srcRadii_array,
+				srcLengths_array
+				)
+end #function
+				
+"""
+
+	 batch( Detectors_array::Array{GammaDetector,1}, 
+			srcHeights_array::Array{Float64,1}, 
+			srcRhos_array::Array{Float64,1}=[0.0], 
+			srcRadii_array::Array{Float64,1}=[0.0],
+			srcLengths_array::Array{Float64,1}=[0.0],
+			ispoint::Bool=true)
+
+provide batch calculation of the Geometricel efficiecny for each detector in the `Detectors_array`.
+
+a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+
+if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+
+if `ispoint` is false the parameters in srcRhos_array is completely ignored.
+
+results are saved to a csv file named after the detector located in `$(datafolder)\\$(resultsfolder)`, also a log of the results are displayed on the `console`.
+\n*****
+"""
+function batch(	Detectors_array::Array{GammaDetector,1}, 
+				srcHeights_array::Array{Float64,1}, 
+				srcRhos_array::Array{Float64,1}=[0.0], 
+				srcRadii_array::Array{Float64,1}=[0.0],
+				srcLengths_array::Array{Float64,1}=[0.0],
+				ispoint::Bool=true)
+				
+	for Detector = Detectors_array
+		batch(Detector, 
+			srcHeights_array, 
+			srcRhos_array, 
+			srcRadii_array,
+			srcLengths_array,
+			ispoint)
+
+	end # Detectors_array
+
+	input("\n\t the program had termiate, To Exit Press any Button")
+	return nothing
 
 end #function
+
+
+function _batch(::Type{Val{true}},
+				Detector::GammaDetector, 
+				srcHeights_array::Array{Float64,1}, 
+				srcRhos_array::Array{Float64,1}=[0.0], 
+				srcRadii_array::Array{Float64,1}=[0.0],
+				srcLengths_array::Array{Float64,1}=[0.0]
+				)
+	
+	global countDetectors
+	aPnt::Point = Point(0.0, 0.0)
+	results::Array{Float64,2} = Array(Float64,(0,0)); out_results::Array{Float64,1} = Float64[];
+	cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
+	for srcHeight = srcHeights_array
+		
+		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
+		for srcRho = srcRhos_array
+			aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
+				
+			try
+				x = GeoEff(Detector, aPnt)
+				push!(out_results, aPnt.Height, aPnt.Rho, x)
+			
+			catch err
+				isa(err, AssertionError) && break
+				rethrow()
+				
+			end #try
+			
+			print_with_color(:yellow,cellLabel)
+			println("\n - Source: ", id(aPnt))
+			println("\n - The Detector Geometrical Efficiency = ", out_results[end])
+			print_with_color(:red, repeat(" =",36),"\n\n")
+	
+		end #for_Rho
+		
+	end #for_Height
+
+	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
+	print_with_color(:white,
+			"\nsaving <$countDetectors> to '.$(id(Detector)).csv'......\n")
+	try 
+		writecsv_head("$(datafolder)\\$(resultsfolder)\\.$(id(Detector)).csv", results, ["Height", "Rho", "GeoEfficiency"]')
+	
+	catch err
+		warn("'.$(id(Detector)).csv': can't be created, results saved in an alternative file")
+		writecsv_head("$(datafolder)\\$(resultsfolder)\\!.$(id(Detector)).csv", results, ["Height", "Rho", "GeoEfficiency"]')
+	
+	end #try
+	countDetectors += 1
+		return (Detector, results)
+end #function
+function _batch(::Type{Val{false}},
+				Detector::GammaDetector, 
+				srcHeights_array::Array{Float64,1}, 
+				srcRhos_array::Array{Float64,1}=[0.0], 
+				srcRadii_array::Array{Float64,1}=[0.0],
+				srcLengths_array::Array{Float64,1}=[0.0];
+				)
+	
+	global countDetectors
+	aPnt::Point = Point(0.0, 0.0)
+	results::Array{Float64,2} = Array(Float64,(0,0)); out_results::Array{Float64,1} = Float64[];
+	cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
+	for srcHeight = srcHeights_array
+		
+		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
+		for srcRho = srcRhos_array
+			
+			aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
+			for  srcLength = srcLengths_array; 
+				
+				for srcRadius = srcRadii_array
+					
+					try
+						x = GeoEff(Detector, aPnt, srcRadius , srcLength)
+						push!(out_results, aPnt.Height, aPnt.Rho, srcRadius , srcLength, x)
+					
+					catch err
+						isa(err, AssertionError) && @goto(Next_Height)	
+						rethrow()
+						
+					end #try
+					
+					print_with_color(:yellow,cellLabel)
+					println("\n - Source[Anchor ", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
+					println("\n - The Detector Geometrical Efficiency = ", out_results[end])
+					print_with_color(:red, repeat(" =",36),"\n\n")
+				
+				end #for_srcRadius
+			
+			@label(Next_srcLength)	
+			end #for_srcLength
+		
+		end #for_Rho
+	
+	@label(Next_Height)	
+	end #for_Height
+	
+	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
+	print_with_color(:white,
+			"\nsaving <$countDetectors> to '$(id(Detector)).csv'......\n")
+	try err
+		writecsv_head("$(datafolder)\\$(resultsfolder)\\$(id(Detector)).csv", results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+	
+	catch
+		warn("'$(id(Detector)).csv': can't be created, results saved in an alternative file")
+		writecsv_head("$(datafolder)\\$(resultsfolder)\\=$(id(Detector)).csv", results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+	
+	end #try
+	countDetectors += 1
+	return (Detector, results)
+end #function
+	   
