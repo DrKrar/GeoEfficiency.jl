@@ -37,13 +37,13 @@ describing the source.
 
 
  The efficiency calculation can be done by one of the functions `GeoEff` used with argument, `calc` ask for the required information 
- From the `console` m `calcN` just a repeat of the `calc` function or batch() which try to take required information from csv files located in the home directory inside a folder called `.batch`.
+ From the `console` m `calcN` just a repeat of the `calc` function or batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
 	
 ##Batch Calculation
-the output results of batch calculation using `batch()` is found in `.batch\results` folder inside the user account home.
+the output results of batch calculation using `batch()` is found in `GeoEfficiency\results` folder inside the user account home.
 for example	`c:\users\yourusername`.
 
-the input to the `batch()` function should be found in the `.batch` folder to be able to function correctly.
+the input to the `batch()` function should be found in the `GeoEfficiency` folder to be able to function correctly.
 
 the input is a set of comma saved values (CSV) files each line represent an entry, the first line is count as the header.
 the CSV files are:-
