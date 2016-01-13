@@ -294,7 +294,7 @@ function _batch(::Type{Val{false}},
 					end #try
 					
 					print_with_color(:yellow,cellLabel)
-					println("\n - Source[Anchor ", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
+					println("\n - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
 					println("\n - The Detector Geometrical Efficiency = ", out_results[end])
 					print_with_color(:red, repeat(" =",36),"\n\n")
 				

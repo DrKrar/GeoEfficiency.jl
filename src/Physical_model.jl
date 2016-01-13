@@ -69,6 +69,7 @@ end #function
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
 
+
 """
 
 	source(;isPoint=false)
@@ -84,19 +85,19 @@ return a tuple describing the source (`aPnt`, `SrcRadius`, `SrcLength`) based on
 if `isPoint` is true both `SrcRadius` `SrcLength` are zero.
 """
 function source(;isPoint=false)
-    aPnt = Point()
-	isPoint && return (aPnt, 0.0, 0.0)
+    anchorPnt = Point()
+	isPoint && return (anchorPnt, 0.0, 0.0)
     
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
-        aPnt.Rho = 0.0
+        anchorPnt.Rho = 0.0
     
 	else
         SrcLength = 0.0
 	
 	end #if
-    return (aPnt, SrcRadius, SrcLength)
+    return (anchorPnt, SrcRadius, SrcLength)
 end #function
 
 

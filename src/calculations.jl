@@ -109,6 +109,19 @@ end #function
 
 """
 
+	GeoEff(Detector::::GammaDetector = DetectorFactory())
+	
+return the Geometrical Efficiency of the given detector or if therr is no detector provide .
+the dtector and the source should be provided from the `console`.
+\n*****
+"""
+function GeoEff(Detector::GammaDetector = DetectorFactory())
+	GeoEff(Detector, source()...)
+end #function
+
+
+"""
+
 	GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
 return the Geometrical Efficiency for the given source (point , disk or cylinder) with the Bore-Hole detector `Detector`. 
