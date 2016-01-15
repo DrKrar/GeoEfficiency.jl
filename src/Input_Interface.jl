@@ -130,7 +130,7 @@ function read_batch_info()
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	function batchfailure()
-		input("\t----<( Press return: to treminated batch mode )>----\n", :blue)
+		input("\t----<( Press return: to treminated batch mode )>----", :blue)
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
@@ -138,7 +138,7 @@ function read_batch_info()
 	end
 	
 	Detectors_array::Array{RadiationDetector,1} = read_from_csvFile()
-	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights)
+	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights) |> sort
 	srcRhos_array::Array{Float64,1}
 	srcRadii_array::Array{Float64,1}
 	srcLengths_array ::Array{Float64,1}
@@ -150,16 +150,16 @@ function read_batch_info()
 	elseif ispoint 
 		srcRadii_array  = [0.0]
 		srcLengths_array  = [0.0]
-		srcRhos_array =	read_from_csvFile(srcRhos)
+		srcRhos_array =	read_from_csvFile(srcRhos) |> sort
 
 	else	
 		srcRhos_array = [0.0]
-		srcRadii_array	 = 	read_from_csvFile(srcRadii)
+		srcRadii_array	 = 	read_from_csvFile(srcRadii) |> sort
 		if srcRadii_array == [0.0] 
 			batchfailure()
 		
 		else
-			srcLengths_array = 	read_from_csvFile(srcLengths)
+			srcLengths_array = 	read_from_csvFile(srcLengths) |> sort
 		
 		end #if
 	end #if

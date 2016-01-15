@@ -7,8 +7,9 @@
 #**************************************************************************************
 
 const resultsfolder = "results";
-const resultdir = joinpath(datadir, resultsfolder)
-isdir(resultdir) || mkdir(resultdir)
+const resultdir 	= joinpath(datadir, resultsfolder);		isdir(resultdir) 		|| mkdir(resultdir)
+const resultdir_pnt = joinpath(resultdir, "Point");			isdir(resultdir_pnt) 	|| mkdir(resultdir_pnt)
+const resultdir_nonPnt = joinpath(resultdir, "non-Point");	isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
 countDetectors = 1;
 
 
@@ -251,13 +252,13 @@ function _batch(::Type{Val{true}},
 	end #for_Height
 
 	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
-	println("INFO: Saving <$countDetectors> to '_$(id(Detector)).csv'......")
+	println("INFO: Saving <$countDetectors> to '$(id(Detector)).csv'......")
 	try 
-		writecsv_head(joinpath(resultdir, "_$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_pnt,  "$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
 	catch err
 		warn("'.$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir, "__$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_pnt, "_$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
 	end #try
 	countDetectors += 1
@@ -318,11 +319,11 @@ function _batch(::Type{Val{false}},
 	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
 	println("INFO: Saving <$countDetectors> to '$(id(Detector)).csv'......")
 	try err
-		writecsv_head(joinpath(resultdir, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_nonPnt, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	
 	catch
 		warn("'$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir, "=$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	
 	end #try
 	countDetectors += 1;
