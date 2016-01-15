@@ -30,10 +30,10 @@ print_with_color(:black,"""\n
   
   Quick usage:-
   ============
-  GeoEff()	: calculate once and return the value.
+  geoEff()	: calculate once and return the value.
   calc()	: calculate once and display full information on the console.
   calcN()	: calculate untill you quit.
-  batch()	: batch calculate using data in the ".batch" folder. 
+  batch()	: calculate using data in the "GeoEfficiency" folder. 
 """)
 
 export 	input, 
@@ -48,15 +48,15 @@ export 	input,
 		WellDetector,
 		DetectorFactory,
 		
-		GeoEff, 
+		geoEff, 
 		
 		calc, 
 		calcN, 
 		batch
 
-include("Input_Interface.jl")
 include("Physical_model.jl")
-include("Output_Interface.jl")
+include("Input_Interface.jl")
 include("calculations.jl")
+include("Output_Interface.jl")
 
 end #module

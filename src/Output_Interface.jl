@@ -25,7 +25,7 @@ function calc(Detector::RadiationDetector = DetectorFactory())
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(Detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
 	try
-		println("\n - The Detector Geometrical Efficiency = ", GeoEff(Detector, aPnt, srcRadius, srcLength))
+		println("\n - The Detector Geometrical Efficiency = ", geoEff(Detector, aPnt, srcRadius, srcLength))
 
 	catch err
 		println(err)
@@ -232,7 +232,7 @@ function _batch(::Type{Val{true}},
 			aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
 				
 			try
-				x = GeoEff(Detector, aPnt)
+				x = geoEff(Detector, aPnt)
 				push!(out_results, aPnt.Height, aPnt.Rho, x)
 			
 			catch err
@@ -265,7 +265,9 @@ function _batch(::Type{Val{true}},
 	
 end #function
 
+"""
 batch calclulation for non-point sources.
+"""
 function _batch(::Type{Val{false}},
 				Detector::RadiationDetector, 
 				srcHeights_array::Array{Float64,1}, 
@@ -289,7 +291,7 @@ function _batch(::Type{Val{false}},
 				for srcRadius = srcRadii_array
 					
 					try
-						x = GeoEff(Detector, aPnt, srcRadius , srcLength)
+						x = geoEff(Detector, aPnt, srcRadius , srcLength)
 						push!(out_results, aPnt.Height, aPnt.Rho, srcRadius , srcLength, x)
 					
 					catch err

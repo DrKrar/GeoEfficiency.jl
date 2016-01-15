@@ -66,14 +66,14 @@ end #function
 
 """
 
-	GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
 return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `Detector`.
 
 example:-
 
 	newDet = CylDetector()
-	eff = GeoEff(newDet, aSurfacePNT, SrcRadius, SrcLength)
+	eff = geoEff(newDet, aSurfacePNT, SrcRadius, SrcLength)
 
 `aSurfacePNT`: a surface point.
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at this point.
@@ -90,7 +90,7 @@ its center is defined by the `aSurfacePNT`.
 \n- `aSurfacePnt`: point height is consider to be measured from the detector face surface.
 \n*****
 """
-function GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aSurfacePnt)
 	@assert Detector.CryRadius > SrcRadius		" Source Raduis: Expected less than 'Detctor Raduis=$(Detector.CryRadius)', get $SrcRadius."
 
@@ -110,27 +110,27 @@ end #function
 
 """
 
-	GeoEff(Detector::RadiationDetector = DetectorFactory())
+	geoEff(Detector::RadiationDetector = DetectorFactory())
 	
 return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. Also prompt the user to input a source via the `console`.
 
 >`Throw` an Error if the source location is inappropriate.
 \n*****
 """
-function GeoEff(Detector::RadiationDetector = DetectorFactory())
-	GeoEff(Detector, source()...)
+function geoEff(Detector::RadiationDetector = DetectorFactory())
+	geoEff(Detector, source()...)
 end #function
 
 """
 
-	GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
 return the Geometrical Efficiency for the given source (point , disk or cylinder) with the Bore-Hole detector `Detector`. 
 
 example:-
 
 	newDet = BoreDetector()
-	efff = GeoEff(newDet, aCenterPNT, SrcRadius, SrcLength)
+	efff = geoEff(newDet, aCenterPNT, SrcRadius, SrcLength)
 	
 `aCenterPNT`: a center point represent the anchoring point of the source. 
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at the anchoring point.
@@ -147,18 +147,18 @@ and its center is defined by the `aCenterPNT`.
 \n-  `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
 \n*****
 """
-function GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
 	HeightWup = aCenterPnt.Height - Detector.CryLength/2.0
 	HeightWdown = aCenterPnt.Height + Detector.CryLength/2.0
 	if HeightWdown < 0.0 
 		if HeightWup + SrcLength < 0.0 		#invert the source.
-			return GeoEff(Detector, Point(aCenterPnt.Height - Detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
+			return geoEff(Detector, Point(aCenterPnt.Height - Detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
 
 		else # the source span the detector and emerges from both sides, split the source into two sources. 
-			#res = (1 - 2 * GeoEff(detin, Point(0.0), SrcRadius, SrcLength))* Detector.CryLength /SrcLength
-			res = GeoEff(Detector, Point(0.0), SrcRadius, -aCenterPnt.Height )* (-aCenterPnt.Height /SrcLength)
-			res += GeoEff(Detector, Point(0.0), SrcRadius, SrcLength + aCenterPnt.Height )* (1.0 + aCenterPnt.Height /SrcLength)
+			#res = (1 - 2 * geoEff(detin, Point(0.0), SrcRadius, SrcLength))* Detector.CryLength /SrcLength
+			res = geoEff(Detector, Point(0.0), SrcRadius, -aCenterPnt.Height )* (-aCenterPnt.Height /SrcLength)
+			res += geoEff(Detector, Point(0.0), SrcRadius, SrcLength + aCenterPnt.Height )* (1.0 + aCenterPnt.Height /SrcLength)
 			return res
 
 		end
@@ -175,20 +175,20 @@ function GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 
 
 	if HeightWup >= 0.0						# the source as a whole out of detector
-		res = GeoEff(detout, pntWup, SrcRadius, SrcLength)[1]
-		res -= GeoEff(detin, pntWdown, SrcRadius, SrcLength)[1]
+		res = geoEff(detout, pntWup, SrcRadius, SrcLength)[1]
+		res -= geoEff(detin, pntWdown, SrcRadius, SrcLength)[1]
 
 	elseif HeightWup + SrcLength < 0.0 		# the source as a whole in the detector			
-		res = 1 - GeoEff(detin, setHeight(pntWup,abs(HeightWup + SrcLength)), SrcRadius, SrcLength)[1]
-		res -= GeoEff(detin, pntWdown, SrcRadius, SrcLength)[1]
+		res = 1 - geoEff(detin, setHeight(pntWup,abs(HeightWup + SrcLength)), SrcRadius, SrcLength)[1]
+		res -= geoEff(detin, pntWdown, SrcRadius, SrcLength)[1]
 
 	else # elseif SrcLength > 0.0
-		res = (1.0 - GeoEff(detin, Point(0.0), SrcRadius, -HeightWup)[1] )* -HeightWup/SrcLength
-		res += GeoEff(detout, Point(0.0), SrcRadius, HeightWup + SrcLength)[1] * (1.0 + HeightWup/SrcLength)
+		res = (1.0 - geoEff(detin, Point(0.0), SrcRadius, -HeightWup)[1] )* -HeightWup/SrcLength
+		res += geoEff(detout, Point(0.0), SrcRadius, HeightWup + SrcLength)[1] * (1.0 + HeightWup/SrcLength)
 		return res
 
 	#=else
-		return 1.0 - GeoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1] 
+		return 1.0 - geoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1] 
 	else
 		res = 1 - quadgk(xH -> GeoEff_Disk(detin, setHeight!(pnt, xH), SrcRadius), 0.0, -pnt.Height, reltol = relativeError)[1]
 		res = res + quadgk(xH -> GeoEff_Disk(detout, setHeight!(pntWup, xH), SrcRadius), 0.0, pntWup.Height , reltol = relativeError)[1]
@@ -200,14 +200,14 @@ end #function
 
 """
 
-	GeoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
 return the Geometrical Efficiency for the given source (point, disk or cylinder) with the Well-Type detector `Detector`.
 
 Example:-
 
 	newDet = WellDetector()
-	eff = GeoEff(newDet, aWellPNT, SrcRadius, SrcLength)
+	eff = geoEff(newDet, aWellPNT, SrcRadius, SrcLength)
 	
 `aWellPNT`: a Well point represent the anchoring point of the source. 
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at the anchoring point.
@@ -224,7 +224,7 @@ SrcLength:  the height of upright cylinder source having a base like described a
 \n- `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
 \n*****
 """
-function GeoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aWellPnt)
 	Height = pnt.Height - Detector.HoleDepth
 	
@@ -233,18 +233,18 @@ function GeoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 	setHeight!(pnt, Height); #0.0 == SrcRadius && setRho!(pnt, 0.0)
 	
 	if Height > 0.0							# the source as a whole out of the detector	
-		return GeoEff(detout, setHeight!(pnt, Height), SrcRadius, SrcLength)[1]
+		return geoEff(detout, setHeight!(pnt, Height), SrcRadius, SrcLength)[1]
 		
 	elseif Height + SrcLength < 0.0 		# the source as a whole inside of the detector
-		return 1.0 - GeoEff(detin, setHeight!(pnt, -(Height + SrcLength) ), SrcRadius, SrcLength)[1] 
+		return 1.0 - geoEff(detin, setHeight!(pnt, -(Height + SrcLength) ), SrcRadius, SrcLength)[1] 
 	
 	elseif SrcLength > 0.0
-		res = (1.0 - GeoEff(detin, Point(0.0), SrcRadius, -Height)[1] )* -Height/SrcLength
-		res += GeoEff(detout, Point(0.0), SrcRadius, Height + SrcLength)[1] * (1.0 + Height/SrcLength)
+		res = (1.0 - geoEff(detin, Point(0.0), SrcRadius, -Height)[1] )* -Height/SrcLength
+		res += geoEff(detout, Point(0.0), SrcRadius, Height + SrcLength)[1] * (1.0 + Height/SrcLength)
 		return res
 	
 	else
-		return 1.0 - GeoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1] 
+		return 1.0 - geoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1] 
 	
 	end #if
 end #function
