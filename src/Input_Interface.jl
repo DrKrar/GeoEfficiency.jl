@@ -20,8 +20,8 @@ const srcLengths = "srcLengths.csv";
 
 	input(prompt::AbstractString = "? ")
 
-Prompt the user with the massage `prompt` defaults to `? `
-return a string delimited by new line exclusive.
+Prompt the user with the massage `prompt` defaults to `? `.
+Return a string delimited by new line excluding the new line.
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     print_with_color(incolor, prompt)
@@ -33,8 +33,7 @@ end
 
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 
-Prompts the user with the massage `prompt` defaults to `? `
-to input a value and asserts that the value is numeric value in the semi open interval [`from`, `to`[
+Prompts the user with the massage `prompt` defaults to `? ` to input a value and asserts that the value is numeric value in the semi open interval [`from`, `to`[.
 
 `Note Please`
 \n- a blank (just a return) input is interpreted as being `0.0`.
@@ -54,10 +53,10 @@ function getfloat(prompt::AbstractString = "? ",
 				return 0.0			# just pressing return is interapted as <0.0>
 			
 			end #if
-            print_with_color(:blue, "Please: input a valid numerical value!")
+            print_with_color(:blue, "Please: provid a valid numerical value!")
         
 		elseif isa(err, AssertionError)
-		    print_with_color(:blue,"Please: input a number in the semi open interval [$from, $to[.")
+		    print_with_color(:blue, "Please: provid a number in the semi open interval [$from, $to[.")
 		
 		else 
 			rethrow()
@@ -66,7 +65,6 @@ function getfloat(prompt::AbstractString = "? ",
         return getfloat(prompt,from, to)
     end #try
 end	#function
-
 
 
 """
@@ -116,6 +114,15 @@ end #function
 	read_batch_info()
 	
 read `detectors` and `sources` parameters from the predefined csv files.
+Return a tuple
+
+	(	Detectors_array, 
+		srcHeights_array, 
+		srcRhos_array, 
+		srcRadii_array,
+		srcLengths_array,
+		ispoint
+		)
 """
 function read_batch_info()
 	
@@ -130,7 +137,7 @@ function read_batch_info()
 		nothing
 	end
 	
-	Detectors_array::Array{GammaDetector,1} = read_from_csvFile()
+	Detectors_array::Array{RadiationDetector,1} = read_from_csvFile()
 	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights)
 	srcRhos_array::Array{Float64,1}
 	srcRadii_array::Array{Float64,1}
@@ -173,10 +180,10 @@ end #fumction
 	getDetectors()
 
 prompt the user to input detector parameters from the `console`.
-return a `tuple` of the inputted detectors.  
+Return `Detectors_array` an Array of the entered detectors.  
 """
 function getDetectors()
-	Detectors_array = GammaDetector[]
+	Detectors_array = RadiationDetector[]
 	input("----<( Press return: to provid detector specifiction from the console )>----", :blue);
 	while(true)
 		try
@@ -202,12 +209,11 @@ end #function
 
 	getDetectors(Detector_info_array::Array{Float64,2})
 
-prompt the user to input detector parameters from the `console`.
-return a `tuple` of the inputted detectors.  
+convert detectors from the information in `Detector_info_array` and return `Detectors_array` an Array of successfully converted detectors. If the `Detector_info_array` is empty it will call `getDetectors()`.
 """
 function getDetectors(Detector_info_array::Array{Float64,2})
 	isempty(Detector_info_array) && return getDetectors()
-	Detectors_array::Array{GammaDetector,1} = GammaDetector[]	
+	Detectors_array::Array{RadiationDetector,1} = RadiationDetector[]	
 	for i_th_line = 1:size(Detector_info_array)[1]
 		try
 			push!(Detectors_array, 

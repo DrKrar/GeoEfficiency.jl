@@ -2,7 +2,7 @@
 # calculations.jl
 # =============== part of the GeoEfficiency.jl package.
 # 
-# this file contains all the required function to calculate the Geometrical efficiency.
+# this file contains all the required function to calculate the Geometrical Efficiency.
 #
 #**************************************************************************************
 
@@ -13,10 +13,11 @@ const relativeError = 0.0001			#set the global relative precession of the Geomet
 
 	GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 	
-return the geometrical efficiency for a point source `aPnt` on front of the cylinderical detector `CylDetector` face.
-if the point is out of the face it `throw` an Error.
+return the Geometrical Efficiency for a point source `aPnt` on front of the cylindrical detector `Detector` face.
 
-this is the base function that all other function call directly or indirectly.
+`Throw` an Error if the point is out of cylinderical detector the face.
+
+This is the base function that all other function call directly or indirectly to calculate Geometrical Efficiency.
 """
 function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 
@@ -27,7 +28,7 @@ function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 
 	func(theta::Float64 ) = MaxPhi(theta) * sin(theta)
 	
-	if 0 == aPnt.Rho
+	if 0.0 == aPnt.Rho
 		strt = 0.0
 		fine = atan2(Detector.CryRadius , aPnt.Height)
 		return quadgk(sin, strt, fine, reltol = relativeError)[1]
@@ -36,7 +37,7 @@ function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 		strt = 0.0
 		transtion = atan2(Detector.CryRadius - aPnt.Rho, aPnt.Height)
 		fine = atan2(Detector.CryRadius + aPnt.Rho, aPnt.Height)
-		if transtion >= 0
+		if transtion >= 0.0
 		
 			return quadgk(sin, strt, transtion, reltol = relativeError)[1] + quadgk(func, transtion, fine, reltol = relativeError)[1] / pi
 		
@@ -53,10 +54,9 @@ end #function
 
 	GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	
-return the geometrical efficiency for a disk source it center is `SurfacePnt` and its raduis is `SrcRadius` on front of the cylinderical detector `CylDetector` face.
-if the disk is out of the face it call to `GeoEff_Pnt` will `throw` an Error.
+return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` on front of the cylindrical detector `Detector` face.
 
-this is the base function that all other function call directly or indirectly.
+`Throw` an Error if the disk is out of cylindrical detector the face.
 """
 function GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	integrand(xRho) = xRho * GeoEff_Pnt(Detector, setRho!(SurfacePnt, xRho))
@@ -68,7 +68,7 @@ end #function
 
 	GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	
-return the Geometrical Efficiency for a gamma source (point, disk or cylinder) with the cylindrical detector `Detector`.
+return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `Detector`.
 
 example:-
 
@@ -83,6 +83,8 @@ if `srcHieght` = 0; the method returns Geometrical Efficiency for disc of Radius
 its center is defined by the `aSurfacePNT`.
 
 `srcHieght`:  the height of an upright cylinder source having a base like described above.
+
+>`Throw` an Error if the source location is inappropriate.
 
 `Note please`
 \n- `aSurfacePnt`: point height is consider to be measured from the detector face surface.
@@ -106,19 +108,18 @@ function GeoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 	end #if
 end #function
 
-
 """
 
-	GeoEff(Detector::::GammaDetector = DetectorFactory())
+	GeoEff(Detector::RadiationDetector = DetectorFactory())
 	
-return the Geometrical Efficiency of the given detector or if therr is no detector provide .
-the dtector and the source should be provided from the `console`.
+return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. Also prompt the user to input a source via the `console`.
+
+>`Throw` an Error if the source location is inappropriate.
 \n*****
 """
-function GeoEff(Detector::GammaDetector = DetectorFactory())
+function GeoEff(Detector::RadiationDetector = DetectorFactory())
 	GeoEff(Detector, source()...)
 end #function
-
 
 """
 
@@ -139,6 +140,8 @@ if SrcLength = 0;  the method returns Geometrical Efficiency for disc of Radius 
 and its center is defined by the `aCenterPNT`.
 
 `SrcLength`: the height of an upright cylinder source having a base like described above.
+
+>`Throw` an Error if the source location is inappropriate.
 
 `Note please`
 \n-  `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
@@ -195,7 +198,6 @@ function GeoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	return res
 end #function
 
-
 """
 
 	GeoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
@@ -215,6 +217,8 @@ if SrcLength = 0;  the method returns Geometrical Efficiency for disc of Radius 
 and its center is defined by the `aWellPNT`.
 
 SrcLength:  the height of upright cylinder source having a base like described above.
+
+>`Throw` an Error if the source location is inappropriate.
 
 `Note Please`
 \n- `aWellPNT` : point `height` is considered to be measured from the detector hole surface.

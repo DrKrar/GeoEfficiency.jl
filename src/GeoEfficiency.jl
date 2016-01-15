@@ -20,17 +20,18 @@ print_with_color(:black,"""\n
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
   @repositry: https://github.com/DrKrar/GeoEfficiency.jl/
   @documentation: http://geoefficiencyjl.readthedocs.org
-  @version: v"0.8.0"
+  @version: v"0.8.1"
   Created on Fri Aug 14 20:12:01 2015
   
-  loading Package
-  ===============
+  loading the Package:-
+  ====================
   Pkg.add("GeoEfficiency")
   using GeoEfficiency
   
-  Quick usage
-  ===========
-  calc()	: calculate once.
+  Quick usage:-
+  ============
+  GeoEff()	: calculate once and return the value.
+  calc()	: calculate once and display full information on the console.
   calcN()	: calculate untill you quit.
   batch()	: batch calculate using data in the ".batch" folder. 
 """)
@@ -41,7 +42,7 @@ export 	input,
 		
 		Point, 
 		source,
-		GammaDetector, 
+		RadiationDetector, 
 		CylDetector, 
 		BoreDetector,
 		WellDetector,

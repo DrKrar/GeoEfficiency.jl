@@ -13,13 +13,13 @@ countDetectors = 1;
 
 
 """
-	calc(Detector::GammaDetector = DetectorFactory())
+	calc(Detector::RadiationDetector = DetectorFactory())
 
-calculate and display the Geometrical Efficiency of the detector `Detector` on the `console`.
-if no detector is supplied it ask for a detector from the `console`.
-also prompt the user to input a source via the `console`.
+calculate the Geometrical Efficiency of the detector `Detector` and display it on the `console`.
+If no detector is supplied it ask for a detector from the `console`.
+Also prompt the user to input a source via the `console`.
 """
-function calc(Detector::GammaDetector = DetectorFactory())
+function calc(Detector::RadiationDetector = DetectorFactory())
 	global countDetectors
 	aPnt, srcRadius, srcLength = source()
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(Detector))")
@@ -45,8 +45,8 @@ end #function
 	calcN()
 
 calculate and display the Geometrical Efficiency. 
-prompt the user to input a `detector` and a `source` from the `console`.
-prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).	
+Prompt the user to input a `detector` and a `source` from the `console`.
+Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).	
 """
 function calcN()
 	Detector = DetectorFactory()
@@ -87,7 +87,9 @@ end
 
 provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
 
-results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+Results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+
+Throw an error if the source location is inappropriate.
 \n*****
 """
 function batch()
@@ -105,13 +107,12 @@ end #function
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `Detector_info_array` after applying DetectorFactory() to each raw.
 
-a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
-if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-if `ispoint` is false the parameters in srcRhos_array is completely ignored.
-
-results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
 function batch(	Detector_info_array::Array{Float64,2}, 
@@ -131,7 +132,7 @@ end #function
 
 """
 
-	 batch( Detector::GammaDetector, 
+	 batch( Detector::RadiationDetector, 
 			srcHeights_array::Array{Float64,1}, 
 			srcRhos_array::Array{Float64,1}=[0.0], 
 			srcRadii_array::Array{Float64,1}=[0.0],
@@ -140,18 +141,18 @@ end #function
 
 provide batch calculation of the Geometricel efficiecny for the detector `Detector` .
 
-a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
-if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
 
-if `ispoint` is false the parameters in srcRhos_array is completely ignored.
+If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
-return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
+Return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
 \n*****
 """
-function batch(	Detector::GammaDetector, 
+function batch(	Detector::RadiationDetector, 
 				srcHeights_array::Array{Float64,1}, 
 				srcRhos_array::Array{Float64,1}=[0.0], 
 				srcRadii_array::Array{Float64,1}=[0.0],
@@ -159,7 +160,7 @@ function batch(	Detector::GammaDetector,
 				ispoint::Bool=true)
 				
 	return _batch(Val{ispoint},
-				Detector::GammaDetector, 
+				Detector::RadiationDetector, 
 				srcHeights_array, 
 				srcRhos_array, 
 				srcRadii_array,
@@ -169,7 +170,7 @@ end #function
 				
 """
 
-	 batch( Detectors_array::Array{GammaDetector,1}, 
+	 batch( Detectors_array::Array{RadiationDetector,1}, 
 			srcHeights_array::Array{Float64,1}, 
 			srcRhos_array::Array{Float64,1}=[0.0], 
 			srcRadii_array::Array{Float64,1}=[0.0],
@@ -178,16 +179,16 @@ end #function
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `Detectors_array`.
 
-a set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
-if `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
 
-if `ispoint` is false the parameters in srcRhos_array is completely ignored.
+If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
-function batch(	Detectors_array::Array{GammaDetector,1}, 
+function batch(	Detectors_array::Array{RadiationDetector,1}, 
 				srcHeights_array::Array{Float64,1}, 
 				srcRhos_array::Array{Float64,1}=[0.0], 
 				srcRadii_array::Array{Float64,1}=[0.0],
@@ -209,9 +210,11 @@ function batch(	Detectors_array::Array{GammaDetector,1},
 
 end #function
 
-
+"""
+batch calclulation for point sources.
+"""
 function _batch(::Type{Val{true}},
-				Detector::GammaDetector, 
+				Detector::RadiationDetector, 
 				srcHeights_array::Array{Float64,1}, 
 				srcRhos_array::Array{Float64,1}=[0.0], 
 				srcRadii_array::Array{Float64,1}=[0.0],
@@ -248,7 +251,7 @@ function _batch(::Type{Val{true}},
 	end #for_Height
 
 	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
-	println("saving <$countDetectors> to '.$(id(Detector)).csv'......")
+	println("INFO: Saving <$countDetectors> to '_$(id(Detector)).csv'......")
 	try 
 		writecsv_head(joinpath(resultdir, "_$(id(Detector)).csv"), results, ["Height", "Rho", "GeoEfficiency"]')
 	
@@ -261,8 +264,10 @@ function _batch(::Type{Val{true}},
 	return (Detector, results)
 	
 end #function
+
+batch calclulation for non-point sources.
 function _batch(::Type{Val{false}},
-				Detector::GammaDetector, 
+				Detector::RadiationDetector, 
 				srcHeights_array::Array{Float64,1}, 
 				srcRhos_array::Array{Float64,1}=[0.0], 
 				srcRadii_array::Array{Float64,1}=[0.0],
@@ -309,7 +314,7 @@ function _batch(::Type{Val{false}},
 	end #for_Height
 	
 	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
-	println("saving <$countDetectors> to '$(id(Detector)).csv'......")
+	println("INFO: Saving <$countDetectors> to '$(id(Detector)).csv'......")
 	try err
 		writecsv_head(joinpath(resultdir, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
 	

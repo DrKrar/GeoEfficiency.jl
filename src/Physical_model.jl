@@ -11,6 +11,7 @@ import Base.show
 """
 
 	Point(Height::Real, Rho::Real)
+	
 construct and return a `Point` source that can be a source of itself or an `anchor point` of a source.
 
 `Height` : point height relative to the detector.
@@ -74,7 +75,7 @@ show(pnt::Point) = print(id(pnt))
 
 	source(;isPoint=false)
 	
-return a tuple describing the source (`aPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
+return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
 
 `aPnt` : the source anchoring point.
 
@@ -82,7 +83,7 @@ return a tuple describing the source (`aPnt`, `SrcRadius`, `SrcLength`) based on
 
 `SrcLength` : source length.
 
-if `isPoint` is true both `SrcRadius` `SrcLength` are zero.
+If `isPoint` is true both `SrcRadius` and `SrcLength` are set to zero.
 """
 function source(;isPoint=false)
     anchorPnt = Point()
@@ -105,13 +106,14 @@ end #function
 
 abstract base of all the Gamma Detectors. 
 """
-abstract GammaDetector
-show(io::IO, Detector::GammaDetector) = print(id(Detector))
+abstract RadiationDetector
+show(io::IO, Detector::RadiationDetector) = print(id(Detector))
 
 
 """
 
 	CylDetector(CryRadius::Real, CryLength::Real)
+	
 return a `cylindrical` detector.
 
 `CryRadius` : the detector crystal radius.
@@ -126,15 +128,16 @@ return a cylindrical detector with crystal length 0.0.
 \n*****
 	
 	CylDetector()
+	
 return a cylindrical detector according to the input from the `console`.
 """
-immutable CylDetector <: GammaDetector
+immutable CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64		#Real
 	
 	function CylDetector(CryRadius::Real, CryLength::Real)
-		@assert CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength >= 0.0				"Crystal Length: expect +ve number or zero, get $(CryLength)."
+		@assert CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
 		new(float(CryRadius), float(CryLength))
 	end #if
 	function CylDetector(CryRadius::Real)
@@ -164,9 +167,10 @@ return a `bore-hole` detector.
 \n*****
 	
 	BoreDetector()
+	
 return a bore-hole detector according to the input from the `console`.
 """
-immutable BoreDetector <: GammaDetector
+immutable BoreDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64    	#Real
 	HoleRadius::Float64    	#Real
@@ -191,6 +195,7 @@ id(Detector::BoreDetector) = "BoreDetector[CryRadius=$(Detector.CryRadius), CryL
 """
 
 	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	
 return a Well-Type detector.
 
 `CryRadius` : the detector crystal radius.
@@ -203,9 +208,10 @@ return a Well-Type detector.
 \n*****
 	
 	WellDetector()
+	
 return a Well-Type detector according to the input from the `console`.
 """
-immutable WellDetector <: GammaDetector
+immutable WellDetector <: RadiationDetector
 	CryRadius::Float64	
     CryLength::Float64
 	HoleRadius::Float64
@@ -234,7 +240,7 @@ id(Detector::WellDetector) = "WellDetector[CryRadius=$(Detector.CryRadius), CryL
 
 	DetectorFactory()
 
-construct and return an object of the GammaDetector type (`CylDetector`, `BoreDetector` or `WellDetector`) 
+construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`) 
 according to the input from the console.
 \n*****
 
@@ -279,4 +285,4 @@ DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real) = (0.0 == Ho
 DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = (0.0 == HoleDepth 
 				? DetectorFactory(CryRadius, CryLength, HoleRadius)
 				: WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth))
-DetectorFactory(Detector::GammaDetector) = Detector
+DetectorFactory(Detector::RadiationDetector) = Detector
