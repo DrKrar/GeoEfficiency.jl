@@ -26,6 +26,7 @@ the same as `Point(Height::Real, Rho::Real)` but return an axial point.
 \n*****
 
 	Point()
+	
 the same as `Point(Height::Real, Rho::Real)` but ask the user to provide the information from the `console`.	
 \n*****
 `Note please`
@@ -238,7 +239,7 @@ id(Detector::WellDetector) = "WellDetector[CryRadius=$(Detector.CryRadius), CryL
 
 """
 
-	DetectorFactory()
+	detectorFactory()
 
 construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`) 
 according to the input from the console.
@@ -246,23 +247,23 @@ according to the input from the console.
 
 it also has methods with argument list.
 
-  `DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`==> well-type or bore-hole or cylindrical detector
+  `detectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`==> well-type or bore-hole or cylindrical detector
 \n*****
 	
-  `DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real)` ==> bore-hole or cylindrical detector
+  `detectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real)` ==> bore-hole or cylindrical detector
 \n*****
 	
-  `DetectorFactory(CryRadius::Real, CryLength::Real)`	==> cylindrical detector
+  `detectorFactory(CryRadius::Real, CryLength::Real)`	==> cylindrical detector
 \n*****
 	
-  `DetectorFactory(CryRadius::Real)` 	==> cylindrical detector
+  `detectorFactory(CryRadius::Real)` 	==> cylindrical detector
 \n*****
 	
 `Note please`
 \n- if any method with argument(s) take an `invalid` argument it would throw an error.
 \n- if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
 """
-function DetectorFactory()
+function detectorFactory()
 	print_with_color(:yellow, "\n I- The Detector physical Dimensions :-\n")
 	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
@@ -277,12 +278,12 @@ function DetectorFactory()
 				: WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)	)		
 	end #if
 end #function
-DetectorFactory(CryRadius::Real) = CylDetector(CryRadius)
-DetectorFactory(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
-DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real) = (0.0 == HoleRadius 
+detectorFactory(CryRadius::Real) = CylDetector(CryRadius)
+detectorFactory(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
+detectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real) = (0.0 == HoleRadius 
 				?  CylDetector(CryRadius, CryLength)
 				: BoreDetector(CryRadius, CryLength, HoleRadius)) 
-DetectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = (0.0 == HoleDepth 
-				? DetectorFactory(CryRadius, CryLength, HoleRadius)
+detectorFactory(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = (0.0 == HoleDepth 
+				? detectorFactory(CryRadius, CryLength, HoleRadius)
 				: WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth))
-DetectorFactory(Detector::RadiationDetector) = Detector
+detectorFactory(Detector::RadiationDetector) = Detector

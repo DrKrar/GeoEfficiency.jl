@@ -14,13 +14,13 @@ countDetectors = 1;
 
 
 """
-	calc(Detector::RadiationDetector = DetectorFactory())
+	calc(Detector::RadiationDetector = detectorFactory())
 
 calculate the Geometrical Efficiency of the detector `Detector` and display it on the `console`.
 If no detector is supplied it ask for a detector from the `console`.
 Also prompt the user to input a source via the `console`.
 """
-function calc(Detector::RadiationDetector = DetectorFactory())
+function calc(Detector::RadiationDetector = detectorFactory())
 	global countDetectors
 	aPnt, srcRadius, srcLength = source()
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(Detector))")
@@ -50,7 +50,7 @@ Prompt the user to input a `detector` and a `source` from the `console`.
 Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).	
 """
 function calcN()
-	Detector = DetectorFactory()
+	Detector = detectorFactory()
 	while (true)
 
 		calc(Detector)		
@@ -61,7 +61,7 @@ function calcN()
     	II- To quit just press return\n
 			\n\tyour Choice: """, :blue)|> lowercase; 
 		if res == "n" 
-            Detector = DetectorFactory()
+            Detector = detectorFactory()
         
 		elseif res == "d"
             continue
@@ -106,7 +106,7 @@ end #function
 			srcLengths_array::Array{Float64,1}=[0.0],
 			ispoint::Bool=true)
 
-provide batch calculation of the Geometricel efficiecny for each detector in the `Detector_info_array` after applying DetectorFactory() to each raw.
+provide batch calculation of the Geometricel efficiecny for each detector in the `Detector_info_array` after applying detectorFactory() to each raw.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 

@@ -16,25 +16,28 @@ const srcRadii = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";	
 
 
+
 """
-
 	input(prompt::AbstractString = "? ")
-
 Prompt the user with the massage `prompt` defaults to `? `.
 Return a string delimited by new line excluding the new line.
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     print_with_color(incolor, prompt)
     chomp(readline())
-end
+end # function
 
 
 """
-
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
+	
+Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
 
-Prompts the user with the massage `prompt` defaults to `? ` to input a value and asserts that the value is numeric value in the semi open interval [`from`, `to`[.
-
+ > input from the `console` can be numerical expression not just a number.
+ >Example:-
+ > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
+ > All are valid expressions.
+ 
 `Note Please`
 \n- a blank (just a return) input is interpreted as being `0.0`.
 """
@@ -42,27 +45,20 @@ function getfloat(prompt::AbstractString = "? ",
 					from::Real = 0.0,
                     to::Real = Inf)
     value = input(prompt)
+	"" == value	&&	return 0.0		# just pressing return is interapted as <0.0>
     try
-        val = float(value)
+        val = include_string(value)
+		val = float(val)
         @assert from <= val < to 
         return val
     
 	catch err
-        if isa(err, ArgumentError)
-			if   "" == value
-				return 0.0			# just pressing return is interapted as <0.0>
-			
-			end #if
-            print_with_color(:blue, "Please: provid a valid numerical value!")
-        
-		elseif isa(err, AssertionError)
-		    print_with_color(:blue, "Please: provid a number in the semi open interval [$from, $to[.")
+		isa(err, AssertionError) ? 	
+			info("provid a number in the semi open interval [$from, $to[.")	: begin
+			info("provid a valid numerical value!")
+		end #begin
+        return getfloat(prompt, from, to)
 		
-		else 
-			rethrow()
-		
-		end #if
-        return getfloat(prompt,from, to)
     end #try
 end	#function
 
@@ -187,7 +183,7 @@ function getDetectors()
 	input("----<( Press return: to provid detector specifiction from the console )>----", :blue);
 	while(true)
 		try
-			push!(Detectors_array, DetectorFactory())
+			push!(Detectors_array, detectorFactory())
 			
 		catch
 			break
@@ -217,7 +213,7 @@ function getDetectors(Detector_info_array::Array{Float64,2})
 	for i_th_line = 1:size(Detector_info_array)[1]
 		try
 			push!(Detectors_array, 
-					DetectorFactory((Detector_info_array[i_th_line,:])...))
+					detectorFactory((Detector_info_array[i_th_line,:])...))
 			
 		catch err
 			continue
