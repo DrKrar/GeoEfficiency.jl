@@ -26,7 +26,7 @@ Return a string delimited by new line excluding the new line.
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     print_with_color(incolor, prompt)
     chomp(readline())
-end # function
+end
 
 
 """
@@ -42,20 +42,27 @@ function getfloat(prompt::AbstractString = "? ",
 					from::Real = 0.0,
                     to::Real = Inf)
     value = input(prompt)
-	"" == value	&&	return 0.0		# just pressing return is interapted as <0.0>
     try
-        val = include_string(value)
-		val = float(val)
+        val = float(value)
         @assert from <= val < to 
         return val
     
 	catch err
-		isa(err, AssertionError) ? 	
-			info("provid a number in the semi open interval [$from, $to[.")	: begin
-			info("provid a valid numerical value!")
-		end #begin
-        return getfloat(prompt, from, to)
+        if isa(err, ArgumentError)
+			if   "" == value
+				return 0.0			# just pressing return is interapted as <0.0>
+			
+			end #if
+            print_with_color(:blue, "Please: provid a valid numerical value!")
+        
+		elseif isa(err, AssertionError)
+		    print_with_color(:blue, "Please: provid a number in the semi open interval [$from, $to[.")
 		
+		else 
+			rethrow()
+		
+		end #if
+        return getfloat(prompt,from, to)
     end #try
 end	#function
 

@@ -20,14 +20,12 @@ construct and return a `Point` source that can be a source of itself or an `anch
 \n*****
 
 	Point(Height::Real)
-	
 the same as `Point(Height::Real, Rho::Real)` but return an axial point.
 
 `Height` : point height relative to the detector.
 \n*****
 
 	Point()
-	
 the same as `Point(Height::Real, Rho::Real)` but ask the user to provide the information from the `console`.	
 \n*****
 `Note please`
