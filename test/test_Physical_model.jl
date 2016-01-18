@@ -1,7 +1,10 @@
 #**************************************************************************************
-# Pythical_Model.jl
-# =============== part of the GeoEfficiency.jl package.
+# test_Pythical_Model.jl
+# ====================== part of the GeoEfficiency.jl package.
 # 
 #   
 # 
 #**************************************************************************************
+
+using GeoEfficiency
+using Base.Test

@@ -92,10 +92,10 @@ its center is defined by the `aSurfacePNT`.
 """
 function geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aSurfacePnt)
-	@assert Detector.CryRadius > SrcRadius		" Source Raduis: Expected less than 'Detctor Raduis=$(Detector.CryRadius)', get $SrcRadius."
+	@assert Detector.CryRadius > SrcRadius		" Source Raduis: Expected less than 'Detector Raduis=$(Detector.CryRadius)', get $SrcRadius."
 
     if 0.0 == SrcRadius
-		@assert Detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'Detctor Raduis=$(Detector.CryRadius)', get $(pnt.Rho)."
+		@assert Detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'Detector Raduis=$(Detector.CryRadius)', get $(pnt.Rho)."
         return GeoEff_Pnt(Detector, pnt)/2            	#Point source
 
 	elseif 0.0 == SrcLength								#Disk source
@@ -110,14 +110,14 @@ end #function
 
 """
 
-	geoEff(Detector::RadiationDetector = DetectorFactory())
+	geoEff(Detector::RadiationDetector = detectorFactory())
 	
 return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. Also prompt the user to input a source via the `console`.
 
 >`Throw` an Error if the source location is inappropriate.
 \n*****
 """
-function geoEff(Detector::RadiationDetector = DetectorFactory())
+function geoEff(Detector::RadiationDetector = detectorFactory())
 	geoEff(Detector, source()...)
 end #function
 
@@ -228,7 +228,7 @@ function geoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 	pnt::Point = deepcopy(aWellPnt)
 	Height = pnt.Height - Detector.HoleDepth
 	
-	detin::CylDetector = CylDetector(Detector.HoleDepth)
+	detin::CylDetector = CylDetector(Detector.HoleRadius)
 	detout::CylDetector = CylDetector(Detector.CryRadius)
 	setHeight!(pnt, Height); #0.0 == SrcRadius && setRho!(pnt, 0.0)
 	
