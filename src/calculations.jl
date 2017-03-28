@@ -8,6 +8,7 @@
 
 const relativeError = 0.0001			#set the global relative precession of the Geometrical Efficiency Calculation
 
+integrate = (VERSION < v"0.6.0-dev"	? include_string("Base.quadgk")  : using QuadGK; include_string("QuadGK.quadgk")  ) 
 
 """
 
@@ -31,7 +32,7 @@ function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 	if 0.0 == aPnt.Rho
 		strt = 0.0
 		fine = atan2(Detector.CryRadius , aPnt.Height)
-		return quadgk(sin, strt, fine, reltol = relativeError)[1]
+		return integrate(sin, strt, fine, reltol = relativeError)[1]
 
 	else
 		strt = 0.0
@@ -39,7 +40,7 @@ function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
 		fine = atan2(Detector.CryRadius + aPnt.Rho, aPnt.Height)
 		if transtion >= 0.0
 		
-			return quadgk(sin, strt, transtion, reltol = relativeError)[1] + quadgk(func, transtion, fine, reltol = relativeError)[1] / pi
+			return integrate(sin, strt, transtion, reltol = relativeError)[1] + integrate(func, transtion, fine, reltol = relativeError)[1] / pi
 		
 		else
 			Error("Point off-axis: out of the Detector face, this case is not implemented yet")
@@ -60,7 +61,7 @@ return the Geometrical Efficiency for a disk source. The disk center is `Surface
 """
 function GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	integrand(xRho) = xRho * GeoEff_Pnt(Detector, setRho!(SurfacePnt, xRho))
-	return  quadgk(integrand , 0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2  
+	return  integrate(integrand , 0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2  
 end #function
 
 
@@ -103,7 +104,7 @@ function geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 
 	else												#Cylinderical source	
         integrand(xH) = GeoEff_Disk(Detector, setHeight!(pnt, xH), SrcRadius)
-		return quadgk(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength   
+		return integrate(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength   
 
 	end #if
 end #function
@@ -190,8 +191,8 @@ function geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	#=else
 		return 1.0 - geoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1] 
 	else
-		res = 1 - quadgk(xH -> GeoEff_Disk(detin, setHeight!(pnt, xH), SrcRadius), 0.0, -pnt.Height, reltol = relativeError)[1]
-		res = res + quadgk(xH -> GeoEff_Disk(detout, setHeight!(pntWup, xH), SrcRadius), 0.0, pntWup.Height , reltol = relativeError)[1]
+		res = 1 - integrate(xH -> GeoEff_Disk(detin, setHeight!(pnt, xH), SrcRadius), 0.0, -pnt.Height, reltol = relativeError)[1]
+		res = res + integrate(xH -> GeoEff_Disk(detout, setHeight!(pntWup, xH), SrcRadius), 0.0, pntWup.Height , reltol = relativeError)[1]
 			=#
 	end #if
 	
