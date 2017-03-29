@@ -3,26 +3,40 @@
 [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)  [![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency.jl/branch/master)
 
 ---
+  @author: Mohamed Krar
 
+  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
 
-GeoEfficiency.jl provides a set of tools to calculate the Geometrical Efficiency in a fast and accurate way. 
+  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
 
-The Geometrical Efficiency is calculated for a detector (`cylinder`, `bore-hole` or `well-type`) as seen from a source (`point`, `disc`, or `cylinder`).
+  @documentation: http://geoefficiencyjl.readthedocs.org
+
+  @version: v"0.8.4"
+
+  Created on Fri Aug 14 20:12:01 2015
+
+The Package ‘GeoEfficiency’ provides a set of tools writing in Julia programing language to calculate the Geometrical Efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. The detector can by chosen from a range of widely used detector geometries (`cylinder`, `bore-hole` or `well-type`) and until now the common sources (`point`, `disc`, or `cylinder`) are supported.
+
+The Package did not support anisotropic radioactive sources but it has planned in the future to incorporate anisotropic radioactive. Furthermore, it has planned to consider more details of the measurement setup and to give the user the ability to combine the effect of the source and the detector. The Package relay directly numerical evaluation of closed form analytical formula describing the Geometrical Efficiency.
 
 
 ## Requirements
 Julia 0.4 or above.
 
-##Download and Install the Package
-	Pkg.add("GeoEfficiency")
+Due to the rearrangement of source of Julia in the upcoming version v”0.6”, part of the source code was moved to its own package. For the package `GeoEfficiency` to run correctly the required missing code can be easily obtained by issuing the command `Pkg.add("QuadGK")` at the REPL prompt. 
+
+
+## Download and Install the Package
+	Pkg.add("GeoEfficiency") 
 	using GeoEfficiency
+
 	
 ## Quick Usage
 	calc()
+	for more try also `calcN(()` `batch()`
 	
-for more try also `calcN(()` `batch()`
-	
-##Package overview
+
+## Package Overview
 The following contractors can be used to construct a specific type of detector 
 `CylDetector` for cylindrical detector, 
 `BoreDetector` for bore hole, 
