@@ -103,11 +103,12 @@ function source(;isPoint=false)
 end #function
 
 
-"""
-
-abstract base of all the Gamma Detectors. 
-"""
-abstract RadiationDetector
+#abstract base of all the Gamma Detectors. 
+if VERSION < v"0.6.0-dev"		
+    include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
+else
+    include_string("abstract type RadiationDetector end")  #for compitaiblity with the syntax change
+end
 show(io::IO, Detector::RadiationDetector) = print(id(Detector))
 
 
