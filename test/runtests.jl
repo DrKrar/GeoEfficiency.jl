@@ -8,7 +8,7 @@ using Base.Test
 tests = ["Input_Interface",
          "Physical_model",
          "Output_Interface",
-         "calculations"]
+         "Calculations"]
 
 println("\nRunning tests:")
 
