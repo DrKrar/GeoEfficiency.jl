@@ -9,7 +9,7 @@
 #**************************************************************************************
 
 module GeoEfficiency
-print_with_color(:black,"""\n
+print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
@@ -18,22 +18,22 @@ print_with_color(:black,"""\n
 
   @author: Mohamed Krar
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
-  @repositry: https://github.com/DrKrar/GeoEfficiency.jl/
+  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
   @documentation: http://geoefficiencyjl.readthedocs.org
-  @version: v"0.8.3"
+  @version: v"0.8.4"
   Created on Fri Aug 14 20:12:01 2015
   
-  loading the Package:-
+  Loading the Package:-
   ====================
   Pkg.add("GeoEfficiency")
   using GeoEfficiency
   
   Quick usage:-
   ============
-  geoEff()	: calculate once and return the value.
-  calc()	: calculate once and display full information on the console.
-  calcN()	: calculate untill you quit.
-  batch()	: calculate using data in the "GeoEfficiency" folder. 
+  geoEff()	: to calculate once and return the value.
+  calc()	: to calculate once and display full information on the console.
+  calcN()	: to calculate untill you quit.
+  batch()	: to calculate using data in the "GeoEfficiency" folder. 
 """)
 
 export 	input, 
@@ -56,7 +56,7 @@ export 	input,
 
 include("Physical_model.jl")
 include("Input_Interface.jl")
-include("calculations.jl")
+include("Calculations.jl")
 include("Output_Interface.jl")
 
 end #module
