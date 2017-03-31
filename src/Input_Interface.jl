@@ -23,7 +23,8 @@ Prompt the user with the massage `prompt` defaults to `? `.
 Return a string delimited by new line excluding the new line.
 # Example
 ```jldoctest
-julia> input
+julia> input("input a number:")
+input a number:
 ```
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
@@ -36,14 +37,19 @@ end # function
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 	
 Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
-
+ 
  > input from the `console` can be numerical expression not just a number.
- >Example:-
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
- 
-`Note Please`
-\n- a blank (just a return) input is interpreted as being `0.0`.
+
+# Note Please
+\n- a blank (just a return) input is interpreted as being `0.0`. 
+
+# Example
+```jldoctest
+julia> getfloat("input a number:")
+input a number:
+```
 """
 function getfloat(prompt::AbstractString = "? ",
 					from::Real = 0.0,
@@ -139,21 +145,21 @@ function read_batch_info()
 	
 	Detectors_array::Array{RadiationDetector,1} = read_from_csvFile()
 	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights) |> sort
-	srcRhos_array::Array{Float64,1}
-	srcRadii_array::Array{Float64,1}
-	srcLengths_array ::Array{Float64,1}
+	srcRhos_array::Array{Float64,1} = [0.0]
+	srcRadii_array::Array{Float64,1} = [0.0]
+	srcLengths_array ::Array{Float64,1} = [0.0]
 
 	
 	if srcHeights_array == [0.0]
 			batchfailure()
 	
 	elseif ispoint 
-		srcRadii_array  = [0.0]
-		srcLengths_array  = [0.0]
+		#srcRadii_array  = [0.0]
+		#srcLengths_array  = [0.0]
 		srcRhos_array =	read_from_csvFile(srcRhos) |> sort
 
 	else	
-		srcRhos_array = [0.0]
+		#srcRhos_array = [0.0]
 		srcRadii_array	 = 	read_from_csvFile(srcRadii) |> sort
 		if srcRadii_array == [0.0] 
 			batchfailure()
