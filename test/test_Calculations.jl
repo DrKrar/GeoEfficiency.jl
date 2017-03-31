@@ -12,7 +12,7 @@ using Base.Test
 info("Statrting `geoEff` test...")
 @testset begin
 	println()
-	info("Spectial case for cylinderical detector; very restrict test")
+	info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
 		acylDetector = CylDetector(radius)
@@ -36,7 +36,7 @@ end #testset
 
 @testset begin
 	println()
-	info("Spectial case for well detector")
+	info("special cases for well detector")
 	@testset "point at the surface of Well detector of radius $radius cm and height $height" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
 		height=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 

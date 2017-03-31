@@ -11,8 +11,19 @@ try
 
 catch
 	if isdir(joinpath(homedir(),"GeoEfficiency"))
-		warn("'GeoEfficiency' folder allready exist.")
+		warn("`GeoEfficiency` folder allready exist.")
 	else
-		warn("'GeoEfficiency' folder: could not be created.")
-	end
-end
+		warn("`GeoEfficiency` folder: could not be created.")
+	end #if
+end #if
+
+# install Package `QuadGK` for julia 0.6- or hiegher.
+if VERSION < v"0.6.0-dev"
+else
+	try
+		Pkg.add("QuadGK");
+		using QuadGK;  
+	catch
+		warn("`QuadGK` package instllation did not complete")
+	end #itryend
+end #if
