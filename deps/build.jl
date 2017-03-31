@@ -5,7 +5,7 @@ eprintln(x...) = println(STDERR, x...)
 
 
 # creating `GeoEfficiency` folder at the home directory.
-println("INFO: Creating 'GeoEfficiency' folder at '$(homedir())'.....")
+info("Creating `GeoEfficiency` folder at '$(homedir())'.....")
 try
 	cp(joinpath(Pkg.dir("GeoEfficiency"),".batch"), joinpath(homedir(),"GeoEfficiency"))
 
@@ -21,6 +21,7 @@ end #if
 if VERSION < v"0.6.0-dev"
 else
 	try
+		info("Installing Package `QuadGK` for julia 0.6- or hiegher .....")
 		Pkg.add("QuadGK");
 		using QuadGK;  
 	catch

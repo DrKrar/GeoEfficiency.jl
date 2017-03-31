@@ -21,6 +21,10 @@ const srcLengths = "srcLengths.csv";
 	input(prompt::AbstractString = "? ")
 Prompt the user with the massage `prompt` defaults to `? `.
 Return a string delimited by new line excluding the new line.
+# Example
+```jldoctest
+julia> input
+```
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     print_with_color(incolor, prompt)
@@ -93,12 +97,12 @@ read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
-	println("INFO: Opening '$(csv_data)'......")
+	info("Opening `$(csv_data)`......")
 	try
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
 	
 	catch err
-		warn("'$(csv_data)' can't be found in '$(datadir)'")
+		warn("`$(csv_data)` can't be found in `$(datadir)`")
 		return Float64[0.0]
 	
 	end #try
@@ -122,7 +126,7 @@ Return a tuple
 """
 function read_batch_info()
 	
-	println("INFO: Starting the batch mode.....")
+	info("Starting the batch mode .....")
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	function batchfailure()
