@@ -6,9 +6,9 @@
 #
 #**************************************************************************************
 
-const relativeError = 0.0001			#set the global relative precession of the Geometrical Efficiency Calculation
+const relativeError = 0.0001	        # set the global minimum relative precession of the Geometrical Efficiency Calculations
 
-integrate = (VERSION < v"0.6.0-dev"	? include_string("Base.quadgk")  : using QuadGK; include_string("QuadGK.quadgk")  ) 
+integrate = (VERSION < v"0.6.0-dev"	? include_string("Base.quadgk")  :  include_string("using QuadGK; QuadGK.quadgk")  ) 
 
 """
 
@@ -217,7 +217,7 @@ return the Geometrical Efficiency for the given source (point, disk or cylinder)
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at the anchoring point.
 
 `SrcRadius`: Radius of the source.
-if SrcLength = 0;  the method returns Geometrical Efficiency for disc of Radius = `SrcRadius` 
+if SrcLength = 0;  the method returns Geometrical Efficiency for disk of Radius = `SrcRadius` 
 and its center is defined by the `aWellPNT`.
 
 SrcLength:  the height of upright cylinder source having a base like described above.
