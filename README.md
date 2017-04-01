@@ -1,6 +1,10 @@
 # Accurate Geometrical Efficiency Calculator (GeoEfficiency)
 
-[![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)  [![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl/branch/master)
+Linux, OSX: [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl) 
+
+Windows:[![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl/branch/master)
+
+Code Coverage: [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
 
 ---
   @author: Mohamed Krar
