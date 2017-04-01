@@ -6,8 +6,6 @@
 # 
 #**************************************************************************************
 
-using GeoEfficiency
-using Base.Test
 
 # this set of tests need interactive input from the console, uncomment the line after `while` to do tests.
 info("Statrting `getfloat` test...")

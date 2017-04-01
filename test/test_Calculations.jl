@@ -6,8 +6,6 @@
 #
 #**************************************************************************************
 
-using GeoEfficiency
-using Base.Test
 
 info("Statrting `geoEff` test...")
 @testset begin

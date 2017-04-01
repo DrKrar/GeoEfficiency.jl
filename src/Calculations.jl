@@ -8,9 +8,9 @@
 
 const relativeError = 0.0001	        # set the global minimum relative precession of the Geometrical Efficiency Calculations
 
-integrate = VERSION < v"0.6.0-dev"	?
-			include_string("Base.quadgk")  :
-			include_string("using QuadGK;QuadGK.quadgk;")  
+using QuadGK
+integrate = QuadGK.quadgk
+ 
 
 """
 
