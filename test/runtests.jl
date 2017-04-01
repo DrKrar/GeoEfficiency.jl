@@ -9,6 +9,9 @@ tests = ["Input_Interface",
          "Physical_model",
          "Output_Interface",
          "Calculations"]
+if v"0.4-" < VERSION < v"0.5-"
+	tests[4] = "Calculations_julia_0.4"
+end
 
 println("\nRunning tests:")
 
