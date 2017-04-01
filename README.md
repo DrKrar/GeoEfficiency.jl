@@ -1,6 +1,6 @@
 # Accurate Geometrical Efficiency Calculator (GeoEfficiency)
 
-[![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)  [![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency.jl/branch/master)
+[![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)  [![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl/branch/master)
 
 ---
   @author: Mohamed Krar
