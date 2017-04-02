@@ -7,7 +7,7 @@ eprintln(x...) = println(STDERR, x...)
 # creating `GeoEfficiency` folder at the home directory.
 info("Creating `GeoEfficiency` folder at '$(homedir())'.....")
 try
-	cp(joinpath(Pkg.dir("GeoEfficiency"),".batch"), joinpath(homedir(),"GeoEfficiency"))
+	cp(joinpath(dirname(dirname(@__FILE__)),".batch"), joinpath(homedir(),"GeoEfficiency"))
 
 catch
 	if isdir(joinpath(homedir(),"GeoEfficiency"))
