@@ -1,23 +1,35 @@
 # Accurate Geometrical Efficiency Calculator (GeoEfficiency)
 
-Linux, OSX: [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl) 
+## Last release: 
+ + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
+ 
+ + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
+ 
+ + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
 
-Windows:[![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl/branch/master)
 
-Code Coverage: [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
+## Nightly builds
+
++ Linux, OSX: [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)     
+
++ Windows: [![Build Status](https://ci.appveyor.com/api/projects/status/gnd6dqbdaxcx1c23/branch/master?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl/branch/master)
+
++ Code Coverage: [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
 
 ---
-  @author: Mohamed Krar
 
-  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
 
-  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
+@author: Mohamed Krar
 
-  @documentation: http://geoefficiencyjl.readthedocs.org
+@Profile: https://www.researchgate.net/profile/Mohamed_Krar3
 
-  @version: v"0.8.4"
+@repository: https://github.com/DrKrar/GeoEfficiency.jl/
 
-  Created on Fri Aug 14 20:12:01 2015
+@documentation: http://geoefficiencyjl.readthedocs.org
+
+@version: v"0.8.4"
+
+Created on Fri Aug 14 20:12:01 2015
 
 The Package ‘GeoEfficiency’ provides a set of tools writing in Julia programing language to calculate the Geometrical Efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. The detector can by chosen from a range of widely used detector geometries (`cylinder`, `bore-hole` or `well-type`) and until now the common sources (`point`, `disc`, or `cylinder`) are supported.
 
@@ -27,17 +39,18 @@ The Package did not support anisotropic radioactive sources but it has planned i
 ## Requirements
 Julia 0.4 or above.
 
-Due to the rearrangement of source of Julia in the upcoming version v”0.6”, part of the source code was moved to its own package. For the package `GeoEfficiency` to run correctly the required missing code can be easily obtained by issuing the command `Pkg.add("QuadGK")` at the REPL prompt. 
-
-
 ## Download and Install the Package
-	Pkg.add("GeoEfficiency") 
-	using GeoEfficiency
 
+The package is registered in METADATA.jl and so can be installed with Pkg.add.
+
+	Pkg.add("GeoEfficiency") 
 	
 ## Quick Usage
+
+	using GeoEfficiency
 	calc()
-	for more try also `calcN(()` `batch()`
+	
+for more try also `geoEff()`, `calcN()`, `batch()`
 	
 
 ## Package Overview
