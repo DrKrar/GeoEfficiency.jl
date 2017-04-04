@@ -3,7 +3,7 @@
 #
 
 using GeoEfficiency
-if  v"0.5.0-dev+7720" 		#isdefined(Base.Test, Symbol("@testset")) 
+if  VERSION > v"0.5.0-dev+7720" 	#isdefined(Base.Test, Symbol("@testset")) 
 	using Base.Test 
 else 
 	using BaseTestNext 
