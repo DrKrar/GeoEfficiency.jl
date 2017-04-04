@@ -104,7 +104,7 @@ end #function
 
 
 #abstract base of all the Gamma Detectors. 
-if VERSION < v"0.6.0-dev"		
+if VERSION < v"0.6.0-dev.2746" # julia PR #20418
     include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
 else
     include_string("abstract type RadiationDetector end")  #for compitaiblity with the syntax change
