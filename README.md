@@ -72,14 +72,14 @@ For a point source, the anchoring point is the source itself. The `source` funct
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
 	
-##Batch Calculation
-The output results of batch calculation using `batch()` is found in `GeoEfficiency\results` folder inside the user account home.
+## Batch Calculation
+the pachage can be used to perform patch calculation by calling the one of the methods of the function `batch()`. The output results of batch  is found in `GeoEfficiency\results` folder inside the user account home.
 
 For example	`c:\users\yourusername`.
 
-The input to the `batch()` function should be found in the `GeoEfficiency` folder to be able to function correctly.
+The input to the `batch()` function can be spesified as arrgments or without arrgment at all in such a case is spesificd by comma saved value files, that can be easily edit by Microsoft Excel, found in the `GeoEfficiency` folder.
 
-The input is a set of comma saved values (CSV) files each line represent an entry, the first line is count as the header.
+For comma saved values (CSV) files each line represent an entry, the first line is count as the header.
 
 The CSV files are:-
 
