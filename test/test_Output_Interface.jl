@@ -7,9 +7,9 @@
 #**************************************************************************************
 
 
-+info("Statrting `batch` test...")
- +@testset begin
- +	println()
- +	info("special cases for cylinderical detector; very restrict test")
- +  @test_throws MethodError batch()
- +  end  #begin_testset
+info("Statrting `batch` test...")
+@testset begin
+ println()
+ info("special cases for cylinderical detector; very restrict test")
+ @test_throws MethodError batch()
+ end  #begin_testset
