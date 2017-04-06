@@ -224,7 +224,7 @@ function _batch(::Type{Val{true}},
 	
 	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
-	results::Array{Float64,2} = Array(Float64,(0,0)); out_results::Array{Float64,1} = Float64[];
+	results::Array{Float64,2} = Array{Float64}(0,0); out_results::Array{Float64,1} = Float64[];
 	cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
 	for srcHeight = srcHeights_array
 		
