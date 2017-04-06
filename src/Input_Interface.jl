@@ -80,7 +80,7 @@ end	#function
 read detectors data from predefined file and return its content as an array of detectors. 
 """
 function read_from_csvFile()
-	Detector_info_array::Array{Float64,2} = Array(Float64,(0,0))
+	Detector_info_array::Array{Float64,2} = Array{Float64}(0,0)
 	println("INFO: opening '$(Detectors)'......")
 	try
 		Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
