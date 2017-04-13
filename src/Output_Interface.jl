@@ -319,11 +319,11 @@ function _batch(::Type{Val{false}},
 	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
 	println("INFO: Saving <$countDetectors> to '$(id(Detector)).csv'......")
 	try err
-		writecsv_head(joinpath(resultdir_nonPnt, "$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_nonPnt, "$(id(Detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 	
 	catch
 		warn("'$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(Detector)).csv"), results, ["AnchorHeight", "AnchorRho", "srcRadius", "srcLength", "GeoEfficiency"]')
+		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(Detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 	
 	end #try
 	countDetectors += 1;
