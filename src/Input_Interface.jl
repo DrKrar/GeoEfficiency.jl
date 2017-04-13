@@ -136,7 +136,7 @@ function read_batch_info()
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	function batchfailure()
-		input("\t----<( Press return: to treminated batch mode )>----", :blue)
+		info("\t----<( Press return: to treminated batch mode )>----");input("is that ok")
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
@@ -190,7 +190,7 @@ Return `Detectors_array` an Array of the entered detectors.
 """
 function getDetectors()
 	Detectors_array = RadiationDetector[]
-	input("----<( Press return: to provid detector specifiction from the console )>----", :blue);
+	info("----<( Press return: to provid detector specifiction from the console )>----");input("is that ok")
 	while(true)
 		try
 			push!(Detectors_array, detectorFactory())
