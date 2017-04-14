@@ -13,27 +13,24 @@ print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **                                             **
+    \t **             @version: v"0.8.4"              **
     \t *************************************************
 
   @author: Mohamed Krar
   @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
   @repository: https://github.com/DrKrar/GeoEfficiency.jl/
   @documentation: http://geoefficiencyjl.readthedocs.org
-  @version: v"0.8.4"
   Created on Fri Aug 14 20:12:01 2015
-  
-  Loading the Package:-
-  ====================
-  Pkg.add("GeoEfficiency")
-  using GeoEfficiency
   
   Quick usage:-
   ============
-  geoEff()	: to calculate once and return the value.
-  calc()	: to calculate once and display full information on the console.
-  calcN()	: to calculate untill you quit.
-  batch()	: to calculate using data in the "GeoEfficiency" folder. 
+· geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
+	
+· calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
+	
+· calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
+	
+· batch()	: Try to calculate using data in the "GeoEfficiency" folder in batch mode. 
 """)
 
 export 	input, 
