@@ -18,8 +18,9 @@ const srcLengths = "srcLengths.csv";
 
 
 """
-	input(prompt::AbstractString = "? ")
-Prompt the user with the massage `prompt` defaults to `? `.
+	input(prompt::AbstractString = "? ", incolor::Symbol = :green)
+
+Prompt the user with the massage `prompt` defaults to `? `. `incolor` specify the prompt text color, default to green.
 Return a string delimited by new line excluding the new line.
 # Example
 ```jldoctest
@@ -52,21 +53,20 @@ input a number:
 ```
 """
 function getfloat(prompt::AbstractString = "? ",
-					from::Real = 0.0,
-                    to::Real = Inf)
-    value = input(prompt)
+		    from::Real = 0.0,
+                      to::Real = Inf)
+    
+	value = input(prompt)
 	"" == value	&&	return 0.0		# just pressing return is interapted as <0.0>
     try
         val = include_string(value)
-		val = float(val)
+	val = float(val)
         @assert from <= val < to 
         return val
     
-	catch err
-		isa(err, AssertionError) ? 	
-			info("provid a number in the semi open interval [$from, $to[.")	: begin
-			info("provid a valid numerical value!")
-		end #begin
+    catch err
+	isa(err, AssertionError) ? 	
+	    info("provid a number in the semi open interval [$from, $to[."): info("provid a valid numerical value!")
         return getfloat(prompt, from, to)
 		
     end #try
@@ -136,7 +136,7 @@ function read_batch_info()
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	function batchfailure()
-		info("\t----<( Press return: to treminated batch mode )>----");input("is that ok")
+		info("\t----<( Press return: to treminated batch mode )>----"); input("is that ok")
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
@@ -190,7 +190,7 @@ Return `Detectors_array` an Array of the entered detectors.
 """
 function getDetectors()
 	Detectors_array = RadiationDetector[]
-	info("----<( Press return: to provid detector specifiction from the console )>----");input("is that ok")
+	info("----<( Press return: to provid detector specifiction from the console )>----"); input("is that ok")
 	while(true)
 		try
 			push!(Detectors_array, detectorFactory())
@@ -222,8 +222,7 @@ function getDetectors(Detector_info_array::Array{Float64,2})
 	Detectors_array::Array{RadiationDetector,1} = RadiationDetector[]	
 	for i_th_line = 1:size(Detector_info_array)[1]
 		try
-			push!(Detectors_array, 
-					detectorFactory((Detector_info_array[i_th_line,:])...))
+			push!(Detectors_array, detectorFactory((Detector_info_array[i_th_line,:])...))
 			
 		catch err
 			continue
