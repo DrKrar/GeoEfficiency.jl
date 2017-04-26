@@ -1,24 +1,24 @@
 #**************************************************************************************
 # Input_Interface.jl
 # =============== part of the GeoEfficiency.jl package.
-# 
-# all the input either from the console or from the csv files to the package is handled by some function here. 
-# 
+#
+# all the input either from the console or from the csv files to the package is handled by some function here.
+#
 #**************************************************************************************
 
 const datafolder = "GeoEfficiency"
 const datadir = joinpath(homedir(), datafolder); 			isdir(datadir) || mkdir(datadir)
 
 const Detectors = "Detectors.csv";
-const srcHeights = "srcHeights.csv";	
-const srcRhos = "srcRhos.csv";			
-const srcRadii = "srcRadii.csv";		
-const srcLengths = "srcLengths.csv";	
+const srcHeights = "srcHeights.csv";
+const srcRhos = "srcRhos.csv";
+const srcRadii = "srcRadii.csv";
+const srcLengths = "srcLengths.csv";
 
 
 
 """
-	input(prompt::AbstractString = "? ", incolor::Symbol = :green)
+    input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 
 Prompt the user with the massage `prompt` defaults to `? `. `incolor` specify the prompt text color, default to green.
 Return a string delimited by new line excluding the new line.
@@ -36,15 +36,15 @@ end # function
 
 """
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
-	
+
 Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
- 
+
  > input from the `console` can be numerical expression not just a number.
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
 
 # Note Please
-\n- a blank (just a return) input is interpreted as being `0.0`. 
+\n- a blank (just a return) input is interpreted as being `0.0`.
 
 # Example
 ```jldoctest
@@ -54,126 +54,123 @@ input a number:
 """
 function getfloat(prompt::AbstractString = "? ",
 		    from::Real = 0.0,
-                      to::Real = Inf)
-    
+        to::Real = Inf)
+
 	value = input(prompt)
 	"" == value	&&	return 0.0		# just pressing return is interapted as <0.0>
-    try
-        val = include_string(value)
-	val = float(val)
-        @assert from <= val < to 
-        return val
-    
-    catch err
-	isa(err, AssertionError) ? 	
-	    info("provid a number in the semi open interval [$from, $to[."): info("provid a valid numerical value!")
-        return getfloat(prompt, from, to)
-		
-    end #try
+  try
+    val = include_string(value)
+	  val = float(val)
+    @assert from <= val < to
+    return val
+
+  catch err
+	  isa(err, AssertionError) ?
+	             warn("provid a number in the semi open interval [$from, $to[.") :
+			         warn("provid a valid numerical value!")
+    return getfloat(prompt, from, to)
+
+  end #try
 end	#function
 
 
 """
+	 read_from_csvFile()
 
-	read_from_csvFile()
-	
-read detectors data from predefined file and return its content as an array of detectors. 
+read detectors data from predefined file and return its content as an array of detectors.
 """
 function read_from_csvFile()
-	Detector_info_array::Array{Float64,2} = Array{Float64}(0,0)
-	println("INFO: opening '$(Detectors)'......")
+	Detector_info_array::Matrix{Float64} = Array{Float64}(0,0)
+	info("opening '$(Detectors)'......")
 	try
 		Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
-	
+
 	catch err
 		warn("'$(Detectors)' can't be found in '$(datadir)'")
 		return getDetectors()
-	
-	
+
+
 	end #try
 	return getDetectors(Detector_info_array)
-	
+
 end #function
 
 """
-
 	read_from_csvFile(csv_data::AbstractString)
-	
-read data from a file and return its content as an array. 
+
+read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 """
 function read_from_csvFile(csv_data::AbstractString)
 	info("Opening `$(csv_data)`......")
 	try
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
-	
+
 	catch err
 		warn("`$(csv_data)` can't be found in `$(datadir)`")
 		return Float64[0.0]
-	
+
 	end #try
 end #function
 
 
 """
-
 	read_batch_info()
-	
+
 read `detectors` and `sources` parameters from the predefined csv files.
 Return a tuple
 
-	(	Detectors_array, 
-		srcHeights_array, 
-		srcRhos_array, 
+	(	Detectors_array,
+		srcHeights_array,
+		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
 		ispoint
 		)
 """
 function read_batch_info()
-	
+
 	info("Starting the batch mode .....")
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
+
+	Detectors_array::Vector{RadiationDetector} = read_from_csvFile()
+	srcHeights_array::Vector{Float64} =  read_from_csvFile(srcHeights) |> sort
+	srcRhos_array::Vector{Float64} = [0.0]
+	srcRadii_array::Vector{Float64} = [0.0]
+	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure()
 		info("\t----<( Press return: to treminated batch mode )>----"); input("is that ok")
 		src = source(isPoint=ispoint)
-		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho] 
+		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho]
 		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
 		nothing
-	end
-	
-	Detectors_array::Array{RadiationDetector,1} = read_from_csvFile()
-	srcHeights_array::Array{Float64,1} =  read_from_csvFile(srcHeights) |> sort
-	srcRhos_array::Array{Float64,1} = [0.0]
-	srcRadii_array::Array{Float64,1} = [0.0]
-	srcLengths_array ::Array{Float64,1} = [0.0]
+	end #fumction
 
-	
-	if srcHeights_array == [0.0]
+  if srcHeights_array == [0.0]
 			batchfailure()
-	
-	elseif ispoint 
+
+	elseif ispoint
 		#srcRadii_array  = [0.0]
 		#srcLengths_array  = [0.0]
 		srcRhos_array =	read_from_csvFile(srcRhos) |> sort
 
-	else	
+	else
 		#srcRhos_array = [0.0]
 		srcRadii_array	 = 	read_from_csvFile(srcRadii) |> sort
-		if srcRadii_array == [0.0] 
+		if srcRadii_array == [0.0]
 			batchfailure()
-		
+
 		else
 			srcLengths_array = 	read_from_csvFile(srcLengths) |> sort
-		
+
 		end #if
 	end #if
 	println("\n Results log\n=============")
 	return (
-		Detectors_array, 
-		srcHeights_array, 
-		srcRhos_array, 
+		Detectors_array,
+		srcHeights_array,
+		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
 		ispoint
@@ -182,30 +179,30 @@ end #fumction
 
 
 """
-
-	getDetectors()
+    getDetectors()
 
 prompt the user to input detector parameters from the `console`.
-Return `Detectors_array` an Array of the entered detectors.  
+Return `Detectors_array` an Array of the entered detectors.
 """
 function getDetectors()
-	Detectors_array = RadiationDetector[]
-	info("----<( Press return: to provid detector specifiction from the console )>----"); input("is that ok")
+	Detectors_array::Vector{RadiationDetector} = RadiationDetector[]
+	info("----<( Press return: to provid detector specifiction from the console )>----");
+	input("is that ok")
 	while(true)
 		try
-			push!(Detectors_array, detectorFactory())
-			
+			push!(Detectors_array, RadiationDetector())
+
 		catch
 			break
-			
+
 		end #try
-		
+
 		res = input("""\n
     	- To add a new detector press return\n
     	- To quit press 'q'|'Q' then return\n
-			\n\tyour Choice: """, :blue) |> lowercase; 
-		res == "q" && break 
-	
+			\n\tyour Choice: """, :blue) |> lowercase;
+		res == "q" && break
+
 	end #while
 	return Detectors_array
 end #function
@@ -217,17 +214,17 @@ end #function
 
 convert detectors from the information in `Detector_info_array` and return `Detectors_array` an Array of successfully converted detectors. If the `Detector_info_array` is empty it will call `getDetectors()`.
 """
-function getDetectors(Detector_info_array::Array{Float64,2})
+function getDetectors(Detector_info_array::Matrix{Float64})
 	isempty(Detector_info_array) && return getDetectors()
-	Detectors_array::Array{RadiationDetector,1} = RadiationDetector[]	
+	Detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	for i_th_line = 1:size(Detector_info_array)[1]
 		try
-			push!(Detectors_array, detectorFactory((Detector_info_array[i_th_line,:])...))
-			
+			push!(Detectors_array, RadiationDetector((Detector_info_array[i_th_line,:])...))
+
 		catch err
 			continue
-		
-		end #try		
+
+		end #try
 	end #for
 
 	return Detectors_array

@@ -43,7 +43,6 @@ export 	input,
 		CylDetector, 
 		BoreDetector,
 		WellDetector,
-		detectorFactory,
 		
 		geoEff, 
 		
