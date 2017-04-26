@@ -58,7 +58,7 @@ function calcN()
 			> using the same detector Press 'd'|'D'
 			> using a new detector Press 'n'|'N'\n
     	II- To quit just press return\n
-			\n\tyour Choice: """, :red|> lowercase;
+			\n\tyour Choice: """, :red) |> lowercase;
 		if res == "n"
             Detector = RadiationDetector()
 
