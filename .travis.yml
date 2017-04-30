@@ -11,5 +11,5 @@ notifications:
   email: DrKrar@live.com
   
  after_success:
-    - julia -e 'cd(Pkg.dir("Tk")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'; 
+    - julia -e 'cd(Pkg.dir("GeoEfficiency")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'; 
 
