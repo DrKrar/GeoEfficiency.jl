@@ -12,7 +12,9 @@ info("Statrting `getfloat` test...")
 warn("this test is suppressed because it need interactive input")
 dotest=false
 #dotest=true
-while dotest
+@testset "getfloat" beegin
+if dotest 
+	info("test `getfloat` with different ways to input numbers...")
 	@test getfloat("\njust press return: ") == 0.0 
 	@test getfloat("\ninput 1, then press return: ") == 1.0
 	@test getfloat("\ninput 1.0, then press return: ") == 1.0 
@@ -28,4 +30,6 @@ while dotest
 	@test getfloat("\ninput 'e^3', then press return: ") == e^3
 	@test getfloat("\ninput 'sin(0.1)', then press return: ") == sin(0.1)
 	typeof(getfloat("\nthe first time input '1.2+2im': ")) == Float64
-end
+end #if
+
+end # testset
