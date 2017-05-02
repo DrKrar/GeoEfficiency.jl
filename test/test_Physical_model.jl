@@ -34,15 +34,16 @@
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho != pnt5.Rho 
     
-    pnt6 = GeoEfficiency.setRho!(pnt5, 1)
-    @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho == pnt5.Rho 
   
     pnt6 = GeoEfficiency.setHeight(pnt5, 1)
-    @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho != pnt5.Rho 
+    @test pnt6.Height != pnt5.Height 
+    @test pnt6.Rho == pnt5.Rho 
     
-    pnt6 = GeoEfficiency.setHeight!(pnt5, 1)
+    pnt6 = GeoEfficiency.setRho!(pnt5, 5)
+    @test pnt6.Height == pnt5.Height 
+    @test pnt6.Rho == pnt5.Rho 
+		
+    pnt6 = GeoEfficiency.setHeight!(pnt5, 5)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
 
@@ -53,6 +54,7 @@
     const Detector = RadiationDetector
   
     cyl1 = Detector(5)
+    @test_throws ErrorException  cyl1.CryRaduis = 1
     @test typeof(cyl1) == CylDetector
     @test 5.0 == cyl1.CryRaduis
     @test 0.0 == cyl1.CryLength
