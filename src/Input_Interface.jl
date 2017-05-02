@@ -16,7 +16,6 @@ const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
 
-
 """
     input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 
@@ -53,7 +52,7 @@ input a number:
 ```
 """
 function getfloat(prompt::AbstractString = "? ",
-		          from::Real = 0.0,
+		  from::Real = 0.0,
                   to::Real = Inf)
 
     value = input(prompt)
@@ -67,13 +66,14 @@ function getfloat(prompt::AbstractString = "? ",
         if isa(err, AssertionError) 
             warn("provid a number in the semi open interval [$from, $to[.")
         else   
-	        warn("provid a valid numerical value!")
+	    warn("provid a valid numerical value!")
         end #if 
         
         return getfloat(prompt, from, to)
 
     end #try
 end	#function
+
 
 """
 	 read_from_csvFile()
@@ -129,20 +129,22 @@ Return a tuple
 """
 function read_batch_info()
 
-	info("Starting the batch mode .....")
+	info("Starting the batch mode.....")
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
-	Detectors_array::Vector{RadiationDetector} = read_from_csvFile()
-	srcHeights_array::Vector{Float64} =  read_from_csvFile(srcHeights) |> sort
-	srcRhos_array::Vector{Float64} = [0.0]
-	srcRadii_array::Vector{Float64} = [0.0]
+	info("Read data from CSV files at $datadir .....")
+	Detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
+	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights) |> sort
+	srcRhos_array   ::Vector{Float64} = [0.0]
+	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure()
-		info("\t----<( Press return: to treminated batch mode )>----"); input("is that ok")
+		info("\t----<( Press return: to treminated batch mode )>----"); 
+		input("is that ok")
 		src = source(isPoint=ispoint)
-		srcHeights_array, srcRhos_array = [src[1].Height], [src[1].Rho]
-		srcRadii_array, srcLengths_array = [src[2]],[src[3]]
+		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
+		srcRadii_array  , srcLengths_array = [src[2]]       , [src[3]]
 		nothing
 	end #fumction
 
@@ -156,12 +158,12 @@ function read_batch_info()
 
 	else
 		#srcRhos_array = [0.0]
-		srcRadii_array	 = 	read_from_csvFile(srcRadii) |> sort
+		srcRadii_array = read_from_csvFile(srcRadii) |> sort
 		if srcRadii_array == [0.0]
 			batchfailure()
 
 		else
-			srcLengths_array = 	read_from_csvFile(srcLengths) |> sort
+			srcLengths_array = read_from_csvFile(srcLengths) |> sort
 
 		end #if
 	end #if
@@ -196,10 +198,11 @@ function getDetectors()
 
 		end #try
 
-		res = input("""\n
-    	- To add a new detector press return\n
-    	- To quit press 'q'|'Q' then return\n
-			\n\tyour Choice: """, :blue) |> lowercase;
+		res = input(
+			"""\n
+    	                - To add a new detector press return\n
+    	                - To quit press 'q'|'Q' then return\n
+			\n\t your Choice: """, :blue) |> lowercase;
 		res == "q" && break
 
 	end #while
@@ -208,10 +211,10 @@ end #function
 
 
 """
-
 	getDetectors(Detector_info_array::Array{Float64,2})
 
-convert detectors from the information in `Detector_info_array` and return `Detectors_array` an Array of successfully converted detectors. If the `Detector_info_array` is empty it will call `getDetectors()`.
+Convert detectors from the information in `Detector_info_array` and return `Detectors_array` an Array of successfully 
+converted detectors. If the `Detector_info_array` is empty it will call `getDetectors()`.
 """
 function getDetectors(Detector_info_array::Matrix{Float64})
 	isempty(Detector_info_array) && return getDetectors()
