@@ -11,6 +11,7 @@
 info("Statrting `getfloat` test...")
 warn("those tests are suppressed because it need interactive input")
 #dotest=false
+@testset "Input_Interface" begin
 @testset "getfloat" begin
 	info("test `getfloat` with different ways to input numbers...")
 	@test_skip   getfloat("\njust press return: ") == 0.0 
@@ -29,4 +30,6 @@ warn("those tests are suppressed because it need interactive input")
 	@test_skip   getfloat("\ninput 'sin(0.1)', then press return: ") == sin(0.1)
 	@test_skip   typeof(getfloat("\nthe first time input '1.2+2im': ")) == Float64
 
+end # testset
+	
 end # testset
