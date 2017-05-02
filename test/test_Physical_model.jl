@@ -56,7 +56,7 @@
     cyl1 = Detector(5)
     @test_throws ErrorException  cyl1.CryRaduis = 1
     @test typeof(cyl1) == CylDetector
-    @test 5.0 == cyl1.CryRaduis
+    @test 5.0 == cyl1.CryRadius
     @test 0.0 == cyl1.CryLength
   
     cyl2 = Detector(5, 0)
