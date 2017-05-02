@@ -11,7 +11,7 @@
   println()
   @testset "Point" begin
     pnt1 = Point(5)
-    @test iszero(pnt1.Rho)
+    @test 0.0 == pnt1.Rho
     @test typeof(pnt1.Rho) == Float64
     @test 5.0 == pnt1.Height
     @test typeof(pnt1.Height) == Float64
@@ -38,11 +38,11 @@
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
   
-    pnt6 = GeoEfficiency.setHeigh(pnt5, 1)
+    pnt6 = GeoEfficiency.setHeight(pnt5, 1)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho != pnt5.Rho 
     
-    pnt6 = GeoEfficiency.setHeigh!(pnt5, 1)
+    pnt6 = GeoEfficiency.setHeight!(pnt5, 1)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
 
@@ -55,7 +55,7 @@
     cyl1 = Detector(5)
     @test typeof(cyl1) == CylDetector
     @test 5.0 == cyl1.CryRaduis
-    @test iszero(cyl1.CryLength)
+    @test 0.0 == cyl1.CryLength
   
     cyl2 = Detector(5, 0)
     cyl3 = Detector(5, 0.0)
