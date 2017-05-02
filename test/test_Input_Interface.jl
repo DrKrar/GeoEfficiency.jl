@@ -12,7 +12,7 @@ info("Statrting `getfloat` test...")
 warn("this test is suppressed because it need interactive input")
 dotest=false
 #dotest=true
-@testset "getfloat" beegin
+@testset "getfloat" begin
 if dotest 
 	info("test `getfloat` with different ways to input numbers...")
 	@test getfloat("\njust press return: ") == 0.0 
