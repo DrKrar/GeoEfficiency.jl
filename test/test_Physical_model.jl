@@ -8,7 +8,6 @@
 
 
 @testset begin
-  println()
   @testset "Point" begin
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
@@ -50,7 +49,6 @@
 		end #testset
 
   @testset "Detector" begin 
-    println()
     const Detector = RadiationDetector
   
     cyl1 = Detector(5)
