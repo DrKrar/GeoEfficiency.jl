@@ -7,12 +7,12 @@
 #**************************************************************************************
 
 const datafolder = "GeoEfficiency"
-const datadir = joinpath(homedir(), datafolder); 			isdir(datadir) || mkdir(datadir)
+const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
-const Detectors = "Detectors.csv";
+const Detectors  = "Detectors.csv";
 const srcHeights = "srcHeights.csv";
-const srcRhos = "srcRhos.csv";
-const srcRadii = "srcRadii.csv";
+const srcRhos    = "srcRhos.csv";
+const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
 
@@ -53,26 +53,27 @@ input a number:
 ```
 """
 function getfloat(prompt::AbstractString = "? ",
-		    from::Real = 0.0,
-        to::Real = Inf)
+		          from::Real = 0.0,
+                  to::Real = Inf)
 
-	value = input(prompt)
-	"" == value	&&	return 0.0		# just pressing return is interapted as <0.0>
-  try
-    val = include_string(value)
-	  val = float(val)
-    @assert from <= val < to
-    return val
+    value = input(prompt)
+    "" == value && return 0.0		# just pressing return is interapted as <0.0>
+    try
+        val = include_string(value) |> float
+        @assert from <= val < to
+        return val
 
-  catch err
-	  isa(err, AssertionError) ?
-	             warn("provid a number in the semi open interval [$from, $to[.") :
-			         warn("provid a valid numerical value!")
-    return getfloat(prompt, from, to)
+    catch err
+        if isa(err, AssertionError) 
+            warn("provid a number in the semi open interval [$from, $to[.")
+        else   
+	        warn("provid a valid numerical value!")
+        end #if 
+        
+        return getfloat(prompt, from, to)
 
-  end #try
+    end #try
 end	#function
-
 
 """
 	 read_from_csvFile()
@@ -80,18 +81,17 @@ end	#function
 read detectors data from predefined file and return its content as an array of detectors.
 """
 function read_from_csvFile()
-	Detector_info_array::Matrix{Float64} = Array{Float64}(0,0)
-	info("opening '$(Detectors)'......")
-	try
-		Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
+    Detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
+    info("opening '$(Detectors)'......")
+    try
+        Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
+        return getDetectors(Detector_info_array)
+		
+    catch err
+        warn("some thing went wrong, may be '$(Detectors)' can't be found in '$(datadir)'")
+        return getDetectors()
 
-	catch err
-		warn("'$(Detectors)' can't be found in '$(datadir)'")
-		return getDetectors()
-
-
-	end #try
-	return getDetectors(Detector_info_array)
+    end #try
 
 end #function
 
@@ -120,13 +120,12 @@ end #function
 read `detectors` and `sources` parameters from the predefined csv files.
 Return a tuple
 
-	(	Detectors_array,
+	   (Detectors_array,
 		srcHeights_array,
 		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
-		ispoint
-		)
+		ispoint	)
 """
 function read_batch_info()
 
