@@ -9,12 +9,13 @@
 const datafolder = "GeoEfficiency"
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
-const Detectors  = "Detectors.csv";
+const detectors  = "Detectors.csv";
 const srcHeights = "srcHeights.csv";
 const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
+#-----------------------------------------------------------------
 
 """
     input(prompt::AbstractString = "? ", incolor::Symbol = :green)
@@ -32,6 +33,7 @@ function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     chomp(readline())
 end # function
 
+#-----------------------------------------------------------------
 
 """
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
@@ -74,6 +76,7 @@ function getfloat(prompt::AbstractString = "? ",
     end #try
 end	#function
 
+#-----------------------------------------------------------------
 
 """
 	 read_from_csvFile()
@@ -81,14 +84,14 @@ end	#function
 read detectors data from predefined file and return its content as an array of detectors.
 """
 function read_from_csvFile()
-    Detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
-    info("opening '$(Detectors)'......")
+    detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
+    info("opening '$(detectors)'......")
     try
-        Detector_info_array = readcsv(joinpath(datadir, Detectors),  header=true)[1];
-        return getDetectors(Detector_info_array)
+        detector_info_array = readcsv(joinpath(datadir, detectors),  header=true)[1];
+        return getDetectors(detector_info_array)
 		
     catch err
-        warn("some thing went wrong, may be '$(Detectors)' can't be found in '$(datadir)'")
+        warn("some thing went wrong, may be '$(detectors)' can't be found in '$(datadir)'")
         return getDetectors()
 
     end #try
@@ -120,7 +123,7 @@ end #function
 read `detectors` and `sources` parameters from the predefined csv files.
 Return a tuple
 
-	   (Detectors_array,
+	   (detectors_array,
 		srcHeights_array,
 		srcRhos_array,
 		srcRadii_array,
@@ -133,7 +136,7 @@ function read_batch_info()
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
-	Detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
+	detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
 	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights) |> sort
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
@@ -169,7 +172,7 @@ function read_batch_info()
 	end #if
 	println("\n Results log\n=============")
 	return (
-		Detectors_array,
+		detectors_array,
 		srcHeights_array,
 		srcRhos_array,
 		srcRadii_array,
@@ -178,20 +181,21 @@ function read_batch_info()
 		)
 end #fumction
 
+#-----------------------------------------------------------------
 
 """
     getDetectors()
 
 prompt the user to input detector parameters from the `console`.
-Return `Detectors_array` an Array of the entered detectors.
+Return `detectors_array` an Array of the entered detectors.
 """
 function getDetectors()
-	Detectors_array::Vector{RadiationDetector} = RadiationDetector[]
+	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	info("----<( Press return: to provid detector specifiction from the console )>----");
 	input("is that ok")
 	while(true)
 		try
-			push!(Detectors_array, RadiationDetector())
+			push!(detectors_array, RadiationDetector())
 
 		catch
 			break
@@ -206,22 +210,22 @@ function getDetectors()
 		res == "q" && break
 
 	end #while
-	return Detectors_array
+	return detectors_array
 end #function
 
 
 """
-	getDetectors(Detector_info_array::Array{Float64,2})
+	getDetectors(detector_info_array::Array{Float64,2})
 
-Convert detectors from the information in `Detector_info_array` and return `Detectors_array` an Array of successfully 
-converted detectors. If the `Detector_info_array` is empty it will call `getDetectors()`.
+Convert detectors from the information in `detector_info_array` and return `detectors_array` an Array of successfully 
+converted detectors. If the `detector_info_array` is empty it will call `getDetectors()`.
 """
-function getDetectors(Detector_info_array::Matrix{Float64})
-	isempty(Detector_info_array) && return getDetectors()
-	Detectors_array::Vector{RadiationDetector} = RadiationDetector[]
-	for i_th_line = 1:size(Detector_info_array)[1]
+function getDetectors(detector_info_array::Matrix{Float64})
+	isempty(detector_info_array) && return getDetectors()
+	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
+	for i_th_line = 1:size(detector_info_array)[1]
 		try
-			push!(Detectors_array, RadiationDetector((Detector_info_array[i_th_line,:])...))
+			push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...))
 
 		catch err
 			continue
@@ -229,5 +233,5 @@ function getDetectors(Detector_info_array::Matrix{Float64})
 		end #try
 	end #for
 
-	return Detectors_array
+	return detectors_array
 end #function

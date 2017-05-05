@@ -8,6 +8,7 @@
 
 import Base.show
 
+
 """
     Point(Height::Real, Rho::Real)
 
@@ -17,11 +18,13 @@ construct and return a `Point` source that can be a source of itself or an
 `Height` : point height relative to the detector.
 
 `Rho` : point off axis relative to the detector axis of symmetry.
+
 # Note please
-+ each detector interpreted the height in a different way as follow.
-+ for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
-+ for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
-+ for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
+
+- each detector interpreted the height in a different way as follow.
+- for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
+- for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
+- for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
 """
 type Point
 	Height::Float64
@@ -72,6 +75,7 @@ end #function
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
 
+#-----------------------------------------------------------------
 
 """
 	source(;isPoint=false)
@@ -102,14 +106,16 @@ function source(;isPoint=false)
     return (anchorPnt, SrcRadius, SrcLength)
 end #function
 
+#-----------------------------------------------------------------
 
-#abstract base of all the Gamma Detectors.
+#abstract base of all the Gamma detectors.
 if VERSION < v"0.6.0-dev.2746" # julia PR #20418
     include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
 else
     include_string("abstract type RadiationDetector end")  #for compitaiblity with the syntax change
 end
-show(io::IO, Detector::RadiationDetector) = print(id(Detector))
+show(io::IO, detector::RadiationDetector) = print(id(detector))
+const Detector = RadiationDetector
 
 
 """
@@ -123,7 +129,7 @@ return a `cylindrical` detector.
 """
 immutable CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
-  CryLength::Float64		#Real
+    CryLength::Float64		#Real
 
 	function CylDetector(CryRadius::Real, CryLength::Real)
 		@assert CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
@@ -154,8 +160,9 @@ function CylDetector()
 	CylDetector(CryRadius, CryLength)
 end #function
 
-id(Detector::CylDetector) = "CylDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength)]"
+id(detector::CylDetector) = "CylDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength)]"
 
+#-----------------------------------------------------------------
 
 """
 	BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
@@ -195,11 +202,12 @@ function BoreDetector()
 	BoreDetector(CryRadius, CryLength, HoleRadius)
 end #function
 
-id(Detector::BoreDetector) = "BoreDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength), HoleRadius=$(Detector.HoleRadius)]"
+id(detector::BoreDetector) = "BoreDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius)]"
 
+#-----------------------------------------------------------------
 
 """
-	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return a Well-Type detector.
 
@@ -241,11 +249,13 @@ function WellDetector()
 	WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 end #function
 
-id(Detector::WellDetector) = "WellDetector[CryRadius=$(Detector.CryRadius), CryLength=$(Detector.CryLength), HoleRadius=$(Detector.HoleRadius), HoleDepth=$(Detector.HoleDepth)]"
+id(detector::WellDetector) = "WellDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius), HoleDepth=$(detector.HoleDepth)]"
 
+#-----------------------------------------------------------------
 
 """
 	RadiationDetector()
+	Detector()
 
 construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`)
 according to the input from the console.
@@ -256,7 +266,7 @@ according to the input from the console.
 + if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
 """
 function RadiationDetector()
-	print_with_color(:yellow, "\n I- The Detector physical Dimensions :-\n")
+	print_with_color(:yellow, "\n I- The detector physical Dimensions :-\n")
 	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, CryRadius)
@@ -273,6 +283,7 @@ end #function
 
 """
     RadiationDetector(CryRadius::Real)
+	Detector(CryRadius::Real)
 
 return cylindrical detector with zero hieght
 """
@@ -280,6 +291,7 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 """
     RadiationDetector(CryRadius::Real, CryLength::Real)
+	Detector(CryRadius::Real, CryLength::Real)
 
 return cylindrical detector
 """
@@ -287,6 +299,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, Cry
 
 """
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
+	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return bore-hole or cylindrical detector if `HoleRadius` = 0.0
 """
@@ -296,6 +309,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
 
 """
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return well-type or bore-hole or cylindrical detector
 """
@@ -304,8 +318,9 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 				                                        WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 
 """
-    RadiationDetector(Detector::RadiationDetector)
+    RadiationDetector(detector::RadiationDetector)
+	Detector(detector::RadiationDetector)
 
 return just the inputed detector
 """
-RadiationDetector(Detector::RadiationDetector) = Detector
+RadiationDetector(detector::RadiationDetector) = detector

@@ -1,6 +1,6 @@
 # Accurate Geometrical Efficiency Calculator (GeoEfficiency)
 
-## Last release: 
+## Latest Release 
  + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
  
  + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
@@ -8,7 +8,7 @@
  + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
 
 
-## Nightly builds
+## Nightly Builds
 
 + Linux, OSX: [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl)     
 
@@ -27,7 +27,7 @@
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.8.4"
+@version: v"0.8.5"
 
 Created on Fri Aug 14 20:12:01 2015
 

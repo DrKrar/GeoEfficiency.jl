@@ -14,67 +14,67 @@ const integrate = QuadGK.quadgk
 
 """
 
-	GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
+	GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 
 return the Geometrical Efficiency for the point source `aPnt` located on front
-of the cylindrical detector `Detector` face.
+of the cylindrical detector `detector` face.
 
 `Throw` an Error if the point is out of cylindrical detector the face.
 
 This is the base function that all other function call directly or indirectly
 to calculate Geometrical Efficiency.
 """
-function GeoEff_Pnt(Detector::CylDetector, aPnt::Point)
+function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 
 	function MaxPhi(theta::Float64 )
 		side = aPnt.Height * sin(theta)
-		return clamp((aPnt.Rho^2 + side^2 - Detector.CryRadius^2 )/ side / aPnt.Rho /2.0, -1.0, 1.0) |> acos
+		return clamp((aPnt.Rho^2 + side^2 - detector.CryRadius^2 )/ side / aPnt.Rho /2.0, -1.0, 1.0) |> acos
 	end # function
 
-	func(theta::Float64 ) = MaxPhi(theta) * sin(theta)
+	func(theta::Float64) = MaxPhi(theta) * sin(theta)
 
 	if 0.0 == aPnt.Rho
 		strt = 0.0
-		fine = atan2(Detector.CryRadius , aPnt.Height)
+		fine = atan2(detector.CryRadius , aPnt.Height)
 		return integrate(sin, strt, fine, reltol = relativeError)[1]
 
 	else
 		strt = 0.0
-		transtion = atan2(Detector.CryRadius - aPnt.Rho, aPnt.Height)
-		fine = atan2(Detector.CryRadius + aPnt.Rho, aPnt.Height)
+		transtion = atan2(detector.CryRadius - aPnt.Rho, aPnt.Height)
+		fine = atan2(detector.CryRadius + aPnt.Rho, aPnt.Height)
 		if transtion >= 0.0
 
 			return integrate(sin, strt, transtion, reltol = relativeError)[1] +
                       integrate(func, transtion, fine, reltol = relativeError)[1] / pi
 
 		else
-			Error("Point off-axis: out of the Detector face, this case is not implemented yet")
+			Error("Point off-axis: out of the detector face, this case is not implemented yet")
 
 		end #if
 
 	end #if
 end #function
 
+#-----------------------------------------------------------------
 
 """
+	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 
-	GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-
-return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` on front of the cylindrical detector `Detector` face.
+return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
 
 `Throw` an Error if the disk is out of cylindrical detector the face.
 """
-function GeoEff_Disk(Detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-	integrand(xRho) = xRho * GeoEff_Pnt(Detector, setRho!(SurfacePnt, xRho))
+function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
+	integrand(xRho) = xRho * GeoEff_Pnt(detector, setRho!(SurfacePnt, xRho))
 	return  integrate(integrand , 0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2
 end #function
 
+#-----------------------------------------------------------------
 
 """
+	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-	geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-
-return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `Detector`.
+return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `detector`.
 
 `aSurfacePNT`: a surface point.
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at this point.
@@ -99,27 +99,26 @@ to obtain the efficiency for a cylindrical detector of crystal radius 2.0 cm for
 
 \n*****
 """
-function geoEff(Detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aSurfacePnt)
-	@assert Detector.CryRadius > SrcRadius		" Source Radius: Expected less than 'Detector Radius=$(Detector.CryRadius)', get $SrcRadius."
+	@assert detector.CryRadius > SrcRadius		" Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius."
 
     if 0.0 == SrcRadius
-		    @assert Detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'Detector Radius=$(Detector.CryRadius)', get $(pnt.Rho)."
-        return GeoEff_Pnt(Detector, pnt)/2            	#Point source
+		    @assert detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho)."
+        return GeoEff_Pnt(detector, pnt)/2            	#Point source
 
 	elseif 0.0 == SrcLength								#Disk source
-        return GeoEff_Disk(Detector, pnt, SrcRadius)
+        return GeoEff_Disk(detector, pnt, SrcRadius)
 
 	else												# Cylindrical source
-        integrand(xH) = GeoEff_Disk(Detector, setHeight!(pnt, xH), SrcRadius)
+        integrand(xH) = GeoEff_Disk(detector, setHeight!(pnt, xH), SrcRadius)
 		    return integrate(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength
 
 	end #if
 end #function
 
 """
-
-	geoEff(Detector::RadiationDetector = RadiationDetector())
+	geoEff(detector::RadiationDetector = RadiationDetector())
 
 return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. Also prompt the user to input a source via the `console`.
 
@@ -127,13 +126,13 @@ return the Geometrical Efficiency of the given detector or if no detector is sup
 `Throw` an Error if the source location is inappropriate.
 \n*****
 """
-geoEff(Detector::RadiationDetector = RadiationDetector()) = geoEff(Detector, source()...)
+geoEff(detector::RadiationDetector = RadiationDetector()) = geoEff(detector, source()...)
 
 """
 
-	geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-return the Geometrical Efficiency for the given source (point , disk or cylinder) with the Bore-Hole detector `Detector`.
+return the Geometrical Efficiency for the given source (point , disk or cylinder) with the Bore-Hole detector `detector`.
 
 `aCenterPNT`: a center point represent the anchoring point of the source.
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at the anchoring point.
@@ -159,18 +158,18 @@ to obtain the efficiency for a bore-hole detector of crystal radius of 2.0 and h
 	0.5678174038944723
 \n*****
 """
-function geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-	HeightWup = aCenterPnt.Height - Detector.CryLength/2.0
-	HeightWdown = aCenterPnt.Height + Detector.CryLength/2.0
+	HeightWup = aCenterPnt.Height - detector.CryLength/2.0
+	HeightWdown = aCenterPnt.Height + detector.CryLength/2.0
 	if HeightWdown < 0.0
 		if HeightWup + SrcLength < 0.0 		#invert the source.
-			return geoEff(Detector, Point(aCenterPnt.Height - Detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
+			return geoEff(detector, Point(aCenterPnt.Height - detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
 
 		else # the source span the detector and emerges from both sides, split the source into two sources.
-			#res = (1 - 2 * geoEff(detin, Point(0.0), SrcRadius, SrcLength))* Detector.CryLength /SrcLength
-			return geoEff(Detector, Point(0.0), SrcRadius, -aCenterPnt.Height ) * (-aCenterPnt.Height /SrcLength) +
-			       geoEff(Detector, Point(0.0), SrcRadius, SrcLength + aCenterPnt.Height ) * (1.0 + aCenterPnt.Height /SrcLength)
+			#res = (1 - 2 * geoEff(detin, Point(0.0), SrcRadius, SrcLength))* detector.CryLength /SrcLength
+			return geoEff(detector, Point(0.0), SrcRadius, -aCenterPnt.Height ) * (-aCenterPnt.Height /SrcLength) +
+			       geoEff(detector, Point(0.0), SrcRadius, SrcLength + aCenterPnt.Height ) * (1.0 + aCenterPnt.Height /SrcLength)
 
 		end
 	end
@@ -181,8 +180,8 @@ function geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	pntWdown::Point = deepcopy(aCenterPnt);
 	setHeight!(pntWdown, abs(HeightWdown)); #0.0 == SrcRadius && setRho!(pntWdown, 0.0)
 
-	detin::CylDetector = CylDetector(Detector.HoleRadius)
-	detout::CylDetector = CylDetector(Detector.CryRadius)
+	detin::CylDetector = CylDetector(detector.HoleRadius)
+	detout::CylDetector = CylDetector(detector.CryRadius)
 
 
 	if HeightWup >= 0.0						# the source as a whole out of detector
@@ -208,10 +207,9 @@ function geoEff(Detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 end #function
 
 """
+	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-	geoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-
-return the Geometrical Efficiency for the given source (point, disk or cylinder) with the Well-Type detector `Detector`.
+return the Geometrical Efficiency for the given source (point, disk or cylinder) with the Well-Type detector `detector`.
 
 `aWellPNT`: a Well point represent the anchoring point of the source.
 if `SrcRadius` = `SrcLength` = `0`; the method returns the Geometrical Efficiency at the anchoring point.
@@ -239,12 +237,12 @@ to obtain the efficiency for a well-type detector of crystal radius of 2.0 and h
 	0.4669614527701105
 \n*****
 """
-function geoEff(Detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	pnt::Point = deepcopy(aWellPnt)
-	Height = pnt.Height - Detector.HoleDepth
+	Height = pnt.Height - detector.HoleDepth
 
-	detin::CylDetector = CylDetector(Detector.HoleRadius)
-	detout::CylDetector = CylDetector(Detector.CryRadius)
+	detin::CylDetector = CylDetector(detector.HoleRadius)
+	detout::CylDetector = CylDetector(detector.CryRadius)
 	setHeight!(pnt, Height); #0.0 == SrcRadius && setRho!(pnt, 0.0)
 
 	if Height > 0.0							# the source as a whole out of the detector

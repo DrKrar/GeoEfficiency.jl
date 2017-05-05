@@ -14,19 +14,19 @@ countDetectors = 1;
 
 
 """
-	calc(Detector::RadiationDetector = RadiationDetector())
+	calc(detector::RadiationDetector = RadiationDetector())
 
-calculate the Geometrical Efficiency of the detector `Detector` and display it on the `console`.
+calculate the Geometrical Efficiency of the detector `detector` and display it on the `console`.
 If no detector is supplied it ask for a detector from the `console`.
 Also prompt the user to input a source via the `console`.
 """
-function calc(Detector::RadiationDetector = RadiationDetector())
+function calc(detector::RadiationDetector = RadiationDetector())
 	global countDetectors
 	aPnt, srcRadius, srcLength = source()
-	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(Detector))")
+	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
 	try
-		println("\n - The Detector Geometrical Efficiency = ", geoEff(Detector, aPnt, srcRadius, srcLength))
+		println("\n - The detector Geometrical Efficiency = ", geoEff(detector, aPnt, srcRadius, srcLength))
 
 	catch err
 		println(err)
@@ -40,6 +40,7 @@ function calc(Detector::RadiationDetector = RadiationDetector())
 
 end #function
 
+#-----------------------------------------------------------------
 
 """
     calcN()
@@ -49,10 +50,10 @@ Prompt the user to input a `detector` and a `source` from the `console`.
 Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).
 """
 function calcN()
-	Detector = RadiationDetector()
+	detector = RadiationDetector()
 	while (true)
 
-		calc(Detector)
+		calc(detector)
 		res = input("""\n
     	I- To continue make a choice:
 			> using the same detector Press 'd'|'D'
@@ -60,7 +61,7 @@ function calcN()
     	II- To quit just press return\n
 			\n\tyour Choice: """, :red) |> lowercase;
 		if res == "n"
-            Detector = RadiationDetector()
+            detector = RadiationDetector()
 
 		elseif res == "d"
             continue
@@ -74,12 +75,16 @@ function calcN()
 	return nothing
 end #function
 
+#-----------------------------------------------------------------
+
 function writecsv_head(fname::AbstractString, a, head=[])
 	open(fname, "w") do io
 	  writedlm(io, head, ',')
 	  writedlm(io, a, ',')
 	end #do
 end #function
+
+#-----------------------------------------------------------------
 
 """
 	batch()
@@ -94,14 +99,14 @@ Throw an error if the source location is inappropriate.
 batch() = batch(read_batch_info()...)
 
 """
-	batch( Detector_info_array::Matrix{Float64},
+	batch( detector_info_array::Matrix{Float64},
 		  srcHeights_array::Vector{Float64},
 			srcRhos_array::Vector{Float64}=[0.0],
 			srcRadii_array::Vector{Float64}=[0.0],
 			srcLengths_array::Vector{Float64}=[0.0],
 			ispoint::Bool=true)
 
-provide batch calculation of the Geometricel efficiecny for each detector in the `Detector_info_array` after applying detectorFactory() to each raw.
+provide batch calculation of the Geometricel efficiecny for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -111,14 +116,14 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
-function batch(	Detector_info_array::Matrix{Float64},
+function batch(	detector_info_array::Matrix{Float64},
 				srcHeights_array::Vector{Float64},
 				srcRhos_array::Vector{Float64}=[0.0],
 				srcRadii_array::Vector{Float64}=[0.0],
 				srcLengths_array::Vector{Float64}=[0.0],
 				ispoint::Bool=true)
 
-	return  batch(	getDetectors(Detector_info_array),
+	return  batch(	getDetectors(detector_info_array),
 					srcHeights_array,
 					srcRhos_array,
 					srcRadii_array,
@@ -127,14 +132,14 @@ function batch(	Detector_info_array::Matrix{Float64},
 end #function
 
 """
-	 batch( Detector::RadiationDetector,
+	 batch( detector::RadiationDetector,
 			srcHeights_array::Vector{Float64},
 			srcRhos_array::Vector{Float64}=[0.0],
 			srcRadii_array::Vector{Float64}=[0.0],
 			srcLengths_array::Vector{Float64}=[0.0],
 			ispoint::Bool=true)
 
-provide batch calculation of the Geometricel efficiecny for the detector `Detector` .
+provide batch calculation of the Geometricel efficiecny for the detector `detector` .
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -147,7 +152,7 @@ Results are saved to a csv file named after the detector located in `$(resultdir
 Return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
 \n*****
 """
-function batch(	Detector::RadiationDetector,
+function batch(	detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
 				srcRhos_array::Vector{Float64}=[0.0],
 				srcRadii_array::Vector{Float64}=[0.0],
@@ -155,7 +160,7 @@ function batch(	Detector::RadiationDetector,
 				ispoint::Bool=true)
 
 	return _batch(Val{ispoint},
-				Detector::RadiationDetector,
+				detector::RadiationDetector,
 				srcHeights_array,
 				srcRhos_array,
 				srcRadii_array,
@@ -164,14 +169,14 @@ function batch(	Detector::RadiationDetector,
 end #function
 
 """
-	 batch( Detectors_array::Vector{RadiationDetector},
+	 batch( detectors_array::Vector{RadiationDetector},
 			srcHeights_array::Vector{Float64},
 			srcRhos_array::Vector{Float64}=[0.0],
 			srcRadii_array::Vector{Float64}=[0.0],
 			srcLengths_array::Vector{Float64}=[0.0],
 			ispoint::Bool=true)
 
-provide batch calculation of the Geometricel efficiecny for each detector in the `Detectors_array`.
+provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -182,22 +187,22 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
-function batch( Detectors_array::Vector{RadiationDetector},
+function batch( detectors_array::Vector{RadiationDetector},
 	       srcHeights_array::Vector{Float64},
 	       srcRhos_array::Vector{Float64}=[0.0],
 	       srcRadii_array::Vector{Float64}=[0.0],
 	       srcLengths_array::Vector{Float64}=[0.0],
 	       ispoint::Bool=true)
 
-	for Detector = Detectors_array
-		batch(Detector,
+	for detector = detectors_array
+		batch(detector,
 			srcHeights_array,
 			srcRhos_array,
 			srcRadii_array,
 			srcLengths_array,
 			ispoint)
 
-	end # Detectors_array
+	end # detectors_array
 
 	input("\n\t the program had termiate, To Exit Press any Button")
 	nothing
@@ -208,7 +213,7 @@ end #function
 batch calclulation for point sources.
 """
 function _batch(::Type{Val{true}},
-				Detector::RadiationDetector,
+				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
 				srcRhos_array::Vector{Float64}=[0.0],
 				srcRadii_array::Vector{Float64}=[0.0],
@@ -218,7 +223,7 @@ function _batch(::Type{Val{true}},
 	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
 	results::Matrix{Float64} = Array{Float64}(0,0); out_results::Array{Float64,1} = Float64[];
-	cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
+	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 
 		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
@@ -226,7 +231,7 @@ function _batch(::Type{Val{true}},
 			aPnt.Rho = srcRho		    #setRho!(aPnt, srcRho)
 
 			try
-				calculatedEff= geoEff(Detector, aPnt)
+				calculatedEff= geoEff(detector, aPnt)
 				push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
 
 			catch err
@@ -237,7 +242,7 @@ function _batch(::Type{Val{true}},
 
 			print_with_color(:yellow,cellLabel)
 			println("\n - Source: ", id(aPnt))
-			println("\n - The Detector Geometrical Efficiency = ", calculatedEff)
+			println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 			print_with_color(:red, repeat(" =",36),"\n\n")
 
 		end #for_Rho
@@ -245,17 +250,17 @@ function _batch(::Type{Val{true}},
 	end #for_Height
 
 	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
-	info("Saving <$countDetectors> to '$(id(Detector)).csv'......")
+	info("Saving <$countDetectors> to '$(id(detector)).csv'......")
 	try
-		writecsv_head(joinpath(resultdir_pnt,  "$(id(Detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
+		writecsv_head(joinpath(resultdir_pnt,  "$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		warn("'.$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir_pnt, "_$(id(Detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
+		warn("'.$(id(detector)).csv': can't be created, results saved in an alternative file")
+		writecsv_head(joinpath(resultdir_pnt, "_$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
 
 	end #try
 	countDetectors += 1
-	return (Detector, results)
+	return (detector, results)
 
 end #function
 
@@ -263,7 +268,7 @@ end #function
 batch calclulation for non-point sources.
 """
 function _batch(::Type{Val{false}},
-				Detector::RadiationDetector,
+				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
 				srcRhos_array::Vector{Float64}=[0.0],
 				srcRadii_array::Vector{Float64}=[0.0],
@@ -273,7 +278,7 @@ function _batch(::Type{Val{false}},
 	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
 	results::Matrix{Float64} = Array(Float64,(0,0)); out_results::Vector{Float64} = Float64[];
-	cellLabel = "\n\<$(countDetectors)\>$(id(Detector))"
+	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 
 		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
@@ -285,7 +290,7 @@ function _batch(::Type{Val{false}},
 				for srcRadius = srcRadii_array
 
 					try
-						calculatedEff = geoEff(Detector, aPnt, srcRadius , srcLength)
+						calculatedEff = geoEff(detector, aPnt, srcRadius , srcLength)
 						push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 
 					catch err
@@ -296,7 +301,7 @@ function _batch(::Type{Val{false}},
 
 					print_with_color(:yellow,cellLabel)
 					println("\n - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
-					println("\n - The Detector Geometrical Efficiency = ", calculatedEff)
+					println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 					print_with_color(:red, repeat(" =",36),"\n\n")
 
 				end #for_srcRadius
@@ -310,16 +315,16 @@ function _batch(::Type{Val{false}},
 	end #for_Height
 
 	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
-	info("Saving <$countDetectors> to '$(id(Detector)).csv'......")
+	info("Saving <$countDetectors> to '$(id(detector)).csv'......")
 	try err
-		writecsv_head(joinpath(resultdir_nonPnt, "$(id(Detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+		writecsv_head(joinpath(resultdir_nonPnt, "$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	catch
-		warn("'$(id(Detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(Detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+		warn("'$(id(detector)).csv': can't be created, results saved in an alternative file")
+		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	end #try
 	countDetectors += 1;
-	return (Detector, results)
+	return (detector, results)
 
 end #function
