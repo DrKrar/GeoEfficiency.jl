@@ -1,5 +1,5 @@
 #**************************************************************************************
-# test_Pythical_Model.jl
+# test_Physics_Model.jl
 # ====================== part of the GeoEfficiency.jl package.
 # 
 #   
@@ -7,7 +7,7 @@
 #**************************************************************************************
 
 
-@testset "Pythical_Model" begin
+@testset "Physics Model" begin
   @testset "Point" begin
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
