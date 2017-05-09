@@ -104,7 +104,7 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 	@assert detector.CryRadius > SrcRadius		" Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius."
 
     if 0.0 == SrcRadius
-		    @assert detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho)."
+	    @assert detector.CryRadius  > pnt.Rho	" Point off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho)."
         return GeoEff_Pnt(detector, pnt)/2            	#Point source
 
 	elseif 0.0 == SrcLength								#Disk source
@@ -112,7 +112,7 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 
 	else												# Cylindrical source
         integrand(xH) = GeoEff_Disk(detector, setHeight!(pnt, xH), SrcRadius)
-		    return integrate(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength
+		return integrate(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength
 
 	end #if
 end #function
