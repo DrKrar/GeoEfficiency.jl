@@ -1,12 +1,12 @@
 #**************************************************************************************
-# Physics_Model.jl
-# ================ part of the GeoEfficiency.jl package.
+# Pythical_Model.jl
+# =============== part of the GeoEfficiency.jl package.
 #
 # here is the place where all physical elements is being modeled and created as computer objects.
 #
 #**************************************************************************************
 
-import Base: show, >
+import Base.show
 
 
 """
@@ -91,7 +91,7 @@ return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) bas
 If `isPoint` is true both `SrcRadius` and `SrcLength` are set to zero.
 """
 function source(;isPoint=false)
-    anchorPnt::Point = Point()
+    anchorPnt = Point()
 	isPoint && return (anchorPnt, 0.0, 0.0)
 
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
@@ -116,7 +116,7 @@ else
 end
 show(io::IO, detector::RadiationDetector) = print(id(detector))
 const Detector = RadiationDetector
->(detector1::RadiationDetector, detector2::RadiationDetector) = volume(detector1) > volume(detector2)
+
 
 """
 	CylDetector(CryRadius::Real, CryLength::Real)
@@ -161,7 +161,6 @@ function CylDetector()
 end #function
 
 id(detector::CylDetector) = "CylDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength)]"
-volume(detector::CylDetector) = pi * detector.CryRadius^2 * detector.CryLength 
 
 #-----------------------------------------------------------------
 
@@ -204,7 +203,6 @@ function BoreDetector()
 end #function
 
 id(detector::BoreDetector) = "BoreDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius)]"
-volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius ^2 )* detector.CryLength 
 
 #-----------------------------------------------------------------
 
@@ -223,7 +221,7 @@ return a Well-Type detector.
 """
 immutable WellDetector <: RadiationDetector
 	CryRadius::Float64
-    CryLength::Float64
+  CryLength::Float64
 	HoleRadius::Float64
 	HoleDepth::Float64
 
@@ -252,7 +250,6 @@ function WellDetector()
 end #function
 
 id(detector::WellDetector) = "WellDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius), HoleDepth=$(detector.HoleDepth)]"
-volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength - detector.HoleRadius ^2 * detector.HoleDepth)
 
 #-----------------------------------------------------------------
 

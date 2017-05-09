@@ -11,7 +11,7 @@ else
 end 
 
 tests = ["Input_Interface",
-         "Physics_Model",
+         "Physical_model",
          "Output_Interface",
          "Calculations"]
 

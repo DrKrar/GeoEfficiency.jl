@@ -54,28 +54,26 @@ input a number:
 ```
 """
 function getfloat(prompt::AbstractString = "? ",
-		    from::Real = 0.0,
-            to::Real = Inf)
+		  from::Real = 0.0,
+                  to::Real = Inf)
 
     value = input(prompt)
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
-    val::Float64 = 0.0
-	
-	try
+    try
         val = include_string(value) |> float
         @assert from <= val < to
         return val
-    
-	catch err
+
+    catch err
         if isa(err, AssertionError) 
             warn("provid a number in the semi open interval [$from, $to[.")
         else   
-	        warn("provid a valid numerical value!")
+	    warn("provid a valid numerical value!")
         end #if 
+        
         return getfloat(prompt, from, to)
 
     end #try
-
 end	#function
 
 #-----------------------------------------------------------------
@@ -112,7 +110,7 @@ function read_from_csvFile(csv_data::AbstractString)
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
 
 	catch err
-        warn("some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+		warn("`$(csv_data)` can't be found in `$(datadir)`")
 		return Float64[0.0]
 
 	end #try
@@ -135,10 +133,10 @@ Return a tuple
 function read_batch_info()
 
 	info("Starting the batch mode.....")
-	ispoint::Bool = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
+	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
-	detectors_array ::Vector{RadiationDetector} = read_from_csvFile() |> sort
+	detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
 	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights) |> sort
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
