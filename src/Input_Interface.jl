@@ -221,7 +221,7 @@ end #function
 Convert detectors from the information in `detector_info_array` and return `detectors_array` an Array of successfully 
 converted detectors. If the `detector_info_array` is empty it will call `getDetectors()`.
 """
-function getDetectors(detector_info_array::Matrix{T} where T<:Real)
+function getDetectors(detector_info_array::Matrix)
 	isempty(detector_info_array) && return getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	for i_th_line = 1:size(detector_info_array)[1]
