@@ -8,12 +8,13 @@
 
 
 @testset "Physics Model" begin
+ 
   @testset "Point" begin
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
-    @test typeof(pnt1.Rho) == Float64
+	@test isa(pnt1.Rho, Float64)
     @test 5.0 == pnt1.Height
-    @test typeof(pnt1.Height) == Float64
+    @test isa(pnt1.Height, Float64)
   
     pnt2 = Point(5, 0)
     pnt3 = Point(5, 0.0)
@@ -54,10 +55,11 @@
 	cyl1 = Detector(5)
     @test_throws ErrorException  cyl0.CryRadius = 1
 	@test_throws ErrorException  cyl0.CryLength = 1
-    @test typeof(cyl1) == CylDetector
+	@test isa(cyl1, Detector)
+	@test isa(cyl1, CylDetector)
     @test 5.0 == cyl1.CryRadius
     @test 0.0 == cyl1.CryLength
-  
+
     cyl2 = Detector(5, 0)
     cyl3 = Detector(5, 0.0)
     cyl4 = Detector(5.0, 0)
@@ -81,7 +83,8 @@
     @test_throws ErrorException  bore0.CryRadius = 1
 	@test_throws ErrorException  bore0.CryLength = 1
 	@test_throws ErrorException  bore0.HoleRadius= 1
-    @test typeof(bore1) == BoreDetector
+	@test isa(bore1, Detector)
+	@test isa(bore1, BoreDetector)
     @test 5.0 == bore1.CryRadius
     @test 4.0 == bore1.CryLength
 	@test 3.0 == bore1.HoleRadius
@@ -110,7 +113,8 @@
 	@test_throws ErrorException  Well0.CryLength = 1
 	@test_throws ErrorException  Well0.HoleRadius= 1
 	@test_throws ErrorException  Well0.HoleDepth = 1
-    @test typeof(Well1) == WellDetector
+	@test isa(Well1, Detector)
+    @test isa(Well1, WellDetector)
     @test 5.0 == Well1.CryRadius
     @test 4.0 == Well1.CryLength
 	@test 3.0 == Well1.HoleRadius

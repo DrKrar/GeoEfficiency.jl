@@ -50,7 +50,7 @@ Prompt the user to input a `detector` and a `source` from the `console`.
 Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).
 """
 function calcN()
-	detector = RadiationDetector()
+	detector:: RadiationDetector = RadiationDetector()
 	while (true)
 
 		calc(detector)
@@ -222,6 +222,7 @@ function _batch(::Type{Val{true}},
 
 	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
+	calculatedEff::Float64 = 0.0
 	results::Matrix{Float64} = Array{Float64}(0,0); out_results::Array{Float64,1} = Float64[];
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
@@ -277,7 +278,8 @@ function _batch(::Type{Val{false}},
 
 	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
-	results::Matrix{Float64} = Array(Float64,(0,0)); out_results::Vector{Float64} = Float64[];
+	results::Matrix{Float64} = Array{Float64}(0,0); out_results::Vector{Float64} = Float64[];
+	calculatedEff::Float64 = 0.0
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 

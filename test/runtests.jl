@@ -11,7 +11,7 @@ else
 end 
 
 tests = ["Input_Interface",
-         "Physical_model",
+         "Physics_Model",
          "Output_Interface",
          "Calculations"]
 
@@ -19,7 +19,7 @@ println("\nRunning tests:")
 
 for t in tests
 	println()
-    info("beging test of $(t).....")
+    info("Beging test of $(t).....")
     include("test_$(t).jl")
 end
 @test 1.0==1

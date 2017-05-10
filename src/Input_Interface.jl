@@ -54,12 +54,13 @@ input a number:
 ```
 """
 function getfloat(prompt::AbstractString = "? ",
-		  from::Real = 0.0,
-                  to::Real = Inf)
+		        from::Real = 0.0,
+                to::Real = Inf)
 
     value = input(prompt)
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
-    try
+    val::Float64 = 0.0
+	try
         val = include_string(value) |> float
         @assert from <= val < to
         return val
@@ -68,7 +69,7 @@ function getfloat(prompt::AbstractString = "? ",
         if isa(err, AssertionError) 
             warn("provid a number in the semi open interval [$from, $to[.")
         else   
-	    warn("provid a valid numerical value!")
+	        warn("provid a valid numerical value!")
         end #if 
         
         return getfloat(prompt, from, to)
@@ -91,7 +92,7 @@ function read_from_csvFile()
         return getDetectors(detector_info_array)
 		
     catch err
-        warn("some thing went wrong, may be '$(detectors)' can't be found in '$(datadir)'")
+        warn("Some thing went wrong, may be '$(detectors)' can't be found in '$(datadir)'")
         return getDetectors()
 
     end #try
@@ -107,10 +108,10 @@ read data from a file and return its content as an array.
 function read_from_csvFile(csv_data::AbstractString)
 	info("Opening `$(csv_data)`......")
 	try
-		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1];
+		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |> sort;
 
 	catch err
-		warn("`$(csv_data)` can't be found in `$(datadir)`")
+		warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		return Float64[0.0]
 
 	end #try
@@ -137,7 +138,7 @@ function read_batch_info()
 
 	info("Read data from CSV files at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
-	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights) |> sort
+	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]
@@ -157,16 +158,16 @@ function read_batch_info()
 	elseif ispoint
 		#srcRadii_array  = [0.0]
 		#srcLengths_array  = [0.0]
-		srcRhos_array =	read_from_csvFile(srcRhos) |> sort
+		srcRhos_array =	read_from_csvFile(srcRhos)
 
 	else
 		#srcRhos_array = [0.0]
-		srcRadii_array = read_from_csvFile(srcRadii) |> sort
+		srcRadii_array = read_from_csvFile(srcRadii)
 		if srcRadii_array == [0.0]
 			batchfailure()
 
 		else
-			srcLengths_array = read_from_csvFile(srcLengths) |> sort
+			srcLengths_array = read_from_csvFile(srcLengths)
 
 		end #if
 	end #if
@@ -210,17 +211,17 @@ function getDetectors()
 		res == "q" && break
 
 	end #while
-	return detectors_array
+	return detectors_array |> sort
 end #function
 
 
 """
-	getDetectors(detector_info_array::Array{Float64,2})
+	getDetectors(detector_info_array::Matrix{Real})
 
 Convert detectors from the information in `detector_info_array` and return `detectors_array` an Array of successfully 
 converted detectors. If the `detector_info_array` is empty it will call `getDetectors()`.
 """
-function getDetectors(detector_info_array::Matrix{Float64})
+function getDetectors(detector_info_array::Matrix{T} where T<:Real)
 	isempty(detector_info_array) && return getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	for i_th_line = 1:size(detector_info_array)[1]
@@ -233,5 +234,5 @@ function getDetectors(detector_info_array::Matrix{Float64})
 		end #try
 	end #for
 
-	return detectors_array
+	return detectors_array |> sort
 end #function

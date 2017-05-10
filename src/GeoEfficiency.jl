@@ -49,7 +49,7 @@ export 	input,
 		calcN, 
 		batch
 
-include("Physical_model.jl")
+include("Physics_Model.jl")
 include("Input_Interface.jl")
 include("Calculations.jl")
 include("Output_Interface.jl")
