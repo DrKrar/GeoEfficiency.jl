@@ -49,6 +49,18 @@ export 	input,
 		calcN, 
 		batch
 
+# Physics_Model.jl
+
+# Intput_Interface.jl
+const GeoEfficiency_datafolder    = nothing   # "GeoEfficiency"
+
+# Calculations.jl
+const GeoEfficiency_relativeError = nothing   # 0.0001
+const GeoEfficiency_integrate     = nothing   # QuadGK.quadgk
+
+# Output_Interface.jl
+const GeoEfficiency_resultsfolder = nothing   # "results"
+
 include("Physics_Model.jl")
 include("Input_Interface.jl")
 include("Calculations.jl")
