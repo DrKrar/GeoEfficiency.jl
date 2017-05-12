@@ -187,7 +187,7 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 """
-function batch( detectors_array::Vector{<:RadiationDetector},
+function batch( detectors_array::Vector{RadiationDetector},
 	       srcHeights_array::Vector{Float64},
 	       srcRhos_array::Vector{Float64}=[0.0],
 	       srcRadii_array::Vector{Float64}=[0.0],

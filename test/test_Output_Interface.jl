@@ -10,8 +10,8 @@
 info("Statrting `batch` test...")
 @testset "Output Interface" begin
 
-   info("Statrting `calc` test...")
-   @test calc() == nothing
+   #info("Statrting `calc` test...")
+   #@test calc() == nothing
    
    info("Statrting `batch` test...")
    @test GeoEfficiency._batch(Val{true}, CylDetector(eps()), [0.0])[2][end] ≈ 0.5
