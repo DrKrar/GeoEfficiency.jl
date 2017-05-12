@@ -8,8 +8,12 @@
 
 const relativeError = 0.0001	        # set the global minimum relative precession of the Geometrical Efficiency Calculations
 
-using QuadGK
-const integrate = QuadGK.quadgk
+const integrate = if isdefined(:c_integrate) 
+	              c_integrate 
+	          else
+	              using QuadGK; 
+	              QuadGK.quadgk
+                  end
 
 
 """
