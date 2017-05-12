@@ -55,8 +55,10 @@ export 	input,
 const GeoEfficiency_datafolder    = nothing   # "GeoEfficiency"
 
 # Calculations.jl
-const GeoEfficiency_relativeError = nothing   # 0.0001
+using QuadGK
 const GeoEfficiency_integrate     = nothing   # QuadGK.quadgk
+const GeoEfficiency_relativeError = nothing   # 0.0001
+const GeoEfficiency_absoluteError = nothing   # 0.0001
 
 # Output_Interface.jl
 const GeoEfficiency_resultsfolder = nothing   # "results"
