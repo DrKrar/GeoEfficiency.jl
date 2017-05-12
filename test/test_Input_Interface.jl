@@ -39,7 +39,7 @@ const dotest = false
     end # testset
 	
 	  @testset "getDetectors" begin
-	    #info("test `getDetectors` with different ways to input numbers...")
+	    #info("test `getDetectors`")
 		detector_array_information = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 		detectors = getDetectors(detector_array_information)
 		det1, det2, det3, det4 = detectors
