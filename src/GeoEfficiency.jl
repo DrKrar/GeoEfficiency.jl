@@ -52,16 +52,16 @@ export 	input,
 # Physics_Model.jl
 
 # Intput_Interface.jl
-const GeoEfficiency_datafolder    = nothing   # "GeoEfficiency"
+const GeoEfficiency_datafolder    = "GeoEfficiency"
 
 # Calculations.jl
 using QuadGK
-const GeoEfficiency_integrate     = nothing   # QuadGK.quadgk
-const GeoEfficiency_relativeError = nothing   # 0.0001
-const GeoEfficiency_absoluteError = nothing   # 0.0001
+const GeoEfficiency_integrate     = QuadGK.quadgk
+const GeoEfficiency_relativeError = 0.0001
+const GeoEfficiency_absoluteError = 0.00000000001
 
 # Output_Interface.jl
-const GeoEfficiency_resultsfolder = nothing   # "results"
+const GeoEfficiency_resultsfolder = "results"
 
 include("Physics_Model.jl")
 include("Input_Interface.jl")
