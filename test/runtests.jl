@@ -12,14 +12,14 @@ end
 
 tests = ["Input_Interface",
          "Physics_Model",
-         "Output_Interface",
-         "Calculations"]
+         "Calculations",
+         "Output_Interface"]
 
 println("\nRunning tests:")
 
 for t in tests
 	println()
-    info("Beging test of $(t).....")
+    #info("Beging test of $(t).....")
     include("test_$(t).jl")
 end
 @test 1.0==1
