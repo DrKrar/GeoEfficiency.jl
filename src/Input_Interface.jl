@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-const datafolder = "GeoEfficiency"
+const datafolder = isdefined(:GeoEfficiency_datafolder ) ? GeoEfficiency_datafolder : "GeoEfficiency"
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
 const detectors  = "Detectors.csv";
