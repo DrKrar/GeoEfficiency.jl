@@ -6,7 +6,8 @@
 #
 #**************************************************************************************
 
-const relativeError = 0.0001	        # set the global minimum relative precession of the Geometrical Efficiency Calculations
+# set the global minimum relative precession of the Geometrical Efficiency Calculations
+const relativeError = isdefined(:GeoEfficiency_relativeError) ? GeoEfficiency_relativeError : 0.0001	
 
 const integrate = if isdefined(:c_integrate) 
 	              GeoEfficiency_integrate 
