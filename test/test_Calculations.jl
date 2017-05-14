@@ -8,7 +8,7 @@
 
 
 info("Statrting `geoEff` test...")
-@testset begin
+@testset "Calculations" begin
 	println()
 	info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
@@ -26,6 +26,26 @@ info("Statrting `geoEff` test...")
 		@test geoEff(acylDetector, Point(eps(), -radius+eps(radius))) ≈ 0.5	
 		@test geoEff(acylDetector, Point(eps(), radius/2-eps(radius))) ≈ 0.5
 		@test geoEff(acylDetector, Point(eps(), -radius/2+eps(radius))) ≈ 0.5
+
+	end #for_testset
+	
+		println()
+	info("special cases for cylinderical detector also; very restrict test")
+	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
+		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
+		acylDetector = CylDetector(radius)
+			
+		@test geoEff(acylDetector, Point(0), 0) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, radius-eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, -radius+eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, radius/2-eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, -radius/2+eps(radius))), 0) ≈ 0.5
+	
+		@test geoEff(acylDetector, Point(eps())) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), radius-eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), -radius+eps(radius)), 0)) ≈ 0.5	
+		@test geoEff(acylDetector, Point(eps(), radius/2-eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), -radius/2+eps(radius)), 0)) ≈ 0.5
 
 	end #for_testset
 
@@ -61,7 +81,7 @@ end #testset
 end #testset
 
 
-@testset begin
+@testset "scaling test" begin
 	println()
 	info("Statrting scaling test cylinderical detector with point source...")
 	@testset "[$(k*(j-1))] test, Scalling $k at radius $radius cm" for 
