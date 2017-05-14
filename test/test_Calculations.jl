@@ -36,16 +36,16 @@ info("Statrting `geoEff` test...")
 		acylDetector = CylDetector(radius)
 			
 		@test geoEff(acylDetector, Point(0), 0) ≈ 0.5
-		@test geoEff(acylDetector, Point(0, radius-eps(radius)), 0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(0, -radius+eps(radius)), 0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(0, radius/2-eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, radius-eps(radius))), 0) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, -radius+eps(radius))), 0) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, radius/2-eps(radius))), 0) ≈ 0.5
 		@test geoEff(acylDetector, Point(0, -radius/2+eps(radius))), 0) ≈ 0.5
 	
 		@test geoEff(acylDetector, Point(eps())) ≈ 0.5
-		@test geoEff(acylDetector, Point(eps(), radius-eps(radius)), 0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(eps(), -radius+eps(radius)), 0)) ≈ 0.5	
-		@test geoEff(acylDetector, Point(eps(), radius/2-eps(radius)), 0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(eps(), -radius/2+eps(radius)), 0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), radius-eps(radius))), 0) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), -radius+eps(radius))), 0) ≈ 0.5	
+		@test geoEff(acylDetector, Point(eps(), radius/2-eps(radius))), 0) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(), -radius/2+eps(radius))), 0) ≈ 0.5
 
 	end #for_testset
 
