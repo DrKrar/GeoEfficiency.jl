@@ -204,7 +204,8 @@ function batch( detectors_array::Vector{RadiationDetector},
 
 	end # detectors_array
 
-	input("\n\t the program had termiate, To Exit Press any Button")
+	println()
+	info("The program had termiate, Thank you")
 	nothing
 
 end #function
@@ -241,9 +242,10 @@ function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}
 
 	end # detectors_array
 
-	input("\n\t the program had termiate, To Exit Press any Button")
-	nothing
-
+	println()
+	info("The program had termiate, Thank you")
+    nothing
+	
 end #function
 
 """
