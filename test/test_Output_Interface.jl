@@ -39,5 +39,39 @@ info("Statrting `batch` test...")
    
    @test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0]) == nothing
    @test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   
+   @test batch([eps() 0], [0.0]) == nothing
+   @test batch(eps() 0], [0.0])], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1 0], [0.0]) == nothing
+   @test batch([1 0], [0.0])], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1//2 0], [0.0]) == nothing
+   @test batch([1//2 0], [0.0])], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1//2 0], [0.0]) == nothing
+   @test batch([1//2 0], [0.0])], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([e pi], [0.0]) == nothing
+   @test batch([e pi], [0.0])], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([5 4 3], [0.0]) == nothing
+   @test batch([5 4 3], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([5 4 3//1], [0.0]) == nothing
+   @test batch([5 4 3//1], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([5 4 pi], [0.0]) == nothing
+   @test batch([5 4 pi], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([5 4 3 2], [0.0]) == nothing
+   @test batch([5 4 3 2], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([CylDetector(eps()), WellDetector(5,4,3, 2)], [0.0]) == nothing
+   @test batch([CylDetector(eps()), WellDetector(5,4,3, 2)], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([CylDetector(eps()), BoreDetector(5,4,3)], [0.0]) == nothing
+   @test batch([CylDetector(eps()), BoreDetector(5,4,3)], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0]) == nothing
+   @test batch([BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   
+   @test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0]) == nothing
+   @test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0], [0.0], [0.0],[0.0],false)
 
  end  #begin_testset
