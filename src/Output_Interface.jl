@@ -170,10 +170,10 @@ end #function
 
 """
 	 batch( detectors_array::Vector{RadiationDetector},
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
+			srcHeights_array::Vector{Real},
+			srcRhos_array::Vector{Real}=[0.0],
+			srcRadii_array::Vector{Real}=[0.0],
+			srcLengths_array::Vector{Real}=[0.0],
 			ispoint::Bool=true)
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
@@ -188,12 +188,17 @@ Results are saved to a csv file named after the detector located in `$(resultdir
 \n*****
 """
 function batch( detectors_array::Vector{RadiationDetector},
-	       srcHeights_array::Vector{Float64},
-	       srcRhos_array::Vector{Float64}=[0.0],
-	       srcRadii_array::Vector{Float64}=[0.0],
-	       srcLengths_array::Vector{Float64}=[0.0],
+	       srcHeights_array::Vector{Real},
+	       srcRhos_array::Vector{Real}=[0.0],
+	       srcRadii_array::Vector{Real}=[0.0],
+	       srcLengths_array::Vector{Real}=[0.0],
 	       ispoint::Bool=true)
 
+	srcHeights_array = float(srcHeights_array)
+	srcRhos_array	 = float(srcRhos_array)
+	srcRadii_array	 = float(srcRadii_array)
+	srcLengths_array = float(srcLengths_array)	
+	
 	for detector = detectors_array
 		batch(detector,
 			srcHeights_array,
@@ -212,10 +217,10 @@ end #function
 
 """
 	 batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
+			srcHeights_array::Vector{Real},
+			srcRhos_array::Vector{Real}=[0.0],
+			srcRadii_array::Vector{Real}=[0.0],
+			srcLengths_array::Vector{Real}=[0.0],
 			ispoint::Bool=true)
 			
 provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
@@ -226,11 +231,16 @@ Results are saved to a csv file named after the detector located in `$(resultdir
 \n*****
 """
 function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
-	       srcHeights_array::Vector{Float64},
-	       srcRhos_array::Vector{Float64}=[0.0],
-	       srcRadii_array::Vector{Float64}=[0.0],
-	       srcLengths_array::Vector{Float64}=[0.0],
+	       srcHeights_array::Vector{Real},
+	       srcRhos_array::Vector{Real}=[0.0],
+	       srcRadii_array::Vector{Real}=[0.0],
+	       srcLengths_array::Vector{Real}=[0.0],
 	       ispoint::Bool=true)
+		   
+	srcHeights_array = float(srcHeights_array)
+	srcRhos_array	 = float(srcRhos_array)
+	srcRadii_array	 = float(srcRadii_array)
+	srcLengths_array = float(srcLengths_array)	   
 
 	for detector = detectors_array
 		batch(detector,
