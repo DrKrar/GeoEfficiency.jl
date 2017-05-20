@@ -210,43 +210,6 @@ function batch( detectors_array::Vector{RadiationDetector},
 end #function
 
 """
-	 batch( detectors_array::Vector{RadiationDetector},
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
-			ispoint::Bool=true)
-			
-provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
-A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
-If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
-If `ispoint` is false the parameters in srcRhos_array is completely ignored.
-Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-\n*****
-"""
-function batch( detectors_array::Vector{RadiationDetector},
-	       srcHeights_array::Vector{Float64},
-	       srcRhos_array::Vector{Float64}=[0.0],
-	       srcRadii_array::Vector{Float64}=[0.0],
-	       srcLengths_array::Vector{Float64}=[0.0],
-	       ispoint::Bool=true)
-
-	for detector = detectors_array
-		batch(detector,
-			srcHeights_array,
-			srcRhos_array,
-			srcRadii_array,
-			srcLengths_array,
-			ispoint)
-
-	end # detectors_array
-
-	input("\n\t the program had termiate, To Exit Press any Button")
-	nothing
-
-end #function
-
-"""
 	 batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
 			srcHeights_array::Vector{Float64},
 			srcRhos_array::Vector{Float64}=[0.0],
