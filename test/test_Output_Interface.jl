@@ -44,13 +44,13 @@ info("Statrting `batch` test...")
    @test batch([eps() 0], [0.0]) == nothing
    @test batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false) == nothing
    @test batch([1.0 0], [0.0]) == nothing
-   @test batch([1.0 0], [0.0], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false) == nothing
    @test batch([1//2 0.0], [0.0]) == nothing
-   @test batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false) == nothing
    @test batch([1//2 0.0], [0.0]) == nothing
-   @test batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false) == nothing
    @test batch([e pi], [0.0]) == nothing
-   @test batch([e pi], [0.0], [0.0], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([e pi], [0.0], [0.0], [0.0], [0.0],false) == nothing
    
    @test batch([5.0 4 3], [0.0]) == nothing
    @test batch([5.0 4 3], [0.0], [0.0],[0.0],false) == nothing
