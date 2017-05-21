@@ -45,7 +45,7 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
  > All are valid expressions.
 
 # Note Please
-\n- a blank (just a return) input is interpreted as being `0.0`.
+\n- a blank (just a return) input is considered as being `0.0`.
 
 # Example
 ```jldoctest
@@ -53,9 +53,7 @@ julia> getfloat("input a number:")
 input a number:
 ```
 """
-function getfloat(prompt::AbstractString = "? ",
-		        from::Real = 0.0,
-                to::Real = Inf)
+function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 
     value = input(prompt)
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
@@ -216,12 +214,17 @@ end #function
 
 
 """
-	getDetectors(detector_info_array::Matrix{Real})
+	getDetectors(detector_info_array::Matrix{Float64})
 
 Convert detectors from the information in `detector_info_array` and return `detectors_array` an Array of successfully 
 converted detectors. If the `detector_info_array` is empty it will call `getDetectors()`.
+
+# Note
+The Array `detector_info_array` should have element type of `Float64`. if it contain `Real`s it should be converted to 
+`Float64` befor pathing to the function,(use float()).
+
 """
-function getDetectors(detector_info_array::Matrix)
+function getDetectors(detector_info_array::Matrix{Float64})
 	isempty(detector_info_array) && return getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	for i_th_line = 1:size(detector_info_array)[1]
