@@ -117,12 +117,18 @@ Results are saved to a csv file named after the detector located in `$(resultdir
 \n*****
 """
 function batch(	detector_info_array::Matrix{Float64},
-				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0],
+				srcHeights_array::Vector,
+				srcRhos_array::Vector=[0.0],
+				srcRadii_array::Vector=[0.0],
+				srcLengths_array::Vector=[0.0],
 				ispoint::Bool=true)
 
+	eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
+	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
+	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
+	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
+	srcLengths_array = eltype(srcLengths_array) <: Real ? float(srcLengths_array) : error("element of srcLengths array are expected to be Real")				
+				
 	return  batch(	getDetectors(detector_info_array),
 					srcHeights_array,
 					srcRhos_array,
@@ -153,11 +159,17 @@ Return a tuple of the `detector array` and the `results array`. the `results arr
 \n*****
 """
 function batch(	detector::RadiationDetector,
-				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0],
+				srcHeights_array::Vector,
+				srcRhos_array::Vector=[0.0],
+				srcRadii_array::Vector=[0.0],
+				srcLengths_array::Vector=[0.0],
 				ispoint::Bool=true)
+				
+	eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
+	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
+	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
+	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
+	srcLengths_array = eltype(srcLengths_array) <: Real ? float(srcLengths_array) : error("element of srcLengths array are expected to be Real")
 
 	return _batch(Val{ispoint},
 				detector::RadiationDetector,
