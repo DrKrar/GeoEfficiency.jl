@@ -123,7 +123,6 @@ function batch(	detector_info_array::Matrix{Float64},
 				srcLengths_array::Vector=[0.0],
 				ispoint::Bool=true)
 
-	eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
 	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
 	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
 	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
@@ -165,7 +164,7 @@ function batch(	detector::RadiationDetector,
 				srcLengths_array::Vector=[0.0],
 				ispoint::Bool=true)
 				
-	eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
+
 	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
 	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
 	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
