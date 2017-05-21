@@ -53,9 +53,9 @@ info("Statrting `batch` test...")
    @test batch([e pi], [0.0], [0.0], [0.0], [0.0],false) == nothing
    
    @test batch([5.0 4 3], [0.0]) == nothing
-   @test batch([5.0 4 3], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false) == nothing
    @test batch([5.0 4 3//1], [0.0]) == nothing
-   @test batch([5.0 4 3//1], [0.0], [0.0],[0.0],false) == nothing
+   @test batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false) == nothing
    @test batch([5.0 4 pi], [0.0]) == nothing
    @test batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false) == nothing
    

@@ -100,7 +100,7 @@ batch() = batch(read_batch_info()...)
 
 """
 	batch( detector_info_array::Matrix{Float64},
-		  srcHeights_array::Vector{Float64},
+		    srcHeights_array::Vector{Float64},
 			srcRhos_array::Vector{Float64}=[0.0],
 			srcRadii_array::Vector{Float64}=[0.0],
 			srcLengths_array::Vector{Float64}=[0.0],
@@ -114,6 +114,10 @@ If `ispoint` is true the source type is a point source and the parameters in src
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
 """
 function batch(	detector_info_array::Matrix{Float64},
@@ -151,6 +155,10 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
 Return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
 """
 function batch(	detector::RadiationDetector,
@@ -186,6 +194,10 @@ If `ispoint` is true the source type is a point source and the parameters in src
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
 """
 function batch( detectors_array::Vector{RadiationDetector},
@@ -230,6 +242,10 @@ A set of sources is constructed of every valid combination of parameter in the `
 If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
 """
 function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
