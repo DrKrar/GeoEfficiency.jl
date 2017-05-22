@@ -21,10 +21,13 @@ construct and return a `Point` source that can be a source of itself or an
 
 # Note please
 
-- each detector interpreted the height in a different way as follow.
-- for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
-- for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
-- for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
+Each detector type give interpretation to the height in a different way as follow:
+
+* for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
+
+* for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
+
+* for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
 """
 type Point
 	Height::Float64
@@ -118,6 +121,8 @@ show(io::IO, detector::RadiationDetector) = print(id(detector))
 const Detector = RadiationDetector
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
+#-----------------------------------------------------------------
+
 """
 	CylDetector(CryRadius::Real, CryLength::Real)
 
@@ -209,7 +214,7 @@ volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadiu
 #-----------------------------------------------------------------
 
 """
-	(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return a Well-Type detector.
 
@@ -258,15 +263,19 @@ volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength
 
 """
 	RadiationDetector()
+or	
 	Detector()
 
 construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`)
 according to the input from the console.
 
 # Note please
-+ this methode aquire all required information from the `console` and will prompt user on invalid data.
-+ if any method with argument(s) take an `invalid` argument it would throw an error.
-+ if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
+
+* this methode aquire all required information from the `console` and will prompt user on invalid data.
+
+* if any method with argument(s) take an `invalid` argument it would throw an error.
+
+* if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
 """
 function RadiationDetector()
 	print_with_color(:yellow, "\n I- The detector physical Dimensions :-\n")
@@ -286,22 +295,25 @@ end #function
 
 """
     RadiationDetector(CryRadius::Real)
+or	
 	Detector(CryRadius::Real)
 
-return cylindrical detector with zero hieght
+return cylindrical detector with CryLength` equal to zero.
 """
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 """
     RadiationDetector(CryRadius::Real, CryLength::Real)
+or	
 	Detector(CryRadius::Real, CryLength::Real)
 
-return cylindrical detector
+return cylindrical detector.
 """
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 
 """
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
+or	
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return bore-hole or cylindrical detector if `HoleRadius` = 0.0
@@ -314,7 +326,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
-return well-type or bore-hole or cylindrical detector
+return well-type or bore-hole or cylindrical detector according to the arguments.
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
 				                                        RadiationDetector(CryRadius, CryLength, HoleRadius):

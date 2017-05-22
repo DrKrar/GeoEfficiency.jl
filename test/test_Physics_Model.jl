@@ -10,6 +10,7 @@
 @testset "Physics Model" begin
  
   @testset "Point" begin
+    #pnt0 = Point()
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
 	@test isa(pnt1.Rho, Float64)
@@ -29,12 +30,11 @@
     @test pnt2.Rho == pnt3.Rho
     @test pnt3.Rho == pnt4.Rho
     @test pnt4.Rho == pnt5.Rho
-  
+
     pnt6 = GeoEfficiency.setRho(pnt5, 1)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho != pnt5.Rho 
-    
-  
+
     pnt6 = GeoEfficiency.setHeight(pnt5, 1)
     @test pnt6.Height != pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
@@ -42,7 +42,7 @@
     pnt6 = GeoEfficiency.setRho!(pnt5, 5)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
-		
+
     pnt6 = GeoEfficiency.setHeight!(pnt5, 5)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
@@ -53,8 +53,8 @@
   
     cyl0 = CylDetector(5)
 	cyl1 = Detector(5)
-    @test_throws ErrorException  cyl0.CryRadius = 1
-	@test_throws ErrorException  cyl0.CryLength = 1
+    @test_throws cyl0.CryRadius = 1     ErrorException
+	@test_throws cyl0.CryLength = 1     ErrorException
 	@test isa(cyl1, Detector)
 	@test isa(cyl1, CylDetector)
     @test 5.0 == cyl1.CryRadius
@@ -135,5 +135,25 @@
     @test Well6 === Well7
  
 		end #testset		
-
+    
+	@testset "RadiationDetector" begin 
+	    
+		cyl0 = CylDetector(5)
+	    @test Detector(cyl0)   == cyl0
+		bore0 = BoreDetector(5,4,3)
+		@test Detector(bore0)  == bore0
+		Well0 = WellDetector(5,4,3,2)
+		@test Detector(Well0) == Well0
+		for i=1:1000
+			det1 = Detector(rand())
+			@test Detector(det1)   == det1
+			det2 = Detector(rand(2)...)
+			@test Detector(det2)   == det2
+			det3 = Detector(rand(15:20), rand(10:14), rand(1:13))
+			@test Detector(det3)   == det3
+			det4 = Detector(rand(15:20), rand(10:14), rand(9:13), rand(1:9))
+			@test Detector(det4)   == det4
+		end #for	
+						
+		end #testset	
 end #tesset
