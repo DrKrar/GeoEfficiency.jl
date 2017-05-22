@@ -66,8 +66,6 @@ const dotest = false
 		isempty(detector_info_array) && @test_throws getDetectors(detector_info_arrayy,false)  Exception	
 		detector_info_array= [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 		isempty(detector_info_array) && @test_throws getDetectors(detector_info_array,false)  Exception
-		detector_info_array= Matrix(0, 0)
-		isempty(detector_info_array) && @test_throws getDetectors(detector_info_array,false)  Exception
 
     end # testset
 	
