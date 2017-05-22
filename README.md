@@ -27,7 +27,7 @@
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.8.5"
+@version: v"0.8.6-Dev"
 
 Created on Fri Aug 14 20:12:01 2015
 
