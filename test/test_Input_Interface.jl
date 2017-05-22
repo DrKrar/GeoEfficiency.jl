@@ -38,14 +38,29 @@ const dotest = false
 	end #if 
     end # testset
 	
-	  @testset "getDetectors" begin
-	    #info("test `getDetectors`")
-		detector_array_information = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
-		detectors = getDetectors(detector_array_information)
+    @testset "getDetectors" begin
+	    info("test `getDetectors`....")
+		
+		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+		detectors = getDetectors(detector_info_array)
 		det1, det2, det3, det4 = detectors
 		@test eltype(detectors) == Detector
-        @test det1 <= det2 <= det3 <= det4
-
+                @test det1 <= det2 <= det3 <= det4
+		
+		detector_info_array = [5 ; 10; 15; 20]
+		det1, det2, det3, det4 = detectors
+		@test eltype(detectors) == CylDetector
+                @test det1 <= det2 <= det3 <= det4
+		
+				
+		detector_info_array= [[5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]]
+		isempty(detector_info_array) && @test_throw getDetectors(detector_info_array,false)  Exception
+		detector_info_array= []
+		isempty(detector_info_array) && @test_throw getDetectors(detector_info_arrayy,false)  Exception
+		detector_info_array= []
+		isempty(detector_info_array) && @test_throw getDetectors(detector_info_arrayy,false)  Exception
+		detector_info_array= ["5" "0" "0" "0"; "10" "0" "0" "0"]
+		isempty(detector_info_array) && @test_throw getDetectors(detector_info_arrayy,false)  Exception
     end # testset
 	
 end # testset
