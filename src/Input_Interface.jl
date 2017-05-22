@@ -230,7 +230,7 @@ function getDetectors(detector_info_array::Matrix, console_FB=true)
 			info("The detector information may entred via the console")
 			return getDetectors()
 		else	
-		 	Error("getDetectors: Empty `detector_info_array`")
+		 	error("getDetectors: Empty `detector_info_array`")
 		end
 	
 	elseif !(eltype(detector_info_array) <: Real) 
@@ -240,7 +240,7 @@ function getDetectors(detector_info_array::Matrix, console_FB=true)
 			info("The detector information may entred via the console")
 			return getDetectors()
 		else	
-		 	Error("getDetectors: The Array `detector_info_array` should have element type of Real or one of its suubtypes")
+		 	error("getDetectors: The Array `detector_info_array` should have element type of Real or one of its suubtypes")
 		end
 	else	
 		detectors_array::Vector{RadiationDetector} = RadiationDetector[]
