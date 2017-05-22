@@ -53,8 +53,8 @@
   
     cyl0 = CylDetector(5)
 	cyl1 = Detector(5)
-    @test_throws cyl0.CryRadius = 1     ErrorException
-	@test_throws cyl0.CryLength = 1     ErrorException
+    @test_throws ErrorException  cyl0.CryRadius = 1     
+	@test_throws ErrorException  cyl0.CryLength = 1     
 	@test isa(cyl1, Detector)
 	@test isa(cyl1, CylDetector)
     @test 5.0 == cyl1.CryRadius

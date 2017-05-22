@@ -8,20 +8,20 @@ the source can be a point, a disc or even a cylinder.
 
 # Quick Usage
 
-- geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\n
+* geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\n
 	
-- calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.\n
+* calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.\n
 	
-- calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\n
+* calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\n
 	
-- batch()	: Try to calculate using data in the "GeoEfficiency" folder in batch mode. 
+* batch()	: Try to calculate using data in the "GeoEfficiency" folder in batch mode. 
 """
 module GeoEfficiency
 print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **             @version: v"0.8.5"              **
+    \t **           @version: v"0.8.6-Dev"            **
     \t *************************************************
 
   @author: Mohamed Krar
