@@ -214,28 +214,40 @@ end #function
 
 
 """
-	getDetectors(detector_info_array::Matrix{Float64})
+	getDetectors(detector_info_array::Matrix, console_FB=true)
 
-Convert detectors from the information in `detector_info_array` and return `detectors_array` an Array of successfully 
-converted detectors. If the `detector_info_array` is empty it will call `getDetectors()`.
+Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully 
+converted detectors.
 
-# Note
-The Array `detector_info_array` should have element type of `Float64`. if it contain `Real`s it should be converted to 
-`Float64` befor pathing to the function,(use float()).
+`console_FB`: if true , the function will will call `getDetectors()` to take input from the `console` if the `detector_info_array` 
+is empty or contain no numerical element.
 
 """
-function getDetectors(detector_info_array::Matrix{Float64})
-	isempty(detector_info_array) && return getDetectors()
-	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
-	for i_th_line = 1:size(detector_info_array)[1]
-		try
-			push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...))
+function getDetectors(detector_info_array::Matrix, console_FB=true)
+	
+	if isempty(detector_info_array) 
+		if console_FB 
+			info("The detector information may entred via the console")
+			return getDetectors()
+		else	
+		 	Error("getDetectors: Empty `detector_info_array`")
+		end
+	
+	elseif !(eltype(detector_info_array) <: Real) 
+		
+		if console_FB 
+			warn("The Array `detector_info_array` should have element type of Real or one of its suubtypes")
+			info("The detector information may entred via the console")
+			return getDetectors()
+		else	
+		 	Error("getDetectors: The Array `detector_info_array` should have element type of Real or one of its suubtypes")
+		end
+	else	
+		detectors_array::Vector{RadiationDetector} = RadiationDetector[]
+		for i_th_line = 1:size(detector_info_array)[1]
+			try push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...)) end #try
+		end #for
 
-		catch err
-			continue
-
-		end #try
-	end #for
-
-	return detectors_array |> sort
+		return detectors_array |> sort
+	end   #if
 end #function
