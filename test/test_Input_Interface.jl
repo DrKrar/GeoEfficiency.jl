@@ -60,7 +60,7 @@ const dotest = false
 		detector_info_array= []
 		isempty(detector_info_array) && @test_throws getDetectors(detector_info_arrayy,false)  Exception
 		detector_info_array= ["5" "0" "0" "0"; "10" "0" "0" "0"]
-		isempty(detector_info_array) && @test_throw getDetectors(detector_info_arrayy,false)  Exception
+		isempty(detector_info_array) && @test_throws getDetectors(detector_info_arrayy,false)  Exception
     end # testset
 	
 end # testset
