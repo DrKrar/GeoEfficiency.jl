@@ -43,9 +43,13 @@ const dotest = false
 		
 		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 		detectors = getDetectors(detector_info_array)
+		for det = detectors
+			@test typeof(det) != Detector
+		end
+		@test eltype(detectors) != CylDetector
+		@test eltype(detectors) == Detector
 		det1, det2, det3, det4 = detectors
-		@test_throws eltype(detectors) == Detector
-                @test det1 <= det2 <= det3 <= det4
+		@test det1 <= det2 <= det3 <= det4
 		
 		detector_info_array = [5 0; 10 0; 15 0; 20 0]
 		detectors = getDetectors(detector_info_array)
