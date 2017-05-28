@@ -1,0 +1,5 @@
+# [GeoEfficiency]
+
+```@docs
+GeoEfficiency
+```

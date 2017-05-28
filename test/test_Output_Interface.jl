@@ -7,7 +7,7 @@
 #**************************************************************************************
 
 
-info("Statrting `batch` test...")
+
 @testset "Output Interface" begin
 
    #info("Statrting `calc` test...")

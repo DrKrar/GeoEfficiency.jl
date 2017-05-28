@@ -202,8 +202,8 @@ return a bore-hole detector according to the input from the `console`.
 """
 function BoreDetector()
 	print_with_color(:yellow," I- The Bore Hole Detetcor physical Dimensions:-\n")
-	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
-	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
+	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
+	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
 	BoreDetector(CryRadius, CryLength, HoleRadius)
 end #function
