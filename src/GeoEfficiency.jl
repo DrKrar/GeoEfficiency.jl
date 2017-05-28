@@ -2,8 +2,8 @@ __precompile__()
 """
 # GeoEfficiency Package
 
-represent a fast and flexible tool to calculate in batch or individually the geometrical efficiency
-for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) as seen form a sources.
+GeoEfficiency Package represent a fast and flexible tool to calculate in batch or individually the geometrical efficiency
+for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) as seen form a source.
 the source can be a point, a disc or even a cylinder.
 
 # Quick Usage
@@ -31,36 +31,40 @@ print_with_color(:green,"""\n
   Created on Fri Aug 14 20:12:01 2015
 """)
 
-export 	input, 
-		getfloat, 
-		getDetectors, 
-		
-		Point, 
-		source,
-		Detector, 
-		CylDetector, 
-		BoreDetector,
-		WellDetector,
-		RadiationDetector,
-		
-		geoEff, 
-		
-		calc, 
-		calcN, 
-		batch
+export 		
+        # Input_Interface
+	getfloat, 
+	getDetectors, 
+	
+        # Physics_Model	
+	Point, 
+	source,
+	Detector, 
+	CylDetector, 
+	BoreDetector,
+	WellDetector,
+	RadiationDetector,
+	
+        # Calculations
+	geoEff, 
+	
+        # Output_Interface	
+	calc, 
+	calcN, 
+	batch
 
-# Physics_Model.jl
+# -------------Physics_Model.jl-----------------
 
-# Intput_Interface.jl
+
+# -------------Intput_Interface.jl-------------
 #const GeoEfficiency_datafolder    = "GeoEfficiency"
 
-# Calculations.jl
-using QuadGK
-#const GeoEfficiency_integrate     = QuadGK.quadgk
+# -------------Calculations.jl-----------------
+#using QuadGK; const GeoEfficiency_integrate     = QuadGK.quadgk
 #const GeoEfficiency_relativeError = 0.0001
 #const GeoEfficiency_absoluteError = 0.00000000001
 
-# Output_Interface.jl
+# -------------Output_Interface.jl------------
 #const GeoEfficiency_resultsfolder = "results"
 
 include("Physics_Model.jl")
