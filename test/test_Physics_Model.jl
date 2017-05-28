@@ -73,7 +73,9 @@
     @test cyl4 === cyl5
     @test cyl5 === cyl6
     @test cyl6 === cyl7
- 
+    @test GeoEfficiency.volume(CylDetector(5.0)) <= GeoEfficiency.volume(CylDetector(15.0))
+    @test GeoEfficiency.volume(CylDetector(15.0)) <= GeoEfficiency.volume(CylDetector(10.0)) 
+		
 		end #testset
 		
   @testset "Borehole Detector" begin 
