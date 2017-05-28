@@ -271,7 +271,15 @@ function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}
 	
 end #function
 
-"""
+"""# UnExported
+    function _batch(::Type{Val{true}},
+				detector::RadiationDetector,
+				srcHeights_array::Vector{Float64},
+				srcRhos_array::Vector{Float64}=[0.0],
+				srcRadii_array::Vector{Float64}=[0.0],
+				srcLengths_array::Vector{Float64}=[0.0]
+				)
+
 batch calclulation for point sources.
 """
 function _batch(::Type{Val{true}},
@@ -327,7 +335,15 @@ function _batch(::Type{Val{true}},
 
 end #function
 
-"""
+"""# UnExported
+    function _batch(::Type{Val{false}},
+				detector::RadiationDetector,
+				srcHeights_array::Vector{Float64},
+				srcRhos_array::Vector{Float64}=[0.0],
+				srcRadii_array::Vector{Float64}=[0.0],
+				srcLengths_array::Vector{Float64}=[0.0]
+				)
+
 batch calclulation for non-point sources.
 """
 function _batch(::Type{Val{false}},
