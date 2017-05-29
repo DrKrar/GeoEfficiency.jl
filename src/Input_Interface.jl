@@ -147,7 +147,7 @@ function read_batch_info()
 	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure(err::AbstractString)
-		warn("\n\t", err, ", the mode is treminating.......\n"); 
+		warn("\n\t", err, ", the batch mode is treminating.......\n"); 
 		info("transfer to direct data input via the `console`......")
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
@@ -156,7 +156,7 @@ function read_batch_info()
 	end #fumction
 
   if srcHeights_array == [0.0]
-			batchfailure("")
+			batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
 
 	elseif ispoint
 		#srcRadii_array  = [0.0]
@@ -167,7 +167,7 @@ function read_batch_info()
 		#srcRhos_array = [0.0]
 		srcRadii_array = read_from_csvFile(srcRadii)
 		if srcRadii_array == [0.0]
-			batchfailure("")
+			batchfailure("`$(srcRadii)` is not found in `$(datadir)`)")
 
 		else
 			srcLengths_array = read_from_csvFile(srcLengths)
@@ -185,7 +185,7 @@ function read_batch_info()
 		)
 end #fumction
 
-#-----------------------------------------------------------------
+#---------------- getDetectors-------------------------------------------------
 
 """
     getDetectors()
@@ -195,8 +195,7 @@ Return `detectors_array` an Array of the entered detectors.
 """
 function getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
-	info("----<( Press return: to provid detector specifiction from the console )>----");
-	input("is that ok")
+	info("Please, input the detector information via the console")
 	while(true)
 		try
 			push!(detectors_array, RadiationDetector())
