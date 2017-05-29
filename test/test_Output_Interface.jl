@@ -26,13 +26,13 @@
 	   @test calc(Detector(5,cryLength),(Point(1),e, pi))   == nothing   
 	   @test calc(Detector(5,cryLength),(Point(1),e, 1.0))  == nothing   
 	   
-	   @test calc(CylDetector(5,cryLength),(Point(1),1.0, 1))    == nothing   
-	   @test calc(CylDetector(5,cryLength),(Point(1),1.0, 1//2)) == nothing   
-	   @test calc(CylDetector(5,cryLength),(Point(1),1.0, pi))   == nothing   
-	   @test calc(CylDetector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1))    == nothing   
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1//2)) == nothing   
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, pi))   == nothing   
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
      end #testset_for
 	 
-	@testset "function `calc`-BoreDetector & WellDetector" for holeRadius=[0,1,2,3,4], holeDepth=[0,1,2,3]
+	@testset "function `calc`-BoreDetector & WellDetector" for holeRadius=[1,2,3,4], holeDepth=[0,1,2,3]
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing     
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   == nothing  
@@ -48,10 +48,10 @@
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   == nothing   
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  == nothing   
 	   
-	   @test calc(CylDetector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    == nothing   
-	   @test calc(CylDetector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) == nothing   
-	   @test calc(CylDetector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing   
-	   @test calc(CylDetector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    == nothing   
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) == nothing   
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing   
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
        end #testset_for
    
    @testset "function `batch`" begin
