@@ -13,6 +13,7 @@ const integrate     = isdefined(:GeoEfficiency_integrate )    ? GeoEfficiency_in
 
 
 """# unexported function
+
 	GeoEff_Pnt(detector::CylDetector, aPnt::Point)  
 
 return the Geometrical Efficiency for the point source `aPnt` located on front
@@ -57,6 +58,7 @@ end #function
 #-----------------------------------------------------------------
 
 """# unexported function
+
 	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 
 return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` 
@@ -86,11 +88,13 @@ its base circle center is the point `aSurfacePNT`.
 `srcHieght`:  the height of an upright cylinder source having a base like described above.
 
 # Note please
+
 `aSurfacePnt`: point height is consider to be measured from the detector face surface.
 
 `Throw` an Error if the source location is inappropriate.
 
 # Example
+
 to obtain the efficiency of a cylindrical detector of crystal radius 2.0 cm for axial cylinder of radius 1.0 cm and height 2.5 cm 
 on the detector surface.
 
@@ -146,11 +150,13 @@ and its center is the point `aCenterPNT`.
 `SrcLength`: the height of an upright cylinder source having a base like described above.
 
 # Note please
+
 `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
 
 `Throw` an Error if the source location is inappropriate.
 
 # Example
+
 to obtain the efficiency for a bore-hole detector of crystal radius of 2.0 and height of 3.0 with hole radius of 1.5 cm for axial cylinder of radius 1.0 cm and height 2.5 cm starting from detector center.
 ```jldoctest
 	julia> newDet = BoreDetector(2.0, 3.0, 1.5)
@@ -224,11 +230,13 @@ and its center is defined by the `aWellPNT`.
 SrcLength:  the height of upright cylinder source having a base like described above.
 
 # Note Please
+
 `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
 
 `Throw` an Error if the source location is inappropriate.
 
 # Example
+
 to obtain the efficiency for a well-type detector of crystal radius of 2.0 and height 3.0 with hole radius of 1.5 cm and depth of 1.0 for axial cylinder of radius 1.0 cm and height 2.5 cm at the hole surface.
 ```jldoctest
 	julia> newDet = WellDetector(2.0, 3.0, 1.5, 1.0)

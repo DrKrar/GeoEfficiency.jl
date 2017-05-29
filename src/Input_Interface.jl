@@ -15,9 +15,10 @@ const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
-#-----------------------------------------------------------------
+#------------------input-----------------------------------------------
 
-"""
+""""# UnExported
+
     input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 
 Prompt the user with the massage `prompt` defaults to `? `. `incolor` specify the prompt text color, default to green.
@@ -33,7 +34,7 @@ function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     chomp(readline())
 end # function
 
-#-----------------------------------------------------------------
+#-------------------getfloat----------------------------------------------
 
 """
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
@@ -75,9 +76,10 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
     end #try
 end	#function
 
-#-----------------------------------------------------------------
+#--------------------read_from_csvFile---------------------------------------------
 
-"""
+"""# UnExported
+
 	 read_from_csvFile()
 
 read detectors data from predefined file and return its content as an array of detectors.
@@ -97,7 +99,8 @@ function read_from_csvFile()
 
 end #function
 
-"""
+"""# UnExported
+
 	read_from_csvFile(csv_data::AbstractString)
 
 read data from a file and return its content as an array.
@@ -116,7 +119,9 @@ function read_from_csvFile(csv_data::AbstractString)
 end #function
 
 
-"""
+#--------------------read_batch_info---------------------------------------------
+"""# UnExported
+
 	read_batch_info()
 
 read `detectors` and `sources` parameters from the predefined csv files.
@@ -141,9 +146,9 @@ function read_batch_info()
 	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]
 
-	function batchfailure()
-		info("\t----<( Press return: to treminated batch mode )>----"); 
-		input("is that ok")
+	function batchfailure(err::AbstractString)
+		warn("\n\t", err, ", the mode is treminating.......\n"); 
+		info("transfer to direct data input via the `console`......")
 		src = source(isPoint=ispoint)
 		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
 		srcRadii_array  , srcLengths_array = [src[2]]       , [src[3]]
@@ -151,7 +156,7 @@ function read_batch_info()
 	end #fumction
 
   if srcHeights_array == [0.0]
-			batchfailure()
+			batchfailure("")
 
 	elseif ispoint
 		#srcRadii_array  = [0.0]
@@ -162,7 +167,7 @@ function read_batch_info()
 		#srcRhos_array = [0.0]
 		srcRadii_array = read_from_csvFile(srcRadii)
 		if srcRadii_array == [0.0]
-			batchfailure()
+			batchfailure("")
 
 		else
 			srcLengths_array = read_from_csvFile(srcLengths)

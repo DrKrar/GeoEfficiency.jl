@@ -31,12 +31,13 @@ print_with_color(:green,"""\n
   Created on Fri Aug 14 20:12:01 2015
 """)
 
+
 export 		
-        # Input_Interface
+    # Input_Interface
 	getfloat, 
 	getDetectors, 
 	
-        # Physics_Model	
+    # Physics_Model	
 	Point, 
 	source,
 	Detector, 
@@ -45,14 +46,15 @@ export
 	WellDetector,
 	RadiationDetector,
 	
-        # Calculations
+    # Calculations
 	geoEff, 
 	
-        # Output_Interface	
+    # Output_Interface	
 	calc, 
 	calcN, 
 	batch
 
+	
 # -------------Physics_Model.jl-----------------
 
 
@@ -66,6 +68,8 @@ export
 
 # -------------Output_Interface.jl------------
 #const GeoEfficiency_resultsfolder = "results"
+
+
 
 include("Physics_Model.jl")
 include("Input_Interface.jl")

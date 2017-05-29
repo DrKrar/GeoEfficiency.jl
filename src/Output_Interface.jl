@@ -12,17 +12,17 @@ const resultdir_pnt = joinpath(resultdir, "Point");			     isdir(resultdir_pnt) 
 const resultdir_nonPnt = joinpath(resultdir, "non-Point");	 isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
 countDetectors = 1;
 
-
+#------------------calc-----------------------------------------------
 """
-	calc(detector::RadiationDetector = RadiationDetector())
+	calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
 calculate the Geometrical Efficiency of the detector `detector` and display it on the `console`.
-If no detector is supplied it ask for a detector from the `console`.
-Also prompt the user to input a source via the `console`.
+If no detector is supplied, it ask for a detector from the `console`.
+Any way it prompt the user to input a source via the `console`.
 """
-function calc(detector::RadiationDetector = RadiationDetector())
-	global countDetectors
-	aPnt, srcRadius, srcLength = source()
+function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
+			   
+	aPnt, srcRadius, srcLength = aSource
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
 	try
@@ -30,18 +30,17 @@ function calc(detector::RadiationDetector = RadiationDetector())
 
 	catch err
 		println(err)
-		input("\n\t To Procced Press any Button")
+		info("\n\tThe `calc` had termiate, Thank you >>>>>\n")
 		return nothing
 
 	end #try
-	countDetectors += 1
+	global countDetectors += 1
 	print_with_color(:red, repeat(" =",36),"\n\n")
 	return nothing
 
 end #function
 
-#-----------------------------------------------------------------
-
+#------------------calcN-----------------------------------------------
 """
     calcN()
 
@@ -49,8 +48,8 @@ calculate and display the Geometrical Efficiency.
 Prompt the user to input a `detector` and a `source` from the `console`.
 Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).
 """
-function calcN()
-	detector:: RadiationDetector = RadiationDetector()
+function calcN(	detector:: RadiationDetector = RadiationDetector())
+
 	while (true)
 
 		calc(detector)
@@ -72,11 +71,13 @@ function calcN()
 		end #if
 
 	end #while
+	info("\n\tThe `calcN` had termiate, Thank you\n")
 	return nothing
 end #function
 
-#-----------------------------------------------------------------
+#----------------writecsv_head------------------------------------------
 
+"Write comma delimated values to file `fname`"
 function writecsv_head(fname::AbstractString, a, head=[])
 	open(fname, "w") do io
 	  writedlm(io, head, ',')
@@ -84,7 +85,7 @@ function writecsv_head(fname::AbstractString, a, head=[])
 	end #do
 end #function
 
-#-----------------------------------------------------------------
+#----------------batch()-------------------------------------------------
 
 """
 	batch()
@@ -172,8 +173,6 @@ function batch(	detector::RadiationDetector,
 				detector::RadiationDetector,
 				srcHeights_array,
 				srcRhos_array,
-				srcRadii_array,
-				srcLengths_array
 				)
 end #function
 
@@ -207,11 +206,13 @@ function batch( detectors_array::Vector{RadiationDetector},
 	       srcLengths_array::Vector{Float64}=[0.0],
 	       ispoint::Bool=true)
 
-#=eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
+#= =====================
+    eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
 	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
 	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
 	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
-	srcLengths_array = eltype(srcLengths_array) <: Real ? float(srcLengths_array) : error("element of srcLengths array are expected to be Real")=#
+	srcLengths_array = eltype(srcLengths_array) <: Real ? float(srcLengths_array) : error("element of srcLengths array are expected to be Real")
+========================= =#
 	
 	for detector = detectors_array
 		batch(detector,
@@ -223,9 +224,8 @@ function batch( detectors_array::Vector{RadiationDetector},
 
 	end # detectors_array
 
-	println()
-	info("The program had termiate, Thank you")
-	nothing
+	info("\n\tThe program had termiate, Thank you >>>>\n")
+	return nothing
 
 end #function
 
@@ -265,35 +265,36 @@ function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}
 
 	end # detectors_array
 
-	println()
-	info("The program had termiate, Thank you")
-    nothing
+	info("\n\tThe program had termiate, Thank you >>>>\n")
+    return nothing
 	
 end #function
 
 """# UnExported
-    function _batch(::Type{Val{true}},
+
+    _batch(::Type{Val{true}},
 				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0]
+				srcRhos_array::Vector{Float64},
+				srcRadii_array::Vector{Float64},
+				srcLengths_array::Vector{Float64}
 				)
 
 batch calclulation for point sources.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 """
 function _batch(::Type{Val{true}},
 				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0]
+				srcRhos_array::Vector{Float64},
 				)
 
-	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
 	calculatedEff::Float64 = 0.0
-	results::Matrix{Float64} = Array{Float64}(0,0); out_results::Array{Float64,1} = Float64[];
+	out_results::Array{Float64,1} = Float64[];
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 
@@ -320,8 +321,8 @@ function _batch(::Type{Val{true}},
 
 	end #for_Height
 
-	results = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
-	info("Saving <$countDetectors> to '$(id(detector)).csv'......")
+	results::Matrix{Float64} = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
+	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	try
 		writecsv_head(joinpath(resultdir_pnt,  "$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
 
@@ -330,33 +331,37 @@ function _batch(::Type{Val{true}},
 		writecsv_head(joinpath(resultdir_pnt, "_$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
 
 	end #try
-	countDetectors += 1
+	global countDetectors += 1;
 	return (detector, results)
 
 end #function
 
 """# UnExported
-    function _batch(::Type{Val{false}},
+
+    _batch(::Type{Val{false}},
 				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0]
+				srcRhos_array::Vector{Float64},
+				srcRadii_array::Vector{Float64},
+				srcLengths_array::Vector{Float64},
 				)
 
 batch calclulation for non-point sources.
+
+# Note
+
+All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 """
 function _batch(::Type{Val{false}},
 				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0]
+				srcRhos_array::Vector{Float64},
+				srcRadii_array::Vector{Float64},
+				srcLengths_array::Vector{Float64},
 				)
 
-	global countDetectors
 	aPnt::Point = Point(0.0, 0.0)
-	results::Matrix{Float64} = Array{Float64}(0,0); out_results::Vector{Float64} = Float64[];
+	out_results::Vector{Float64} = Float64[];
 	calculatedEff::Float64 = 0.0
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
@@ -394,8 +399,8 @@ function _batch(::Type{Val{false}},
 	@label(Next_Height)
 	end #for_Height
 
-	results = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
-	info("Saving <$countDetectors> to '$(id(detector)).csv'......")
+	results::Matrix{Float64} = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
+	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	try 
 		writecsv_head(joinpath(resultdir_nonPnt, "$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
@@ -404,7 +409,7 @@ function _batch(::Type{Val{false}},
 		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	end #try
-	countDetectors += 1;
+	global countDetectors += 1;
 	return (detector, results)
 
 end #function
