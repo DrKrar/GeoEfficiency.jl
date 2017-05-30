@@ -10,7 +10,7 @@
 
 @testset "Output Interface" begin
   
-   @testset "function `calc`-CylDetector" for cryLength=[0,1,5,10]
+   @testset "function `calc`-CylDetector(5,$cryLength)" for cryLength=[0,1,5,10]
 	   @test calc(Detector(5,cryLength),(Point(1),1, 1))    == nothing
 	   @test calc(Detector(5,cryLength),(Point(1),1, 1//2)) == nothing     
 	   @test calc(Detector(5,cryLength),(Point(1),1, pi))   == nothing  
@@ -32,7 +32,7 @@
 	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
      end #testset_for
 	 
-	@testset "function `calc`-BoreDetector & WellDetector" for holeRadius=[3, 4], holeDepth=[0,1,2,3]
+	@testset "function `calc`-Detector(5, 4, $holeRadius, $holeDepth)" for holeRadius=[3, 4], holeDepth=[0,1,2,3]
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing     
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   == nothing  
@@ -55,8 +55,8 @@
        end #testset_for
    
    @testset "function `batch`" begin
-	   @test GeoEfficiency._batch(Val{true}, CylDetector(eps()), [0.0])[2][end] ≈ 0.5
-	   @test GeoEfficiency._batch(Val{false}, CylDetector(eps()), [0.0])[2][end] ≈ 0.5
+	   @test GeoEfficiency._batch(Val{true}, CylDetector(eps()), [0.0], [0.0])[2][end] ≈ 0.5
+	   @test GeoEfficiency._batch(Val{false}, CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 	   @test batch(CylDetector(eps()), [0.0])[2][end] ≈ 0.5
 	   @test batch(CylDetector(eps()), [0.0], [0.0], [0.0],[0.0],false)[2][end] ≈ 0.5
 	   
