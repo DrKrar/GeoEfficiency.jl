@@ -21,7 +21,7 @@ print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **           @version: v"0.8.6-Dev"            **
+    \t **             @version: v"0.8.6               **
     \t *************************************************
 
   @author: Mohamed Krar
