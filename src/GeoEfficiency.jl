@@ -17,11 +17,11 @@ the source can be a point, a disc or even a cylinder.
 * batch()	: Try to calculate using data in the "GeoEfficiency" folder in batch mode. 
 """
 module GeoEfficiency
-print_with_color(:green,"""\n
+about() = print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **             @version: v"0.8.6               **
+    \t **             @version: v"0.8.7-Dev           **
     \t *************************************************
 
   @author: Mohamed Krar
@@ -32,7 +32,8 @@ print_with_color(:green,"""\n
 """)
 
 
-export 		
+export about,
+		
     # Input_Interface
 	getfloat, 
 	getDetectors, 
@@ -70,7 +71,7 @@ export
 #const GeoEfficiency_resultsfolder = "results"
 
 
-
+about()
 include("Physics_Model.jl")
 include("Input_Interface.jl")
 include("Calculations.jl")

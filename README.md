@@ -17,7 +17,7 @@
 + Code Coverage: [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
 
 ---
-
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 @author: Mohamed Krar
 
@@ -27,7 +27,7 @@
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.8.6"
+@version: v"0.8.7-Dev"
 
 Created on Fri Aug 14 20:12:01 2015
 
