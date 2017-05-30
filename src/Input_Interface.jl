@@ -76,15 +76,17 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
     end #try
 end	#function
 
-#--------------------read_from_csvFile---------------------------------------------
+#--------------------detector_info_from_csvFile--------------------------------------
 
 """# UnExported
 
-	 read_from_csvFile()
+	 detector_info_from_csvFile(detectors::AbstractString=detectors, 
+                                      datadir::AbstractString=datadir)
 
 read detectors data from predefined file and return its content as an array of detectors.
 """
-function read_from_csvFile()
+function detector_info_from_csvFile(detectors::AbstractString=detectors, 
+                                      datadir::AbstractString=datadir)
     detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
     info("opening '$(detectors)'......")
     try
@@ -92,8 +94,8 @@ function read_from_csvFile()
         return getDetectors(detector_info_array)
 		
     catch err
-        warn("Some thing went wrong, may be '$(detectors)' can't be found in '$(datadir)'")
-        return getDetectors()
+        warn("Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
+        rethrow()
 
     end #try
 
@@ -106,7 +108,7 @@ end #function
 read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 """
-function read_from_csvFile(csv_data::AbstractString)
+function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
 	try
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |> sort;
@@ -140,7 +142,7 @@ function read_batch_info()
 	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
-	detectors_array ::Vector{RadiationDetector} = read_from_csvFile()
+	detectors_array ::Vector{RadiationDetector} = try detector_info_from_csvFile() catch; getDetectors() end
 	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
