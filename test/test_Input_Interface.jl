@@ -45,8 +45,10 @@ const dotest = false
 		try
 			datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
 			detectorfile = joinpath(datadirectory, "_Detector_test.csv")
+		
+		info(" Detectors write and read  - input type{Int}")	
 			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv" datadirectory)) == Set(detectors)
+			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
           
 		info("write and read  - input type{Int}")
 			hightfile = joinpath(datadirectory, "_hight_test.csv")
