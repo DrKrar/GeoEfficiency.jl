@@ -30,7 +30,7 @@ function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{
 
 	catch err
 		println(err)
-		info("\n\tThe `calc` had termiate, Thank you >>>>>\n")
+		info("\n\tThe function `calc` had termiate, Thank you >>>>>\n")
 		return nothing
 
 	end #try

@@ -9,7 +9,7 @@
 
 info("Statrting `geoEff` test...")
 @testset "Calculations" begin
-	println()
+
 	info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
@@ -29,7 +29,7 @@ info("Statrting `geoEff` test...")
 
 	end #for_testset
 	
-		println()
+
 	info("special cases for cylinderical detector also; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
