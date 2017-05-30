@@ -171,8 +171,10 @@ function batch(	detector::RadiationDetector,
 				
 	return _batch(Val{ispoint},
 				detector::RadiationDetector,
-				srcHeights_array,
-				srcRhos_array,
+				srcHeights_array::Vector{Float64},
+				srcRhos_array::Vector{Float64},
+				srcRadii_array::Vector{Float64},
+				srcLengths_array::Vector{Float64}
 				)
 end #function
 
@@ -290,6 +292,8 @@ function _batch(::Type{Val{true}},
 				detector::RadiationDetector,
 				srcHeights_array::Vector{Float64},
 				srcRhos_array::Vector{Float64},
+				srcRadii_array::Vector{Float64},
+				srcLengths_array::Vector{Float64},
 				)
 
 	aPnt::Point = Point(0.0, 0.0)
