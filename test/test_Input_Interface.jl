@@ -49,6 +49,10 @@ const dotest = false
 		info(" Detectors write and read  - input type{Int}")	
 			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
+
+		info(" Detectors - missing file")	
+			rm(detectorfile, force=true, recursive=true)
+			@testthrows  GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) SystemError
           
 		info("write and read  - input type{Int}")
 			hightfile = joinpath(datadirectory, "_hight_test.csv")
@@ -84,8 +88,7 @@ const dotest = false
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 		
 		info("missing file")
-		    rm(hightfile, force=true, recursive=true)
-			@test  GeoEfficiency.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+			rm(hightfile, force=true, recursive=true)
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 			
 			
