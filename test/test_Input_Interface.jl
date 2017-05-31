@@ -43,9 +43,13 @@ const dotest = false
 	
     @testset "reading from CSV" begin
 		try
-          
+        datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
+		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
+		
+		hightfile = joinpath(datadirectory, "_hight_test.csv")
+		
 		info("write and read  - input type{Int}")
-			hightfile = joinpath(datadirectory, "_hight_test.csv")
+
 			@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		    @test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
@@ -81,8 +85,6 @@ const dotest = false
 			rm(hightfile, force=true, recursive=true)
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 
-			datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
-			detectorfile = joinpath(datadirectory, "_Detector_test.csv")
 		
 		info(" Detectors write and read  - input type{Int}")	
 			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
