@@ -73,7 +73,7 @@ const dotest = false
 			
 		info("invalid data type {Unionall}")
 			@test  GeoEfficiency.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		info("invalid data type {String}")
 			@test  GeoEfficiency.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
