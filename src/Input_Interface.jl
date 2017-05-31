@@ -94,7 +94,7 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
         return getDetectors(detector_info_array)
 		
     catch err
-        if isa(readcsv(err, SystemError) 
+        if isa(err, SystemError) 
 		    warn("Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
 		else
 		    println(err)
@@ -118,7 +118,7 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |>float |> sort;
 
 	catch err
-	    if isa(readcsv(err, SystemError) 
+	    if isa(err, SystemError) 
 		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		else
 		    println(err)
