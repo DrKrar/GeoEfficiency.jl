@@ -96,13 +96,14 @@ const dotest = false
 	
 	
     @testset "getDetectors" begin
-        @test getDetectors(detector_info_array) == detectors |> sort
+	    detectors = detectors |> sort
+        @test getDetectors(detector_info_array) == detectors 
 		for det = detectors
 			@test typeof(det) != Detector
 		end
 		@test eltype(detectors) != CylDetector
 		@test eltype(detectors) == Detector
-		det1, det2, det3, det4 = detectors |> sort
+		det1, det2, det3, det4 = detectors
 		@test det1 <= det2 <= det3 <= det4
 		
 		detector_info_array = [5 0; 10 0; 15 0; 20 0]

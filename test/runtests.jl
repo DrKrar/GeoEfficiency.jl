@@ -22,4 +22,4 @@ for t in tests
     #info("Beging test of $(t).....")
     include("test_$(t).jl")
 end
-@test 1.0==1
+@test about() == nothing
