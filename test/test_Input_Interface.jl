@@ -67,7 +67,7 @@ const dotest = false
 			@test  GeoEfficiency.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
-		info("rewrite, read and sort - input type{Irrational}")
+		info("rewrite, read and sort - input type{Irrational....}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [pi, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, pi, 4, 5, 10, 15, 20,]
 			

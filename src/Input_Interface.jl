@@ -111,7 +111,7 @@ read data from a file and return its content as an array.
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
 	try
-		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |> sort;
+		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |>float |> sort;
 
 	catch err
 		warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
