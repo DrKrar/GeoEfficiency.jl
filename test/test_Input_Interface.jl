@@ -102,7 +102,7 @@ const dotest = false
 		end
 		@test eltype(detectors) != CylDetector
 		@test eltype(detectors) == Detector
-		det1, det2, det3, det4 = detectors
+		det1, det2, det3, det4 = detectors |> sort
 		@test det1 <= det2 <= det3 <= det4
 		
 		detector_info_array = [5 0; 10 0; 15 0; 20 0]
