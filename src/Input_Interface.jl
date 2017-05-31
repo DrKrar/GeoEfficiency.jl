@@ -94,7 +94,7 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
         return getDetectors(detector_info_array)
 		
     catch err
-        close(joinpath(datadir, detectors))
+        #close(joinpath(datadir, detectors))
 		warn("Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
         rethrow()
 
@@ -116,7 +116,7 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 
 	catch err
 		warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
-		close(joinpath(datadir, csv_data))
+		#close(joinpath(datadir, csv_data))
 		return Float64[0.0]
 
 	end #try
