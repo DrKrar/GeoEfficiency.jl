@@ -52,7 +52,7 @@ const dotest = false
 
 		info(" Detectors - missing file")	
 			rm(detectorfile, force=true, recursive=true)
-			@testthrows  GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
+			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
           
 		info("write and read  - input type{Int}")
 			hightfile = joinpath(datadirectory, "_hight_test.csv")
