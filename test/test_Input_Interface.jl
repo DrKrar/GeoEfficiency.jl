@@ -59,9 +59,9 @@ const dotest = false
 			@test  GeoEfficiency.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
-		info("rewrite, read and sort - input type{Rational}")
+		info("rewrite, read and sort - input type{Rational-treated as any}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 			
 		info("rewrite, read and sort - input type{Float64}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
