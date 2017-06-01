@@ -137,8 +137,8 @@ immutable CylDetector <: RadiationDetector
     CryLength::Float64		#Real
 
 	function CylDetector(CryRadius::Real, CryLength::Real)
-		@assert CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
+		@assert Inf > CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert Inf > CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
 		new(float(CryRadius), float(CryLength))
 	end #if
 
@@ -187,8 +187,8 @@ immutable BoreDetector <: RadiationDetector
 	HoleRadius::Float64    	#Real
 
 	function BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
-		@assert CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
+		@assert Inf > CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert Inf > CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		new(float(CryRadius), float(CryLength), float(HoleRadius))
 	end #if
@@ -233,9 +233,9 @@ immutable WellDetector <: RadiationDetector
 	HoleDepth::Float64
 
 	function WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
-		@assert CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
-		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
+		@assert Inf > CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert Inf > CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
+		@assert Inf > CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		@assert CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get $(HoleDepth)."
 		new(float(CryRadius), float(CryLength), float(HoleRadius), float(HoleDepth))
 	end #if
