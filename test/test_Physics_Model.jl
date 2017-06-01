@@ -54,7 +54,9 @@
     cyl0 = CylDetector(5)
 	cyl1 = Detector(5)
     @test_throws ErrorException  cyl0.CryRadius = 1     
-	@test_throws ErrorException  cyl0.CryLength = 1     
+	@test_throws ErrorException  cyl0.CryLength = 1   
+	@test_throws MethodError     CylDetector(1+1im,4)
+	@test_throws MethodError     CylDetector(5+1im,4)		
 	@test isa(cyl1, Detector)
 	@test isa(cyl1, CylDetector)
     @test 5.0 == cyl1.CryRadius
@@ -66,6 +68,7 @@
     cyl5 = Detector(5.0, 0.0)
     cyl6 = Detector(5, 0, 0)
     cyl7 = Detector(5, 0, 0, 0)
+	cyl8 = Detector(5//1, 0, 0, 0)
     @test cyl0 === cyl1 
 	@test cyl1 === cyl2 
     @test cyl2 === cyl3
@@ -73,8 +76,12 @@
     @test cyl4 === cyl5
     @test cyl5 === cyl6
     @test cyl6 === cyl7
-    @test GeoEfficiency.volume(CylDetector(5.0)) <= GeoEfficiency.volume(CylDetector(15.0))
-    @test GeoEfficiency.volume(CylDetector(15.0)) <= GeoEfficiency.volume(CylDetector(10.0)) 
+    @test cyl7 === cyl8	
+    @test GeoEfficiency.volume(CylDetector(5.0,1))  <=   GeoEfficiency.volume(CylDetector(15.0,1))
+    @test GeoEfficiency.volume(CylDetector(10.0,1)) <=   GeoEfficiency.volume(CylDetector(15.0,1)) 
+	@test GeoEfficiency.volume(CylDetector(15.0))   <=   GeoEfficiency.volume(CylDetector(10.0)) 
+	@test CylDetector(5.0,1) < CylDetector(15.0,1)
+
 		
 		end #testset
 		
@@ -85,6 +92,8 @@
     @test_throws ErrorException  bore0.CryRadius = 1
 	@test_throws ErrorException  bore0.CryLength = 1
 	@test_throws ErrorException  bore0.HoleRadius= 1
+	@test_throws MethodError     BoreDetector(1+1im,4,3)
+	@test_throws MethodError     BoreDetector(5+1im,4,3)	
 	@test isa(bore1, Detector)
 	@test isa(bore1, BoreDetector)
     @test 5.0 == bore1.CryRadius
@@ -97,6 +106,7 @@
     bore5 = Detector(5.0,4,3.0)
     bore6 = Detector(5.0,4.0,3.0)
     bore7 = Detector(5.0,4.0,3.0, 0)
+	bore8 = Detector(5//1,4.0,3.0, 0)
     @test bore0 === bore1 
 	@test bore1 === bore2 
     @test bore2 === bore3
@@ -104,6 +114,10 @@
     @test bore4 === bore5
     @test bore5 === bore6
     @test bore6 === bore7
+	@test bore7 === bore8
+	@test GeoEfficiency.volume(Detector(5.0,1,.1))  <=   GeoEfficiency.volume(Detector(15.0,1,0.1))
+    @test GeoEfficiency.volume(Detector(10.0,1,.0)) <=   GeoEfficiency.volume(Detector(15.0,1,0.1)) 
+	@test Detector(5.0,1,0.1) < Detector(15.0,1,0.1)
  
 		end #testset
 		
@@ -115,6 +129,8 @@
 	@test_throws ErrorException  Well0.CryLength = 1
 	@test_throws ErrorException  Well0.HoleRadius= 1
 	@test_throws ErrorException  Well0.HoleDepth = 1
+	@test_throws MethodError     WellDetector(1+1im,4,3,2)
+	@test_throws MethodError     WellDetector(5+1im,4,3,2)
 	@test isa(Well1, Detector)
     @test isa(Well1, WellDetector)
     @test 5.0 == Well1.CryRadius
@@ -128,6 +144,7 @@
     Well5 = Detector(5,4,3,2.0)
     Well6 = Detector(5.0,4,3.0,2)
     Well7 = Detector(5,4.0,3,2.0)
+	Well8 = Detector(5//1,4,3,2)
     @test Well0 === Well1 
 	@test Well1 === Well2 
     @test Well2 === Well3
@@ -135,11 +152,26 @@
     @test Well4 === Well5
     @test Well5 === Well6
     @test Well6 === Well7
+	@test Well7 === Well8
+	@test GeoEfficiency.volume(Detector(5.0,2,0.1,1))  <=   GeoEfficiency.volume(Detector(15.0,2,0.1,1))
+    @test GeoEfficiency.volume(Detector(10.0,2,0.1,1)) <=   GeoEfficiency.volume(Detector(15.0,2,0.1,1)) 
+	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
  
 		end #testset		
     
 	@testset "RadiationDetector" begin 
-	    
+	
+	@test_throws MethodError  Detector(1+1im)
+	@test_throws MethodError  Detector(5+1im, 0)  
+	@test_throws MethodError  Detector(1+1im, 1)
+	@test_throws MethodError  Detector(5+1im, 4,3)  
+	@test_throws MethodError  Detector(1+1im, 4, 3,2)
+	@test_throws MethodError  Detector(5+1im, 4, 3,2)  
+	@test_throws MethodError  Detector(1+1im, 4, 3,2)
+	@test_throws MethodError  Detector(4,1+1im, 3,2) 
+	@test_throws MethodError  Detector(4,3,2+1im,1)  	
+ 	@test_throws MethodError  Detector(4,3,2,1+1im)  	
+	
 		cyl0 = CylDetector(5)
 	    @test Detector(cyl0)   == cyl0
 		bore0 = BoreDetector(5,4,3)
@@ -158,4 +190,19 @@
 		end #for	
 						
 		end #testset	
+		
+	@testset "Invalid Detector Dimention $dim"  for dim =  
+	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
+	
+		@test_throws AssertionError	 CylDetector(dim)  
+		@test_throws AssertionError	 CylDetector(dim, 0) 	
+		@test_throws AssertionError	 CylDetector(dim, 1) 		
+		@test_throws AssertionError  BoreDetector(0, 0, 0)		
+
+		@test_throws AssertionError  Detector(dim)	
+		@test_throws AssertionError	 Detector(dim, 0) 	
+		@test_throws AssertionError	 Detector(dim, 1) 		
+		@test_throws AssertionError  BoreDetector(dim, 0, 0)	 	
+
+		end #testset_for		
 end #tesset
