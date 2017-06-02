@@ -93,7 +93,7 @@ const dotest = false
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 		
 		info("missing file")
-			rm(hightfile, force=true, recursive=true)
+			rm(hightfile, recursive=true)
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 
 		
@@ -106,7 +106,7 @@ const dotest = false
 			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
 			
 		catch	
-			rm(datadirectory, force=true, recursive=true)	
+			rm(datadirectory, recursive=true)	
 		
 		end #try
 		
