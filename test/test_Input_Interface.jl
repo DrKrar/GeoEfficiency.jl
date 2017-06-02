@@ -16,9 +16,9 @@ const dotest = false
 @testset "Input_Interface" begin
   
   @testset "setSrcToPoint" begin
-    @test SetSrcToPoint(true) == true
+    @test setSrcToPoint(true) == true
     @test GeoEfficiency.isPoint == true
-    @test SetSrcToPoint(false) == false
+    @test setSrcToPoint(false) == false
     @test GeoEfficiency.isPoint == false
 	end
   
