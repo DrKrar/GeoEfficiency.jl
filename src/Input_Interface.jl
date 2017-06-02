@@ -202,7 +202,11 @@ function read_batch_info(datadir::AbstractString,
 	                  input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
-	detectors_array ::Vector{RadiationDetector} = try detector_info_from_csvFile() catch; getDetectors() end
+	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir) 
+		catch 
+			getDetectors() 
+		end
+	
 	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
