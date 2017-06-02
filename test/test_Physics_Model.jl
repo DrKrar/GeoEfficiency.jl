@@ -194,7 +194,7 @@
 	@testset "source" 	begin
 		SetSrcToPoint(true)
 		pnt1 = Point(5)
-		@test source(pnt1) == Tuple(pnt1, 0.0, 0.0)
+		@test source(pnt1) == (pnt1, 0.0, 0.0)
 	
 	end
 		
