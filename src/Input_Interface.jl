@@ -91,7 +91,8 @@ end	#function
 	 detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
 
-read detectors data from predefined file and return its content as an array of detectors.
+read detectors data from predefined file and return its content as an array of detectors, or one can specifif a file.
+`datadir` : directory where file is located default to $(datadir) if no argument is provided.
 """
 function detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
@@ -115,10 +116,12 @@ end #function
 
 """# UnExported
 
-	read_from_csvFile(csv_data::AbstractString)
+	read_from_csvFile(csv_data::AbstractString, 
+                       datadir::AbstractString=datadir)
 
 read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
+`datadir` : directory where file is located default to $(datadir) if no argument is provided.
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
@@ -167,7 +170,7 @@ function read_batch_info()
 	function batchfailure(err::AbstractString)
 		warn("\n\t", err, ", the batch mode is treminating.......\n"); 
 		info("transfer to direct data input via the `console`......")
-		src = source(isPoint=isPoint)
+		src = source()
 		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
 		srcRadii_array  , srcLengths_array = [src[2]]       , [src[3]]
 		nothing

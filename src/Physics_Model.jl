@@ -81,7 +81,7 @@ show(pnt::Point) = print(id(pnt))
 #-----------------------------------------------------------------
 
 """
-	source(;isPoint=false)
+	source()
 
 return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
 
@@ -93,8 +93,9 @@ return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) bas
 
 If `isPoint` is true both `SrcRadius` and `SrcLength` are set to zero.
 """
-function source(;isPoint=false)
-    anchorPnt::Point = Point()
+function source(anchorPnt::Point = Point())
+    
+	global isPoint = isdefined(GeoEfficiency ,:isPoint) ? GeoEfficiency.isPoint : false
 	isPoint && return (anchorPnt, 0.0, 0.0)
 
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")

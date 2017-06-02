@@ -19,9 +19,9 @@ const dotest = false
   
   @testset "SetSrcToPoint" begin
     @test SetSrcToPoint(true) == true
-    @test isPoint == true
+    @test GeoEfficiency.isPoint == true
     @test SetSrcToPoint(false) == false
-    @test isPoint == false
+    @test GeoEfficiency.isPoint == false
 	end
   
   
