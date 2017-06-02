@@ -58,6 +58,7 @@ const dotest = false
 		Rhosfile     = "Rhosfile "
 		Radiifile    = "Radiifile"
 		Lengthsfile  = "Lengthsfile"
+		setSrcToPoint(true) == true
 
 		try
 		info(" Detectors write and read  - input type{Int}")	
