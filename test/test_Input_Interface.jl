@@ -104,11 +104,11 @@ const dotest = false
 		info(" Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
 			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
-			
-		catch	
-			rm(datadirectory, recursive=true)	
+		end #try			
+
+		try	rm(datadirectory, recursive=true)	end
 		
-		end #try
+
 		
 	end # testset
 	
