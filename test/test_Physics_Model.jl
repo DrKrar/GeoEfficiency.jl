@@ -204,12 +204,17 @@
 		@test_throws AssertionError	 CylDetector(dim)  
 		@test_throws AssertionError	 CylDetector(dim, 0) 	
 		@test_throws AssertionError	 CylDetector(dim, 1) 		
-		@test_throws AssertionError  BoreDetector(0, 0, 0)		
+		@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
 
 		@test_throws AssertionError  Detector(dim)	
 		@test_throws AssertionError	 Detector(dim, 0) 	
 		@test_throws AssertionError	 Detector(dim, 1) 		
-		@test_throws AssertionError  BoreDetector(dim, 0, 0)	 	
+		@test_throws AssertionError  Detector(dim, 0, 0)	 
+
+		@test_throws AssertionError	 CylDetector(5, dim)  
+		@test_throws AssertionError  BoreDetector(5, dim, 0)
+		@test_throws AssertionError	 CylDetector(5, dim)  
+		@test_throws AssertionError  BoreDetector(5, dim, 0)
 
 		end #testset_for		
 end #tesset
