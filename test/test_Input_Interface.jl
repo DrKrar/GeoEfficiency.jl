@@ -50,11 +50,14 @@ const dotest = false
 	
 	
     @testset "reading from CSV" begin
-		try
-        datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
+		
+		datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
 		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
 		
 		hightfile = joinpath(datadirectory, "_hight_test.csv")
+		
+		try
+
 		
 		info("write and read  - input type{Int}")
 
