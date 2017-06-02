@@ -17,7 +17,15 @@ const dotest = false
   detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
   detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
   
-  @testset "getfloat" begin
+  @testset "SetSrcToPoint" begin
+    @test SetSrcToPoint(true) == true
+    @test isPoint == true
+    @test SetSrcToPoint(false) == false
+    @test isPoint == false
+	end
+  
+  
+  @testset "getfloat" begin  
 	if dotest
 	    info("test `getfloat` with different ways to input numbers...")
 	    @test   0.0     ==  getfloat("\njust press return: ")
@@ -90,12 +98,15 @@ const dotest = false
 			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
 
-		info(" Detectors - missing file")	
+		info(" Detectors - missing file\n")	
 			rm(datadirectory, force=true, recursive=true)
-			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError			
+			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
 			
-			
-		end #try	
+		catch	
+			rm(datadirectory, force=true, recursive=true)	
+		
+		end #try
+		
 	end # testset
 	
 	

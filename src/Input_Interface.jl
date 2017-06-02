@@ -15,6 +15,14 @@ const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
+#------------------SetSrcToPoint--------------------------------------
+
+"globally set the sources to be considered as point(s) or not. "
+function SetSrcToPoint(yes::Bool)
+    global isPoint = yes
+end
+
+
 #------------------input-----------------------------------------------
 
 """"# UnExported
@@ -142,12 +150,12 @@ Return a tuple
 		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
-		ispoint	)
+		isPoint	)
 """
 function read_batch_info()
 
 	info("Starting the batch mode.....")
-	ispoint = input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
+	isPoint = isdefined(:isPoint) ? isPoint : input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try detector_info_from_csvFile() catch; getDetectors() end
@@ -159,7 +167,7 @@ function read_batch_info()
 	function batchfailure(err::AbstractString)
 		warn("\n\t", err, ", the batch mode is treminating.......\n"); 
 		info("transfer to direct data input via the `console`......")
-		src = source(isPoint=ispoint)
+		src = source(isPoint=isPoint)
 		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
 		srcRadii_array  , srcLengths_array = [src[2]]       , [src[3]]
 		nothing
@@ -168,7 +176,7 @@ function read_batch_info()
   if srcHeights_array == [0.0]
 			batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
 
-	elseif ispoint
+	elseif isPoint
 		#srcRadii_array  = [0.0]
 		#srcLengths_array  = [0.0]
 		srcRhos_array =	read_from_csvFile(srcRhos)
@@ -191,7 +199,7 @@ function read_batch_info()
 		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
-		ispoint
+		isPoint
 		)
 end #fumction
 
