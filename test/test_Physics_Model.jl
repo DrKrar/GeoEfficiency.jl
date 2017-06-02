@@ -191,12 +191,11 @@
 						
 		end #testset	
 		
-	@testset "source" 	begin
-		SetSrcToPoint(true)
+	@testset "source" begin
+		setSrcToPoint(true)
 		pnt1 = Point(5)
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
-	
-	end
+		end
 		
 	@testset "Invalid Detector Dimention $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
