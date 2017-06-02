@@ -55,9 +55,9 @@ const dotest = false
 
 		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
 		hightfile    = joinpath(datadirectory, "_hight_test.csv")
-		Rhosfile     = ""
-		Radiifile    = ""
-		Lengthsfile  = ""
+		Rhosfile     = "Rhosfile "
+		Radiifile    = "Radiifile"
+		Lengthsfile  = "Lengthsfile"
 
 		try
 		info(" Detectors write and read  - input type{Int}")	
@@ -67,7 +67,8 @@ const dotest = false
 		info("write and read  - input type{Int}")
     		@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		    @test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
-			
+		
+		info("read_batch_info")	
 		    batch_info = GeoEfficiency.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  Set(batch_info[1]) == Set(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
