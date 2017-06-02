@@ -17,8 +17,13 @@ const srcLengths = "srcLengths.csv";
 
 #------------------SetSrcToPoint--------------------------------------
 
-"globally set the sources to be considered as point(s) or not. "
-function SetSrcToPoint(yes::Bool)
+"""
+globally set the sources to be considered as point(s) or not. 
+
+ !!! Note
+the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
+"""
+function setSrcToPoint(yes::Bool)
     global isPoint = yes
 end
 
@@ -141,11 +146,13 @@ end #function
 
 
 #--------------------read_batch_info---------------------------------------------
+
 """# UnExported
 
 	read_batch_info()
 
 read `detectors` and `sources` parameters from the predefined csv files.
+
 Return a tuple
 
 	   (detectors_array,
@@ -155,14 +162,48 @@ Return a tuple
 		srcLengths_array,
 		isPoint	)
 """
-function read_batch_info()
+read_batch_info() = read_batch_info(datadir,
+                                  detectors, 
+								 srcHeights,
+								    srcRhos,
+								   srcRadii,
+								 srcLengths)
 
-	info("Starting the batch mode.....")
-	isPoint = isdefined(:isPoint) ? isPoint : input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
+
+"""# UnExported
+
+	read_batch_info(datadir::AbstractString,
+                  detectors::AbstractString, 
+			     srcHeights::AbstractString,
+			        srcRhos::AbstractString,
+				   srcRadii::AbstractString,
+			     srcLengths::AbstractString)
+
+read `detectors` and `sources` parameters from the location given in the argument list.
+
+Return a tuple
+
+	   (detectors_array,
+		srcHeights_array,
+		srcRhos_array,
+		srcRadii_array,
+		srcLengths_array,
+		isPoint	)
+"""								 
+function read_batch_info(datadir::AbstractString,
+                       detectors::AbstractString, 
+					  srcHeights::AbstractString,
+					     srcRhos::AbstractString,
+					    srcRadii::AbstractString,
+					  srcLengths::AbstractString)
+
+	info("The Batch Mode is Starting....")
+	global isPoint = isdefined(GeoEfficiency, :isPoint) ? GeoEfficiency.isPoint : 
+	                  input("\n Is it a point source {Y|n} ? ") |> lowercase != "n"
 
 	info("Read data from CSV files at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try detector_info_from_csvFile() catch; getDetectors() end
-	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights)
+	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]
@@ -182,16 +223,16 @@ function read_batch_info()
 	elseif isPoint
 		#srcRadii_array  = [0.0]
 		#srcLengths_array  = [0.0]
-		srcRhos_array =	read_from_csvFile(srcRhos)
+		srcRhos_array =	read_from_csvFile(srcRhos, datadir)
 
 	else
 		#srcRhos_array = [0.0]
-		srcRadii_array = read_from_csvFile(srcRadii)
+		srcRadii_array = read_from_csvFile(srcRadii, datadir)
 		if srcRadii_array == [0.0]
 			batchfailure("`$(srcRadii)` is not found in `$(datadir)`)")
 
 		else
-			srcLengths_array = read_from_csvFile(srcLengths)
+			srcLengths_array = read_from_csvFile(srcLengths, datadir)
 
 		end #if
 	end #if

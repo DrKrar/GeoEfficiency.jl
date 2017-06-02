@@ -14,10 +14,8 @@ warn("Those tests are suppressed because it need interactive input")
 const dotest = false
 
 @testset "Input_Interface" begin
-  detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
-  detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
   
-  @testset "SetSrcToPoint" begin
+  @testset "setSrcToPoint" begin
     @test SetSrcToPoint(true) == true
     @test GeoEfficiency.isPoint == true
     @test SetSrcToPoint(false) == false
@@ -50,20 +48,35 @@ const dotest = false
 	
 	
     @testset "reading from CSV" begin
+	    detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+        detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
 		
 		datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
+
 		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
-		
-		hightfile = joinpath(datadirectory, "_hight_test.csv")
-		
+		hightfile    = joinpath(datadirectory, "_hight_test.csv")
+		Rhosfile     = ""
+		Radiifile    = ""
+		Lengthsfile  = ""
+
 		try
-
-		
+		info(" Detectors write and read  - input type{Int}")	
+			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
+			
 		info("write and read  - input type{Int}")
-
-			@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
+    		@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		    @test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
+		    batch_info = GeoEfficiency.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+			@test  Set(batch_info[1]) == Set(detectors)
+			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  batch_info[3] == [0.0]	
+			@test  batch_info[4] == [0.0]		
+			@test  batch_info[5] == [0.0]			
+		end
+		
+		try
 		info("rewrite, read and sort  - input type{Int}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
@@ -96,26 +109,22 @@ const dotest = false
 			rm(hightfile, recursive=true)
 			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 
-		
-		info(" Detectors write and read  - input type{Int}")	
-			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
-
 		info(" Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
 			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
-		end #try			
+		end #try	
 
 		try	rm(datadirectory, recursive=true)	end
-		
-
 		
 	end # testset
 	
 	
     @testset "getDetectors" begin
+		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+        detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
 	    detectors = detectors |> sort
-        @test getDetectors(detector_info_array) == detectors 
+        
+		@test getDetectors(detector_info_array) == detectors 
 		for det = detectors
 			@test typeof(det) != Detector
 		end

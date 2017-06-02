@@ -35,7 +35,7 @@ about() = print_with_color(:green,"""\n
 export about,
 		
     # Input_Interface
-	SetSrcToPoint,
+	setSrcToPoint,
 	getfloat, 
 	getDetectors, 
 	
