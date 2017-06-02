@@ -211,6 +211,7 @@
 		@test_throws AssertionError	 Detector(dim, 1) 		
 		@test_throws AssertionError  Detector(dim, 0, 0)	 
 
+		dim == 0.0 && break
 		@test_throws AssertionError	 CylDetector(5, dim)  
 		@test_throws AssertionError  BoreDetector(5, dim, 0)
 		@test_throws AssertionError	 CylDetector(5, dim)  
