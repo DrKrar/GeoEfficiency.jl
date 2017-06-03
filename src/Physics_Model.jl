@@ -12,6 +12,7 @@ import Base: show, isless
 #--------------Point---------------------------------------------
 
 """
+
     Point(Height::Real, Rho::Real)
 
 construct and return a `Point` source that can be a source of itself or an
@@ -38,19 +39,21 @@ type Point
 end #type
 
 """
+
 	Point(Height::Real)
 
 the same as `Point(Height::Real, Rho::Real)` but return an axial point.
 
-`Height` : point height relative to the detector.
+`Height` : point height relative to the detector. \n
 """
 Point(Height::Real) = Point(Height, 0.0)
 
 """
+
 	Point()
 
 the same as `Point(Height::Real, Rho::Real)` but ask the user to provide the
-information from the `console`.
+information from the `console`. 
 """
 function Point()
 	print_with_color(:yellow,"\n II- The Radiactive Source Anchor Point:-\n")
@@ -84,6 +87,7 @@ show(pnt::Point) = print(id(pnt))
 #--------------source---------------------------------------------
 
 """
+
 	source(anchorPnt::Point = Point()
 
 return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
@@ -94,7 +98,7 @@ return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) bas
 
  *  `SrcLength` : source length.
 
-If `isPoint` is true both `SrcRadius` and `SrcLength` are set to zero.
+If the global `isPoint` is set to true both `SrcRadius` and `SrcLength` are set to zero.
 """
 function source(anchorPnt::Point = Point())
     
@@ -104,6 +108,7 @@ function source(anchorPnt::Point = Point())
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
+		warn("Only axial non-point is allaowed Now: the off-axis will be set to Zero")
         anchorPnt.Rho = 0.0
 
 	else
@@ -225,6 +230,7 @@ volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadiu
 #-----------WellDetector------------------------------------------------------
 
 """
+
 	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return a Well-Type detector.
@@ -274,8 +280,10 @@ volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength
 #----------RadiationDetector-------------------------------------------------------
 
 """
+
 	RadiationDetector()
 or	
+
 	Detector()
 
 construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`)
@@ -306,8 +314,10 @@ function RadiationDetector()
 end #function
 
 """
+
     RadiationDetector(CryRadius::Real)
 or	
+
 	Detector(CryRadius::Real)
 
 return cylindrical(or Disk) detector with `CryLength` equal to zero.
@@ -315,8 +325,10 @@ return cylindrical(or Disk) detector with `CryLength` equal to zero.
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 """
+
     RadiationDetector(CryRadius::Real, CryLength::Real)
 or	
+
 	Detector(CryRadius::Real, CryLength::Real)
 
 return cylindrical detector.
@@ -324,8 +336,10 @@ return cylindrical detector.
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 
 """
+
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 or	
+
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return bore-hole or cylindrical detector if `HoleRadius` = 0.0
@@ -335,7 +349,10 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
 				                                        BoreDetector(CryRadius, CryLength, HoleRadius)
 
 """
+
     RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+or	
+
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return well-type or bore-hole or cylindrical detector according to the arguments.
@@ -345,7 +362,10 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 				                                        WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 
 """
+
     RadiationDetector(detector::RadiationDetector)
+or	
+	
 	Detector(detector::RadiationDetector)
 
 return just the inputed detector
