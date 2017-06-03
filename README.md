@@ -31,17 +31,18 @@
 
 Created on Fri Aug 14 20:12:01 2015
 
-The Package ‘GeoEfficiency’ provides a set of tools writing in Julia programing language to calculate the Geometrical Efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. The detector can by chosen from a range of widely used detector geometries (`cylinder`, `bore-hole` or `well-type`) and until now the common sources (`point`, `disc`, or `cylinder`) are supported.
+The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. The detector can by chosen from a range of widely used detector geometries (`cylinder`, `bore-hole` or `well-type`) and until now the common sources (`point`, `disc`, or `cylinder`) are supported.
 
-The Package did not support anisotropic radioactive sources but it has planned in the future to incorporate anisotropic radioactive. Furthermore, it has planned to consider more details of the measurement setup and to give the user the ability to combine the effect of the source and the detector. The Package relay directly numerical evaluation of closed form analytical formula describing the Geometrical Efficiency.
+The Package did not support anisotropic radioactive sources but it is planned in the future to incorporate anisotropic radioactive sources. Furthermore, it has planned to consider more details of the measurement setup and to give the user the ability to combine the effect of the source geometry and composition as well as the detector effect. The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
 
 ## Requirements
-Julia 0.4 or above.
+ *  Julia 0.4 or above.
+ *  QuadGK 0.1.2 or above. will be installed automatically while the package build.
 
 ## Download and Install the Package
 
-The package is registered in METADATA.jl and so can be installed with Pkg.add.
+The package is registered in an officially METADATA.jl and so can be installed with Pkg.add.
 
 	Pkg.add("GeoEfficiency") 
 	
@@ -54,21 +55,22 @@ for more try also `geoEff()`, `calcN()`, `batch()`
 	
 
 ## Package Overview
-The following contractors can be used to construct a specific type of detector 
-`CylDetector` for cylindrical detector, 
-`BoreDetector` for bore hole, 
-`WellDetector` for well type detector.
-While the function `detectorFactory` can be used to construct any of the above types. You may try also `getDetectors`.
+The following constructor can be used to construct a specific type of detector 
+ *  `CylDetector` for cylindrical detector, 
+ *  `BoreDetector` for bore hole, 
+ *  `WellDetector` for well type detector.
+
+ While the function `detectorFactory` can be used to construct any of the above types. You may try also `getDetectors`.
 
 
-`Point` contractor is used to construct an anchoring point of a source relative to it its position to the detector is specified.
+`Point` constructor is used to construct an anchoring point of a source relative to it its position to the detector is specified.
 For a point source, the anchoring point is the source itself. The `source` function take input from the `console` and return a tuple describing the source.
 
 
  The efficiency calculation can be done by one of the functions. `geoEff` used with or without argument(s), `calc` ask for the required information from the `console`, `calcN` just a repeat of the `calc` function or batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
  
  > input from the `console` can be numerical expression not just a number.
- >Example:-
+ > Example:-
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
 	
@@ -83,20 +85,19 @@ For comma saved values (CSV) files each line represent an entry, the first line 
 
 The CSV files are:-
 
-`Detectors.csv` contains the detectors description; 
+ *  `Detectors.csv` contains the detectors description; 
 The line format is: Crystal_Radius, Crystal_Length,Hole_Radius, Hole_Depth.
 
 The program expect the line to contain at least one number or at most four separated numbers.
 	
-`srcHeights.csv` contains the source heights; 	
+ *  `srcHeights.csv` contains the source heights; 	
 the program expect the line to contain one number.
 	
-`srcRhos.csv` contains the source off-axis distances; 	 				
+ *  `srcRhos.csv` contains the source off-axis distances; 	 				
 the program expect the line to contain one number.	
 
-`srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
+ *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
 the program expect the line to contain one number.	
 	
-	
-`srcLengths.csv` contains the source length for cylindrical sources; 	
+ *  `srcLengths.csv` contains the source length for cylindrical sources; 	
 the program expect the line to contain one number.

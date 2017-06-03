@@ -119,7 +119,7 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 		
 	if 0.0 == SrcRadius                         #Point source
 	
-		detector.CryRadius  > pnt.Rho  ||	warn("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho)."
+		detector.CryRadius  > pnt.Rho  ||	warn("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
         return GeoEff_Pnt(detector, pnt)/2            	
 
 	elseif 0.0 == SrcLength						#Disk source

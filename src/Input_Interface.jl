@@ -15,9 +15,12 @@ const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
+
 #------------------SetSrcToPoint--------------------------------------
 
 """
+    setSrcToPoint(yes::Bool)
+
 globally set the sources to be considered as point(s) or not. 
 
  !!! Note
@@ -47,9 +50,11 @@ function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     chomp(readline())
 end # function
 
+
 #-------------------getfloat----------------------------------------------
 
 """
+
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
 
 Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
@@ -89,6 +94,7 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
     end #try
 end	#function
 
+
 #--------------------detector_info_from_csvFile--------------------------------------
 
 """# UnExported
@@ -109,7 +115,7 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
 		
     catch err
         if isa(err, SystemError) 
-		    warn("Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
+		    warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
 		else
 		    println(err)
 		end
@@ -118,6 +124,9 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
     end #try
 
 end #function
+
+
+#--------------------read_from_csvFile--------------------------------------
 
 """# UnExported
 
@@ -251,9 +260,11 @@ function read_batch_info(datadir::AbstractString,
 		)
 end #fumction
 
+
 #---------------- getDetectors-------------------------------------------------
 
 """
+
     getDetectors()
 
 prompt the user to input detector parameters from the `console`.
@@ -284,6 +295,7 @@ end #function
 
 
 """
+
 	getDetectors(detector_info_array::Matrix, console_FB=true)
 
 Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully 
