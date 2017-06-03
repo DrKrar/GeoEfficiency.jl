@@ -114,10 +114,8 @@ function source(anchorPnt::Point = Point())
 end #function
 
 
-#-----------------------------------------------------------------
+#----------------RadiationDetector------------------------------------
 
-"abstract base of all the gamma detectors"
-RadiationDetector
 
 if VERSION < v"0.6.0-dev.2746" # julia PR #20418
     include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
@@ -125,6 +123,8 @@ else
     include_string("abstract type RadiationDetector end")  #for compitaiblity with the syntax change
 end
 show(io::IO, detector::RadiationDetector) = print(id(detector))
+
+"abstract base of all the gamma detectors"
 const Detector = RadiationDetector
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
