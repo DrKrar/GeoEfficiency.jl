@@ -16,7 +16,7 @@
 	@test isa(pnt1.Rho, Float64)
     @test 5.0 == pnt1.Height
     @test isa(pnt1.Height, Float64)
-  
+ 
     pnt2 = Point(5, 0)
     pnt3 = Point(5, 0.0)
     pnt4 = Point(5.0, 0)
@@ -25,7 +25,7 @@
     @test pnt2.Height == pnt3.Height
     @test pnt3.Height == pnt4.Height
     @test pnt4.Height == pnt5.Height
-  
+
     @test pnt1.Rho == pnt2.Rho  
     @test pnt2.Rho == pnt3.Rho
     @test pnt3.Rho == pnt4.Rho
@@ -81,9 +81,7 @@
     @test GeoEfficiency.volume(CylDetector(10.0,1)) <=   GeoEfficiency.volume(CylDetector(15.0,1)) 
 	@test GeoEfficiency.volume(CylDetector(15.0))   <=   GeoEfficiency.volume(CylDetector(10.0)) 
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
-
-		
-		end #testset
+	end #testset
 		
   @testset "Borehole Detector" begin 
   
@@ -161,32 +159,42 @@
     
 	@testset "RadiationDetector" begin 
 	
-	@test_throws MethodError  Detector(1+1im)
-	@test_throws MethodError  Detector(5+1im, 0)  
-	@test_throws MethodError  Detector(1+1im, 1)
-	@test_throws MethodError  Detector(5+1im, 4,3)  
-	@test_throws MethodError  Detector(1+1im, 4, 3,2)
-	@test_throws MethodError  Detector(5+1im, 4, 3,2)  
-	@test_throws MethodError  Detector(1+1im, 4, 3,2)
-	@test_throws MethodError  Detector(4,1+1im, 3,2) 
-	@test_throws MethodError  Detector(4,3,2+1im,1)  	
- 	@test_throws MethodError  Detector(4,3,2,1+1im)  	
-	
+		@test_throws MethodError  Detector(1+1im)
+		@test_throws MethodError  Detector(5+1im, 0)  
+		@test_throws MethodError  Detector(1+1im, 1)
+		@test_throws MethodError  Detector(5+1im, 4,3)  
+		@test_throws MethodError  Detector(1+1im, 4, 3,2)
+		@test_throws MethodError  Detector(5+1im, 4, 3,2)  
+		@test_throws MethodError  Detector(1+1im, 4, 3,2)
+		@test_throws MethodError  Detector(4,1+1im, 3,2) 
+		@test_throws MethodError  Detector(4,3,2+1im,1)  	
+		@test_throws MethodError  Detector(4,3,2,1+1im)  	
+		
+		@test Detector(5)       === CylDetector(5)
+		@test Detector(5,0)     === CylDetector(5)			
+		@test Detector(5,0,0,0) === CylDetector(5)			
+		@test Detector(5,1)     === CylDetector(5,1)	
+		@test Detector(5,1,0)   === CylDetector(5,1)		
+		@test Detector(5,1,0,0) === CylDetector(5,1)				
+		@test Detector(5,2,1)   === BoreDetector(5,2, 1)	
+		@test Detector(5,2,1,0) === BoreDetector(5,2, 1)		
+		@test Detector(5,4,3,2) === WellDetector(5,4,3,2)			
+		
 		cyl0 = CylDetector(5)
-	    @test Detector(cyl0)   == cyl0
+	    @test Detector(cyl0)   === cyl0
 		bore0 = BoreDetector(5,4,3)
-		@test Detector(bore0)  == bore0
+		@test Detector(bore0)  === bore0
 		Well0 = WellDetector(5,4,3,2)
-		@test Detector(Well0) == Well0
+		@test Detector(Well0) === Well0
 		for i=1:1000
 			det1 = Detector(rand())
-			@test Detector(det1)   == det1
+			@test Detector(det1)   === det1
 			det2 = Detector(rand(2)...)
-			@test Detector(det2)   == det2
+			@test Detector(det2)   === det2
 			det3 = Detector(rand(15:20), rand(10:14), rand(1:13))
-			@test Detector(det3)   == det3
+			@test Detector(det3)   === det3
 			det4 = Detector(rand(15:20), rand(10:14), rand(9:13), rand(1:9))
-			@test Detector(det4)   == det4
+			@test Detector(det4)   === det4
 		end #for	
 						
 		end #testset	
@@ -199,11 +207,13 @@
 		
 	@testset "Invalid Detector Dimention $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
-	
+
 		@test_throws AssertionError	 CylDetector(dim)  
 		@test_throws AssertionError	 CylDetector(dim, 0) 	
 		@test_throws AssertionError	 CylDetector(dim, 1) 		
 		@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
+		@test_throws AssertionError  BoreDetector(dim, 1, 0)
+		@test_throws AssertionError  WellDetector(dim, 2, 1, 0)		
 
 		@test_throws AssertionError  Detector(dim)	
 		@test_throws AssertionError	 Detector(dim, 0) 	
@@ -215,6 +225,8 @@
 		@test_throws AssertionError  BoreDetector(5, dim, 0)
 		@test_throws AssertionError	 CylDetector(5, dim)  
 		@test_throws AssertionError  BoreDetector(5, dim, 0)
+		@test_throws AssertionError  BoreDetector(5,dim, 1)
+		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)		
 
 		end #testset_for		
 end #tesset

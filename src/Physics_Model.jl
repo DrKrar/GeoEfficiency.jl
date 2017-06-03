@@ -9,25 +9,27 @@
 import Base: show, isless
 
 
+#--------------Point---------------------------------------------
+
 """
     Point(Height::Real, Rho::Real)
 
 construct and return a `Point` source that can be a source of itself or an
 `anchor point` of a source.
 
-`Height` : point height relative to the detector.
+ *  `Height` : point height relative to the detector.
 
-`Rho` : point off axis relative to the detector axis of symmetry.
+ *  `Rho` : point off axis relative to the detector axis of symmetry.
 
 # Note please
 
 Each detector type give interpretation to the height in a different way as follow:
 
-* for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
+ *  for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
 
-* for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
+ *  for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
 
-* for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
+ *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
 """
 type Point
 	Height::Float64
@@ -78,18 +80,19 @@ end #function
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
 
-#-----------------------------------------------------------------
+
+#--------------source---------------------------------------------
 
 """
-	source()
+	source(anchorPnt::Point = Point()
 
 return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
 
-`aPnt` : the source anchoring point.
+ *  `aPnt` : the source anchoring point. if it is missing the used is asked to input it via the `console`.
 
-`SrcRadius` : source radius.
+ *  `SrcRadius` : source radius.
 
-`SrcLength` : source length.
+ *  `SrcLength` : source length.
 
 If `isPoint` is true both `SrcRadius` and `SrcLength` are set to zero.
 """
@@ -110,9 +113,12 @@ function source(anchorPnt::Point = Point())
     return (anchorPnt, SrcRadius, SrcLength)
 end #function
 
+
 #-----------------------------------------------------------------
 
-#abstract base of all the Gamma detectors.
+"abstract base of all the gamma detectors"
+RadiationDetector
+
 if VERSION < v"0.6.0-dev.2746" # julia PR #20418
     include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
 else
@@ -122,16 +128,17 @@ show(io::IO, detector::RadiationDetector) = print(id(detector))
 const Detector = RadiationDetector
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
-#-----------------------------------------------------------------
+
+#--------------CylDetector----------------------------------------
 
 """
 	CylDetector(CryRadius::Real, CryLength::Real)
 
-return a `cylindrical` detector.
+return a `cylindrical` detector of the given crystal dimmensions.
 
-`CryRadius` : the detector crystal radius.
+ *  `CryRadius` : the detector crystal radius.
 
-`CryLength` : the detector crystal length.
+ *  `CryLength` : the detector crystal length.
 """
 immutable CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -169,18 +176,20 @@ end #function
 id(detector::CylDetector) = "CylDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength)]"
 volume(detector::CylDetector) = pi * detector.CryRadius^2 * detector.CryLength 
 
-#-----------------------------------------------------------------
+
+#-------------BoreDetector-------------------------------------------
+
 
 """
 	BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return a `bore-hole` detector.
 
-`CryRadius` : the detector crystal radius.
+ *  `CryRadius` : the detector crystal radius.
 
-`CryLength` : the detector crystal length.
+ *  `CryLength` : the detector crystal length.
 
-`HoleRadius` : the detector hole radius.
+ *  `HoleRadius` : the detector hole radius.
 """
 immutable BoreDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -188,8 +197,8 @@ immutable BoreDetector <: RadiationDetector
 	HoleRadius::Float64    	#Real
 
 	function BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
-		@assert Inf > CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert Inf > CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
+		@assert Inf > CryRadius > 0.0		"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert Inf > CryLength > 0.0		"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		new(float(CryRadius), float(CryLength), float(HoleRadius))
 	end #if
@@ -212,20 +221,21 @@ end #function
 id(detector::BoreDetector) = "BoreDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius)]"
 volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius ^2 )* detector.CryLength 
 
-#-----------------------------------------------------------------
+
+#-----------WellDetector------------------------------------------------------
 
 """
 	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return a Well-Type detector.
 
-`CryRadius` : the detector crystal radius.
+ *  `CryRadius` : the detector crystal radius.
 
-`CryLength` : the detector crystal length.
+ *  `CryLength` : the detector crystal length.
 
-`HoleRadius` : the detector hole radius.
+ *  `HoleRadius` : the detector hole radius.
 
-`HoleDepth` : the detector hole length.
+ *  `HoleDepth` : the detector hole length.
 """
 immutable WellDetector <: RadiationDetector
 	CryRadius::Float64
@@ -234,8 +244,8 @@ immutable WellDetector <: RadiationDetector
 	HoleDepth::Float64
 
 	function WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
-		@assert Inf > CryRadius > 0.0					"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert Inf > CryLength > 0.0					"Crystal Length: expect +ve number, get $(CryLength)."
+		@assert Inf > CryRadius > 0.0				"Crystal Radius: expect +ve number, get $(CryRadius)."
+		@assert Inf > CryLength > 0.0				"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert Inf > CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		@assert CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get $(HoleDepth)."
 		new(float(CryRadius), float(CryLength), float(HoleRadius), float(HoleDepth))
@@ -250,17 +260,18 @@ return a Well-Type detector according to the input from the `console`.
 """
 function WellDetector()
 	print_with_color(:yellow," I- The Well-Type Detetcor physical Dimensions:-\n")
-	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
-	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
+	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
+	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
-	HoleDepth = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryLength)
+	HoleDepth  = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryLength)
 	WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 end #function
 
 id(detector::WellDetector) = "WellDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius), HoleDepth=$(detector.HoleDepth)]"
 volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength - detector.HoleRadius ^2 * detector.HoleDepth)
 
-#-----------------------------------------------------------------
+
+#----------RadiationDetector-------------------------------------------------------
 
 """
 	RadiationDetector()
@@ -280,8 +291,8 @@ according to the input from the console.
 """
 function RadiationDetector()
 	print_with_color(:yellow, "\n I- The detector physical Dimensions :-\n")
-	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
-	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
+	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
+	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, CryRadius)
 	if   0.0 == HoleRadius
 		return CylDetector(CryRadius, CryLength)
@@ -299,7 +310,7 @@ end #function
 or	
 	Detector(CryRadius::Real)
 
-return cylindrical detector with CryLength` equal to zero.
+return cylindrical(or Disk) detector with `CryLength` equal to zero.
 """
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
