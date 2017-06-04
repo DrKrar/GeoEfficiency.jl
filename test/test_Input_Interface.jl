@@ -30,10 +30,10 @@
 	info("test `getfloat` with mathematical expressions...")
 	@test   0.5           ==  getfloat("\ninput 1/2, then press return: ",value="1/2")
 	@test   0.75          ==  getfloat("\ninput 3//4, then press return: ",value="3//4")
-	@test   Base.pi/2     ==  getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
-	@test   Base.e        ==  getfloat("\ninput 'e', then press return: ",value="e")
-	@test   Base.e^3      ==  getfloat("\ninput 'e^3', then press return: ",value="e^3")
-	@test   Base.sin(0.1) ==  getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
+	@test   Base.pi/2     ≈  getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
+	@test   Base.e        ≈  getfloat("\ninput 'e', then press return: ",value="e")
+	@test   Base.e^3      ≈  getfloat("\ninput 'e^3', then press return: ",value="e^3")
+	@test   Base.sin(0.1) ≈  getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
 	#@test   isa( getfloat("\nthe first time input '1.2+2im': "), Float64)
     end # testset
 	
