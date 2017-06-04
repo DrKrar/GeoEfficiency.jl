@@ -37,6 +37,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 ## The following list show the current and planed features:-
 
  - [x] support of widely used detector geometries.
+ 
     1- [x] `cylinder` detector.
     2- [x] `bore-hole` detector.
     3- [x] ``well-type` detector.
@@ -44,6 +45,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
  - [ ] support of specialized detector geometries.
  
  - [x] support of isotropic radioactive sources.
+ 
     1- [x] `point` sources.
     2- [x] `disc` sources.
     3- [x] `cylinder` sources.
