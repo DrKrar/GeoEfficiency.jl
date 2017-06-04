@@ -37,34 +37,25 @@ The Package relay directly on numerical evaluation of closed form analytical for
 ## The following list show the current and planed features:-
 
  - [x] support of widely used detector geometries.
- 
-      1- [x] `cylinder` detectors.
-    
-      2- [x] `bore-hole` detectors.
-    
-      3- [x] `well-type` detectors.
+      - [x] `cylinder` detectors.
+      - [x] `bore-hole` detectors.
+      - [x] `well-type` detectors.
 	
  - [ ] support of specialized detector geometries.
  
  - [x] support of isotropic radioactive sources.
- 
-      1- [x] `point` sources.
-    
-      2- [x] `disc` sources.
-    
-      3- [x] `cylinder` sources.
+      - [x] `point` sources.
+      - [x] `disc` sources.
+      - [x] `cylinder` sources.
 
  - [ ] support of anisotropic radioactive sources.
    
-      1- [ ] `point` sources.
+      - [ ] `point` sources.
 	
  - [ ] consider more details of the measurement setup.
- 
-      1- [] the detector effect.
-    
-      2- [] the end cap effect.
-    
-      3- [] the meduim and absorber effect.
+      - [ ] the detector effect.
+      - [ ] the end cap effect.
+      - [ ] the meduim and absorber effect.
       
  - [ ] combine the effect of the source geometry and composition. 
 
