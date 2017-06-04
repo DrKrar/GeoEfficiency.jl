@@ -1,4 +1,4 @@
-# Accurate Geometrical Efficiency Calculator (GeoEfficiency)
+# Accurate Geometrical Efficiency Calculator [GeoEfficiency]
 
 ## Latest Release 
  + [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
@@ -79,25 +79,47 @@ the pachage can be used to perform patch calculation by calling the one of the m
 
 For example	`c:\users\yourusername`.
 
-The input to the `batch()` function can be spesified as arrgments or without arrgment at all in such a case is spesificd by comma saved value files, that can be easily edit by Microsoft Excel, found in the `GeoEfficiency` folder.
+The input to the `batch()` function can be specified as arrangements or without arrangement at all in such a case is specific by comma saved value files, that can be easily edit by Microsoft Excel, found in the `GeoEfficiency` folder.
 
-For comma saved values (CSV) files each line represent an entry, the first line is count as the header.
+For Comma Saved  Values [CSV] files each line represent an entry, the first line is count as the header.
 
-The CSV files are:-
+The Comma Saved  Values [CSV] files are:-
 
- *  `Detectors.csv` contains the detectors description; 
-The line format is: Crystal_Radius, Crystal_Length,Hole_Radius, Hole_Depth.
+ *  `Detectors.csv` contains the detectors description; The line format is: 
 
-The program expect the line to contain at least one number or at most four separated numbers.
-	
- *  `srcHeights.csv` contains the source heights; 	
-the program expect the line to contain one number.
-	
+     Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth
+     ----------------| -----------------|---------------|--------------
+
+     > The program expect the line to contain at least one number or at most four separated numbers.
+
+
+ *  `srcHeights.csv` contains the source heights; 
+
+     Source_Heights | 
+      -----------------|
+
+     > The program expect the line to contain one number.
+
+
  *  `srcRhos.csv` contains the source off-axis distances; 	 				
-the program expect the line to contain one number.	
+
+     Source_Rhos | 
+      -----------------|
+
+     > The program expect the line to contain one number.
+
 
  *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
-the program expect the line to contain one number.	
-	
+
+     Source_Radii| 
+      -----------------|
+
+     > The program expect the line to contain one number.
+
+
  *  `srcLengths.csv` contains the source length for cylindrical sources; 	
-the program expect the line to contain one number.
+
+     Source_Lengths| 
+      -----------------|
+
+     > The program expect the line to contain one number.
