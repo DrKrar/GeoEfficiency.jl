@@ -119,7 +119,7 @@ function source(anchorPnt::Point = Point())
 end #function
 
 
-#----------------RadiationDetector------------------------------------
+#----------------Detector------------------------------------
 
 
 if VERSION < v"0.6.0-dev.2746" # julia PR #20418
