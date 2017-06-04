@@ -91,14 +91,16 @@ The Comma Saved  Values [CSV] files are:-
      ----------------| -----------------|---------------|--------------
 
      > The program expect the line to contain at least one number or at most four separated numbers.
-	
+
+
  *  `srcHeights.csv` contains the source heights; 
 
      Source_Heights | 
       -----------------|
 
      > The program expect the line to contain one number.
-	
+
+
  *  `srcRhos.csv` contains the source off-axis distances; 	 				
 
      Source_Rhos | 
@@ -106,13 +108,15 @@ The Comma Saved  Values [CSV] files are:-
 
      > The program expect the line to contain one number.
 
+
  *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
 
      Source_Radii| 
       -----------------|
 
      > The program expect the line to contain one number.
-	
+
+
  *  `srcLengths.csv` contains the source length for cylindrical sources; 	
 
      Source_Lengths| 
