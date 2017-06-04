@@ -137,6 +137,7 @@ isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volu
 #--------------CylDetector----------------------------------------
 
 """
+
 	CylDetector(CryRadius::Real, CryLength::Real)
 
 return a `cylindrical` detector of the given crystal dimmensions.
@@ -158,6 +159,7 @@ immutable CylDetector <: RadiationDetector
 end #type
 
 """
+
     CylDetector(CryRadius::Real)
 
 return a cylindrical detector with crystal length 0.0.
@@ -167,6 +169,7 @@ return a cylindrical detector with crystal length 0.0.
 CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
 
 """
+
     CylDetector()
 
 return a cylindrical detector according to the input from the `console`.
@@ -186,6 +189,7 @@ volume(detector::CylDetector) = pi * detector.CryRadius^2 * detector.CryLength
 
 
 """
+
 	BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return a `bore-hole` detector.
@@ -211,6 +215,7 @@ immutable BoreDetector <: RadiationDetector
 end #type
 
 """
+
 	BoreDetector()
 
 return a bore-hole detector according to the input from the `console`.
@@ -260,6 +265,7 @@ immutable WellDetector <: RadiationDetector
 end #type
 
 """
+
 	WellDetector()
 
 return a Well-Type detector according to the input from the `console`.
@@ -315,9 +321,6 @@ end #function
 
 """
 
-    RadiationDetector(CryRadius::Real)
-or	
-
 	Detector(CryRadius::Real)
 
 return cylindrical(or Disk) detector with `CryLength` equal to zero.
@@ -326,9 +329,6 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 """
 
-    RadiationDetector(CryRadius::Real, CryLength::Real)
-or	
-
 	Detector(CryRadius::Real, CryLength::Real)
 
 return cylindrical detector.
@@ -336,9 +336,6 @@ return cylindrical detector.
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 
 """
-
-    RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
-or	
 
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
@@ -350,9 +347,6 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
 
 """
 
-    RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
-or	
-
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return well-type or bore-hole or cylindrical detector according to the arguments.
@@ -363,9 +357,6 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 
 """
 
-    RadiationDetector(detector::RadiationDetector)
-or	
-	
 	Detector(detector::RadiationDetector)
 
 return just the inputed detector

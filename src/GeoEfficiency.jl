@@ -46,7 +46,6 @@ export about,
 	CylDetector, 
 	BoreDetector,
 	WellDetector,
-	RadiationDetector,
 	
     # Calculations
 	geoEff, 
