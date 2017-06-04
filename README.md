@@ -38,11 +38,11 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
  - [x] support of widely used detector geometries.
  
-      1- [x] `cylinder` detector.
+      1- [x] `cylinder` detectors.
     
-      2- [x] `bore-hole` detector.
+      2- [x] `bore-hole` detectors.
     
-      3- [x] ``well-type` detector.
+      3- [x] `well-type` detectors.
 	
  - [ ] support of specialized detector geometries.
  
@@ -55,10 +55,17 @@ The Package relay directly on numerical evaluation of closed form analytical for
       3- [x] `cylinder` sources.
 
  - [ ] support of anisotropic radioactive sources.
-    1- [ ] `point` sources.
+   
+      1- [ ] `point` sources.
 	
- - [ ] consider more details of the measurement setup as well as the detector effect. 
+ - [ ] consider more details of the measurement setup.
  
+      1- [] the detector effect.
+    
+      2- [] the end cap effect.
+    
+      3- [] the meduim and absorber effect.
+      
  - [ ] combine the effect of the source geometry and composition. 
 
 
