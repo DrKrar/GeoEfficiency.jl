@@ -24,6 +24,7 @@ const srcLengths = "srcLengths.csv";
 globally set the sources to be considered as point(s) or not. 
 
  !!! Note
+ 
 the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
 """
 function setSrcToPoint(yes::Bool)
@@ -55,7 +56,7 @@ end # function
 
 """
 
-	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
+	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")
 
 Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
 
@@ -64,17 +65,26 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
  > All are valid expressions.
 
 # Note Please
-\n- a blank (just a return) input is considered as being `0.0`.
+ *  a blank (just a return) input is considered as being `0.0`.
+ *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
 
 # Example
 ```jldoctest
-julia> getfloat("input a number:")
-input a number:
+julia> getfloat("input a number:",value="3")
+3.0
+julia> getfloat("input a number:",value="")
+0.0
+julia> getfloat("input a number:",value="5/2")
+2.5
+julia> getfloat("input a number:",value="5//2")
+2.5
+julia> getfloat("input a number:",value="e")
+2.718281828459045
 ```
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf)
+function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")
 
-    value = input(prompt)
+    "nothing" == value ? value = input(prompt) : nothing
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
     val::Float64 = 0.0
 	try

@@ -7,12 +7,6 @@
 #**************************************************************************************
 
 
-# this set of tests need interactive input from the console, uncomment the line after `while` to do tests.
-info("Statrting `getfloat` test...")
-
-warn("Those tests are suppressed because it need interactive input")
-const dotest = false
-
 @testset "Input_Interface" begin
   
   @testset "setSrcToPoint" begin
@@ -24,33 +18,30 @@ const dotest = false
   
   
   @testset "getfloat" begin  
-	if dotest
-	    info("test `getfloat` with different ways to input numbers...")
-	    @test   0.0     ==  getfloat("\njust press return: ")
-	    @test   1.0     ==  getfloat("\ninput 1, then press return: ")
-	    @test   1.0     ==  getfloat("\ninput 1.0, then press return: ")
-	    @test   2000.0  ==  getfloat("\ninput '2e3', then press return: ")
-	    @test   0.034   ==  getfloat("\ninput '3.4e-2', then press return: ")
-	    @test   isa( getfloat("\ntry to input any string, only valid number should accepted: "), Float64)
-	    @test   isa( getfloat("\nthe first time input '1.2f': "), Float64)
-	
-	    info("test `getfloat` with mathematical expressions...")
-	    @test   0.5           ==  getfloat("\ninput 1/2, then press return: ")
-	    @test   0.75          ==  getfloat("\ninput 3//4, then press return: ")
-	    @test   Base.pi/2     ==  getfloat("\ninput 'pi/2', then press return: ")
-	    @test   Base.e        ==  getfloat("\ninput 'e', then press return: ")
-	    @test   Base.e^3      ==  getfloat("\ninput 'e^3', then press return: ")
-	    @test   Base.sin(0.1) ==  getfloat("\ninput 'sin(0.1)', then press return: ")
-	    @test   isa( getfloat("\nthe first time input '1.2+2im': "), Float64)
+	info("test `getfloat` with different ways to input numbers...")
+	@test   0.0     ==  getfloat("\njust press return: ",value="0.0")
+	@test   1.0     ==  getfloat("\ninput 1, then press return: ",value="1.0")
+	@test   1.0     ==  getfloat("\ninput 1.0, then press return: ",value="1.0")
+	@test   2000.0  ==  getfloat("\ninput '2e3', then press return: ",value="2e3")
+	@test   0.034   ==  getfloat("\ninput '3.4e-2', then press return: ",value="3.4e-2")
+	@test   isa( getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
+	#@test   isa( getfloat("\nthe first time input '1.2f': "), Float64)
 
-	end #if 
+	info("test `getfloat` with mathematical expressions...")
+	@test   0.5           ==  getfloat("\ninput 1/2, then press return: ",value="1/2")
+	@test   0.75          ==  getfloat("\ninput 3//4, then press return: ",value="3//4")
+	@test   Base.pi/2     ==  getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
+	@test   Base.e        ==  getfloat("\ninput 'e', then press return: ",value="e")
+	@test   Base.e^3      ==  getfloat("\ninput 'e^3', then press return: ",value="e^3")
+	@test   Base.sin(0.1) ==  getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
+	#@test   isa( getfloat("\nthe first time input '1.2+2im': "), Float64)
     end # testset
 	
 	
     @testset "reading from CSV" begin
 	    detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
         detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
-		
+
 		datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
 
 		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
@@ -64,20 +55,20 @@ const dotest = false
 		info(" Detectors write and read  - input type{Int}")	
 			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
-			
+
 		info("write and read  - input type{Int}")
     		@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		    @test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
-		
+
 		info("READ_BATCH_INFO")	
 		    batch_info = GeoEfficiency.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  Set(batch_info[1]) == Set(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
-			@test  batch_info[3] == [0.0]	
-			@test  batch_info[4] == [0.0]		
-			@test  batch_info[5] == [0.0]			
+			@test  batch_info[3] == [0.0]
+			@test  batch_info[4] == [0.0]
+			@test  batch_info[5] == [0.0]
 		end
-		
+
 		try
 		info("rewrite, read and sort  - input type{Int}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
