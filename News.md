@@ -9,7 +9,7 @@
 
 
 ### Version 0.8.6
- *  When `batch` taking arrguments, all the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
+ *  When `batch` taking arrguments, all the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should be converted to `float64` using `float` before passing it to the `batch` function.
 
 ### Version 0.8.5
  *  `Detector()` can be used to constructe a new detector.

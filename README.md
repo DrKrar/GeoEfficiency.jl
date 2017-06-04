@@ -31,9 +31,29 @@
 
 Created on Fri Aug 14 20:12:01 2015
 
-The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. The detector can by chosen from a range of widely used detector geometries (`cylinder`, `bore-hole` or `well-type`) and until now the common sources (`point`, `disc`, or `cylinder`) are supported.
+The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. 
+The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
-The Package did not support anisotropic radioactive sources but it is planned in the future to incorporate anisotropic radioactive sources. Furthermore, it has planned to consider more details of the measurement setup and to give the user the ability to combine the effect of the source geometry and composition as well as the detector effect. The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
+## The following list show the current and planed features:-
+
+ - [x] support of widely used detector geometries.
+    1- [x] `cylinder` detector.
+    2- [x] `bore-hole` detector.
+    3- [x] ``well-type` detector.
+	
+ - [ ] support of specialized detector geometries.
+ 
+ - [x] support of isotropic radioactive sources.
+    1- [x] `point` sources.
+    2- [x] `disc` sources.
+    3- [x] `cylinder` sources.
+
+ - [ ] support of anisotropic radioactive sources.
+    1- [ ] `point` sources.
+	
+ - [ ] consider more details of the measurement setup as well as the detector effect. 
+ 
+ - [ ] combine the effect of the source geometry and composition. 
 
 
 ## Requirements
@@ -92,14 +112,12 @@ The Comma Saved  Values [CSV] files are:-
 
      > The program expect the line to contain at least one number or at most four separated numbers.
 
-
  *  `srcHeights.csv` contains the source heights; 
 
      Source_Heights | 
       -----------------|
 
      > The program expect the line to contain one number.
-
 
  *  `srcRhos.csv` contains the source off-axis distances; 	 				
 
@@ -108,14 +126,12 @@ The Comma Saved  Values [CSV] files are:-
 
      > The program expect the line to contain one number.
 
-
  *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
 
      Source_Radii| 
       -----------------|
 
      > The program expect the line to contain one number.
-
 
  *  `srcLengths.csv` contains the source length for cylindrical sources; 	
 
