@@ -1,17 +1,7 @@
 # Accurate Geometrical Efficiency Calculator [GeoEfficiency]
 
-## Latest Release 
-[![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
-----|----|----
-
-## Nightly Builds
-
-Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
-----|----|----|----|----
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![Build Status](https://ci.appveyor.com/api/projects/status/ew595nn4njmm4dbl?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl) | [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
-
----
-
+The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. 
+The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
 @author: Mohamed Krar
 
@@ -25,8 +15,18 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 Created on Fri Aug 14 20:12:01 2015
 
-The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. 
-The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
+
+## Latest Release 
+[![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
+----|----|----
+
+## Nightly Builds
+
+Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
+----|----|----|----|----
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![Build Status](https://ci.appveyor.com/api/projects/status/ew595nn4njmm4dbl?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl) | [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
+
+---
 
 ## The following list show the current and planed features:-
 
