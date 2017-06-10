@@ -32,7 +32,7 @@ Each detector type give interpretation to the height in a different way as follo
 
  *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
 """
-type Point
+mutable struct Point
 	Height::Float64
 	Rho::Float64
 	Point(Height::Real, Rho::Real) = new(float(Height), float(Rho))
@@ -122,11 +122,7 @@ end #function
 #----------------Detector------------------------------------
 
 
-if VERSION < v"0.6.0-dev.2746" # julia PR #20418
-    include_string("abstract RadiationDetector")           #for compitaiblity with the syntax change
-else
-    include_string("abstract type RadiationDetector end")  #for compitaiblity with the syntax change
-end
+abstract type RadiationDetector end
 show(io::IO, detector::RadiationDetector) = print(id(detector))
 
 "abstract base of all the gamma detectors"
@@ -146,7 +142,7 @@ return a `cylindrical` detector of the given crystal dimmensions.
 
  *  `CryLength` : the detector crystal length.
 """
-immutable CylDetector <: RadiationDetector
+struct CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64		#Real
 
@@ -200,7 +196,7 @@ return a `bore-hole` detector.
 
  *  `HoleRadius` : the detector hole radius.
 """
-immutable BoreDetector <: RadiationDetector
+struct BoreDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64    	#Real
 	HoleRadius::Float64    	#Real
@@ -248,7 +244,7 @@ return a Well-Type detector.
 
  *  `HoleDepth` : the detector hole length.
 """
-immutable WellDetector <: RadiationDetector
+struct WellDetector <: RadiationDetector
 	CryRadius::Float64
     CryLength::Float64
 	HoleRadius::Float64
