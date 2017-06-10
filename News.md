@@ -1,6 +1,6 @@
 # GeoEfficiency Package Release Notes
 
-### Version 0.8.7-Dev
+### Version 0.8.7
  *  new function `about()` give information about the sofftware Package.
  *  new function `SetSrcToPoint()` to set source type.
  *  function `source()`, now did not take keyword argument insteade it depened on the global variable `isPoint`. 
