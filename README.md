@@ -11,7 +11,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.8.7-Dev"
+@version: v"0.8.7"
 
 Created on Fri Aug 14 20:12:01 2015
 
