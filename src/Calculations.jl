@@ -7,9 +7,9 @@
 #**************************************************************************************
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
-const relativeError = isdefined(:GeoEfficiency_relativeError) ? GeoEfficiency_relativeError : 0.0001	
-const absoluteError = isdefined(:GeoEfficiency_absoluteError) ? GeoEfficiency_absoluteError : 0.00000000001
-const integrate     = isdefined(:GeoEfficiency_integrate )    ? GeoEfficiency_integrate     : begin using QuadGK; QuadGK.quadgk; end
+const relativeError = @isdefined(GeoEfficiency_relativeError) ? GeoEfficiency_relativeError : 0.0001	
+const absoluteError = @isdefined(GeoEfficiency_absoluteError) ? GeoEfficiency_absoluteError : 0.00000000001
+const integrate     = @isdefined(GeoEfficiency_integrate )    ? GeoEfficiency_integrate     : begin using QuadGK; QuadGK.quadgk; end
 
 
 #-----------GeoEff_Pnt------------------------------------------------------
@@ -25,6 +25,7 @@ of the cylindrical detector `detector` face.
 
 This is the base function that all other function call directly or indirectly
 to calculate Geometrical Efficiency.
+
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 
@@ -68,6 +69,7 @@ return the Geometrical Efficiency for a disk source. The disk center is `Surface
 on front of the cylindrical detector `detector` face.
 
 `Throw` an Error if the disk is out of cylindrical detector the face.
+
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	detector.CryRadius > SurfacePnt.Rho + SrcRadius || warn("GeoEff_Disk: Off the detector face sources is not supported yet")
@@ -111,6 +113,7 @@ on the detector surface.
     0.49999999999999994
 ```
 \n*****
+
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	detector.CryRadius > SrcRadius	||	warn("geoEff: Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
@@ -144,6 +147,7 @@ Any way prompt the user to input a source via the `console`.
 # Note please
 `Throw` an Error if the source location is inappropriate.
 \n*****
+
 """
 geoEff(detector::RadiationDetector = RadiationDetector()) = geoEff(detector, source()...)
 
@@ -180,6 +184,7 @@ to obtain the efficiency for a bore-hole detector of crystal radius of 2.0 and h
 	0.5678174038944723
 ```
 \n*****
+
 """
 function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
@@ -261,6 +266,7 @@ to obtain the efficiency for a well-type detector of crystal radius of 2.0 and h
 	0.4669614527701105
 ```
 \n*****
+
 """
 function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 	

@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-const resultsfolder =  isdefined(:GeoEfficiency_resultsfolder) ? GeoEfficiency_resultsfolder : "results";
+const resultsfolder =  @isdefined(GeoEfficiency_resultsfolder) ? GeoEfficiency_resultsfolder : "results";
 const resultdir 	= joinpath(datadir, resultsfolder);		     isdir(resultdir) 		   || mkdir(resultdir)
 const resultdir_pnt = joinpath(resultdir, "Point");			     isdir(resultdir_pnt) 	 || mkdir(resultdir_pnt)
 const resultdir_nonPnt = joinpath(resultdir, "non-Point");	 isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
@@ -19,6 +19,7 @@ countDetectors = 1;
 calculate the Geometrical Efficiency of the detector `detector` and display it on the `console`.
 If no detector is supplied, it ask for a detector from the `console`.
 Any way it prompt the user to input a source via the `console`.
+
 """
 function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 			   
@@ -47,6 +48,7 @@ end #function
 calculate and display the Geometrical Efficiency.
 Prompt the user to input a `detector` and a `source` from the `console`.
 Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).
+
 """
 function calcN(	detector:: RadiationDetector = RadiationDetector())
 
@@ -85,6 +87,7 @@ function writecsv_head(fname::AbstractString, a, head=[])
 	end #do
 end #function
 
+
 #----------------batch()-------------------------------------------------
 
 """
@@ -96,6 +99,7 @@ Results are saved on a `csv file` named after the detector located in `$(resultd
 
 Throw an error if the source location is inappropriate.
 \n*****
+
 """
 batch() = batch(read_batch_info()...)
 
@@ -115,18 +119,15 @@ If `ispoint` is true the source type is a point source and the parameters in src
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-
-# Note
-
-All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
+
 """
-function batch(	detector_info_array::Matrix{Float64},
-				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0],
-				ispoint::Bool=true)
+function batch(	detector_info_array::Matrix{S},
+				srcHeights_array::Vector{S},
+				srcRhos_array::Vector{S}=[0.0],
+				srcRadii_array::Vector{S}=[0.0],
+				srcLengths_array::Vector{S}=[0.0],
+				ispoint::Bool=true) where S <: Real
 
 				
 	return  batch(	getDetectors(detector_info_array),
@@ -138,12 +139,12 @@ function batch(	detector_info_array::Matrix{Float64},
 end #function
 
 """
-	 batch( detector::RadiationDetector,
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
-			ispoint::Bool=true)
+    batch(	detector::RadiationDetector,
+				srcHeights_array::Vector{S},
+				srcRhos_array::Vector{S}=[0.0],
+				srcRadii_array::Vector{S}=[0.0],
+				srcLengths_array::Vector{S}=[0.0],
+				ispoint::Bool=true) where S <: Real
 
 provide batch calculation of the Geometricel efficiecny for the detector `detector` .
 
@@ -156,35 +157,32 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
 Return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
-
-# Note
-
-All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
+
 """
 function batch(	detector::RadiationDetector,
-				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64}=[0.0],
-				srcRadii_array::Vector{Float64}=[0.0],
-				srcLengths_array::Vector{Float64}=[0.0],
-				ispoint::Bool=true)
+				srcHeights_array::Vector{S},
+				srcRhos_array::Vector{S}=[0.0],
+				srcRadii_array::Vector{S}=[0.0],
+				srcLengths_array::Vector{S}=[0.0],
+				ispoint::Bool=true) where S <: Real
 				
 	return _batch(Val{ispoint},
 				detector::RadiationDetector,
-				srcHeights_array::Vector{Float64},
-				srcRhos_array::Vector{Float64},
-				srcRadii_array::Vector{Float64},
-				srcLengths_array::Vector{Float64}
+				srcHeights_array,
+				srcRhos_array,
+				srcRadii_array,
+				srcLengths_array
 				)
 end #function
 
 """
-	 batch( detectors_array::Vector{RadiationDetector},
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
-			ispoint::Bool=true)
+    batch( detectors_array::Vector{T},
+	       srcHeights_array::Vector{S},
+	       srcRhos_array::Vector{S}=[0.0],
+	       srcRadii_array::Vector{S}=[0.0],
+	       srcLengths_array::Vector{S}=[0.0],
+	       ispoint::Bool=true) where T <: RadiationDetector, S <: Real
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
 
@@ -195,27 +193,16 @@ If `ispoint` is true the source type is a point source and the parameters in src
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-
-# Note
-
-All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
 \n*****
-"""
-function batch( detectors_array::Vector{RadiationDetector},
-	       srcHeights_array::Vector{Float64},
-	       srcRhos_array::Vector{Float64}=[0.0],
-	       srcRadii_array::Vector{Float64}=[0.0],
-	       srcLengths_array::Vector{Float64}=[0.0],
-	       ispoint::Bool=true)
 
-#= =====================
-    eltype(detectors_array) <: RadiationDetector || error("element of RadiationDetector are expected")
-	srcHeights_array = eltype(srcHeights_array) <: Real ? float(srcHeights_array) : error("element of srcHeights array are expected to be Real")
-	srcRhos_array	 = eltype(srcHeights_array) <: Real ? float(srcRhos_array) : error("element of srcRhos array are expected to be Real")
-	srcRadii_array	 = eltype(srcRadii_array) <: Real ? float(srcRadii_array) : error("element of srcRadii array are expected to be Real")
-	srcLengths_array = eltype(srcLengths_array) <: Real ? float(srcLengths_array) : error("element of srcLengths array are expected to be Real")
-========================= =#
-	
+"""
+function batch( detectors_array::Vector{T},
+	       srcHeights_array::Vector{S},
+	       srcRhos_array::Vector{S}=[0.0],
+	       srcRadii_array::Vector{S}=[0.0],
+	       srcLengths_array::Vector{S}=[0.0],
+	       ispoint::Bool=true) where T <: RadiationDetector, S <: Real
+
 	for detector = detectors_array
 		batch(detector,
 			srcHeights_array,
@@ -231,46 +218,6 @@ function batch( detectors_array::Vector{RadiationDetector},
 
 end #function
 
-"""
-	 batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
-			srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
-			ispoint::Bool=true)
-			
-provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
-A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
-If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
-If `ispoint` is false the parameters in srcRhos_array is completely ignored.
-Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-
-# Note
-
-All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
-\n*****
-"""
-function batch( detectors_array::Union{Vector{CylDetector}, Vector{BoreDetector}, Vector{WellDetector}},
-	       srcHeights_array::Vector{Float64},
-	       srcRhos_array::Vector{Float64}=[0.0],
-	       srcRadii_array::Vector{Float64}=[0.0],
-	       srcLengths_array::Vector{Float64}=[0.0],
-	       ispoint::Bool=true)
-		   
-	for detector = detectors_array
-		batch(detector,
-			srcHeights_array,
-			srcRhos_array,
-			srcRadii_array,
-			srcLengths_array,
-			ispoint)
-
-	end # detectors_array
-
-	info("\n\tThe program had termiate, Thank you >>>>\n")
-    return nothing
-	
-end #function
 
 """# UnExported
 

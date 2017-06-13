@@ -31,6 +31,7 @@ Each detector type give interpretation to the height in a different way as follo
  *  for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
 
  *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
+ 
 """
 mutable struct Point
 	Height::Float64
@@ -45,6 +46,7 @@ end #type
 the same as `Point(Height::Real, Rho::Real)` but return an axial point.
 
 `Height` : point height relative to the detector. \n
+
 """
 Point(Height::Real) = Point(Height, 0.0)
 
@@ -54,6 +56,7 @@ Point(Height::Real) = Point(Height, 0.0)
 
 the same as `Point(Height::Real, Rho::Real)` but ask the user to provide the
 information from the `console`. 
+
 """
 function Point()
 	print_with_color(:yellow,"\n II- The Radiactive Source Anchor Point:-\n")
@@ -99,6 +102,7 @@ return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) bas
  *  `SrcLength` : source length.
 
 If the global `isPoint` is set to true both `SrcRadius` and `SrcLength` are set to zero.
+
 """
 function source(anchorPnt::Point = Point())
     
@@ -126,7 +130,9 @@ abstract type RadiationDetector end
 show(io::IO, detector::RadiationDetector) = print(id(detector))
 
 "abstract base of all the gamma detectors"
+RadiationDetector
 const Detector = RadiationDetector
+
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
 
@@ -141,6 +147,7 @@ return a `cylindrical` detector of the given crystal dimmensions.
  *  `CryRadius` : the detector crystal radius.
 
  *  `CryLength` : the detector crystal length.
+ 
 """
 struct CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -161,6 +168,7 @@ end #type
 return a cylindrical detector with crystal length 0.0.
 
 `CryRadius` : the detector crystal radius.
+
 """
 CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
 
@@ -169,6 +177,7 @@ CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
     CylDetector()
 
 return a cylindrical detector according to the input from the `console`.
+
 """
 function CylDetector()
 	print_with_color(:yellow," I- The Cylinderical Detetcor physical Dimensions:-\n")
@@ -195,6 +204,7 @@ return a `bore-hole` detector.
  *  `CryLength` : the detector crystal length.
 
  *  `HoleRadius` : the detector hole radius.
+ 
 """
 struct BoreDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -215,6 +225,7 @@ end #type
 	BoreDetector()
 
 return a bore-hole detector according to the input from the `console`.
+
 """
 function BoreDetector()
 	print_with_color(:yellow," I- The Bore Hole Detetcor physical Dimensions:-\n")
@@ -243,6 +254,7 @@ return a Well-Type detector.
  *  `HoleRadius` : the detector hole radius.
 
  *  `HoleDepth` : the detector hole length.
+ 
 """
 struct WellDetector <: RadiationDetector
 	CryRadius::Float64
@@ -265,6 +277,7 @@ end #type
 	WellDetector()
 
 return a Well-Type detector according to the input from the `console`.
+
 """
 function WellDetector()
 	print_with_color(:yellow," I- The Well-Type Detetcor physical Dimensions:-\n")
@@ -283,9 +296,6 @@ volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength
 
 """
 
-	RadiationDetector()
-or	
-
 	Detector()
 
 construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`)
@@ -298,6 +308,7 @@ according to the input from the console.
 * if any method with argument(s) take an `invalid` argument it would throw an error.
 
 * if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
+
 """
 function RadiationDetector()
 	print_with_color(:yellow, "\n I- The detector physical Dimensions :-\n")
@@ -320,6 +331,7 @@ end #function
 	Detector(CryRadius::Real)
 
 return cylindrical(or Disk) detector with `CryLength` equal to zero.
+
 """
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
@@ -328,6 +340,7 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 	Detector(CryRadius::Real, CryLength::Real)
 
 return cylindrical detector.
+
 """
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 
@@ -336,6 +349,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, Cry
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 return bore-hole or cylindrical detector if `HoleRadius` = 0.0
+
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
 				                                        CylDetector(CryRadius, CryLength) :
@@ -346,6 +360,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
 return well-type or bore-hole or cylindrical detector according to the arguments.
+
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
 				                                        RadiationDetector(CryRadius, CryLength, HoleRadius):
@@ -356,5 +371,6 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 	Detector(detector::RadiationDetector)
 
 return just the inputed detector
+
 """
 RadiationDetector(detector::RadiationDetector) = detector

@@ -1,4 +1,5 @@
 __precompile__()
+
 """
 # GeoEfficiency Package
 
@@ -15,13 +16,15 @@ the source can be a point, a disc or even a cylinder.
 * calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\n
 	
 * batch()	: Try to calculate using data in the "GeoEfficiency" folder in batch mode. 
+
 """
 module GeoEfficiency
+
 about() = print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **             @version: v"0.8.7               **
+    \t **             @version: v"0.8.8-dev               **
     \t *************************************************
 
   @author: Mohamed Krar
