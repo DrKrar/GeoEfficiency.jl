@@ -26,6 +26,7 @@ globally set the sources to be considered as point(s) or not.
  !!! Note
  
 the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
+
 """
 function setSrcToPoint(yes::Bool)
     global isPoint = yes
@@ -45,6 +46,7 @@ Return a string delimited by new line excluding the new line.
 julia> input("input a number:")
 input a number:
 ```
+
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
     print_with_color(incolor, prompt)
@@ -80,9 +82,10 @@ julia> getfloat("input a number:",value="5//2")
 2.5
 julia> getfloat("input a number:",value="e")
 2.718281828459045
+
 ```
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")
+function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
 
     "nothing" == value ? value = input(prompt) : nothing
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
@@ -114,6 +117,7 @@ end	#function
 
 read detectors data from predefined file and return its content as an array of detectors, or one can specifif a file.
 `datadir` : directory where file is located default to $(datadir) if no argument is provided.
+
 """
 function detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
@@ -146,6 +150,7 @@ end #function
 read data from a file and return its content as an array.
 `csv_data`: filename of csv file containing data.
 `datadir` : directory where file is located default to $(datadir) if no argument is provided.
+
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
@@ -180,6 +185,7 @@ Return a tuple
 		srcRadii_array,
 		srcLengths_array,
 		isPoint	)
+
 """
 read_batch_info() = read_batch_info(datadir,
                                   detectors, 
@@ -208,6 +214,7 @@ Return a tuple
 		srcRadii_array,
 		srcLengths_array,
 		isPoint	)
+
 """								 
 function read_batch_info(datadir::AbstractString,
                        detectors::AbstractString, 
@@ -279,6 +286,7 @@ end #fumction
 
 prompt the user to input detector parameters from the `console`.
 Return `detectors_array` an Array of the entered detectors.
+
 """
 function getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
@@ -306,7 +314,7 @@ end #function
 
 """
 
-	getDetectors(detector_info_array::Matrix, console_FB=true)
+	getDetectors(detector_info_array::Matrix{S}, console_FB=true) where S <: Real
 
 Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully 
 converted detectors.
@@ -315,7 +323,7 @@ converted detectors.
 is empty or contain no numerical element.
 
 """
-function getDetectors(detector_info_array::Matrix, console_FB=true)
+function getDetectors(detector_info_array::Matrix{S}, console_FB=true) where S <: Real
 	
 	if isempty(detector_info_array) 
 		if console_FB 
@@ -324,16 +332,7 @@ function getDetectors(detector_info_array::Matrix, console_FB=true)
 		else	
 		 	error("getDetectors: Empty `detector_info_array`")
 		end
-	
-	elseif !(eltype(detector_info_array) <: Real) 
 		
-		if console_FB 
-			warn("The Array `detector_info_array` should have element type of Real or one of its suubtypes")
-			info("The detector information may entred via the console")
-			return getDetectors()
-		else	
-		 	error("getDetectors: The Array `detector_info_array` should have element type of Real or one of its suubtypes")
-		end
 	else	
 		detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 		for i_th_line = 1:size(detector_info_array)[1]
