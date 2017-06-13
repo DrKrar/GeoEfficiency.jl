@@ -104,12 +104,12 @@ Throw an error if the source location is inappropriate.
 batch() = batch(read_batch_info()...)
 
 """
-	batch( detector_info_array::Matrix{Float64},
-		    srcHeights_array::Vector{Float64},
-			srcRhos_array::Vector{Float64}=[0.0],
-			srcRadii_array::Vector{Float64}=[0.0],
-			srcLengths_array::Vector{Float64}=[0.0],
-			ispoint::Bool=true)
+    batch(	detector_info_array::Matrix{S},
+				srcHeights_array::Vector{S},
+				srcRhos_array::Vector{S}=[0.0],
+				srcRadii_array::Vector{S}=[0.0],
+				srcLengths_array::Vector{S}=[0.0],
+				ispoint::Bool=true) where S <: Real
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
 
@@ -201,7 +201,7 @@ function batch( detectors_array::Vector{T},
 	       srcRhos_array::Vector{S}=[0.0],
 	       srcRadii_array::Vector{S}=[0.0],
 	       srcLengths_array::Vector{S}=[0.0],
-	       ispoint::Bool=true) where T <: RadiationDetector, S <: Real
+	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
 
 	for detector = detectors_array
 		batch(detector,
