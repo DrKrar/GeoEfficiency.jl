@@ -11,7 +11,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.8.7"
+@version: v"0.8.8-dev "
 
 Created on Fri Aug 14 20:12:01 2015
 
@@ -55,7 +55,7 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 
 ## Requirements
- *  Julia 0.4 or above.
+ *  Julia 0.7-dev or above.
  *  QuadGK 0.1.2 or above. will be installed automatically while the package build.
 
 ## Download and Install the Package
