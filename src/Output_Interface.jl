@@ -182,7 +182,7 @@ end #function
 	       srcRhos_array::Vector{S}=[0.0],
 	       srcRadii_array::Vector{S}=[0.0],
 	       srcLengths_array::Vector{S}=[0.0],
-	       ispoint::Bool=true) where T <: RadiationDetector, S <: Real
+	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
 
 provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
 
