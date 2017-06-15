@@ -70,6 +70,7 @@ end #function
 return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` 
 on front of the cylindrical detector `detector` face.
 
+give a warning if the disk is out of cylindrical detector the face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
