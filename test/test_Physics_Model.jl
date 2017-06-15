@@ -8,7 +8,8 @@
 
 
 @testset "Physics Model" begin
- 
+
+info("test `Point`...")	
   @testset "Point" begin
     #pnt0 = Point()
     pnt1 = Point(5)
@@ -49,6 +50,7 @@
 
 		end #testset
 
+info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
   
     cyl0 = CylDetector(5)
@@ -82,7 +84,8 @@
 	@test GeoEfficiency.volume(CylDetector(15.0))   <=   GeoEfficiency.volume(CylDetector(10.0)) 
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
 	end #testset
-		
+
+info("test `Borehole Detector`...")	
   @testset "Borehole Detector" begin 
   
     bore0 = BoreDetector(5,4,3)
@@ -118,7 +121,8 @@
 	@test Detector(5.0,1,0.1) < Detector(15.0,1,0.1)
  
 		end #testset
-		
+
+info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
   
     Well0 = WellDetector(5,4,3,2)
@@ -155,8 +159,9 @@
     @test GeoEfficiency.volume(Detector(10.0,2,0.1,1)) <=   GeoEfficiency.volume(Detector(15.0,2,0.1,1)) 
 	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
  
-		end #testset		
-    
+		end #testset	
+		
+info("test `RadiationDetector`...")    
 	@testset "RadiationDetector" begin 
 	
 		@test_throws MethodError  Detector(1+1im)
@@ -198,14 +203,15 @@
 		end #for	
 						
 		end #testset	
-		
+
+info("test `source`...")   
 	@testset "source" begin
 		setSrcToPoint(true)
 		pnt1 = Point(5)
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
 		end
 		
-	@testset "Invalid Detector Dimention $dim"  for dim =  
+	@testset "\tInvalid Detector Dimention $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
 		@test_throws AssertionError	 CylDetector(dim)  

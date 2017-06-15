@@ -19,7 +19,8 @@ println("\nRunning tests:")
 
 for t in tests
 	println()
-    #info("Beging test of $(t).....")
+	info("Beging test of $(t).....\n")
     include("test_$(t).jl")
+	info("End test of $(t).....\n")
 end
 @test about() == nothing
