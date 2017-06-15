@@ -91,7 +91,7 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
     "" == value && return 0.0		# just pressing return is interapted as <0.0>
     val::Float64 = 0.0
 	try
-        val = include_string(@__MODULE__, value) |> float
+        val =  parse(value) |> eval |> float
         @assert from <= val < to
         return val
 

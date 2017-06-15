@@ -23,6 +23,8 @@ of the cylindrical detector `detector` face.
 
 `Throw` an  error if the point is out of the cylindrical detector `detector` face.
 
+ ! Note
+ 
 This is the base function that all other function call directly or indirectly
 to calculate Geometrical Efficiency.
 
@@ -68,7 +70,6 @@ end #function
 return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` 
 on front of the cylindrical detector `detector` face.
 
-`Throw` an Error if the disk is out of cylindrical detector the face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
