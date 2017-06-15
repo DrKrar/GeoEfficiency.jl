@@ -7,10 +7,11 @@
 #**************************************************************************************
 
 
-info("Statrting `geoEff` test...")
+
 @testset "Calculations" begin
 
-	info("special cases for cylinderical detector; very restrict test")
+	println()
+	info("\tspecial cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
 		acylDetector = CylDetector(radius)
@@ -29,8 +30,8 @@ info("Statrting `geoEff` test...")
 
 	end #for_testset
 	
-
-	info("special cases for cylinderical detector also; very restrict test")
+	println()
+	info("\tspecial cases for cylinderical detector also; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
 		acylDetector = CylDetector(radius)
@@ -52,9 +53,9 @@ info("Statrting `geoEff` test...")
 end #testset
 
 
-@testset begin
+@testset "special cases for well detector" begin
 	println()
-	info("special cases for well detector")
+	info("\tspecial cases for well detector")
 	@testset "point at the surface of Well detector of radius $radius cm and height $height" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
 		height=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
