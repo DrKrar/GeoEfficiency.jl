@@ -11,10 +11,17 @@
 
 info("test `setSrcToPoint`...")    
   @testset "setSrcToPoint" begin
+  
+    @test GeoEfficiency.srcType == -1  # the default value
+	@test setSrcToPoint() == false
+	
     @test setSrcToPoint(true) == true
-    @test GeoEfficiency.isPoint == true
+    @test GeoEfficiency.srcType == 0
+	@test setSrcToPoint() == true	
+	
     @test setSrcToPoint(false) == false
-    @test GeoEfficiency.isPoint == false
+    @test GeoEfficiency.srcType == 1
+	@test setSrcToPoint() == false	
 	end
   
 info("\ttest `getfloat`...")
