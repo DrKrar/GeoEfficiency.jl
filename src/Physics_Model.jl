@@ -101,17 +101,17 @@ return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) bas
 
  *  `SrcLength` : source length.
 
-If the global `isPoint` is set to true both `SrcRadius` and `SrcLength` are set to zero.
+If the global `GeoEfficiency_isPoint` is set to true both `SrcRadius` and `SrcLength` are set to zero.
 
-"""
+""" 
 function source(anchorPnt::Point = Point())
     
-	global isPoint = isdefined(GeoEfficiency ,:isPoint) ? GeoEfficiency.isPoint : false
-	isPoint && return (anchorPnt, 0.0, 0.0)
+	setSrcToPoint() && return (anchorPnt, 0.0, 0.0)
 
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
+		println()
 		warn("Only axial non-point is allaowed Now: the off-axis will be set to Zero")
         anchorPnt.Rho = 0.0
 
