@@ -23,7 +23,7 @@ module GeoEfficiency
 export
  # Config
     about,
-    setConsts,
+    CONFIG,
 		
  # Input_Interface
 	setSrcToPoint,

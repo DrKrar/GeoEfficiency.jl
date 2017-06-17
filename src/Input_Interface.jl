@@ -30,7 +30,7 @@ the source type is set automatically the fist time asked for source. this funtio
 
 """
 function setSrcToPoint(yes::Bool) ::Bool
-    global srcType = ifelse(yes, 0, 1)
+    global const srcType = ifelse(yes, 0, 1)
 	return yes
 end
 
@@ -61,7 +61,7 @@ see if the source type is not set it set it to point else it leave it intact.
 
 """
 function setSrcToPoint()
-	global srcType 
+	global  srcType 
 	if srcType == -1
 	    setSrcToPoint(false)
 	end				  
