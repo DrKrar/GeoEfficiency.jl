@@ -28,8 +28,9 @@ about() = print_with_color(:green,"""\n
 a spectial function that can be used to change the setting of the pakage for one or more
  setting while set the remining to the default.
  
- !!! Note
- CONFIG() can be used to reset the package to the defaults.
+!!! note
+    CONFIG() can be used to reset the package to the defaults.
+	
 """
 function CONFIG(;
 _datafolder::AbstractString = "GeoEfficiency",

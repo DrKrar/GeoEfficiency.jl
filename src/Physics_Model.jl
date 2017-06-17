@@ -22,15 +22,14 @@ construct and return a `Point` source that can be a source of itself or an
 
  *  `Rho` : point off axis relative to the detector axis of symmetry.
 
-# Note please
+!!! note
+    Each detector type give interpretation to the height in a different way as follow:
+    
+	*  for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
 
-Each detector type give interpretation to the height in a different way as follow:
+    *  for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
 
- *  for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
-
- *  for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
-
- *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
+    *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
  
 """
 mutable struct Point

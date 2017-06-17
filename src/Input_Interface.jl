@@ -24,9 +24,8 @@ global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point sour
 
 globally set the sources to be considered as point(s) or not. 
 
- ! Note
- 
-the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
+!!! note
+    the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
 
 """
 function setSrcToPoint(yes::Bool) ::Bool
@@ -39,8 +38,8 @@ end
 
 see if the source type is not set it set it to point else it leave it intact. 
 
- !Note
- The source type is set automatically the fist time asked for source.
+!!! note
+    The source type is set automatically the fist time asked for source.
 
 """
 function SetSrcToPoint(prompt::AbstractString)	
@@ -56,8 +55,8 @@ end
 
 see if the source type is not set it set it to point else it leave it intact. 
 
- ! Note
- The source type is set automatically the fist time asked for source.
+!!! note
+    The source type is set automatically the fist time asked for source.
 
 """
 function setSrcToPoint()
@@ -102,9 +101,9 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
 
-# Note Please
- *  a blank (just a return) input is considered as being `0.0`.
- *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
+!!! Note
+    *  a blank (just a return) input is considered as being `0.0`.
+    *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
 
 # Example
 ```jldoctest
@@ -191,13 +190,19 @@ read data from a file and return its content as an array.
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
 	try
-		return readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1] |>float |> sort;
+		indata = readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1]
+		return indata |> float |> sort;
 
 	catch err
-	    if isa(err, SystemError) 
+	    if isa(err, ErrorException) 
 		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+		
+		elseif isa(err, SystemError) 
+		    return indata |> float. |> sort;
+		
 		else
 		    println(err)
+		
 		end		
 		return Float64[0.0]
 

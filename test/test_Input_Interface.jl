@@ -84,7 +84,7 @@ info("\ttest `reading from CSV`...")
 			
 		info("\t\trewrite, read and sort - input type{Rational-treated as any}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [1.5, 20.0, 4.0, 0.0, 1.0, 2.0, 5.0, 10.0, 15.0,]
 			
 		info("\t\trewrite, read and sort - input type{Float64}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
@@ -92,7 +92,7 @@ info("\ttest `reading from CSV`...")
 			
 		info("\t\trewrite, read and sort - input type{Irrational....}")
 			@test  GeoEfficiency.writecsv_head(hightfile, [pi, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, pi, 4, 5, 10, 15, 20,]
+			@test GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0]
 			
 		info("\t\tinvalid data type {Unionall}")
 			@test  GeoEfficiency.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
