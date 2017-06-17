@@ -14,7 +14,7 @@ const srcHeights = "srcHeights.csv";
 const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
-const srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
+global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
 
 
 #------------------SetSrcToPoint--------------------------------------
@@ -24,13 +24,13 @@ const srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point sourc
 
 globally set the sources to be considered as point(s) or not. 
 
- !!! Note
+ ! Note
  
 the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
 
 """
 function setSrcToPoint(yes::Bool) ::Bool
-    global const srcType = ifelse(yes, 0, 1)
+    global srcType = ifelse(yes, 0, 1)
 	return yes
 end
 
@@ -39,7 +39,7 @@ end
 
 see if the source type is not set it set it to point else it leave it intact. 
 
- !!! Note
+ !Note
  The source type is set automatically the fist time asked for source.
 
 """
@@ -56,7 +56,7 @@ end
 
 see if the source type is not set it set it to point else it leave it intact. 
 
- !!! Note
+ ! Note
  The source type is set automatically the fist time asked for source.
 
 """
