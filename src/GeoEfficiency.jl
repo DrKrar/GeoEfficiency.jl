@@ -61,7 +61,7 @@ export
 	batch
 
 function setConsts(;datafolder::Abstract string = "GeoEfficiency",
-                   resultsfolder::Abstract string = "results"
+                   resultsfolder::Abstract string = "results",
                          relativeError::Float64 = 0.0001,
 						 absoluteError::Float64 = 0.00000000001,)
 	
