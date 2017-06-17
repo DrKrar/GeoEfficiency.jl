@@ -18,23 +18,36 @@ about() = print_with_color(:green,"""\n
 
 #------------------setConsts---------------------------------
 
-function setConsts(
-;datafolder::AbstractString = "GeoEfficiency",
-resultsfolder::AbstractString = "results",
- elativeError::Float64 = 0.0001,
-absoluteError::Float64 = 0.00000000001)
+"""
+	CONFIG(;
+	_datafolder::AbstractString = "GeoEfficiency",
+	_resultsfolder::AbstractString = "results",
+	_relativeError::Float64 = 0.0001,
+	_absoluteError::Float64 = 0.00000000001)
+
+a spectial function that can be used to change the setting of the pakage for one or more
+ setting while set the remining to the default.
+ 
+ !!! Note
+ CONFIG() can be used to reset the package to the defaults.
+"""
+function CONFIG(;
+_datafolder::AbstractString = "GeoEfficiency",
+_resultsfolder::AbstractString = "results",
+_relativeError::Float64 = 0.0001,
+_absoluteError::Float64 = 0.00000000001)
 
   ##Physics_Model.jl##
 
   ##Intput_Interface.jl##
-  const datafolder    = datafolder
+  global const datafolder    = _datafolder
 
   ##-Calculations.jl##
 #using QuadGK; const integrate = QuadGK.quadgk
-  const relativeError = relativeError
-  const absoluteError = absoluteError
+  global const relativeError = _relativeError
+  global const absoluteError = _absoluteError
 
   ##Output_Interface.jl##
-  const resultsfolder = resultsfolder
+  global const resultsfolder = _resultsfolder
   reload("GeoEfficiency")
 end
