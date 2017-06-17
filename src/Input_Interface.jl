@@ -191,14 +191,14 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 	info("Opening `$(csv_data)`......")
 	try
 		indata = readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1]
-		return indata |> float |> sort;
+		return float(indata ) |> sort;
 
 	catch err
 	    if isa(err, ErrorException) 
 		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		elseif isa(err, SystemError) 
-		    return indata |> float. |> sort;
+		    return float.(indata ) |> sort;
 		
 		else
 		    println(err)
