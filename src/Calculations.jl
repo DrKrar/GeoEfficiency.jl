@@ -23,10 +23,9 @@ of the cylindrical detector `detector` face.
 
 `Throw` an  error if the point is out of the cylindrical detector `detector` face.
 
- ! Note
- 
-This is the base function that all other function call directly or indirectly
-to calculate Geometrical Efficiency.
+!!! note
+    This is the base function that all other function call directly or indirectly
+    to calculate Geometrical Efficiency.
 
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
@@ -99,11 +98,10 @@ its base circle center is the point `aSurfacePNT`.
 
  *  `srcHieght`:  the height of an upright cylinder source having a base like described above.
 
-# Note please
+!!! note
+    *  `aSurfacePnt`: point height is consider to be measured from the detector face surface.
 
- *  `aSurfacePnt`: point height is consider to be measured from the detector face surface.
-
- *  `Throw` an Error if the source location is inappropriate.
+    *  `Throw` an Error if the source location is inappropriate.
 
 # Example
 
@@ -146,8 +144,8 @@ end #function
 return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. 
 Any way prompt the user to input a source via the `console`.
 
-# Note please
-`Throw` an Error if the source location is inappropriate.
+!!! note
+    `Throw` an Error if the source location is inappropriate.
 \n*****
 
 """
@@ -169,11 +167,10 @@ and its center is the point `aCenterPNT`.
 
  *  `SrcLength`: the height of an upright cylinder source having a base like described above.
 
-# Note please
+!!! note
+    *  `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
 
- *  `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
-
- *  `Throw` an Error if the source location is inappropriate.
+    *  `Throw` an Error if the source location is inappropriate.
 
 # Example
 
@@ -251,11 +248,10 @@ and its center is defined by the `aWellPNT`.
 
  *  `SrcLength`: height of upright cylinder source having a base like described above.
 
-# Note Please
+!!! note
+    *  `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
 
- *  `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
-
- *  `Throw` an Error if the source location is inappropriate.
+    *  `Throw` an Error if the source location is inappropriate.
 
 # Example
 
