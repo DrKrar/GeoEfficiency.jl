@@ -7,9 +7,9 @@
 #**************************************************************************************
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
-const relativeError = @isdefined(GeoEfficiency_relativeError) ? GeoEfficiency_relativeError : 0.0001	
-const absoluteError = @isdefined(GeoEfficiency_absoluteError) ? GeoEfficiency_absoluteError : 0.00000000001
-const integrate     = @isdefined(GeoEfficiency_integrate )    ? GeoEfficiency_integrate     : begin using QuadGK; QuadGK.quadgk; end
+isconst(:relativeError) ||  const relativeError = 0.0001	
+isconst(:absoluteError) ||  const absoluteError = 0.00000000001
+isconst(:integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
 #-----------GeoEff_Pnt------------------------------------------------------

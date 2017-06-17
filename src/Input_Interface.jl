@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-const datafolder = @isdefined(GeoEfficiency_datafolder ) ? GeoEfficiency_datafolder : "GeoEfficiency"
+isconst(:datafolder ) || const datafolder = "GeoEfficiency"
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
 const detectors  = "Detectors.csv";
@@ -14,7 +14,7 @@ const srcHeights = "srcHeights.csv";
 const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
-global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
+const srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
 
 
 #------------------SetSrcToPoint--------------------------------------
