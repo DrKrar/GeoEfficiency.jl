@@ -24,7 +24,7 @@ about() = print_with_color(:green,"""\n
     \t *************************************************
     \t **            -=) GeoEfficiency (=-            **
     \t **  Accurate Geometrical Efficiency Calculator **
-    \t **             @version: v"0.8.8-dev               **
+    \t **             @version: v"0.8.8-dev           **
     \t *************************************************
 
   @author: Mohamed Krar
@@ -35,7 +35,9 @@ about() = print_with_color(:green,"""\n
 """)
 
 
-export about,
+export 
+    about,
+    setConsts,
 		
     # Input_Interface
 	setSrcToPoint,
@@ -58,21 +60,25 @@ export about,
 	calcN, 
 	batch
 
+function setConsts(;datafolder::Abstract string = "GeoEfficiency",
+                   resultsfolder::Abstract string = "results"
+                         relativeError::Float64 = 0.0001,
+						 absoluteError::Float64 = 0.00000000001,)
 	
-# -------------Physics_Model.jl-----------------
+  ##Physics_Model.jl##
 
 
-# -------------Intput_Interface.jl-------------
-#const GeoEfficiency_datafolder    = "GeoEfficiency"
+  ##Intput_Interface.jl##
+  const datafolder    = datafolder
 
-# -------------Calculations.jl-----------------
-#using QuadGK; const GeoEfficiency_integrate     = QuadGK.quadgk
-#const GeoEfficiency_relativeError = 0.0001
-#const GeoEfficiency_absoluteError = 0.00000000001
+  ##-Calculations.jl##
+#using QuadGK; const integrate = QuadGK.quadgk
+  const relativeError = relativeError
+  const absoluteError = absoluteError
 
-# -------------Output_Interface.jl------------
-#const GeoEfficiency_resultsfolder = "results"
-
+  ##Output_Interface.jl##
+  const resultsfolder = resultsfolder
+end
 
 about()
 include("Physics_Model.jl")
