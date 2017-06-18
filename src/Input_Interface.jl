@@ -194,10 +194,10 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 		return float(indata ) |> sort;
 
 	catch err
-	    if isa(err, ErrorException) 
+	    if isa(err, SystemError) 
 		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
-		elseif isa(err, SystemError) 
+		elseif isa(err, ErrorException) 
 		    return float.(indata ) |> sort;
 		
 		else
