@@ -1,7 +1,12 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.8.8-dev 
-
+ *  now the function `calcN` will not terminate if a calculation error happened.
+ *  creat the spectial function `CONFIG` to configure the package.
+ *  label the function `CONFIG` as experimental and should not used interactively.
+ *  support for julia 0.4 and julia 0.5 dropped.
+ 
+ 
 ### Version 0.8.7
  *  new function `about()` give information about the sofftware Package.
  *  new function `SetSrcToPoint()` to set source type.

@@ -26,15 +26,10 @@ function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{
 	aPnt, srcRadius, srcLength = aSource
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
-	try
-		println("\n - The detector Geometrical Efficiency = ", geoEff(detector, aPnt, srcRadius, srcLength))
+    
+	GeoEff = geoEff(detector, aPnt, srcRadius, srcLength)
+	println("\n - The detector Geometrical Efficiency = ", GeoEff)
 
-	catch err
-		println(err)
-		info("\n\tThe function `calc` had termiate, Thank you >>>>>\n")
-		return nothing
-
-	end #try
 	global countDetectors += 1
 	print_with_color(:red, repeat(" =",36),"\n\n")
 	return nothing
@@ -54,7 +49,8 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 
 	while (true)
 
-		calc(detector)
+		try	calc(detector) end
+		
 		res = input("""\n
     	I- To continue make a choice:
 			> using the same detector Press 'd'|'D'
@@ -73,7 +69,8 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	info("\n\tThe `calcN` had termiate, Thank you\n")
+	print("\n\t")
+	info("The `calcN` had termiate, Thank you\n")
 	return nothing
 end #function
 
