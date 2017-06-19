@@ -55,7 +55,7 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 
 ## Requirements
- *  Julia 0.7-dev or above.
+ *  Julia 0.6-rc3 or above.
  *  QuadGK 0.1.2 or above. will be installed automatically while the package build.
 
 ## Download and Install the Package
@@ -78,7 +78,7 @@ The following constructor can be used to construct a specific type of detector
  *  `BoreDetector` for bore hole, 
  *  `WellDetector` for well type detector.
 
- While the function `detectorFactory` can be used to construct any of the above types. You may try also `getDetectors`.
+ While the function `Detector` can be used to construct any of the above types. You may try also `getDetectors`.
 
 
 `Point` constructor is used to construct an anchoring point of a source relative to it its position to the detector is specified.

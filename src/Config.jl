@@ -18,7 +18,7 @@ about() = print_with_color(:green,"""\n
 
 #------------------setConsts---------------------------------
 
-"""
+"""This function is expermintal and should not be used.
 	CONFIG(;
 	_datafolder::AbstractString = "GeoEfficiency",
 	_resultsfolder::AbstractString = "results",
@@ -38,6 +38,7 @@ _resultsfolder::AbstractString = "results",
 _relativeError::Float64 = 0.0001,
 _absoluteError::Float64 = 0.00000000001)
 
+  warn("This function is expermintal and should not be used.")
   ##Physics_Model.jl##
 
   ##Intput_Interface.jl##
