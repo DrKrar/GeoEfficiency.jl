@@ -1,19 +1,23 @@
 
 #------------------about------------------------------------
 
-about() = print_with_color(:green,"""\n
-    \t *************************************************
-    \t **            -=) GeoEfficiency (=-            **
-    \t **  Accurate Geometrical Efficiency Calculator **
-    \t **             @version: v"0.8.8-dev           **
-    \t *************************************************
+function about() 
+	print_with_color(:green,
+	"""
+	\n
+	\t *************************************************
+	\t **            -=) GeoEfficiency (=-            **
+	\t **  Accurate Geometrical Efficiency Calculator **
+	\t *************************************************
 
-  @author: Mohamed Krar
-  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
-  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
-  @documentation: http://geoefficiencyjl.readthedocs.org
-  Created on Fri Aug 14 20:12:01 2015
-""")
+	  @version: v"0.9" - ($(Date(now())- Date("2017-06-21")) old master)  
+	  @author: Mohamed Krar,  @e-mail: DrKrar@gmail.com 
+	  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
+	  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
+	  @documentation: http://geoefficiencyjl.readthedocs.org
+	  Created on Fri Aug 14 20:12:01 2015, \n
+	""")
+end
 
 
 #------------------setConsts---------------------------------
