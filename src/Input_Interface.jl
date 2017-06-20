@@ -6,6 +6,8 @@
 #
 #**************************************************************************************
 
+#------------------consts&globals--------------------------------------
+
 isconst(:datafolder ) || const datafolder = "GeoEfficiency"
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
@@ -14,18 +16,20 @@ const srcHeights = "srcHeights.csv";
 const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
+
 global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
 
 
 #------------------SetSrcToPoint--------------------------------------
 
 """
+
     setSrcToPoint(yes::Bool)
 
-globally set the sources to be considered as point(s) or not. 
+Globally set the sources type to be considered either a point(s) or non-point(s). 
 
 !!! note
-    the source type is set automatically the fist time asked for source. this funtion can be used to change the type latter or set it from the begining.
+	The user can use this function to change the type latter or set it before calculation.
 
 """
 function setSrcToPoint(yes::Bool) ::Bool
@@ -33,13 +37,12 @@ function setSrcToPoint(yes::Bool) ::Bool
 	return yes
 end
 
+
 """
+
     SetSrcToPoint(prompt::AbstractString)	
 
-see if the source type is not set it set it to point else it leave it intact. 
-
-!!! note
-    The source type is set automatically the fist time asked for source.
+prompt the user to set the sources type if it were not already set before. 
 
 """
 function SetSrcToPoint(prompt::AbstractString)	
@@ -50,13 +53,12 @@ function SetSrcToPoint(prompt::AbstractString)
 	return srcType == 0				  
 end
 
+
 """
+
     setSrcToPoint()
 
-see if the source type is not set it set it to point else it leave it intact. 
-
-!!! note
-    The source type is set automatically the fist time asked for source.
+Set the source type to point if it were not already set before.
 
 """
 function setSrcToPoint()
@@ -66,6 +68,14 @@ function setSrcToPoint()
 	end				  
 	return srcType == 0		
 end
+
+"""
+
+!!! note
+    The source type is set when the fist time asked for source.
+
+"""
+setSrcToPoint
 
 
 #------------------input-----------------------------------------------
@@ -101,7 +111,7 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
  > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
  > All are valid expressions.
 
-!!! Note
+!!! note
     *  a blank (just a return) input is considered as being `0.0`.
     *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
 
@@ -119,6 +129,7 @@ julia> getfloat("input a number:",value="e")
 2.718281828459045
 
 ```
+
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
 
@@ -151,6 +162,7 @@ end	#function
                                       datadir::AbstractString=datadir)
 
 read detectors data from predefined file and return its content as an array of detectors, or one can specifif a file.
+
 `datadir` : directory where file is located default to $(datadir) if no argument is provided.
 
 """
