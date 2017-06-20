@@ -107,7 +107,7 @@ the pachage can be used to perform patch calculation by calling the one of the m
 For example	`c:\users\yourusername\GeoEfficiency\results\`.
 
 The function `batch()` can be called withs or without arrangement. 
-The without argument version relay on previously prepared Comma Saved  Values  files, that can be easily edit by Microsoft Excel, located in the `GeoEfficiency` folder.
+The without argument version relay on previously prepared Comma Saved  Values [CSV] files, that can be easily edit by Microsoft Excel, located in the `GeoEfficiency` folder.
 
 Those Comma Saved  Values [CSV] files are:-
 
@@ -147,4 +147,4 @@ Those Comma Saved  Values [CSV] files are:-
      > The program expect the line to contain one number.
      
 ### note
-    For Comma Saved  Values [CSV] files each line represent an entry, the first line is allwayes treated as the header.
+    For Comma Saved  Values [CSV] files each line represent an entry, the first line is always treated as the header.
