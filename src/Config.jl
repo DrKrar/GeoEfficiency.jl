@@ -18,7 +18,8 @@ about() = print_with_color(:green,"""\n
 
 #------------------setConsts---------------------------------
 
-"""This function is expermintal and should not be used.
+"""# This function is expermintal and should not be used.
+
 	CONFIG(;
 	_datafolder::AbstractString = "GeoEfficiency",
 	_resultsfolder::AbstractString = "results",
@@ -42,14 +43,14 @@ _absoluteError::Float64 = 0.00000000001)
   ##Physics_Model.jl##
 
   ##Intput_Interface.jl##
-  global const datafolder    = _datafolder
+  const datafolder    = _datafolder
 
   ##-Calculations.jl##
 #using QuadGK; const integrate = QuadGK.quadgk
-  global const relativeError = _relativeError
-  global const absoluteError = _absoluteError
+  const relativeError = _relativeError
+  const absoluteError = _absoluteError
 
   ##Output_Interface.jl##
-  global const resultsfolder = _resultsfolder
+  const resultsfolder = _resultsfolder
   reload("GeoEfficiency")
 end

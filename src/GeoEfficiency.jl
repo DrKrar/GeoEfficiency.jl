@@ -20,10 +20,8 @@ the source can be a point, a disc or even a cylinder.
 """
 module GeoEfficiency
 
-export
- # Config
+export # Config
     about,
-    CONFIG,
 		
  # Input_Interface
 	setSrcToPoint,

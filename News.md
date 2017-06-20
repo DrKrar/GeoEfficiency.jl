@@ -1,9 +1,10 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.8.8-dev 
- *  now the function `calcN` will not terminate if a calculation error happened.
+ *  now the function `calcN` will not terminate when a calculation error happened.
  *  creat the spectial function `CONFIG` to configure the package.
  *  label the function `CONFIG` as experimental and should not used interactively.
+ *  unexport the function `CONFIG`. 
  *  support for julia 0.4 and julia 0.5 dropped.
  
  
