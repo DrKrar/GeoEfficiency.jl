@@ -1,4 +1,5 @@
-# Accurate Geometrical Efficiency Calculator [GeoEfficiency]
+# GeoEfficiency
+# Accurate Geometrical Efficiency Calculator 
 
 The Package `GeoEfficiency`, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
 The Package models a radiation detector irradiated by a radiative source. 
