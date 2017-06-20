@@ -1,6 +1,7 @@
 # Accurate Geometrical Efficiency Calculator [GeoEfficiency]
 
-The Package `GeoEfficiency` ,writing in Julia programing language, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. The Package models a radiation detector irradiated by a radiative source. 
+The Package `GeoEfficiency`, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
+The Package models a radiation detector irradiated by a radiative source. 
 The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
 @author: Mohamed Krar
@@ -43,7 +44,6 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
       - [x] `cylinder` sources.
 
  - [ ] support of anisotropic radioactive sources.
-   
       - [ ] `point` sources.
 	
  - [ ] consider more details of the measurement setup.
@@ -55,11 +55,10 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 
 ## Requirements
- *  Julia 0.6-rc3 or above.
- *  QuadGK 0.1.2 or above. will be installed automatically while the package build.
+ *  Julia 0.6 or above.
+ *  QuadGK 0.1.2 or above, will be installed automatically while the package Installtion.
 
 ## Download and Install the Package
-
 The package is registered in an officially METADATA.jl and so can be installed with Pkg.add.
 
 	Pkg.add("GeoEfficiency") 
@@ -82,54 +81,61 @@ The following constructor can be used to construct a specific type of detector
 
 
 `Point` constructor is used to construct an anchoring point of a source relative to it its position to the detector is specified.
-For a point source, the anchoring point is the source itself. The `source` function take input from the `console` and return a tuple describing the source.
+For a point source, the anchoring point is the source itself. 
+The `source()` method take input from the `console` and return a tuple describing the source.
 
 
- The efficiency calculation can be done by one of the functions. `geoEff` used with or without argument(s), `calc` ask for the required information from the `console`, `calcN` just a repeat of the `calc` function or batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
+The efficiency calculation can be done by one of the functions: 
+ *  `geoEff` used with or without argument(s), 
+ *  `calc` ask for the required information from the `console`, 
+ *  `calcN` just a repeat of the `calc` function 
+ *  batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
  
- > input from the `console` can be numerical expression not just a number.
- > Example:-
- > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
- > All are valid expressions.
+ for more on the function and its methods prrfix the name of the function by `?`.
+
+ !!! note
+   input from the `console` can be numerical expression not just a number.
+   
+   > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
+   > All are valid expressions.
 	
 ## Batch Calculation
-the pachage can be used to perform patch calculation by calling the one of the methods of the function `batch()`. The output results of batch  is found in `GeoEfficiency\results` folder inside the user account home.
+the pachage can be used to perform patch calculation by calling the one of the methods of the function `batch()`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
 
-For example	`c:\users\yourusername`.
+For example	`c:\users\yourusername\GeoEfficiency\results\`.
 
-The input to the `batch()` function can be specified as arrangements or without arrangement at all in such a case is specific by comma saved value files, that can be easily edit by Microsoft Excel, found in the `GeoEfficiency` folder.
+The function `batch()` can be called withs or without arrangement. 
+The without argument version relay on previously prepared Comma Saved  Values  files, that can be easily edit by Microsoft Excel, located in the `GeoEfficiency` folder.
 
-For Comma Saved  Values [CSV] files each line represent an entry, the first line is count as the header.
-
-The Comma Saved  Values [CSV] files are:-
+Those Comma Saved  Values [CSV] files are:-
 
  *  `Detectors.csv` contains the detectors description; The line format is: 
 
      Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth
      ----------------| -----------------|---------------|--------------
 
-     > The program expect the line to contain at least one number or at most four separated numbers.
+     > The program expect each line to contain at least one number or at most four separated numbers.
 
  *  `srcHeights.csv` contains the source heights; 
 
      Source_Heights | 
       -----------------|
 
-     > The program expect the line to contain one number.
+     > The program expect each line to contain one number.
 
  *  `srcRhos.csv` contains the source off-axis distances; 	 				
 
      Source_Rhos | 
       -----------------|
 
-     > The program expect the line to contain one number.
+     > The program expect each line to contain one number.
 
  *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
 
      Source_Radii| 
       -----------------|
 
-     > The program expect the line to contain one number.
+     > The program expect each line to contain one number.
 
  *  `srcLengths.csv` contains the source length for cylindrical sources; 	
 
@@ -137,3 +143,6 @@ The Comma Saved  Values [CSV] files are:-
       -----------------|
 
      > The program expect the line to contain one number.
+     
+ !!! note
+    For Comma Saved  Values [CSV] files each line represent an entry, the first line is allwayes treated as the header.
