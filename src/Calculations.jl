@@ -207,10 +207,8 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	pntWdown::Point = deepcopy(aCenterPnt);
 	setHeight!(pntWdown, abs(HeightWdown)); #0.0 == SrcRadius && setRho!(pntWdown, 0.0)
 
-	let 
-		detin::CylDetector = CylDetector(detector.HoleRadius)
-		detout::CylDetector = CylDetector(detector.CryRadius)
-	end
+	detin::CylDetector = CylDetector(detector.HoleRadius)
+	detout::CylDetector = CylDetector(detector.CryRadius)
 
 	if HeightWup >= 0.0						# the source as a whole out of detector
 		res = geoEff(detout, pntWup, SrcRadius, SrcLength) - geoEff(detin, pntWdown, SrcRadius, SrcLength)
