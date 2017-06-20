@@ -73,7 +73,7 @@ give a warning if the disk is out of cylindrical detector the face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-	(detector.CryRadius > SurfacePnt.Rho + SrcRadius) || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius )")
+	(detector.CryRadius > SurfacePnt.Rho + SrcRadius) || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
 	integrand(xRho) = xRho * GeoEff_Pnt(detector, setRho!(SurfacePnt, xRho))
 	return  integrate(integrand , 0.0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2
