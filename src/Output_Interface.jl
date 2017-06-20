@@ -14,6 +14,7 @@ countDetectors = 1;
 
 #------------------calc-----------------------------------------------
 """
+
 	calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
 calculate the Geometrical Efficiency of the detector `detector` and display it on the `console`.
@@ -38,6 +39,7 @@ end #function
 
 #------------------calcN-----------------------------------------------
 """
+
     calcN()
 
 calculate and display the Geometrical Efficiency.
@@ -88,6 +90,7 @@ end #function
 #----------------batch()-------------------------------------------------
 
 """
+
 	batch()
 
 provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
@@ -101,6 +104,7 @@ Throw an error if the source location is inappropriate.
 batch() = batch(read_batch_info()...)
 
 """
+
     batch(	detector_info_array::Matrix{S},
 				srcHeights_array::Vector{S},
 				srcRhos_array::Vector{S}=[0.0],
@@ -136,6 +140,7 @@ function batch(	detector_info_array::Matrix{S},
 end #function
 
 """
+
     batch(	detector::RadiationDetector,
 				srcHeights_array::Vector{S},
 				srcRhos_array::Vector{S}=[0.0],
@@ -174,6 +179,7 @@ function batch(	detector::RadiationDetector,
 end #function
 
 """
+
     batch( detectors_array::Vector{T},
 	       srcHeights_array::Vector{S},
 	       srcRhos_array::Vector{S}=[0.0],
