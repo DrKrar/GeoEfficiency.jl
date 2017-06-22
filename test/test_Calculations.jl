@@ -9,9 +9,31 @@
 
 
 @testset "Calculations" begin
-
 	println()
-	info("\tspecial cases for cylinderical detector; very restrict test")
+	print("\t"); info("polnomial test of function `integrate`")
+	function poly(z::Float64, coff::Vector{Float64})
+	res::Float64 = 0.0
+	for i= 1:length(coff)
+		res += coff[i]*z^(i-1)
+	end #for
+	return res
+	end #function_poly
+	
+	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
+	poly0(z::Float64) = poly(z, [1.0])
+	poly1(z::Float64) = poly(z, [1.0, 2.0])
+	poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])	
+	
+	@testset "integrate" for str = [-0.2 , -0.1, 0.0, 1.0, 2.0, 3.0 ], nd = [-0.2 , -0.1, 0.0, 1.0, 2.0, 3.0 ]
+
+		@test integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0)
+		@test integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0)
+		@test integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0)
+		
+	end #testset_begin
+	
+	println()
+	print("\t"); info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
 		acylDetector = CylDetector(radius)
@@ -31,7 +53,7 @@
 	end #for_testset
 	
 	println()
-	info("\tspecial cases for cylinderical detector also; very restrict test")
+	print("\t"); info("special cases for cylinderical detector also; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
 		acylDetector = CylDetector(radius)
@@ -55,7 +77,7 @@ end #testset
 
 @testset "special cases for well detector" begin
 	println()
-	info("\tspecial cases for well detector")
+	print("\t"); info("special cases for well detector")
 	@testset "point at the surface of Well detector of radius $radius cm and height $height" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
 		height=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
@@ -84,7 +106,7 @@ end #testset
 
 @testset "scaling test" begin
 	println()
-	info("Statrting scaling test cylinderical detector with point source...")
+	print("\t"); info("statrting scaling test cylinderical detector with point source...")
 	@testset "[$(k*(j-1))] test, Scalling $k at radius $radius cm" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		j=2:100, 

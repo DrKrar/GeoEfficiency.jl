@@ -80,8 +80,8 @@ function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 
 end #function
 
-#------------geoEff-----------------------------------------------------
 
+#------------geoEff-----------------------------------------------------
 
 """
 
@@ -130,9 +130,9 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
         return GeoEff_Disk(detector, pnt, SrcRadius)
 
 	else										# Cylindrical source
-	
-        integrand(xH) = GeoEff_Disk(detector, setHeight!(pnt, xH), SrcRadius)
-		return integrate(integrand , pnt.Height, pnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength
+
+        integrand(xH::Float64) = GeoEff_Disk(detector, Point(xH, pnt.Rho), SrcRadius)
+		return integrate(integrand , aSurfacePnt.Height, aSurfacePnt.Height + SrcLength, reltol = relativeError)[1] / SrcLength
 
 	end #if
 end #function
