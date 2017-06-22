@@ -11,6 +11,9 @@
 
 info("test `Point`...")	
   @testset "Point" begin
+  	@test GeoEfficiency.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
+  	@test show(Point(5,3)) == nothing
+	
     #pnt0 = Point()
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
@@ -42,17 +45,21 @@ info("test `Point`...")
     
     pnt6 = GeoEfficiency.setRho!(pnt5, 5)
     @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho == pnt5.Rho 
+    @test pnt6.Rho == 5.0
 
     pnt6 = GeoEfficiency.setHeight!(pnt5, 5)
-    @test pnt6.Height == pnt5.Height 
+    @test pnt6.Height == 5.0
     @test pnt6.Rho == pnt5.Rho 
+
 
 		end #testset
 
 info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
   
+	@test GeoEfficiency.id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+  	@test show(CylDetector(5,3)) == nothing
+	
     cyl0 = CylDetector(5)
 	cyl1 = Detector(5)
     @test_throws ErrorException  cyl0.CryRadius = 1     
@@ -87,8 +94,11 @@ info("test `Cylinderical Detector`...")
 
 info("test `Borehole Detector`...")	
   @testset "Borehole Detector" begin 
-  
-    bore0 = BoreDetector(5,4,3)
+	
+	@test GeoEfficiency.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
+  	@test show(BoreDetector(5,3)) == nothing  
+    
+	bore0 = BoreDetector(5,4,3)
 	bore1 = Detector(5,4,3)
     @test_throws ErrorException  bore0.CryRadius = 1
 	@test_throws ErrorException  bore0.CryLength = 1
@@ -124,7 +134,9 @@ info("test `Borehole Detector`...")
 
 info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
-  
+    @test GeoEfficiency.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+  	@test show(BoreDetector(5,3)) == nothing  
+	
     Well0 = WellDetector(5,4,3,2)
 	Well1 = Detector(5,4,3,2)
     @test_throws ErrorException  Well0.CryRadius = 1
@@ -201,7 +213,10 @@ info("test `RadiationDetector`...")
 			det4 = Detector(rand(15:20), rand(10:14), rand(9:13), rand(1:9))
 			@test Detector(det4)   === det4
 		end #for	
-						
+		@test GeoEfficiency.id(Detector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+		@test GeoEfficiency.id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
+		@test GeoEfficiency.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+		@test GeoEfficiency.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
 		end #testset	
 
 info("test `source`...")   
