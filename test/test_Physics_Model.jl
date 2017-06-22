@@ -96,7 +96,7 @@ info("test `Borehole Detector`...")
   @testset "Borehole Detector" begin 
 	
 	@test GeoEfficiency.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
-  	@test show(BoreDetector(5,3)) == nothing  
+  	@test show(BoreDetector(5,3,2)) == nothing  
     
 	bore0 = BoreDetector(5,4,3)
 	bore1 = Detector(5,4,3)
@@ -135,7 +135,7 @@ info("test `Borehole Detector`...")
 info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
     @test GeoEfficiency.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-  	@test show(BoreDetector(5,3)) == nothing  
+  	@test show(WellDetector(5,3,2,1)) == nothing  
 	
     Well0 = WellDetector(5,4,3,2)
 	Well1 = Detector(5,4,3,2)
