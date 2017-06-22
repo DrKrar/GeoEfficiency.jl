@@ -216,7 +216,7 @@ function batch( detectors_array::Vector{T},
 
 	end # detectors_array
 
-	info("\n\tThe program had termiate, Thank you >>>>\n")
+	print("\n\t"); info("The program had termiate, Thank you >>>>\n")
 	return nothing
 
 end #function
