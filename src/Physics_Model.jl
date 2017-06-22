@@ -64,26 +64,22 @@ function Point()
 	Point(Height, Rho)
 end #function
 
-function setHeight!(aPnt::Point, xH::Real)
-	aPnt.Height = xH
-	return aPnt
-end #function
-function setHeight(aPnt::Point, xH::Real)
-	pnt::Point = deepcopy(aPnt)
-	pnt.Height = xH
-	return pnt
-end #function
-function setRho!(aPnt::Point, xRho::Real)
-	aPnt.Rho = xRho
-	return aPnt
-end #function
-function setRho(aPnt::Point, xRho::Real)
-	pnt::Point = deepcopy(aPnt)
-	pnt.Rho = xRho
-	return pnt
-end #function
+setHeight!(aPnt::Point, xH::Real) = Point(xH, aPnt.Rho)
+setRho!(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
+
+# function setHeight(aPnt::Point, xH::Real)
+	# pnt::Point = deepcopy(aPnt)
+	# pnt.Height = xH
+	# return pnt
+# end #function
+
+# function setRho(aPnt::Point, xRho::Real)
+	# pnt::Point = deepcopy(aPnt)
+	# pnt.Rho = xRho
+	# return pnt
+# end #function
 
 
 #--------------source---------------------------------------------
