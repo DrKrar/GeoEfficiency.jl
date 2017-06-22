@@ -12,45 +12,45 @@
   
    @testset "\tfunction `calc`-CylDetector(5,$cryLength)" for cryLength=[0,1,5,10]
 	   @test calc(Detector(5,cryLength),(Point(1),1, 1))    == nothing
-	   @test calc(Detector(5,cryLength),(Point(1),1, 1//2)) == nothing     
-	   @test calc(Detector(5,cryLength),(Point(1),1, pi))   == nothing  
-	   @test calc(Detector(5,cryLength),(Point(1),1, 1.0))  == nothing    
+	   @test calc(Detector(5,cryLength),(Point(1),1, 1//2)) == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1, pi))   == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1, 1.0))  == nothing
 	   
 	   @test calc(Detector(5,cryLength),(Point(1),1//2, 1))    == nothing
-	   @test calc(Detector(5,cryLength),(Point(1),1//2, 1//2)) == nothing  
-	   @test calc(Detector(5,cryLength),(Point(1),1//2, pi))   == nothing 
+	   @test calc(Detector(5,cryLength),(Point(1),1//2, 1//2)) == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1//2, pi))   == nothing
 	   @test calc(Detector(5,cryLength),(Point(1),1//2, 1.0))  == nothing
 	   
-	   @test calc(Detector(5,cryLength),(Point(1),e, 1))    == nothing 
-	   @test calc(Detector(5,cryLength),(Point(1),e, 1//2)) == nothing  
-	   @test calc(Detector(5,cryLength),(Point(1),e, pi))   == nothing   
-	   @test calc(Detector(5,cryLength),(Point(1),e, 1.0))  == nothing   
+	   @test calc(Detector(5,cryLength),(Point(1),e, 1))    == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),e, 1//2)) == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),e, pi))   == nothing #
+	   @test calc(Detector(5,cryLength),(Point(1),e, 1.0))  == nothing
 	   
-	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1))    == nothing   
-	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1//2)) == nothing   
-	   @test calc(Detector(5,cryLength),(Point(1),1.0, pi))   == nothing   
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1))    == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1//2)) == nothing
+	   @test calc(Detector(5,cryLength),(Point(1),1.0, pi))   == nothing
 	   @test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
      end #testset_for
 	 
 	@testset "\tfunction `calc`-Detector(5, 4, $holeRadius, $holeDepth)" for holeRadius=[3, 4], holeDepth=[0,1,2,3]
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing     
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   == nothing  
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1.0))  == nothing    
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1.0))  == nothing
 	   
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1))    == nothing
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1//2)) == nothing  
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, pi))   == nothing 
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1//2)) == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, pi))   == nothing
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1.0))  == nothing
 	   
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1))    == nothing 
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1//2)) == nothing  
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   == nothing   
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  == nothing   
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1))    == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1//2)) == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  == nothing
 	   
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    == nothing   
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) == nothing   
-	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing   
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) == nothing
+	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing
 	   @test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
        end #testset_for
 
