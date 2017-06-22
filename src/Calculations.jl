@@ -202,7 +202,7 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	end
 
 	pntWup::Point = deepcopy(aCenterPnt);
-	setHeight(aCenterPnt, abs(HeightWup));  #0.0 == SrcRadius && setRho!(pntWup, 0.0)
+	aCenterPnt = setHeight!(aCenterPnt, abs(HeightWup));  #0.0 == SrcRadius && setRho!(pntWup, 0.0)
 
 	pntWdown::Point = deepcopy(aCenterPnt);
 	setHeight!(pntWdown, abs(HeightWdown)); #0.0 == SrcRadius && setRho!(pntWdown, 0.0)
@@ -214,7 +214,7 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 		res = geoEff(detout, pntWup, SrcRadius, SrcLength) - geoEff(detin, pntWdown, SrcRadius, SrcLength)
 
 	elseif HeightWup + SrcLength < 0.0 		# the source as a whole in the detector
-		res = 1 - geoEff(detin, setHeight(pntWup,abs(HeightWup + SrcLength)), SrcRadius, SrcLength)
+		res = 1 - geoEff(detin, setHeight!(pntWup,abs(HeightWup + SrcLength)), SrcRadius, SrcLength)###setHeight --> setHeight!
 		res -= geoEff(detin, pntWdown, SrcRadius, SrcLength)
 
 	else # elseif SrcLength > 0.0
