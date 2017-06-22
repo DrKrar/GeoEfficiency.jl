@@ -40,13 +40,13 @@ info("test `Point`...")
     @test pnt6.Height != pnt5.Height 
     @test pnt6.Rho == pnt5.Rho 
     
-    pnt6 = GeoEfficiency.setRho!(pnt5, 5)
-    @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho == pnt5.Rho 
+    # pnt6 = GeoEfficiency.setRho!(pnt5, 5)
+    # @test pnt6.Height == pnt5.Height 
+    # @test pnt6.Rho == pnt5.Rho 
 
-    pnt6 = GeoEfficiency.setHeight!(pnt5, 5)
-    @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho == pnt5.Rho 
+    # pnt6 = GeoEfficiency.setHeight!(pnt5, 5)
+    # @test pnt6.Height == pnt5.Height 
+    # @test pnt6.Rho == pnt5.Rho 
 
 		end #testset
 
