@@ -24,3 +24,4 @@ for t in tests
 	info("End test of $(t).....\n")
 end
 @test about() == nothing
+@test CONFIG() == nothing

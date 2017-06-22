@@ -9,7 +9,7 @@
 
 
 @testset "Calculations" begin
-	println()
+
 	print("\t"); info("polnomial test of function `integrate`")
 	function poly(z::Float64, coff::Vector{Float64})
 	res::Float64 = 0.0
@@ -32,7 +32,6 @@
 		
 	end #testset_begin
 	
-	println()
 	print("\t"); info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
@@ -52,7 +51,6 @@
 
 	end #for_testset
 	
-	println()
 	print("\t"); info("special cases for cylinderical detector also; very restrict test")
 	@testset "point at the surface of cylinderical detector of radius $radius cm" for 
 		radius in [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]
@@ -76,7 +74,7 @@ end #testset
 
 
 @testset "special cases for well detector" begin
-	println()
+
 	print("\t"); info("special cases for well detector")
 	@testset "point at the surface of Well detector of radius $radius cm and height $height" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6], 
@@ -105,7 +103,7 @@ end #testset
 
 
 @testset "scaling test" begin
-	println()
+
 	print("\t"); info("statrting scaling test cylinderical detector with point source...")
 	@testset "[$(k*(j-1))] test, Scalling $k at radius $radius cm" for 
 		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
