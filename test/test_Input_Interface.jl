@@ -16,11 +16,11 @@ info("test `setSrcToPoint`...")
 	@test setSrcToPoint() == false
 	
     @test setSrcToPoint(true) == true
-    @test GeoEfficiency.srcType == 0
+    @test srcType == 0
 	@test setSrcToPoint() == true	
 	
     @test setSrcToPoint(false) == false
-    @test GeoEfficiency.srcType == 1
+    @test srcType == 1
 	@test setSrcToPoint() == false	
 	end
   
@@ -62,14 +62,14 @@ info("test `reading from CSV`...")
 		try
 		print("\t"); info("Detectors write and read  - input type{Int}")	
 			@test  writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
+			@test  Set(detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
 
 		print("\t"); info("write and read  - input type{Int}")
-    		@test  GeoEfficiency.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
-		    @test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+    		@test  writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
+		    @test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		print("\t"); info("READ_BATCH_INFO")	
-		    batch_info = GeoEfficiency.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+		    batch_info = read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  Set(batch_info[1]) == Set(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			@test  batch_info[3] == [0.0]
@@ -79,40 +79,40 @@ info("test `reading from CSV`...")
 
 		try
 		print("\t"); info("rewrite, read and sort  - input type{Int}")
-			@test  GeoEfficiency.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
 		print("\t"); info("rewrite, read and sort - input type{Rational-treated as any}")
-			@test  GeoEfficiency.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 			
 		print("\t"); info("rewrite, read and sort - input type{Float64}")
-			@test  GeoEfficiency.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
 		#info("\t\trewrite, read and sort - input type{Irrational....}")
-		#	@test  GeoEfficiency.writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		#	@test GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0]
+		#	@test  writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		#	@test read_from_csvFile("_hight_test.csv", datadirectory) == [0]
 			
 		print("\t"); info("invalid data type {Unionall}")
-			@test  GeoEfficiency.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		print("\t"); info("invalid data type {String}")
-			@test  GeoEfficiency.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 		
 		print("\t"); info("invalid data type {Complex}")
-			@test  GeoEfficiency.writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+			@test  writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 		
 		print("\t"); info("missing file")
 			rm(hightfile, recursive=true)
-			@test  GeoEfficiency.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 
 		print("\t"); info("Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
-			@test_throws GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
+			@test_throws detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
 		end #try	
 
 		try	rm(datadirectory, recursive=true)	end
