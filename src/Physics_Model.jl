@@ -35,8 +35,9 @@ construct and return a `Point` source that can be a source of itself or an
 mutable struct Point
 	Height::Float64
 	Rho::Float64
-	Point(Height::Real, Rho::Real) = new(float(Height), float(Rho))
+	Point(Height::Real, Rho::Real) = new(Height, Rho)
 end #type
+Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
 
 """
 
@@ -86,7 +87,7 @@ show(pnt::Point) = print(id(pnt))
 
 """
 
-	source(anchorPnt::Point = Point()
+	source(anchorPnt::Point = Point())
 
 return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
 
@@ -148,13 +149,14 @@ struct CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
     CryLength::Float64		#Real
 
-	function CylDetector(CryRadius::Real, CryLength::Real)
+	function CylDetector(CryRadius::Float64, CryLength::Float64)
 		@assert Inf > CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
 		@assert Inf > CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
-		new(float(CryRadius), float(CryLength))
+		new(CryRadius, CryLength)
 	end #if
 
 end #type
+CylDetector(CryRadius::Real, CryLength::Real) = CylDetector(float(CryRadius), float(CryLength))
 
 """
 
@@ -166,6 +168,7 @@ return a cylindrical detector with crystal length 0.0.
 
 """
 CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
+
 
 """
 
@@ -206,14 +209,15 @@ struct BoreDetector <: RadiationDetector
     CryLength::Float64    	#Real
 	HoleRadius::Float64    	#Real
 
-	function BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
+	function BoreDetector(CryRadius::Float64, CryLength::Float64, HoleRadius::Float64)
 		@assert Inf > CryRadius > 0.0		"Crystal Radius: expect +ve number, get $(CryRadius)."
 		@assert Inf > CryLength > 0.0		"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
-		new(float(CryRadius), float(CryLength), float(HoleRadius))
+		new(CryRadius, CryLength, HoleRadius)
 	end #if
 
 end #type
+BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(float(CryRadius), float(CryLength), float(HoleRadius)
 
 """
 
@@ -257,15 +261,16 @@ struct WellDetector <: RadiationDetector
 	HoleRadius::Float64
 	HoleDepth::Float64
 
-	function WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+	function WellDetector(CryRadius::Float64, CryLength::Float64, HoleRadius::Float64, HoleDepth::Float64)
 		@assert Inf > CryRadius > 0.0				"Crystal Radius: expect +ve number, get $(CryRadius)."
 		@assert Inf > CryLength > 0.0				"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert Inf > CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		@assert CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get $(HoleDepth)."
-		new(float(CryRadius), float(CryLength), float(HoleRadius), float(HoleDepth))
+		new(CryRadius, CryLength, HoleRadius, HoleDepth)
 	end #if
 
 end #type
+WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = WellDetector(float(CryRadius), float(CryLength), float(HoleRadius), float(HoleDepth))
 
 """
 
