@@ -124,7 +124,7 @@ end #testset
 		j=2:100, 
 		k=2:100
 		
-		holeRadius > cryRadius || continue
+		holeRadius < cryRadius || continue
 		
 		aboreDetector = BoreDetector(cryRadius, j, holeRadius); aboreDetectork = BoreDetector(cryRadius*k,j*k, holeRadius*k)
 
@@ -141,7 +141,7 @@ end #testset
 		j=2:100, 
 		k=2:100
 		
-		holeRadius > cryRadius || continue
+		holeRadius < cryRadius || continue
 		
 		awellDetector =WellDetector(cryRadius, j, holeRadius, j/2.0); awellDetectork = WellDetector(cryRadius*k,j*k, holeRadius*k, j*k/2.0)
 
