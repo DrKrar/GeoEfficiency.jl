@@ -11,7 +11,7 @@
 
 info("test `Point`...")	
   @testset "Point" begin
-  	@test id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
+  	@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
   	@test show(Point(5,3)) == nothing
 	
     #pnt0 = Point()
@@ -35,19 +35,19 @@ info("test `Point`...")
     @test pnt3.Rho == pnt4.Rho
     @test pnt4.Rho == pnt5.Rho
 
-    # pnt6 = setRho(pnt5, 1)
+    # pnt6 = G.setRho(pnt5, 1)
     # @test pnt6.Height == pnt5.Height 
     # @test pnt6.Rho != pnt5.Rho 
 
-    # pnt6 = setHeight(pnt5, 1)
+    # pnt6 = G.setHeight(pnt5, 1)
     # @test pnt6.Height != pnt5.Height 
     # @test pnt6.Rho == pnt5.Rho 
     
-    pnt6 = setRho!(pnt5, 5)
+    pnt6 = G.setRho!(pnt5, 5)
     @test pnt6.Height == pnt5.Height 
     @test pnt6.Rho == 5.0
 
-    pnt6 = setHeight!(pnt5, 5)
+    pnt6 = G.setHeight!(pnt5, 5)
     @test pnt6.Height == 5.0
     @test pnt6.Rho == pnt5.Rho 
 
@@ -57,7 +57,7 @@ info("test `Point`...")
 println(); info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
   
-	@test id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+	@test G.id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
   	@test show(CylDetector(5,3)) == nothing
 	
     cyl0 = CylDetector(5)
@@ -86,16 +86,16 @@ println(); info("test `Cylinderical Detector`...")
     @test cyl5 === cyl6
     @test cyl6 === cyl7
     @test cyl7 === cyl8	
-    @test volume(CylDetector(5.0,1))  <=   volume(CylDetector(15.0,1))
-    @test volume(CylDetector(10.0,1)) <=   volume(CylDetector(15.0,1)) 
-	@test volume(CylDetector(15.0))   <=   volume(CylDetector(10.0)) 
+    @test G.volume(CylDetector(5.0,1))  <=   G.volume(CylDetector(15.0,1))
+    @test G.volume(CylDetector(10.0,1)) <=   G.volume(CylDetector(15.0,1)) 
+	@test G.volume(CylDetector(15.0))   <=   G.volume(CylDetector(10.0)) 
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
 	end #testset
 
 println(); info("test `Borehole Detector`...")	
   @testset "Borehole Detector" begin 
 	
-	@test id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
+	@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
   	@test show(BoreDetector(5,3,2)) == nothing  
     
 	bore0 = BoreDetector(5,4,3)
@@ -126,15 +126,15 @@ println(); info("test `Borehole Detector`...")
     @test bore5 === bore6
     @test bore6 === bore7
 	@test bore7 === bore8
-	@test volume(Detector(5.0,1,.1))  <=   volume(Detector(15.0,1,0.1))
-    @test volume(Detector(10.0,1,.0)) <=   volume(Detector(15.0,1,0.1)) 
+	@test G.volume(Detector(5.0,1,.1))  <=   G.volume(Detector(15.0,1,0.1))
+    @test G.volume(Detector(10.0,1,.0)) <=   G.volume(Detector(15.0,1,0.1)) 
 	@test Detector(5.0,1,0.1) < Detector(15.0,1,0.1)
  
 		end #testset
 
 println(); info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
-    @test id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+    @test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
   	@test show(WellDetector(5,3,2,1)) == nothing  
 	
     Well0 = WellDetector(5,4,3,2)
@@ -167,8 +167,8 @@ println(); info("test `Well-type Detector`...")
     @test Well5 === Well6
     @test Well6 === Well7
 	@test Well7 === Well8
-	@test volume(Detector(5.0,2,0.1,1))  <=   volume(Detector(15.0,2,0.1,1))
-    @test volume(Detector(10.0,2,0.1,1)) <=   volume(Detector(15.0,2,0.1,1)) 
+	@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
+    @test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
 	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
  
 		end #testset	
@@ -213,10 +213,10 @@ info("test `RadiationDetector`...")
 			det4 = Detector(rand(15:20), rand(10:14), rand(9:13), rand(1:9))
 			@test Detector(det4)   === det4
 		end #for	
-		@test id(Detector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-		@test id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
-		@test id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
-		@test id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
+		@test G.id(Detector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+		@test G.id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
+		@test G.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+		@test G.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
 		end #testset	
 
 info("test `source`...")   
