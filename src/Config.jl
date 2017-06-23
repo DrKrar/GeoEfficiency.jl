@@ -10,7 +10,7 @@ function about()
 	\t **  Accurate Geometrical Efficiency Calculator **
 	\t *************************************************
 
-	  @version: v"0.9" - ($(Date(now())- Date("2017-06-21")) old master)  
+	  @version: v"0.9" - ($(Date(now())- Date("2017-06-24")) old master)  
 	  @author: Mohamed Krar,  @e-mail: DrKrar@gmail.com 
 	  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
 	  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
@@ -56,5 +56,5 @@ _absoluteError::Float64 = 0.00000000001)
 
   ##Output_Interface.jl##
   const resultsfolder = _resultsfolder
-  reload("GeoEfficiency")
+  @compat reload(@__MODULE__)
 end

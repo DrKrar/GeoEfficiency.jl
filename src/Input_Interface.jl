@@ -8,7 +8,7 @@
 
 #------------------consts&globals--------------------------------------
 
-isconst(:datafolder ) || const datafolder = "GeoEfficiency"
+@compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
 
 const detectors  = "Detectors.csv";

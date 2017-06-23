@@ -7,6 +7,7 @@ the source can be a point, a disc or even a cylinder.
 ## Requirements
  *  Julia 0.6 or above.
  *  QuadGK 0.1.2 or above, will be installed automatically while the package Installtion.
+ *  Compat 0.26.0 or above, will be installed automatically while the package Installtion. 
 
 ## Download and Install the Package
 
