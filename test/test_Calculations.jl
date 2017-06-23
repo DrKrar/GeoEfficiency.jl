@@ -126,7 +126,7 @@ end #testset
 		holeRadius > cryRadius && continue	
 		
 		for j=2:100, k=2:100
-		println("[J=",j, "k=",k,"]")
+		print("[J=",j, ", k=",k,"]-")
 			aboreDetector  = BoreDetector(  cryRadius,   j,   holeRadius)
 			aboreDetectork = BoreDetector(k*cryRadius, k*j, k*holeRadius)
 			axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
@@ -144,7 +144,7 @@ end #testset
 		holeRadius > cryRadius && continue	
 		
 		for j=2:100, k=2:100
-		println("[J=",j, "k=",k,"]")
+		print("[J=",j, ", k=",k,"]-")
 			awellDetector  = WellDetector(  cryRadius,   j,   holeRadius,   j/2.0)
 			awellDetectork = WellDetector(k*cryRadius, k*j, k*holeRadius, k*j/2.0)		
 			axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
