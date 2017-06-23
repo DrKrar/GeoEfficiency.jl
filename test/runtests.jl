@@ -6,7 +6,7 @@ using Base.Test
 using GeoEfficiency
 
 using GeoEfficiency: srcType, writecsv_head, integrate, detector_info_from_csvFile, read_from_csvFile
-using GeoEfficiency: setRho, setHeight, id, volume
+using GeoEfficiency: setRho!, setHeight!, id, volume
 using GeoEfficiency: integrate 
 using GeoEfficiency: _batch
 using GeoEfficiency: CONFIG
