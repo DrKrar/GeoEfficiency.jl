@@ -19,6 +19,7 @@ the source can be a point, a disc or even a cylinder.
 
 """
 module GeoEfficiency
+using Compat
 
 export # Config
     about,
