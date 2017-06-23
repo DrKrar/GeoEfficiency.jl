@@ -56,8 +56,8 @@
 
 info("test `batch`...")    
    @testset "test `batch`" begin
-	   @test GeoEfficiency._batch(Val{true},  CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-	   @test GeoEfficiency._batch(Val{false}, CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+	   @test _batch(Val{true},  CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+	   @test _batch(Val{false}, CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 	   @test batch(CylDetector(eps()), [0.0])[2][end] ≈ 0.5
 	   @test batch(CylDetector(eps()), [0.0], [0.0], [0.0],[0.0],false)[2][end] ≈ 0.5
 	   
