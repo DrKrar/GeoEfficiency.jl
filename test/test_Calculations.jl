@@ -105,50 +105,60 @@ end #testset
 @testset "scaling test" begin
 
 	print("\t"); info("statrting scaling test cylinderical detector with point source...")
-	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius" for 
 		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		j=2:100, 
 		k=2:100
-		acylDetector = CylDetector(cryRadius); acylDetectork = CylDetector(cryRadius*k)
-
-		@test geoEff(acylDetector, Point(cryRadius/j)) ≈ geoEff(acylDetectork, Point(k*cryRadius/j))
-
-		@test geoEff(acylDetector, Point(cryRadius*j, cryRadius/j)) ≈ geoEff(acylDetectork, Point(k*cryRadius*j, k*cryRadius/j))
-
+		
+		acylDetector  = CylDetector(  cryRadius)
+		acylDetectork = CylDetector(k*cryRadius)
+		axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   cryRadius/j)
+		axPntk = Point(k*cryRadius/j); naxPntk = Point(k*cryRadius/j, k*cryRadius/j)
+		
+		@test geoEff(acylDetector, axPnt)  ≈ geoEff(acylDetectork, axPntk)		# axial point
+		@test geoEff(acylDetector, naxPnt) ≈ geoEff(acylDetectork, naxPntk)		# non-axial point
 	end #for_testset
 	
 	print("\t"); info("statrting scaling test Borehole detector with point source...")
-	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius, holeRadius=$holeRadius" for 
 		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2,
 		j=2:100, 
 		k=2:100
 		
-		holeRadius < cryRadius || continue
-		
-		aboreDetector = BoreDetector(cryRadius, j, holeRadius); aboreDetectork = BoreDetector(cryRadius*k,j*k, holeRadius*k)
-
-		@test geoEff(aboreDetector, Point(cryRadius/j)) ≈ geoEff(aboreDetectork, Point(k*cryRadius/j))
-
-		@test geoEff(aboreDetector, Point(cryRadius*j, holeRadius/j)) ≈ geoEff(aboreDetectork, Point(k*cryRadius*j, k*holeRadius/j))
-
+		aboreDetector  = BoreDetector(  cryRadius,   j,   holeRadius)
+		aboreDetectork = BoreDetector(k*cryRadius, k*j, k*holeRadius)
+		axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
+		axPntk = Point(k*cryRadius/j); naxPntk = Point(k*cryRadius/j, k*holeRadius/j)
+	
+		if holeRadius < cryRadius 
+			@test geoEff(aboreDetector , axPnt) ≈ geoEff(aboreDetectork, axPntk)	# axial point
+			@test geoEff(aboreDetector , naxPnt) ≈ geoEff(aboreDetectork, naxPntk) 	# non-axial point
+		elseif holeRadius == cryRadius 
+			@test isapprox(geoEff(aboreDetector, axPnt), geoEff(aboreDetectork, axPntk), atol= 1.0e-16)	# axial 
+			@test isapprox(geoEff(aboreDetector, naxPnt, geoEff(aboreDetectork, naxPntk)), atol= 1.0e-16) 	# non-axial point	
+		end
 	end #for_testset
 
 	print("\t"); info("statrting scaling test Well-type detector with point source...")
-	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius, holeRadius=$holeRadius" for 
 		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2,
 		j=2:100, 
 		k=2:100
 		
-		holeRadius < cryRadius || continue
+		awellDetector  = WellDetector(  cryRadius,   j,   holeRadius,   j/2.0)
+		awellDetectork = WellDetector(k*cryRadius, k*j, k*holeRadius, k*j/2.0)		
+		axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
+		axPntk = Point(k*cryRadius/j); naxPntk = Point(k*cryRadius/j, k*holeRadius/j)
 		
-		awellDetector =WellDetector(cryRadius, j, holeRadius, j/2.0); awellDetectork = WellDetector(cryRadius*k,j*k, holeRadius*k, j*k/2.0)
-
-		@test geoEff(awellDetector, Point(cryRadius/j)) ≈ geoEff(awellDetectork, Point(k*cryRadius/j))
-
-		@test geoEff(awellDetector, Point(cryRadius*j, holeRadius/j)) ≈ geoEff(awellDetectork, Point(k*cryRadius*j, k*holeRadius/j))
-
+		if holeRadius < cryRadius 
+			@test geoEff(awellDetector , axPnt) ≈ geoEff(awellDetectork, axPntk)	# axial point
+			@test geoEff(awellDetector , naxPnt) ≈ geoEff(awellDetectork, naxPntk) 	# non-axial point
+		elseif holeRadius == cryRadius 
+			@test isapprox(geoEff(awellDetector, axPnt), geoEff(awellDetectork, axPntk), atol= 1.0e-16)	# axial 
+			@test isapprox(geoEff(awellDetector, naxPnt, geoEff(awellDetectork, naxPntk)), atol= 1.0e-16) 	# non-axial point	
+		end
 	end #for_testset	
 end #testset
 
