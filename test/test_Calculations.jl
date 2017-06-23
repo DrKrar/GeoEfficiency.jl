@@ -105,17 +105,50 @@ end #testset
 @testset "scaling test" begin
 
 	print("\t"); info("statrting scaling test cylinderical detector with point source...")
-	@testset "[$(k*(j-1))] test, Scalling $k at radius $radius cm" for 
-		radius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		j=2:100, 
 		k=2:100
-		acylDetector = CylDetector(radius); acylDetectork = CylDetector(radius*k)
+		acylDetector = CylDetector(cryRadius); acylDetectork = CylDetector(cryRadius*k)
 
-		@test geoEff(acylDetector, Point(radius/j)) ≈ geoEff(acylDetectork, Point(k*radius/j))
+		@test geoEff(acylDetector, Point(cryRadius/j)) ≈ geoEff(acylDetectork, Point(k*cryRadius/j))
 
-		@test geoEff(acylDetector, Point(radius*j, radius/j)) ≈ geoEff(acylDetectork, Point(k*radius*j, k*radius/j))
+		@test geoEff(acylDetector, Point(cryRadius*j, cryRadius/j)) ≈ geoEff(acylDetectork, Point(k*cryRadius*j, k*cryRadius/j))
+
+	end #for_testset
+	
+	print("\t"); info("statrting scaling test Borehole detector with point source...")
+	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2,
+		j=2:100, 
+		k=2:100
+		
+		holeRadius > cryRadius || continue
+		
+		aboreDetector = BoreDetector(cryRadius, j, holeRadius); aboreDetectork = BoreDetector(cryRadius*k,j*k, holeRadius*k)
+
+		@test geoEff(aboreDetector, Point(cryRadius/j)) ≈ geoEff(aboreDetectork, Point(k*cryRadius/j))
+
+		@test geoEff(aboreDetector, Point(cryRadius*j, holeRadius/j)) ≈ geoEff(aboreDetectork, Point(k*cryRadius*j, k*holeRadius/j))
 
 	end #for_testset
 
+	print("\t"); info("statrting scaling test Well-type detector with point source...")
+	@testset "[$(k*(j-1))] test, Scalling $k at cryRadius $cryRadius cm" for 
+		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2,
+		j=2:100, 
+		k=2:100
+		
+		holeRadius > cryRadius || continue
+		
+		awellDetector =WellDetector(cryRadius, j, holeRadius, j/2.0); awellDetectork = WellDetector(cryRadius*k,j*k, holeRadius*k, j*k/2.0)
+
+		@test geoEff(awellDetector, Point(cryRadius/j)) ≈ geoEff(awellDetectork, Point(k*cryRadius/j))
+
+		@test geoEff(awellDetector, Point(cryRadius*j, holeRadius/j)) ≈ geoEff(awellDetectork, Point(k*cryRadius*j, k*holeRadius/j))
+
+	end #for_testset	
 end #testset
 
