@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-isconst(:resultsfolder) || const resultsfolder = "results";
+@compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
 const resultdir 	= joinpath(datadir, resultsfolder);		     isdir(resultdir) 		   || mkdir(resultdir)
 const resultdir_pnt = joinpath(resultdir, "Point");			     isdir(resultdir_pnt) 	 || mkdir(resultdir_pnt)
 const resultdir_nonPnt = joinpath(resultdir, "non-Point");	 isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
