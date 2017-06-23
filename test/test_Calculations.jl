@@ -105,8 +105,8 @@ end #testset
 @testset "scaling test" begin
 
 	print("\t"); info("statrting scaling test cylinderical detector with point source...")
-	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius" for 
-		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius" for 
+		cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		j=2:100, 
 		k=2:100
 		
@@ -120,9 +120,9 @@ end #testset
 	end #for_testset
 	
 	print("\t"); info("statrting scaling test Borehole detector with point source...")
-	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius, holeRadius=$holeRadius" for 
-		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2,
+	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius, holeRadius=$holeRadius" for 
+		cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+		holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2,
 		j=2:100, 
 		k=2:100
 		
@@ -141,9 +141,9 @@ end #testset
 	end #for_testset
 
 	print("\t"); info("statrting scaling test Well-type detector with point source...")
-	@testset "[J=$j] test, Scalling $k at cryRadius $cryRadius, holeRadius=$holeRadius" for 
-		cryRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-		holeRadius=[1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2,
+	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius, holeRadius=$holeRadius" for 
+		cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+		holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2,
 		j=2:100, 
 		k=2:100
 		
