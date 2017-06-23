@@ -54,7 +54,7 @@ info("test `Point`...")
 
 		end #testset
 
-info("test `Cylinderical Detector`...")			
+println(); info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
   
 	@test id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
@@ -92,7 +92,7 @@ info("test `Cylinderical Detector`...")
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
 	end #testset
 
-info("test `Borehole Detector`...")	
+println(); info("test `Borehole Detector`...")	
   @testset "Borehole Detector" begin 
 	
 	@test id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
@@ -132,7 +132,7 @@ info("test `Borehole Detector`...")
  
 		end #testset
 
-info("test `Well-type Detector`...")	
+println(); info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
     @test id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
   	@test show(WellDetector(5,3,2,1)) == nothing  
