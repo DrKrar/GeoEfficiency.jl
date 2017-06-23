@@ -12,7 +12,7 @@
 info("test `setSrcToPoint`...")    
   @testset "setSrcToPoint" begin
   
-    @test GeoEfficiency.srcType == -1  # the default value
+    @test srcType == -1  # the default value
 	@test setSrcToPoint() == false
 	
     @test setSrcToPoint(true) == true
@@ -61,7 +61,7 @@ info("test `reading from CSV`...")
 
 		try
 		print("\t"); info("Detectors write and read  - input type{Int}")	
-			@test  GeoEfficiency.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+			@test  writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 			@test  Set(GeoEfficiency.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
 
 		print("\t"); info("write and read  - input type{Int}")

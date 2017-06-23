@@ -2,13 +2,15 @@
 # Correctness Tests
 #
 
+using Base.Test
 using GeoEfficiency
-if  VERSION > v"0.5.0-dev+7720" 	#isdefined(Base.Test, Symbol("@testset")) 
-	using Base.Test 
-else 
-	using BaseTestNext 
-	const Test = BaseTestNext 
-end 
+
+using GeoEfficiency: srcType, writecsv_head, integrate, detector_info_from_csvFile, read_from_csvFile
+using GeoEfficiency: setRho, setHeight, id, volume
+using GeoEfficiency: integrate 
+using GeoEfficiency: _batch
+using GeoEfficiency: CONFIG
+
 
 tests = ["Input_Interface",
          "Physics_Model",
@@ -21,7 +23,7 @@ for t in tests
 	println()
 	info("Beging test of $(t).....\n")
     include("test_$(t).jl")
-	info("End test of $(t).....\n")
+	println(); info("End test of $(t).....\n")
 end
 @test about() == nothing
 @test CONFIG() == nothing
