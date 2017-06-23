@@ -118,8 +118,8 @@ println(); info("test `Borehole Detector`...")
     bore6 = Detector(5.0,4.0,3.0)
     bore7 = Detector(5.0,4.0,3.0, 0)
 	bore8 = Detector(5//1,4.0,3.0, 0)
-    @test bore0 === bore1 
-	@test bore1 === bore2 
+    @test bore0 === bore1
+	@test bore1 === bore2
     @test bore2 === bore3
     @test bore3 === bore4
     @test bore4 === bore5
@@ -173,29 +173,29 @@ println(); info("test `Well-type Detector`...")
  
 		end #testset	
 		
-info("test `RadiationDetector`...")    
+println(); info("test `RadiationDetector`...")    
 	@testset "RadiationDetector" begin 
 	
 		@test_throws MethodError  Detector(1+1im)
-		@test_throws MethodError  Detector(5+1im, 0)  
+		@test_throws MethodError  Detector(5+1im, 0)
 		@test_throws MethodError  Detector(1+1im, 1)
-		@test_throws MethodError  Detector(5+1im, 4,3)  
+		@test_throws MethodError  Detector(5+1im, 4,3)
 		@test_throws MethodError  Detector(1+1im, 4, 3,2)
-		@test_throws MethodError  Detector(5+1im, 4, 3,2)  
+		@test_throws MethodError  Detector(5+1im, 4, 3,2)
 		@test_throws MethodError  Detector(1+1im, 4, 3,2)
-		@test_throws MethodError  Detector(4,1+1im, 3,2) 
-		@test_throws MethodError  Detector(4,3,2+1im,1)  	
-		@test_throws MethodError  Detector(4,3,2,1+1im)  	
+		@test_throws MethodError  Detector(4,1+1im, 3,2)
+		@test_throws MethodError  Detector(4,3,2+1im,1)
+		@test_throws MethodError  Detector(4,3,2,1+1im)
 		
 		@test Detector(5)       === CylDetector(5)
-		@test Detector(5,0)     === CylDetector(5)			
-		@test Detector(5,0,0,0) === CylDetector(5)			
-		@test Detector(5,1)     === CylDetector(5,1)	
-		@test Detector(5,1,0)   === CylDetector(5,1)		
-		@test Detector(5,1,0,0) === CylDetector(5,1)				
-		@test Detector(5,2,1)   === BoreDetector(5,2, 1)	
-		@test Detector(5,2,1,0) === BoreDetector(5,2, 1)		
-		@test Detector(5,4,3,2) === WellDetector(5,4,3,2)			
+		@test Detector(5,0)     === CylDetector(5)
+		@test Detector(5,0,0,0) === CylDetector(5)
+		@test Detector(5,1)     === CylDetector(5,1)
+		@test Detector(5,1,0)   === CylDetector(5,1)
+		@test Detector(5,1,0,0) === CylDetector(5,1)
+		@test Detector(5,2,1)   === BoreDetector(5,2, 1)
+		@test Detector(5,2,1,0) === BoreDetector(5,2, 1)
+		@test Detector(5,4,3,2) === WellDetector(5,4,3,2)
 		
 		cyl0 = CylDetector(5)
 	    @test Detector(cyl0)   === cyl0
@@ -230,24 +230,24 @@ info("test `source`...")
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
 		@test_throws AssertionError	 CylDetector(dim)  
-		@test_throws AssertionError	 CylDetector(dim, 0) 	
-		@test_throws AssertionError	 CylDetector(dim, 1) 		
+		@test_throws AssertionError	 CylDetector(dim, 0)
+		@test_throws AssertionError	 CylDetector(dim, 1)
 		@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
 		@test_throws AssertionError  BoreDetector(dim, 1, 0)
-		@test_throws AssertionError  WellDetector(dim, 2, 1, 0)		
+		@test_throws AssertionError  WellDetector(dim, 2, 1, 0)
 
-		@test_throws AssertionError  Detector(dim)	
-		@test_throws AssertionError	 Detector(dim, 0) 	
-		@test_throws AssertionError	 Detector(dim, 1) 		
-		@test_throws AssertionError  Detector(dim, 0, 0)	 
+		@test_throws AssertionError  Detector(dim)
+		@test_throws AssertionError	 Detector(dim, 0)
+		@test_throws AssertionError	 Detector(dim, 1)
+		@test_throws AssertionError  Detector(dim, 0, 0)
 
 		dim == 0.0 && break
-		@test_throws AssertionError	 CylDetector(5, dim)  
+		@test_throws AssertionError	 CylDetector(5, dim)
 		@test_throws AssertionError  BoreDetector(5, dim, 0)
-		@test_throws AssertionError	 CylDetector(5, dim)  
+		@test_throws AssertionError	 CylDetector(5, dim)
 		@test_throws AssertionError  BoreDetector(5, dim, 0)
 		@test_throws AssertionError  BoreDetector(5,dim, 1)
-		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)		
+		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
 
 		end #testset_for		
 end #tesset
