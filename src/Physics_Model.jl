@@ -35,7 +35,7 @@ construct and return a `Point` source that can be a source of itself or an
 mutable struct Point
 	Height::Float64
 	Rho::Float64
-	Point(Height::Real, Rho::Real) = new(Height, Rho)
+	Point(Height::Float64, Rho::Float64) = new(Height, Rho)
 end #type
 Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
 
@@ -217,7 +217,7 @@ struct BoreDetector <: RadiationDetector
 	end #if
 
 end #type
-BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(float(CryRadius), float(CryLength), float(HoleRadius)
+BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(float(CryRadius), float(CryLength), float(HoleRadius))
 
 """
 
