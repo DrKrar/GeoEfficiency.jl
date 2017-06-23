@@ -59,7 +59,8 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 ## Requirements
  *  Julia 0.6 or above.
  *  QuadGK 0.1.2 or above, will be installed automatically while the package Installtion.
-
+ *  Compat 0.26.0 or above, will be installed automatically while the package Installtion.
+ 
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed with Pkg.add.
 

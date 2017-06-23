@@ -7,9 +7,9 @@
 #**************************************************************************************
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
-isconst(:relativeError) ||  const relativeError = 0.0001	
-isconst(:absoluteError) ||  const absoluteError = 0.00000000001
-isconst(:integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
+@compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 0.0001	
+@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = 0.00000000001
+@compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
 #-----------GeoEff_Pnt------------------------------------------------------
