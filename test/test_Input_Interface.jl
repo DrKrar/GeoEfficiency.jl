@@ -12,15 +12,15 @@
 info("test `setSrcToPoint`...")    
   @testset "setSrcToPoint" begin
   
-    @test srcType == -1  # the default value
+    @test G.srcType == -1  # the default value
 	@test setSrcToPoint() == false
 	
     @test setSrcToPoint(true) == true
-    @test srcType == 0
+    @test G.srcType == 0
 	@test setSrcToPoint() == true	
 	
     @test setSrcToPoint(false) == false
-    @test srcType == 1
+    @test G.srcType == 1
 	@test setSrcToPoint() == false	
 	end
   
@@ -61,12 +61,12 @@ info("test `reading from CSV`...")
 
 		try
 		print("\t"); info("Detectors write and read  - input type{Int}")	
-			@test  writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-			@test  Set(detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
+			@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+			@test  Set(G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
 
 		print("\t"); info("write and read  - input type{Int}")
-    		@test  writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
-		    @test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+    		@test  G.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
+		    @test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		print("\t"); info("READ_BATCH_INFO")	
 		    batch_info = read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
@@ -79,40 +79,40 @@ info("test `reading from CSV`...")
 
 		try
 		print("\t"); info("rewrite, read and sort  - input type{Int}")
-			@test  writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
 		print("\t"); info("rewrite, read and sort - input type{Rational-treated as any}")
-			@test  writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  G.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 			
 		print("\t"); info("rewrite, read and sort - input type{Float64}")
-			@test  writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  G.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			
 		#info("\t\trewrite, read and sort - input type{Irrational....}")
-		#	@test  writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		#	@test read_from_csvFile("_hight_test.csv", datadirectory) == [0]
+		#	@test  G.writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		#	@test G.read_from_csvFile("_hight_test.csv", datadirectory) == [0]
 			
 		print("\t"); info("invalid data type {Unionall}")
-			@test  writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+			@test  G.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		print("\t"); info("invalid data type {String}")
-			@test  writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+			@test  G.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 		
 		print("\t"); info("invalid data type {Complex}")
-			@test  writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+			@test  G.writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 		
 		print("\t"); info("missing file")
 			rm(hightfile, recursive=true)
-			@test  read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 
 		print("\t"); info("Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
-			@test_throws detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
+			@test_throws G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
 		end #try	
 
 		try	rm(datadirectory, recursive=true)	end

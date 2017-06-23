@@ -4,13 +4,7 @@
 
 using Base.Test
 using GeoEfficiency
-
-using GeoEfficiency: srcType, writecsv_head, integrate, detector_info_from_csvFile, read_from_csvFile
-using GeoEfficiency: setRho!, setHeight!, id, volume
-using GeoEfficiency: integrate 
-using GeoEfficiency: _batch
-using GeoEfficiency: CONFIG
-
+const G = GeoEfficiency
 
 tests = ["Input_Interface",
          "Physics_Model",
@@ -26,4 +20,4 @@ for t in tests
 	println(); info("End test of $(t).....\n")
 end
 @test about() == nothing
-@test CONFIG() == nothing
+@test G.CONFIG() == nothing
