@@ -56,5 +56,5 @@ _absoluteError::Float64 = 0.00000000001)
 
   ##Output_Interface.jl##
   const resultsfolder = _resultsfolder
-  @compat reload(@__MODULE__)
+  @compat reload(string(@__MODULE__))
 end
