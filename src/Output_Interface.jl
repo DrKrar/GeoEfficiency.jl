@@ -252,10 +252,10 @@ function _batch(::Type{Val{true}},
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 
-		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
+		#aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
 		for srcRho = srcRhos_array
-			aPnt.Rho = srcRho		    #setRho!(aPnt, srcRho)
-
+			#aPnt.Rho = srcRho		    #setRho!(aPnt, srcRho)
+aPnt = Point(srcHeight, srcRho)
 			try
 				calculatedEff= geoEff(detector, aPnt)
 				push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
@@ -320,10 +320,11 @@ function _batch(::Type{Val{false}},
 	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
 	for srcHeight = srcHeights_array
 
-		aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
+		#aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
 		for srcRho = srcRhos_array
 
-			aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
+			#aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
+aPnt = Point(srcHeight, srcRho)
 			for  srcLength = srcLengths_array;
 
 				for srcRadius = srcRadii_array
