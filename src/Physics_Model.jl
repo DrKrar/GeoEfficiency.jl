@@ -32,7 +32,7 @@ construct and return a `Point` source that can be a source of itself or an
     *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
  
 """
-mutable struct Point
+struct Point
 	Height::Float64
 	Rho::Float64
 	Point(Height::Float64, Rho::Float64) = new(Height, Rho)
