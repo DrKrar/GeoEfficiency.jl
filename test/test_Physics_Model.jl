@@ -14,6 +14,21 @@ info("test `Point`...")
   	@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
   	@test show(Point(5,3)) == nothing
 	
+	aPnt = Point(5.0, 0.0)
+	@test Point(5)       === aPnt
+	@test Point(5//1)    === aPnt
+	@test Point(5.0)     === aPnt
+	aPnt = Point(5.0, 1.0)	
+	@test Point(5, 1)       === aPnt
+	@test Point(5, 1//1)    === aPnt
+	@test Point(5//1, 1.0)  === aPnt
+	@test Point(5//1, 1)    === aPnt
+	@test Point(5//1, 1//1) === aPnt
+	@test Point(5//1, 1.0)  === aPnt	
+	@test Point(5.0, 1)     === aPnt
+	@test Point(5.0, 1//1)  === aPnt
+	@test Point(5.0, 1.0)   === aPnt
+	
     #pnt0 = Point()
     pnt1 = Point(5)
     @test 0.0 == pnt1.Rho
