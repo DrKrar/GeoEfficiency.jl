@@ -115,7 +115,7 @@ info("test `reading from CSV`...")
 
 		print("\t"); info("Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
-			@test_throws G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
+			@test_throws SystemError G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) 
 		#end #try	
 
 		try	rm(datadirectory, recursive=true)	end
