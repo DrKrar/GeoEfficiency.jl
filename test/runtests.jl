@@ -2,10 +2,14 @@
 # Correctness Tests
 #
 
+const io = IOBuffer()
+logging(io, kind=:warn)
+logging(io, kind=:info)
+
 using Base.Test
 using GeoEfficiency
 const G = GeoEfficiency
-logging(IOBuffer(), kind=:warn)
+
 
 tests = ["Input_Interface",
          "Physics_Model",
@@ -15,8 +19,7 @@ tests = ["Input_Interface",
 println("\nRunning tests:")
 
 for t in tests
-	println()
-	info("Beging test of $(t).....\n")
+	println(); info("Begin test of $(t).....\n")
     include("test_$(t).jl")
 	println(); info("End test of $(t).....\n")
 end
