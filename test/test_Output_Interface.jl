@@ -31,10 +31,10 @@
 		@test calc(Detector(5,cryLength),(Point(1),1.0, 1//2)) == nothing
 		@test calc(Detector(5,cryLength),(Point(1),1.0, pi))   == nothing
 		@test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
-     end #testset_for
+     end #testset
 	 
 	@testset "\tfunction `calc` on WellDetector" begin 
-	holeRadius = 3, 
+	holeRadius = 3 
 	holeDepth  = 2
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing
