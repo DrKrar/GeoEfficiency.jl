@@ -5,7 +5,7 @@
 using Base.Test
 using GeoEfficiency
 const G = GeoEfficiency
-logging(IOBuffer(), :warn)
+logging(IOBuffer(), kind=:warn)
 
 tests = ["Input_Interface",
          "Physics_Model",

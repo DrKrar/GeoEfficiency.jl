@@ -77,9 +77,7 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	print("\n\t")
-	info("The `calcN` had termiate, Thank you\n")
-	return nothing
+	print("\n\t"); info("The `calcN` had termiate, Thank you\n")
 end #function
 
 #----------------writecsv_head------------------------------------------
