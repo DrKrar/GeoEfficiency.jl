@@ -10,63 +10,72 @@
 @testset "Physics Model" begin
 
 info("test `Point`...")	
-  @testset "Point" begin
-  	@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
-  	@test show(Point(5,3)) == nothing
+	@testset "Point" begin
+		@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
+		@test show(Point(5,3)) == nothing
+
+		#pnt0 = Point()
+		pnt1 = Point(5)
+		pnt11 = 
+		pnt5 = Point(5.0, 0.0)	
+		pnt51 = Point(5.0, 1.0)	
+		
+		@test pnt1.Height === 5.0
+		@test pnt1.Rho    === 0.0
+		@test Point(-5).Height === -5.0
+		@test Point(-5).Rho    === 0.0
+		@test Point(-5,-1).Height === -5.0
+		@test Point(-5,-1).Rho    === -1.0
+		@test_throws MethodError     Point(1+0im,4)
+		@test_throws MethodError     Point(4, 1+0im)
+		@test_throws MethodError     Point(1+0im, 1+0im)
+		@test_throws ErrorException  Point(5.0, 0.0).Height = 1.0
+		@test_throws ErrorException  Point(5.0, 0.0).Rho    = 1.0
+		
+		@test Point(5)      === pnt5 
+		@test Point(5//1)   === pnt5
+		@test Point(5.0)    === pnt5
+		
+		@test Point(5, 0)   === pnt5
+		@test Point(5, 0//1)=== pnt5
+		@test Point(5, 0.0) === pnt5
+
+		@test Point(5//1, 0)    === pnt5
+		@test Point(5//1, 0//1) === pnt5
+		@test Point(5//1, 0.0)  === pnt5
+
+		@test Point(5.0, 0)    === pnt5
+		@test Point(5.0, 0//1) === pnt5
+		@test Point(5.0, 0.0)  === pnt5
 	
-	aPnt = Point(5.0, 0.0)
-	@test Point(5)       === aPnt
-	@test Point(5//1)    === aPnt
-	@test Point(5.0)     === aPnt
-	aPnt = Point(5.0, 1.0)	
-	@test Point(5, 1)       === aPnt
-	@test Point(5, 1//1)    === aPnt
-	@test Point(5//1, 1.0)  === aPnt
-	@test Point(5//1, 1)    === aPnt
-	@test Point(5//1, 1//1) === aPnt
-	@test Point(5//1, 1.0)  === aPnt	
-	@test Point(5.0, 1)     === aPnt
-	@test Point(5.0, 1//1)  === aPnt
-	@test Point(5.0, 1.0)   === aPnt
 	
-    #pnt0 = Point()
-    pnt1 = Point(5)
-    @test 0.0 == pnt1.Rho
-	@test isa(pnt1.Rho, Float64)
-    @test 5.0 == pnt1.Height
-    @test isa(pnt1.Height, Float64)
- 
-    pnt2 = Point(5, 0)
-    pnt3 = Point(5, 0.0)
-    pnt4 = Point(5.0, 0)
-    pnt5 = Point(5.0, 0.0)
-    @test pnt1.Height == pnt2.Height 
-    @test pnt2.Height == pnt3.Height
-    @test pnt3.Height == pnt4.Height
-    @test pnt4.Height == pnt5.Height
+		@test Point(5, 1)   === pnt51
+		@test Point(5, 1//1)=== pnt51
+		@test Point(5, 1.0) === pnt51
 
-    @test pnt1.Rho == pnt2.Rho  
-    @test pnt2.Rho == pnt3.Rho
-    @test pnt3.Rho == pnt4.Rho
-    @test pnt4.Rho == pnt5.Rho
+		@test Point(5//1, 1)    === pnt51
+		@test Point(5//1, 1//1) === pnt51
+		@test Point(5//1, 1.0)  === pnt51
 
-    # pnt6 = G.setRho(pnt5, 1)
-    # @test pnt6.Height == pnt5.Height 
-    # @test pnt6.Rho != pnt5.Rho 
+		@test Point(5.0, 1)    === pnt51
+		@test Point(5.0, 1//1) === pnt51
+		@test Point(5.0, 1.0)  === pnt51	
+		
+		# pnt6 = G.setRho(pnt5, 1)
+		# @test pnt6.Height == pnt5.Height 
+		# @test pnt6.Rho != pnt5.Rho 
 
-    # pnt6 = G.setHeight(pnt5, 1)
-    # @test pnt6.Height != pnt5.Height 
-    # @test pnt6.Rho == pnt5.Rho 
-    
-    pnt6 = G.setRho!(pnt5, 5)
-    @test pnt6.Height == pnt5.Height 
-    @test pnt6.Rho == 5.0
+		# pnt6 = G.setHeight(pnt5, 1)
+		# @test pnt6.Height != pnt5.Height 
+		# @test pnt6.Rho == pnt5.Rho 
 
-    pnt6 = G.setHeight!(pnt5, 5)
-    @test pnt6.Height == 5.0
-    @test pnt6.Rho == pnt5.Rho 
+		pnt6 = G.setRho!(pnt5, 5)
+		@test pnt6.Height == pnt5.Height 
+		@test pnt6.Rho == 5.0
 
-
+		pnt6 = G.setHeight!(pnt5, 5)
+		@test pnt6.Height == 5.0
+		@test pnt6.Rho == pnt5.Rho 
 		end #testset
 
 println(); info("test `Cylinderical Detector`...")			
@@ -77,14 +86,18 @@ println(); info("test `Cylinderical Detector`...")
 	
     cyl0 = CylDetector(5)
 	cyl1 = Detector(5)
-    @test_throws ErrorException  cyl0.CryRadius = 1     
-	@test_throws ErrorException  cyl0.CryLength = 1   
-	@test_throws MethodError     CylDetector(1+1im,4)
-	@test_throws MethodError     CylDetector(5+1im,4)		
+    @test_throws ErrorException  cyl0.CryRadius = 1
+	@test_throws ErrorException  cyl0.CryLength = 1
+	@test_throws MethodError     CylDetector(1+0im,4)
+	@test_throws MethodError     CylDetector(4, 1+0im)
+	@test_throws MethodError     CylDetector(1+0im, 1+0im)
+	@test_throws AssertionError  CylDetector(0)
+	@test_throws AssertionError  CylDetector(-5)
+	@test_throws AssertionError  CylDetector(5, -1)	
 	@test isa(cyl1, Detector)
 	@test isa(cyl1, CylDetector)
-    @test 5.0 == cyl1.CryRadius
-    @test 0.0 == cyl1.CryLength
+    @test cyl1.CryRadius === 5.0
+    @test cyl1.CryLength === 0.0
 
     cyl2 = Detector(5, 0)
     cyl3 = Detector(5, 0.0)

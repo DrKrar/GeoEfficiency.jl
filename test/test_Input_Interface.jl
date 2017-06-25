@@ -10,19 +10,20 @@
 @testset "Input_Interface" begin
 
 info("test `setSrcToPoint`...")    
-  @testset "setSrcToPoint" begin
-  
-    @test G.srcType == -1  # the default value
-	@test setSrcToPoint() == false
-	
-    @test setSrcToPoint(true) == true
-    @test G.srcType == 0
-	@test setSrcToPoint() == true	
-	
-    @test setSrcToPoint(false) == false
-    @test G.srcType == 1
-	@test setSrcToPoint() == false	
-	end
+	@testset "setSrcToPoint" begin
+		@test G.srcType == -1  				# the intial value == source type not defined
+		@test setSrcToPoint() == false      # not defined, set to not point
+
+		@test setSrcToPoint(true) == true
+		@test G.srcType == 0
+		@test setSrcToPoint() == true
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ")	== true	
+
+		@test setSrcToPoint(false) == false
+		@test G.srcType == 1
+		@test setSrcToPoint() == false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ")	== false	
+	end #testset
   
 info("test `getfloat`...")
   @testset "getfloat" begin  
@@ -75,6 +76,7 @@ info("test `reading from CSV`...")
 			@test  batch_info[3] == [0.0]
 			@test  batch_info[4] == [0.0]
 			@test  batch_info[5] == [0.0]
+			@test  read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], srcType === 0)
 		end
 
 		try
