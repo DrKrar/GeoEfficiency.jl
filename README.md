@@ -103,11 +103,11 @@ For more on the function and its methods prrfix the name of the function by `?`.
    > All are valid expressions.
 	
 ## Batch Calculation
-the pachage can be used to perform patch calculation by calling the one of the methods of the function `batch()`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
+The pachage can be used to perform batch calculations by calling one of the methods of the function `batch`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
 
 For example	`c:\users\yourusername\GeoEfficiency\results\`.
 
-The function `batch()` can be called withs or without arrangement. 
+The function `batch()` can be called with or without arrangement(s). 
 The without argument version relay on previously prepared Comma Saved  Values [CSV] files, that can be easily edit by Microsoft Excel, located in the `GeoEfficiency` folder.
 
 Those Comma Saved  Values [CSV] files are:-
