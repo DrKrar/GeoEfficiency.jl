@@ -91,15 +91,15 @@ poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 	
 		@test geoEff(awellDetector, Point(welldepth)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, prevfloat(holeradius))) ≈ 0.5
-		@test geoEff(awellDetector, Point(welldepth, nextflot(-holeradius))) ≈ 0.5
+		@test geoEff(awellDetector, Point(welldepth, nextfloat(-holeradius))) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, holeradius/2.0)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, -holeradius/2.0)) ≈ 0.5
 	
-		@test geoEff(awellDetector, Point(nextflot(welldepth))) ≈ 0.5
-		@test geoEff(awellDetector, Point(nextflot(welldepth), prevfloat(holeradius))) ≈ 0.5
-		@test geoEff(awellDetector, Point(nextflot(welldepth), prevfloat(-holeradius))) ≈ 0.5
-		@test geoEff(awellDetector, Point(nextflot(welldepth),  holeradius/2.0)) ≈ 0.5
-		@test geoEff(awellDetector, Point(nextflot(welldepth), -holeradius/2.0)) ≈ 0.5
+		@test geoEff(awellDetector, Point(nextfloat(welldepth))) ≈ 0.5
+		@test geoEff(awellDetector, Point(nextfloat(welldepth), prevfloat(holeradius))) ≈ 0.5
+		@test geoEff(awellDetector, Point(nextfloat(welldepth), prevfloat(-holeradius))) ≈ 0.5
+		@test geoEff(awellDetector, Point(nextfloat(welldepth),  holeradius/2.0)) ≈ 0.5
+		@test geoEff(awellDetector, Point(nextfloat(welldepth), -holeradius/2.0)) ≈ 0.5
 
 	end #for_testset	
 
