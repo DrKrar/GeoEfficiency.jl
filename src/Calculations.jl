@@ -73,7 +73,7 @@ give a warning if the disk is out of cylindrical detector the face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-	(detector.CryRadius > SurfacePnt.Rho + SrcRadius) || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
+	detector.CryRadius > SurfacePnt.Rho + SrcRadius || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
 	integrand(xRho) = xRho * GeoEff_Pnt(detector, setRho!(SurfacePnt, xRho))
 	return  integrate(integrand , 0.0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2
@@ -139,17 +139,21 @@ end #function
 
 """
 
-	geoEff(detector::RadiationDetector = RadiationDetector())
+	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 
-return the Geometrical Efficiency of the given detector or if no detector is supplied it ask for a detector from the `console`. 
-Any way prompt the user to input a source via the `console`.
+retrun the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source.
+
+Throw` an Error if the source location is inappropriate.
 
 !!! note
-    `Throw` an Error if the source location is inappropriate.
+    * If no detector is supplied, it ask for a detector from the `console`.
+    * if no souce describtion is provided, it prompt the user to input a source via the `console`.
+
 \n*****
 
 """
-geoEff(detector::RadiationDetector = RadiationDetector()) = geoEff(detector, source()...)
+geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
+geoEff(detector::RadiationDetector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
 
 
 """

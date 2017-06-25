@@ -17,9 +17,15 @@ countDetectors = 1;
 
 	calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
-calculate the Geometrical Efficiency of the detector `detector` and display it on the `console`.
-If no detector is supplied, it ask for a detector from the `console`.
-Any way it prompt the user to input a source via the `console`.
+calculate the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source and display it on the `console`.
+
+Throw` an Error if the source location is inappropriate.
+
+*similar:* `geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())`
+
+!!! note
+    * If no detector is supplied, it ask for a detector from the `console`.
+    * if no souce describtion is provided, it prompt the user to input a source via the `console`.
 
 """
 function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())

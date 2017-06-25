@@ -20,7 +20,7 @@ const srcLengths = "srcLengths.csv";
 global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
 
 
-#------------------SetSrcToPoint--------------------------------------
+#------------------setSrcToPoint--------------------------------------
 
 """
 
@@ -40,17 +40,14 @@ end
 
 """
 
-    SetSrcToPoint(prompt::AbstractString)	
+    setSrcToPoint(prompt::AbstractString)	
 
 prompt the user to set the sources type if it were not already set before. 
 
 """
-function SetSrcToPoint(prompt::AbstractString)	
-	global srcType 
-	if srcType == -1
-	    setSrcToPoint(input(prompt) |> lowercase != "n")
-	end				  
-	return srcType == 0				  
+function setSrcToPoint(prompt::AbstractString)	
+	-1 === srcType && setSrcToPoint(input(prompt) |> lowercase != "n")
+	return srcType === 0				  
 end
 
 
@@ -62,11 +59,8 @@ Set the source type to point if it were not already set before.
 
 """
 function setSrcToPoint()
-	global  srcType 
-	if srcType == -1
-	    setSrcToPoint(false)
-	end				  
-	return srcType == 0		
+	-1 === srcType && setSrcToPoint(false)
+	return srcType === 0		
 end
 
 """
@@ -80,7 +74,7 @@ setSrcToPoint
 
 #------------------input-----------------------------------------------
 
-""""# UnExported
+""" # UnExported
 
     input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 
@@ -99,7 +93,7 @@ function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 end # function
 
 
-#-------------------getfloat----------------------------------------------
+#-------------------_getfloat & getfloat----------------------------------------------
 
 """
 
@@ -132,25 +126,31 @@ julia> getfloat("input a number:",value="e")
 
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
-
-    "nothing" == value ? value = input(prompt) : nothing
-    "" == value && return 0.0		# just pressing return is interapted as <0.0>
-    val::Float64 = 0.0
 	try
-        val =  parse(value) |> eval |> float
-        @assert from <= val < to
-        return val
+		"nothing" == value ? value = input(prompt) : nothing
+		"" == value && return 0.0		# just pressing return is interapted as <0.0>
+		val::Float64 =  parse(value) |> eval |> float
+		@assert from <= val < to
+		return val
 
     catch err
         if isa(err, AssertionError) 
-            warn("provid a number in the semi open interval [$from, $to[.")
+			warn("provid a number in the semi open interval [$from, $to[.")
         else   
-	        warn("provid a valid numerical value!")
+			warn("provid a valid numerical value!")
         end #if 
         
         return getfloat(prompt, from, to)
 
     end #try
+end	
+
+"""
+
+helper function for `getfloat`
+
+"""
+function _getfloat(prompt::AbstractString, from::Float64, to::Float64; value::AbstractString) ::Float64
 end	#function
 
 
@@ -274,7 +274,7 @@ function read_batch_info(datadir::AbstractString,
 					  srcLengths::AbstractString)
 
 	info("The Batch Mode is Starting....")
-	isPoint = SetSrcToPoint("\n Is it a point source {Y|n} ? ")				  
+	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ? ")				  
 
 	info("Read data from CSV files at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir) 
