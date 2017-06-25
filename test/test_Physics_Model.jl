@@ -78,7 +78,7 @@ info("test `Point`...")
 		@test pnt6.Rho == pnt5.Rho 
 		end #testset
 
-println(); info("test `Cylinderical Detector`...")			
+print("\n\t"); info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
   
 	@test G.id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
@@ -120,7 +120,7 @@ println(); info("test `Cylinderical Detector`...")
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
 	end #testset
 
-println(); info("test `Borehole Detector`...")	
+print("\n\t"); info("test `Borehole Detector`...")	
   @testset "Borehole Detector" begin 
 	
 	@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
@@ -160,7 +160,7 @@ println(); info("test `Borehole Detector`...")
  
 		end #testset
 
-println(); info("test `Well-type Detector`...")	
+print("\n\t"); info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
     @test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
   	@test show(WellDetector(5,3,2,1)) == nothing  
@@ -201,7 +201,7 @@ println(); info("test `Well-type Detector`...")
  
 		end #testset	
 		
-println(); info("test `RadiationDetector`...")    
+print("\n\t"); info("test `RadiationDetector`...")    
 	@testset "RadiationDetector" begin 
 	
 		@test_throws MethodError  Detector(1+1im)
