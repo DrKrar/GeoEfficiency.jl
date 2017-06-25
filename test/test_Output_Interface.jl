@@ -119,4 +119,5 @@ info("test `batch`...")
 		@test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0]) == nothing
 		@test batch([CylDetector(eps()), BoreDetector(5,4,3), WellDetector(5,4,3, 2)], [0.0], [0.0], [0.0],[0.0],false) == nothing
 		end  #begin_testset
+prinln()
 end  #begin_testset

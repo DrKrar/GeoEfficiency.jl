@@ -277,5 +277,6 @@ info("test `source`...")
 		@test_throws AssertionError  BoreDetector(5,dim, 1)
 		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
 
-		end #testset_for		
+		end #testset_for
+prinln()
 end #tesset

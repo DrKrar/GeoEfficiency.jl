@@ -182,5 +182,5 @@ print("\n\t"); info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
 		@test_throws ErrorException getDetectors(detector_info_array,false)
     end # testset
-	
+prinln()
 end # testset
