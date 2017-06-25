@@ -88,8 +88,7 @@ input a number:
 
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
-    print_with_color(incolor, prompt)
-    chomp(readline())
+    print_with_color(incolor, prompt); chomp(readline())
 end # function
 
 
@@ -144,14 +143,6 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 
     end #try
 end	
-
-"""
-
-helper function for `getfloat`
-
-"""
-function _getfloat(prompt::AbstractString, from::Float64, to::Float64, value::AbstractString) ::Float64
-end	#function
 
 
 #--------------------detector_info_from_csvFile--------------------------------------

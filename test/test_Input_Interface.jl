@@ -60,7 +60,7 @@ info("test `reading from CSV`...")
 		Lengthsfile  = "Lengthsfile"
 		setSrcToPoint(true) == true
 
-		try
+		#try
 		print("\t"); info("Detectors write and read  - input type{Int}")	
 			@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 			@test  Set(G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
@@ -70,17 +70,17 @@ info("test `reading from CSV`...")
 		    @test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 		print("\t"); info("READ_BATCH_INFO")	
-		    batch_info = read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+		    batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  Set(batch_info[1]) == Set(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 			@test  batch_info[3] == [0.0]
 			@test  batch_info[4] == [0.0]
 			@test  batch_info[5] == [0.0]
 			@test  batch_info[6] == (srcType === 0)
-			@test  read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], srcType === 0)
-		end
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], srcType === 0)
+		#end
 
-		try
+		#try
 		print("\t"); info("rewrite, read and sort  - input type{Int}")
 			@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 			@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
@@ -116,7 +116,7 @@ info("test `reading from CSV`...")
 		print("\t"); info("Detectors - missing file\n")	
 			rm(datadirectory, recursive=true)
 			@test_throws G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) SystemError
-		end #try	
+		#end #try	
 
 		try	rm(datadirectory, recursive=true)	end
 		
