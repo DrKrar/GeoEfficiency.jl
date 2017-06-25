@@ -76,8 +76,8 @@ info("test `reading from CSV`...")
 			@test  batch_info[3] == [0.0]
 			@test  batch_info[4] == [0.0]
 			@test  batch_info[5] == [0.0]
-			@test  batch_info[6] == (srcType === 0)
-			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], srcType === 0)
+			@test  batch_info[6] == ( G.srcType === 0)
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === 0)
 		#end
 
 		#try
