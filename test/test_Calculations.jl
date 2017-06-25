@@ -23,9 +23,10 @@ poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
-	str = -20:0.1:30, 
-	nd  = -20:0.1:30
-
+	str = -20:1.0:30, 
+	nd  = -20:1.0:30
+	str === nd &&  continue
+	
 		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=1.0e-13 
 		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=1.0e-13 
 		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=1.0e-13 
