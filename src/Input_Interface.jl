@@ -150,7 +150,7 @@ end
 helper function for `getfloat`
 
 """
-function _getfloat(prompt::AbstractString, from::Float64, to::Float64; value::AbstractString) ::Float64
+function _getfloat(prompt::AbstractString, from::Float64, to::Float64, value::AbstractString) ::Float64
 end	#function
 
 
