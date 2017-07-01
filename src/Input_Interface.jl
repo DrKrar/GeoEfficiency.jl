@@ -71,7 +71,7 @@ set the source typr to Point if `yes = true` else if  `yes = false` set the sour
 	* The user can use this function to change the type latter or set it before calculation.
 	* The source type is set when the fist time asked for source.
 
-	"
+"""
 function setSrcToPoint(yes::Bool) ::Bool
 	global srcType = yes ?	srcPoint: begin srcUnknown === srcType ? 
 									srcNotPoint : 
@@ -87,7 +87,7 @@ function setSrcToPoint(prompt::AbstractString)
 	if srcType != srcUnknown
 		setSrcToPoint()
 	else
-		setSrcToPoint(input(prompt) |> lowercase != "n")
+		setSrcToPoint(input(prompt) |> lowercase != "n" )
 	end
 end
 
