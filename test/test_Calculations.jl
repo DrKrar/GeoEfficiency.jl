@@ -57,7 +57,7 @@
 		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRaduis), nextfloat(cryRaduis)))
 	end #for_testset
 	
-	print("\t"); info("special cases for Borehole detector")
+	print("\n\t"); info("special cases for Borehole detector")
 	@testset "point at the surface of Borehole detector of cryRaduis $cryRaduis and height $height" for 
 	cryRaduis = 1.0:0.1:11.0, 
 	height    = 1.0:0.1:11.0, 
@@ -81,7 +81,7 @@
 		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
 	end #testset_for
 	
-	print("\t"); info("special cases for well detector")
+	print("\n\t"); info("special cases for well detector")
 	@testset "point at the surface of Well detectors of cryRaduis $cryRaduis and height $height" for 
 	cryRaduis = 1.0:0.1:11.0, 
 	height    = 1.0:0.1:11.0, 
@@ -110,7 +110,7 @@ end #testset
 
 @testset "scaling test" begin
 
-	print("\t"); info("statrting scaling test cylinderical detector with point source...")
+	print("\n\t"); info("statrting scaling test cylinderical detector with point source...")
 	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius" for 
 		cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		j=2:100, 	# j > 1
@@ -125,7 +125,7 @@ end #testset
 		@test geoEff(acylDetector, naxPnt) ≈ geoEff(acylDetectork, naxPntk)		# non-axial point
 	end #for_testset
 	
-	print("\t"); info("statrting scaling test Borehole detector with point source...")
+	print("\n\t"); info("statrting scaling test Borehole detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 		cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
@@ -142,7 +142,7 @@ end #testset
 		end #for
 	end #for_testset
 
-	print("\t"); info("statrting scaling test Well-type detector with point source...")
+	print("\n\t"); info("statrting scaling test Well-type detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 		cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 		holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
@@ -161,7 +161,7 @@ end #testset
 	
 
 	
-	@testset "\tfunction `geoEff on CylDetector(5,$cryLength)" for 
+	@testset "function `geoEff on CylDetector(5,$cryLength)" for 
 	cryLength=[0,1,5,10]
 	
 		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1))    < 0.5
@@ -185,10 +185,10 @@ end #testset
 		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1.0))  < 0.5
      end #testset_for
 	 
-	@testset "\tfunction `geoEff` on WellDetector(5, 4, $holeRadius, $holeDepth)" for 
+	@testset "function `geoEff` on WellDetector(5, 4, $holeRadius, $holeDepth)" for 
 	holeRadius = 3:0.5:4, 
-	holeDepth  = 0:1.0:3
-	mam, mim = holeDepth <= 1 ? (1.0, 0.5) : (0.5, 0.0)
+	holeDepth  = 0.1:1.0:3.1
+	mim, mam = holeDepth => 1 ? (0.5, 1.0) : (0.0, 0.5)
 	
 		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= 1.0e-16	
 		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam
