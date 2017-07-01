@@ -188,7 +188,7 @@ end #testset
 	@testset "function `geoEff` on WellDetector(5, 4, $holeRadius, $holeDepth)" for 
 	holeRadius = 3:0.5:4, 
 	holeDepth  = 0.1:1.0:3.1
-	mim, mam = holeDepth => 1 ? (0.5, 1.0) : (0.0, 0.5)
+	mim, mam = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
 	
 		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= 1.0e-16	
 		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam
