@@ -45,7 +45,7 @@ Return the value of `srcType` crosponding to `x`.
 function typeofSrc(x::Int)
 	if x < 0
 		SrcType(-1)
-	elseif x => 4
+	elseif x  > 4
 		SrcType(4)
 	else
 		SrcType(x)
