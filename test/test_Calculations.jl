@@ -213,6 +213,6 @@ end #testset
 		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   < 1.0
 		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  < 1.0
 		end #testset_for
-prinln()
+println()
 end #testset
 

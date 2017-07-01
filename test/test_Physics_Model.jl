@@ -254,7 +254,7 @@ info("test `source`...")
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
 		end
 		
-	@testset "\tInvalid Detector Dimention $dim"  for dim =  
+	@testset "Invalid Detector Dimention $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
 		@test_throws AssertionError	 CylDetector(dim)  
@@ -278,5 +278,5 @@ info("test `source`...")
 		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
 
 		end #testset_for
-prinln()
+println()
 end #tesset
