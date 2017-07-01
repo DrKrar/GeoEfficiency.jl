@@ -20,7 +20,7 @@
 	poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 
 
-	print("\t"); info("polynomial test for the function `integrate`")
+	print("\n\t"); info("polynomial test for the function `integrate`")
 	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
@@ -34,7 +34,7 @@
 		
 	end #testset_begin
 	
-	print("\t"); info("special cases for cylinderical detector; very restrict test")
+	print("\n\t"); info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of cryRaduis = $cryRaduis" for 
 		cryRaduis = 1.0:0.1:11.0
 		acylDetector = CylDetector(cryRaduis)

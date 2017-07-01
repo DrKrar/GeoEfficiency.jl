@@ -10,7 +10,7 @@
 	  -  srcNotPoint = 4.
   
  *  new `typeofSrc()` method to return the current source type. 
- *  new `typeofSrc(::Int)` method to convert `Int` to source type. 
+ *  new `typeofSrc(::Int)` method to convert `Int` and modify the current source type. 
  *  now `setSrcToPoint()` only retrun whether the source type is point or not.
  *  `setSrcToPoint(false)` set the source to `srcNotPoint`. the source type is leaved as it if  it were `srcLine`, `srcDisk`, or `srcVolume`.
 
