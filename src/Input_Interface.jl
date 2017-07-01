@@ -87,7 +87,7 @@ prompt the user to set the sources type if it were not already set before.
 """
 function setSrcToPoint(prompt::AbstractString)	
 	if srcType != srcUnknown
-		setSrcToPoint(false)
+		setSrcToPoint()
 	else
 		setSrcToPoint(input(prompt) |> lowercase != "n" )
 	end

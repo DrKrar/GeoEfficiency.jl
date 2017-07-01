@@ -109,7 +109,7 @@ print("\n\t"); info("test `reading from CSV`...")
 		@test  batch_info[6] == ( G.srcType === G.srcPoint)
 		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
 
-	print("\n\t\t"); nfo("rewrite, read and sort  - input type{Int}")
+	print("\n\t\t"); info("rewrite, read and sort  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		
