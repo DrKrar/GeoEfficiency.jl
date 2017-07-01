@@ -9,22 +9,53 @@
 
 @testset "Input_Interface" begin
 
-print("\t"); info("test `setSrcToPoint`...")    
+print("\t"); info("test `setSrcToPoint` & `typeofSrc`...")
 	@testset "setSrcToPoint" begin
-		@test G.srcType == -1  				# the intial value == source type not defined
-		@test setSrcToPoint() == false      # not defined, set to not point
+		@test G.srcType === G.srcUnknown  	# the intial value
+		@test typeofSrc() === G.srcUnknown  	# the intial value
+		@test setSrcToPoint() === false      # not defined, set to not point
 
-		@test setSrcToPoint(true) == true
-		@test G.srcType == 0
-		@test setSrcToPoint() == true
-		@test setSrcToPoint("\n Is it a point source {Y|n} ? ")	== true	
+		@test setSrcToPoint(false) === false
+		@test G.srcType == G.srcNotPoint
+		@test typeofSrc() === G.srcNotPoint
+		@test setSrcToPoint() === false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false	
 
-		@test setSrcToPoint(false) == false
-		@test G.srcType == 1
-		@test setSrcToPoint() == false
-		@test setSrcToPoint("\n Is it a point source {Y|n} ? ")	== false	
+		@test setSrcToPoint(true) === true
+		@test G.srcType === G.srcPoint
+		@test typeofSrc() === G.srcPoint
+		@test setSrcToPoint() === true
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === true	
+
+		@test typeofSrc(-5) === G.srcUnknown
+		@test typeofSrc(-1) === G.srcUnknown
+		@test setSrcToPoint() === false
+		#@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false # require input
+		
+		@test typeofSrc(0) === G.srcPoint
+		@test setSrcToPoint() === true
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === true
+
+		@test typeofSrc(1) === G.srcLine
+		@test setSrcToPoint() === false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		
+		@test typeofSrc(2) === G.srcDisk
+		@test setSrcToPoint() === false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		
+		@test typeofSrc(3) === G.srcVolume
+		@test setSrcToPoint() === false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		
+		@test typeofSrc(4) === G.srcNotPoint
+		@test setSrcToPoint() === false
+		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		
+		@test typeofSrc(5) === G.srcNotPoint
+		@test setSrcToPoint() === false
 	end #testset
-  
+
 print("\t"); info("test `getfloat`...")
   @testset "getfloat" begin  
 print("\t"); info("test `getfloat` with different ways to input numbers...")    

@@ -274,8 +274,8 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 	pnt::Point = deepcopy(aWellPnt)
 	Height = pnt.Height - detector.HoleDepth
 
-	detin::CylDetector = CylDetector(detector.HoleRadius)
-	detout::CylDetector = CylDetector(detector.CryRadius)
+	detin::CylDetector  = CylDetector(detector.HoleRadius, detector.HoleDepth)
+	detout::CylDetector = CylDetector(detector.CryRadius , detector.CryLength)
 	setHeight!(pnt, Height); #0.0 == SrcRadius && setRho!(pnt, 0.0)
 
 	if Height > 0.0							# the source as a whole out of the detector

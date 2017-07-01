@@ -6,26 +6,27 @@
 #
 #**************************************************************************************
 
-function poly(z::Float64, coff::Vector{Float64})
-	res::Float64 = 0.0
-	for i= 1:length(coff)
-		res += coff[i]*z^(i-1)
-	end #for
-	return res
-end #function_poly
-poly0(z::Float64) = poly(z, [1.0])
-poly1(z::Float64) = poly(z, [1.0, 2.0])
-poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])	
-
 @testset "Calculations" begin
+
+	function poly(z::Float64, coff::Vector{Float64})
+		res::Float64 = 0.0
+		for i= 1:length(coff)
+			res += coff[i]*z^(i-1)
+		end #for
+		return res
+	end #function_poly
+	poly0(z::Float64) = poly(z, [1.0])
+	poly1(z::Float64) = poly(z, [1.0, 2.0])
+	poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
+
 
 	print("\t"); info("polynomial test for the function `integrate`")
 	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
-	str = -20:1.0:30, 
-	nd  = -20:1.0:30
-	str === nd &&  continue
+	str = -20.0:1.0:30.0, 
+	nd  = -20.0:1.0:30.0
+	#str === nd &&  continue
 	
 		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=1.0e-13 
 		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=1.0e-13 
@@ -45,13 +46,13 @@ poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 		@test geoEff(acylDetector, Point(0,        -cryRaduis/2.0)) ≈ 0.5
 
 		@test geoEff(acylDetector, Point(eps())) ≈ 0.5
-		@test geoEff(acylDetector, Point(eps(), prevfloat(cryRaduis)))  <= 0.5
-		@test geoEff(acylDetector, Point(eps(), nextfloat(-cryRaduis))) <= 0.5
+		@test 0.0 < geoEff(acylDetector, Point(eps(), prevfloat(cryRaduis)))  <= 0.5
+		@test 0.0 < geoEff(acylDetector, Point(eps(), nextfloat(-cryRaduis))) <= 0.5
 		@test geoEff(acylDetector, Point(eps(),          cryRaduis/2.0)) ≈ 0.5
 		@test geoEff(acylDetector, Point(eps(),         -cryRaduis/2.0)) ≈ 0.5
 
 		@test geoEff(acylDetector, Point(eps(cryRaduis), cryRaduis))  ≈ .25
-		@test geoEff(acylDetector, Point(cryRaduis, cryRaduis))  < .25		
+		@test 0.0 < geoEff(acylDetector, Point(cryRaduis, cryRaduis))  < .25		
 		@test_throws ErrorException geoEff(acylDetector, Point(eps(cryRaduis), nextfloat(cryRaduis)))
 		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRaduis), nextfloat(cryRaduis)))
 	end #for_testset
@@ -59,36 +60,36 @@ poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 	print("\t"); info("special cases for Borehole detector")
 	@testset "point at the surface of Borehole detector of cryRaduis $cryRaduis and height $height" for 
 	cryRaduis = 1.0:0.1:11.0, 
-	height = 1.0:0.1:11.0, 
-	k      = 1.1:0.1:11.0
+	height    = 1.0:0.1:11.0, 
+	k         = 1.1:0.1:11.0
 	
 	holeradius::Float64 = cryRaduis/k		# k > 1
-	aboreDetector = BoreDetector(cryRaduis,height,holeradius)
+	aboreDetector = BoreDetector(cryRaduis, height, holeradius)
 	
-		@test  geoEff(aboreDetector, Point(0.0)) > 0.0
-		@test  geoEff(aboreDetector, Point(-0.1)) > 0.0 ### invert Detector
-		@test_skip  geoEff(aboreDetector, Point(height/2.0)) > 0.0
-		@test_skip  geoEff(aboreDetector, Point(-height/2.0)) > 0.0
+		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0
+		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
+		@test_skip  0.0 < geoEff(aboreDetector, Point(height/2.0))  < 1.0
+		@test_skip  0.0 < geoEff(aboreDetector, Point(-height/2.0)) < 1.0
 		@test_skip  geoEff(aboreDetector, Point(height/2.0)) ≈ geoEff(aboreDetector, Point(-height/2.0))
 
-		@test_skip   geoEff(aboreDetector, Point(height)) > 0.0
-		@test_skip   geoEff(aboreDetector, Point(-height)) > 0.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(height))  < 1.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(-height)) < 1.0
 		@test_skip   geoEff(aboreDetector, Point(height)) ≈ geoEff(aboreDetector, Point(-height))
 		
-		@test_skip   geoEff(aboreDetector, Point(1.5*height)) > 0.0
-		@test_skip   geoEff(aboreDetector, Point(-1.5*height)) > 0.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(1.5*height))   < 1.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(-1.5*height))  < 1.0
 		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
 	end #testset_for
 	
 	print("\t"); info("special cases for well detector")
 	@testset "point at the surface of Well detectors of cryRaduis $cryRaduis and height $height" for 
 	cryRaduis = 1.0:0.1:11.0, 
-	height = 1.0:0.1:11.0, 
-	k      = 1.1:0.1:11.0
+	height    = 1.0:0.1:11.0, 
+	k         = 1.1:0.1:11.0
 		
 	holeradius::Float64 = cryRaduis/k		# k > 1
 	welldepth::Float64 = height/k		# k > 1
-	awellDetector = WellDetector(cryRaduis,height,holeradius, welldepth)
+	awellDetector = WellDetector(cryRaduis, height, holeradius, welldepth)
 	
 		@test geoEff(awellDetector, Point(welldepth)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, prevfloat(holeradius))) ≈ 0.5
@@ -162,49 +163,55 @@ end #testset
 	
 	@testset "\tfunction `geoEff on CylDetector(5,$cryLength)" for 
 	cryLength=[0,1,5,10]
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1))    < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1//2)) < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, pi))   < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1.0))  < 2pi
+	
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1))    < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1//2)) < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, pi))   < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1, 1.0))  < 0.5
 
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1))    < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1//2)) < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, pi))   < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1.0))  < 2pi
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1))    < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1//2)) < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, pi))   < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1//2, 1.0))  < 0.5
 
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1))    < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1//2)) < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, pi))   < 2pi #
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1.0))  < 2pi
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1))    < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1//2)) < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, pi))   < 0.5 #
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),e, 1.0))  < 0.5
 
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1))    < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1//2)) < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, pi))   < 2pi
-		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1.0))  < 2pi
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1))    < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1//2)) < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, pi))   < 0.5
+		@test 0.0 < geoEff(Detector(5,cryLength),(Point(1),1.0, 1.0))  < 0.5
      end #testset_for
 	 
 	@testset "\tfunction `geoEff` on WellDetector(5, 4, $holeRadius, $holeDepth)" for 
 	holeRadius = 3:0.5:4, 
 	holeDepth  = 0:1.0:3
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1.0))  < 4pi
+	mam, mim = holeDepth <= 1 ? (1.0, 0.5) : (0.5, 0.0)
+	
+		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= 1.0e-16	
+		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam
 
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1))    < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1//2)) < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, pi))   < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1.0))  < 4pi
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1.0))  < 1.0
 
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1))    < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1//2)) < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  < 4pi
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1))    < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1//2)) < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, pi))   < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1.0))  < 1.0
 
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   < 4pi
-		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  < 4pi
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1))    < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1//2)) < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  < 1.0
+
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   < 1.0
+		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  < 1.0
 		end #testset_for
 prinln()
 end #testset

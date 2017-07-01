@@ -23,12 +23,13 @@ using Compat
 
 export # Config
     about,
-		
+
  # Input_Interface
-	setSrcToPoint,
 	getfloat, 
 	getDetectors, 
-	
+	setSrcToPoint,
+	typeofSrc,
+
  # Physics_Model	
 	Point, 
 	source,
@@ -36,10 +37,10 @@ export # Config
 	CylDetector, 
 	BoreDetector,
 	WellDetector,
-	
+
  # Calculations
 	geoEff, 
-	
+
  # Output_Interface	
 	calc, 
 	calcN, 

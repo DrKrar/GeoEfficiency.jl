@@ -102,7 +102,7 @@ If the global `GeoEfficiency_isPoint` is set to true both `SrcRadius` and `SrcLe
 """ 
 function source(anchorPnt::Point = Point())
     
-	setSrcToPoint() && return (anchorPnt, 0.0, 0.0)
+	setSrcToPoint(false) && return (anchorPnt, 0.0, 0.0)
 
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
     if 0.0 != SrcRadius

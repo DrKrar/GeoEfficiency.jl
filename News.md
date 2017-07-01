@@ -1,6 +1,21 @@
 # GeoEfficiency Package Release Notes
 
-### Version 0.9
+### Version 0.9.1-Dev
+ *  new @enum SrcType where add to descrbe the source type
+	  -  srcUnknown = -1, 
+	  -  srcPoint = 0, 
+	  -  srcLine = 1, 
+	  -  srcDisk = 2, 
+	  -  srcVolume = 3, 
+	  -  srcNotPoint = 4.
+  
+ *  new `typeofSrc()` method to return the current source type. 
+ *  new `typeofSrc(::Int)` method to convert `Int` to source type. 
+ *  now `setSrcToPoint()` only retrun whether the source type is point or not.
+ *  `setSrcToPoint(false)` set the source to `srcNotPoint`. the source type is leaved as it if  it were `srcLine`, `srcDisk`, or `srcVolume`.
+
+ 
+### Version 0.9.0
  *  now the function `calcN` will not terminate when a calculation error happened.
  *  creat the spectial function `CONFIG` to configure the package.
  *  label the function `CONFIG` as experimental and should not used interactively.

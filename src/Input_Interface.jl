@@ -17,59 +17,79 @@ const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
-global srcType = -1 # -1 for undefined, 0 for point source, 1 for non-point source
+@enum SrcType srcUnknown=-1 srcPoint=0 srcLine=1 srcDisk=2 srcVolume=3 srcNotPoint =4
+global srcType = srcUnknown
 
+#------------------typeofSrc--------------------------------------
+"""
+    typeofSrc()
+
+Return the current value of `srcType`.
+
+"""
+typeofSrc() = srcType  # srcType !== SrcType, but
+
+"""
+    typeofSrc(x::Int)
+
+Return the value of `srcType` crosponding to `x`.
+
+  * srcUnknown = -1 and any negative integer treateted as so, 
+  *  srcPoint = 0, 
+  *  srcLine = 1, 
+  *  srcDisk = 2, 
+  *  srcVolume = 3, 
+  *  srcNotPoint = 4 and any greater than 4 integer treateted as so.
+
+"""
+function typeofSrc(x::Int)
+	if x < 0
+		SrcType(-1)
+	elseif x => 4
+		SrcType(4)
+	else
+		SrcType(x)
+	end
+end #fnuction
 
 #------------------setSrcToPoint--------------------------------------
+
+"""
+    setSrcToPoint() 
+
+Return whether the source type is point or not.
+"""
+setSrcToPoint() = srcType === srcPoint
 
 """
 
     setSrcToPoint(yes::Bool)
 
-Globally set the sources type to be considered either a point(s) or non-point(s). 
+set the source typr to Point if `yes = true` else if  `yes = false` set the source type to non-point if it was not already set to other non point type before.
 
 !!! note
-	The user can use this function to change the type latter or set it before calculation.
+	* The user can use this function to change the type latter or set it before calculation.
+	* The source type is set when the fist time asked for source.
 
-"""
+	"
 function setSrcToPoint(yes::Bool) ::Bool
-    global srcType = ifelse(yes, 0, 1)
+	global srcType = yes ?	srcPoint: begin srcUnknown === srcType ? 
+									srcNotPoint : 
+									srcType end
 	return yes
 end
 
-
 """
-
     setSrcToPoint(prompt::AbstractString)	
-
 prompt the user to set the sources type if it were not already set before. 
-
 """
 function setSrcToPoint(prompt::AbstractString)	
-	-1 === srcType && setSrcToPoint(input(prompt) |> lowercase != "n")
-	return srcType === 0				  
+	if srcType != srcUnknown
+		setSrcToPoint()
+	else
+		setSrcToPoint(input(prompt) |> lowercase != "n")
+	end
 end
-
-
-"""
-
-    setSrcToPoint()
-
-Set the source type to point if it were not already set before.
-
-"""
-function setSrcToPoint()
-	-1 === srcType && setSrcToPoint(false)
-	return srcType === 0		
-end
-
-"""
-
-!!! note
-    The source type is set when the fist time asked for source.
-
-"""
-setSrcToPoint
 
 
 #------------------input-----------------------------------------------
@@ -265,7 +285,7 @@ function read_batch_info(datadir::AbstractString,
 					  srcLengths::AbstractString)
 
 	info("The Batch Mode is Starting....")
-	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ? ")				  
+	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
 	info("Read data from CSV files at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir) 
