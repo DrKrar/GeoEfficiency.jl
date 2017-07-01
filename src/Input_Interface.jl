@@ -32,7 +32,7 @@ typeofSrc() = srcType  # srcType !== SrcType, but
 """
     typeofSrc(x::Int)
 
-Return the value of `srcType` crosponding to `x`.
+set and return the value of `srcType` crosponding to `x`.
 
   * srcUnknown = -1 and any negative integer treateted as so, 
   *  srcPoint = 0, 
@@ -43,13 +43,13 @@ Return the value of `srcType` crosponding to `x`.
 
 """
 function typeofSrc(x::Int)
-	if x < 0
-		SrcType(-1)
-	elseif x  > 4
-		SrcType(4)
-	else
-		SrcType(x)
-	end
+	global srcType = if x < 0
+					SrcType(-1)
+				elseif x  > 4
+					SrcType(4)
+				else
+					SrcType(x)
+				end
 end #fnuction
 
 #------------------setSrcToPoint--------------------------------------
@@ -65,10 +65,12 @@ setSrcToPoint() = srcType === srcPoint
 
     setSrcToPoint(yes::Bool)
 
-set the source typr to Point if `yes = true` else if  `yes = false` set the source type to non-point if it was not already set to other non point type before.
+set the source type to Point if `yes = true` else if  `yes = false` set the source type to non-point. However,if it was not already set to other non point type before.
 
 !!! note
-	* The user can use this function to change the type latter or set it before calculation.
+
+    * The user can use this function to change the type latter or set it before calculation.
+	
 	* The source type is set when the fist time asked for source.
 
 """

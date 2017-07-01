@@ -106,8 +106,8 @@ print("\t"); info("test `reading from CSV`...")
 		@test  batch_info[3] == [0.0]
 		@test  batch_info[4] == [0.0]
 		@test  batch_info[5] == [0.0]
-		@test  batch_info[6] == ( G.srcType === 0)
-		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === 0)
+		@test  batch_info[6] == ( G.srcType === G.srcPoint)
+		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
 
 	print("\t\t"); info("rewrite, read and sort  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
@@ -213,5 +213,5 @@ print("\n\t"); info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
 		@test_throws ErrorException getDetectors(detector_info_array,false)
     end # testset
-prinln()
+println()
 end # testset
