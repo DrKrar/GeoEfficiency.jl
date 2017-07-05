@@ -330,7 +330,7 @@ function _batch(::Type{Val{false}},
 					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 					
 					print_with_color(:yellow,cellLabel)
-					printl n(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
+					println(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
 					println()
 					println(" - The detector Geometrical Efficiency = ", calculatedEff)
 					print_with_color(:red, repeat(" =",36),"\n")
