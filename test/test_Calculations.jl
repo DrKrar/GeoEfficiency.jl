@@ -33,11 +33,11 @@
 		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=1.0e-13 
 		
 	end #testset_begin
-	
+
 	print("\n\t"); info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of cryRaduis = $cryRaduis" for 
-		cryRaduis = 1.0:0.1:11.0
-		acylDetector = CylDetector(cryRaduis)
+	cryRaduis    = 1.0:0.1:11.0
+	acylDetector = CylDetector(cryRaduis)
 
 		@test geoEff(acylDetector, Point(0)) ≈ 0.5
 		@test geoEff(acylDetector, Point(0, prevfloat(cryRaduis)))  ≈ 0.5
@@ -62,7 +62,7 @@
 	cryRaduis = 1.0:0.1:11.0, 
 	height    = 1.0:0.1:11.0, 
 	k         = 1.1:0.1:11.0
-	
+
 	holeradius::Float64 = cryRaduis/k		# k > 1
 	aboreDetector = BoreDetector(cryRaduis, height, holeradius)
 	
@@ -112,9 +112,9 @@ end #testset
 
 	print("\n\t"); info("statrting scaling test cylinderical detector with point source...")
 	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius" for 
-		cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-		j=2:100, 	# j > 1
-		k=2:100
+	cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+	j=2:100, 	# j > 1
+	k=2:100
 		
 		acylDetector  = CylDetector(  cryRadius)
 		acylDetectork = CylDetector(k*cryRadius)
@@ -144,9 +144,9 @@ end #testset
 
 	print("\n\t"); info("statrting scaling test Well-type detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
-		cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-		holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
-		holeRadius > cryRadius && continue	
+	cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
+	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
+	holeRadius > cryRadius && continue	
 		
 		for j=2:100, k=2:100
 			awellDetector  = WellDetector(  cryRadius,   j,   holeRadius,   j/2.0)
@@ -215,4 +215,3 @@ end #testset
 		end #testset_for
 println()
 end #testset
-
