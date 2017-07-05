@@ -1,7 +1,14 @@
-using GeoEfficiency
-using Documenter
+#include("E:\\Users\\DrKra\\.julia\\v0.7\\GeoEfficiency\\docs\\make.jl")
+cdir= pwd()
+info("Working Directory: ", @__DIR__)
+cd(@__DIR__)
 
+using Documenter, GeoEfficiency
 
+makedocs()
+
+cd(cdir)
+#=
 # Documenter Setup.
 
 const PAGES = [
@@ -37,4 +44,4 @@ deploydocs(
 	dirname = "en",
 	deps = nothing,
 	make = nothing,
-)
+)=#
