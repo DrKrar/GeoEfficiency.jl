@@ -1,6 +1,7 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.9.1-Dev
+ *  now `batch` methods when encounter an error in calculation assume `NaN` value and proceeds to the next calculation.
  *  new @enum SrcType where add to descrbe the source type
 	  -  srcUnknown = -1, 
 	  -  srcPoint = 0, 

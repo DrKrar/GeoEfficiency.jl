@@ -34,8 +34,8 @@ function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{
 	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
     
-	GeoEff = geoEff(detector, aPnt, srcRadius, srcLength)
-	println("\n - The detector Geometrical Efficiency = ", GeoEff)
+	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
+	println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 
 	global countDetectors += 1
 	print_with_color(:red, repeat(" =",36),"\n\n")
@@ -252,34 +252,25 @@ function _batch(::Type{Val{true}},
 
 	aPnt::Point = Point(0.0, 0.0)
 	calculatedEff::Float64 = 0.0
-	out_results::Array{Float64,1} = Float64[];
-	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
+	out_results::Vector{Float64} = Float64[];
+	cellLabel = "\n\n\<$(countDetectors)\>$(id(detector))\n"
 	for srcHeight = srcHeights_array
-
-		#aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
 		for srcRho = srcRhos_array
-			#aPnt.Rho = srcRho		    #setRho!(aPnt, srcRho)
-aPnt = Point(srcHeight, srcRho)
-			try
-				calculatedEff= geoEff(detector, aPnt)
-				push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
+		aPnt = Point(srcHeight, srcRho)
+			
+			calculatedEff = try	geoEff(detector, aPnt); catch err;	NaN64 end
+			push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
 
-			catch err
-				isa(err, AssertionError) && break
-				rethrow()      #rethrow any error in Calculations
-
-			end #try
-
-			print_with_color(:yellow,cellLabel)
-			println("\n - Source: ", id(aPnt))
-			println("\n - The detector Geometrical Efficiency = ", calculatedEff)
-			print_with_color(:red, repeat(" =",36),"\n\n")
+			print_with_color(:yellow, cellLabel)
+			println(" - Source: ", id(aPnt))
+			println()
+			println(" - The detector Geometrical Efficiency = ", calculatedEff)
+			print_with_color(:red, repeat(" =",36),"\n")
 
 		end #for_Rho
 
 	end #for_Height
-
-	results::Matrix{Float64} = reshape(out_results, 3, Int(length(out_results)/3)) |> transpose
+	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
 	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	try
 		writecsv_head(joinpath(resultdir_pnt,  "$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
@@ -321,32 +312,28 @@ function _batch(::Type{Val{false}},
 	aPnt::Point = Point(0.0, 0.0)
 	out_results::Vector{Float64} = Float64[];
 	calculatedEff::Float64 = 0.0
-	cellLabel = "\n\<$(countDetectors)\>$(id(detector))"
+	cellLabel = "\n\n\<$(countDetectors)\>$(id(detector))\n"
 	for srcHeight = srcHeights_array
-
-		#aPnt.Height = srcHeight		#setHeight!(aPnt, srcHeight)
 		for srcRho = srcRhos_array
-
-			#aPnt.Rho = srcRho		#setRho!(aPnt, srcRho)
-aPnt = Point(srcHeight, srcRho)
+		aPnt = Point(srcHeight, srcRho)
 			for  srcLength = srcLengths_array;
-
 				for srcRadius = srcRadii_array
-
 					try
 						calculatedEff = geoEff(detector, aPnt, srcRadius , srcLength)
-						push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 
 					catch err
-						isa(err, AssertionError) && @goto(Next_Height)
-						rethrow()      #rethrow any error in Calculations
+						#isa(err, AssertionError) && @goto(Next_srcLength)
+						calculatedEff = NaN
 
 					end #try
-
+					
+					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
+					
 					print_with_color(:yellow,cellLabel)
-					println("\n - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
-					println("\n - The detector Geometrical Efficiency = ", calculatedEff)
-					print_with_color(:red, repeat(" =",36),"\n\n")
+					printl n(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
+					println()
+					println(" - The detector Geometrical Efficiency = ", calculatedEff)
+					print_with_color(:red, repeat(" =",36),"\n")
 
 				end #for_srcRadius
 
