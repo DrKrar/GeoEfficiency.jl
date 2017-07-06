@@ -152,7 +152,7 @@ end #function
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-provide batch calculation of the Geometricel efficiecny for the detector `detector` .
+return the path of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for the detector `detector`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -162,7 +162,7 @@ If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
-Return a tuple of the `detector array` and the `results array`. the `results array` has coloulmns `Height`, `Rho`, `GeoEfficiency` in the  case of a point while coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for non-point sources.
+
 \n*****
 
 """
@@ -179,7 +179,7 @@ function batch(	detector::RadiationDetector,
 				srcRhos_array,
 				srcRadii_array,
 				srcLengths_array
-				)
+				)[3]
 end #function
 
 """
@@ -191,7 +191,7 @@ end #function
 	       srcLengths_array::Vector{S}=[0.0],
 	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
 
-provide batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
+return an array of the paths of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -199,7 +199,8 @@ If `ispoint` is true the source type is a point source and the parameters in src
 
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+!!! note
+    Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 \n*****
 
 """
@@ -209,19 +210,21 @@ function batch( detectors_array::Vector{T},
 	       srcRadii_array::Vector{S}=[0.0],
 	       srcLengths_array::Vector{S}=[0.0],
 	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
-
+	
+	outpaths::Vector{String} = String[]
 	for detector = detectors_array
-		batch(detector,
-			srcHeights_array,
-			srcRhos_array,
-			srcRadii_array,
-			srcLengths_array,
-			ispoint)
+		push!(outpaths ,  
+			batch(detector,
+					srcHeights_array,
+					srcRhos_array,
+					srcRadii_array,
+					srcLengths_array,
+					ispoint))
 
 	end # detectors_array
 
 	print("\n\t"); info("The program had termiate, Thank you >>>>\n")
-	return nothing
+	return outpaths
 
 end #function
 
@@ -236,7 +239,8 @@ end #function
 				srcLengths_array::Vector{Float64}
 				)
 
-batch calclulation for point sources.
+Batch calclulation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+The `results` has coloulmns `Height`, `Rho`, `GeoEfficiency`. 
 
 !!! note
     All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
@@ -272,16 +276,18 @@ function _batch(::Type{Val{true}},
 	end #for_Height
 	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
 	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	path = joinpath(resultdir_pnt,  "$(id(detector)).csv")
 	try
-		writecsv_head(joinpath(resultdir_pnt,  "$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
+		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		warn("'.$(id(detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir_pnt, "_$(id(detector)).csv"), results, ["Height" "Rho" "GeoEfficiency"])
+		warn("'.$(id(detector)).csv': can't be created, trying to save results in an alternative file")
+		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
+		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	end #try
 	global countDetectors += 1;
-	return (detector, results)
+	return (detector, results, path) # detector, results are for test porpose
 
 end #function
 
@@ -295,7 +301,8 @@ end #function
 				srcLengths_array::Vector{Float64},
 				)
 
-batch calclulation for non-point sources.
+Batch calclulation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+The `results` has coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
 
 !!! note
     All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
@@ -345,17 +352,19 @@ function _batch(::Type{Val{false}},
 	@label(Next_Height)
 	end #for_Height
 
-	results::Matrix{Float64} = reshape(out_results, 5, Int(length(out_results)/5)) |> transpose
+	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
 	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	path = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
 	try 
-		writecsv_head(joinpath(resultdir_nonPnt, "$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	catch err
-		warn("'$(id(detector)).csv': can't be created, results saved in an alternative file")
-		writecsv_head(joinpath(resultdir_nonPnt, "_$(id(detector)).csv"), results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+		warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
+		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
+		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	end #try
 	global countDetectors += 1;
-	return (detector, results)
+	return (detector, results, path) # detector, results are for test porpose
 
 end #function
