@@ -64,18 +64,18 @@ info("test `_batch` & `batch`...")
 		@test isnan(G._batch(Val{true}, CylDetector(eps()), [0.0], [1.0], [0.0],[0.0])[2][end])
 		@test isnan(G._batch(Val{false}, CylDetector(eps()), [0.0], [1.0], [0.0],[0.0])[2][end])
 		
-		acylDetector = CylDetector(eps()); path = batch(acylDetector, [0.0])
+		acylDetector = CylDetector(0.1); path = batch(acylDetector, [0.0])
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5		
 
-		acylDetector = CylDetector(eps()); path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
+		path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5	
 		
-		acylDetector = CylDetector(eps()); path = batch([acylDetector], [0.0])
+		path = batch([acylDetector], [0.0])
 		@test contains(contains ,path, G.id(acylDetector))
 
-		acylDetector = CylDetector(eps()); path = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
+		path = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(contains ,path, G.id(acylDetector))
 
 		aBDetector = BoreDetector(5,4,3); path = batch([aBDetector], [0.0])
