@@ -24,8 +24,8 @@
 	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
-	str = -20.0:1.0:30.0, 
-	nd  = -20.0:1.0:30.0
+	str = -20.0:2.0:30.0, 
+	nd  = -20.0:2.0:30.0
 	#str === nd &&  continue
 	
 		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=1.0e-13 
@@ -36,7 +36,7 @@
 
 	print("\n\t"); info("special cases for cylinderical detector; very restrict test")
 	@testset "point at the surface of cylinderical detector of cryRaduis = $cryRaduis" for 
-	cryRaduis    = 1.0:0.1:11.0
+	cryRaduis    = 1.0:0.5:11.0
 	acylDetector = CylDetector(cryRaduis)
 
 		@test geoEff(acylDetector, Point(0)) ≈ 0.5
@@ -59,9 +59,9 @@
 	
 	print("\n\t"); info("special cases for Borehole detector")
 	@testset "point at the surface of Borehole detector of cryRaduis $cryRaduis and height $height" for 
-	cryRaduis = 1.0:0.1:11.0, 
-	height    = 1.0:0.1:11.0, 
-	k         = 1.1:0.1:11.0
+	cryRaduis = 1.0:0.5:11.0, 
+	height    = 1.0:0.5:11.0, 
+	k         = 1.1:0.5:11.0
 
 	holeradius::Float64 = cryRaduis/k		# k > 1
 	aboreDetector = BoreDetector(cryRaduis, height, holeradius)
@@ -83,9 +83,9 @@
 	
 	print("\n\t"); info("special cases for well detector")
 	@testset "point at the surface of Well detectors of cryRaduis $cryRaduis and height $height" for 
-	cryRaduis = 1.0:0.1:11.0, 
-	height    = 1.0:0.1:11.0, 
-	k         = 1.1:0.1:11.0
+	cryRaduis = 1.0:0.5:11.0, 
+	height    = 1.0:0.5:11.0, 
+	k         = 1.1:0.5:11.0
 		
 	holeradius::Float64 = cryRaduis/k		# k > 1
 	welldepth::Float64 = height/k		# k > 1
@@ -113,8 +113,8 @@ end #testset
 	print("\n\t"); info("statrting scaling test cylinderical detector with point source...")
 	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius" for 
 	cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-	j=2:100, 	# j > 1
-	k=2:100
+	j=2:5:100, 	# j > 1
+	k=2:5:100
 		
 		acylDetector  = CylDetector(  cryRadius)
 		acylDetectork = CylDetector(k*cryRadius)
@@ -148,7 +148,7 @@ end #testset
 	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
 	holeRadius > cryRadius && continue	
 		
-		for j=2:100, k=2:100
+		for j=2:5:100, k=2:5:100
 			awellDetector  = WellDetector(  cryRadius,   j,   holeRadius,   j/2.0)
 			awellDetectork = WellDetector(k*cryRadius, k*j, k*holeRadius, k*j/2.0)		
 			axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
