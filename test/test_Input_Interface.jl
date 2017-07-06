@@ -35,25 +35,37 @@ print("\n\t"); info("test `setSrcToPoint` & `typeofSrc`...")
 		@test typeofSrc(0) === G.srcPoint
 		@test setSrcToPoint() === true
 		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === true
-
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
+		
 		@test typeofSrc(1) === G.srcLine
 		@test setSrcToPoint() === false
 		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
 		
 		@test typeofSrc(2) === G.srcDisk
 		@test setSrcToPoint() === false
 		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
 		
 		@test typeofSrc(3) === G.srcVolume
 		@test setSrcToPoint() === false
 		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
 		
 		@test typeofSrc(4) === G.srcNotPoint
 		@test setSrcToPoint() === false
 		@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
 		
 		@test typeofSrc(5) === G.srcNotPoint
 		@test setSrcToPoint() === false
+		@test setSrcToPoint(false) === false
+		@test setSrcToPoint(true)  === true
 	end #testset
 
 print("\n\t"); info("test `getfloat`...")
@@ -145,7 +157,14 @@ print("\n\t"); info("test `reading from CSV`...")
 		rm(datadirectory, recursive=true)
 		@test_throws SystemError G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) 
 
-	try	rm(datadirectory, recursive=true)	end
+	rm(datadirectory, force=true, recursive=true)
+	
+	try 
+		G.detector_info_from_csvFile()
+		setSrcToPoint(true);  @test G.read_batch_info()[end]=== true
+		setSrcToPoint(false); @test G.read_batch_info()[end]=== false
+	end
+	
 	end # testset
 	
 print("\n\t"); info("test `getDetectors`...")		

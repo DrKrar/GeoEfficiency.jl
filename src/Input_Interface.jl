@@ -75,10 +75,14 @@ set the source type to Point if `yes = true` else if  `yes = false` set the sour
 
 """
 function setSrcToPoint(yes::Bool) ::Bool
-	global srcType = yes ?	srcPoint: begin srcUnknown === srcType ? 
-									srcNotPoint : 
-									srcType end
-	return yes
+	global srcType = if yes 
+						srcPoint
+					elseif srcType in [srcUnknown, srcPoint] 
+						srcNotPoint
+					else
+						srcType 
+					end
+	return srcType === srcPoint
 end
 
 """
@@ -295,7 +299,7 @@ function read_batch_info(datadir::AbstractString,
 			getDetectors() 
 		end
 	
-	srcHeights_array::Vector{Float64}           = read_from_csvFile(srcHeights, datadir)
+	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]

@@ -163,6 +163,13 @@ info("test `_batch` & `batch`...")
 
 		@test eltype(batch([acylDetector, aBDetector, aWDetector], [0.0])) === String
 		@test eltype(batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
+		
+		try 
+			G.detector_info_from_csvFile()
+			setSrcToPoint(true); @test eltype(batch())=== String
+			setSrcToPoint(false); @test eltype(batch())=== String
+		end
+		
 		end  #begin_testset
 println()
 end  #begin_testset
