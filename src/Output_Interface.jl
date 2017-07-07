@@ -20,8 +20,8 @@ countDetectors = 1;
 make sue that the results are already exist or create them if necessary
 """
 function reviewResultsDirs()
-	isdir(resultdir) 		|| mkdir(resultdir)
-	isdir(resultdir_pnt) 	|| mkdir(resultdir_pnt)
+	isdir(resultdir)        || mkdir(resultdir)
+	isdir(resultdir_pnt)    || mkdir(resultdir_pnt)
 	isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
 end
 reviewResultsDirs()
