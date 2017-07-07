@@ -60,11 +60,11 @@
 info("test `_batch` & `batch`...")    
 	@testset "function `batch`" begin
 		@test G._batch(Val{true},  CylDetector(0.1), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test G._batch(Val{false}, CylDetector(0.1), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test isnan(G._batch(Val{true}, CylDetector(0.1), [0.0], [1.0], [0.0],[0.0])[2][end])
-		@test isnan(G._batch(Val{false}, CylDetector(0.1), [0.0], [1.0], [0.0],[0.0])[2][end])
+		@test G._batch(Val{false}, CylDetector(0.2), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+		@test isnan(G._batch(Val{true}, CylDetector(0.3), [0.0], [1.0], [0.0],[0.0])[2][end])
+		@test isnan(G._batch(Val{false}, CylDetector(0.4), [0.0], [1.0], [0.0],[0.0])[2][end])
 		
-		acylDetector = CylDetector(0.1); path = batch(acylDetector, [0.0])
+		acylDetector = CylDetector(0.5); path = batch(acylDetector, [0.0])
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5		
 
@@ -109,7 +109,7 @@ info("test `_batch` & `batch`...")
 		@test contains(contains ,path, G.id(aBDetector))
 		@test contains(contains ,path, G.id(aWDetector))
 
-		path = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
+		acylDetector = CylDetector(0.6); path = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
 		@test contains(contains ,path, G.id(acylDetector))
 		@test contains(contains ,path, G.id(aBDetector))
 		@test contains(contains ,path, G.id(aWDetector))
@@ -120,7 +120,7 @@ info("test `_batch` & `batch`...")
 		@test contains(contains ,path, "_" * G.id(aWDetector))
 	chmod(path[1],0o100666); chmod(path[2], 0o100666); chmod(path[3], 0o100666);
 		
-		path = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+		acylDetector = CylDetector(0.7); path = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(contains ,path, G.id(acylDetector))
 		@test contains(contains ,path, G.id(aBDetector))
 		@test contains(contains ,path, G.id(aWDetector))
