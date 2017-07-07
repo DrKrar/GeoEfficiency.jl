@@ -161,8 +161,15 @@ print("\n\t"); info("test `reading from CSV`...")
 	
 	try 
 		G.detector_info_from_csvFile()
-		setSrcToPoint(true);  @test G.read_batch_info()[end]=== true
-		setSrcToPoint(false); @test G.read_batch_info()[end]=== false
+		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
+			setSrcToPoint(true);  
+			@test G.read_batch_info()[end]=== true
+			
+			if [0.0] != G.read_from_csvFile(G.srcRadii, G.datadir) 
+				setSrcToPoint(false); 
+				@test G.read_batch_info()[end]=== false
+			end
+		end	
 	end
 	
 	end # testset
