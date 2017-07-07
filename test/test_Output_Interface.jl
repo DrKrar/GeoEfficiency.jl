@@ -10,7 +10,7 @@
 
 @testset "Output Interface" begin
   
-	@testset "\tfunction `calc` on CylDetector" begin 
+	@testset "function `calc` on CylDetector" begin 
 	cryLength = 10
 		@test calc(Detector(5,cryLength),(Point(1),1, 1))    == nothing
 		@test calc(Detector(5,cryLength),(Point(1),1, 1//2)) == nothing
@@ -33,7 +33,7 @@
 		@test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
      end #testset
 	 
-	@testset "\tfunction `calc` on WellDetector" begin 
+	@testset "function `calc` on WellDetector" begin 
 	holeRadius = 3 
 	holeDepth  = 2
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
@@ -58,11 +58,11 @@
 		end #testset_for
 
 info("test `_batch` & `batch`...")    
-	@testset "test `batch`" begin
-		@test G._batch(Val{true},  CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test G._batch(Val{false}, CylDetector(eps()), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test isnan(G._batch(Val{true}, CylDetector(eps()), [0.0], [1.0], [0.0],[0.0])[2][end])
-		@test isnan(G._batch(Val{false}, CylDetector(eps()), [0.0], [1.0], [0.0],[0.0])[2][end])
+	@testset "function `batch`" begin
+		@test G._batch(Val{true},  CylDetector(0.1), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+		@test G._batch(Val{false}, CylDetector(0.1), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+		@test isnan(G._batch(Val{true}, CylDetector(0.1), [0.0], [1.0], [0.0],[0.0])[2][end])
+		@test isnan(G._batch(Val{false}, CylDetector(0.1), [0.0], [1.0], [0.0],[0.0])[2][end])
 		
 		acylDetector = CylDetector(0.1); path = batch(acylDetector, [0.0])
 		@test contains(path, G.id(acylDetector))
@@ -165,11 +165,17 @@ info("test `_batch` & `batch`...")
 		@test eltype(batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
 		
 		try 
-			G.detector_info_from_csvFile()
-			setSrcToPoint(true); @test eltype(batch())=== String
-			setSrcToPoint(false); @test eltype(batch())=== String
-		end
-		
+		G.detector_info_from_csvFile()
+		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
+			setSrcToPoint(true);  
+			@test eltype(batch())=== String
+			
+			if [0.0] != G.read_from_csvFile(G.srcRadii, G.datadir) 
+				setSrcToPoint(false); 
+				@test eltype(batch())=== String
+			end
+		end	
+	end
 		end  #begin_testset
 println()
 end  #begin_testset
