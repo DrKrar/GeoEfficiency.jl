@@ -11,7 +11,7 @@ const resultdir 	   = joinpath(datadir, resultsfolder);
 const resultdir_pnt    = joinpath(resultdir, "Point");		
 const resultdir_nonPnt = joinpath(resultdir, "non-Point");	
 countDetectors = 1;
-reviewResultsDirs()
+
 
 #------------------reviewResultsDirs----------------------------------
 """# UnExported
@@ -24,7 +24,7 @@ function reviewResultsDirs()
 	isdir(resultdir_pnt) 	|| mkdir(resultdir_pnt)
 	isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
 end
-
+reviewResultsDirs()
 
 #------------------calc-----------------------------------------------
 """

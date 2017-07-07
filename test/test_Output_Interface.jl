@@ -118,7 +118,7 @@ info("test `_batch` & `batch`...")
 		@test contains(contains ,path, "_" * G.id(acylDetector))
 		@test contains(contains ,path, "_" * G.id(aBDetector))
 		@test contains(contains ,path, "_" * G.id(aWDetector))
-	chmod(path[1],0o100666); chmod(path[2], 0o100666); chmod(path[3], 0o100666);
+	chmod(path[1],0o777); chmod(path[2], 0o777); chmod(path[3], 0o777); # 0o100666
 		
 		acylDetector = CylDetector(0.7); path = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(contains ,path, G.id(acylDetector))
@@ -129,7 +129,7 @@ info("test `_batch` & `batch`...")
 		@test contains(contains ,path, "_" * G.id(acylDetector))
 		@test contains(contains ,path, "_" * G.id(aBDetector))
 		@test contains(contains ,path, "_" * G.id(aWDetector))
-	chmod(path[1],0o100666); chmod(path[2], 0o100666); chmod(path[3], 0o100666);
+	chmod(path[1],0o777); chmod(path[2], 0o777); chmod(path[3], 0o777);
 		
 		@test eltype(batch([eps() 0], [0.0])) === String
 		@test eltype(batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false)) === String
