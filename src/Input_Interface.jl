@@ -89,13 +89,8 @@ end
     setSrcToPoint(prompt::AbstractString)	
 prompt the user to set the sources type if it were not already set before. 
 """
-function setSrcToPoint(prompt::AbstractString)	
-	if srcType != srcUnknown
-		setSrcToPoint()
-	else
-		setSrcToPoint(input(prompt) |> lowercase != "n" )
-	end
-end
+setSrcToPoint(prompt::AbstractString) = srcType != srcUnknown ?	setSrcToPoint() :
+											setSrcToPoint(input(prompt) |> lowercase != "n" )
 
 
 #------------------input-----------------------------------------------
@@ -294,35 +289,27 @@ function read_batch_info(datadir::AbstractString,
 	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
 	info("Read data from CSV files at $datadir .....")
-	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir) 
-		catch 
-			getDetectors() 
-		end
-	
+	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir); catch err; getDetectors(); end
 	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
 	srcRadii_array  ::Vector{Float64} = [0.0]
 	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure(err::AbstractString)
-		warn("\n\t", err, ", the batch mode is treminating.......\n"); 
-		info("transfer to direct data input via the `console`......")
-		src = source()
-		srcHeights_array, srcRhos_array    = [src[1].Height], [src[1].Rho]
-		srcRadii_array  , srcLengths_array = [src[2]]       , [src[3]]
+		warn(err, ", transfer to direct data input via the `console`......")
+		sleep(3); src = source()
+		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
+		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
 		nothing
 	end #fumction
 
-  if srcHeights_array == [0.0]
-			batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
+	if srcHeights_array == [0.0]
+		batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
 
 	elseif isPoint
-		#srcRadii_array  = [0.0]
-		#srcLengths_array  = [0.0]
 		srcRhos_array =	read_from_csvFile(srcRhos, datadir)
 
 	else
-		#srcRhos_array = [0.0]
 		srcRadii_array = read_from_csvFile(srcRadii, datadir)
 		if srcRadii_array == [0.0]
 			batchfailure("`$(srcRadii)` is not found in `$(datadir)`)")
@@ -332,7 +319,7 @@ function read_batch_info(datadir::AbstractString,
 
 		end #if
 	end #if
-	println("\n Results log\n=============")
+	#println("\n Results log\n=============")
 	return (
 		detectors_array,
 		srcHeights_array,
@@ -351,28 +338,19 @@ end #fumction
     getDetectors()
 
 prompt the user to input detector parameters from the `console`.
-Return `detectors_array` an Array of the entered detectors.
+Return an Array `detectors_array`  of the entered detectors.
 
 """
 function getDetectors()
 	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
 	info("Please, input the detector information via the console")
 	while(true)
-		try
-			push!(detectors_array, RadiationDetector())
-
-		catch
-			break
-
-		end #try
-
-		res = input(
+		try push!(detectors_array, RadiationDetector()); catch err	println(err); warn("Please: Enter a New Detector"); continue; end
+		lowercase(input(
 			"""\n
     	                - To add a new detector press return\n
     	                - To quit press 'q'|'Q' then return\n
-			\n\t your Choice: """, :blue) |> lowercase;
-		res == "q" && break
-
+			\n\t your Choice: """, :blue))  == "q" && break
 	end #while
 	return detectors_array |> sort
 end #function
