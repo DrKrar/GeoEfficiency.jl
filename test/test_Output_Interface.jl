@@ -67,16 +67,14 @@ info("test `_batch` & `batch`...")
 		acylDetector = CylDetector(eps(0.5)); path = batch(acylDetector, [0.0])
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5	
-		every_path::Vector{String} = path
 
 		path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5	
-		append!(every_path, path)
 
 		path = batch([acylDetector], [0.0])
 		@test contains(contains ,path, G.id(acylDetector))
-		append!(every_path, path)
+		every_path::Vector{String} = path
 
 		path = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(contains ,path, G.id(acylDetector))
