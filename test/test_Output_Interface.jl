@@ -148,22 +148,22 @@ info("test `_batch` & `batch`...")
 	
 				
 		@test append!(every_path, batch([eps() 0], [0.0]))|> eltype === String
-		@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
 		@test append!(every_path, batch([1.0 0], [0.0]))|> eltype === String
-		@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
 		@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
 		@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
 		@test append!(every_path, batch([e pi], [0.0]))|> eltype === String
-		@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
 
 		@test append!(every_path, batch([5.0 4 3], [0.0]))|> eltype === String
-		@test append!(every_path, batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
 		@test append!(every_path, batch([5.0 4 3//1], [0.0]))|> eltype === String
-		@test append!(every_path, batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
 		@test append!(every_path, batch([5.0 4 pi], [0.0]))|> eltype === String
-		@test append!(every_path, batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false))		=== String
+		@test append!(every_path, batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false)) |> eltype === String
 
 		@test append!(every_path, batch([5.0 4 3 2], [0.0]))|> eltype === String
 		@test append!(every_path, batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
