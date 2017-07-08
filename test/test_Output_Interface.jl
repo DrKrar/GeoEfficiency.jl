@@ -67,7 +67,7 @@ info("test `_batch` & `batch`...")
 		acylDetector = CylDetector(eps(0.5)); path = batch(acylDetector, [0.0])
 		@test contains(path, G.id(acylDetector))
 		@test readcsv(path)[2,end] ≈ 0.5	
-		every_path = path
+		every_path::Vector{String} = path
 
 		path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
 		@test contains(path, G.id(acylDetector))
@@ -149,53 +149,53 @@ info("test `_batch` & `batch`...")
 	chmod(path[1],0o777); chmod(path[2], 0o777); chmod(path[3], 0o777);
 	
 				
-		@test eltype(batch([eps() 0], [0.0])) === String
-		@test eltype(batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false)) === String
-		@test eltype(batch([1.0 0], [0.0])) === String
-		@test eltype(batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false)) === String
-		@test eltype(batch([1//2 0.0], [0.0])) === String
-		@test eltype(batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) === String
-		@test eltype(batch([1//2 0.0], [0.0])) === String
-		@test eltype(batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) === String
-		@test eltype(batch([e pi], [0.0])) === String
-		@test eltype(batch([e pi], [0.0], [0.0], [0.0], [0.0],false)) === String
+		@test append!(every_path, batch([eps() 0], [0.0]))|> eltype === String
+		@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1.0 0], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
+		@test append!(every_path, batch([e pi], [0.0]))|> eltype === String
+		@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0],false))|> eltype === String
 
-		@test eltype(batch([5.0 4 3], [0.0])) === String
-		@test eltype(batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false)) === String
-		@test eltype(batch([5.0 4 3//1], [0.0])) === String
-		@test eltype(batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false)) === String
-		@test eltype(batch([5.0 4 pi], [0.0])) === String
-		@test eltype(batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false))		=== String
+		@test append!(every_path, batch([5.0 4 3], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3//1], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([5.0 4 pi], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false))		=== String
 
-		@test eltype(batch([5.0 4 3 2], [0.0])) === String
-		@test eltype(batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false)) === String
+		@test append!(every_path, batch([5.0 4 3 2], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-		@test eltype(batch([acylDetector, aWDetector], [0.0])) === String
-		@test eltype(batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
+		@test append!(every_path, batch([acylDetector, aWDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-		@test eltype(batch([acylDetector, aBDetector], [0.0])) === String
-		@test eltype(batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
+		@test append!(every_path, batch([acylDetector, aBDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-		@test eltype(batch([aBDetector, aWDetector], [0.0])) === String
-		@test eltype(batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
+		@test append!(every_path, batch([aBDetector, aWDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-		@test eltype(batch([acylDetector, aBDetector, aWDetector], [0.0])) === String
-		@test eltype(batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)) === String
+		@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 		
 		try 
 		G.detector_info_from_csvFile()
 		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
 			setSrcToPoint(true);  
-			@test eltype(batch())=== String
+			@test append!(every_path, batch())|> eltype === String
 			
 			if [0.0] != G.read_from_csvFile(G.srcRadii, G.datadir) 
 				setSrcToPoint(false); 
-				@test eltype(batch())=== String
+				@test append!(every_path, batch())|> eltype === String
 			end
 		end	
 	end
 
-	rm.(every_path,  force=true))
+	rm.(every_path,  force=true)
 	#rm.(batch([aWDetector], [0.0]))
 	#rm.(batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false))
 	for cr = 0.0:0.1:0.7	
