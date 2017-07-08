@@ -105,7 +105,7 @@ print("\n\t"); info("test `reading from CSV`...")
 
 	print("\n\t\t"); info("Detectors write and read  - input type{Int}")	
 		@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-		@test  Set(G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)) == Set(detectors)
+		@test  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) == sort(detectors)
 
 	print("\n\t\t"); info("write and read  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
@@ -113,7 +113,7 @@ print("\n\t"); info("test `reading from CSV`...")
 
 	print("\n\t\t"); info("READ_BATCH_INFO")	
 		batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
-		@test  Set(batch_info[1]) == Set(detectors)
+		@test  batch_info[1] == sort(detectors)
 		@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		@test  batch_info[3] == [0.0]
 		@test  batch_info[4] == [0.0]
