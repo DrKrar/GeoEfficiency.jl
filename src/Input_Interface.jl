@@ -190,7 +190,7 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
         if isa(err, SystemError) 
 		    warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
 		else
-		    println(err)
+		    #println(err)
 		end
         rethrow()
 
@@ -222,7 +222,7 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		else
-		    println(err)
+		    #println(err)
 		
 		end		
 		return Float64[0.0]
@@ -335,15 +335,15 @@ end #fumction
 
 """
 
-    getDetectors()
+    getDetectors(detectors_array::Vector{<:Detector} = Detector[])
 
 prompt the user to input detector parameters from the `console`.
-Return an Array `detectors_array`  of the entered detectors.
+Return a `Vector{Detector}` contains the detectors in `detectors_array` extended by the entered detectors and sorted according to the detector volume. 
+If no array received in the input an empty array will be created to receive the entered detectors.
 
 """
-function getDetectors()
-	detectors_array::Vector{RadiationDetector} = RadiationDetector[]
-	info("Please, input the detector information via the console")
+function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
+	Vector{RadiationDetector}(detector_info_array); info("Please, input the detector information via the console")
 	while(true)
 		try push!(detectors_array, RadiationDetector()); catch err	println(err); warn("Please: Enter a New Detector"); continue; end
 		lowercase(input(
@@ -358,27 +358,26 @@ end #function
 
 """
 
-	getDetectors(detector_info_array::Matrix{S}, console_FB=true) where S <: Real
+	getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ;console_FB=true) 
 
-Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully 
-converted detectors.
+Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully converted detectors.
 
 `console_FB`: if true , the function will will call `getDetectors()` to take input from the `console` if the `detector_info_array` 
 is empty or contain no numerical element.
 
 """
-function getDetectors(detector_info_array::Matrix{S}, console_FB=true) where S <: Real
+function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ; console_FB=true) 
 	
 	if isempty(detector_info_array) 
 		if console_FB 
-			info("The detector information may entred via the console")
-			return getDetectors()
+			info("The new detectors information may entred via the console")
+			return getDetectors(detectors_array)
 		else	
 		 	error("getDetectors: Empty `detector_info_array`")
 		end
 		
-	else	
-		detectors_array::Vector{RadiationDetector} = RadiationDetector[]
+	else
+		Vector{RadiationDetector}(detector_info_array)
 		for i_th_line = 1:size(detector_info_array)[1]
 			try push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...)) end #try
 		end #for

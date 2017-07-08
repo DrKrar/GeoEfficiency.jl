@@ -233,11 +233,11 @@ print("\n\t"); info("test `getDetectors`...")
 		@test det1 <= det2 <= det3 <= det4
 
 		detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
-		@test_throws  MethodError getDetectors(detector_info_array,false)
+		@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
 		detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
-		@test_throws MethodError getDetectors(detector_info_array,false)
+		@test_throws MethodError getDetectors(detector_info_array; console_FB=false)
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
-		@test_throws ErrorException getDetectors(detector_info_array,false)
+		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
     end # testset
 println()
 end # testset
