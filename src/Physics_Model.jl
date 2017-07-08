@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-import Base: show, isless
+import Base: show, isless, convert
 
 
 #--------------Point---------------------------------------------
@@ -374,3 +374,12 @@ return just the inputed detector
 
 """
 RadiationDetector(detector::RadiationDetector) = detector
+
+"""
+
+	Detector(detectors::Vector{T}) where T <: Detector
+
+Convert array of any detector type to an array of Detector
+
+"""
+convert(::Type{Vector{RadiationDetector}}, detectors::Vector{<:RadiationDetector}) = RadiationDetector[detectors...]

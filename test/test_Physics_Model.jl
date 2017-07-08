@@ -118,6 +118,10 @@ print("\n\t"); info("test `Cylinderical Detector`...")
     @test G.volume(CylDetector(10.0,1)) <=   G.volume(CylDetector(15.0,1)) 
 	@test G.volume(CylDetector(15.0))   <=   G.volume(CylDetector(10.0)) 
 	@test CylDetector(5.0,1) < CylDetector(15.0,1)
+	
+	detectors = [Detector(6,2),Detector(5,1), Detector(7,10)]
+	@test eltype(Vector{Detector}(detectors)) === Detector
+	@test Vector{Detector}(detectors) == detectors
 	end #testset
 
 print("\n\t"); info("test `Borehole Detector`...")	
@@ -157,8 +161,11 @@ print("\n\t"); info("test `Borehole Detector`...")
 	@test G.volume(Detector(5.0,1,.1))  <=   G.volume(Detector(15.0,1,0.1))
     @test G.volume(Detector(10.0,1,.0)) <=   G.volume(Detector(15.0,1,0.1)) 
 	@test Detector(5.0,1,0.1) < Detector(15.0,1,0.1)
- 
-		end #testset
+
+	detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
+	@test eltype(Vector{Detector}(detectors)) === Detector
+	@test Vector{Detector}(detectors) == detectors
+	end #testset
 
 print("\n\t"); info("test `Well-type Detector`...")	
   @testset "Well-type Detector" begin 
@@ -198,8 +205,11 @@ print("\n\t"); info("test `Well-type Detector`...")
 	@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
     @test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
 	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
- 
-		end #testset	
+
+	detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
+	@test eltype(Vector{Detector}(detectors)) === Detector
+	@test Vector{Detector}(detectors) == detectors
+	end #testset	
 		
 print("\n\t"); info("test `RadiationDetector`...")    
 	@testset "RadiationDetector" begin 
@@ -245,6 +255,10 @@ print("\n\t"); info("test `RadiationDetector`...")
 		@test G.id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
 		@test G.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
 		@test G.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
+		
+		detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
+		@test eltype(Vector{Detector}(detectors)) === Detector
+		@test Vector{Detector}(detectors) == detectors
 		end #testset	
 
 info("test `source`...")   

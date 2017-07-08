@@ -1,6 +1,7 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.9.1-Dev
+ *  new convert defination allow `Vector{RadiationDetector}` to convert any array of type `Vector{<:RadiationDetector}`.
  *  now `getDetectors` methods can accept a `detectors_array::Vector{<:RadiationDetector}` as input to append new detector to it. It return a sorted array of all the detectors. 
  *  now `batch` methods return an array of paths whrere results are stored. 
  *  now `batch` methods when encounter an error in calculation assume `NaN` value and proceeds to the next calculation.
