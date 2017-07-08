@@ -343,7 +343,7 @@ If no array received in the input an empty array will be created to receive the 
 
 """
 function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
-	Vector{RadiationDetector}(detector_info_array); info("Please, input the detector information via the console")
+	Vector{RadiationDetector}(detectors_array); info("Please, input the detector information via the console")
 	while(true)
 		try push!(detectors_array, RadiationDetector()); catch err	println(err); warn("Please: Enter a New Detector"); continue; end
 		lowercase(input(
@@ -377,7 +377,7 @@ function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vect
 		end
 		
 	else
-		Vector{RadiationDetector}(detector_info_array)
+		Vector{RadiationDetector}(detectors_array)
 		for i_th_line = 1:size(detector_info_array)[1]
 			try push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...)) end #try
 		end #for
