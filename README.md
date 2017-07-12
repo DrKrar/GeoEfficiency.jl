@@ -64,8 +64,10 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed with Pkg.add.
 
-	Pkg.add("GeoEfficiency") 
-	
+```julia
+julia> Pkg.add("GeoEfficiency") 
+```
+
 ## Quick Usage
 
 	using GeoEfficiency
