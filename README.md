@@ -62,7 +62,7 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
  *  Compat 0.26.0 or above, will be installed automatically while the package Installtion.
  
 ## Download and Install the Package
-The package is registered in an officially METADATA.jl and so can be installed with Pkg.add.
+The package is registered in an officially METADATA.jl and so can be installed throgh the Julia package system by running 
 
 ```julia
 julia> Pkg.add("GeoEfficiency") 
