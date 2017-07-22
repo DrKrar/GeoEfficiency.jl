@@ -189,8 +189,6 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
     catch err
         if isa(err, SystemError) 
 		    warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
-		else
-		    #println(err)
 		end
         rethrow()
 
