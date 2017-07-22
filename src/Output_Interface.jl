@@ -45,7 +45,7 @@ Throw` an Error if the source location is inappropriate.
 function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 			   
 	aPnt, srcRadius, srcLength = aSource
-	print_with_color(:yellow,"\n\<$(countDetectors)\> $(id(detector))")
+	print_with_color(:yellow,"\n<$(countDetectors)> $(id(detector))")
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
     
 	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
@@ -271,7 +271,7 @@ function _batch(::Type{Val{true}},
 	aPnt::Point = Point(0.0, 0.0)
 	calculatedEff::Float64 = 0.0
 	out_results::Vector{Float64} = Float64[];
-	cellLabel = "\n\n\<$(countDetectors)\>$(id(detector))\n"
+	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
 	for srcHeight = srcHeights_array
 		for srcRho = srcRhos_array
 		aPnt = Point(srcHeight, srcRho)
@@ -334,7 +334,7 @@ function _batch(::Type{Val{false}},
 	aPnt::Point = Point(0.0, 0.0)
 	out_results::Vector{Float64} = Float64[];
 	calculatedEff::Float64 = 0.0
-	cellLabel = "\n\n\<$(countDetectors)\>$(id(detector))\n"
+	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
 	for srcHeight = srcHeights_array
 		for srcRho = srcRhos_array
 		aPnt = Point(srcHeight, srcRho)
