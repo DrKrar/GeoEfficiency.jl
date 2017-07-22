@@ -363,7 +363,7 @@ return well-type or bore-hole or cylindrical detector according to the arguments
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
-				                                        RadiationDetector(CryRadius, CryLength, HoleRadius):
+				                                        RadiationDetector(CryRadius, CryLength, HoleRadius) :
 				                                        WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 
 """
