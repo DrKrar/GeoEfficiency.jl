@@ -101,7 +101,7 @@ setSrcToPoint(prompt::AbstractString) = srcType != srcUnknown ?	setSrcToPoint() 
 
 Prompt the user with the massage `prompt` defaults to `? `. `incolor` specify the prompt text color, default to green.
 Return a string delimited by new line excluding the new line.
-# Example
+# Examples
 ```jldoctest
 julia> input("input a number:")
 input a number:
@@ -129,7 +129,7 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
     *  a blank (just a return) input is considered as being `0.0`.
     *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
 
-# Example
+# Examples
 ```jldoctest
 julia> getfloat("input a number:",value="3")
 3.0
