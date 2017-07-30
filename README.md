@@ -69,11 +69,11 @@ julia> Pkg.add("GeoEfficiency")
 ```
 
 ## Quick Usage
-
-	using GeoEfficiency
-	calc()
-	
-for more try also `geoEff()`, `calcN()`, `batch()`
+```julia
+julia> using GeoEfficiency
+julia> calc()
+```
+Try also `geoEff()`, `calcN()`, `batch()`
 	
 
 ## Package Overview
