@@ -89,14 +89,14 @@ end #function
 
 return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `detector`.
 
- *  `aSurfacePNT`: a surface point represennt the anchoring point of the source.
+ *  `aSurfacePNT`: a surface point represent the anchoring point of the source.
 if both `SrcRadius` and `SrcLength` equal to `zero`; the method returns the Geometrical Efficiency of a point source at the anchoring point.
 
  *  `SrcRadius`: Radius of the source.
 SrcLength` equal to `zero`; the method returns Geometrical Efficiency for disc of Radius = `SrcRadius` and
 its base circle center is the point `aSurfacePNT`.
 
- *  `srcHieght`:  the height of an upright cylinder source having a base like described above.
+ *  `srcHeight`:  the height of an upright cylinder source having a base like described above.
 
 !!! note
     *  `aSurfacePnt`: point height is consider to be measured from the detector face surface.
@@ -147,7 +147,7 @@ Throw` an Error if the source location is inappropriate.
 
 !!! note
     * If no detector is supplied, it ask for a detector from the `console`.
-    * if no souce describtion is provided, it prompt the user to input a source via the `console`.
+    * if no source describtion is provided, it prompt the user to input a source via the `console`.
 
 \n*****
 
