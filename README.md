@@ -58,11 +58,11 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 ## Requirements
  *  Julia 0.6 or above.
- *  QuadGK 0.1.2 or above, will be installed automatically while the package Installtion.
- *  Compat 0.26.0 or above, will be installed automatically while the package Installtion.
+ *  QuadGK 0.1.2 or above, will be installed automatically while the package Installation.
+ *  Compat 0.26.0 or above, will be installed automatically while the package Installation.
  
 ## Download and Install the Package
-The package is registered in an officially METADATA.jl and so can be installed throgh the Julia package system by running 
+The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
 
 ```julia
 julia> Pkg.add("GeoEfficiency") 
@@ -96,7 +96,7 @@ The efficiency calculation can be done by one of the functions:
  *  `calcN` just a repeat of the `calc` function 
  *  batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
  
-For more on the function and its methods prrfix the name of the function by `?`.
+For more on the function and its methods prefix the name of the function by `?`.
 
 ### note
    Input from the `console` can be numerical expression not just a number.
@@ -105,7 +105,7 @@ For more on the function and its methods prrfix the name of the function by `?`.
    > All are valid expressions.
 	
 ## Batch Calculation
-The pachage can be used to perform batch calculations by calling one of the methods of the function `batch`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
+The package can be used to perform batch calculations by calling one of the methods of the function `batch`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
 
 For example	`c:\users\yourusername\GeoEfficiency\results\`.
 
