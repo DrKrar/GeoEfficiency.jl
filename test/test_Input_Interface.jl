@@ -155,7 +155,7 @@ print("\n\t"); info("test `reading from CSV`...")
 
 	print("\n\t\t"); info("Detectors - missing file\n")	
 		rm(datadirectory, recursive=true)
-		@test_throws SystemError G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) 
+		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)   # the Union{ArgumentError, SystemError} is used for competability in both 0.6 and 0.7-dev
 
 	rm(datadirectory, force=true, recursive=true)
 	
