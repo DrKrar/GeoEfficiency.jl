@@ -24,4 +24,4 @@ for t in tests
 	println(); info("End test of $(t).....\n")
 end
 @test about() == nothing
-@test G.CONFIG() == nothing
+
