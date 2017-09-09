@@ -183,7 +183,7 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
     detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
     info("opening '$(detectors)'......")
     try
-        detector_info_array = readcsv(joinpath(datadir, detectors),  header=true)[1];
+        detector_info_array = readdlm(joinpath(datadir, detectors), ',', header=true)[1];
         return getDetectors(detector_info_array)
 		
     catch err
@@ -212,7 +212,7 @@ read data from a file and return its content as an array.
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
 	info("Opening `$(csv_data)`......")
 	try
-		indata = readcsv(joinpath(datadir, csv_data),  header=true)[1][:,1]
+		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
 		return float(indata ) |> sort;
 
 	catch err
@@ -286,7 +286,7 @@ function read_batch_info(datadir::AbstractString,
 	info("The Batch Mode is Starting....")
 	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-	info("Read data from CSV files at $datadir .....")
+	info("Read data from `CSV files` at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir); catch err; getDetectors(); end
 	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
