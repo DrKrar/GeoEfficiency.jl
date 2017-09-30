@@ -80,12 +80,12 @@ print("\n\t"); info("test `getfloat` with different ways to input numbers...")
 	
 
 print("\n\t"); info("test `getfloat` with mathematical expressions...")
-	@test   0.5           ==  getfloat("\ninput 1/2, then press return: ",value="1/2")
-	@test   0.75          ==  getfloat("\ninput 3//4, then press return: ",value="3//4")
-	@test   Base.pi/2     ≈  getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
-	@test   Base.e        ≈  getfloat("\ninput 'e', then press return: ",value="e")
-	@test   Base.e^3      ≈  getfloat("\ninput 'e^3', then press return: ",value="e^3")
-	@test   Base.sin(0.1) ≈  getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
+	@test   0.5           		==  getfloat("\ninput 1/2, then press return: ",value="1/2")
+	@test   0.75          		==  getfloat("\ninput 3//4, then press return: ",value="3//4")
+	@test   MathConstants.pi/2 	≈   getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
+	@test   MathConstants.e     ≈   getfloat("\ninput 'e', then press return: ",value="e")
+	@test   MathConstants.e^3   ≈   getfloat("\ninput 'e^3', then press return: ",value="e^3")
+	@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
 	for i = 0:5
 		write(STDIN.buffer,"1.2+2im\n"^i * "3\n")
 		@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
