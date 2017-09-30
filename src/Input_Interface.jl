@@ -7,6 +7,8 @@
 #**************************************************************************************
 
 #------------------consts&globals--------------------------------------
+using Compat
+using Compat.MathConstants
 
 @compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)

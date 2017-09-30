@@ -5,6 +5,7 @@
 # all the output either to the console or to the csv files is handled here.
 #
 #**************************************************************************************
+using Compat
 
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
 const resultdir 	   = joinpath(datadir, resultsfolder);	
