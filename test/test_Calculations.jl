@@ -5,6 +5,8 @@
 # this file contains all the required function to test calculate the Geometrical efficiency.
 #
 #**************************************************************************************
+const absoluteTol1 = 1.0e-14 #1.0e-16
+const absoluteTol2 = 1.0e-11 #1.0e-13
 
 @testset "Calculations" begin
 
@@ -27,10 +29,10 @@
 	str = -20.0:2.0:30.0, 
 	nd  = -20.0:2.0:30.0
 	#str === nd &&  continue
-	# atol value changed from 1.0e-13 to 1.0e-11
-		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=1.0e-11
-		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=1.0e-11
-		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=1.0e-11 
+
+		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
+		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
+		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2
 		
 	end #testset_begin
 
@@ -137,8 +139,8 @@ end #testset
 		axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
 		axPntk = Point(k*cryRadius/j); naxPntk = Point(k*cryRadius/j, k*holeRadius/j)
 		
-			@test geoEff(aboreDetector , axPnt)  ≈ geoEff(aboreDetectork, axPntk) atol= 1.0e-16	# axial point
-			@test geoEff(aboreDetector , naxPnt) ≈ geoEff(aboreDetectork, naxPntk) atol= 1.0e-16	# non-axial point
+			@test geoEff(aboreDetector , axPnt)  ≈ geoEff(aboreDetectork, axPntk) atol= absoluteTol1	# axial point
+			@test geoEff(aboreDetector , naxPnt) ≈ geoEff(aboreDetectork, naxPntk) atol= absoluteTol1	# non-axial point
 		end #for
 	end #for_testset
 
@@ -154,8 +156,8 @@ end #testset
 			axPnt  = Point(  cryRadius/j); naxPnt  = Point(  cryRadius/j,   holeRadius/j)
 			axPntk = Point(k*cryRadius/j); naxPntk = Point(k*cryRadius/j, k*holeRadius/j)
 
-			@test geoEff(awellDetector , axPnt)  ≈ geoEff(awellDetectork, axPntk) atol= 1.0e-16	# axial point
-			@test geoEff(awellDetector , naxPnt) ≈ geoEff(awellDetectork, naxPntk) atol= 1.0e-16 	# non-axial point
+			@test geoEff(awellDetector , axPnt)  ≈ geoEff(awellDetectork, axPntk) atol= absoluteTol2	# axial point
+			@test geoEff(awellDetector , naxPnt) ≈ geoEff(awellDetectork, naxPntk) atol= absoluteTol2	# non-axial point
 		end #for
 	end #for_testset
 	
@@ -190,7 +192,7 @@ end #testset
 	holeDepth  = 0.1:1.0:3.1
 	mim, mam = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
 	
-		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= 1.0e-16	
+		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= absoluteTol
 		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam
 
 		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    < 1.0
