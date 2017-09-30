@@ -27,7 +27,7 @@ end
   ##Intput_Interface.jl##
   const datafolder    = "GeoEfficiency"
 
-  ##-Calculations.jl##
+  ##Calculations.jl##
   using QuadGK; const integrate = QuadGK.quadgk
   const relativeError = 0.0001
   const absoluteError =  0.00000000001
