@@ -77,7 +77,7 @@ print("\n\t"); info("test `getfloat` with different ways to input numbers...")
 	@test   2000.0  ==  getfloat("\ninput '2e3', then press return: ",value="2e3")
 	@test   0.034   ==  getfloat("\ninput '3.4e-2', then press return: ",value="3.4e-2")
 	@test   isa( getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
-	#@test   isa( getfloat("\nthe first time input '1.2f': "), Float64)
+	
 
 print("\n\t"); info("test `getfloat` with mathematical expressions...")
 	@test   0.5           ==  getfloat("\ninput 1/2, then press return: ",value="1/2")
@@ -86,8 +86,17 @@ print("\n\t"); info("test `getfloat` with mathematical expressions...")
 	@test   Base.e        ≈  getfloat("\ninput 'e', then press return: ",value="e")
 	@test   Base.e^3      ≈  getfloat("\ninput 'e^3', then press return: ",value="e^3")
 	@test   Base.sin(0.1) ≈  getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
-	#@test   isa( getfloat("\nthe first time input '1.2+2im': "), Float64)
-    end # testset
+	for i = 0:5
+		write(STDIN.buffer,"1.2+2im\n"^i * "3\n")
+		@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
+	end # for
+	write(STDIN.buffer,"5\n" * "3\n")
+	@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+	write(STDIN.buffer,"-1\n" * "3\n")
+	@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+	write(STDIN.buffer,"1.2f\n" * "3\n")
+	@test   3.0 == getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
+  end # testset
 	
 print("\n\t"); info("test `reading from CSV`...")	
     @testset "reading from CSV" begin

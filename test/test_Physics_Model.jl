@@ -76,7 +76,11 @@ info("test `Point`...")
 		pnt6 = G.setHeight!(pnt5, 5)
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
-		end #testset
+		
+		write(STDIN.buffer,"5\n" * "1\n")
+		@test Point() === pnt51
+		
+	end #testset
 
 print("\n\t"); info("test `Cylinderical Detector`...")			
   @testset "Cylinderical Detector" begin 
@@ -113,7 +117,7 @@ print("\n\t"); info("test `Cylinderical Detector`...")
     @test cyl4 === cyl5
     @test cyl5 === cyl6
     @test cyl6 === cyl7
-    @test cyl7 === cyl8	
+	@test cyl7 === cyl8	
     @test G.volume(CylDetector(5.0,1))  <=   G.volume(CylDetector(15.0,1))
     @test G.volume(CylDetector(10.0,1)) <=   G.volume(CylDetector(15.0,1)) 
 	@test G.volume(CylDetector(15.0))   <=   G.volume(CylDetector(10.0)) 
@@ -122,6 +126,10 @@ print("\n\t"); info("test `Cylinderical Detector`...")
 	detectors = [Detector(6,2),Detector(5,1), Detector(7,10)]
 	@test eltype(Vector{Detector}(detectors)) === Detector
 	@test Vector{Detector}(detectors) == detectors
+
+	write(STDIN.buffer,"5\n" * "0\n")
+	@test CylDetector() === cyl0
+
 	end #testset
 
 print("\n\t"); info("test `Borehole Detector`...")	
@@ -165,6 +173,11 @@ print("\n\t"); info("test `Borehole Detector`...")
 	detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
 	@test eltype(Vector{Detector}(detectors)) === Detector
 	@test Vector{Detector}(detectors) == detectors
+
+	write(STDIN.buffer,"5\n" * "4\n" * "3\n")
+	@test BoreDetector() === bore0
+	write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n")
+	@test BoreDetector() === bore0
 	end #testset
 
 print("\n\t"); info("test `Well-type Detector`...")	
@@ -209,6 +222,11 @@ print("\n\t"); info("test `Well-type Detector`...")
 	detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
 	@test eltype(Vector{Detector}(detectors)) === Detector
 	@test Vector{Detector}(detectors) == detectors
+
+	write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+	@test WellDetector() === Well0
+	write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+	@test WellDetector() === Well0
 	end #testset	
 		
 print("\n\t"); info("test `RadiationDetector`...")    
@@ -259,6 +277,13 @@ print("\n\t"); info("test `RadiationDetector`...")
 		detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
+
+		write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+		@test Detector() === Detector(5, 4, 3, 2)
+		write(STDIN.buffer,"5\n" * "4\n" * "0\n" * "2\n")
+		@test Detector() === Detector(5, 4)
+		write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+		@test Detector() === Detector(5, 4, 3, 2)
 		end #testset	
 
 info("test `source`...")   
