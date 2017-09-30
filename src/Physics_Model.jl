@@ -303,7 +303,7 @@ according to the input from the console.
 
 # Note please
 
-* this methode aquire all required information from the `console` and will prompt user on invalid data.
+* this method acquire all required information from the `console` and will prompt user on invalid data.
 
 * if any method with argument(s) take an `invalid` argument it would throw an error.
 
