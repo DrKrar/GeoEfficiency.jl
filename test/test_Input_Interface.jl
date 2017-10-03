@@ -5,7 +5,7 @@
 # test all the input from eithther the console or the csv files.
 # 
 #**************************************************************************************
-
+using  Compat.Sys
 
 @testset "Input_Interface" begin
 
@@ -250,15 +250,17 @@ print("\n\t"); info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
-		for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
-			write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
-			@test getDetectors() == [Detector(5,1)]
-			write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
-			@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5,1)]
+		if !Sys.isapple
+			for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
+				write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				@test getDetectors() == [Detector(5,1)]
+				write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5,1)]
 		
-		 	write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
-			@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5, 1), Detector(55, 11)]
-		end # for	
+		 		write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
+				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5, 1), Detector(55, 11)]
+			end # for
+		end #if
     end # testset
 println()
 end # testset
