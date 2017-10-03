@@ -86,7 +86,7 @@ print("\n\t"); info("test `getfloat` with mathematical expressions...")
 		@test   MathConstants.e     ≈   getfloat("\ninput 'e', then press return: ",value="e")
 		@test   MathConstants.e^3   ≈   getfloat("\ninput 'e^3', then press return: ",value="e^3")
 		@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
-		if isapple()
+		if !isapple()
 			for i = 0:5
 				write(STDIN.buffer,"1.2+2im\n"^i * "3\n")
 				@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
