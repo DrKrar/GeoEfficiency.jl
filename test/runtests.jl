@@ -9,6 +9,7 @@ logging(io, kind=:info)
 using Base.Test
 using GeoEfficiency
 const G = GeoEfficiency
+using Compat
 using Compat.MathConstants
 
 tests = ["Input_Interface",
