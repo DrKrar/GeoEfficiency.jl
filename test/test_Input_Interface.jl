@@ -250,7 +250,7 @@ print("\n\t"); info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
-		if !isapple
+		if !isapple()
 			for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
 				write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors() == [Detector(5,1)]
