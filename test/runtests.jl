@@ -6,7 +6,7 @@ const io = IOBuffer()
 logging(io, kind=:warn)
 logging(io, kind=:info)
 
-if VERSION < v"0.7.0-dev.2000"
+if VERSION > v"0.7.0-DEV.2000"
 	using Base.Test
 else
 	using Test
