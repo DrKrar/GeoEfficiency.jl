@@ -5,7 +5,7 @@
 # test all the input from eithther the console or the csv files.
 # 
 #**************************************************************************************
-using  Compat.Sys
+import  Compat.Sys: isapple
 
 @testset "Input_Interface" begin
 
