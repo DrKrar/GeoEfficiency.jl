@@ -1,19 +1,20 @@
-#######################################################################
-
-# print to stderr, since that is where Pkg prints its messages
-eprintln(x...) = println(STDERR, x...)
-
+#**************************************************************************************
+# build.jl
+# =============== part of the GeoEfficiency.jl package.
+#
+# this file excuted at instlation time.
+#
+#**************************************************************************************
 
 # creating `GeoEfficiency` folder at the home directory.
-info("Creating `GeoEfficiency` folder at '$(homedir())'.....")
 
+info("Creating 'GeoEfficiency' folder at '$(homedir())'.....")
 try
 	cp(joinpath(dirname(@__FILE__),".batch"), joinpath(homedir(),"GeoEfficiency"))
-
 catch err
 	if isdir(joinpath(homedir(),"GeoEfficiency"))
 		warn("`GeoEfficiency` folder allready exist.")
-	else
-		warn("""GeoEfficiency` folder: could not be created, rebuild the package `Pkg.build("GeoEfficiency")`to be able to use patch mode.""")
+	else	
+		warn("""'GeoEfficiency' folder: could not be created,  the package may be unable to work in patch mode. Try 'Pkg.build("GeoEfficiency")' to rebuild.""")
 	end #if
-end #if
+end #try
