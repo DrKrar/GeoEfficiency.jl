@@ -98,6 +98,7 @@ end #function
 #----------------writecsv_head------------------------------------------
 
 "Write comma delimated values to file `fname`"
+try using DelimitedFiles end # fix for Julia 0.7-Dev
 function writecsv_head(fname::AbstractString, a, head=[])
 	open(fname, "w") do io
 	  writedlm(io, head, ',')
