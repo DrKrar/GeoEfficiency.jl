@@ -2,15 +2,15 @@
 # Output_Interface.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# all the output either to the console or to the csv files is handled here.
+# all the output of the package either to the console or to the csv files is handled here.
 #
 #**************************************************************************************
 using Compat
 
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
-const resultdir 	   = joinpath(datadir, resultsfolder);	
-const resultdir_pnt    = joinpath(resultdir, "Point");		
-const resultdir_nonPnt = joinpath(resultdir, "non-Point");	
+const resultdir	        = joinpath(datadir, resultsfolder);	
+const resultdir_pnt     = joinpath(resultdir, "Point");		
+const resultdir_nonPnt  = joinpath(resultdir, "non-Point");	
 countDetectors = 1;
 
 
@@ -92,13 +92,12 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	print("\n\t"); info("The `calcN` had termiate, Thank you\n")
+	print("\n\t"); info("The 'calcN' had termiate, Thank you\n")
 end #function
 
 #----------------writecsv_head------------------------------------------
 
 "Write comma delimated values to file `fname`"
-try using DelimitedFiles end # fix for Julia 0.7-Dev
 function writecsv_head(fname::AbstractString, a, head=[])
 	open(fname, "w") do io
 	  writedlm(io, head, ',')
@@ -111,7 +110,7 @@ end #function
 
 """
 
-	batch()
+    batch()
 
 provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
 
@@ -132,7 +131,7 @@ batch() = batch(read_batch_info()...)
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-provide batch calculation of the Geometricel efficiecny for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
+provides batch calculation of the `geometricel efficiecny` for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -207,7 +206,7 @@ end #function
 	       srcLengths_array::Vector{S}=[0.0],
 	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
 
-return an array of the paths of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
+returns an array of the paths of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
