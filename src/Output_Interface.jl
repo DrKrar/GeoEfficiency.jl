@@ -96,6 +96,10 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 end #function
 
 #----------------writecsv_head------------------------------------------
+ 
+ if isdefined(Base, :DelimitedFiles)
+       using DelimitedFiles
+ end
 
 "Write comma delimated values to file `fname`"
 function writecsv_head(fname::AbstractString, a, head=[])
