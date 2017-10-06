@@ -6,13 +6,14 @@
 # 
 #**************************************************************************************
 import  Compat.Sys: isapple
+using Compat.MathConstants
 
 @testset "Input_Interface" begin
 
 print("\n\t"); info("test `setSrcToPoint` & `typeofSrc`...")
 	@testset "setSrcToPoint" begin
-		@test G.srcType === G.srcUnknown  	# the intial value
-		@test typeofSrc() === G.srcUnknown  	# the intial value
+		@test G.srcType === G.srcUnknown  	# the initial value
+		@test typeofSrc() === G.srcUnknown  	# the initial value
 		@test setSrcToPoint() === false      # not defined, set to not point
 
 		@test setSrcToPoint(false) === false
@@ -73,6 +74,8 @@ print("\n\t"); info("test `input`...")
 		if !isapple()
 			write(STDIN.buffer," anbfyiQERFC \n")
 			@test G.input() == " anbfyiQERFC "
+		else
+			@test_throws 	ErrorException	write(STDIN.buffer," anbfyiQERFC \n")
 		end #if
 	end #testset_input
 
@@ -172,16 +175,26 @@ print("\n\t"); info("test `reading from CSV`...")
 	
 	print("\n\t\t"); info("missing file")
 		rm(hightfile, recursive=true)
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+		if !isapple()
+			setSrcToPoint(false)
+			write(STDIN.buffer, 
+			"1\n" * "0\n" * #=axial point=#
+			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+		end #if
 
 	print("\n\t\t"); info("Detectors - missing file\n")	
 		rm(datadirectory, recursive=true)
-		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)   # the Union{ArgumentError, SystemError} is used for competability in both 0.6 and 0.7-dev
+		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
 
 	rm(datadirectory, force=true, recursive=true)
 	
+	@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("jskfdsiu.uty","fghpweuh.uty")
+	
 	try 
-		G.detector_info_from_csvFile()
+		@test eltype(G.detector_info_from_csvFile()) == G.Detector
+
 		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
 			setSrcToPoint(true);  
 			@test G.read_batch_info()[end]=== true
