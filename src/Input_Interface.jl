@@ -9,6 +9,9 @@
 #------------------consts&globals--------------------------------------
 using Compat
 using Compat.MathConstants
+if isdefined(Base, :readdlm)
+	import DelimitedFiles: readdlm, writedlm
+end
 
 @compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)

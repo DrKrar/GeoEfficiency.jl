@@ -5,8 +5,13 @@
 # all the output of the package either to the console or to the csv files is handled here.
 #
 #**************************************************************************************
-using Compat
 
+#------------------consts&globals--------------------------------------
+using Compat
+ 
+if isdefined(Base, :writedlm)
+	import DelimitedFiles: readdlm, writedlm
+end
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
 const resultdir	        = joinpath(datadir, resultsfolder);	
 const resultdir_pnt     = joinpath(resultdir, "Point");		
@@ -96,10 +101,6 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 end #function
 
 #----------------writecsv_head------------------------------------------
- 
- if isdefined(Base, :DelimitedFiles)
-       using DelimitedFiles
- end
 
 "Write comma delimated values to file `fname`"
 function writecsv_head(fname::AbstractString, a, head=[])
