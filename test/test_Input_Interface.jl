@@ -68,6 +68,14 @@ print("\n\t"); info("test `setSrcToPoint` & `typeofSrc`...")
 		@test setSrcToPoint(true)  === true
 	end #testset
 
+print("\n\t"); info("test `input`...")
+	@testset "input" begin
+		if !isapple()
+			write(STDIN.buffer," anbfyiQERFC \n")
+			@test G.input() == " anbfyiQERFC "
+		end #if
+	end #testset_input
+
 print("\n\t"); info("test `getfloat`...")
 	@testset "getfloat" begin  
 print("\n\t"); info("test `getfloat` with different ways to input numbers...")
@@ -97,6 +105,8 @@ print("\n\t"); info("test `getfloat` with mathematical expressions...")
 			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
 			write(STDIN.buffer,"1.2f\n" * "3\n")
 			@test   3.0 == getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
+		else
+			@test_throws 	ErrorException	write(STDIN.buffer,"5\n" * "3\n")
 		end #if
   end # testset
 	
@@ -260,6 +270,8 @@ print("\n\t"); info("test `getDetectors`...")
 		 		write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
 				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5, 1), Detector(55, 11)]
 			end # for
+		else
+			@test_throws	ErrorException	write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 		end #if
     end # testset
 println()
