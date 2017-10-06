@@ -51,7 +51,7 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
  - [ ] consider more details of the measurement setup.
       - [ ] the detector effect.
       - [ ] the end cap effect.
-      - [ ] the meduim and absorber effect.
+      - [ ] the medium and absorber effect.
       
  - [ ] combine the effect of the source geometry and composition. 
 

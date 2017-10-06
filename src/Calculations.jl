@@ -141,13 +141,13 @@ end #function
 
 	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 
-retrun the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source.
+returns the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source.
 
 Throw` an Error if the source location is inappropriate.
 
 !!! note
     * If no detector is supplied, it ask for a detector from the `console`.
-    * if no source describtion is provided, it prompt the user to input a source via the `console`.
+    * if no source description is provided, it prompt the user to input a source via the `console`.
 
 \n*****
 

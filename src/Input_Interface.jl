@@ -37,14 +37,14 @@ typeofSrc() = srcType  # srcType !== SrcType, but
 """
     typeofSrc(x::Int)
 
-set and return the value of `srcType` crosponding to `x`.
+set and return the value of `srcType` corresponding to `x`.
 
-  * srcUnknown = -1 and any negative integer treateted as so, 
+  * srcUnknown = -1 and any negative integer treated as so, 
   *  srcPoint = 0, 
   *  srcLine = 1, 
   *  srcDisk = 2, 
   *  srcVolume = 3, 
-  *  srcNotPoint = 4 and any greater than 4 integer treateted as so.
+  *  srcNotPoint = 4 and any greater than 4 integer treated as so.
 
 """
 function typeofSrc(x::Int)
@@ -132,7 +132,7 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
 
 !!! note
     *  a blank (just a return) input is considered as being `0.0`.
-    *  the key wordd  argument `value` , if provided the function willnot ask for input from the `console`and take it ass the input from the  `console`.
+    *  the key word  argument `value` , if provided the function will not ask for input from the `console`and take it ass the input from the  `console`.
 
 # Examples
 ```jldoctest
@@ -304,7 +304,7 @@ function read_batch_info(datadir::AbstractString,
 		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
 		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
 		nothing
-	end #fumction
+	end #function
 
 	if srcHeights_array == [0.0]
 		batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
@@ -331,7 +331,7 @@ function read_batch_info(datadir::AbstractString,
 		srcLengths_array,
 		isPoint,
 		)
-end #fumction
+end #function
 
 
 #---------------- getDetectors-------------------------------------------------

@@ -308,7 +308,7 @@ info("test `source`...")
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
 		end
 		
-	@testset "Invalid Detector Dimention $dim"  for dim =  
+	@testset "Invalid Detector Dimensions $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
 		@test_throws AssertionError	 CylDetector(dim)  

@@ -13,7 +13,7 @@ try
 	cp(joinpath(dirname(@__FILE__),".batch"), joinpath(homedir(),"GeoEfficiency"))
 catch err
 	if isdir(joinpath(homedir(),"GeoEfficiency"))
-		warn("`GeoEfficiency` folder allready exist.")
+		warn("`GeoEfficiency` folder already exist.")
 	else	
 		warn("""'GeoEfficiency' folder: could not be created,  the package may be unable to work in patch mode. Try 'Pkg.build("GeoEfficiency")' to rebuild.""")
 	end #if

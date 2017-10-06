@@ -2,7 +2,7 @@
 # test_Input_Interface.jl
 # ======================= part of the GeoEfficiency.jl package.
 # 
-# test all the input from eithther the console or the csv files.
+# test all the input to the package from either the console or the csv files.
 # 
 #**************************************************************************************
 import  Compat.Sys: isapple

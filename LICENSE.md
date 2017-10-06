@@ -10,7 +10,7 @@ MIT "Expat" License
  furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software with an apropriate refrence to 
+ copies or substantial portions of the Software with an appropriate reference to 
  the original work.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR

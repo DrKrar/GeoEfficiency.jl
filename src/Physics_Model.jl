@@ -108,7 +108,7 @@ function source(anchorPnt::Point = Point())
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
-		warn("Only axial non-point is allaowed Now: the off-axis will be set to Zero")
+		warn("Only axial non-point is allowed Now: the off-axis will be set to Zero")
         anchorPnt.Rho = 0.0
 
 	else
@@ -178,7 +178,7 @@ return a cylindrical detector according to the input from the `console`.
 
 """
 function CylDetector()
-	print_with_color(:yellow," I- The Cylinderical Detetcor physical Dimensions:-\n")
+	print_with_color(:yellow," I- The Cylindrical Detector physical Dimensions:-\n")
 	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
 	CylDetector(CryRadius, CryLength)
@@ -370,7 +370,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 
 	Detector(detector::RadiationDetector)
 
-return just the inputed detector
+return just the inputted detector
 
 """
 RadiationDetector(detector::RadiationDetector) = detector

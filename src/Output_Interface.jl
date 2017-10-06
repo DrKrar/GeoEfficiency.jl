@@ -45,7 +45,7 @@ Throw` an Error if the source location is inappropriate.
 
 !!! note
     * If no detector is supplied, it ask for a detector from the `console`.
-    * if no souce describtion is provided, it prompt the user to input a source via the `console`.
+    * if no source description is provided, it prompt the user to input a source via the `console`.
 
 """
 function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
@@ -97,14 +97,14 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	print("\n\t"); info("The 'calcN' had termiate, Thank you\n")
+	print("\n\t"); info("The 'calcN' had terminated, Thank you\n")
 end #function
 
 #----------------writecsv_head------------------------------------------
 
-"Write comma delimated values to file `fname`"
-function writecsv_head(fname::AbstractString, a, head=[])
-	open(fname, "w") do io
+"Write comma delimited values to file `filename`"
+function writecsv_head(filename::AbstractString, a, head=[])
+	open(filename, "w") do io
 	  writedlm(io, head, ',')
 	  writedlm(io, a, ',')
 	end #do
@@ -136,7 +136,7 @@ batch() = batch(read_batch_info()...)
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-provides batch calculation of the `geometricel efficiecny` for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
+provides batch calculation of the `geometrical efficiency` for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -259,8 +259,8 @@ end #function
 				srcLengths_array::Vector{Float64}
 				)
 
-Batch calclulation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
-The `results` has coloulmns `Height`, `Rho`, `GeoEfficiency`. 
+Batch calculation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+The `results` has columns `Height`, `Rho`, `GeoEfficiency`. 
 
 !!! note
     All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
@@ -322,8 +322,8 @@ end #function
 				srcLengths_array::Vector{Float64},
 				)
 
-Batch calclulation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
-The `results` has coloulmns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
+Batch calculation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+The `results` has columns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
 
 !!! note
     All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
@@ -381,7 +381,7 @@ function _batch(::Type{Val{false}},
 
 	catch err
 		warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
-		reviewResultsDirs() # to make sue that the directores did not 
+		reviewResultsDirs() # to make sue that the directories did not 
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 

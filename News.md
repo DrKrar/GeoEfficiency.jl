@@ -1,7 +1,7 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.9.1-Dev
- *  reomve the function `CONFIG`.
+ *  remove the function `CONFIG`.
  *  new convert definition allow `Vector{RadiationDetector}` to convert any array of type `Vector{<:RadiationDetector}`.
  *  now `getDetectors` methods can accept a `detectors_array::Vector{<:RadiationDetector}` as input to append new detector to it. It return a sorted array of all the detectors. 
  *  now `batch` methods return an array of paths where results are stored. 
@@ -16,7 +16,7 @@
   
  *  new `typeofSrc()` method to return the current source type. 
  *  new `typeofSrc(::Int)` method to convert `Int` and modify the current source type. 
- *  now `setSrcToPoint()` only retrun whether the source type is point or not.
+ *  now `setSrcToPoint()` only return whether the source type is point or not.
  *  `setSrcToPoint(false)` set the source to `srcNotPoint`. the source type is leaved as it if  it were `srcLine`, `srcDisk`, or `srcVolume`.
 
  

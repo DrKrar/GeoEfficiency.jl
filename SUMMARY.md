@@ -6,8 +6,8 @@ the source can be a point, a disc or even a cylinder.
 
 ## Requirements
  *  Julia 0.6 or above.
- *  QuadGK 0.1.2 or above, will be installed automatically while the package Installtion.
- *  Compat 0.26.0 or above, will be installed automatically while the package Installtion. 
+ *  QuadGK 0.1.2 or above, will be installed automatically while the package Installation.
+ *  Compat 0.26.0 or above, will be installed automatically while the package Installation. 
 
 ## Download and Install the Package
 
@@ -22,3 +22,4 @@ the source can be a point, a disc or even a cylinder.
  * calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\n
 	
  * batch()	: Calculate the geometrical efficiency using data in the "GeoEfficiency" folder in batch mode.
+ 

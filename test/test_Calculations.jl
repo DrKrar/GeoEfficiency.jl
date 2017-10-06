@@ -36,37 +36,37 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 		
 	end #testset_begin
 
-	print("\n\t"); info("special cases for cylinderical detector; very restrict test")
-	@testset "point at the surface of cylinderical detector of cryRaduis = $cryRaduis" for 
-	cryRaduis    = 1.0:0.5:11.0
-	acylDetector = CylDetector(cryRaduis)
+	print("\n\t"); info("special cases for cylindrical detector; very restrict test")
+	@testset "point at the surface of cylindrical detector of cryRadius = $cryRadius" for 
+	cryRadius    = 1.0:0.5:11.0
+	acylDetector = CylDetector(cryRadius)
 
 		@test geoEff(acylDetector, Point(0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(0, prevfloat(cryRaduis)))  ≈ 0.5
-		@test geoEff(acylDetector, Point(0, nextfloat(-cryRaduis))) ≈ 0.5
-		@test geoEff(acylDetector, Point(0,         cryRaduis/2.0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(0,        -cryRaduis/2.0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0, prevfloat(cryRadius)))  ≈ 0.5
+		@test geoEff(acylDetector, Point(0, nextfloat(-cryRadius))) ≈ 0.5
+		@test geoEff(acylDetector, Point(0,         cryRadius/2.0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(0,        -cryRadius/2.0)) ≈ 0.5
 
 		@test geoEff(acylDetector, Point(eps())) ≈ 0.5
-		@test 0.0 < geoEff(acylDetector, Point(eps(), prevfloat(cryRaduis)))  <= 0.5
-		@test 0.0 < geoEff(acylDetector, Point(eps(), nextfloat(-cryRaduis))) <= 0.5
-		@test geoEff(acylDetector, Point(eps(),          cryRaduis/2.0)) ≈ 0.5
-		@test geoEff(acylDetector, Point(eps(),         -cryRaduis/2.0)) ≈ 0.5
+		@test 0.0 < geoEff(acylDetector, Point(eps(), prevfloat(cryRadius)))  <= 0.5
+		@test 0.0 < geoEff(acylDetector, Point(eps(), nextfloat(-cryRadius))) <= 0.5
+		@test geoEff(acylDetector, Point(eps(),          cryRadius/2.0)) ≈ 0.5
+		@test geoEff(acylDetector, Point(eps(),         -cryRadius/2.0)) ≈ 0.5
 
-		@test geoEff(acylDetector, Point(eps(cryRaduis), cryRaduis))  ≈ .25
-		@test 0.0 < geoEff(acylDetector, Point(cryRaduis, cryRaduis))  < .25		
-		@test_throws ErrorException geoEff(acylDetector, Point(eps(cryRaduis), nextfloat(cryRaduis)))
-		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRaduis), nextfloat(cryRaduis)))
+		@test geoEff(acylDetector, Point(eps(cryRadius), cryRadius))  ≈ .25
+		@test 0.0 < geoEff(acylDetector, Point(cryRadius, cryRadius))  < .25		
+		@test_throws ErrorException geoEff(acylDetector, Point(eps(cryRadius), nextfloat(cryRadius)))
+		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
 	end #for_testset
 	
 	print("\n\t"); info("special cases for Borehole detector")
-	@testset "point at the surface of Borehole detector of cryRaduis $cryRaduis and height $height" for 
-	cryRaduis = 1.0:0.5:11.0, 
+	@testset "point at the surface of Borehole detector of cryRadius $cryRadius and height $height" for 
+	cryRadius = 1.0:0.5:11.0, 
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 
-	holeradius::Float64 = cryRaduis/k		# k > 1
-	aboreDetector = BoreDetector(cryRaduis, height, holeradius)
+	holeradius::Float64 = cryRadius/k		# k > 1
+	aboreDetector = BoreDetector(cryRadius, height, holeradius)
 	
 		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0
 		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
@@ -82,16 +82,16 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 		@test_skip   0.0 < geoEff(aboreDetector, Point(-1.5*height))  < 1.0
 		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
 	end #testset_for
-	
+
 	print("\n\t"); info("special cases for well detector")
-	@testset "point at the surface of Well detectors of cryRaduis $cryRaduis and height $height" for 
-	cryRaduis = 1.0:0.5:11.0, 
+	@testset "point at the surface of Well detectors of cryRadius $cryRadius and height $height" for 
+	cryRadius = 1.0:0.5:11.0, 
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 		
-	holeradius::Float64 = cryRaduis/k		# k > 1
+	holeradius::Float64 = cryRadius/k		# k > 1
 	welldepth::Float64 = height/k		# k > 1
-	awellDetector = WellDetector(cryRaduis, height, holeradius, welldepth)
+	awellDetector = WellDetector(cryRadius, height, holeradius, welldepth)
 	
 		@test geoEff(awellDetector, Point(welldepth)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, prevfloat(holeradius))) ≈ 0.5
@@ -112,8 +112,8 @@ end #testset
 
 @testset "scaling test" begin
 
-	print("\n\t"); info("statrting scaling test cylinderical detector with point source...")
-	@testset "[J=$j] test, Scalling $k at cryRadius=$cryRadius" for 
+	print("\n\t"); info("starting scaling test cylindrical detector with point source...")
+	@testset "[J=$j] test, Scaling $k at cryRadius=$cryRadius" for 
 	cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 	j=2:5:100, 	# j > 1
 	k=2:5:100
@@ -144,7 +144,7 @@ end #testset
 		end #for
 	end #for_testset
 
-	print("\n\t"); info("statrting scaling test Well-type detector with point source...")
+	print("\n\t"); info("starting scaling test Well-type detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 	cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
