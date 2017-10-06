@@ -279,7 +279,7 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 	Point(Height, pnt); #0.0 == SrcRadius && Point(pnt, 0.0)
 
 	if Height > 0.0							# the source as a whole out of the detector
-		return geoEff(detout, Point(pnt, Height), SrcRadius, SrcLength)
+		return geoEff(detout, Point(Height, pnt), SrcRadius, SrcLength)
 
 	elseif Height + SrcLength < 0.0 		# the source as a whole inside of the detector
 		return 1.0 - geoEff(detin, Point(pnt, -(Height + SrcLength) ), SrcRadius, SrcLength)
