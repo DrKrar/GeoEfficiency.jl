@@ -9,7 +9,7 @@
 #------------------consts&globals--------------------------------------
 using Compat
  
-if isdefined(Base, :writedlm)
+if !isdefined(Base, :writedlm)
 	import DelimitedFiles: readdlm, writedlm
 end
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";

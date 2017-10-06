@@ -9,7 +9,7 @@
 #------------------consts&globals--------------------------------------
 using Compat
 using Compat.MathConstants
-if isdefined(Base, :readdlm)
+if !isdefined(Base, :readdlm)
 	import DelimitedFiles: readdlm, writedlm
 end
 
