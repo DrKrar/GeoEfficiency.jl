@@ -98,7 +98,7 @@ The efficiency calculation can be done by one of the functions:
  
 For more on the function and its methods prefix the name of the function by `?`.
 
-!!! note
+### note
    Input from the `console` can be numerical expression not just a number.
    
    > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
@@ -149,5 +149,5 @@ Those Comma Saved  Values [CSV] files are:-
 
      > The program expect the line to contain one number.
      
-!!! note
+### note
     For Comma Saved  Values [CSV] files each line represent an entry, the first line is always treated as the header.
