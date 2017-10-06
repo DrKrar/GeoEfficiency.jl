@@ -61,11 +61,11 @@ info("test `Point`...")
 		@test Point(5.0, 1//1) === pnt51
 		@test Point(5.0, 1.0)  === pnt51	
 		
-		pnt6 = Point(5, pnt5)
+		pnt6 = Point(pnt5, 5)
 		@test pnt6.Height == pnt5.Height 
 		@test pnt6.Rho == 5.0
 
-		pnt6 = Point(pnt5, 5)
+		pnt6 = Point(5, pnt5)
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
 		
