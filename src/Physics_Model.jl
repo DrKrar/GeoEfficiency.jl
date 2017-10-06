@@ -102,14 +102,14 @@ If the global `GeoEfficiency_isPoint` is set to true both `SrcRadius` and `SrcLe
 """ 
 function source(anchorPnt::Point = Point())
     
-	setSrcToPoint(true) && return (anchorPnt, 0.0, 0.0)
+	setSrcToPoint() && return (anchorPnt, 0.0, 0.0)
 
 	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
 		warn("Only axial non-point is allowed Now: the off-axis will be set to Zero")
-        anchorPnt.Rho = 0.0
+        anchorPnt = setRho!(anchorPnt, 0.0)
 
 	else
         SrcLength = 0.0

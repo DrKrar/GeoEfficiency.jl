@@ -1,6 +1,9 @@
 # GeoEfficiency Package Release Notes
 
-### Version 0.9.1-Dev
+### Version 0.9.2-DEV
+
+### Version 0.9.1
+ *  fix an error in `source` in this release make it consider all sources as point-source.
  *  remove the function `CONFIG`.
  *  new convert definition allow `Vector{RadiationDetector}` to convert any array of type `Vector{<:RadiationDetector}`.
  *  now `getDetectors` methods can accept a `detectors_array::Vector{<:RadiationDetector}` as input to append new detector to it. It return a sorted array of all the detectors. 

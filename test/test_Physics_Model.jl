@@ -306,7 +306,31 @@ info("test `source`...")
 		setSrcToPoint(true)
 		pnt1 = Point(5)
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
-		end
+		if !isapple()
+			
+			setSrcToPoint(false)
+			write(STDIN.buffer, 
+			"1\n" * "0\n" * #=axial point=#
+			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
+			@test  source() == (Point(1.0, 0.0), 2.0, 3.0)
+			
+			setSrcToPoint(false)
+			write(STDIN.buffer, 
+			"1\n" * "5\n" * #=non-axial point=#
+			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
+			@test  source() == (Point(1.0, 0.0), 2.0, 3.0) # axial anchor point
+			
+			setSrcToPoint(false)
+			write(STDIN.buffer, 
+			"1\n" * "5\n" * #=non-axial point=#
+			"0\n" 			#=SrcRadius=2=# )
+			@test  source() == (Point(1.0, 5.0), 0.0, 0.0) # non-axial  point source
+
+			setSrcToPoint(true)
+			write(STDIN.buffer,	"1\n" * "5\n") # non-axial point
+			@test  source() == (Point(1.0, 5.0), 0.0, 0.0)
+		end #if
+	end #testset_source
 		
 	@testset "Invalid Detector Dimensions $dim"  for dim =  
 	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
