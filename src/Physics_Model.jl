@@ -65,22 +65,10 @@ function Point()
 	Point(Height, Rho)
 end #function
 
-setHeight!(aPnt::Point, xH::Real) = Point(xH, aPnt.Rho)
-setRho!(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
+Point(xHeight::Real, aPnt::Point) = Point(xHeight, aPnt.Rho)
+Point(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
-
-# function setHeight(aPnt::Point, xH::Real)
-	# pnt::Point = deepcopy(aPnt)
-	# pnt.Height = xH
-	# return pnt
-# end #function
-
-# function setRho(aPnt::Point, xRho::Real)
-	# pnt::Point = deepcopy(aPnt)
-	# pnt.Rho = xRho
-	# return pnt
-# end #function
 
 
 #--------------source---------------------------------------------
@@ -109,7 +97,7 @@ function source(anchorPnt::Point = Point())
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
 		warn("Only axial non-point is allowed Now: the off-axis will be set to Zero")
-        anchorPnt = setRho!(anchorPnt, 0.0)
+        anchorPnt = Point(anchorPnt, 0.0)
 
 	else
         SrcLength = 0.0

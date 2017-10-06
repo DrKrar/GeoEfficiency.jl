@@ -75,7 +75,7 @@ give a warning if the disk is out of cylindrical detector the face.
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	detector.CryRadius > SurfacePnt.Rho + SrcRadius || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
-	integrand(xRho) = xRho * GeoEff_Pnt(detector, setRho!(SurfacePnt, xRho))
+	integrand(xRho) = xRho * GeoEff_Pnt(detector, Point(SurfacePnt, xRho))
 	return  integrate(integrand , 0.0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2
 
 end #function
@@ -206,10 +206,10 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	end
 
 	pntWup::Point = deepcopy(aCenterPnt);
-	aCenterPnt = setHeight!(aCenterPnt, abs(HeightWup));  #0.0 == SrcRadius && setRho!(pntWup, 0.0)
+	aCenterPnt = Point(abs(HeightWup), aCenterPnt);  #0.0 == SrcRadius && Point(pntWup, 0.0)
 
 	pntWdown::Point = deepcopy(aCenterPnt);
-	setHeight!(pntWdown, abs(HeightWdown)); #0.0 == SrcRadius && setRho!(pntWdown, 0.0)
+	pntWdown = Point(abs(HeightWdown), pntWdown); #0.0 == SrcRadius && Point(pntWdown, 0.0)
 
 	detin::CylDetector = CylDetector(detector.HoleRadius)
 	detout::CylDetector = CylDetector(detector.CryRadius)
@@ -218,7 +218,7 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 		res = geoEff(detout, pntWup, SrcRadius, SrcLength) - geoEff(detin, pntWdown, SrcRadius, SrcLength)
 
 	elseif HeightWup + SrcLength < 0.0 		# the source as a whole in the detector
-		res = 1 - geoEff(detin, setHeight!(pntWup,abs(HeightWup + SrcLength)), SrcRadius, SrcLength)###setHeight --> setHeight!
+		res = 1 - geoEff(detin, Point(abs(HeightWup + SrcLength), pntWup), SrcRadius, SrcLength)
 		res -= geoEff(detin, pntWdown, SrcRadius, SrcLength)
 
 	else # elseif SrcLength > 0.0
@@ -226,10 +226,10 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 		res += geoEff(detout, Point(0.0), SrcRadius, HeightWup + SrcLength) * (1.0 + HeightWup/SrcLength)
 
 	#=else
-		return 1.0 - geoEff(detin, setHeight!(pnt, -Height), SrcRadius)[1]
+		return 1.0 - geoEff(detin, Point(-Height, pnt), SrcRadius)[1]
 	else
-		res = 1 - integrate(xH -> GeoEff_Disk(detin, setHeight!(pnt, xH), SrcRadius), 0.0, -pnt.Height, reltol = relativeError)[1]
-		res = res + integrate(xH -> GeoEff_Disk(detout, setHeight!(pntWup, xH), SrcRadius), 0.0, pntWup.Height , reltol = relativeError)[1]
+		res = 1 - integrate(xH -> GeoEff_Disk(detin, Point(xH, pnt), SrcRadius), 0.0, -pnt.Height, reltol = relativeError)[1]
+		res = res + integrate(xH -> GeoEff_Disk(detout, Point(xH, pntWup), SrcRadius), 0.0, pntWup.Height , reltol = relativeError)[1]
 			=#
 	end #if
 
@@ -276,13 +276,13 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 
 	detin::CylDetector  = CylDetector(detector.HoleRadius, detector.HoleDepth)
 	detout::CylDetector = CylDetector(detector.CryRadius , detector.CryLength)
-	setHeight!(pnt, Height); #0.0 == SrcRadius && setRho!(pnt, 0.0)
+	Point(Height, pnt); #0.0 == SrcRadius && Point(pnt, 0.0)
 
 	if Height > 0.0							# the source as a whole out of the detector
-		return geoEff(detout, setHeight!(pnt, Height), SrcRadius, SrcLength)
+		return geoEff(detout, Point(pnt, Height), SrcRadius, SrcLength)
 
 	elseif Height + SrcLength < 0.0 		# the source as a whole inside of the detector
-		return 1.0 - geoEff(detin, setHeight!(pnt, -(Height + SrcLength) ), SrcRadius, SrcLength)
+		return 1.0 - geoEff(detin, Point(pnt, -(Height + SrcLength) ), SrcRadius, SrcLength)
 
 	elseif SrcLength > 0.0
 		res = (1.0 - geoEff(detin, Point(0.0), SrcRadius, -Height)) * -Height/SrcLength
@@ -290,7 +290,7 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 		return res
 
 	else
-		return 1.0 - geoEff(detin, setHeight!(pnt, -Height), SrcRadius)
+		return 1.0 - geoEff(detin, Point(-Height, pnt), SrcRadius)
 
 	end #if
 end #function

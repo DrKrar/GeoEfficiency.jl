@@ -3,6 +3,7 @@
 ### Version 0.9.2-DEV
 
 ### Version 0.9.1
+ * use of `Point` in place of `setRHo!` and `SetHight!`, so now the behavior of both is exported.
  *  fix an error in `source` in this release make it consider all sources as point-source.
  *  remove the function `CONFIG`.
  *  new convert definition allow `Vector{RadiationDetector}` to convert any array of type `Vector{<:RadiationDetector}`.
