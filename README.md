@@ -14,7 +14,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 @documentation: http://geoefficiencyjl.readthedocs.org
 
-@version: v"0.9.1-Dev"
+@version: v"0.9.1"
 
 Created on Fri Aug 14 20:12:01 2015
 
@@ -59,7 +59,7 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 ## Requirements
  *  Julia 0.6 or above.
  *  QuadGK 0.1.2 or above, will be installed automatically while the package Installation.
- *  Compat 0.26.0 or above, will be installed automatically while the package Installation.
+ *  Compat 0.32.0 or above, will be installed automatically while the package Installation.
  
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
