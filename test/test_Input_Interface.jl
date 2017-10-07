@@ -128,7 +128,7 @@ print("\n\t"); info("test `reading from CSV`...")
 		setSrcToPoint(true) == true
 
 	print("\n\t\t"); info("Detectors write and read  - input type{Int}")	
-		@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRaduis"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+		@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 		@test  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) == sort(detectors)
 
 	print("\n\t\t"); info("write and read  - input type{Int}")
@@ -173,10 +173,22 @@ print("\n\t"); info("test `reading from CSV`...")
 		@test  G.writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 	
-	print("\n\t\t"); info("missing file")
+	print("\n\t\t"); info("missing file - `Hights.csv`")
 		rm(hightfile, recursive=true)
+		
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
-		if !isapple()
+		if !isapple()		# 
+			setSrcToPoint(false)
+			write(STDIN.buffer, 
+			"1\n" * "0\n" * #=axial point=#
+			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+		end #if
+		
+	print("\n\t\t"); info("missing file - `Rhos.csv`")
+		@test  G.writecsv_head(hightfile, [4.0,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
+		if !isapple() 		#
 			setSrcToPoint(false)
 			write(STDIN.buffer, 
 			"1\n" * "0\n" * #=axial point=#
