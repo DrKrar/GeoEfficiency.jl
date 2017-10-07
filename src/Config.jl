@@ -10,7 +10,7 @@ function about()
 	\t **  Accurate Geometrical Efficiency Calculator **
 	\t *************************************************
 
-	  @version: v"0.9.1.DEV" - ($(Date(now())- Date("2017-10-06")) old master)  
+	  @version: v"0.9.2-DEV" - ($(Date(now()) - Date("2017-10-08")) old master)  
 	  @author: Mohamed Krar,  @e-mail: DrKrar@gmail.com 
 	  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
 	  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
