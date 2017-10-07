@@ -5,6 +5,8 @@
 # test all the input to the package from either the console or the csv files.
 # 
 #**************************************************************************************
+
+using Compat
 import  Compat.Sys: isapple
 using Compat.MathConstants
 

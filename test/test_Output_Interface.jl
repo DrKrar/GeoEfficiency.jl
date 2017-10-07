@@ -6,7 +6,7 @@
 # 
 #**************************************************************************************
 
-
+import  Compat.Sys: isapple
 
 @testset "Output Interface" begin
   
@@ -56,6 +56,16 @@
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
 		end #testset_for
+
+	@testset "function `calcN`" begin
+		if !isapple()
+			let cylDet = Detector(5,10), wellDet= Detector(5, 4, 3, 2)
+				@test calcN(cylDet)  == nothing	
+				@test calcN(wellDet) == nothing
+
+			end #let
+		end #if
+ 	end #testset
 
 info("test `_batch` & `batch`...")    
 	@testset "function `batch`" begin
