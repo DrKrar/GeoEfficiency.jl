@@ -60,9 +60,12 @@
 	@testset "function `calcN`" begin
 		if !isapple()
 			let cylDet = Detector(5,10), wellDet= Detector(5, 4, 3, 2)
+				write(STDIN.buffer, "1\n2\n3\n4\n" * "\n") # one time only
 				@test calcN(cylDet)  == nothing	
-				@test calcN(wellDet) == nothing
-
+				write(STDIN.buffer, "1\n2\n3\n4\n" * "d\n" * "1\n2\n3\n4\n" * "\n") # the same detector once.
+				@test calcN(cylDet)  == nothing
+				write(STDIN.buffer, "1\n2\n3\n4\n" * "n\n" * "5\n4\n0\n" * "1\n2\n3\n4\n" * "\n") # the new detector once.
+				@test calcN(cylDet)  == nothing	
 			end #let
 		end #if
  	end #testset
