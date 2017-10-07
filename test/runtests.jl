@@ -6,11 +6,10 @@ const io = IOBuffer()
 logging(io, kind=:warn)
 logging(io, kind=:info)
 
-if VERSION < v"0.7.0-DEV.2000"
-	using Base.Test
-else
-	using Test
+if VERSION < v"0.7.0-DEV.2005"
+	const Test = Base.Test
 end
+using Test
 using GeoEfficiency
 const G = GeoEfficiency
 using Compat
