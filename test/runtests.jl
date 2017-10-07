@@ -13,6 +13,9 @@ using Test
 using GeoEfficiency
 const G = GeoEfficiency
 
+import Compat.Sys: isapple
+using Compat.MathConstants
+
 tests = ["Input_Interface",
          "Physics_Model",
          "Calculations",

@@ -6,7 +6,7 @@
 # 
 #**************************************************************************************
 
-import  Compat.Sys: isapple
+#import  Compat.Sys: isapple
 
 @testset "Output Interface" begin
   

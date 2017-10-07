@@ -6,9 +6,8 @@
 # 
 #**************************************************************************************
 
-using Compat
-import  Compat.Sys: isapple
-using Compat.MathConstants
+#import Compat.Sys: isapple
+#using Compat.MathConstants
 
 @testset "Input_Interface" begin
 
