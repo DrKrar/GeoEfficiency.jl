@@ -68,9 +68,9 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 	holeradius::Float64 = cryRadius/k		# k > 1
 	aboreDetector = BoreDetector(cryRadius, height, holeradius)
 	
-		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0
+		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0 
 		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
-		@test_skip  0.0 < geoEff(aboreDetector, Point(height/2.0))  < 1.0
+		@test_skip  0.0 < geoEff(aboreDetector, Point(height/2.0))  < 1.0 # StackOverflowError
 		@test_skip  0.0 < geoEff(aboreDetector, Point(-height/2.0)) < 1.0
 		@test_skip  geoEff(aboreDetector, Point(height/2.0)) ≈ geoEff(aboreDetector, Point(-height/2.0))
 
