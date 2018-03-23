@@ -4,17 +4,12 @@ The Package `GeoEfficiency`, an officially registered Julia program, provides a 
 The Package models a radiation detector irradiated by a radiative source. 
 The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
-@author: Mohamed Krar
+Author | [Mohamed Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
+----|:----: 
+Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
+Documentation |  [ReadtheDocs](http://geoefficiencyjl.readthedocs.org)
+Current version | [v"0.9.1"](https://github.com/DrKrar/GeoEfficiency.jl)
 
-@e-mail: DrKrar@gmail.com
-
-@Profile: https://www.researchgate.net/profile/Mohamed_Krar3
-
-@repository: https://github.com/DrKrar/GeoEfficiency.jl/
-
-@documentation: http://geoefficiencyjl.readthedocs.org
-
-@version: v"0.9.1"
 
 Created on Fri Aug 14 20:12:01 2015
 
