@@ -6,15 +6,13 @@ const io = IOBuffer()
 logging(io, kind=:warn)
 logging(io, kind=:info)
 
-if VERSION < v"0.7.0-DEV.2005"
-	const Test = Base.Test
-end
-using Test
+import Compat.Sys: isapple
+using Compat.MathConstants
+using Compat.Test
 using GeoEfficiency
 const G = GeoEfficiency
 
-import Compat.Sys: isapple
-using Compat.MathConstants
+
 
 tests = ["Input_Interface",
          "Physics_Model",

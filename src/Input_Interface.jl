@@ -9,9 +9,7 @@
 #------------------consts&globals--------------------------------------
 using Compat
 using Compat.MathConstants
-if !isdefined(Base, :readdlm)
-	import DelimitedFiles: readdlm, writedlm
-end
+using Compat.DelimitedFiles
 
 @compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
@@ -178,7 +176,7 @@ end
 	 detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
 
-read detectors data from predefined file and return its content as an array of detectors, or one can specifif a file.
+read detectors data from predefined file and return its content as an array of detectors, or one can specify a file.
 
 `datadir` : directory where file is located default to $(datadir) if no argument is provided.
 

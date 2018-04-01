@@ -8,10 +8,8 @@
 
 #------------------consts&globals--------------------------------------
 using Compat
- 
-if !isdefined(Base, :writedlm)
-	import DelimitedFiles: readdlm, writedlm
-end
+using Compat.DelimitedFiles 
+
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
 const resultdir	        = joinpath(datadir, resultsfolder);	
 const resultdir_pnt     = joinpath(resultdir, "Point");		
@@ -19,18 +17,18 @@ const resultdir_nonPnt  = joinpath(resultdir, "non-Point");
 countDetectors = 1;
 
 
-#------------------reviewResultsDirs----------------------------------
+#------------------checkResultsDirs----------------------------------
 """# UnExported
 
-    reviewResultsDirs()
+    checkResultsDirs()
 make sue that the results are already exist or create them if necessary
 """
-function reviewResultsDirs()
+function checkResultsDirs()
 	isdir(resultdir)        || mkdir(resultdir)
 	isdir(resultdir_pnt)    || mkdir(resultdir_pnt)
 	isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
 end
-reviewResultsDirs()
+checkResultsDirs()
 
 #------------------calc-----------------------------------------------
 """
@@ -302,7 +300,7 @@ function _batch(::Type{Val{true}},
 
 	catch err
 		warn("'.$(id(detector)).csv': can't be created, trying to save results in an alternative file")
-		reviewResultsDirs()
+		checkResultsDirs()
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
@@ -381,7 +379,7 @@ function _batch(::Type{Val{false}},
 
 	catch err
 		warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
-		reviewResultsDirs() # to make sue that the directories did not 
+		checkResultsDirs() # to make sue that the directories did not 
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
