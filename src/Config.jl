@@ -9,14 +9,14 @@ function about()
 	\t *************************************************
 	\t **            -=) GeoEfficiency (=-            **
 	\t **  Accurate Geometrical Efficiency Calculator **
+	\t **   First Created on Fri Aug 14 20:12:01 2015 **
 	\t *************************************************
 
-	  @version: v"0.9.2-DEV" - ($(Date(now()) - Date("2017-10-08")) old master)  
-	  @author: Mohamed Krar,  @e-mail: DrKrar@gmail.com 
-	  @Profile: https://www.researchgate.net/profile/Mohamed_Krar3
-	  @repository: https://github.com/DrKrar/GeoEfficiency.jl/
-	  @documentation: http://geoefficiencyjl.readthedocs.org
-	  Created on Fri Aug 14 20:12:01 2015, \n
+	  Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
+	  Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
+		Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
+		Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-02")) old master)  
+	  Documentation: http://geoefficiencyjl.readthedocs.org\n
 	""")
 end
 
