@@ -3,7 +3,7 @@ using Compat.Dates
 #------------------about------------------------------------
 
 function about() 
-	print_with_color(:green,
+	printstyled(
 	"""
 	\n
 	\t *************************************************
@@ -12,12 +12,13 @@ function about()
 	\t **   First Created on Fri Aug 14 20:12:01 2015 **
 	\t *************************************************
 
-	  Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
-	  Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
-		Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-		Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-02")) old master)  
-	  Documentation: http://geoefficiencyjl.readthedocs.org\n
-	""")
+	\t Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
+	\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
+	\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
+	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-03")) old master)  
+	\t Documentation: http://geoefficiencyjl.readthedocs.org
+	\n"""
+	, color=:green)
 end
 
 
