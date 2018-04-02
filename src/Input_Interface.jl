@@ -158,9 +158,9 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 
     catch err
         if isa(err, AssertionError) 
-			warn("provid a number in the semi open interval [$from, $to[.")
+			Compat.@warn("provid a number in the semi open interval [$from, $to[.")
         else   
-			warn("provid a valid numerical value!")
+			Compat.@warn("provid a valid numerical value!")
         end #if 
         
         return getfloat(prompt, from, to)
@@ -184,14 +184,14 @@ read detectors data from predefined file and return its content as an array of d
 function detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
     detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
-    info("opening '$(detectors)'......")
+    Compat.@info("opening '$(detectors)'......")
     try
         detector_info_array = readdlm(joinpath(datadir, detectors), ',', header=true)[1];
         return getDetectors(detector_info_array)
 		
     catch err
         if isa(err, SystemError) 
-		    warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
+		    Compat.@warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
 		end
         rethrow()
 
@@ -213,14 +213,14 @@ read data from a file and return its content as an array.
 
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
-	info("Opening `$(csv_data)`......")
+	Compat.@info("Opening `$(csv_data)`......")
 	try
 		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
 		return float(indata ) |> sort;
 
 	catch err
 	    if isa(err, SystemError) 
-		    warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+		    Compat.@warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		else
 		    #println(err)
@@ -286,10 +286,10 @@ function read_batch_info(datadir::AbstractString,
 					    srcRadii::AbstractString,
 					  srcLengths::AbstractString)
 
-	info("The Batch Mode is Starting....")
+	Compat.@info("The Batch Mode is Starting....")
 	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-	info("Read data from `CSV files` at $datadir .....")
+	Compat.@info("Read data from `CSV files` at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir); catch err; getDetectors(); end
 	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
@@ -297,7 +297,7 @@ function read_batch_info(datadir::AbstractString,
 	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure(err::AbstractString)
-		warn(err, ", transfer to direct data input via the `console`......")
+		Compat.@warn(err, ", transfer to direct data input via the `console`......")
 		sleep(3); src = source()
 		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
 		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
@@ -344,9 +344,9 @@ If no array received in the input an empty array will be created to receive the 
 
 """
 function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
-	Vector{RadiationDetector}(detectors_array); info("Please, input the detector information via the console")
+	Vector{RadiationDetector}(detectors_array); Compat.@info("Please, input the detector information via the console")
 	while(true)
-		try push!(detectors_array, RadiationDetector()); catch err	println(err); warn("Please: Enter a New Detector"); continue; end
+		try push!(detectors_array, RadiationDetector()); catch err	println(err); Compat.@warn("Please: Enter a New Detector"); continue; end
 		lowercase(input(
 			"""\n
     	                - To add a new detector press return\n
@@ -371,7 +371,7 @@ function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vect
 	
 	if isempty(detector_info_array) 
 		if console_FB 
-			info("The new detectors information may entred via the console")
+			Compat.@info("The new detectors information may entred via the console")
 			return getDetectors(detectors_array)
 		else	
 		 	error("getDetectors: Empty `detector_info_array`")

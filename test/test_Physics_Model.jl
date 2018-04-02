@@ -10,7 +10,7 @@ using Compat.Sys: isapple
 
 @testset "Physics Model" begin
 
-info("test `Point`...")	
+Compat.@info("test `Point`...")	
 	@testset "Point" begin
 		@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
 		@test show(Point(5,3)) == nothing
@@ -76,7 +76,7 @@ info("test `Point`...")
 		end #if
 	end #testset
 
-print("\n\t"); info("test `Cylindrical Detector`...")			
+print("\n\t"); Compat.@info("test `Cylindrical Detector`...")			
 	@testset "Cylindrical Detector" begin 
   
 		@test G.id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
@@ -122,13 +122,13 @@ print("\n\t"); info("test `Cylindrical Detector`...")
 		@test Vector{Detector}(detectors) == detectors
 
 		if !isapple()
-			info("test CylDetector()")
+			Compat.@info("test CylDetector()")
 			write(STDIN.buffer,"5\n" * "0\n")
 			@test CylDetector() === cyl0
 		end #if
 end #testset
 
-print("\n\t"); info("test `Borehole Detector`...")	
+print("\n\t"); Compat.@info("test `Borehole Detector`...")	
 	@testset "Borehole Detector" begin 
 	
 		@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
@@ -171,7 +171,7 @@ print("\n\t"); info("test `Borehole Detector`...")
 		@test Vector{Detector}(detectors) == detectors
 
 		if !isapple()
-			info("test BoreDetector()")
+			Compat.@info("test BoreDetector()")
 			write(STDIN.buffer,"5\n" * "4\n" * "3\n")
 			@test BoreDetector() === bore0
 			write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n")
@@ -179,7 +179,7 @@ print("\n\t"); info("test `Borehole Detector`...")
 			end #testset
 		end #if
 
-print("\n\t"); info("test `Well-type Detector`...")	
+print("\n\t"); Compat.@info("test `Well-type Detector`...")	
 	@testset "Well-type Detector" begin 
 		@test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
 		@test show(WellDetector(5,3,2,1)) == nothing  
@@ -224,7 +224,7 @@ print("\n\t"); info("test `Well-type Detector`...")
 		@test Vector{Detector}(detectors) == detectors
 
 		if !isapple()
-			info("test WellDetector()")
+			Compat.@info("test WellDetector()")
 			write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test WellDetector() === Well0
 			write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
@@ -232,7 +232,7 @@ print("\n\t"); info("test `Well-type Detector`...")
 		end #if
 	end #testset
 		
-print("\n\t"); info("test `RadiationDetector`...")    
+print("\n\t"); Compat.@info("test `RadiationDetector`...")    
 	@testset "RadiationDetector" begin 
 	
 		@test_throws MethodError  Detector(1+1im)
@@ -282,7 +282,7 @@ print("\n\t"); info("test `RadiationDetector`...")
 		@test Vector{Detector}(detectors) == detectors
 
 		if !isapple()
-			info("test Detector()")
+			Compat.@info("test Detector()")
 			write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test Detector() === Detector(5, 4, 3, 2)
 			write(STDIN.buffer,"5\n" * "4\n" * "0\n")
@@ -294,7 +294,7 @@ print("\n\t"); info("test `RadiationDetector`...")
 		end #if
 	end #testset	
 
-info("test `source`...")   
+Compat.@info("test `source`...")   
 	@testset "source" begin
 		setSrcToPoint(true)
 		pnt1 = Point(5)
