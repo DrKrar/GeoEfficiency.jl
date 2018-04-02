@@ -1,7 +1,7 @@
 Author | [Mohamed Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
 ----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
-Documentation |  [ReadtheDocs](http://geoefficiencyjl.readthedocs.org)
+Documentation |  [ReadTheDocs](http://geoefficiencyjl.readthedocs.org)
 Current version | [v"0.9.1"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
@@ -52,7 +52,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 ## Requirements
  *  Julia 0.6 or above.
  *  QuadGK 0.1.2 or above, will be installed automatically while the package Installation.
- *  Compat 0.55.0 or above, will be installed automatically while the package Installation.
+ *  Compat 0.63.0 or above, will be installed automatically while the package Installation.
  
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
