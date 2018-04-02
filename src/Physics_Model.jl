@@ -126,7 +126,7 @@ isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volu
 
 	CylDetector(CryRadius::Real, CryLength::Real)
 
-return a `cylindrical` detector of the given crystal dimmensions.
+return a `cylindrical` detector of the given crystal dimensions.
 
  *  `CryRadius` : the detector crystal radius.
 

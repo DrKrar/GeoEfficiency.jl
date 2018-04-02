@@ -35,7 +35,7 @@ checkResultsDirs()
 
 	calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
-calculate the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source and display it on the `console`.
+calculate the Geometrical Efficiency of the detector `detector` for the tuple `aSource` describing the source and display it on the `console`.
 
 Throw` an Error if the source location is inappropriate.
 
@@ -170,7 +170,7 @@ end #function
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-return the path of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for the detector `detector`.
+return the path of the `CSV` files containing the results of the batch calculation of the Geometrical efficiency for the detector `detector`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -209,7 +209,7 @@ end #function
 	       srcLengths_array::Vector{S}=[0.0],
 	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
 
-returns an array of the paths of the `CSV` files containing the results of the batch calculation of the Geometricel efficiecny for each detector in the `detectors_array`.
+returns an array of the paths of the `CSV` files containing the results of the batch calculation of the Geometrical efficiency for each detector in the `detectors_array`.
 
 A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
@@ -241,7 +241,7 @@ function batch( detectors_array::Vector{T},
 
 	end # detectors_array
 
-	print("\n\t"); info("The program had termiate, Thank you >>>>\n")
+	print("\n\t"); info("The program had been terminated, Thank you >>>>\n")
 	return outpaths
 
 end #function
@@ -257,11 +257,11 @@ end #function
 				srcLengths_array::Vector{Float64}
 				)
 
-Batch calculation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+Batch calculation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containing results. 
 The `results` has columns `Height`, `Rho`, `GeoEfficiency`. 
 
 !!! note
-    All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
+    All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` before passing to the `batch` function.
 
 """
 function _batch(::Type{Val{true}},
@@ -306,7 +306,7 @@ function _batch(::Type{Val{true}},
 
 	end #try
 	global countDetectors += 1;
-	return (detector, results, path) # detector, results are for test porpose
+	return (detector, results, path) # detector, results are for test purpose
 
 end #function
 
@@ -320,11 +320,11 @@ end #function
 				srcLengths_array::Vector{Float64},
 				)
 
-Batch calculation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containg results. 
+Batch calculation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containing results. 
 The `results` has columns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
 
 !!! note
-    All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` befor passing to the `batch` function.
+    All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` before passing to the `batch` function.
 
 """
 function _batch(::Type{Val{false}},
@@ -385,6 +385,6 @@ function _batch(::Type{Val{false}},
 
 	end #try
 	global countDetectors += 1;
-	return (detector, results, path) # detector, results are for test porpose
+	return (detector, results, path) # detector, results are for test purpose
 
 end #function
