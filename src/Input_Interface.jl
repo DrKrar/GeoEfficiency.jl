@@ -112,7 +112,7 @@ input a number:
 
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
-    print_with_color(incolor, prompt); chomp(readline())
+    printstyled( prompt, color=incolor); chomp(readline())
 end # function
 
 

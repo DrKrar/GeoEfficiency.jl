@@ -49,14 +49,14 @@ Throw` an Error if the source location is inappropriate.
 function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 			   
 	aPnt, srcRadius, srcLength = aSource
-	print_with_color(:yellow,"\n<$(countDetectors)> $(id(detector))")
+	printstyled("\n<$(countDetectors)> $(id(detector))", color=:yellow)
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
     
 	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
 	println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 
 	global countDetectors += 1
-	print_with_color(:red, repeat(" =",36),"\n\n")
+	printstyled(repeat(" =",36),"\n\n", color=:red)
 	return nothing
 
 end #function
@@ -283,11 +283,11 @@ function _batch(::Type{Val{true}},
 			calculatedEff = try	geoEff(detector, aPnt); catch err;	NaN64 end
 			push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
 
-			print_with_color(:yellow, cellLabel)
+			printstyled(cellLabel, color=:yellow)
 			println(" - Source: ", id(aPnt))
 			println()
 			println(" - The detector Geometrical Efficiency = ", calculatedEff)
-			print_with_color(:red, repeat(" =",36),"\n")
+			printstyled(repeat(" =",36),"\n", color=:red)
 
 		end #for_Rho
 
@@ -355,11 +355,11 @@ function _batch(::Type{Val{false}},
 					
 					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 					
-					print_with_color(:yellow,cellLabel)
+					printstyled(cellLabel, color=:yellow)
 					println(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
 					println()
 					println(" - The detector Geometrical Efficiency = ", calculatedEff)
-					print_with_color(:red, repeat(" =",36),"\n")
+					printstyled(repeat(" =",36),"\n", color=:red)
 
 				end #for_srcRadius
 

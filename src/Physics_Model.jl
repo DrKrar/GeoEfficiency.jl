@@ -59,7 +59,7 @@ information from the `console`.
 
 """
 function Point()
-	print_with_color(:yellow,"\n II- The Radiactive Source Anchor Point:-\n")
+	printstyled("\n II- The Radioactive Source Anchor Point:-\n", color=:yellow)
 	Height = getfloat("\n\t > Height (cm) = ")
 	Rho = getfloat("\n\t > Off-axis (cm) = ")
 	Point(Height, Rho)
@@ -166,7 +166,7 @@ return a cylindrical detector according to the input from the `console`.
 
 """
 function CylDetector()
-	print_with_color(:yellow," I- The Cylindrical Detector physical Dimensions:-\n")
+	printstyled(" I- The Cylindrical Detector physical Dimensions:-\n", color=:yellow)
 	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength = getfloat("\n\t > Crystal Length (cm) = ")
 	CylDetector(CryRadius, CryLength)
@@ -215,7 +215,7 @@ return a bore-hole detector according to the input from the `console`.
 
 """
 function BoreDetector()
-	print_with_color(:yellow," I- The Bore Hole Detetcor physical Dimensions:-\n")
+	printstyled(" I- The Bore Hole Detector physical Dimensions:-\n", color=:yellow)
 	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
@@ -268,7 +268,7 @@ return a Well-Type detector according to the input from the `console`.
 
 """
 function WellDetector()
-	print_with_color(:yellow," I- The Well-Type Detetcor physical Dimensions:-\n")
+	printstyled(" I- The Well-Type Detector physical Dimensions:-\n", color=:yellow)
 	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
@@ -299,7 +299,7 @@ according to the input from the console.
 
 """
 function RadiationDetector()
-	print_with_color(:yellow, "\n I- The detector physical Dimensions :-\n")
+	printstyled( "\n I- The detector physical Dimensions :-\n", color=:yellow)
 	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
 	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, CryRadius)
