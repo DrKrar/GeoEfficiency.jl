@@ -55,7 +55,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
                       			integrate(func, transtion, fine, reltol = relativeError)[1] / pi
 
 		else
-			 Compat.@error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
+			 error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
 
 		end #if
 

@@ -374,7 +374,7 @@ function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vect
 			Compat.@info("The new detectors information may entred via the console")
 			return getDetectors(detectors_array)
 		else	
-		 	Compat.@error("getDetectors: Empty `detector_info_array`")
+		 	error("getDetectors: Empty `detector_info_array`")
 		end
 		
 	else
