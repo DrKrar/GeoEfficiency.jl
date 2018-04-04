@@ -73,7 +73,7 @@ print("\n\t"); Compat.@info("test `setSrcToPoint` & `typeofSrc`...")
 
 print("\n\t"); Compat.@info("test `input`...")
 	@testset "input" begin
-		if !isapple()
+		if true #!isapple()
 			write( Compat.stdin.buffer," anbfyiQERFC \n")
 			@test G.input() == " anbfyiQERFC "
 		else
@@ -101,17 +101,17 @@ print("\n\t"); Compat.@info("test `getfloat` with mathematical expressions...")
 		@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
 		if true #!isapple()
 			for i = 0:5
-				write(STDIN.buffer,"1.2+2im\n"^i * "3\n")
+				write(Compat.stdin.buffer,"1.2+2im\n"^i * "3\n")
 				@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
 			end # for
-			write(STDIN.buffer,"5\n" * "3\n")
+			write(Compat.stdin.buffer,"5\n" * "3\n")
 			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(STDIN.buffer,"-1\n" * "3\n")
+			write(Compat.stdin.buffer,"-1\n" * "3\n")
 			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(STDIN.buffer,"1.2f\n" * "3\n")
+			write(Compat.stdin.buffer,"1.2f\n" * "3\n")
 			@test   3.0 == getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
 		else
-			@test_throws 	ErrorException	write(STDIN.buffer,"5\n" * "3\n")
+			@test_throws 	ErrorException	write(Compat.stdin.buffer,"5\n" * "3\n")
 		end #if
   end # testset
 	
