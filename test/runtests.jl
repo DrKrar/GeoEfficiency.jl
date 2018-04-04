@@ -6,6 +6,7 @@ const io = IOBuffer()
 logging(io, kind=:warn)
 logging(io, kind=:info)
 
+using Compat
 import Compat.Sys: isapple
 using Compat.MathConstants
 using Compat.Test
