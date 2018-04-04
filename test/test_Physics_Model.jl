@@ -71,7 +71,7 @@ Compat.@info("test `Point`...")
 		@test pnt6.Rho == pnt5.Rho 
 		
 		if !isapple()
-			write(STDIN.buffer,"5\n" * "1\n")
+			write(Compat.stdin.buffer,"5\n" * "1\n")
 			@test Point() === pnt51
 		end #if
 	end #testset
@@ -123,7 +123,7 @@ print("\n\t"); Compat.@info("test `Cylindrical Detector`...")
 
 		if !isapple()
 			Compat.@info("test CylDetector()")
-			write(STDIN.buffer,"5\n" * "0\n")
+			write(Compat.stdin.buffer,"5\n" * "0\n")
 			@test CylDetector() === cyl0
 		end #if
 end #testset
@@ -172,9 +172,9 @@ print("\n\t"); Compat.@info("test `Borehole Detector`...")
 
 		if !isapple()
 			Compat.@info("test BoreDetector()")
-			write(STDIN.buffer,"5\n" * "4\n" * "3\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "3\n")
 			@test BoreDetector() === bore0
-			write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n")
 			@test BoreDetector() === bore0
 			end #testset
 		end #if
@@ -225,9 +225,9 @@ print("\n\t"); Compat.@info("test `Well-type Detector`...")
 
 		if !isapple()
 			Compat.@info("test WellDetector()")
-			write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test WellDetector() === Well0
-			write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
 			@test WellDetector() === Well0
 		end #if
 	end #testset
@@ -283,13 +283,13 @@ print("\n\t"); Compat.@info("test `RadiationDetector`...")
 
 		if !isapple()
 			Compat.@info("test Detector()")
-			write(STDIN.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test Detector() === Detector(5, 4, 3, 2)
-			write(STDIN.buffer,"5\n" * "4\n" * "0\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "0\n")
 			@test Detector() === Detector(5, 4)
-			write(STDIN.buffer,"5\n" * "4\n" * "\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "\n")
 			@test Detector() === Detector(5, 4)
-			write(STDIN.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+			write(Compat.stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
 			@test Detector() === Detector(5, 4, 3, 2)
 		end #if
 	end #testset	
@@ -302,25 +302,25 @@ Compat.@info("test `source`...")
 		if !isapple()
 			
 			setSrcToPoint(false)
-			write(STDIN.buffer, 
+			write(Compat.stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
 			@test  source() == (Point(1.0, 0.0), 2.0, 3.0)
 			
 			setSrcToPoint(false)
-			write(STDIN.buffer, 
+			write(Compat.stdin.buffer, 
 			"1\n" * "5\n" * #=non-axial point=#
 			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
 			@test  source() == (Point(1.0, 0.0), 2.0, 3.0) # axial anchor point
 			
 			setSrcToPoint(false)
-			write(STDIN.buffer, 
+			write(Compat.stdin.buffer, 
 			"1\n" * "5\n" * #=non-axial point=#
 			"0\n" 			#=SrcRadius=2=# )
 			@test  source() == (Point(1.0, 5.0), 0.0, 0.0) # non-axial  point source
 
 			setSrcToPoint(true)
-			write(STDIN.buffer,	"1\n" * "5\n") # non-axial point
+			write(Compat.stdin.buffer,	"1\n" * "5\n") # non-axial point
 			@test  source() == (Point(1.0, 5.0), 0.0, 0.0)
 		end #if
 	end #testset_source
