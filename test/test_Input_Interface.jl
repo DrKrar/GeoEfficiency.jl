@@ -284,7 +284,7 @@ print("\n\t"); Compat.@info("test `getDetectors`...")
 		@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
 		detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 		@test_throws MethodError getDetectors(detector_info_array; console_FB=false)
-		detector_info_array = detector_info_array = Matrix{Int}(0,0)
+		detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
 		if true #!isapple()
@@ -292,10 +292,10 @@ print("\n\t"); Compat.@info("test `getDetectors`...")
 				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors() == [Detector(5,1)]
 				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
-				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5,1)]
+				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
 		
 		 		write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
-				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5, 1), Detector(55, 11)]
+				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
 			end # for
 		else
 			@test_throws	ErrorException	write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
