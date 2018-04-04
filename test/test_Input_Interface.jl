@@ -137,14 +137,14 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
 	print("\n\t\t"); Compat.@info("READ_BATCH_INFO")	
-		batch_info = G.read_batch_Compat.@info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+		batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 		@test  batch_info[1] == sort(detectors)
 		@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		@test  batch_info[3] == [0.0]
 		@test  batch_info[4] == [0.0]
 		@test  batch_info[5] == [0.0]
 		@test  batch_info[6] == ( G.srcType === G.srcPoint)
-		@test  G.read_batch_Compat.@info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
+		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
 
 	print("\n\t\t"); Compat.@info("rewrite, read and sort  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
@@ -183,7 +183,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 			write(STDIN.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
-			@test  G.read_batch_Compat.@info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 		end #if
 		
 	print("\n\t\t"); Compat.@info("missing file - `Rhos.csv`")
@@ -194,7 +194,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 			write(STDIN.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
-			@test  G.read_batch_Compat.@info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 		end #if
 
 	print("\n\t\t"); Compat.@info("Detectors - missing file\n")	

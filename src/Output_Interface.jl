@@ -95,7 +95,7 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	print("\n\t"); info("The 'calcN' had terminated, Thank you\n")
+	print("\n\t"); Compat.@info("The 'calcN' had terminated, Thank you\n")
 end #function
 
 #----------------writecsv_head------------------------------------------

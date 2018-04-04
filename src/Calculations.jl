@@ -6,13 +6,16 @@
 #
 #**************************************************************************************
 
+#------------------consts&globals--------------------------------------
+using Compat
+
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
 @compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 0.0001	
 @compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = 0.00000000001
 @compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
-#-----------GeoEff_Pnt------------------------------------------------------
+#-----------------GeoEff_Pnt---------------------------------------------
 
 """# unexported function
 
@@ -52,7 +55,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
                       			integrate(func, transtion, fine, reltol = relativeError)[1] / pi
 
 		else
-			 error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
+			 Compat.@error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
 
 		end #if
 
