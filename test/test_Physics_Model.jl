@@ -6,7 +6,8 @@
 # 
 #**************************************************************************************
 
-using Compat.Sys: isapple
+using Compat
+#using Compat.Sys: isapple
 
 @testset "Physics Model" begin
 
