@@ -6,7 +6,8 @@
 # 
 #**************************************************************************************
 
-#import  Compat.Sys: isapple
+using Compat
+import  Compat.Sys: isapple
 
 @testset "Output Interface" begin
   
@@ -60,11 +61,11 @@
 	@testset "function `calcN`" begin
 		if !isapple()
 			let cylDet = Detector(5,10) #, wellDet= Detector(5, 4, 3, 2)
-				write(STDIN.buffer, "4\n0\n1\n2\n" * "\n") # one time only
+				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "\n") # one time only
 				@test calcN(cylDet)  == nothing	
-				write(STDIN.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # the same detector once.
+				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # the same detector once.
 				@test calcN(cylDet)  == nothing
-				write(STDIN.buffer, "4\n0\n1\n2\n" * "n\n" * "5\n6\n0\n" * "4\n0\n1\n2\n" * "\n") # the new detector once.
+				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "5\n6\n0\n" * "4\n0\n1\n2\n" * "\n") # the new detector once.
 				@test calcN(cylDet)  == nothing	
 			end #let
 		end #if

@@ -6,7 +6,8 @@
 # 
 #**************************************************************************************
 
-#import Compat.Sys: isapple
+using Compat
+import Compat.Sys: isapple
 #using Compat.MathConstants
 
 @testset "Input_Interface" begin
@@ -73,10 +74,10 @@ print("\n\t"); Compat.@info("test `setSrcToPoint` & `typeofSrc`...")
 print("\n\t"); Compat.@info("test `input`...")
 	@testset "input" begin
 		if !isapple()
-			write(STDIN.buffer," anbfyiQERFC \n")
+			write( Compat.stdin.buffer," anbfyiQERFC \n")
 			@test G.input() == " anbfyiQERFC "
 		else
-			@test_throws 	ErrorException	write(STDIN.buffer," anbfyiQERFC \n")
+			@test_throws 	ErrorException	write(Compat.stdin.buffer.buffer," anbfyiQERFC \n")
 		end #if
 	end #testset_input
 
@@ -180,7 +181,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 		if !isapple()		# 
 			setSrcToPoint(false)
-			write(STDIN.buffer, 
+			write(Compat.stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
 			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
@@ -191,7 +192,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
 		if !isapple() 		#
 			setSrcToPoint(false)
-			write(STDIN.buffer, 
+			write(Compat.stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
 			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
@@ -286,18 +287,18 @@ print("\n\t"); Compat.@info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(0,0)
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
-		if !isapple()
+		if true #!isapple()
 			for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
-				write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors() == [Detector(5,1)]
-				write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5,1)]
 		
-		 		write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
+		 		write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
 				@test getDetectors(Matrix{Float64}(0,0)) == [Detector(5, 1), Detector(55, 11)]
 			end # for
 		else
-			@test_throws	ErrorException	write(STDIN.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+			@test_throws	ErrorException	write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 		end #if
     end # testset
 println()
