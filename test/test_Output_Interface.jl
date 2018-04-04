@@ -7,6 +7,7 @@
 #**************************************************************************************
 
 using Compat
+using Compat.DelimitedFiles
 import  Compat.Sys: isapple
 
 @testset "Output Interface" begin
