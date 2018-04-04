@@ -183,7 +183,7 @@ read detectors data from predefined file and return its content as an array of d
 """
 function detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
-    detector_info_array::Matrix{Float64} = Matrix{Float64}(0,0)
+    detector_info_array::Matrix{Float64} = Matrix{Float64}(undef, 0, 0)
     Compat.@info("opening '$(detectors)'......")
     try
         detector_info_array = readdlm(joinpath(datadir, detectors), ',', header=true)[1];
