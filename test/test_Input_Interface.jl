@@ -99,7 +99,7 @@ print("\n\t"); Compat.@info("test `getfloat` with mathematical expressions...")
 		@test   MathConstants.e     ≈   getfloat("\ninput 'e', then press return: ",value="e")
 		@test   MathConstants.e^3   ≈   getfloat("\ninput 'e^3', then press return: ",value="e^3")
 		@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
-		if !isapple()
+		if true #!isapple()
 			for i = 0:5
 				write(STDIN.buffer,"1.2+2im\n"^i * "3\n")
 				@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
@@ -179,7 +179,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		rm(hightfile, recursive=true)
 		
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
-		if !isapple()		# 
+		if true #!isapple()
 			setSrcToPoint(false)
 			write(Compat.stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
@@ -190,7 +190,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 	print("\n\t\t"); Compat.@info("missing file - `Rhos.csv`")
 		@test  G.writecsv_head(hightfile, [4.0,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
-		if !isapple() 		#
+		if true #!isapple()
 			setSrcToPoint(false)
 			write(Compat.stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#

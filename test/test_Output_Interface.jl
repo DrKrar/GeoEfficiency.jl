@@ -59,7 +59,7 @@ import  Compat.Sys: isapple
 		end #testset_for
 
 	@testset "function `calcN`" begin
-		if !isapple()
+		if true #!isapple()
 			let cylDet = Detector(5,10) #, wellDet= Detector(5, 4, 3, 2)
 				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "\n") # one time only
 				@test calcN(cylDet)  == nothing	
