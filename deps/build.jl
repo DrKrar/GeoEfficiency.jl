@@ -17,6 +17,7 @@ catch err
 	if isdir(joinpath(homedir(),"GeoEfficiency"))
 		Compat.@warn("`GeoEfficiency` folder already exist.")
 	else	
-		Compat.@warn("""'GeoEfficiency' folder: could not be created,  the package may be unable to work in patch mode. Try 'Pkg.build("GeoEfficiency")' to rebuild.""")
+		Compat.@error("""'GeoEfficiency' folder: could not be created,
+		\n  the package may be unable to work in patch mode. Try 'Pkg.build("GeoEfficiency")' to rebuild.""")
 	end #if
 end #try
