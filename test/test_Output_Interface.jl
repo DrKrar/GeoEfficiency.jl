@@ -59,17 +59,13 @@ using Compat.DelimitedFiles
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
 		end #testset_for
 
-	@testset "function `calcN`" begin
-		if true #!isapple()
-			let cylDet = Detector(5,10) #, wellDet= Detector(5, 4, 3, 2)
-				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "\n") # one time only
-				@test calcN(cylDet)  == nothing	
-				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # the same detector once.
-				@test calcN(cylDet)  == nothing
-				write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "5\n6\n0\n" * "4\n0\n1\n2\n" * "\n") # the new detector once.
-				@test calcN(cylDet)  == nothing	
-			end #let
-		end #if
+	@testset "function `calcN`" for cylDet = [Detector(5,10), Detector(eps(),0)] #, wellDet= Detector(5, 4, 3, 2)
+		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "\n") # exit after first run
+		@test calcN(cylDet)  == nothing	
+		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # use the same detector again and then exit.
+		@test calcN(cylDet)  == nothing
+		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n" * "\n") # use a new detector once then exit.
+		@test calcN(cylDet)  == nothing	
  	end #testset
 
 info("test `_batch` & `batch`...")    
