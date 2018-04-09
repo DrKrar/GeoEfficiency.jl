@@ -3,7 +3,7 @@
 # ====================== part of the GeoEfficiency.jl package.
 # 
 #   
-# 
+# ToDO: clean up some remaining isapple 
 #**************************************************************************************
 
 
@@ -14,9 +14,9 @@
 		@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
 		@test show(Point(5,3)) == nothing
 
-		#pnt0 = Point()
+
 		pnt1 = Point(5)
-		pnt11 = 
+		pnt11 = Point(1, 1)
 		pnt5 = Point(5.0, 0.0)	
 		pnt51 = Point(5.0, 1.0)	
 		
@@ -69,10 +69,10 @@
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
 		
-		if !isapple()
-			write(stdin.buffer,"5\n" * "1\n")
-			@test Point() === pnt51
-		end #if
+		pnt_51 = exec_consol_unattended(Point, "5\n1\n")
+		pnt_5 = exec_consol_unattended(Point, "5\n")
+		@test pnt_51 == pnt51
+		@test pnt_5 == pnt5
 	end #testset
 
 print("\n\t"); @info("test `Cylindrical Detector`...")			
@@ -120,11 +120,10 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if !isapple()
-			@info("test CylDetector()")
-			write(stdin.buffer,"5\n" * "0\n")
-			@test CylDetector() === cyl0
-		end #if
+		cyl_51 = exec_consol_unattended(CylDetector, "5\n" * "1\n")
+		cyl_5  = exec_consol_unattended(CylDetector, "5\n" * "0\n")
+		@test pnt_51 == CylDetector(5.0,1)
+		@test pnt_5 == cyl0
 end #testset
 
 print("\n\t"); @info("test `Borehole Detector`...")	
@@ -169,7 +168,7 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if !isapple()
+		if true #!isapple()
 			@info("test BoreDetector()")
 			write(stdin.buffer,"5\n" * "4\n" * "3\n")
 			@test BoreDetector() === bore0
@@ -222,7 +221,7 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if !isapple()
+		if ture #!isapple()
 			@info("test WellDetector()")
 			write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test WellDetector() === Well0
@@ -280,7 +279,7 @@ print("\n\t"); @info("test `RadiationDetector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if !isapple()
+		if true #!isapple()
 			@info("test Detector()")
 			write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test Detector() === Detector(5, 4, 3, 2)
@@ -298,7 +297,7 @@ print("\n\t"); @info("test `RadiationDetector`...")
 		setSrcToPoint(true)
 		pnt1 = Point(5)
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
-		if !isapple()
+		if true #!isapple()
 			
 			setSrcToPoint(false)
 			write(stdin.buffer, 
