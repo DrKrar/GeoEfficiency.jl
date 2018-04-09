@@ -21,12 +21,13 @@ countDetectors = 1;
 """# UnExported
 
     checkResultsDirs()
-make sue that the results are already exist or create them if necessary
+make sure that the results directories are already exist or create them if necessary
 """
 function checkResultsDirs()
-	isdir(resultdir)        || mkdir(resultdir)
-	isdir(resultdir_pnt)    || mkdir(resultdir_pnt)
-	isdir(resultdir_nonPnt) || mkdir(resultdir_nonPnt)
+	#isdir(resultdir)        || mkdir(resultdir)
+	mkpath(resultdir_pnt)
+	mkpath(resultdir_nonPnt)
+	return nothing
 end
 checkResultsDirs()
 
@@ -299,8 +300,8 @@ function _batch(::Type{Val{true}},
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		Compat.@warn("'.$(id(detector)).csv': can't be created, trying to save results in an alternative file")
-		checkResultsDirs()
+		Compat.@error("'.$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+		checkResultsDirs() # to make sure the directories do exist
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
@@ -378,8 +379,8 @@ function _batch(::Type{Val{false}},
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	catch err
-		Compat.@warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
-		checkResultsDirs() # to make sue that the directories did not 
+		Compat.@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+		checkResultsDirs() # to make sue that the directories do exist
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
