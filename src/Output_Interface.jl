@@ -241,7 +241,7 @@ function batch( detectors_array::Vector{T},
 
 	end # detectors_array
 
-	print("\n\t"); info("The program had been terminated, Thank you >>>>\n")
+	print("\n\t"); Compat.@info("The program had been terminated, Thank you >>>>\n")
 	return outpaths
 
 end #function
@@ -293,13 +293,13 @@ function _batch(::Type{Val{true}},
 
 	end #for_Height
 	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
-	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	Compat.@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	path = joinpath(resultdir_pnt,  "$(id(detector)).csv")
 	try
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		warn("'.$(id(detector)).csv': can't be created, trying to save results in an alternative file")
+		Compat.@warn("'.$(id(detector)).csv': can't be created, trying to save results in an alternative file")
 		checkResultsDirs()
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
@@ -372,13 +372,13 @@ function _batch(::Type{Val{false}},
 	end #for_Height
 
 	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
-	info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	Compat.@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	path = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
 	try 
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	catch err
-		warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
+		Compat.@warn("'$(id(detector)).csv': can't be created, trying to save results in an alternative file")
 		checkResultsDirs() # to make sue that the directories did not 
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
