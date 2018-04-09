@@ -98,7 +98,8 @@ function source(anchorPnt::Point = Point())
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
-		Compat.@warn("Only axial non-point is allowed Now: the off-axis will be set to Zero")
+		Compat.@warn("""currently only axial non-point is allowed,
+		 Note: the off-axis will be set to Zero""")
         anchorPnt = Point(anchorPnt, 0.0)
 
 	else
