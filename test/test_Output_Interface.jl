@@ -6,9 +6,6 @@
 # 
 #**************************************************************************************
 
-using Compat
-using Compat.DelimitedFiles
-import Compat: stdin
 
 function exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs::Vector=[], AfterExecs::Vector=[])
 	for input in  string.(consol_inputs)

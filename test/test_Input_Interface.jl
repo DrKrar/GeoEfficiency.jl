@@ -6,13 +6,10 @@
 # 
 #**************************************************************************************
 
-using Compat
-#import Compat.Sys: isapple
-#using Compat.MathConstants
 
 @testset "Input_Interface" begin
 
-print("\n\t"); Compat.@info("test `setSrcToPoint` & `typeofSrc`...")
+print("\n\t"); @info("test `setSrcToPoint` & `typeofSrc`...")
 	@testset "setSrcToPoint" begin
 		@test G.srcType === G.srcUnknown  	# the initial value
 		@test typeofSrc() === G.srcUnknown  	# the initial value
@@ -71,19 +68,19 @@ print("\n\t"); Compat.@info("test `setSrcToPoint` & `typeofSrc`...")
 		@test setSrcToPoint(true)  === true
 	end #testset
 
-print("\n\t"); Compat.@info("test `input`...")
+print("\n\t"); @info("test `input`...")
 	@testset "input" begin
 		if true #!isapple()
-			write( Compat.stdin.buffer," anbfyiQERFC \n")
+			write( stdin.buffer," anbfyiQERFC \n")
 			@test G.input() == " anbfyiQERFC "
 		else
-			@test_throws 	ErrorException	write(Compat.stdin.buffer.buffer," anbfyiQERFC \n")
+			@test_throws 	ErrorException	write(stdin.buffer," anbfyiQERFC \n")
 		end #if
 	end #testset_input
 
-print("\n\t"); Compat.@info("test `getfloat`...")
+print("\n\t"); @info("test `getfloat`...")
 	@testset "getfloat" begin  
-print("\n\t"); Compat.@info("test `getfloat` with different ways to input numbers...")
+print("\n\t"); @info("test `getfloat` with different ways to input numbers...")
 		@test   0.0     ==  getfloat("\njust press return: ",value="0.0")
 		@test   1.0     ==  getfloat("\ninput 1, then press return: ",value="1.0")
 		@test   1.0     ==  getfloat("\ninput 1.0, then press return: ",value="1.0")
@@ -92,7 +89,7 @@ print("\n\t"); Compat.@info("test `getfloat` with different ways to input number
 		@test   isa( getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
 	
 
-print("\n\t"); Compat.@info("test `getfloat` with mathematical expressions...")
+print("\n\t"); @info("test `getfloat` with mathematical expressions...")
 		@test   0.5           		==  getfloat("\ninput 1/2, then press return: ",value="1/2")
 		@test   0.75          		==  getfloat("\ninput 3//4, then press return: ",value="3//4")
 		@test   MathConstants.pi/2 	≈   getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
@@ -101,21 +98,21 @@ print("\n\t"); Compat.@info("test `getfloat` with mathematical expressions...")
 		@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
 		if true #!isapple()
 			for i = 0:5
-				write(Compat.stdin.buffer,"1.2+2im\n"^i * "3\n")
+				write(stdin.buffer,"1.2+2im\n"^i * "3\n")
 				@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
 			end # for
-			write(Compat.stdin.buffer,"5\n" * "3\n")
+			write(stdin.buffer,"5\n" * "3\n")
 			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(Compat.stdin.buffer,"-1\n" * "3\n")
+			write(stdin.buffer,"-1\n" * "3\n")
 			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(Compat.stdin.buffer,"1.2f\n" * "3\n")
+			write(stdin.buffer,"1.2f\n" * "3\n")
 			@test   3.0 == getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
 		else
-			@test_throws 	ErrorException	write(Compat.stdin.buffer,"5\n" * "3\n")
+			@test_throws 	ErrorException	write(stdin.buffer,"5\n" * "3\n")
 		end #if
   end # testset
 	
-print("\n\t"); Compat.@info("test `reading from CSV`...")	
+print("\n\t"); @info("test `reading from CSV`...")	
     @testset "reading from CSV" begin
 		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
         detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
@@ -129,15 +126,15 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		Lengthsfile  = "Lengthsfile"
 		setSrcToPoint(true) == true
 
-	print("\n\t\t"); Compat.@info("Detectors write and read  - input type{Int}")	
+	print("\n\t\t"); @info("Detectors write and read  - input type{Int}")	
 		@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 		@test  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) == sort(detectors)
 
-	print("\n\t\t"); Compat.@info("write and read  - input type{Int}")
+	print("\n\t\t"); @info("write and read  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
-	print("\n\t\t"); Compat.@info("READ_BATCH_INFO")	
+	print("\n\t\t"); @info("READ_BATCH_INFO")	
 		batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 		@test  batch_info[1] == sort(detectors)
 		@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
@@ -147,58 +144,58 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 		@test  batch_info[6] == ( G.srcType === G.srcPoint)
 		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
 
-	print("\n\t\t"); Compat.@info("rewrite, read and sort  - input type{Int}")
+	print("\n\t\t"); @info("rewrite, read and sort  - input type{Int}")
 		@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		
-	print("\n\t\t"); Compat.@info("rewrite, read and sort - input type{Rational-treated as any}")
+	print("\n\t\t"); @info("rewrite, read and sort - input type{Rational-treated as any}")
 		@test  G.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 		
-	print("\n\t\t"); Compat.@info("rewrite, read and sort - input type{Float64}")
+	print("\n\t\t"); @info("rewrite, read and sort - input type{Float64}")
 		@test  G.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		
-	#print("\n\t\t"); Compat.@info("rewrite, read and sort - input type{Irrational....}")
+	#print("\n\t\t"); @info("rewrite, read and sort - input type{Irrational....}")
 	#	@test  G.writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 	#	@test G.read_from_csvFile("_hight_test.csv", datadirectory) == [0]
 		
-	print("\n\t\t"); Compat.@info("invalid data type {Unionall}")
+	print("\n\t\t"); @info("invalid data type {Unionall}")
 		@test  G.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
-	print("\n\t\t"); Compat.@info("invalid data type {String}")
+	print("\n\t\t"); @info("invalid data type {String}")
 		@test  G.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 	
-	print("\n\t\t"); Compat.@info("invalid data type {Complex}")
+	print("\n\t\t"); @info("invalid data type {Complex}")
 		@test  G.writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
 	
-	print("\n\t\t"); Compat.@info("missing file - `Hights.csv`")
+	print("\n\t\t"); @info("missing file - `Hights.csv`")
 		rm(hightfile, recursive=true)
 		
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
 		if true #!isapple()
 			setSrcToPoint(false)
-			write(Compat.stdin.buffer, 
+			write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
 			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 		end #if
 		
-	print("\n\t\t"); Compat.@info("missing file - `Rhos.csv`")
+	print("\n\t\t"); @info("missing file - `Rhos.csv`")
 		@test  G.writecsv_head(hightfile, [4.0,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
 		if true #!isapple()
 			setSrcToPoint(false)
-			write(Compat.stdin.buffer, 
+			write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
 			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 		end #if
 
-	print("\n\t\t"); Compat.@info("Detectors - missing file\n")	
+	print("\n\t\t"); @info("Detectors - missing file\n")	
 		rm(datadirectory, recursive=true)
 		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
 
@@ -222,7 +219,7 @@ print("\n\t"); Compat.@info("test `reading from CSV`...")
 	
 	end # testset
 	
-print("\n\t"); Compat.@info("test `getDetectors`...")		
+print("\n\t"); @info("test `getDetectors`...")		
     @testset "getDetectors" begin
 		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
         detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
@@ -289,16 +286,16 @@ print("\n\t"); Compat.@info("test `getDetectors`...")
 		
 		if true #!isapple()
 			for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
-				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors() == [Detector(5,1)]
-				write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
 		
-		 		write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
+		 		write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
 				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
 			end # for
 		else
-			@test_throws	ErrorException	write(Compat.stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+			@test_throws	ErrorException	write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
 		end #if
     end # testset
 println()

@@ -5,6 +5,7 @@
 # this file contains all the required function to test calculate the Geometrical efficiency.
 #
 #**************************************************************************************
+
 const absoluteTol1 = 1.0e-14 #1.0e-16
 const absoluteTol2 = 1.0e-11 #1.0e-13
 
@@ -22,7 +23,7 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 	poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
 
 
-	print("\n\t"); Compat.@info("polynomial test for the function `integrate`")
+	print("\n\t"); @info("polynomial test for the function `integrate`")
 	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
@@ -36,7 +37,7 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 		
 	end #testset_begin
 
-	print("\n\t"); Compat.@info("special cases for cylindrical detector; very restrict test")
+	print("\n\t"); @info("special cases for cylindrical detector; very restrict test")
 	@testset "point at the surface of cylindrical detector of cryRadius = $cryRadius" for 
 	cryRadius    = 1.0:0.5:11.0
 	acylDetector = CylDetector(cryRadius)
@@ -59,7 +60,7 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
 	end #for_testset
 	
-	print("\n\t"); Compat.@info("special cases for Borehole detector")
+	print("\n\t"); @info("special cases for Borehole detector")
 	@testset "point at the surface of Borehole detector of cryRadius $cryRadius and height $height" for 
 	cryRadius = 1.0:0.5:11.0, 
 	height    = 1.0:0.5:11.0, 
@@ -83,7 +84,7 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
 	end #testset_for
 
-	print("\n\t"); Compat.@info("special cases for well detector")
+	print("\n\t"); @info("special cases for well detector")
 	@testset "point at the surface of Well detectors of cryRadius $cryRadius and height $height" for 
 	cryRadius = 1.0:0.5:11.0, 
 	height    = 1.0:0.5:11.0, 
@@ -112,7 +113,7 @@ end #testset
 
 @testset "scaling test" begin
 
-	print("\n\t"); Compat.@info("starting scaling test cylindrical detector with point source...")
+	print("\n\t"); @info("starting scaling test cylindrical detector with point source...")
 	@testset "[J=$j] test, Scaling $k at cryRadius=$cryRadius" for 
 	cryRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 	j=2:5:100, 	# j > 1
@@ -127,7 +128,7 @@ end #testset
 		@test geoEff(acylDetector, naxPnt) ≈ geoEff(acylDetectork, naxPntk)		# non-axial point
 	end #for_testset
 	
-	print("\n\t"); Compat.@info("statrting scaling test Borehole detector with point source...")
+	print("\n\t"); @info("statrting scaling test Borehole detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 	cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
@@ -144,7 +145,7 @@ end #testset
 		end #for
 	end #for_testset
 
-	print("\n\t"); Compat.@info("starting scaling test Well-type detector with point source...")
+	print("\n\t"); @info("starting scaling test Well-type detector with point source...")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 	cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
 	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
