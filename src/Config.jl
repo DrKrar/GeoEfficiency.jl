@@ -2,7 +2,7 @@
 # Config.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# this file contain the configuration prameter. the vaalue introduced here hid any other value.
+# this file contain the configuration parameters. the values introduced here hid any other value.
 #
 #**************************************************************************************
 
@@ -34,7 +34,7 @@ end
 
   ##Physics_Model.jl##
 
-  ##Intput_Interface.jl##
+  ##Input_Interface.jl##
   const datafolder    = "GeoEfficiency"
 
   ##Calculations.jl##
