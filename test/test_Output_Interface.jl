@@ -75,8 +75,8 @@ exec_consol_unattended(Fn::Function, consol_inputs::String; Fn_ARGs::Vector=[], 
 		end #testset_for
 
 	@testset "function `calcN`" for 	
-			cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
-			consol_input = ["4\n0\n1\n2\n", "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n", "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n"]
+	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+	consol_input = ["4\n0\n1\n2\n", "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n", "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n"]
 		@test exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
 		@test exec_consol_unattended(calcN, "10\n5\n0\n" * consol_input)      == nothing	
  	end #testset
