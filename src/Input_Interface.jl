@@ -158,9 +158,11 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 
     catch err
         if isa(err, AssertionError) 
-			Compat.@warn("provid a number in the semi open interval [$from, $to[.")
+			Compat.@error("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
+			\n Please: provide an adequate value""")
         else   
-			Compat.@warn("provid a valid numerical value!")
+			Compat.@error("""input `$value` cannot be parsed to a valid numerical value!,
+			\n Please: provide a valid expression""")
         end #if 
         
         return getfloat(prompt, from, to)
