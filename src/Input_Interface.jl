@@ -10,6 +10,7 @@
 using Compat
 using Compat.MathConstants
 using Compat.DelimitedFiles
+import Compat: @info, @warn, @error
 
 @compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
 const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
@@ -37,30 +38,30 @@ typeofSrc() = srcType  # srcType !== SrcType, but
 
 set and return the value of `srcType` corresponding to `x`.
 
-  * srcUnknown = -1 and any negative integer treated as so, 
-  *  srcPoint = 0, 
-  *  srcLine = 1, 
-  *  srcDisk = 2, 
-  *  srcVolume = 3, 
-  *  srcNotPoint = 4 and any greater than 4 integer treated as so.
+  *  srcUnknown = -1 also any negative integer treated as so, 
+  *  srcPoint   = 0, 
+  *  srcLine    = 1, 
+  *  srcDisk    = 2, 
+  *  srcVolume  = 3, 
+  *  srcNotPoint = 4 also any greater than 4 integer treated as so.
 
 """
 function typeofSrc(x::Int)
 	global srcType = if x < 0
 					SrcType(-1)
-				elseif x  > 4
+				elseif x > 4
 					SrcType(4)
 				else
 					SrcType(x)
 				end
-end #fnuction
+end #function
 
 #------------------setSrcToPoint--------------------------------------
 
 """
     setSrcToPoint() 
 
-Return whether the source type is point or not.
+Return whether the source type is a point or not.
 """
 setSrcToPoint() = srcType === srcPoint
 
@@ -133,7 +134,7 @@ Prompts the user with the massage `prompt` defaults to `? ` to input a numserica
     *  the key word  argument `value` , if provided the function will not ask for input from the `console`and take it ass the input from the  `console`.
 
 # Examples
-```jldoctest
+```
 julia> getfloat("input a number:",value="3")
 3.0
 julia> getfloat("input a number:",value="")
@@ -144,9 +145,7 @@ julia> getfloat("input a number:",value="5//2")
 2.5
 julia> getfloat("input a number:",value="e")
 2.718281828459045
-
 ```
-
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
 	try
@@ -158,10 +157,10 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 
     catch err
         if isa(err, AssertionError) 
-			Compat.@error("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
+			@error("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
 			\n Please: provide an adequate value""")
         else   
-			Compat.@error("""input `$value` cannot be parsed to a valid numerical value!,
+			@error("""input `$value` cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
         end #if 
         
@@ -186,14 +185,14 @@ read detectors data from predefined file and return its content as an array of d
 function detector_info_from_csvFile(detectors::AbstractString=detectors, 
                                       datadir::AbstractString=datadir)
     detector_info_array::Matrix{Float64} = Matrix{Float64}(undef, 0, 0)
-    Compat.@info("opening '$(detectors)'......")
+    @info("opening '$(detectors)'......")
     try
         detector_info_array = readdlm(joinpath(datadir, detectors), ',', header=true)[1];
         return getDetectors(detector_info_array)
 		
     catch err
         if isa(err, SystemError) 
-		    Compat.@warn("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
+		    @error("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
 		end
         rethrow()
 
@@ -215,14 +214,14 @@ read data from a file and return its content as an array.
 
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
-	Compat.@info("Opening `$(csv_data)`......")
+	@info("Opening `$(csv_data)`......")
 	try
 		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
 		return float(indata ) |> sort;
 
 	catch err
 	    if isa(err, SystemError) 
-		    Compat.@warn("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		else
 		    #println(err)
@@ -288,10 +287,10 @@ function read_batch_info(datadir::AbstractString,
 					    srcRadii::AbstractString,
 					  srcLengths::AbstractString)
 
-	Compat.@info("The Batch Mode is Starting....")
+	@info("The Batch Mode is Starting....")
 	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-	Compat.@info("Read data from `CSV files` at $datadir .....")
+	@info("Read data from `CSV files` at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir); catch err; getDetectors(); end
 	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
@@ -299,7 +298,7 @@ function read_batch_info(datadir::AbstractString,
 	srcLengths_array::Vector{Float64} = [0.0]
 
 	function batchfailure(err::AbstractString)
-		Compat.@warn(err, ", transfer to direct data input via the `console`......")
+		@warn(err, ", transfer to direct data input via the `console`......")
 		sleep(3); src = source()
 		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
 		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
@@ -346,9 +345,9 @@ If no array received in the input an empty array will be created to receive the 
 
 """
 function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
-	Vector{RadiationDetector}(detectors_array); Compat.@info("Please, input the detector information via the console")
+	Vector{RadiationDetector}(detectors_array); @info("Please, input the detector information via the console")
 	while(true)
-		try push!(detectors_array, RadiationDetector()); catch err	println(err); Compat.@warn("Please: Enter a New Detector"); continue; end
+		try push!(detectors_array, RadiationDetector()); catch err	println(err); @warn("Please: Enter a New Detector"); continue; end
 		lowercase(input(
 			"""\n
     	                - To add a new detector press return\n
@@ -373,7 +372,7 @@ function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vect
 	
 	if isempty(detector_info_array) 
 		if console_FB 
-			Compat.@info("The new detectors information may entred via the console")
+			@info("The new detectors information may entred via the console")
 			return getDetectors(detectors_array)
 		else	
 		 	error("getDetectors: Empty `detector_info_array`")

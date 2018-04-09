@@ -8,7 +8,7 @@
 
 #------------------consts&globals--------------------------------------
 using Compat
-import Base: show, isless, convert
+import Base: show, isless, convert, @warn
 
 
 #--------------Point---------------------------------------------
@@ -98,7 +98,7 @@ function source(anchorPnt::Point = Point())
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
-		Compat.@warn("""currently only axial non-point is allowed,
+		@warn("""currently only axial non-point is allowed,
 		 Note: the off-axis will be set to Zero""")
         anchorPnt = Point(anchorPnt, 0.0)
 

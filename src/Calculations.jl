@@ -8,6 +8,7 @@
 
 #------------------consts&globals--------------------------------------
 using Compat
+using Compat: @error
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
 @compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 0.0001	
@@ -76,7 +77,7 @@ give a warning if the disk is out of cylindrical detector the face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-	detector.CryRadius > SurfacePnt.Rho + SrcRadius || warn("GeoEff_Disk: Off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
+	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error("off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
 	integrand(xRho) = xRho * GeoEff_Pnt(detector, Point(SurfacePnt, xRho))
 	return  integrate(integrand , 0.0, SrcRadius, reltol = relativeError)[1] / SrcRadius^2
@@ -119,13 +120,13 @@ on the detector surface.
 
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-	detector.CryRadius > SrcRadius	||	warn("geoEff: Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
+	detector.CryRadius > SrcRadius	||	@error("Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
 	
 	pnt::Point = deepcopy(aSurfacePnt)
 		
 	if 0.0 == SrcRadius                         #Point source
 	
-		detector.CryRadius  > pnt.Rho  ||	warn("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
+		detector.CryRadius  > pnt.Rho  ||	@error("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
         return GeoEff_Pnt(detector, pnt)/2            	
 
 	elseif 0.0 == SrcLength						#Disk source

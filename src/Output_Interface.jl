@@ -9,6 +9,7 @@
 #------------------consts&globals--------------------------------------
 using Compat
 using Compat.DelimitedFiles 
+import Compat: @info, @error
 
 @compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
 const resultdir	        = joinpath(datadir, resultsfolder);	
@@ -96,7 +97,7 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 		end #if
 
 	end #while
-	print("\n\t"); Compat.@info("The 'calcN' had terminated, Thank you\n")
+	print("\n\t"); @info("The 'calcN' had terminated, Thank you\n")
 end #function
 
 #----------------writecsv_head------------------------------------------
@@ -242,7 +243,7 @@ function batch( detectors_array::Vector{T},
 
 	end # detectors_array
 
-	print("\n\t"); Compat.@info("The program had been terminated, Thank you >>>>\n")
+	print("\n\t"); @info("The program had been terminated, Thank you >>>>\n")
 	return outpaths
 
 end #function
@@ -294,13 +295,13 @@ function _batch(::Type{Val{true}},
 
 	end #for_Height
 	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
-	Compat.@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	path = joinpath(resultdir_pnt,  "$(id(detector)).csv")
 	try
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		Compat.@error("'.$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+		@error("'.$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
 		checkResultsDirs() # to make sure the directories do exist
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
@@ -373,13 +374,13 @@ function _batch(::Type{Val{false}},
 	end #for_Height
 
 	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
-	Compat.@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
 	path = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
 	try 
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	catch err
-		Compat.@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
 		checkResultsDirs() # to make sue that the directories do exist
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
