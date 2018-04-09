@@ -74,13 +74,11 @@ exec_consol_unattended(Fn::Function, consol_inputs::String; Fn_ARGs::Vector=[], 
 		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
 		end #testset_for
 
-	@testset "function `calcN`" for cylDet = [Detector(5,10), Detector(eps(),0)] #, wellDet= Detector(5, 4, 3, 2)
-		write(stdin.buffer, "4\n0\n1\n2\n" * "\n") # exit after first run
-		@test calcN(cylDet)  == nothing	
-		write(stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # use the same detector again and then exit.
-		@test calcN(cylDet)  == nothing
-		write(stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n" * "\n") # use a new detector once then exit.
-		@test calcN(cylDet)  == nothing	
+	@testset "function `calcN`" for 	
+			cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+			consol_input = ["4\n0\n1\n2\n", "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n", "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n"]
+		@test exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
+		@test exec_consol_unattended(calcN, "10\n5\n0\n" * consol_input)      == nothing	
  	end #testset
 
 info("test `_batch` & `batch`...")    
