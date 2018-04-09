@@ -8,7 +8,18 @@
 
 using Compat
 using Compat.DelimitedFiles
+import Compat: stdin
 
+function exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs::Vector=[], AfterExecs::Vector=[])
+	for input in  string.(consol_inputs)
+		 write(stdin.buffer, input,"\n")
+	end
+	Fn(Fn_ARGs...)
+	for  AfterExec in  String.(AfterExecs)
+		 write(stdin.buffer, AfterExec, "\n")
+	end
+end
+exec_consol_unattended(Fn::Function, consol_inputs::Vector ; Fn_ARGs::Vector=[], AfterExecs::Vector=[]) = exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs=Fn_ARGs, AfterExecs=AfterExecs)
 
 @testset "Output Interface" begin
   
@@ -62,11 +73,11 @@ using Compat.DelimitedFiles
 		end #testset_for
 
 	@testset "function `calcN`" for cylDet = [Detector(5,10), Detector(eps(),0)] #, wellDet= Detector(5, 4, 3, 2)
-		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "\n") # exit after first run
+		write(stdin.buffer, "4\n0\n1\n2\n" * "\n") # exit after first run
 		@test calcN(cylDet)  == nothing	
-		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # use the same detector again and then exit.
+		write(stdin.buffer, "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n" * "\n") # use the same detector again and then exit.
 		@test calcN(cylDet)  == nothing
-		write(Compat.stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n" * "\n") # use a new detector once then exit.
+		write(stdin.buffer, "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n" * "\n") # use a new detector once then exit.
 		@test calcN(cylDet)  == nothing	
  	end #testset
 
