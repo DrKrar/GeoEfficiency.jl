@@ -12,6 +12,8 @@ using Compat.DelimitedFiles
 
 @testset "Output Interface" begin
   
+	@test checkResultsDirs() == nothing
+	
 	@testset "function `calc` on CylDetector" begin 
 	cryLength = 10
 		@test calc(Detector(5,cryLength),(Point(1),1, 1))    == nothing
