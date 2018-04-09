@@ -7,19 +7,6 @@
 #**************************************************************************************
 
 
-function exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs::Vector=[], AfterExecs::Vector=[])
-	for input in  string.(consol_inputs)
-		 write(stdin.buffer, input,"\n")
-	end
-	Fn(Fn_ARGs...)
-	for  AfterExec in  String.(AfterExecs)
-		 write(stdin.buffer, AfterExec, "\n")
-	end
-end
-exec_consol_unattended(Fn::Function, consol_inputs::Vector ; Fn_ARGs::Vector=[], AfterExecs::Vector=[]) = exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs=Fn_ARGs, AfterExecs=AfterExecs)
-exec_consol_unattended(Fn::Function, consol_inputs::String; Fn_ARGs::Vector=[], AfterExecs::Vector=[]) = exec_consol_unattended(Fn::Function, split(consol_inputs, "\n"); Fn_ARGs=Fn_ARGs, AfterExecs=AfterExecs)
-
-
 @testset "Output Interface" begin
   
 	@test checkResultsDirs() == nothing
