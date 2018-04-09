@@ -8,55 +8,18 @@
 
 
 @testset "Output Interface" begin
-  
 	@test checkResultsDirs() == nothing
-	
-	@testset "function `calc` on CylDetector" begin 
-	cryLength = 10
-		@test calc(Detector(5,cryLength),(Point(1),1, 1))    == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1, 1//2)) == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1, pi))   == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1, 1.0))  == nothing
 
-		@test calc(Detector(5,cryLength),(Point(1),1//2, 1))    == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1//2, 1//2)) == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1//2, pi))   == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1//2, 1.0))  == nothing
+	pnt = Point(1)
+	cylDet = Detector(5, 10); wellDet = Detector(5, 4, 3, 2)
+	@testset "function `calc` on CylDetector, WellDetector" for 
+	SrcRadius = Real[1, 1//2, e, pi, 1.0], 
+	SrcLength = Real[1, 1//2, e, pi, 1.0]
 
-		@test calc(Detector(5,cryLength),(Point(1),e, 1))    == nothing
-		@test calc(Detector(5,cryLength),(Point(1),e, 1//2)) == nothing
-		@test calc(Detector(5,cryLength),(Point(1),e, pi))   == nothing #
-		@test calc(Detector(5,cryLength),(Point(1),e, 1.0))  == nothing
-
-		@test calc(Detector(5,cryLength),(Point(1),1.0, 1))    == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1.0, 1//2)) == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1.0, pi))   == nothing
-		@test calc(Detector(5,cryLength),(Point(1),1.0, 1.0))  == nothing
+		@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
+		@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
      end #testset
-	 
-	@testset "function `calc` on WellDetector" begin 
-	holeRadius = 3 
-	holeDepth  = 2
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1))    == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1//2)) == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, pi))   == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1, 1.0))  == nothing
 
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1))    == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1//2)) == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, pi))   == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1//2, 1.0))  == nothing
-
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1))    == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1//2)) == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, pi))   == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),e, 1.0))  == nothing
-
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1))    == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1//2)) == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, pi))   == nothing
-		@test calc(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  == nothing
-		end #testset_for
 
 	@testset "function `calcN`" for 	
 	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
