@@ -20,6 +20,8 @@ function exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs::Vector=
 	end
 end
 exec_consol_unattended(Fn::Function, consol_inputs::Vector ; Fn_ARGs::Vector=[], AfterExecs::Vector=[]) = exec_consol_unattended(Fn::Function, consol_inputs...; Fn_ARGs=Fn_ARGs, AfterExecs=AfterExecs)
+exec_consol_unattended(Fn::Function, consol_inputs::String; Fn_ARGs::Vector=[], AfterExecs::Vector=[]) = exec_consol_unattended(Fn::Function, split(consol_inputs, "\n"); Fn_ARGs=Fn_ARGs, AfterExecs=AfterExecs)
+
 
 @testset "Output Interface" begin
   
