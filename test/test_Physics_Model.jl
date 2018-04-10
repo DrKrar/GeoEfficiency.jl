@@ -69,28 +69,30 @@
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
 		
-		pnt_51 = exec_consol_unattended(Point, "5\n1\n")
-		pnt_5 = exec_consol_unattended(Point, "5\n")
+		pnt_51 = exec_consol_unattended(Point, "5\n1")
 		@test pnt_51 == pnt51
+
+		pnt_5 = exec_consol_unattended(Point, "5\n")
 		@test pnt_5 == pnt5
 	end #testset
 
 print("\n\t"); @info("test `Cylindrical Detector`...")			
 	@testset "Cylindrical Detector" begin 
   
-		@test G.id(CylDetector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
-  		@test show(CylDetector(5,3)) == nothing
+		@test G.id(CylDetector(5, 3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+  		@test show(CylDetector(5, 3)) == nothing
 	
     	cyl0 = CylDetector(5)
 		cyl1 = Detector(5)
 		@test_throws ErrorException  cyl0.CryRadius = 1
 		@test_throws ErrorException  cyl0.CryLength = 1
+		@test_throws MethodError     CylDetector(1+0im)
 		@test_throws MethodError     CylDetector(1+0im,4)
 		@test_throws MethodError     CylDetector(4, 1+0im)
 		@test_throws MethodError     CylDetector(1+0im, 1+0im)
 		@test_throws AssertionError  CylDetector(0)
 		@test_throws AssertionError  CylDetector(-5)
-		@test_throws AssertionError  CylDetector(5, -1)	
+		@test_throws AssertionError  CylDetector(5, -1)
 		@test isa(cyl1, Detector)
 		@test isa(cyl1, CylDetector)
 		@test cyl1.CryRadius === 5.0
@@ -103,6 +105,7 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		cyl6 = Detector(5, 0, 0)
 		cyl7 = Detector(5, 0, 0, 0)
 		cyl8 = Detector(5//1, 0, 0, 0)
+		cyl9 = Detector(5//1)
 		@test cyl0 === cyl1 
 		@test cyl1 === cyl2 
 		@test cyl2 === cyl3
@@ -110,7 +113,8 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test cyl4 === cyl5
 		@test cyl5 === cyl6
 		@test cyl6 === cyl7
-		@test cyl7 === cyl8	
+		@test cyl7 === cyl8
+		@test cyl8 === cyl9
 		@test G.volume(CylDetector(5.0,1))  <=   G.volume(CylDetector(15.0,1))
 		@test G.volume(CylDetector(10.0,1)) <=   G.volume(CylDetector(15.0,1)) 
 		@test G.volume(CylDetector(15.0))   <=   G.volume(CylDetector(10.0)) 
@@ -120,10 +124,10 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		cyl_51 = exec_consol_unattended(CylDetector, "5\n" * "1\n")
-		cyl_5  = exec_consol_unattended(CylDetector, "5\n" * "0\n")
-		@test pnt_51 == CylDetector(5.0,1)
-		@test pnt_5 == cyl0
+		cyl_51 = exec_consol_unattended(CylDetector, 5, 1)
+		cyl_5  = exec_consol_unattended(CylDetector, 5, 0)
+		@test cyl_51 == CylDetector(5.0, 1)
+		@test cyl_5  == CylDetector(5)
 end #testset
 
 print("\n\t"); @info("test `Borehole Detector`...")	

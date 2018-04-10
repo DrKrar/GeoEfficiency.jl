@@ -157,10 +157,10 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 
     catch err
         if isa(err, AssertionError) 
-			@error("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
+			@warn("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
 			\n Please: provide an adequate value""")
         else   
-			@error("""input `$value` cannot be parsed to a valid numerical value!,
+			@warn("""input `$value` cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
         end #if 
         
