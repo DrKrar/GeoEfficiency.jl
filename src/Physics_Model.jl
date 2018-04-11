@@ -8,7 +8,8 @@
 
 #------------------consts&globals--------------------------------------
 using Compat
-import Base: show, isless, convert, @warn
+import Base: show, isless, Convert
+import Compat: @warn
 
 
 #--------------Point---------------------------------------------
