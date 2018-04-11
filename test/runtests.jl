@@ -15,7 +15,7 @@ using Compat.Test
 using GeoEfficiency
 const G = GeoEfficiency
 
-function exec_consol_unattended(FN::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
+function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
 	for input in  string.(consol_inputs)
 		 write(stdin.buffer, input,"\n")
 	end
