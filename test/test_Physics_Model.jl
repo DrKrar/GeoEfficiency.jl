@@ -226,7 +226,7 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if ture #!isapple()
+		if true #!isapple()
 			@info("test WellDetector()")
 			write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 			@test WellDetector() === Well0
