@@ -124,9 +124,10 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		cyl_51 = exec_consol_unattended(CylDetector, 5, 1)
-		cyl_5  = exec_consol_unattended(CylDetector, 5, 0)
+		cyl_51 = exec_consol_unattended(CylDetector, "5 1")
 		@test cyl_51 == CylDetector(5.0, 1)
+
+		cyl_5  = exec_consol_unattended(CylDetector, "5 0")
 		@test cyl_5  == CylDetector(5)
 end #testset
 
