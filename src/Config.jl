@@ -23,7 +23,7 @@ function about()
 	\t Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
 	\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 	\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-10")) old master)  
+	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-14")) old master)  
 	\t Documentation: http://geoefficiencyjl.readthedocs.org
 	\n"""
 	, color=:green)

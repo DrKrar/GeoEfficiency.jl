@@ -72,7 +72,7 @@
 		pnt_51 = exec_consol_unattended(Point, "5\n1")
 		@test pnt_51 == pnt51
 
-		pnt_5 = exec_consol_unattended(Point, "5\n")
+		pnt_5 = exec_consol_unattended(Point, "5\n0\n")
 		@test pnt_5 == pnt5
 	end #testset
 
