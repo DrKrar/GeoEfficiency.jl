@@ -11,7 +11,7 @@
 	@test checkResultsDirs() == nothing
 
 	pnt = Point(1)
-	cylDet = Detector(5, 10); wellDet = Detector(5, 4, 3, 2)
+	cylDet = Detector(5, 10); wellDet = Detector(5, 4, 3.2, 2)
 	@testset "function `calc` on CylDetector, WellDetector" for 
 	SrcRadius = Real[1, 1//2, e, pi, 1.0], 
 	SrcLength = Real[1, 1//2, e, pi, 1.0]
@@ -23,9 +23,9 @@
 
 	@testset "function `calcN`" for 	
 	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
-	consol_input = ["4\n0\n1\n2\n", "4\n0\n1\n2\n" * "d\n" * "4\n0\n1\n2\n", "4\n0\n1\n2\n" * "n\n" * "10\n5\n0\n" * "4\n0\n1\n2\n"]
+	consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n\n" * "10 5 0 " * "4 0 1 2 "]
 		@test exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
-		@test exec_consol_unattended(calcN, "10\n5\n0\n" * consol_input)      == nothing	
+		@test exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
  	end #testset
 
 info("test `_batch` & `batch`...")    
