@@ -51,8 +51,8 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 ## Requirements
  *  Julia 0.6 or above.
- *  QuadGK 0.1.2 or above, will be installed automatically while the package Installation.
- *  Compat 0.63.0 or above, will be installed automatically while the package Installation.
+ *  QuadGK 0.1.2 or above, will be installed automatically during the package Installation.
+ *  Compat 0.63.0 or above, will be installed automatically during the package Installation.
  
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
