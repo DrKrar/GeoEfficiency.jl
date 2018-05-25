@@ -2,7 +2,8 @@
 # Calculations.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# this file collect all the function that calculate the Geometrical Efficiency.
+# this file collects all the functions which are responsible for 
+# the calculations of the Geometrical Efficiency.
 #
 #**************************************************************************************
 
@@ -11,8 +12,8 @@ using Compat
 using Compat: @error
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
-@compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 0.0001	
-@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = 0.00000000001
+@compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
+@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = 1.0E-11
 @compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
@@ -28,7 +29,7 @@ of the cylindrical detector `detector` face.
 `Throw` an  error if the point is out of the cylindrical detector `detector` face.
 
 !!! note
-    This is the base function that all other function call directly or indirectly
+    This is the base function that all other functions call directly or indirectly
     to calculate Geometrical Efficiency.
 
 """
@@ -41,23 +42,23 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 
 	func(theta::Float64) = MaxPhi(theta) * sin(theta)
 
-	if 0.0 == aPnt.Rho
+	if 0.0 == aPnt.Rho				# axial Point
 		strt = 0.0
 		fine = atan2(detector.CryRadius , aPnt.Height)
-		return integrate(sin, strt, fine, reltol = relativeError)[1]
+		return integrate(sin, strt, fine, reltol = relativeError,abstol)[1]
 
-	else
+	else							# non-axial Point
 		strt = 0.0
-		transtion = atan2(detector.CryRadius - aPnt.Rho, aPnt.Height)
+		transition = atan2(detector.CryRadius - aPnt.Rho, aPnt.Height)
 		fine = atan2(detector.CryRadius + aPnt.Rho, aPnt.Height)
-		if transtion >= 0.0
+		if transition >= 0.0
 
-		 	return integrate(sin, strt, transtion, reltol = relativeError)[1] +
-                      			integrate(func, transtion, fine, reltol = relativeError)[1] / pi
+		 	return integrate(sin, strt, transition, reltol = relativeError)[1] +
+                      			integrate(func, transition, fine, reltol = relativeError)[1] / pi
 
 		else
 			 error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
-
+			# TBD: (Top + Side) efficiencies
 		end #if
 
 	end #if

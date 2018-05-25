@@ -6,6 +6,7 @@
 #
 #**************************************************************************************
 
+using Compat
 using Compat.Dates
 
 #------------------about------------------------------------
@@ -23,7 +24,7 @@ function about()
 	\t Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
 	\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 	\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-04-14")) old master)  
+	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-05-26")) old master)  
 	\t Documentation: http://geoefficiencyjl.readthedocs.org
 	\n"""
 	, color=:green)
@@ -39,8 +40,8 @@ end
 
   ##Calculations.jl##
   using QuadGK; const integrate = QuadGK.quadgk
-  const relativeError = 0.0001
-  const absoluteError =  0.00000000001
+  const relativeError = 1.0E-4
+  const absoluteError = 1.0E-11
 
   ##Output_Interface.jl##
   const resultsfolder = "results"
