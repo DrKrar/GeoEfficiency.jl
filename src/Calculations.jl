@@ -45,7 +45,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 	if 0.0 == aPnt.Rho				# axial Point
 		strt = 0.0
 		fine = atan2(detector.CryRadius , aPnt.Height)
-		return integrate(sin, strt, fine, reltol=relativeError, atol=absoluteError)[1]
+		return integrate(sin, strt, fine, reltol=relativeError, abstol=absoluteError)[1]
 
 	else							# non-axial Point
 		strt = 0.0
@@ -53,8 +53,8 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 		fine = atan2(detector.CryRadius + aPnt.Rho, aPnt.Height)
 		if transition >= 0.0
 
-		 	return integrate(sin, strt, transition, reltol=relativeError, atol=absoluteError)[1] +
-                      			integrate(func, transition, fine, reltol=relativeError, atol=absoluteError)[1] / pi
+		 	return integrate(sin, strt, transition, reltol=relativeError, abstol=absoluteError)[1] +
+                      			integrate(func, transition, fine, reltol=relativeError, abstol=absoluteError)[1] / pi
 
 		else
 			 error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
@@ -81,7 +81,7 @@ function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error("off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
 	integrand(xRho) = xRho * GeoEff_Pnt(detector, Point(SurfacePnt, xRho))
-	return  integrate(integrand , 0.0, SrcRadius, reltol=relativeError, atol=absoluteError)[1] / SrcRadius^2
+	return  integrate(integrand , 0.0, SrcRadius, reltol=relativeError, abstol=absoluteError)[1] / SrcRadius^2
 
 end #function
 
@@ -137,7 +137,7 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 	else										# Cylindrical source
 
         integrand(xH::Float64) = GeoEff_Disk(detector, Point(xH, pnt.Rho), SrcRadius)
-		return integrate(integrand , aSurfacePnt.Height, aSurfacePnt.Height + SrcLength, reltol=relativeError, atol=absoluteError)[1] / SrcLength
+		return integrate(integrand , aSurfacePnt.Height, aSurfacePnt.Height + SrcLength, reltol=relativeError, abstol=absoluteError)[1] / SrcLength
 
 	end #if
 end #function
@@ -233,8 +233,8 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	#=else
 		return 1.0 - geoEff(detin, Point(-Height, pnt), SrcRadius)[1]
 	else
-		res = 1 - integrate(xH -> GeoEff_Disk(detin, Point(xH, pnt), SrcRadius), 0.0, -pnt.Height, reltol=relativeError, atol=absoluteError)[1]
-		res = res + integrate(xH -> GeoEff_Disk(detout, Point(xH, pntWup), SrcRadius), 0.0, pntWup.Height , reltol=relativeError, atol=absoluteError)[1]
+		res = 1 - integrate(xH -> GeoEff_Disk(detin, Point(xH, pnt), SrcRadius), 0.0, -pnt.Height, reltol=relativeError, abstol=absoluteError)[1]
+		res = res + integrate(xH -> GeoEff_Disk(detout, Point(xH, pntWup), SrcRadius), 0.0, pntWup.Height , reltol=relativeError, abstol=absoluteError)[1]
 			=#
 	end #if
 
