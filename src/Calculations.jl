@@ -13,7 +13,7 @@ using Compat: @error
 
 # set the global minimum relative precession of the Geometrical Efficiency Calculations
 @compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
-@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = 1.0E-11
+@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = eps(1.0)
 @compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 

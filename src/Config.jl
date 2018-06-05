@@ -41,7 +41,7 @@ end
   ##Calculations.jl##
   using QuadGK; const integrate = QuadGK.quadgk
   const relativeError = 1.0E-4
-  const absoluteError = 1.0E-11
+  const absoluteError = eps(1.0)
 
   ##Output_Interface.jl##
   const resultsfolder = "results"
