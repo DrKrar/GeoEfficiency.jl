@@ -7,30 +7,31 @@
 #
 #**************************************************************************************
 
-#------------------consts&globals--------------------------------------
+#------------------ consts - globals - imports -------------------
+
 using Compat
 using Compat: @error
 
-# set the global minimum relative precession of the Geometrical Efficiency Calculations
+# set the global minimum relative and absolute precession of the Geometrical Efficiency Calculations
 @compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
 @compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = eps(1.0)
 @compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
-#-----------------GeoEff_Pnt---------------------------------------------
+#----------------------- GeoEff_Pnt -------------------------------
 
-"""# unexported function
+"""# unexported
 
 	GeoEff_Pnt(detector::CylDetector, aPnt::Point)  
 
 return the Geometrical Efficiency for the point source `aPnt` located on front
 of the cylindrical detector `detector` face.
 
-`Throw` an  error if the point is out of the cylindrical detector `detector` face.
+`Throw` an error if the point is out of the cylindrical detector `detector` face.
 
 !!! note
-    This is the base function that all other functions call directly or indirectly
-    to calculate Geometrical Efficiency.
+    this is the base function that all other functions call directly or indirectly
+    to calculate Geometrical Efficiency of the cylindrical-ish detector family.
 
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
@@ -65,69 +66,50 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 end #function
 
 
-#-----------GeoEff_Disk------------------------------------------------------
+#------------------------ GeoEff_Disk ----------------------------------
 
-"""# unexported function
+"""# unexported
 
 	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 
-return the Geometrical Efficiency for a disk source. The disk center is `SurfacePnt` and its radius is `SrcRadius` 
-on front of the cylindrical detector `detector` face.
+return the Geometrical Efficiency for a `disk` source. The `disk` center is the `SurfacePnt` and 
+its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
 
-give a warning if the disk is out of cylindrical detector the face.
+give a warning if the disk is out of the cylindrical detector face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
-	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error("off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
+	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error(
+	"off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
 	integrand(xRho) = xRho * GeoEff_Pnt(detector, Point(SurfacePnt, xRho))
-	return  integrate(integrand , 0.0, SrcRadius, reltol=relativeError, abstol=absoluteError)[1] / SrcRadius^2
+	return  integrate(integrand, 0.0, SrcRadius, reltol=relativeError, abstol=absoluteError)[1] / SrcRadius^2
 
 end #function
 
 
-#------------geoEff-----------------------------------------------------
+#-------------------------- geoEff -----------------------------------
 
 """
 
 	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-return the Geometrical Efficiency for a source (point, disk or cylinder) with the cylindrical detector `detector`.
+**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
 
- *  `aSurfacePNT`: a surface point represent the anchoring point of the source.
-if both `SrcRadius` and `SrcLength` equal to `zero`; the method returns the Geometrical Efficiency of a point source at the anchoring point.
-
- *  `SrcRadius`: Radius of the source.
-SrcLength` equal to `zero`; the method returns Geometrical Efficiency for disc of Radius = `SrcRadius` and
-its base circle center is the point `aSurfacePNT`.
-
- *  `srcHeight`:  the height of an upright cylinder source having a base like described above.
-
-!!! note
-    *  `aSurfacePnt`: point height is consider to be measured from the detector face surface.
-
-    *  `Throw` an Error if the source location is inappropriate.
-
-# Example
-
-to obtain the efficiency of a cylindrical detector of crystal radius 2.0 cm for axial cylinder of radius 1.0 cm and height 2.5 cm 
-on the detector surface.
-
-```jldoctest
-    julia> geoEff(CylDetector(2), Point(0), 1.0, 2.5)
-    0.49999999999999994
-```
-\n*****
+!!! warning
+    `aSurfacePnt` : point `height` is considered to be measured from the detector surface.
 
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-	detector.CryRadius > SrcRadius	||	@error("Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
+	detector.CryRadius > SrcRadius	||	
+		@error("Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
 	
 	pnt::Point = deepcopy(aSurfacePnt)
 		
 	if 0.0 == SrcRadius                         #Point source
 	
-		detector.CryRadius  > pnt.Rho  ||	@error("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
+		detector.CryRadius  > pnt.Rho  ||	
+			@error("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
         return GeoEff_Pnt(detector, pnt)/2            	
 
 	elseif 0.0 == SrcLength						#Disk source
@@ -137,61 +119,21 @@ function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0
 	else										# Cylindrical source
 
         integrand(xH::Float64) = GeoEff_Disk(detector, Point(xH, pnt.Rho), SrcRadius)
-		return integrate(integrand , aSurfacePnt.Height, aSurfacePnt.Height + SrcLength, reltol=relativeError, abstol=absoluteError)[1] / SrcLength
+		return integrate(integrand , aSurfacePnt.Height, aSurfacePnt.Height + SrcLength, 
+						reltol=relativeError, abstol=absoluteError)[1] / SrcLength
 
 	end #if
 end #function
-
-"""
-
-	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
-
-returns the Geometrical Efficiency of the detector `detector` for the tuple `aSource` decribing the source.
-
-Throw` an Error if the source location is inappropriate.
-
-!!! note
-    * If no detector is supplied, it ask for a detector from the `console`.
-    * if no source description is provided, it prompt the user to input a source via the `console`.
-
-\n*****
-
-"""
-geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
-geoEff(detector::RadiationDetector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
 
 
 """
 
 	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-return the Geometrical Efficiency for the given source (point , disk or cylinder) with the Bore-Hole detector `detector`.
+**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
 
- *  `aCenterPNT`: a center point represent the anchoring point of the source.
-if both `SrcRadius` and `SrcLength` equal to `zero`; the method returns the Geometrical Efficiency of a point source at the anchoring point.
-
- *  `SrcRadius`: Radius of the source.
-SrcLength` equal to `zero`;  the method returns Geometrical Efficiency for disc of Radius = `SrcRadius`
-and its center is the point `aCenterPNT`.
-
- *  `SrcLength`: the height of an upright cylinder source having a base like described above.
-
-!!! note
-    *  `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
-
-    *  `Throw` an Error if the source location is inappropriate.
-
-# Example
-
-to obtain the efficiency for a bore-hole detector of crystal radius of 2.0 and height of 3.0 with hole radius of 1.5 cm for axial cylinder of radius 1.0 cm and height 2.5 cm starting from detector center.
-```jldoctest
-	julia> newDet = BoreDetector(2.0, 3.0, 1.5)
-    BoreDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5]
-
-	julia> geoEff(newDet, Point(0), 1.0, 2.5)
-	0.5678174038944723
-```
-\n*****
+!!! warning
+    `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
 
 """
 function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
@@ -241,37 +183,15 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
 	return res
 end #function
 
+
 """
 
 	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-return the Geometrical Efficiency for the given source (point, disk or cylinder) with the Well-Type detector `detector`.
+**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
 
- *  `aWellPNT`: a Well point represent the anchoring point of the source.
-if both `SrcRadius` and `SrcLength` equal to `zero`; the method returns the Geometrical Efficiency of a point source at the anchoring point.
-
- *  `SrcRadius`: radius of the source.
-SrcLength` equal to `zero`;   the method returns Geometrical Efficiency for disk of Radius = `SrcRadius`
-and its center is defined by the `aWellPNT`.
-
- *  `SrcLength`: height of upright cylinder source having a base like described above.
-
-!!! note
-    *  `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
-
-    *  `Throw` an Error if the source location is inappropriate.
-
-# Example
-
-to obtain the efficiency for a well-type detector of crystal radius of 2.0 and height 3.0 with hole radius of 1.5 cm and depth of 1.0 for axial cylinder of radius 1.0 cm and height 2.5 cm at the hole surface.
-```jldoctest
-	julia> newDet = WellDetector(2.0, 3.0, 1.5, 1.0)
-	WellDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5, HoleDepth=1.0]
-
-	julia> geoEff(newDet, Point(0), 1.0, 2.5)
-	0.4669614527701105
-```
-\n*****
+!!! warning
+    `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
 
 """
 function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
@@ -299,3 +219,77 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 
 	end #if
 end #function
+
+@doc """
+
+	geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+
+return the Geometrical Efficiency for a source (`point`, `disk` or `cylinder`) with 
+the detector `detector`. 
+`detector` can be any of the leaf detectors types (`CylDetector`, `BoreDetector`, `WellDetector`).
+
+*  `aPNT`: a point represent the anchoring point of the source.
+*  `SrcRadius`: Radius of the source.
+*  `srcHeight`:  the height of an upright cylinder source.
+
+`Throw` an Error if the source location is inappropriate.
+
+!!! warning
+    the point height of `aPnt` is measured differently for different detectors types.
+    for the details, please refer to each detector entry.
+	
+!!! note
+    *  if `SrcLength` equal to ``zero``; the method return Geometrical Efficiency of a disc 
+       source of Radius = `SrcRadius` and center at the point `aPNT`.
+    *  if both `SrcRadius` and `SrcLength` equal to ``zero``; 
+       the method returns the Geometrical Efficiency of a point source at the anchoring point.
+
+# Example
+
+1.  to obtain the efficiency of a `cylindrical` detector of crystal radius ``2.0`` cm for axial 
+    source cylinder of radius ``1.0`` cm and height ``2.5`` cm on the detector surface. 
+
+```jldoctest
+    julia> geoEff(CylDetector(2.0), Point(0.0), 1.0, 2.5)
+    0.49999999999999994
+```
+
+2.  to obtain the efficiency for a `bore-hole` detector of crystal radius of ``2.0`` and height of ``3.0`` with 
+    hole radius of ``1.5`` cm for axial source cylinder of radius ``1.0`` cm and height ``2.5`` cm starting from detector center.
+
+```jldoctest
+	julia> newDet = BoreDetector(2.0, 3.0, 1.5)
+	BoreDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5]
+	
+	julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
+	0.5678174038944723
+```
+
+3.  to obtain the efficiency for a `well-type` detector of crystal radius of ``2.0`` cm and 
+    height ``3.0`` cm with hole radius of ``1.5`` cm and depth of ``1.0`` for axial source cylinder of 
+    radius ``1.0`` cm and height ``2.5`` cm at the hole surface.
+	
+```jldoctest
+	julia> newDet = WellDetector(2.0, 3.0, 1.5, 1.0)
+	WellDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5, HoleDepth=1.0]
+
+	julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
+	0.4669614527701105
+```
+
+"""
+geoEff
+
+"""
+
+	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
+
+same as `geoEff` above but splatting the argument in a Tuple.
+
+!!! note
+    in the case of both no detector and no source Tuple or just the source Tuple is not supplied,
+    it prompt the user to input a source (and detector) via the `console`.
+
+"""
+geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
+geoEff(detector::RadiationDetector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
