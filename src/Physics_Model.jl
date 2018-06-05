@@ -115,7 +115,7 @@ the input from the `console`.
 function source(anchorPnt::Point = Point())
     
 	if setSrcToPoint() 
-		@info"""srcType is set to ``srcPoint``,
+		@info("""srcType is set to ``srcPoint``,
 		**see** `setSrcToPoint` for more information.""") 
 		return (anchorPnt, 0.0, 0.0)
 	end #if
