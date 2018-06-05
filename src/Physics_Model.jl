@@ -6,34 +6,34 @@
 #
 #**************************************************************************************
 
-#------------------consts&globals--------------------------------------
+#------------------ consts - globals - imports -------------------
+
 using Compat
-import Base: show, isless, Convert
-import Compat: @warn
+import Base: show, isless
+using Compat: @warn, @error
 
 
-#--------------Point---------------------------------------------
+#-------------------------- Point ----------------------------------
 
 """
 
     Point(Height::Real, Rho::Real)
 
-construct and return a `Point` source that can be a source of itself or an
+construct and return a `Point` source that can be either a source by itself or an
 `anchor point` of a source.
 
- *  `Height` : point height relative to the detector.
-
- *  `Rho` : point off axis relative to the detector axis of symmetry.
+*  `Height` : point height relative to the detector surface.
+*  `Rho` : point off-axis relative to the detector axis of symmetry.
 
 !!! note
-    Each detector type give interpretation to the height in a different way as follow:
-    
-	*  for `CylDetector` the point source `height` is consider to be measured from the detector `face surface`.
+    Each detector type give different interpretation to the `height` as follow:- 
+    *  for `CylDetector` the point source `height` is consider to be measured 
+       from the detector `face surface`. 
+    *  for `BoreDetector` the point source `height` is consider to be measured 
+       from the `detector middle`, +ve value are above the detector center while -ve are below. 
+    *  for `WellDetector` the point source `height` is considered to be measured 
+       from the detector `hole surface`. 
 
-    *  for `BoreDetector` the point source `height` is consider to be measured from the `detector middle`, +ve value are above the detector center while -ve are below.
-
-    *  for `WellDetector` the point source `height` is considered to be measured from the detector `hole surface`.
- 
 """
 struct Point
 	Height::Float64
@@ -46,9 +46,9 @@ Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
 
 	Point(Height::Real)
 
-the same as `Point(Height::Real, Rho::Real)` but return an axial point.
+construct and return an `axial point`.
 
-`Height` : point height relative to the detector. \n
+**see also:** `Point(Height::Real, Rho::Real)`
 
 """
 Point(Height::Real) = Point(Height, 0.0)
@@ -57,8 +57,9 @@ Point(Height::Real) = Point(Height, 0.0)
 
 	Point()
 
-the same as `Point(Height::Real, Rho::Real)` but ask the user to provide the
-information from the `console`. 
+construct and return a `point` according to the input from the `console`. 
+
+**see also:** `Point(Height::Real, Rho::Real)`
 
 """
 function Point()
@@ -68,7 +69,26 @@ function Point()
 	Point(Height, Rho)
 end #function
 
+"""
+	Point(xHeight::Real, aPnt::Point)
+
+construct and return a `point` that has the same off-axis distance as `aPnt` but of new 
+height `xHeight`. 
+
+**see also:** `Point(Height::Real, Rho::Real)`
+
+"""
 Point(xHeight::Real, aPnt::Point) = Point(xHeight, aPnt.Rho)
+
+"""
+	Point(aPnt::Point, xRho::Real)
+
+construct and return a `point` that has the same height as `aPnt` but of new 
+off-axis distance `Rho`. 
+
+**see also:** `Point(Height::Real, Rho::Real)`
+
+"""
 Point(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
@@ -80,16 +100,17 @@ show(pnt::Point) = print(id(pnt))
 
 	source(anchorPnt::Point = Point())
 
-return a tuple describing the source (`anchorPnt`, `SrcRadius`, `SrcLength`) based on the user input to the `console`.
+return a tuple that describe the source (`anchorPnt`, `SrcRadius`, `SrcLength`) according to 
+the input from the `console`.
 
- *  `aPnt` : the source anchoring point. if it is missing the used is asked to input it via the `console`.
+*  `aPnt` : the source anchoring point. if it is missing the user is prompt 
+   to input it via the `console`.
+*  `SrcRadius` : source radius.
+*  `SrcLength` : source length.
 
- *  `SrcRadius` : source radius.
-
- *  `SrcLength` : source length.
-
-If the global `GeoEfficiency_isPoint` is set to true both `SrcRadius` and `SrcLength` are set to zero.
-
+!!! warning 
+    If the global `GeoEfficiency_isPoint` is set to true, both `SrcRadius` and `SrcLength` 
+    are set to zero.
 """ 
 function source(anchorPnt::Point = Point())
     
@@ -99,8 +120,8 @@ function source(anchorPnt::Point = Point())
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
-		@warn("""currently only axial non-point is allowed,
-		 Note: the off-axis will be set to Zero""")
+		@error("""currently only axial non-point is allowed,
+		 Warning: the off-axis will be set to Zero""")
         anchorPnt = Point(anchorPnt, 0.0)
 
 	else
@@ -111,31 +132,38 @@ function source(anchorPnt::Point = Point())
 end #function
 
 
-#----------------Detector------------------------------------
+#---------------- Detector ------------------------------------
 
+"""
 
+	RadiationDetector
+or
+	
+	Detector
+
+abstract supertype of all detectors. also can be used to construct any leaf type.
+
+"""
 abstract type RadiationDetector end
-show(io::IO, detector::RadiationDetector) = print(id(detector))
-
-"abstract base of all the gamma detectors"
-RadiationDetector
 const Detector = RadiationDetector
-
+show(io::IO, detector::RadiationDetector) = print(id(RadiationDetector))
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
 
-#--------------CylDetector----------------------------------------
+##-------------- CylDetector -----------------------------------
 
 """
 
 	CylDetector(CryRadius::Real, CryLength::Real)
 
-return a `cylindrical` detector of the given crystal dimensions.
+construct and return a `cylindrical` detector of the given crystal dimensions:-
 
- *  `CryRadius` : the detector crystal radius.
+*  `CryRadius` : the detector crystal radius.
+*  `CryLength` : the detector crystal length.
 
- *  `CryLength` : the detector crystal length.
- 
+!!! warning 
+    both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can be set to ``zero``.
+
 """
 struct CylDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -145,7 +173,7 @@ struct CylDetector <: RadiationDetector
 		@assert Inf > CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
 		@assert Inf > CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
 		new(CryRadius, CryLength)
-	end #if
+	end #function
 
 end #type
 CylDetector(CryRadius::Real, CryLength::Real) = CylDetector(float(CryRadius), float(CryLength))
@@ -154,9 +182,9 @@ CylDetector(CryRadius::Real, CryLength::Real) = CylDetector(float(CryRadius), fl
 
     CylDetector(CryRadius::Real)
 
-return a cylindrical detector with crystal length 0.0.
+construct and return a `cylindrical` (really `disk`) detector with crystal length equal to ``zero``.
 
-`CryRadius` : the detector crystal radius.
+**see also:** `CylDetector(CryRadius::Real, CryLength::Real)`
 
 """
 CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
@@ -166,7 +194,9 @@ CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
 
     CylDetector()
 
-return a cylindrical detector according to the input from the `console`.
+construct and return a `cylindrical` detector according to the input from the `console`.
+
+**see also:** `CylDetector(CryRadius::Real, CryLength::Real)`
 
 """
 function CylDetector()
@@ -180,21 +210,22 @@ id(detector::CylDetector) = "CylDetector[CryRadius=$(detector.CryRadius), CryLen
 volume(detector::CylDetector) = pi * detector.CryRadius^2 * detector.CryLength 
 
 
-#-------------BoreDetector-------------------------------------------
-
+##------------- BoreDetector -------------------------------------
 
 """
 
 	BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
-return a `bore-hole` detector.
+construct and return a `bore-hole` detector of the given crystal dimensions:-
 
- *  `CryRadius` : the detector crystal radius.
+*  `CryRadius` : the detector crystal radius.
+*  `CryLength` : the detector crystal length.
+*  `HoleRadius` : the detector hole radius.
 
- *  `CryLength` : the detector crystal length.
+!!! warning
+    `CryRadius` and `CryLength`, `HoleRadius` should be `positive` numbers, also 
+    `CryRadius` should be greater than `HoleRadius`.
 
- *  `HoleRadius` : the detector hole radius.
- 
 """
 struct BoreDetector <: RadiationDetector
 	CryRadius::Float64    	#Real
@@ -206,7 +237,7 @@ struct BoreDetector <: RadiationDetector
 		@assert Inf > CryLength > 0.0		"Crystal Length: expect +ve number, get $(CryLength)."
 		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		new(CryRadius, CryLength, HoleRadius)
-	end #if
+	end #function
 
 end #type
 BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(float(CryRadius), float(CryLength), float(HoleRadius))
@@ -215,7 +246,9 @@ BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(
 
 	BoreDetector()
 
-return a bore-hole detector according to the input from the `console`.
+construct and return a `bore-hole` detector according to the input from the `console`.
+
+**see also:** `BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`
 
 """
 function BoreDetector()
@@ -227,25 +260,27 @@ function BoreDetector()
 end #function
 
 id(detector::BoreDetector) = "BoreDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius)]"
-volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius ^2 )* detector.CryLength 
+volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius ^2 ) * detector.CryLength 
 
 
-#-----------WellDetector------------------------------------------------------
+##----------------------- WellDetector ------------------------------------------
 
 """
 
 	WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
-return a Well-Type detector.
+construct and return a `Well-Type` detector of the given crystal dimensions:-
 
- *  `CryRadius` : the detector crystal radius.
+*  `CryRadius` : the detector crystal radius.
+*  `CryLength` : the detector crystal length.
+*  `HoleRadius` : the detector hole radius.
+*  `HoleDepth` : the detector hole length.
 
- *  `CryLength` : the detector crystal length.
+!!! warning
+    all arguments should be `positive` numbers, also 
+    `CryRadius` should be greater than `HoleRadius` and 
+    `CryLength` should be greater than  `HoleDepth`. 
 
- *  `HoleRadius` : the detector hole radius.
-
- *  `HoleDepth` : the detector hole length.
- 
 """
 struct WellDetector <: RadiationDetector
 	CryRadius::Float64
@@ -268,7 +303,9 @@ WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real
 
 	WellDetector()
 
-return a Well-Type detector according to the input from the `console`.
+construct and return a Well-Type detector according to the input from the `console`.
+
+**see also:** `WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`
 
 """
 function WellDetector()
@@ -284,22 +321,17 @@ id(detector::WellDetector) = "WellDetector[CryRadius=$(detector.CryRadius), CryL
 volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength - detector.HoleRadius ^2 * detector.HoleDepth)
 
 
-#----------RadiationDetector-------------------------------------------------------
+#-------------------- RadiationDetector ---------------------------------------------
 
 """
 
 	Detector()
 
-construct and return an object of the RadiationDetector type (`CylDetector`, `BoreDetector` or `WellDetector`)
-according to the input from the console.
+construct and return an object of the `RadiationDetector` leaf types 
+(`CylDetector`, `BoreDetector` or `WellDetector`) according to the input from the console.
 
-# Note please
-
-* this method acquire all required information from the `console` and will prompt user on invalid data.
-
-* if any method with argument(s) take an `invalid` argument it would throw an error.
-
-* if the value the last argument is `zero` of a method with `more` than one argument it behave as a missing argument.
+!!! note 
+    all required information is acquired from the `console` and would warn user on invalid data.
 
 """
 function RadiationDetector()
@@ -322,7 +354,7 @@ end #function
 
 	Detector(CryRadius::Real)
 
-return cylindrical(or Disk) detector with `CryLength` equal to zero.
+same as `CylDetector(CryRadius::Real)`.
 
 """
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
@@ -331,7 +363,7 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 	Detector(CryRadius::Real, CryLength::Real)
 
-return cylindrical detector.
+same as `CylDetector(CryRadius::Real, CryLength::Real)`
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
@@ -340,7 +372,8 @@ RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, Cry
 
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
-return bore-hole or cylindrical detector if `HoleRadius` = 0.0
+same as `BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)` except
+when `HoleRadius` = ``0.0`` it acts as  `CylDetector(CryRadius::Real, CryLength::Real)`
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
@@ -351,7 +384,13 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == H
 
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 
-return well-type or bore-hole or cylindrical detector according to the arguments.
+construct and return `well-type`, `bore-hole` or `cylindrical` detector according to the arguments. 
+it inspect the arguments and call the appropriate leaf type constructor.
+
+!!! note
+    if the value(s) of the last argument(s) is\\are ``zero``, it acts as a missing argument(s).
+		
+**see also:** `CylDetector`, `BoreDetector` and `WellDetector`.
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
@@ -362,7 +401,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 
 	Detector(detector::RadiationDetector)
 
-return just the inputted detector
+return the inputted detector.
 
 """
 RadiationDetector(detector::RadiationDetector) = detector
@@ -371,7 +410,8 @@ RadiationDetector(detector::RadiationDetector) = detector
 
 	Detector(detectors::Vector{T}) where T <: Detector
 
-Convert array of any detector type to an array of Detector
+convert the array `detectors` of any of the leaf `RadiationDetector` types 
+to an array of type `RadiationDetector`.
 
 """
-convert(::Type{Vector{RadiationDetector}}, detectors::Vector{<:RadiationDetector}) = RadiationDetector[detectors...]
+RadiationDetector(detectors::Vector{<:RadiationDetector}) = RadiationDetector[detectors...]
