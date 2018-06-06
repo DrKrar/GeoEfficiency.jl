@@ -130,7 +130,7 @@ end #function
 
 	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
+**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` for more information.**
 
 !!! warning
     `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
@@ -284,7 +284,8 @@ geoEff
 
 	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
 
-same as `geoEff` above but splatting the argument in a Tuple.
+same as `geoEff(::Detector, ::Point, ::Real, ::Real)` but splatting the argument 
+in the Tuple `aSource`.
 
 !!! note
     in the case of both no detector and no source Tuple or just the source Tuple is not supplied,
