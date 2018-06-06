@@ -11,11 +11,11 @@ using Compat
 using Compat.DelimitedFiles 
 import Compat: @info, @error
 
-@compat isconst(@__MODULE__, :resultsfolder) || const resultsfolder = "results";
-const resultdir	        = joinpath(datadir, resultsfolder);	
+@compat isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results";
+const resultdir	        = joinpath(dataDir, resultsFolder);	
 const resultdir_pnt     = joinpath(resultdir, "Point");		
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point");	
-countDetectors = 1;
+global countDetectors = 1;
 
 
 #------------------checkResultsDirs----------------------------------
@@ -117,7 +117,7 @@ end #function
 
     batch()
 
-provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(datafolder)`.
+provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(dataFolder)`.
 
 Results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 

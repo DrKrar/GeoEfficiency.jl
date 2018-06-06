@@ -36,7 +36,7 @@ end
   ##Physics_Model.jl##
 
   ##Input_Interface.jl##
-  const datafolder    = "GeoEfficiency"
+  const dataFolder    = "GeoEfficiency"
 
   ##Calculations.jl##
   using QuadGK; const integrate = QuadGK.quadgk
@@ -44,4 +44,4 @@ end
   const absoluteError = eps(1.0)
 
   ##Output_Interface.jl##
-  const resultsfolder = "results"
+  const resultsFolder = "results"

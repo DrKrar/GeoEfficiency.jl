@@ -6,37 +6,40 @@
 #
 #**************************************************************************************
 
-#------------------consts&globals--------------------------------------
+#------------------ consts - globals - imports ----------------------------
+
 using Compat
 using Compat.MathConstants
 using Compat.DelimitedFiles
 import Compat: @info, @warn, @error
 
-@compat isconst(@__MODULE__, :datafolder ) || const datafolder = string(@__MODULE__)
-const datadir    = joinpath(homedir(), datafolder); 	isdir(datadir) || mkdir(datadir)
+@compat isconst(@__MODULE__, :dataFolder ) || const dataFolder = string(@__MODULE__)
+const dataDir    = joinpath(homedir(), dataFolder); 	isdir(dataDir) || mkdir(dataDir)
 
-const detectors  = "Detectors.csv";
+const Detectors  = "Detectors.csv";
 const srcHeights = "srcHeights.csv";
 const srcRhos    = "srcRhos.csv";
 const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
+
 @enum SrcType srcUnknown=-1 srcPoint=0 srcLine=1 srcDisk=2 srcVolume=3 srcNotPoint =4
 global srcType = srcUnknown
 
-#------------------typeofSrc--------------------------------------
-"""
-    typeofSrc()
-
-Return the current value of `srcType`.
+#------------------ typeofSrc --------------------------------------
 
 """
-typeofSrc() = srcType  # srcType !== SrcType, but
+    typeofSrc()::SrcType
+
+return the current value of the global `GeoEfficiency.srcType`.
 
 """
-    typeofSrc(x::Int)
+typeofSrc()::SrcType = srcType  # srcType !== SrcType, but
 
-set and return the value of `srcType` corresponding to `x`.
+"""
+    typeofSrc(x::Int)::SrcType
+
+set and return the value of the global `GeoEfficiency.srcType` corresponding to `x`.
 
   *  srcUnknown = -1 also any negative integer treated as so, 
   *  srcPoint   = 0, 
@@ -46,7 +49,7 @@ set and return the value of `srcType` corresponding to `x`.
   *  srcNotPoint = 4 also any greater than 4 integer treated as so.
 
 """
-function typeofSrc(x::Int)
+function typeofSrc(x::Int)::SrcType
 	global srcType = if x < 0
 					SrcType(-1)
 				elseif x > 4
@@ -56,29 +59,32 @@ function typeofSrc(x::Int)
 				end
 end #function
 
-#------------------setSrcToPoint--------------------------------------
+
+#------------------------ setSrcToPoint ---------------------------
 
 """
-    setSrcToPoint() 
+    setSrcToPoint()::Bool
 
-Return whether the source type is a point or not.
+return whether the source type is a point or not.
 """
-setSrcToPoint() = srcType === srcPoint
+setSrcToPoint()::Bool = srcType === srcPoint
 
 """
 
-    setSrcToPoint(yes::Bool)
+    setSrcToPoint(yes::Bool)::Bool
 
-set the source type to Point if `yes = true` else if  `yes = false` set the source type to non-point. However,if it was not already set to other non point type before.
+return whether the source type is a point or not after setting `srcType` to ``srcPoint`` if 
+`yes` = ``true`` else if `yes` = ``false`` setting it to ``srcNotPoint`` if it was not already 
+set to other non-point type (``srcDisk``, ``srcLine``, ``srcVolume``).
 
 !!! note
+    *  The user can use this function to change the source type any time.
+    *  The source type is set the fist time asked for source.
 
-    * The user can use this function to change the type latter or set it before calculation.
-	
-	* The source type is set when the fist time asked for source.
+**see also:** `typeofSrc(::Int)`
 
 """
-function setSrcToPoint(yes::Bool) ::Bool
+function setSrcToPoint(yes::Bool)::Bool
 	global srcType = if yes 
 						srcPoint
 					elseif srcType in [srcUnknown, srcPoint] 
@@ -90,62 +96,69 @@ function setSrcToPoint(yes::Bool) ::Bool
 end
 
 """
-    setSrcToPoint(prompt::AbstractString)	
-prompt the user to set the sources type if it were not already set before. 
+	setSrcToPoint(prompt::AbstractString)::Bool
+
+return whether the source type is a point or not. only prompt the user to set the source 
+type if it were not already set before. 
+
+**see also:** `typeofSrc(::Int)`, `setSrcToPoint(::Bool)`
+
 """
-setSrcToPoint(prompt::AbstractString) = srcType != srcUnknown ?	setSrcToPoint() :
+setSrcToPoint(prompt::AbstractString)::Bool = srcType != srcUnknown ?	setSrcToPoint() :
 											setSrcToPoint(input(prompt) |> lowercase != "n" )
 
 
-#------------------input-----------------------------------------------
+#---------------------------- input ---------------------------------
 
 """ # UnExported
 
     input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 
-Prompt the user with the massage `prompt` defaults to `? `. `incolor` specify the prompt text color, default to green.
-Return a string delimited by new line excluding the new line.
-# Examples
-```jldoctest
-julia> input("input a number:")
-input a number:
-```
+return a string delimited by new line excluding the new line. prompt the user with the massage `prompt` defaults to `? `. 
+`incolor` specify the prompt text color, default to ``green``.
 
 """
 function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
-    printstyled( prompt, color=incolor); chomp(readline())
+    printstyled(prompt, color=incolor); chomp(readline())
 end # function
 
 
-#-------------------_getfloat & getfloat----------------------------------------------
+#---------------------------- getfloat -----------------------------------
 
 """
 
-	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")
+	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")::Float64
 
-Prompts the user with the massage `prompt` defaults to `? ` to input a numserical expression evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[.
-
- > input from the `console` can be numerical expression not just a number.
- > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
- > All are valid expressions.
+prompts the user with the massage `prompt` defaults to `? ` to input a numerical expression 
+evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[
+before returning it as a `Float64`.
 
 !!! note
-    *  a blank (just a return) input is considered as being `0.0`.
-    *  the key word  argument `value` , if provided the function will not ask for input from the `console`and take it ass the input from the  `console`.
+    *  a blank input (i.e just a return) is considered as being ``0.0``.
+    *  input from the `console` can be numerical expression not just a number.
+    *  All ``5/2``, ``5//2``, ``exp(2)``, ``pi``, ``1E-2``, ``5.2/3``, ``sin(1)``, ``pi/2/3`` 
+       are valid mathematical expressions.
+    *  the key word  argument `value` , if provided the function will not ask for input from the 
+       `console` and take it as if it where inputted from the  `console` [``for test propose mainly``].
 
 # Examples
 ```
-julia> getfloat("input a number:",value="3")
+julia> getfloat("input a number:", value="3")
 3.0
-julia> getfloat("input a number:",value="")
+
+julia> getfloat("input a number:", value="")
 0.0
-julia> getfloat("input a number:",value="5/2")
+
+julia> getfloat("input a number:", value="5/2")
 2.5
-julia> getfloat("input a number:",value="5//2")
+
+julia> getfloat("input a number:", value="5//2")
 2.5
-julia> getfloat("input a number:",value="e")
-2.718281828459045
+
+julia> getfloat("input a number:", value="pi")
+3.141592653589793
 ```
+
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
 	try
@@ -170,20 +183,26 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
 end	
 
 
-#--------------------detector_info_from_csvFile--------------------------------------
+#---------------------------- detector_info_from_csvFile ------------------------------
 
 """# UnExported
 
-	 detector_info_from_csvFile(detectors::AbstractString=detectors, 
-                                      datadir::AbstractString=datadir)
+	 detector_info_from_csvFile(detectors::AbstractString = Detectors, 
+                                      datadir::AbstractString = dataDir)
+return an vector{Detector} based on information in the file of name `detectors` found in the 
+directory `datadir`.
 
-read detectors data from predefined file and return its content as an array of detectors, or one can specify a file.
+!!! note
+    *  if no path is given the second argument `datadir` is default to ``$(dataDir)`` as set by 
+       the constant ``dataDir``. 
+    *  if no file name is specified the name of the predefined file ``$Detectors`` as set by 
+       the constant ``Detectors``. 
+    *  the no argument method is the most useful; other methods are mainly for ``test propose``.
 
-`datadir` : directory where file is located default to $(datadir) if no argument is provided.
 
 """
-function detector_info_from_csvFile(detectors::AbstractString=detectors, 
-                                      datadir::AbstractString=datadir)
+function detector_info_from_csvFile(detectors::AbstractString = Detectors, 
+                                      datadir::AbstractString = dataDir)
     detector_info_array::Matrix{Float64} = Matrix{Float64}(undef, 0, 0)
     @info("opening '$(detectors)'......")
     try
@@ -201,19 +220,18 @@ function detector_info_from_csvFile(detectors::AbstractString=detectors,
 end #function
 
 
-#--------------------read_from_csvFile--------------------------------------
+#---------------------------- read_from_csvFile --------------------------------
 
 """# UnExported
 
 	read_from_csvFile(csv_data::AbstractString, 
-                       datadir::AbstractString=datadir)
+                       datadir::AbstractString = dataDir)::Vector{Float64}
 
-read data from a file and return its content as an array.
-`csv_data`: filename of csv file containing data.
-`datadir` : directory where file is located default to $(datadir) if no argument is provided.
+return Vector{Float64} based on data in csv file named `csv_data`. directory `datadir` point to   
+where the file is located default to ``$(dataDir)`` as set by the constant `dataDir`.
 
 """
-function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=datadir)
+function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = datadir)::Vector{Float64}
 	@info("Opening `$(csv_data)`......")
 	try
 		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
@@ -233,7 +251,7 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString=dat
 end #function
 
 
-#--------------------read_batch_info---------------------------------------------
+#--------------------------- read_batch_info ------------------------------------
 
 """# UnExported
 
@@ -263,10 +281,10 @@ read_batch_info() = read_batch_info(datadir,
 
 	read_batch_info(datadir::AbstractString,
                   detectors::AbstractString, 
-			     srcHeights::AbstractString,
-			        srcRhos::AbstractString,
-				   srcRadii::AbstractString,
-			     srcLengths::AbstractString)
+                 srcHeights::AbstractString,
+                    srcRhos::AbstractString,
+                   srcRadii::AbstractString,
+                 srcLengths::AbstractString)
 
 read `detectors` and `sources` parameters from the location given in the argument list.
 
@@ -287,10 +305,10 @@ function read_batch_info(datadir::AbstractString,
 					    srcRadii::AbstractString,
 					  srcLengths::AbstractString)
 
-	@info("The Batch Mode is Starting....")
+	@info("Starting the Batch Mode ....")
 	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-	@info("Read data from `CSV files` at $datadir .....")
+	@info("Reading data from `CSV files` at $datadir .....")
 	detectors_array ::Vector{RadiationDetector} = try  detector_info_from_csvFile(detectors, datadir); catch err; getDetectors(); end
 	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
 	srcRhos_array   ::Vector{Float64} = [0.0]
@@ -302,7 +320,7 @@ function read_batch_info(datadir::AbstractString,
 		sleep(3); src = source()
 		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
 		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
-		nothing
+		return nothing
 	end #function
 
 	if srcHeights_array == [0.0]
@@ -333,15 +351,18 @@ function read_batch_info(datadir::AbstractString,
 end #function
 
 
-#---------------- getDetectors-------------------------------------------------
+#------------------------- getDetectors -------------------------------------
 
 """
 
     getDetectors(detectors_array::Vector{<:Detector} = Detector[])
 
+return the  `detectors_array` extended by the entered detectors and sorted according to the 
+detector volume. 
 prompt the user to input detector parameters from the `console`.
-Return a `Vector{Detector}` contains the detectors in `detectors_array` extended by the entered detectors and sorted according to the detector volume. 
-If no array received in the input an empty array will be created to receive the entered detectors.
+
+!!! note
+    If no array received in the input an empty array will be created to receive the converted detectors.
 
 """
 function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
@@ -362,10 +383,12 @@ end #function
 
 	getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ;console_FB=true) 
 
-Convert detectors from the information in `detector_info_array` and return `detectors_array`, an Array of successfully converted detectors.
+return `detectors_array`, after extending it with the successfully converted detectors. while, 
+attampt to convert detectors from the information in `detector_info_array`. 
 
-`console_FB`: if true , the function will will call `getDetectors()` to take input from the `console` if the `detector_info_array` 
-is empty or contain no numerical element.
+!!! note
+    if `console_FB` argument is set to true , the function will call `getDetectors()` to take input
+    from the `console` if the `detector_info_array` is empty or contain no numerical element.
 
 """
 function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ; console_FB=true) 
