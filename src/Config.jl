@@ -9,7 +9,7 @@
 using Compat
 using Compat.Dates
 
-#------------------ about ------------------------------------
+#------------------------ about ------------------------------
 
 function about() 
 	printstyled(
