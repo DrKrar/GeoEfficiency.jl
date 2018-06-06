@@ -92,11 +92,11 @@ The efficiency calculation can be done by one of the functions:
  
 For more on the function and its methods prefix the name of the function by `?`.
 
-### note
-   Input from the `console` can be numerical expression not just a number.
+## note
+**Input from the `console` can be numerical expression not just a number.**
    
-   > 5/2, 5//2, pi, exp(2) , 1E-2, 5.2/3, sin(1), pi/2/3
-   > All are valid expressions.
+   > **5/2, 5//2, pi, exp(2) , 1E-2, 5.2/3, sin(1), pi/2/3**
+   > **All are valid expressions.**
 	
 ## Batch Calculation
 The package can be used to perform batch calculations by calling one of the 
@@ -138,8 +138,8 @@ Those Comma Saved  Values [CSV] files are:-
 		 --------------|
 
 
-### note
+## note
 **for Comma Saved Values [CSV] files each line represent an entry, the first line is always treated as the header.**
 	 
-### warning
+## warning
 **the program expect each line to contain one number for all CSV files except for ``Detectors.csv`` each line should contain at least one number or at most four separated numbers.**
