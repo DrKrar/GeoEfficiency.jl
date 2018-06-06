@@ -9,7 +9,7 @@
 using Compat
 using Compat.Dates
 
-#---------------------- about ------------------------------------
+#------------------ about ------------------------------------
 
 function about() 
 	printstyled(
@@ -24,7 +24,7 @@ function about()
 	\t Author:        Mohamed Krar,  @e-mail: DrKrar@gmail.com 
 	\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 	\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-06-07")) old master)  
+	\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-06-06")) old master)  
 	\t Documentation: http://geoefficiencyjl.readthedocs.org
 	\n"""
 	, color=:green)
