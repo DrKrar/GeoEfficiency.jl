@@ -50,7 +50,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 
 ## Requirements
- *  Julia 0.6 or above.
+ *  Julia 0.6 (current) or above.
  *  QuadGK 0.1.2 or above, will be installed automatically during the package Installation.
  *  Compat 0.63.0 or above, will be installed automatically during the package Installation.
  
@@ -66,7 +66,7 @@ julia> Pkg.add("GeoEfficiency")
 julia> using GeoEfficiency
 julia> calc()
 ```
-Try also `geoEff()`, `calcN()`, `batch()`
+**see also: `geoEff()`, `calcN()`, `batch()`**
 	
 
 ## Package Overview
@@ -84,63 +84,64 @@ The `source()` method take input from the `console` and return a tuple describin
 
 
 The efficiency calculation can be done by one of the functions: 
- *  `geoEff` used with or without argument(s), 
- *  `calc` ask for the required information from the `console`, 
- *  `calcN` just a repeat of the `calc` function 
- *  batch() which try to take required information from csv files located in the home directory inside a folder called `GeoEfficiency`.
+*  `geoEff` used with or without argument(s), 
+*  `calc` ask for the required information from the `console`, 
+*  `calcN` just a repeat of the `calc` function 
+*  batch() which try to take required information from csv files located in 
+   the home directory inside a folder called `GeoEfficiency`.
  
 For more on the function and its methods prefix the name of the function by `?`.
 
 ### note
    Input from the `console` can be numerical expression not just a number.
    
-   > 5/2, 5//2, pi, e, 1E-2, 5.2/3, sin(1), pi/2/3
+   > 5/2, 5//2, pi, exp(2) , 1E-2, 5.2/3, sin(1), pi/2/3
    > All are valid expressions.
 	
 ## Batch Calculation
-The package can be used to perform batch calculations by calling one of the methods of the function `batch`. The output results of batch calculations is found in `GeoEfficiency\results` folder inside the user account home.
+The package can be used to perform batch calculations by calling one of the 
+methods of the function `batch`. The output results of batch calculations is 
+found by default in `GeoEfficiency\results` folder inside the user home.
 
-For example	`c:\users\yourusername\GeoEfficiency\results\`.
+**For example	`c:\users\yourusername\GeoEfficiency\results\`**.
 
 The function `batch()` can be called with or without arrangement(s). 
-The without argument version relay on previously prepared Comma Saved  Values [CSV] files, that can be easily edit by Microsoft Excel, located in the `GeoEfficiency` folder.
+The without argument version relay on previously prepared Comma Saved  Values 
+[CSV] files, that can be easily edit by Microsoft Excel, located by default 
+in the ``GeoEfficiency`` folder.
 
 Those Comma Saved  Values [CSV] files are:-
+	
+*  ``Detectors.csv`` contains the detectors description; The line format is: 
+	
+		 Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
+    	 ---------------| ---------------|-------------|----------- |
 
- *  `Detectors.csv` contains the detectors description; The line format is: 
+*  ``srcHeights.csv`` contains the source heights; 
+	
+    	 Source_Heights | 
+		 ---------------|
 
-     Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth
-     ----------------| -----------------|---------------|--------------
+*  ``srcRhos.csv`` contains the source off-axis distances; 	 				
+	
+		 Source_Rhos | 
+     	 ------------|
 
-     > The program expect each line to contain at least one number or at most four separated numbers.
+*  ``srcRadii.csv`` contains the source radii for disc and cylindrical sources; 			
+	
+		 Source_Radii| 
+		 ------------|
 
- *  `srcHeights.csv` contains the source heights; 
+*  ``srcLengths.csv`` contains the source length for cylindrical sources; 	
+	
+		 Source_Lengths| 
+		 --------------|
 
-     Source_Heights | 
-      -----------------|
-
-     > The program expect each line to contain one number.
-
- *  `srcRhos.csv` contains the source off-axis distances; 	 				
-
-     Source_Rhos | 
-      -----------------|
-
-     > The program expect each line to contain one number.
-
- *  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
-
-     Source_Radii| 
-      -----------------|
-
-     > The program expect each line to contain one number.
-
- *  `srcLengths.csv` contains the source length for cylindrical sources; 	
-
-     Source_Lengths| 
-      -----------------|
-
-     > The program expect the line to contain one number.
-     
-### note
-    For Comma Saved  Values [CSV] files each line represent an entry, the first line is always treated as the header.
+!!! note
+     for Comma Saved Values [CSV] files each line represent an entry, 
+	 the first line is always treated as the header.
+	 
+!!! warning
+     the program expect each line to contain one number for all CSV files except
+     for ``Detectors.csv`` each line should contain at least one number or at 
+     most four separated numbers.
