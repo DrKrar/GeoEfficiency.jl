@@ -33,15 +33,16 @@ end
 
 #------------------ ---- set_global_Consts -----------------------------
 
-  ##Physics_Model.jl##
+##Physics_Model.jl##
 
-  ##Input_Interface.jl##
-  const dataFolder    = "GeoEfficiency"
+##Input_Interface.jl##
+const dataFolder    = "GeoEfficiency"
+const dataDir       = joinpath(homedir(), dataFolder)
 
-  ##Calculations.jl##
-  using QuadGK; const integrate = QuadGK.quadgk
-  const relativeError = 1.0E-4
-  const absoluteError = eps(1.0)
+##Calculations.jl##
+using QuadGK; const integrate = QuadGK.quadgk
+const relativeError = 1.0E-4
+const absoluteError = eps(1.0)
 
-  ##Output_Interface.jl##
-  const resultsFolder = "results"
+##Output_Interface.jl##
+const resultsFolder = "results"
