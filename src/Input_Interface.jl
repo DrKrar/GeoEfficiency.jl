@@ -13,8 +13,9 @@ using Compat.MathConstants
 using Compat.DelimitedFiles
 import Compat: @info, @warn, @error
 
-@compat isconst(@__MODULE__, :dataFolder ) || const dataFolder = string(@__MODULE__)
-const dataDir    = joinpath(homedir(), dataFolder); 	isdir(dataDir) || mkdir(dataDir)
+@compat isconst(@__MODULE__, :dataFolder ) 	||	const dataFolder = string(@__MODULE__)
+@compat isconst(@__MODULE__, :dataDir )		||	const  dataDir    = joinpath(homedir(), dataFolder); 	
+mkpath(dataDir)
 
 const Detectors  = "Detectors.csv";
 const srcHeights = "srcHeights.csv";
