@@ -280,13 +280,12 @@ file containing results.
 The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 
 !!! note
-    for all arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
-    element type should be ``Float64``. if any of them have other numerical element type it 
-	should converted to ``Float64`` using `float` before passing it to this method.
+     for all arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
+     element type should be ``Float64``. if any of them have other numerical element type it 
+     should converted to ``Float64`` using `float` before passing it to this method.
 
-!!! warning 
-	 both `srcRadii_array`, `srcLengths_array` are completely ignored as this method is for point 
-	 sources.
+!!! warning
+     both `srcRadii_array`, `srcLengths_array` are completely ignored as this method is for point sources.
 
 """
 function _batch(
@@ -354,9 +353,9 @@ file containing results.
 The `results` has columns of headers 
 `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
 
-!!! note
+!!! note 
     for all arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
-	element type should be ``Float64``. if any of them have other numerical element type it 
+    element type should be ``Float64``. if any of them have other numerical element type it 
     should converted to ``Float64`` using `float` before passing it to this method.
 
 """
@@ -463,14 +462,14 @@ the **``CSV``**  file by default found in **``$(resultdir)``**.
 		 Source_Lengths| 
 		 --------------|
 
- # CSV results
+ # CSV results files
  **``CSV``**  file containing the results has columns of headers 
  `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for `non-point` sources 
  and columns of headers `Height`, `Rho`, `GeoEfficiency` for `point` sources.
 
 !!! note
      for Comma Saved Values [CSV] files each line represent an entry, 
-	 the first line is always treated as the header.
+     the first line is always treated as the header.
 	 
 !!! warning
      the program expect each line to contain one number for all CSV files except
