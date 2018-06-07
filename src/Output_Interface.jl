@@ -118,6 +118,7 @@ end #function
     batch()
 
 provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(dataFolder)`.
+also a log of the results are displayed on the `console`.
 
 Results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
 
@@ -390,3 +391,50 @@ function _batch(::Type{Val{false}},
 	return (detector, results, path) # detector, results are for test purpose
 
 end #function
+
+#------------------- :prepare_batch -----------------
+@doc """
+
+The function `batch()` can be called with or without arrangement(s). 
+The without argument version relay on previously prepared Comma Saved  
+Values [CSV] files, that can be easily edit by Microsoft Excel, 
+located in the directory **``$dataDir``** .
+	
+Those Comma Saved  Values [CSV] files are:-
+	
+*  ``Detectors.csv`` contains the detectors description; The line format is: 
+	
+		 Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
+    	 ---------------| ---------------|-------------|----------- |
+
+*  ``srcHeights.csv`` contains the source heights; 
+	
+    	 Source_Heights | 
+		 ---------------|
+
+*  ``srcRhos.csv`` contains the source off-axis distances; 	 				
+	
+		 Source_Rhos | 
+     	 ------------|
+
+*  ``srcRadii.csv`` contains the source radii for disc and cylindrical sources; 			
+	
+		 Source_Radii| 
+		 ------------|
+
+*  ``srcLengths.csv`` contains the source length for cylindrical sources; 	
+	
+		 Source_Lengths| 
+		 --------------|
+
+!!! note
+     for Comma Saved Values [CSV] files each line represent an entry, 
+	 the first line is always treated as the header.
+	 
+!!! warning
+     the program expect each line to contain one number for all CSV files except
+     for ``Detectors.csv`` each line should contain at least one number or at 
+     most four separated numbers.
+
+"""
+:prepare_batch

@@ -42,7 +42,8 @@ export # Config
  # Output_Interface	
 	calc, 
 	calcN, 
-	batch
+	batch,
+	prepare_batch
 
 include("Config.jl")
 include("Physics_Model.jl")
