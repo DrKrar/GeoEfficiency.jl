@@ -82,7 +82,7 @@ set to other non-point type (``srcDisk``, ``srcLine``, ``srcVolume``).
     *  The user can use this function to change the source type any time.
     *  The source type is set the fist time asked for source.
 
-**see also:** `typeofSrc(::Int)`
+**see also:** [`typeofSrc(::Int)`](@ref).
 
 """
 function setSrcToPoint(yes::Bool)::Bool
@@ -102,7 +102,7 @@ end
 return whether the source type is a point or not. only prompt the user to set the source 
 type if it were not already set before. 
 
-**see also:** `typeofSrc(::Int)`, `setSrcToPoint(::Bool)`
+**see also:** [`typeofSrc(::Int)`](@ref), [`setSrcToPoint(::Bool)`](@ref).
 
 """
 setSrcToPoint(prompt::AbstractString)::Bool = srcType != srcUnknown ?	setSrcToPoint() :
@@ -200,7 +200,6 @@ directory `datadir`.
        the constant ``Detectors``. 
     *  the no argument method is the most useful; other methods are mainly for ``test propose``.
 
-
 """
 function detector_info_from_csvFile(detectors::AbstractString = Detectors, 
                                       datadir::AbstractString = dataDir)
@@ -261,7 +260,6 @@ end #function
 read `detectors` and `sources` parameters from the predefined csv files.
 
 Return a tuple
-
 	   (detectors_array,
 		srcHeights_array,
 		srcRhos_array,
@@ -385,7 +383,7 @@ end #function
 	getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ;console_FB=true) 
 
 return `detectors_array`, after extending it with the successfully converted detectors. while, 
-attampt to convert detectors from the information in `detector_info_array`. 
+attempt to convert detectors from the information in `detector_info_array`. 
 
 !!! note
     if `console_FB` argument is set to true , the function will call `getDetectors()` to take input

@@ -48,7 +48,7 @@ Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
 
 construct and return an `axial point`.
 
-**see also:** `Point(Height::Real, Rho::Real)`
+**see also:** [`Point(Height::Real, Rho::Real)`](@ref).
 
 """
 Point(Height::Real) = Point(Height, 0.0)
@@ -59,7 +59,7 @@ Point(Height::Real) = Point(Height, 0.0)
 
 construct and return a `point` according to the input from the `console`. 
 
-**see also:** `Point(Height::Real, Rho::Real)`
+**see also:** [`Point(Height::Real, Rho::Real)`](@ref).
 
 """
 function Point()
@@ -75,7 +75,7 @@ end #function
 construct and return a `point` that has the same off-axis distance as `aPnt` but of new 
 height `xHeight`. 
 
-**see also:** `Point(Height::Real, Rho::Real)`
+**see also:** [`Point(Height::Real, Rho::Real)`](@ref)
 
 """
 Point(xHeight::Real, aPnt::Point) = Point(xHeight, aPnt.Rho)
@@ -86,7 +86,7 @@ Point(xHeight::Real, aPnt::Point) = Point(xHeight, aPnt.Rho)
 construct and return a `point` that has the same height as `aPnt` but of new 
 off-axis distance `Rho`. 
 
-**see also:** `Point(Height::Real, Rho::Real)`
+**see also:** [`Point(Height::Real, Rho::Real)`](@ref).
 
 """
 Point(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
@@ -140,9 +140,6 @@ end #function
 
 """
 
-	RadiationDetector
-or
-	
 	Detector
 
 abstract supertype of all detectors. also can be used to construct any leaf type.
@@ -188,7 +185,7 @@ CylDetector(CryRadius::Real, CryLength::Real) = CylDetector(float(CryRadius), fl
 
 construct and return a `cylindrical` (really `disk`) detector with crystal length equal to ``zero``.
 
-**see also:** `CylDetector(CryRadius::Real, CryLength::Real)`
+**see also:** [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
 CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
@@ -200,7 +197,7 @@ CylDetector(CryRadius::Real) = CylDetector(CryRadius, 0.0)
 
 construct and return a `cylindrical` detector according to the input from the `console`.
 
-**see also:** `CylDetector(CryRadius::Real, CryLength::Real)`
+**see also:** [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
 function CylDetector()
@@ -252,7 +249,7 @@ BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = BoreDetector(
 
 construct and return a `bore-hole` detector according to the input from the `console`.
 
-**see also:** `BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`
+**see also:** [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](@ref).
 
 """
 function BoreDetector()
@@ -309,7 +306,7 @@ WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real
 
 construct and return a Well-Type detector according to the input from the `console`.
 
-**see also:** `WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`
+**see also:** [`WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`](@ref).
 
 """
 function WellDetector()
@@ -358,7 +355,7 @@ end #function
 
 	Detector(CryRadius::Real)
 
-same as `CylDetector(CryRadius::Real)`.
+same as [`CylDetector(CryRadius::Real)`](@ref).
 
 """
 RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
@@ -367,7 +364,7 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 
 	Detector(CryRadius::Real, CryLength::Real)
 
-same as `CylDetector(CryRadius::Real, CryLength::Real)`
+same as [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
@@ -394,7 +391,7 @@ it inspect the arguments and call the appropriate leaf type constructor.
 !!! note
     if the value(s) of the last argument(s) is\\are ``zero``, it acts as a missing argument(s).
 		
-**see also:** `CylDetector`, `BoreDetector` and `WellDetector`.
+**see also:** [`CylDetector`](@ref), [`BoreDetector`](@ref), [`WellDetector`](@ref).
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
@@ -403,7 +400,7 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 
 """
 
-	Detector(detector::RadiationDetector)
+	Detector(detector::Detector)
 
 return the inputted detector.
 
@@ -415,7 +412,7 @@ RadiationDetector(detector::RadiationDetector) = detector
 	Detector(detectors::Vector{T}) where T <: Detector
 
 convert the array `detectors` of any of the leaf `RadiationDetector` types 
-to an array of type `RadiationDetector`.
+to an array of type `Detector`.
 
 """
 RadiationDetector(detectors::Vector{<:RadiationDetector}) = RadiationDetector[detectors...]

@@ -3,10 +3,9 @@ __precompile__()
 """
 
 # GeoEfficiency Package
-
-`GeoEfficiency` package represent a fast and flexible tool to calculate in batch or individually 
-the geometrical efficiency for a set of common radiation detectors shapes (cylindrical, 
-Bore-hole, Well-type) as seen form a source. The source can be a point, a disc or even a cylinder.
+represent a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
+for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form 
+a source. The source can be a point, a disc or even a cylinder.
 
 # Quick Usage
 *  geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\n

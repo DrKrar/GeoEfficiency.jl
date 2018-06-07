@@ -48,7 +48,7 @@ detector `detector` for the tuple `aSource` describing the source.
 
 **`Throw`** an Error if the source location is inappropriate.
 
-**see also:** `geoEff(::Detector, ::Tuple{Point, Float64, Float64})`
+**see also:** [`geoEff(::Detector, ::Tuple{Point, Float64, Float64})`](@ref)
 
 !!! note
      if source description `aSource` alone or even both source description and detector `detect` 
@@ -139,7 +139,7 @@ by the **``CSV``** files by default located in **``$(dataDir)``**.
 results are saved on a **``CSV``**  file(s) named after the detector(s). the **``CSV``**  file(s) 
 by default found in **``$(resultdir)``**, also a log of the results are displayed on the `console`.
 
-**for more information on batch refer to `prepare_batch`.**
+**for more information on batch refer to [`batchInfo`](@ref).**
 
 """
 batch() = batch(read_batch_info()...)
@@ -202,7 +202,7 @@ end #function
 		ispoint::Bool=true
 	) where S <: Real
 
-**same as `batch(::Detector, ...)`** but accept a list of detectors `detectors_array`.
+**same as [`batch(::Detector, ...)`](@ref)** but accept a list of detectors `detectors_array`.
 return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
 
 """
@@ -241,7 +241,7 @@ end #function
 		ispoint::Bool=true
 	) where S <: Real
 
-**same as `batch(::Vector{<: Detector},...)`** but provide batch calculation of the 
+**same as [`batch(::Vector{<: Detector},...)`](@ref)** but provide batch calculation of the 
 `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`.
 return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
 
@@ -426,7 +426,7 @@ end #function
 
 #------------------- :batchInfo -----------------
 
-@doc """
+"""
 
 The function `batch()` can be called with or without arrangement(s). 
 The without argument version relay on previously prepared Comma Saved  
@@ -478,4 +478,4 @@ the **``CSV``**  file by default found in **``$(resultdir)``**.
      most four separated numbers.
 
 """ 
-:batchInfo
+const batchInfo = nothing

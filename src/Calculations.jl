@@ -24,10 +24,10 @@ using Compat: @error
 
 	GeoEff_Pnt(detector::CylDetector, aPnt::Point)  
 
-return the Geometrical Efficiency for the point source `aPnt` located on front
+return the `geometrical efficiency` for the point source `aPnt` located on front
 of the cylindrical detector `detector` face.
 
-`Throw` an error if the point is out of the cylindrical detector `detector` face.
+**`Throw`** an error if the point is out of the cylindrical detector `detector` face.
 
 !!! note
     this is the base function that all other functions call directly or indirectly
@@ -72,7 +72,7 @@ end #function
 
 	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
 
-return the Geometrical Efficiency for a `disk` source. The `disk` center is the `SurfacePnt` and 
+return the `geometrical efficiency` for a `disk` source. The `disk` center is the `SurfacePnt` and 
 its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
 
 give a warning if the disk is out of the cylindrical detector face.
@@ -94,7 +94,7 @@ end #function
 
 	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
 !!! warning
     `aSurfacePnt` : point `height` is considered to be measured from the detector surface.
@@ -130,7 +130,7 @@ end #function
 
 	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
 !!! warning
     `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
@@ -188,7 +188,7 @@ end #function
 
 	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-**please refer to `geoEff(::Detector, ::Point, ::Real, ::Real)` below for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
 !!! warning
     `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
@@ -224,7 +224,7 @@ end #function
 
 	geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
-return the Geometrical Efficiency for a source (`point`, `disk` or `cylinder`) with 
+return the `geometrical efficiency` for a source (`point`, `disk` or `cylinder`) with 
 the detector `detector`. 
 `detector` can be any of the leaf detectors types (`CylDetector`, `BoreDetector`, `WellDetector`).
 
@@ -232,7 +232,7 @@ the detector `detector`.
 *  `SrcRadius`: Radius of the source.
 *  `srcHeight`:  the height of an upright cylinder source.
 
-`Throw` an Error if the source location is inappropriate.
+**`Throw`** an Error if the source location is inappropriate.
 
 !!! warning
     the point height of `aPnt` is measured differently for different detectors types.
