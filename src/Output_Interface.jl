@@ -6,7 +6,8 @@
 #
 #**************************************************************************************
 
-#------------------consts&globals--------------------------------------
+#------------------------- consts - globals - imports ----------------
+
 using Compat
 using Compat.DelimitedFiles 
 import Compat: @info, @error
@@ -18,30 +19,36 @@ const resultdir_nonPnt  = joinpath(resultdir, "non-Point");
 global countDetectors = 1;
 
 
-#------------------checkResultsDirs----------------------------------
+#------------------ checkResultsDirs ----------------------------------
+
 """# UnExported
 
-    checkResultsDirs()
-make sure that the results directories are already exist or create them if necessary
+	checkResultsDirs()
+
+make sure that directories for saving the results are already exist or create 
+them if necessary
+
 """
 function checkResultsDirs()
-	#isdir(resultdir)        || mkdir(resultdir)
 	mkpath(resultdir_pnt)
 	mkpath(resultdir_nonPnt)
 	return nothing
 end
 checkResultsDirs()
 
-#------------------calc-----------------------------------------------
+
+#--------------------------- calc ---------------------------------------
+
 """
 
 	calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
-calculate the Geometrical Efficiency of the detector `detector` for the tuple `aSource` describing the source and display it on the `console`.
+calculate and display on the `console` show the Geometrical Efficiency of the 
+detector `detector` for the tuple `aSource` describing the source.
 
-Throw` an Error if the source location is inappropriate.
+`Throw` an Error if the source location is inappropriate.
 
-*similar:* `geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source())`
+**see also:** `geoEff(::RadiationDetector, ::Tuple{Point, Float64, Float64,})`
 
 !!! note
     * If no detector is supplied, it ask for a detector from the `console`.
@@ -63,14 +70,16 @@ function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{
 
 end #function
 
-#------------------calcN-----------------------------------------------
+#------------------------ calcN ------------------------------------
+
 """
 
     calcN()
 
 calculate and display the Geometrical Efficiency.
 Prompt the user to input a `detector` and a `source` from the `console`.
-Prompt the user `repeatedly` until it exit (give a choice to use the same detector or a new detector).
+Prompt the user `repeatedly` until it exit (give a choice to use the same 
+detector or a new detector).
 
 """
 function calcN(	detector:: RadiationDetector = RadiationDetector())
@@ -100,30 +109,39 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
 	print("\n\t"); @info("The 'calcN' had terminated, Thank you\n")
 end #function
 
-#----------------writecsv_head------------------------------------------
+#---------------- writecsv_head -----------------------------
 
-"Write comma delimited values to file `filename`"
-function writecsv_head(filename::AbstractString, a, head=[])
+""" # unexported
+
+	writecsv_head(filename::AbstractString, content, head=[])
+
+Write `content` to the comma delimited values file `filename`. 
+optionally with header `head`.
+
+"""
+function writecsv_head(filename::AbstractString, content, head=[])
 	open(filename, "w") do io
-	  writedlm(io, head, ',')
-	  writedlm(io, a, ',')
+		writedlm(io, head, ',')
+		writedlm(io, content, ',')
 	end #do
 end #function
 
 
-#----------------batch()-------------------------------------------------
+#---------------- batch() ----------------------------------
 
 """
 
     batch()
 
-provide batch calculation of the Geometrical Efficiency based on the data provided from the csv files located in `$(dataFolder)`.
+provide batch calculation of the Geometrical Efficiency based on the information provided 
+by the csv files located in **``$(dataFolder)``**.
+
+Results are saved on a `csv file` named after the detector can be found in **``$(resultdir)``**, 
 also a log of the results are displayed on the `console`.
 
-Results are saved on a `csv file` named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
+`Throw` an Error if the source location is inappropriate.
 
-Throw an error if the source location is inappropriate.
-\n*****
+**for more information on batch refere to `prepare_batch`.**
 
 """
 batch() = batch(read_batch_info()...)
@@ -137,15 +155,18 @@ batch() = batch(read_batch_info()...)
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-provides batch calculation of the `geometrical efficiency` for each detector in the `detector_info_array` after applying detectorFactory() to each raw.
+provides batch calculation of the `geometrical efficiency` for each detector in the 
+`detector_info_array` after applying `getDetectors`.
 
-A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+A set of sources is constructed of every valid **combination** of parameter in the `srcRhos_array`,
+`srcRadii_array` and `srcLengths_array` arrays with conjunction with `ispoint`.
 
-If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
-If `ispoint` is false the parameters in srcRhos_array is completely ignored.
-
-Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-\n*****
+!!! note
+	*  If `ispoint` is true the source type is a point source and the parameters 
+       in `srcRadii_array` and `srcLengths_array` arrays is completely ignored.
+    *  If `ispoint` is false the parameters in srcRhos_array is completely ignored.
+    *  Results are saved to a csv file named after the detector located in **``$(resultdir)``**, 
+       also a log of the results are displayed on the `console`.
 
 """
 function batch(	detector_info_array::Matrix{S},
@@ -173,18 +194,19 @@ end #function
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 
-return the path of the `CSV` files containing the results of the batch calculation of the Geometrical efficiency for the detector `detector`.
+return the path of the `CSV` files containing the results of the batch calculation of 
+the Geometrical efficiency for the detector `detector`.
 
-A set of sources is constructed of every valid combination of parameter in the `srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
+A set of sources is constructed for every valid combination of parameter in the 
+`srcRhos_array`, `srcRadii_array`, `srcLengths_array` with conjunction with `ispoint`.
 
-If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , srcLengths_array is completely ignored.
+If `ispoint` is true the source type is a point source and the parameters in srcRadii_array , 
+srcLengths_array is completely ignored.
 
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
-Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-
-
-\n*****
+Results are saved to a csv file named after the detector located in *``$(resultdir)``**, 
+also a log of the results are displayed on the `console`.
 
 """
 function batch(	detector::RadiationDetector,
@@ -221,8 +243,8 @@ If `ispoint` is true the source type is a point source and the parameters in src
 If `ispoint` is false the parameters in srcRhos_array is completely ignored.
 
 !!! note
-    Results are saved to a csv file named after the detector located in `$(resultdir)`, also a log of the results are displayed on the `console`.
-\n*****
+    Results are saved to a csv file named after the detector located in *``$(resultdir)``**, 
+    also a log of the results are displayed on the `console`.
 
 """
 function batch( detectors_array::Vector{T},
@@ -244,7 +266,7 @@ function batch( detectors_array::Vector{T},
 
 	end # detectors_array
 
-	print("\n\t"); @info("The program had been terminated, Thank you >>>>\n")
+	print("\n\t"); @info("The program terminated, Thank you >>>>\n")
 	return outpaths
 
 end #function
@@ -260,11 +282,14 @@ end #function
 				srcLengths_array::Vector{Float64}
 				)
 
-Batch calculation for point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containing results. 
-The `results` has columns `Height`, `Rho`, `GeoEfficiency`. 
+Batch calculation for point sources. Return a tuple of the `detector` and the `results` and the 
+path of the `CSV` file containing results. 
+The `results` has columns `Height`, `Rho` and `GeoEfficiency`. 
 
-!!! note
-    All of the arrays `srcHeights_array`, `srcRhos_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` before passing to the `batch` function.
+!!! warning
+	All of the arrays `srcHeights_array` and `srcRhos_array` element type should be ``Float64``. 
+	If any of them have Real element type it should converted to ``Float64``  using `float` 
+    before passing to this method.
 
 """
 function _batch(::Type{Val{true}},
@@ -323,11 +348,15 @@ end #function
 				srcLengths_array::Vector{Float64},
 				)
 
-Batch calculation for non-point sources. Return a tuple of the `detector` and the `results` and the path of the `CSV` file containing results. 
+Batch calculation for non-point sources. Return a tuple of the `detector` and the `results` 
+and the path of the `CSV` file containing results. 
+
 The `results` has columns `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency`.
 
 !!! note
-    All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array`, `srcLengths_array` element type should be float64. If any of them have Real element type it should converted float64 to using `float` before passing to the `batch` function.
+    All of the arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
+	element type should be ``Float64``. If any of them have Real element type it should 
+    converted to ``Float64`` using `float` before passing to this method.
 
 """
 function _batch(::Type{Val{false}},
@@ -392,7 +421,9 @@ function _batch(::Type{Val{false}},
 
 end #function
 
+
 #------------------- :prepare_batch -----------------
+
 @doc """
 
 The function `batch()` can be called with or without arrangement(s). 
