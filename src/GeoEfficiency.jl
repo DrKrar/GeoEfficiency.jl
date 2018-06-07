@@ -43,7 +43,7 @@ export # Config
 	calc, 
 	calcN, 
 	batch,
-	prepare_batch
+	batchInfo
 
 include("Config.jl")
 include("Physics_Model.jl")
@@ -53,9 +53,10 @@ include("Output_Interface.jl")
 
 about()
 printstyled("""
-\nBatch mode 
+\n\tBatch mode 
 \t-  read files from directory `$dataDir`
 \t-  save results to directory `$resultdir`
+\n\tfor more information see `batch`, `prepare_batch`.
 \n"""
 ,  color=:green)
 
