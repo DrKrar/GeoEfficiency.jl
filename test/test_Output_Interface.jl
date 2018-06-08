@@ -8,9 +8,11 @@
 using Compat
 using Compat: occursin
 
+print("\n\t"); @info("Testing `Output Interface`...")
 @testset "Output Interface" begin
 	@test G.checkResultsDirs() == nothing
 
+print("\n\t"); @info("Testing `calc` on CylDetector, WellDetector`...")
 	pnt = Point(1)
 	cylDet = Detector(5, 10); wellDet = Detector(5, 4, 3.2, 2)
 	@testset "function `calc` on CylDetector, WellDetector" for 
@@ -22,6 +24,7 @@ using Compat: occursin
      end #testset
 
 
+print("\n\t"); @info("Testing `calcN`...")
 	@testset "function `calcN`" for 	
 	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
 	consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
@@ -29,7 +32,7 @@ using Compat: occursin
 		@test exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
  	end #testset
 
-info("test `_batch` & `batch`...")    
+print("\n\t"); @info("Testing `batch` & `_batch`...")    
 	@testset "function `batch`" begin
 		@test G._batch(Val{true},  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 		@test G._batch(Val{false}, CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
