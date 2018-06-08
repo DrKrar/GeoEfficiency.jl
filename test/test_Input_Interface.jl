@@ -78,35 +78,35 @@ print("\n\t"); @info("test `input`...")
 		end #if
 	end #testset_input
 
-print("\n\t"); @info("test `getfloat`...")
-	@testset "getfloat" begin  
+print("\n\t"); @info("test `GeoEfficiency.getfloat`...")
+	@testset "GeoEfficiency.getfloat" begin  
 print("\n\t"); @info("test `getfloat` with different ways to input numbers...")
-		@test   0.0     ==  getfloat("\njust press return: ",value="0.0")
-		@test   1.0     ==  getfloat("\ninput 1, then press return: ",value="1.0")
-		@test   1.0     ==  getfloat("\ninput 1.0, then press return: ",value="1.0")
-		@test   2000.0  ==  getfloat("\ninput '2e3', then press return: ",value="2e3")
-		@test   0.034   ==  getfloat("\ninput '3.4e-2', then press return: ",value="3.4e-2")
-		@test   isa( getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
+		@test   0.0     ==  G.getfloat("\njust press return: ",value="0.0")
+		@test   1.0     ==  G.getfloat("\ninput 1, then press return: ",value="1.0")
+		@test   1.0     ==  G.getfloat("\ninput 1.0, then press return: ",value="1.0")
+		@test   2000.0  ==  G.getfloat("\ninput '2e3', then press return: ",value="2e3")
+		@test   0.034   ==  G.getfloat("\ninput '3.4e-2', then press return: ",value="3.4e-2")
+		@test   isa( G.getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
 	
 
 print("\n\t"); @info("test `getfloat` with mathematical expressions...")
-		@test   0.5           		==  getfloat("\ninput 1/2, then press return: ",value="1/2")
-		@test   0.75          		==  getfloat("\ninput 3//4, then press return: ",value="3//4")
-		@test   MathConstants.pi/2 	≈   getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
-		@test   MathConstants.e     ≈   getfloat("\ninput 'e', then press return: ",value="e")
-		@test   MathConstants.e^3   ≈   getfloat("\ninput 'e^3', then press return: ",value="e^3")
-		@test   Base.sin(0.1) 		≈   getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
+		@test   0.5           		==  G.getfloat("\ninput 1/2, then press return: ",value="1/2")
+		@test   0.75          		==  G.getfloat("\ninput 3//4, then press return: ",value="3//4")
+		@test   MathConstants.pi/2 	≈   G.getfloat("\ninput 'pi/2', then press return: ",value="pi/2")
+		@test   MathConstants.e     ≈   G.getfloat("\ninput 'e', then press return: ",value="e")
+		@test   MathConstants.e^3   ≈   G.getfloat("\ninput 'e^3', then press return: ",value="e^3")
+		@test   Base.sin(0.1) 		≈   G.getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
 		if true #!isapple()
 			for i = 0:5
 				write(stdin.buffer,"1.2+2im\n"^i * "3\n")
-				@test   3.0 == getfloat("\nthe first time input '1.2+2im': ")
+				@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
 			end # for
 			write(stdin.buffer,"5\n" * "3\n")
-			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+			@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
 			write(stdin.buffer,"-1\n" * "3\n")
-			@test   3.0 == getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+			@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
 			write(stdin.buffer,"1.2f\n" * "3\n")
-			@test   3.0 == getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
+			@test   3.0 == G.getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
 		else
 			@test_throws 	ErrorException	write(stdin.buffer,"5\n" * "3\n")
 		end #if
