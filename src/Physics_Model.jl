@@ -147,7 +147,7 @@ abstract supertype of all detectors types. also can be used to construct any lea
 """
 abstract type RadiationDetector end
 const Detector = RadiationDetector
-show(io::IO, detector::RadiationDetector) = print(id(detector))
+show(io::IO, detector::RadiationDetector) = print(id(RadiationDetector))
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
 
