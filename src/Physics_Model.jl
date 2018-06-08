@@ -19,8 +19,8 @@ using Compat: @info, @warn, @error
 
     Point(Height::Real, Rho::Real)
 
-construct and return a `Point` source that can be either a source by itself or an
-`anchor point` of a source.
+construct and return a `Point` source that can be used as either a source by itself or an
+`anchor point` of a higher dimension source.
 
 *  `Height` : point height relative to the detector surface.
 *  `Rho` : point off-axis relative to the detector axis of symmetry.
@@ -57,7 +57,7 @@ Point(Height::Real) = Point(Height, 0.0)
 
 	Point()
 
-construct and return a `point` according to the input from the `console`. 
+construct and return a `point`. prompt to input information via the `console`. 
 
 **see also:** [`Point(Height::Real, Rho::Real)`](@ref).
 
@@ -103,7 +103,7 @@ show(pnt::Point) = print(id(pnt))
 return a tuple that describe the source (`anchorPnt`, `SrcRadius`, `SrcLength`) according to 
 the input from the `console`.
 
-*  `aPnt` : the source anchoring point. if it is missing the user is prompt 
+*  `anchorPnt` : the source anchoring point. if it is missing the user is prompt 
    to input it via the `console`.
 *  `SrcRadius` : source radius.
 *  `SrcLength` : source length.
@@ -142,7 +142,7 @@ end #function
 
 	Detector
 
-abstract supertype of all detectors. also can be used to construct any leaf type.
+abstract supertype of all detectors types. also can be used to construct any leaf type.
 
 """
 abstract type RadiationDetector end
@@ -328,7 +328,7 @@ volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength
 
 	Detector()
 
-construct and return an object of the `RadiationDetector` leaf types 
+construct and return an object of the `Detector` leaf types 
 (`CylDetector`, `BoreDetector` or `WellDetector`) according to the input from the console.
 
 !!! note 
@@ -373,8 +373,8 @@ RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, Cry
 
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
-same as `BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)` except
-when `HoleRadius` = ``0.0`` it acts as  `CylDetector(CryRadius::Real, CryLength::Real)`
+same as [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](@ref) except
+when `HoleRadius` = ``0.0`` it acts as  [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
 RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
@@ -409,7 +409,7 @@ RadiationDetector(detector::RadiationDetector) = detector
 
 """
 
-	Detector(detectors::Vector{T}) where T <: Detector
+	Detector(detectors::Vector{<: Detector})
 
 convert the array `detectors` of any of the leaf `RadiationDetector` types 
 to an array of type `Detector`.

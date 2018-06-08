@@ -126,7 +126,7 @@ end # function
 
 #---------------------------- getfloat -----------------------------------
 
-"""
+"""# UnExported
 
 	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")::Float64
 
@@ -190,7 +190,7 @@ end
 
 	 detector_info_from_csvFile(detectors::AbstractString = Detectors, 
                                       datadir::AbstractString = dataDir)
-return an vector{Detector} based on information in the file of name `detectors` found in the 
+return a vector{Detector} based on information in the file of name `detectors` found in the 
 directory `datadir`.
 
 !!! note

@@ -3,7 +3,7 @@ __precompile__()
 """
 
 # GeoEfficiency Package
-represent a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
+introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
 for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form 
 a source. The source can be a point, a disc or even a cylinder.
 
@@ -22,7 +22,6 @@ export # Config
     about,
 
  # Input_Interface
-	getfloat, 
 	getDetectors, 
 	setSrcToPoint,
 	typeofSrc,

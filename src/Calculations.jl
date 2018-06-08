@@ -27,11 +27,11 @@ using Compat: @error
 return the `geometrical efficiency` for the point source `aPnt` located on front
 of the cylindrical detector `detector` face.
 
-**`Throw`** an error if the point is out of the cylindrical detector `detector` face.
+**`Throw`** an Error if the point is out of the cylindrical detector `detector` face.
 
 !!! note
     this is the base function that all other functions call directly or indirectly
-    to calculate Geometrical Efficiency of the cylindrical-ish detector family.
+    to calculate `geometrical efficiency` of the cylindrical-ish detector family.
 
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
@@ -75,7 +75,7 @@ end #function
 return the `geometrical efficiency` for a `disk` source. The `disk` center is the `SurfacePnt` and 
 its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
 
-give a warning if the disk is out of the cylindrical detector face.
+produce a warning if the disk is out of the cylindrical detector face.
 
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
@@ -220,7 +220,7 @@ function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, 
 	end #if
 end #function
 
-@doc """
+"""
 
 	geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
 
@@ -282,7 +282,7 @@ geoEff
 
 """
 
-	geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
+	geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())
 
 same as `geoEff(::Detector, ::Point, ::Real, ::Real)` but splatting the argument 
 in the Tuple `aSource`.
