@@ -5,7 +5,8 @@
 # 
 # 
 #**************************************************************************************
-
+using Compat
+using Compat: occursin
 
 @testset "Output Interface" begin
 	@test G.checkResultsDirs() == nothing
@@ -36,84 +37,84 @@ info("test `_batch` & `batch`...")
 		@test isnan(G._batch(Val{false}, CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
 		
 		acylDetector = CylDetector(eps(0.5)); path = batch(acylDetector, [0.0])
-		@test contains(path, G.id(acylDetector))
-		@test readcsv(path)[2,end] ≈ 0.5	
+		@test occursin( G.id(acylDetector), path)
+		@test readdlm(path,',')[2,end] ≈ 0.5	
 
 		path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(path, G.id(acylDetector))
-		@test readcsv(path)[2,end] ≈ 0.5	
+		@test occursin(G.id(acylDetector), path)
+		@test readdlm(path,',')[2,end] ≈ 0.5	
 
 		path = batch([acylDetector], [0.0])
-		@test contains(contains ,path, G.id(acylDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
 		every_path::Vector{String} = path
 
 		path = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(acylDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
 		append!(every_path, path)
 
 		aBDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.2)); path = batch([aBDetector], [0.0])
-		@test contains(contains ,path, G.id(aBDetector))
+		@test occursin.(G.id(aBDetector), path) |> any
 		append!(every_path, path)
 
 		aWDetector = WellDetector(eps(0.5), eps(0.4), eps(0.2), eps(0.1)); path = batch([aWDetector], [0.0])
-		@test contains(contains, path, G.id(aWDetector))
+		@test occursin.(G.id(aWDetector), path) |> any
 		append!(every_path, path)
 
 		path = batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(aWDetector), path) |> any
 		append!(every_path, path)
 
 		path = batch([acylDetector, aWDetector], [0.0])
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(aWDetector), path) |> any
 		append!(every_path, path)
 
 		path = batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(acylDetector))
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
+		@test occursin.(G.id(aWDetector)  , path) |> any
 		append!(every_path, path)
 
 		path = batch([acylDetector, aBDetector], [0.0])
-		@test contains(contains ,path, G.id(acylDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
 		append!(every_path, path)
 
 		path = batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(acylDetector))
-		@test contains(contains ,path, G.id(aBDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
+		@test occursin.(G.id(aBDetector)  , path) |> any
 		append!(every_path, path)
 		
 		path = batch([aBDetector, aWDetector], [0.0])
-		@test contains(contains ,path, G.id(aBDetector))
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(aBDetector), path) |> any
+		@test occursin.(G.id(aWDetector), path) |> any
 		append!(every_path, path)
 
 		path = batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(aBDetector))
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(aBDetector), path) |> any
+		@test occursin.(G.id(aWDetector), path) |> any
 		append!(every_path, path)
 
 		acylDetector = CylDetector(eps(0.6)); path = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
-		@test contains(contains ,path, G.id(acylDetector))
-		@test contains(contains ,path, G.id(aBDetector))
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
+		@test occursin.(G.id(aBDetector), path) |> any
+		@test occursin.(G.id(aWDetector), path) |> any
 	chmod(path[1], 0o100444); chmod(path[2], 0o100444); chmod(path[3], 0o100444);
 	append!(every_path, path)
 		path = batch([acylDetector, aBDetector, aWDetector], [0.0])
-		@test contains(contains ,path, "_" * G.id(acylDetector))
-		@test contains(contains ,path, "_" * G.id(aBDetector))
-		@test contains(contains ,path, "_" * G.id(aWDetector))
+		@test occursin.("_" * G.id(acylDetector), path) |> any
+		@test occursin.("_" * G.id(aBDetector)  , path) |> any
+		@test occursin.("_" * G.id(aWDetector)  , path) |> any
 	append!(every_path, path)
 	chmod(path[1],0o777); chmod(path[2], 0o777); chmod(path[3], 0o777); # 0o100666
 		
 		acylDetector = CylDetector(eps(0.7)); path = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, G.id(acylDetector))
-		@test contains(contains ,path, G.id(aBDetector))
-		@test contains(contains ,path, G.id(aWDetector))
+		@test occursin.(G.id(acylDetector), path) |> any
+		@test occursin.(G.id(aBDetector)  , path) |> any
+		@test occursin.(G.id(aWDetector)  , path) |> any
 	append!(every_path, path)
 	chmod(path[1], 0o100444); chmod(path[2], 0o100444); chmod(path[3], 0o100444);
 		path = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-		@test contains(contains ,path, "_" * G.id(acylDetector))
-		@test contains(contains ,path, "_" * G.id(aBDetector))
-		@test contains(contains ,path, "_" * G.id(aWDetector))
+		@test occursin.("_" * G.id(acylDetector), path) |> any
+		@test occursin.("_" * G.id(aBDetector)  , path) |> any
+		@test occursin.("_" * G.id(aWDetector)  , path) |> any
 	append!(every_path, path)
 	chmod(path[1],0o777); chmod(path[2], 0o777); chmod(path[3], 0o777);
 	
