@@ -202,7 +202,7 @@ end #function
 		ispoint::Bool=true
 	) where S <: Real
 
-**same as [`batch(::Detector, ...)`](@ref)** but accept a list of detectors `detectors_array`.
+**same as [`batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but accept a list of detectors `detectors_array`.
 return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
 
 """
@@ -241,7 +241,7 @@ end #function
 		ispoint::Bool=true
 	) where S <: Real
 
-**same as [`batch(::Vector{<: Detector},...)`](@ref)** but provide batch calculation of the 
+**same as [`batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but provide batch calculation of the 
 `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`.
 return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
 
