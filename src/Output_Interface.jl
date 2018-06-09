@@ -55,7 +55,7 @@ detector `detector` for the tuple `aSource` describing the source.
      are missing, the method prompt the user to complete the missing data via the `console`.
 
 """
-function calc(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Real, Real} = source())
+function calc(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())
 			   
 	aPnt, srcRadius, srcLength = aSource
 	printstyled("\n<$(countDetectors)> $(id(detector))", color=:yellow)
@@ -82,7 +82,7 @@ Prompt the user `repeatedly` until it exit (give a choice to use the same
 detector or a new detector).
 
 """
-function calcN(	detector:: RadiationDetector = RadiationDetector())
+function calcN(	detector:: Detector = Detector())
 
 	while (true)
 
@@ -95,7 +95,7 @@ function calcN(	detector:: RadiationDetector = RadiationDetector())
     	II- To quit just press return\n
 			\n\tyour Choice: """, :red) |> lowercase;
 		if res == "n"
-            detector = RadiationDetector()
+            detector = Detector()
 
 		elseif res == "d"
             continue
@@ -175,7 +175,7 @@ A set of sources is constructed of every valid **combination** of parameter in t
     *  If `ispoint` is ``false`` the parameters in srcRhos_array is completely ignored.
 
 """
-function batch(	detector::RadiationDetector,
+function batch(	detector::Detector,
 				srcHeights_array::Vector{S},
 				srcRhos_array::Vector{S}=[0.0],
 				srcRadii_array::Vector{S}=[0.0],
@@ -183,7 +183,7 @@ function batch(	detector::RadiationDetector,
 				ispoint::Bool=true) where S <: Real
 				
 	return _batch(Val{ispoint},
-				detector::RadiationDetector,
+				detector::Detector,
 				srcHeights_array,
 				srcRhos_array,
 				srcRadii_array,
@@ -211,7 +211,7 @@ function batch( detectors_array::Vector{T},
 	       srcRhos_array::Vector{S}=[0.0],
 	       srcRadii_array::Vector{S}=[0.0],
 	       srcLengths_array::Vector{S}=[0.0],
-	       ispoint::Bool=true) where T <: RadiationDetector where S <: Real
+	       ispoint::Bool=true) where T <: Detector where S <: Real
 	
 	outpaths::Vector{String} = String[]
 	for detector = detectors_array
@@ -266,7 +266,7 @@ end #function
 
     _batch(
 		::Val(true),
-		detector::RadiationDetector,
+		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
@@ -290,7 +290,7 @@ The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 """
 function _batch(
 		::Type{Val{true}},
-		detector::RadiationDetector,
+		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
@@ -339,7 +339,7 @@ end #function
 
     _batch(
 		::Val(false),
-		detector::RadiationDetector,
+		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
@@ -361,7 +361,7 @@ The `results` has columns of headers
 """
 function _batch(
 		::Type{Val{false}},
-		detector::RadiationDetector,
+		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
@@ -423,7 +423,7 @@ function _batch(
 end #function
 
 
-#------------------- :batchInfo -----------------
+#------------------- batchInfo -----------------
 
 """
 
@@ -477,4 +477,4 @@ the **``CSV``**  file by default found in **``$(resultdir)``**.
      most four separated numbers.
 
 """ 
-const batchInfo = nothing
+const batchInfo = "refer to `batchInfo` for information about batch calculation"

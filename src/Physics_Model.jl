@@ -111,7 +111,7 @@ the input from the `console`.
 !!! warning 
     If the global variable `srcType` is set to ``srcPoint``, both `SrcRadius` and `SrcLength` 
     are set to zero.
-""" 
+"""
 function source(anchorPnt::Point = Point())
     
 	if setSrcToPoint() 
@@ -138,6 +138,9 @@ end #function
 
 #---------------- Detector ------------------------------------
 
+"abstract type for all detectors"
+abstract type RadiationDetector end
+
 """
 
 	Detector
@@ -145,8 +148,7 @@ end #function
 abstract supertype of all detectors types. also can be used to construct any leaf type.
 
 """
-abstract type RadiationDetector end
-const Detector = RadiationDetector
+abstract type Detector <: RadiationDetector end
 show(io::IO, detector::RadiationDetector) = print(id(detector))
 isless(detector1::RadiationDetector, detector2::RadiationDetector) = isless(volume(detector1), volume(detector2))
 
@@ -166,7 +168,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
     both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can be set to ``zero``.
 
 """
-struct CylDetector <: RadiationDetector
+struct CylDetector <: Detector
 	CryRadius::Float64    	#Real
     CryLength::Float64		#Real
 
@@ -228,7 +230,7 @@ construct and return a `bore-hole` detector of the given crystal dimensions:-
     `CryRadius` should be greater than `HoleRadius`.
 
 """
-struct BoreDetector <: RadiationDetector
+struct BoreDetector <: Detector
 	CryRadius::Float64    	#Real
     CryLength::Float64    	#Real
 	HoleRadius::Float64    	#Real
@@ -283,7 +285,7 @@ construct and return a `Well-Type` detector of the given crystal dimensions:-
     `CryLength` should be greater than  `HoleDepth`. 
 
 """
-struct WellDetector <: RadiationDetector
+struct WellDetector <: Detector
 	CryRadius::Float64
     CryLength::Float64
 	HoleRadius::Float64
@@ -322,7 +324,7 @@ id(detector::WellDetector) = "WellDetector[CryRadius=$(detector.CryRadius), CryL
 volume(detector::WellDetector) = pi * (detector.CryRadius^2 * detector.CryLength - detector.HoleRadius ^2 * detector.HoleDepth)
 
 
-#-------------------- RadiationDetector ---------------------------------------------
+#---------------------------- Detector -------------------------------------
 
 """
 
@@ -335,7 +337,7 @@ construct and return an object of the `Detector` leaf types
     all required information is acquired from the `console` and would warn user on invalid data.
 
 """
-function RadiationDetector()
+function Detector()
 	printstyled( "\n I- The detector physical Dimensions :-\n", color=:yellow)
 	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
 	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
@@ -358,7 +360,7 @@ end #function
 same as [`CylDetector(CryRadius::Real)`](@ref).
 
 """
-RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
+Detector(CryRadius::Real) = CylDetector(CryRadius)
 
 """
 
@@ -367,7 +369,7 @@ RadiationDetector(CryRadius::Real) = CylDetector(CryRadius)
 same as [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
-RadiationDetector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
+Detector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 
 """
 
@@ -377,7 +379,7 @@ same as [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](@re
 when `HoleRadius` = ``0.0`` it acts as  [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
-RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
+Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
 				                                        CylDetector(CryRadius, CryLength) :
 				                                        BoreDetector(CryRadius, CryLength, HoleRadius)
 
@@ -394,8 +396,8 @@ it inspect the arguments and call the appropriate leaf type constructor.
 **see also:** [`CylDetector`](@ref), [`BoreDetector`](@ref), [`WellDetector`](@ref).
 
 """
-RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
-				                                        RadiationDetector(CryRadius, CryLength, HoleRadius) :
+Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real) = 0.0 == HoleDepth ?
+				                                        Detector(CryRadius, CryLength, HoleRadius) :
 				                                        WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 
 """
@@ -405,14 +407,14 @@ RadiationDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth:
 return the inputted detector.
 
 """
-RadiationDetector(detector::RadiationDetector) = detector
+Detector(detector::Detector) = detector
 
 """
 
 	Detector(detectors::Vector{<: Detector})
 
-convert the array `detectors` of any of the leaf `RadiationDetector` types 
+convert the array `detectors` of any of the leaf `Detector` types 
 to an array of type `Detector`.
 
 """
-RadiationDetector(detectors::Vector{<:RadiationDetector}) = RadiationDetector[detectors...]
+Detector(detectors::Vector{<:Detector}) = Detector[detectors...]
