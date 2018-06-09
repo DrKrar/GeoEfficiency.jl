@@ -250,19 +250,22 @@ the detector `detector`.
     source cylinder of radius ``1.0`` cm and height ``2.5`` cm on the detector surface. 
 
 ```jldoctest
-    julia> geoEff(CylDetector(2.0), Point(0.0), 1.0, 2.5)
-    0.49999999999999994
+julia> using GeoEfficiency
+
+julia> geoEff(CylDetector(2.0), Point(0.0), 1.0, 2.5)
+0.2923777934922748
 ```
 
 2.  to obtain the efficiency for a `bore-hole` detector of crystal radius of ``2.0`` and height of ``3.0`` with 
     hole radius of ``1.5`` cm for axial source cylinder of radius ``1.0`` cm and height ``2.5`` cm starting from detector center.
 
 ```jldoctest
-	julia> newDet = BoreDetector(2.0, 3.0, 1.5)
-	BoreDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5]
-	
-	julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
-	0.5678174038944723
+julia> using GeoEfficiency
+
+julia> newDet = BoreDetector(2.0, 3.0, 1.5);
+
+julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
+0.5678174038944723
 ```
 
 3.  to obtain the efficiency for a `well-type` detector of crystal radius of ``2.0`` cm and 
@@ -270,11 +273,12 @@ the detector `detector`.
     radius ``1.0`` cm and height ``2.5`` cm at the hole surface.
 	
 ```jldoctest
-	julia> newDet = WellDetector(2.0, 3.0, 1.5, 1.0)
-	WellDetector[CryRadius=2.0, CryLength=3.0, HoleRadius=1.5, HoleDepth=1.0]
+julia> using GeoEfficiency
 
-	julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
-	0.4669614527701105
+julia> newDet = WellDetector(2.0, 3.0, 1.5, 1.0);
+
+julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
+0.4669614527701105
 ```
 
 """
