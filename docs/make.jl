@@ -1,7 +1,7 @@
-#include("E:\\Users\\DrKra\\.julia\\v0.7\\GeoEfficiency\\docs\\make.jl")
+#include("E:\\Users\\DrKra\\.julia\\dev\\GeoEfficiency\\docs\\make.jl")
 #=
 cdir= pwd()
-info("Working Directory: ", @__DIR__)
+@info("Working Directory: ", @__DIR__)
 cd(@__DIR__) 
 =#
 

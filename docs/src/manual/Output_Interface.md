@@ -1,9 +1,11 @@
-# [Output_Interface]
+# Output_Interface
 
 ```@docs
-calc
-calcN
-batch
-_batch
-
+GeoEfficiency.calc
+GeoEfficiency.calcN
+GeoEfficiency.batch
+GeoEfficiency.batchInfo
+GeoEfficiency.checkResultsDirs
+GeoEfficiency.writecsv_head
+GeoEfficiency._batch
 ```

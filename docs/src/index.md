@@ -8,6 +8,7 @@
 ```@docs
 GeoEfficiency.GeoEfficiency
 GeoEfficiency.about
+
 ```
 
 ```@docs
@@ -19,6 +20,7 @@ GeoEfficiency.detector_info_from_csvFile
 GeoEfficiency.read_from_csvFile
 GeoEfficiency.read_batch_info
 GeoEfficiency.getDetectors
+
 ```
 
 ```@docs
@@ -28,21 +30,14 @@ GeoEfficiency.CylDetector
 GeoEfficiency.BoreDetector
 GeoEfficiency.WellDetector
 GeoEfficiency.Detector
+
 ```
 
 ```@docs
-GeoEfficiency.Point
-GeoEfficiency.source
-GeoEfficiency.CylDetector
-GeoEfficiency.BoreDetector
-GeoEfficiency.WellDetector
-GeoEfficiency.RadiationDetector
-```
-
-```@docs
+GeoEfficiency.geoEff
 GeoEfficiency.GeoEff_Pnt
 GeoEfficiency.GeoEff_Disk
-GeoEfficiency.geoEff
+
 ```
 
 ```@docs
@@ -53,16 +48,8 @@ GeoEfficiency.batchInfo
 GeoEfficiency.checkResultsDirs
 GeoEfficiency.writecsv_head
 GeoEfficiency._batch
+
 ```
-
-## Manual
-
-  * [GeoEfficiency.md]
-  * [Physics_Model.md]
-  * [Input_Interface.md]
-  * [Calculations.md]
-  * [Output_Interface.md]
-
 
 ## Index
 

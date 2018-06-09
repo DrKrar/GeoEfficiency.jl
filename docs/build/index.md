@@ -9,7 +9,7 @@
 ## Manual
 
 
-  * [GeoEfficiency.md]
+  * [GeoEfficiency]
   * [Physics_Model]
   * [Input_Interface]
   * [Calculations]

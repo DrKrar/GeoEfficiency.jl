@@ -1,8 +1,7 @@
-# [Calculations]
+# Calculations
 
 ```@docs
-GeoEff_Pnt
-GeoEff_Disk
-geoEff
-
+GeoEfficiency.geoEff
+GeoEfficiency.GeoEff_Pnt
+GeoEfficiency.GeoEff_Disk
 ```

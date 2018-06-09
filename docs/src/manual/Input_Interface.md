@@ -1,10 +1,12 @@
-# [Input_Interface]
+# Input_Interface
 
 ```@docs
-input
-getfloat
-getDetectors
-read_from_csvFile
-read_batch_info
-
+GeoEfficiency.typeofSrc
+GeoEfficiency.setSrcToPoint
+GeoEfficiency.input
+GeoEfficiency.getfloat
+GeoEfficiency.detector_info_from_csvFile
+GeoEfficiency.read_from_csvFile
+GeoEfficiency.read_batch_info
+GeoEfficiency.getDetectors
 ```
