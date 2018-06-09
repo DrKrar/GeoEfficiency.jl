@@ -7,7 +7,6 @@ logging(io, kind=:warn)
 logging(io, kind=:info)
 
 using Compat
-#import Compat.Sys: isapple
 import Compat: stdin, @info
 using Compat.MathConstants
 using Compat.DelimitedFiles
@@ -25,18 +24,19 @@ exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs...; Fn_ARGs::Vect
 exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::String; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, split(consol_inputs); Fn_ARGs=Fn_ARGs)
 
 
-
-tests = ["Input_Interface",
-         "Physics_Model",
-         "Calculations",
-         "Output_Interface"]
+const tests = [
+	"Input_Interface",
+    "Physics_Model",
+    "Calculations",
+    "Output_Interface"]
 
 println("\nRunning tests:")
-
 for t in tests
 	println(); @info("Begin test of $(t).....\n")
-    include("test_$(t).jl")
-	println(); @info("End test of $(t).....\n")
+	@testset("Testing $(t) .....") begin
+    	include("test_$(t).jl")
+	@end #testset
+	println()
 end
 @test about() == nothing
 

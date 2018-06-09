@@ -58,6 +58,7 @@ The Package relay directly on numerical evaluation of closed form analytical for
 The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
 
 ```julia
+julia> using Pkg
 julia> Pkg.add("GeoEfficiency") 
 ```
 

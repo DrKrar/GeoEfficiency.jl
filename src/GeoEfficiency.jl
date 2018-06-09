@@ -18,8 +18,8 @@ a source. The source can be a point, a disc or even a cylinder.
 """
 module GeoEfficiency
 
-export # Config
-    about,
+export about,
+ # Config
 
  # Input_Interface
 	getDetectors, 
@@ -43,19 +43,41 @@ export # Config
 	batch,
 	batchInfo
 
-include("Config.jl")
+include("Config.jl") # to overwrite defaults edit parameters; restore by comment out this line.
 include("Physics_Model.jl")
 include("Input_Interface.jl")
 include("Calculations.jl")
 include("Output_Interface.jl")
 
-about()
-printstyled("""
+
+#------------------------ about ---------------------------
+
+using Compat
+using Compat.Dates
+
+const abt ="""
+\n
+\t *************************************************
+\t **            -=) GeoEfficiency (=-            **
+\t **  Accurate Geometrical Efficiency Calculator **
+\t **   First Created on Fri Aug 14 20:12:01 2015 **
+\t *************************************************
+
+\t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
+\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
+\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
+\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-06-08")) old master)  
+\t Documentation: http://geoefficiencyjl.readthedocs.org
+\n
 \n\tBatch mode 
-\t-  read files from directory `$dataDir`
-\t-  save results to directory `$resultdir`
+\t-  read files by defaul from directory `$dataDir`
+\t-  save results by default to directory `$resultdir`
 \n\tfor more information see `batch`, `prepare_batch`.
-\n"""
-,  color=:green)
+\n
+"""
+
+"$abt"
+about() = printstyled(abt,color=:green, bold=true)
+about()
 
 end #module

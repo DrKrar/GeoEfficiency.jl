@@ -217,4 +217,4 @@ end #testset
 		@test 0.0 < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),1.0, 1.0))  < 1.0
 		end #testset_for
 println()
-end #testset
+end #testset_scaling test
