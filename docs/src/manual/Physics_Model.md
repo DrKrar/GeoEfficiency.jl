@@ -7,6 +7,6 @@ Detector
 CylDetector
 BoreDetector
 WellDetector
-RadiationDetector
+Detector
 
 ```

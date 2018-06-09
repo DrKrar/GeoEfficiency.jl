@@ -1,10 +1,10 @@
 # [Input_Interface]
 
 ```@docs
-input
-getfloat
+GeoEfficiency.input
+GeoEfficiency.getfloat
 getDetectors
-read_from_csvFile
-read_batch_info
+GeoEfficiency.read_from_csvFile
+GeoEfficiency.read_batch_info
 
 ```

@@ -4,6 +4,7 @@
 calc
 calcN
 batch
-_batch
+batchInfo
+GeoEfficiency._batch
 
 ```
