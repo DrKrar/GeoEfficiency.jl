@@ -1,14 +1,12 @@
 #include("E:\\Users\\DrKra\\.julia\\v0.7\\GeoEfficiency\\docs\\make.jl")
+#=
 cdir= pwd()
 info("Working Directory: ", @__DIR__)
-cd(@__DIR__)
+cd(@__DIR__) 
+=#
 
 using Documenter, GeoEfficiency
 
-makedocs()
-
-cd(cdir)
-#=
 # Documenter Setup.
 
 const PAGES = [
@@ -23,6 +21,29 @@ const PAGES = [
 ]
 
 makedocs(
+    modules = [GeoEfficiency],
+    clean = false,
+    format = :html,
+    sitename = "GeoEfficiency.jl",
+    authors = "Mohamed E. Krar",
+    pages = PAGES,
+)
+
+deploydocs(
+    julia = "nightly",
+    repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+    target = "build",
+    deps = nothing,
+    make = nothing,
+)
+# cd(cdir)
+
+
+
+
+#=
+# makedocs()
+makedocs(
     build     = joinpath(pwd(), "build/html/en"),
     modules   = [GeoEfficiency],
     clean     = false,
@@ -33,7 +54,7 @@ makedocs(
     checkdocs = :none,
     format    = "pdf" in ARGS ? :latex : :html,
     sitename  = "The GeoEfficiency Software Pakage",
-    authors   = "Mohamed Krar",
+    authors   = "Mohamed E. Krar",
     analytics = "UA-28835595-6",
     pages     = PAGES,
 )
@@ -44,4 +65,5 @@ deploydocs(
 	dirname = "en",
 	deps = nothing,
 	make = nothing,
-)=#
+)
+=#
