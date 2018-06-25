@@ -401,9 +401,13 @@ function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vect
 		end
 		
 	else
-		Vector{RadiationDetector}(detectors_array)
+		Vector{Detector}(detectors_array)
 		for i_th_line = 1:size(detector_info_array)[1]
-			try push!(detectors_array, RadiationDetector((detector_info_array[i_th_line,:])...)) end #try
+			try 
+				push!(detectors_array, Detector((detector_info_array[i_th_line,:])...))
+			
+			catch err
+			end #try
 		end #for
 
 		return detectors_array |> sort

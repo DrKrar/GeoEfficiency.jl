@@ -86,7 +86,11 @@ function calcN(	detector:: Detector = Detector())
 
 	while (true)
 
-		try	calc(detector) end
+		try	
+			calc(detector) 
+		
+		catch err
+		end #try
 		
 		res = input("""\n
     	I- To continue make a choice:
