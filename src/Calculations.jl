@@ -101,16 +101,16 @@ end #function
 
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
-	detector.CryRadius > SrcRadius	||	
-		@error("Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
+	detector.CryRadius > SrcRadius	||	@error(
+		"Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
 	
 	pnt::Point = deepcopy(aSurfacePnt)
 		
 	if 0.0 == SrcRadius                         #Point source
 	
-		detector.CryRadius  > pnt.Rho  ||	
-			@error("geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
-        return GeoEff_Pnt(detector, pnt)/2            	
+		detector.CryRadius > pnt.Rho || @error(
+			"geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
+        return GeoEff_Pnt(detector, pnt)/2.0            	
 
 	elseif 0.0 == SrcLength						#Disk source
 	
@@ -296,5 +296,5 @@ in the Tuple `aSource`.
     it prompt the user to input a source (and detector) via the `console`.
 
 """
-geoEff(detector::RadiationDetector = RadiationDetector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
-geoEff(detector::RadiationDetector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
+geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
+geoEff(detector::Detector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
