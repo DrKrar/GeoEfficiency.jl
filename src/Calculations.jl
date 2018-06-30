@@ -45,13 +45,13 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
 
 	if 0.0 == aPnt.Rho				# axial Point
 		strt = 0.0
-		fine = atan2(detector.CryRadius , aPnt.Height)
+		fine = atan(detector.CryRadius , aPnt.Height)
 		return integrate(sin, strt, fine, reltol=relativeError, abstol=absoluteError)[1]
 
 	else							# non-axial Point
 		strt = 0.0
-		transition = atan2(detector.CryRadius - aPnt.Rho, aPnt.Height)
-		fine = atan2(detector.CryRadius + aPnt.Rho, aPnt.Height)
+		transition = atan(detector.CryRadius - aPnt.Rho, aPnt.Height)
+		fine = atan(detector.CryRadius + aPnt.Rho, aPnt.Height)
 		if transition >= 0.0
 
 		 	return integrate(sin, strt, transition, reltol=relativeError, abstol=absoluteError)[1] +
