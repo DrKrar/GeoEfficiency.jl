@@ -35,7 +35,7 @@ for t in tests
 	println(); @info("Begin test of $(t).....\n")
 	@testset("Testing $(t) .....") begin
     	include("test_$(t).jl")
-	@end #testset
+	end #testset
 	println()
 end
 @test about() == nothing
