@@ -33,10 +33,10 @@ const tests = [
 println("\nRunning tests:")
 for t in tests
 	println(); @info("Begin test of $(t).....\n")
-	@testset("Testing $(t) .....") begin
+	@testset "Testing $(t) ....." begin
     	include("test_$(t).jl")
 	end #testset
 	println()
-end
+end #for
 @test about() == nothing
 
