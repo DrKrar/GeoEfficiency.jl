@@ -364,10 +364,17 @@ prompt the user to input detector parameters from the `console`.
     If no array received in the input an empty array will be created to receive the converted detectors.
 
 """
-function getDetectors(detectors_array::Vector{<:RadiationDetector} = RadiationDetector[])
-	Vector{RadiationDetector}(detectors_array); @info("Please, input the detector information via the console")
+function getDetectors(detectors_array::Vector{<:Detector} = Detector[])
+	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
 	while(true)
-		try push!(detectors_array, RadiationDetector()); catch err	println(err); @warn("Please: Enter a New Detector"); continue; end
+		try 
+			push!(detectors_array, Detector()); 
+		
+		catch err	
+			println(err); @warn("Please: Enter a New Detector")
+			continue
+		end #try
+		
 		lowercase(input(
 			"""\n
     	                - To add a new detector press return\n
