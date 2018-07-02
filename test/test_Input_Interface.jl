@@ -213,9 +213,11 @@ print("\n\t"); @info("test `reading from CSV`...")
 			if [0.0] != G.read_from_csvFile(G.srcRadii, G.datadir) 
 				setSrcToPoint(false); 
 				@test G.read_batch_info()[end]=== false
-			end
-		end	
-	end
+			end #if
+		end	#if
+	
+	catch err
+	end #try
 	
 	end # testset
 	
@@ -285,17 +287,17 @@ print("\n\t"); @info("test `getDetectors`...")
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
 		if true #!isapple()
-			for q=["q", "Q"] , n=["", "n", "N", "fgdfgf", "qQ", "Qq"]
-				write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+			for qt=["q", "Q"] .* "\n" , nw=["", "n", "N", "fgdfgf", "qQ", "Qq"] .* "\n"
+				write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
 				@test getDetectors() == [Detector(5,1)]
-				write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+				write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
 				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
 		
-		 		write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$n\n" *"55\n" * "11\n" * "0\n" * "$q\n")
+		 		write(stdin.buffer,"5\n" * "1\n" * "0\n" * nw * "55\n" * "11\n" * "0\n" * qt)
 				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
 			end # for
 		else
-			@test_throws	ErrorException	write(stdin.buffer,"5\n" * "1\n" * "0\n" * "$q\n")
+			@test_throws	ErrorException	write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
 		end #if
     end # testset
 println()
