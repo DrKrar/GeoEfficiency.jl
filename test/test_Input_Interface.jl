@@ -286,19 +286,17 @@ print("\n\t"); @info("test `getDetectors`...")
 		detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
 		@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 		
-		if true #!isapple()
-			for qt=["q", "Q"] .* "\n" , nw=["", "n", "N", "fgdfgf", "qQ", "Qq"] .* "\n"
-				write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
-				@test getDetectors() == [Detector(5,1)]
-				write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
-				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
+
+		for qt=["q", "Q"] .* "\n" , nw=["", "n", "N", "fgdfgf", "qQ", "Qq"] .* "\n"
+			write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
+			@test getDetectors() == [Detector(5,1)]
+			write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
+			@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
 		
-		 		write(stdin.buffer,"5\n" * "1\n" * "0\n" * nw * "55\n" * "11\n" * "0\n" * qt)
-				@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
-			end # for
-		else
-			@test_throws	ErrorException	write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
-		end #if
+			write(stdin.buffer,"5\n" * "1\n" * "0\n" * nw * "55\n" * "11\n" * "0\n" * qt)
+			@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
+		end # for
+
     end # testset
 println()
 end # testset
