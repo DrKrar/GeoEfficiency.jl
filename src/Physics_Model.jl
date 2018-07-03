@@ -124,13 +124,14 @@ function source(anchorPnt::Point = Point())
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ")
 		println()
-		@error("""currently only axial non-point is allowed,
+		@error("""currently only axial non-point sources are allowed,
 		 Warning: the off-axis will be set to Zero""")
         anchorPnt = Point(anchorPnt, 0.0)
 
 	else
         SrcLength = 0.0
-
+		@info("`SrcLength` is set to `zero`") 
+	
 	end #if
     return (anchorPnt, SrcRadius, SrcLength)
 end #function
