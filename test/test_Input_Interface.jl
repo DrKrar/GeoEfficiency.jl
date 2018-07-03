@@ -297,8 +297,8 @@ print("\n\t"); @info("test `getDetectors`...")
 			write(stdin.buffer,"5\n" * "1\n" * "0\n" * qt)
 			@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5,1)]
 
-			write(stdin.buffer,"5\n" * "1\n" * "0\n" * nw * "55\n" * "11\n" * "0\n" * "0\n" * qt)
-			@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
+			#write(stdin.buffer,"5\n" * "1\n" * "0\n" * nw * "55\n" * "11\n" * "0\n" * "0\n" * qt)
+			#@test getDetectors(Matrix{Float64}(undef, 0, 0)) == [Detector(5, 1), Detector(55, 11)]
 		end # testset
 
     end # testset
