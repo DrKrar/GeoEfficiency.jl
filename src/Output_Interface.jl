@@ -481,4 +481,4 @@ the **``CSV``**  file by default found in **``$(resultdir)``**.
      most four separated numbers.
 
 """ 
-const batchInfo = "refer to `batchInfo` for information about batch calculation"
+const batchInfo = "refer to `batchInfo` help for information about batch calculation"
