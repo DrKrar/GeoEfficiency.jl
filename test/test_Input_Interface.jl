@@ -82,12 +82,21 @@ print("\n\t"); @info("test `GeoEfficiency.getfloat`...")
 	@testset "GeoEfficiency.getfloat" begin  
 print("\n\t"); @info("test `getfloat` with different ways to input numbers...")
 		@test   0.0     ==  G.getfloat("\njust press return: ",value="0.0")
-		write(stdin.buffer,"\n"); @test 0.0 == G.getfloat("\njust press return: ")
-		@test   1.0     ==  G.getfloat("\ninput 1, then press return: ",value="1.0")
-		@test   1.0     ==  G.getfloat("\ninput 1.0, then press return: ",value="1.0")
+		@test   0.0     ==  G.getfloat("\njust press return: ",value="0")
+		@test   0.0     ==  G.getfloat("\njust press return: ",value="+0")
+		@test   0.0     ==  G.getfloat("\njust press return: ",value="-0")
+		@test   0.0     ==  G.getfloat("\ninput '1*0im', then press return: ",value="1*0im")
+		
+		@test   1.0     ==  G.getfloat("\njust press return: ",value="1.0")		
+		@test   1.0     ==  G.getfloat("\ninput 1, then press return: ",value="+1.0")
+		@test   -1.0    ==  G.getfloat("\ninput 1.0, then press return: ",value="-1.0")
+		@test   1.0     ==  G.getfloat("\ninput '1*0im', then press return: ",value="1+1*0im")		
+		
 		@test   2000.0  ==  G.getfloat("\ninput '2e3', then press return: ",value="2e3")
+		@test   -2000.0 ==  G.getfloat("\ninput '-2e3', then press return: ",value="-2e3")
 		@test   0.034   ==  G.getfloat("\ninput '3.4e-2', then press return: ",value="3.4e-2")
-		@test   isa( G.getfloat("\ntry to input any string, only valid number should accepted: ",value="1*0im"), Float64)
+		@test   -0.034  ==  G.getfloat("\ninput '-3.4e-2', then press return: ",value="-3.4e-2")	
+
 	
 
 print("\n\t"); @info("test `getfloat` with mathematical expressions...")
@@ -97,9 +106,11 @@ print("\n\t"); @info("test `getfloat` with mathematical expressions...")
 		@test   MathConstants.e     ≈   G.getfloat("\ninput 'e', then press return: ",value="e")
 		@test   MathConstants.e^3   ≈   G.getfloat("\ninput 'e^3', then press return: ",value="e^3")
 		@test   Base.sin(0.1) 		≈   G.getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)")
+		@test   Base.sin(0.1) + e^3 ≈   G.getfloat("\ninput 'sin(0.1)', then press return: ",value="sin(0.1)+e^3")
 
 
-print("\n\t"); @info("test `getfloat` incorrect input...")
+print("\n\t"); @info("test `getfloat` Invalide console input ...")
+		write(stdin.buffer,"\n"); @test 0.0 == G.getfloat("\njust press return: ")	# valide input but for completness	
 		write(stdin.buffer,"\n" * "3\n"); @test  3.0 == G.getfloat("\nthe first time just press return, then input 3 then press return: ", 0.1, 4.0)
 		for i = 0:5
 			write(stdin.buffer,"1.2+2im\n"^i * "3\n")
@@ -108,6 +119,7 @@ print("\n\t"); @info("test `getfloat` incorrect input...")
 		write(stdin.buffer,"5\n" * "3\n");  	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
 		write(stdin.buffer,"-1\n" * "3\n"); 	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
 		write(stdin.buffer,"1.2f\n" * "3\n");	@test   3.0 == G.getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
+		write(stdin.buffer,"one\n" * "3\n");	@test   3.0 == G.getfloat("\nthe first time input 'one': ") # trying to input any string, only valid number should accepted.
 end # testset
 
 print("\n\t"); @info("test `reading from CSV`...")	
