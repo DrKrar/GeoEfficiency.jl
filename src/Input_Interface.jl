@@ -128,7 +128,7 @@ end # function
 
 """# UnExported
 
-	getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing")::Float64
+	getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing")::Float64
 
 prompts the user with the massage `prompt` defaults to `? ` to input a numerical expression 
 evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[
@@ -158,6 +158,9 @@ julia> getfloat("input a number:", value="5//2")
 
 julia> getfloat("input a number:", value="pi")
 3.141592653589793
+
+julia> getfloat("input a number:", value="-2")
+-2.0
 ```
 
 """
