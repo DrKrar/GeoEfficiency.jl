@@ -205,7 +205,7 @@ construct and return a `cylindrical` detector according to the input from the `c
 """
 function CylDetector()
 	printstyled(" I- The Cylindrical Detector physical Dimensions:-\n", color=:yellow)
-	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ", eps(0.0))
+	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
 	CryLength = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
 	CylDetector(CryRadius, CryLength)
 end #function
