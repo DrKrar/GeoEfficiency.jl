@@ -10,12 +10,12 @@
 #------------------ consts - globals - imports -------------------
 
 using Compat
-using Compat: @error
+using Compat: @error, @__MODULE__
 
 # set the global minimum relative and absolute precession of the Geometrical Efficiency Calculations
-@compat isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
-@compat isconst(@__MODULE__, :absoluteError) ||  const absoluteError = eps(1.0)
-@compat isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
+isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
+isconst(@__MODULE__, :absoluteError) ||  const absoluteError = eps(1.0)
+isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
 
 
 #----------------------- GeoEff_Pnt -------------------------------
