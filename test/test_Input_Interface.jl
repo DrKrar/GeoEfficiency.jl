@@ -100,22 +100,14 @@ print("\n\t"); @info("test `getfloat` with mathematical expressions...")
 
 
 print("\n\t"); @info("test `getfloat` incorrect input...")
-		write(stdin.buffer,"\n" * "3\n")
-		@test  3.0 == G.getfloat("\nthe first time just press return, then input 3 then press return: ", 0.1, 4.0)
-		if true #!isapple()
-			for i = 0:5
-				write(stdin.buffer,"1.2+2im\n"^i * "3\n")
-				@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
-			end # for
-			write(stdin.buffer,"5\n" * "3\n")
-			@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(stdin.buffer,"-1\n" * "3\n")
-			@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-			write(stdin.buffer,"1.2f\n" * "3\n")
-			@test   3.0 == G.getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
-		else
-			@test_throws 	ErrorException	write(stdin.buffer,"5\n" * "3\n")
-		end #if
+		write(stdin.buffer,"\n" * "3\n"); @test  3.0 == G.getfloat("\nthe first time just press return, then input 3 then press return: ", 0.1, 4.0)
+		for i = 0:5
+			write(stdin.buffer,"1.2+2im\n"^i * "3\n")
+			@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
+		end # for
+		write(stdin.buffer,"5\n" * "3\n");  	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+		write(stdin.buffer,"-1\n" * "3\n"); 	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
+		write(stdin.buffer,"1.2f\n" * "3\n");	@test   3.0 == G.getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
 end # testset
 
 print("\n\t"); @info("test `reading from CSV`...")	
