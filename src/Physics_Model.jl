@@ -90,6 +90,7 @@ off-axis distance `Rho`.
 
 """
 Point(aPnt::Point, xRho::Real) = Point(aPnt.Height, xRho)
+
 id(aPnt::Point) = "Point[Height=$(aPnt.Height), Rho=$(aPnt.Rho)]"
 show(pnt::Point) = print(id(pnt))
 
@@ -120,17 +121,16 @@ function source(anchorPnt::Point = Point())
 		return (anchorPnt, 0.0, 0.0)
 	end #if
 
-	SrcRadius = getfloat("\n\t > Source Radius (cm) = ")
+	SrcRadius = getfloat("\n\t > Source Radius (cm) = ", 0.0)
     if 0.0 != SrcRadius
-        SrcLength = getfloat("\n\t > Source Length (cm) = ")
-		println()
-		@error("""currently only axial non-point sources are allowed,
-		 Warning: the off-axis will be set to Zero""")
-        anchorPnt = Point(anchorPnt, 0.0)
-
+        SrcLength = getfloat("\n\t > Source Length (cm) = ", 0.0)
+		@error("currently only axial non-point sources are allowed")
+		@warn("the off-axis will be set to `Zero`")
+		anchorPnt = Point(anchorPnt, 0.0)
+	
 	else
         SrcLength = 0.0
-		@info("`SrcLength` is set to `zero`") 
+		@warn("`SrcLength` is set to `zero`") 
 	
 	end #if
     return (anchorPnt, SrcRadius, SrcLength)
@@ -139,14 +139,15 @@ end #function
 
 #---------------- Detector ------------------------------------
 
-"abstract type for all detectors"
+"abstract super-supertype of all detectors types"
 abstract type RadiationDetector end
 
 """
 
 	Detector
 
-abstract supertype of all detectors types. also can be used to construct any leaf type.
+abstract supertype of all detectors types of cylidericalish shapes.
+also can be used to construct any leaf type.
 
 """
 abstract type Detector <: RadiationDetector end
@@ -166,7 +167,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
 *  `CryLength` : the detector crystal length.
 
 !!! warning 
-    both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can be set to ``zero``.
+    both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can also be set to **`zero`**.
 
 """
 struct CylDetector <: Detector
@@ -186,7 +187,7 @@ CylDetector(CryRadius::Real, CryLength::Real) = CylDetector(float(CryRadius), fl
 
     CylDetector(CryRadius::Real)
 
-construct and return a `cylindrical` (really `disk`) detector with crystal length equal to ``zero``.
+construct and return a `cylindrical` (really `disk`) detector with crystal length equal to **`zero`**.
 
 **see also:** [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
@@ -257,14 +258,14 @@ construct and return a `bore-hole` detector according to the input from the `con
 """
 function BoreDetector()
 	printstyled(" I- The Bore Hole Detector physical Dimensions:-\n", color=:yellow)
-	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
-	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
+	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
+	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
 	BoreDetector(CryRadius, CryLength, HoleRadius)
 end #function
 
 id(detector::BoreDetector) = "BoreDetector[CryRadius=$(detector.CryRadius), CryLength=$(detector.CryLength), HoleRadius=$(detector.HoleRadius)]"
-volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius ^2 ) * detector.CryLength 
+volume(detector::BoreDetector) = pi * (detector.CryRadius^2 - detector.HoleRadius^2) * detector.CryLength 
 
 
 ##----------------------- WellDetector ------------------------------------------
@@ -314,8 +315,8 @@ construct and return a Well-Type detector according to the input from the `conso
 """
 function WellDetector()
 	printstyled(" I- The Well-Type Detector physical Dimensions:-\n", color=:yellow)
-	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ")
-	CryLength  = getfloat("\n\t > Crystal Length (cm) = ")
+	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
+	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
 	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
 	HoleDepth  = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryLength)
 	WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
