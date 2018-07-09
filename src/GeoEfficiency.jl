@@ -18,7 +18,9 @@ a source. The source can be a point, a disc or even a cylinder.
 """
 module GeoEfficiency
 
-export about,
+export 
+	about,
+
  # Config
 
  # Input_Interface
@@ -77,7 +79,7 @@ const abt ="""
 """
 
 "$abt"
-about() = printstyled(abt,color=:green, bold=true)
+about() = printstyled(abt, color=:green, bold=true)
 about()
 
 end #module
