@@ -162,12 +162,12 @@ julia> getfloat("input a number:", value="pi")
 
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
+	"nothing" == value ? value = input(prompt) : nothing
+	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
+	local val::Float64
 	try
-		"nothing" == value ? value = input(prompt) : nothing
-		"" == value && return 0.0		# just pressing return is interapted as <0.0>
-		val::Float64 =  Meta.parse(value) |> eval |> float
+		val =  Meta.parse(value) |> eval |> float
 		@assert from <= val < to
-		return val
 
     catch err
         if isa(err, AssertionError) 
@@ -180,7 +180,8 @@ function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = In
         
         return getfloat(prompt, from, to)
 
-    end #try
+	end #try
+	return val
 end	
 
 
