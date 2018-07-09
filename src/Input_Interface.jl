@@ -119,7 +119,7 @@ return a string delimited by new line excluding the new line. prompt the user wi
 `incolor` specify the prompt text color, default to ``green``.
 
 """
-function input(prompt::AbstractString = "? ", incolor::Symbol = :green)
+function input(prompt::AbstractString = "? ", incolor::Symbol = :green)::AbstractString
     printstyled(prompt, color=incolor); chomp(readline())
 end # function
 
