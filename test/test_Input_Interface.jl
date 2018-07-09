@@ -81,10 +81,11 @@ print("\n\t"); @info("test `input`...")
 print("\n\t"); @info("test `GeoEfficiency.getfloat`...")
 	@testset "GeoEfficiency.getfloat" begin  
 print("\n\t"); @info("test `getfloat` with different ways to input numbers...")
-		@test   0.0     ==  G.getfloat("\njust press return: ",value="0.0")
-		@test   0.0     ==  G.getfloat("\njust press return: ",value="0")
-		@test   0.0     ==  G.getfloat("\njust press return: ",value="+0")
-		@test   0.0     ==  G.getfloat("\njust press return: ",value="-0")
+		@test   0.0     ==  G.getfloat("\njust press return: ",value="")
+		@test   0.0     ==  G.getfloat("\ninput '0.0', then press return: ",value="0.0")
+		@test   0.0     ==  G.getfloat("\ninput '0', then press return: ",value="0")
+		@test   0.0     ==  G.getfloat("\ninput '+0', then press return: ",value="+0")
+		@test   0.0     ==  G.getfloat("\ninput '-0', then press return: ",value="-0")
 		@test   0.0     ==  G.getfloat("\ninput '1*0im', then press return: ",value="1*0im")
 		
 		@test   1.0     ==  G.getfloat("\njust press return: ",value="1.0")		
@@ -112,12 +113,15 @@ print("\n\t"); @info("test `getfloat` with mathematical expressions...")
 
 
 print("\n\t"); @info("test `getfloat` Invalide console input ...")
-		write(stdin.buffer,"\n"); @test 0.0 == G.getfloat("\njust press return: ")	# valide input but for completness	
-		write(stdin.buffer,"\n" * "3\n"); @test  3.0 == G.getfloat("\nthe first time just press return, then input 3 then press return: ", 0.1, 4.0)
-		write(stdin.buffer,"5\n" * "3\n");  	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-		write(stdin.buffer,"-1\n" * "3\n"); 	@test   3.0 == G.getfloat("\ninput 1/2, then press return: ", 0.0, 4.0)
-		write(stdin.buffer,"1.2f\n" * "3\n");	@test   3.0 == G.getfloat("\nthe first time input '1.2f': ", 0.0, 4.0)
-		write(stdin.buffer,"one\n" * "3\n");	@test   3.0 == G.getfloat("\nthe first time input 'one': ") # trying to input any string, only valid number should accepted.
+		write(stdin.buffer,"\n"); 				@test 0.0 == G.getfloat("\njust press return: ")	# valide input but for completness	
+		write(stdin.buffer,"\n" * "3\n"); 		@test 3.0 == G.getfloat("\nthe first time just press return, then input `3` : ", 0.1, 4.0)
+		write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput 5, then press return: ", 0.0, 4.0)
+		write(stdin.buffer,"-1\n" * "3\n"); 	@test 3.0 == G.getfloat("\ninput -1, then press return: ", 0.0, 4.0)
+		
+		write(stdin.buffer,"1.2f\n" * "3\n");	 @test 3.0 == G.getfloat("\nthe first time input '1.2f', then input `3` : ")
+		write(stdin.buffer,"one\n" * "3\n");	 @test 3.0 == G.getfloat("\nthe first time input 'one', then input `3` : ") # trying to input any string, only valid number should accepted.	
+		write(stdin.buffer,"3.4e-2.0\n" * "3\n");@test 3.0  == G.getfloat("\nthe first time input '3.4e-2.0', then input `3` : ")
+		
 		for i = 0:5
 			write(stdin.buffer,"1.2+2im\n"^i * "3\n")
 			@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
