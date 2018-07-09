@@ -1,9 +1,10 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.9.2-DEV
+*  the unexported function `getfloat` change behavior to by default accept all numerical value not just the positive.
 
 ### Version 0.9.1
- * use of `Point` in place of `setRHo!` and `SetHight!`, so now the behavior of both is exported.
+ *  use of `Point` in place of `setRHo!` and `SetHight!`, so now the behavior of both is exported.
  *  fix an error in `source` in this release make it consider all sources as point-source.
  *  remove the function `CONFIG`.
  *  new convert definition allow `Vector{RadiationDetector}` to convert any array of type `Vector{<:RadiationDetector}`.

@@ -161,7 +161,7 @@ julia> getfloat("input a number:", value="pi")
 ```
 
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = 0.0, to::Real = Inf; value::AbstractString="nothing") ::Float64
+function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing") ::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
 	local val::Float64
