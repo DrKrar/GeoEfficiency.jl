@@ -185,8 +185,8 @@ function batch(	detector::Detector,
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 				
-	return _batch(Val{ispoint},
-				detector::Detector,
+	return _batch(Val(ispoint),
+				detector,
 				srcHeights_array,
 				srcRhos_array,
 				srcRadii_array,
@@ -268,7 +268,7 @@ end #function
 """# UnExported
 
     _batch(
-		::Val(true),
+		::Val{true},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
@@ -292,7 +292,7 @@ The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 
 """
 function _batch(
-		::Type{Val{true}},
+		::Val{true},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
@@ -341,7 +341,7 @@ end #function
 """# UnExported
 
     _batch(
-		::Val(false),
+		::Val{false},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
@@ -363,7 +363,7 @@ The `results` has columns of headers
 
 """
 function _batch(
-		::Type{Val{false}},
+		::Val{false},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
