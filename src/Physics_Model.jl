@@ -26,7 +26,7 @@ construct and return a `Point` source that can be used as either a source by its
 *  `Rho` : point off-axis relative to the detector axis of symmetry.
 
 !!! note
-    Each detector type give different interpretation to the `height` as follow:- 
+    Each detector type give different interpretation to the `height` as follow:-
     *  for `CylDetector` the point source `height` is consider to be measured 
        from the detector `face surface`. 
     *  for `BoreDetector` the point source `height` is consider to be measured 
@@ -115,9 +115,9 @@ the input from the `console`.
 """
 function source(anchorPnt::Point = Point())
     
-	if setSrcToPoint() 
+	if setSrcToPoint()
 		@info("""srcType is set to ``srcPoint``,
-		**see** `setSrcToPoint` for more information.""") 
+		**see** `setSrcToPoint` for more information.""")
 		return (anchorPnt, 0.0, 0.0)
 	end #if
 
@@ -127,11 +127,11 @@ function source(anchorPnt::Point = Point())
 		@error("currently only axial non-point sources are allowed")
 		@warn("the off-axis will be set to `Zero`")
 		anchorPnt = Point(anchorPnt, 0.0)
-	
+
 	else
         SrcLength = 0.0
-		@warn("`SrcLength` is set to `zero`") 
-	
+		@warn("`SrcLength` is set to `zero`")
+
 	end #if
     return (anchorPnt, SrcRadius, SrcLength)
 end #function
@@ -166,7 +166,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
 *  `CryRadius` : the detector crystal radius.
 *  `CryLength` : the detector crystal length.
 
-!!! warning 
+!!! warning
     both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can also be set to **`zero`**.
 
 """

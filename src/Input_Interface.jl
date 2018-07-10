@@ -164,7 +164,7 @@ julia> getfloat("input a number:", value="-2")
 ```
 
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing") ::Float64
+function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing")::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
 	local val::Float64
@@ -173,13 +173,13 @@ function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = I
 		@assert from <= val < to
 
     catch err
-        if isa(err, AssertionError) 
+        if isa(err, AssertionError)
 			@warn("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
 			\n Please: provide an adequate value""")
-        else   
+        else
 			@warn("""input `$value` cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
-        end #if 
+        end #if
         
         return getfloat(prompt, from, to)
 
@@ -371,14 +371,14 @@ prompt the user to input detector parameters from the `console`.
 function getDetectors(detectors_array::Vector{<:Detector} = Detector[])
 	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
 	while(true)
-		try 
-			push!(detectors_array, Detector()); 
-		
+		try
+			push!(detectors_array, Detector());
+
 		catch err	
 			println(err); @warn("Please: Enter a New Detector")
 			continue
 		end #try
-		
+
 		lowercase(input(
 			"""\n
     	                - To add a new detector press return\n
@@ -402,21 +402,21 @@ attempt to convert detectors from the information in `detector_info_array`.
 
 """
 function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ; console_FB=true) 
-	
+
 	if isempty(detector_info_array) 
-		if console_FB 
+		if console_FB
 			@info("The new detectors information may entred via the console")
 			return getDetectors(detectors_array)
-		else	
+		else
 		 	error("getDetectors: Empty `detector_info_array`")
 		end
-		
+
 	else
 		Vector{Detector}(detectors_array)
 		for i_th_line = 1:size(detector_info_array)[1]
 			try 
 				push!(detectors_array, Detector((detector_info_array[i_th_line,:])...))
-			
+
 			catch err
 			end #try
 		end #for

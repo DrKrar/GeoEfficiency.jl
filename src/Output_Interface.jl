@@ -9,14 +9,14 @@
 #------------------------- consts - globals - imports ----------------
 
 using Compat
-using Compat.DelimitedFiles 
+using Compat.DelimitedFiles
 import Compat: @info, @error
 
-@compat isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results";
-const resultdir	        = joinpath(dataDir, resultsFolder);	
-const resultdir_pnt     = joinpath(resultdir, "Point");		
-const resultdir_nonPnt  = joinpath(resultdir, "non-Point");	
-global countDetectors = 1;
+@compat isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
+const resultdir	        = joinpath(dataDir, resultsFolder)
+const resultdir_pnt     = joinpath(resultdir, "Point")
+const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
+global countDetectors = 1
 
 
 #------------------ checkResultsDirs ----------------------------------
@@ -56,18 +56,17 @@ detector `detector` for the tuple `aSource` describing the source.
 
 """
 function calc(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())
-			   
+
 	aPnt, srcRadius, srcLength = aSource
 	printstyled("\n<$(countDetectors)> $(id(detector))", color=:yellow)
 	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
-    
+
 	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
 	println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 
 	global countDetectors += 1
 	printstyled(repeat(" =",36),"\n\n", color=:red)
 	return nothing
-
 end #function
 
 #------------------------ calcN ------------------------------------
@@ -88,10 +87,10 @@ function calcN(	detector:: Detector = Detector())
 
 		try	
 			calc(detector) 
-		
+
 		catch err
 		end #try
-		
+
 		res = input("""\n
     	I- To continue make a choice:
 			> using the same detector Press 'd'|'D'
@@ -389,9 +388,9 @@ function _batch(
 						calculatedEff = NaN
 
 					end #try
-					
+
 					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
-					
+
 					printstyled(cellLabel, color=:yellow)
 					println(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
 					println()
@@ -438,9 +437,9 @@ by default located in the directory **``$dataDir``** .
 
 results of batch calculation are saved on a **``CSV``**  file(s) named after the detector(s). 
 the **``CSV``**  file by default found in **``$(resultdir)``**.
-	
+
 # CSV input files
-	
+
 *  ``Detectors.csv`` contains the detectors description; The line format is: 
 	
 		 Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
