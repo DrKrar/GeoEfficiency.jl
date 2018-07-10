@@ -22,7 +22,7 @@ isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadG
 
 """# unexported
 
-	GeoEff_Pnt(detector::CylDetector, aPnt::Point)  
+	GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 
 return the `geometrical efficiency` for the point source `aPnt` located on front
 of the cylindrical detector `detector` face.
@@ -34,7 +34,7 @@ of the cylindrical detector `detector` face.
     to calculate `geometrical efficiency` of the cylindrical-ish detector family.
 
 """
-function GeoEff_Pnt(detector::CylDetector, aPnt::Point)
+function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 
 	function MaxPhi(theta::Float64 )
 		side = aPnt.Height * sin(theta)
@@ -70,7 +70,7 @@ end #function
 
 """# unexported
 
-	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
+	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)::Float64
 
 return the `geometrical efficiency` for a `disk` source. The `disk` center is the `SurfacePnt` and 
 its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
@@ -78,7 +78,7 @@ its radius is `SrcRadius` on front of the cylindrical detector `detector` face.
 produce a warning if the disk is out of the cylindrical detector face.
 
 """
-function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)
+function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)::Float64
 	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error(
 	"off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
 	
@@ -100,7 +100,7 @@ end #function
     `aSurfacePnt` : point `height` is considered to be measured from the detector surface.
 
 """
-function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 	detector.CryRadius > SrcRadius	||	@error(
 		"Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
 	
@@ -136,7 +136,7 @@ end #function
     `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
 
 """
-function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
 	HeightWup = aCenterPnt.Height - detector.CryLength/2.0
 	HeightWdown = aCenterPnt.Height + detector.CryLength/2.0
