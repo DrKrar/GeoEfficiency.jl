@@ -34,10 +34,10 @@ print("\n\t"); @info("Testing `calcN`...")
 
 print("\n\t"); @info("Testing `batch` & `_batch`...")    
 	@testset "function `batch`" begin
-		@test G._batch(Val{true},  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test G._batch(Val{false}, CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-		@test isnan(G._batch(Val{true}, CylDetector(eps(0.3)), [0.0], [1.0], [0.0],[0.0])[2][end])
-		@test isnan(G._batch(Val{false}, CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
+		@test G._batch(Val(true),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+		@test G._batch(Val(false), CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
+		@test isnan(G._batch(Val(true), CylDetector(eps(0.3)), [0.0], [1.0], [0.0],[0.0])[2][end])
+		@test isnan(G._batch(Val(false), CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
 		
 		acylDetector = CylDetector(eps(0.5)); path = batch(acylDetector, [0.0])
 		@test occursin( G.id(acylDetector), path)
