@@ -16,9 +16,9 @@ const absoluteTol2 = 1.0e-11 #1.0e-13
 	nd  = -20.0:2.0:30.0
 	#str === nd &&  continue
 
-		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
-		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
-		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2
+		@test G.integrate(H.poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
+		@test G.integrate(H.poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
+		@test G.integrate(H.poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2
 		
 	end #testset_begin
 
