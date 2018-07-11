@@ -10,21 +10,6 @@ const absoluteTol1 = 1.0e-14 #1.0e-16
 const absoluteTol2 = 1.0e-11 #1.0e-13
 
 @testset "Calculations" begin
-
-	function poly(z::Float64, coff::Vector{Float64})
-		res::Float64 = 0.0
-		for i= 1:length(coff)
-			res += coff[i]*z^(i-1)
-		end #for
-		return res
-	end #function_poly
-	poly0(z::Float64) = poly(z, [1.0])
-	poly1(z::Float64) = poly(z, [1.0, 2.0])
-	poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
-
-
-	print("\n\t"); @info("polynomial test for the function `integrate`")
-	@test  poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
 	
 	@testset "integrate" for 
 	str = -20.0:2.0:30.0, 
