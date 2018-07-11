@@ -69,10 +69,10 @@
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
 		
-		pnt_51 = exec_consol_unattended(Point, "5\n1")
+		pnt_51 = H.exec_consol_unattended(Point, "5\n1")
 		@test pnt_51 == pnt51
 
-		pnt_5 = exec_consol_unattended(Point, "5\n0\n")
+		pnt_5 = H.exec_consol_unattended(Point, "5\n0\n")
 		@test pnt_5 == pnt5
 	end #testset
 
@@ -124,10 +124,10 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		cyl_51 = exec_consol_unattended(CylDetector, "5 1")
+		cyl_51 = H.exec_consol_unattended(CylDetector, "5 1")
 		@test cyl_51 == CylDetector(5.0, 1)
 
-		cyl_5  = exec_consol_unattended(CylDetector, "5 0")
+		cyl_5  = H.exec_consol_unattended(CylDetector, "5 0")
 		@test cyl_5  == CylDetector(5)
 end #testset
 
