@@ -2,10 +2,6 @@
 # Correctness Tests
 #
 
-const io = IOBuffer()
-logging(io, kind=:warn)
-logging(io, kind=:info)
-
 using Compat
 import Compat: stdin, @info
 using Compat.MathConstants
@@ -13,6 +9,7 @@ using Compat.DelimitedFiles
 using Compat.Test
 using GeoEfficiency
 const G = GeoEfficiency
+logging(IOBuffer(), G)
 
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
 	for input in  string.(consol_inputs)
@@ -27,7 +24,7 @@ exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::String; Fn_ARGs:
 const tests = [
 	"Input_Interface",
     "Physics_Model",
-    "Calculations",
+    #"Calculations",
     "Output_Interface"]
 
 println("\nRunning tests:")
