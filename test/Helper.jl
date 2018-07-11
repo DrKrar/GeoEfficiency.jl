@@ -1,3 +1,5 @@
+baremodule Helper
+
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
 	for input in  string.(consol_inputs)
 		 write(stdin.buffer, input,"\n")
@@ -17,3 +19,7 @@ end #function_poly
 poly0(z::Float64) = poly(z, [1.0])
 poly1(z::Float64) = poly(z, [1.0, 2.0])
 poly2(z::Float64) = poly(z, [1.0, 2.0, 3.0])
+
+end # Module
+
+const H = Helper
