@@ -17,7 +17,7 @@ const tests = [
 	"Helper",
 	"Input_Interface",
     "Physics_Model",
-    #"Calculations",
+    "Calculations",
     "Output_Interface"]
 
 println("\nRunning tests:")
