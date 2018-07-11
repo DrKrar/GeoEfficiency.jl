@@ -1,4 +1,4 @@
-baremodule Helper
+module Helper
 
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
 	for input in  string.(consol_inputs)
