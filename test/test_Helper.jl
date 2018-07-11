@@ -5,7 +5,8 @@
 #@test H.exec_consol_unattended(readline, 1) == "1"
 
 @test H.exec_consol_unattended(readavailable, [1, 2, 3]; Fn_ARGs=[stdin])|> String == "1\n2\n3\n"
-@test H.exec_consol_unattended(readavailable, "1\n2\n3\n"; Fn_ARGs=[stdin])|> String == "1\n2\n3\n"
+@test H.exec_consol_unattended(readavailable, "1\n2\n3"; Fn_ARGs=[stdin])|> String == "1\n2\n3\n"
+@test H.exec_consol_unattended(readavailable, "1\n2\n3\n"; Fn_ARGs=[stdin])|> String == "1\n2\n3\n\n"
 @test H.exec_consol_unattended(readavailable, "1 2 3"; Fn_ARGs=[stdin])|> String == "1\n2\n3\n"
 @test H.exec_consol_unattended(readavailable, "1 2 3\n"; Fn_ARGs=[stdin])|> String == "1\n2\n3\n\n"
 #@test H.exec_consol_unattended(readavailable, 1, 2, 3; Fn_ARGs=[stdin])|> String == "1\n2\n3\n"
