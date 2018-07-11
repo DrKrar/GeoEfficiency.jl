@@ -69,10 +69,10 @@
 		@test pnt6.Height == 5.0
 		@test pnt6.Rho == pnt5.Rho 
 		
-		pnt_51 = H.exec_consol_unattended(Point, "5\n1")
+		pnt_51 = H.exec_consol_unattended(Point, [5, 1])
 		@test pnt_51 == pnt51
 
-		pnt_5 = H.exec_consol_unattended(Point, "5\n0\n")
+		pnt_5 = H.exec_consol_unattended(Point, [5, 0])
 		@test pnt_5 == pnt5
 	end #testset
 
@@ -124,10 +124,10 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		cyl_51 = H.exec_consol_unattended(CylDetector, "5 1")
+		cyl_51 = H.exec_consol_unattended(CylDetector, [5, 1])
 		@test cyl_51 == CylDetector(5.0, 1)
 
-		cyl_5  = H.exec_consol_unattended(CylDetector, "5 0")
+		cyl_5  = H.exec_consol_unattended(CylDetector, [5, 0])
 		@test cyl_5  == CylDetector(5)
 end #testset
 
@@ -173,14 +173,10 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if true #!isapple()
-			@info("test BoreDetector()")
-			write(stdin.buffer,"5\n" * "4\n" * "3\n")
-			@test BoreDetector() === bore0
-			write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n")
-			@test BoreDetector() === bore0
-			end #testset
-		end #if
+	@info("test BoreDetector()")
+		@test H.exec_consol_unattended(BoreDetector, [5, 4, 3]) === bore0
+		@test H.exec_consol_unattended(BoreDetector, [5, 4, 6, 3]) === bore0
+	end #testset
 
 print("\n\t"); @info("test `Well-type Detector`...")	
 	@testset "Well-type Detector" begin 
@@ -226,13 +222,11 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 
-		if true #!isapple()
-			@info("test WellDetector()")
-			write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
-			@test WellDetector() === Well0
-			write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
-			@test WellDetector() === Well0
-		end #if
+	@info("test WellDetector()")
+		write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+		@test WellDetector() === Well0
+		write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+		@test WellDetector() === Well0
 	end #testset
 		
 print("\n\t"); @info("test `RadiationDetector`...")    
