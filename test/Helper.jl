@@ -11,8 +11,8 @@ exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::String; Fn_ARGs:
 
 function poly(z::Float64, coff::Vector{Float64})
 	res::Float64 = 0.0
-	for i= 1:length(coff)
-		res += coff[i] * z^(i-1)
+	for i= 1:length(coffs)
+		res += coffs[i] * z^(i-1)
 	end #for
 	return res
 end #function_poly
