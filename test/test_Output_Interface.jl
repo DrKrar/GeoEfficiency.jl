@@ -89,7 +89,7 @@ print("\n\t"); @info("Testing `batch` & `_batch`...")
 		append!(every_path, paths)
 		
 		paths = batch([aBDetector, aWDetector], [0.0])
-		@test occursin.(G.id(aBDetector), patsh) |> any
+		@test occursin.(G.id(aBDetector), paths) |> any
 		@test occursin.(G.id(aWDetector), paths) |> any
 		append!(every_path, paths)
 
