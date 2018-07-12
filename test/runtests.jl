@@ -4,7 +4,6 @@
 
 using Compat
 using Compat: stdin, @info, Test
-#using Compat: MathConstants, DelimitedFiles, Test
 using GeoEfficiency
 const G = GeoEfficiency
 logging(IOBuffer(), G)
