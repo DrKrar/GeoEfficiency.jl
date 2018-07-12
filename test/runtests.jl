@@ -2,8 +2,7 @@
 # Correctness Tests
 #
 
-using Compat
-using Compat: stdin, @info, Test
+using Compat: Test
 using GeoEfficiency
 const G = GeoEfficiency
 logging(IOBuffer(), G)
