@@ -286,7 +286,7 @@ print("\n\t"); @info("test `RadiationDetector`...")
 			@test Detector() === Detector(5, 4)
 			write(stdin.buffer,"5\n" * "4\n" * "\n")
 			@test Detector() === Detector(5, 4)
-			write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
+			write(stdin.buffer,"5\n" * "4\n" * "33\n" * "3\n" * "22\n" * "2\n")
 			@test Detector() === Detector(5, 4, 3, 2)
 		end #if
 	end #testset	
