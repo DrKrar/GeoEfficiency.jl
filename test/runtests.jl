@@ -2,7 +2,9 @@
 # Correctness Tests
 #
 
-using Compat: Test
+using Compat
+using Compat: @info, stdin
+using Compat: Test #, DelimitedFiles, MathConstants
 using GeoEfficiency
 const G = GeoEfficiency
 logging(IOBuffer(), G)
