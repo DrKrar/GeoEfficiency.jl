@@ -10,14 +10,14 @@ const G = GeoEfficiency
 
 include("Helper.jl")
 
-const tests = [
+const SourceFiles = [
 	"Helper",
 	"Input_Interface",
     "Physics_Model",
     "Calculations",
     "Output_Interface"]
 
-@testset "SourceFile" for  SourceFile in tests
+@testset "SourceFile" for  SourceFile in SourceFiles
 	println(); @info("Begin test of.....", SourceFile); println()	   
 	include("test_$SourceFile.jl")
 end #testset
