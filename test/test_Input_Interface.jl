@@ -150,8 +150,8 @@ print("\n\t"); @info("test `reading from CSV`...")
 		@test  G.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 
-	print("\n\t\t"); @info("READ_BATCH_INFO")	
-		batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+	@debug("GeoEfficiency.read_batch_info")	
+	let batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 		@test  batch_info[1] == sort(detectors)
 		@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 		@test  batch_info[3] == [0.0]
