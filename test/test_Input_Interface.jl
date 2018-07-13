@@ -133,7 +133,7 @@ print("\n\t"); @info("test `reading from CSV`...")
 		detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
         detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
 
-		datadirectory = joinpath(homedir(), "GeoEfficiency", "temptemp"); isdir(datadirectory) || mkdir(datadirectory)
+	datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
 
 		detectorfile = joinpath(datadirectory, "_Detector_test.csv")
 		hightfile    = joinpath(datadirectory, "_hight_test.csv")
