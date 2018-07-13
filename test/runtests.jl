@@ -17,13 +17,10 @@ const tests = [
     "Calculations",
     "Output_Interface"]
 
-println("\nRunning tests:")
-for t in tests
-	println(); @info("Begin test of $(t).....\n")
-	@testset "Testing $(t) ....." begin
-    	include("test_$(t).jl")
-	end #testset
-	println()
-end #for
+@testset "Testing $tst ....." for tst in tests
+	println(); @info("Begin test of $tst.....\n"); println()	   
+	include("test_$tst.jl")
+end #testset
+
 @test about() == nothing
 
