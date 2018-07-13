@@ -17,7 +17,7 @@ const SourceFiles = [
     "Calculations",
     "Output_Interface"]
 
-@testset "SourceFile" for  SourceFile in SourceFiles
+@testset "$SourceFile" for  SourceFile in SourceFiles
 	println(); @info("Begin test of.....", SourceFile); println()	   
 	include("test_$SourceFile.jl")
 end #testset
