@@ -235,7 +235,17 @@ print("\n\t"); @info("test `reading from CSV`...")
 	catch err
 	end #try
 	
-	end # testset
+	@debug("GeoEfficiency.read_batch_info")	
+	let batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
+		@test  batch_info[1] == sort(detectors)
+		@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+		@test  batch_info[3] == [0.0]
+		@test  batch_info[4] == [0.0]
+		@test  batch_info[5] == [0.0]
+		@test  batch_info[6] == ( G.srcType === G.srcPoint)
+		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
+	end #let
+end #testset
 	
 print("\n\t"); @info("test `getDetectors`...")		
     @testset "getDetectors" begin
