@@ -6,7 +6,7 @@ using Compat, Compat.Test , Compat.DelimitedFiles, Compat.MathConstants
 using Compat: @info, stdin
 using GeoEfficiency
 const G = GeoEfficiency
-logging(IOBuffer(), G)
+#logging(IOBuffer(), G)
 
 include("Helper.jl")
 
