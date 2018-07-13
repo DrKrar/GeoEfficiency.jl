@@ -17,9 +17,9 @@ const tests = [
     "Calculations",
     "Output_Interface"]
 
-@testset "Testing $tst ....." for tst in tests
-	println(); @info("Begin test of $tst.....\n"); println()	   
-	include("test_$tst.jl")
+@testset "SourceFile" for  SourceFile in tests
+	println(); @info("Begin test of.....", SourceFile); println()	   
+	include("test_$SourceFile.jl")
 end #testset
 
 @test about() == nothing
