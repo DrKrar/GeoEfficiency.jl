@@ -67,11 +67,8 @@
 	@test pnt6.Height == 5.0
 	@test pnt6.Rho == pnt5.Rho 
 		
-	pnt_51 = H.exec_consol_unattended(Point, [5, 1])
-	@test pnt_51 == pnt51
-
-	pnt_5 = H.exec_consol_unattended(Point, [5, 0])
-	@test pnt_5 == pnt5
+	@test H.exec_consol_unattended(Point, [5, 1]) == pnt51
+	@test H.exec_consol_unattended(Point, [5, 0]) == pnt5
 end #testset_Point
 
 
