@@ -37,13 +37,17 @@ consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * 
 end #testset_calcN
 
 
-@debug("batch & GeoEfficiecny._batch")    
-@testset "batch & GeoEfficiecny._batch" begin
+@debug("GeoEfficiecny._batch")    
+@testset "GeoEfficiecny._batch" begin
 	@test G._batch(Val(true),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 	@test G._batch(Val(false), CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 	@test isnan(G._batch(Val(true), CylDetector(eps(0.3)), [0.0], [1.0], [0.0],[0.0])[2][end])
 	@test isnan(G._batch(Val(false), CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
-		
+end #testset
+
+
+@debug("batch")    
+@testset "batch" begin
 	acylDetector::CylDetector = CylDetector(eps(0.5))
 	path::String = batch(acylDetector, [0.0])
 	@test occursin( G.id(acylDetector), path)
