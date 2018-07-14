@@ -137,7 +137,7 @@ end #testset_getfloat
 	local Radiifile    = "Radiifile.csv"
 	local Lengthsfile  = "Lengthsfile.csv"	
 
-	local datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
+	local datadirectory =  mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
 	local detectorpath = joinpath(datadirectory, detectorfile)
 	local hightpath    = joinpath(datadirectory, hightfile)
 
