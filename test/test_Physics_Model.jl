@@ -191,8 +191,8 @@ end #testset_BoreDetector
 
 @debug("WellDetector")	
 @testset "WellDetector" begin 
-	@test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-	@test show(WellDetector(5,3,2,1)) == nothing  
+	@test G.id(WellDetector(5, 3, 2, 1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+	@test show(WellDetector(5, 3, 2, 1)) == nothing  
 
 	let	Well0 = WellDetector(5,4,3,2), 
 		Well1 = Detector(5,4,3,2),
@@ -228,18 +228,18 @@ end #testset_BoreDetector
 		@test Well7 === Well8
 	end #let
 
-	@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
-	@test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
-	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
+	@test G.volume(Detector(5.0, 2, 0.1, 1))  <=   G.volume(Detector(15.0, 2, 0.1, 1))
+	@test G.volume(Detector(10.0, 2, 0.1, 1)) <=   G.volume(Detector(15.0, 2, 0.1, 1)) 
+	@test Detector(5.0, 2, 0.1, 1) < Detector(15.0, 2, 0.1, 1)
 
-	let	detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
+	let	detectors = [Detector(6, 2, 1, 0.1), Detector(5, 1, 0.2, 0.1), Detector(7, 10, 5, 0.1)]
 
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 	end #let
 
 	@debug("WellDetector()")
-	let Well0 = WellDetector(5,4,3,2)
+	let Well0 = WellDetector(5, 4, 3, 2)
 
 		write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 		@test WellDetector() === Well0
@@ -255,13 +255,13 @@ end #testset_WellDetector
 	@test_throws MethodError  Detector(1+1im)
 	@test_throws MethodError  Detector(5+1im, 0)
 	@test_throws MethodError  Detector(1+1im, 1)
-	@test_throws MethodError  Detector(5+1im, 4,3)
-	@test_throws MethodError  Detector(1+1im, 4, 3,2)
-	@test_throws MethodError  Detector(5+1im, 4, 3,2)
-	@test_throws MethodError  Detector(1+1im, 4, 3,2)
-	@test_throws MethodError  Detector(4,1+1im, 3,2)
-	@test_throws MethodError  Detector(4,3,2+1im,1)
-	@test_throws MethodError  Detector(4,3,2,1+1im)
+	@test_throws MethodError  Detector(5+1im, 4, 3)
+	@test_throws MethodError  Detector(1+1im, 4, 3, 2)
+	@test_throws MethodError  Detector(5+1im, 4, 3, 2)
+	@test_throws MethodError  Detector(1+1im, 4, 3, 2)
+	@test_throws MethodError  Detector(4, 1+1im, 3, 2)
+	@test_throws MethodError  Detector(4, 3, 2+1im, 1)
+	@test_throws MethodError  Detector(4, 3, 2, 1+1im)
 		
 	@test Detector(5)       === CylDetector(5)
 	@test Detector(5,0)     === CylDetector(5)
