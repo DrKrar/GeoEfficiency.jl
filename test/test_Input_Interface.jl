@@ -201,13 +201,13 @@ print("\n\t"); @info("test `reading from CSV`...")
 	print("\n\t\t"); @info("missing file - `Rhos.csv`")
 		@test  G.writecsv_head(hightfile, [4.0,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
-		if true #!isapple()
+
 			setSrcToPoint(false)
 			write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
 			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
-		end #if
+
 
 	print("\n\t\t"); @info("Detectors - missing file\n")	
 		rm(datadirectory, recursive=true)
