@@ -128,16 +128,16 @@ end #testset_getfloat
 
 @debug("reading from CSV")	
 @testset "reading from CSV" begin
-	detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
-    detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
+	local detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+    local detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
 
-	datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
+	local datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
 
-	detectorfile = joinpath(datadirectory, "_Detector_test.csv")
-	hightfile    = joinpath(datadirectory, "_hight_test.csv")
-	Rhosfile     = "Rhosfile "
-	Radiifile    = "Radiifile"
-	Lengthsfile  = "Lengthsfile"
+	local detectorfile = joinpath(datadirectory, "_Detector_test.csv")
+	local hightfile    = joinpath(datadirectory, "_hight_test.csv")
+	local Rhosfile     = "Rhosfile "
+	local Radiifile    = "Radiifile"
+	local Lengthsfile  = "Lengthsfile"
 	setSrcToPoint(true) == true
 
 
