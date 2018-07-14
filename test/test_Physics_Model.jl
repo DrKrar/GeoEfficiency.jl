@@ -192,8 +192,16 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
 		@test show(WellDetector(5,3,2,1)) == nothing  
 
-		Well0 = WellDetector(5,4,3,2)
-		Well1 = Detector(5,4,3,2)
+	let	Well0 = WellDetector(5,4,3,2), 
+		Well1 = Detector(5,4,3,2),
+		Well2 = Detector(5.0,4,3,2),
+		Well3 = Detector(5,4.0,3,2),
+		Well4 = Detector(5,4,3.0,2),
+		Well5 = Detector(5,4,3,2.0),
+		Well6 = Detector(5.0,4,3.0,2),
+		Well7 = Detector(5,4.0,3,2.0),
+		Well8 = Detector(5//1,4,3,2)
+
 		@test_throws ErrorException  Well0.CryRadius = 1
 		@test_throws ErrorException  Well0.CryLength = 1
 		@test_throws ErrorException  Well0.HoleRadius= 1
@@ -207,13 +215,7 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test 3.0 == Well1.HoleRadius
 		@test 2.0 == Well1.HoleDepth
 
-		Well2 = Detector(5.0,4,3,2)
-		Well3 = Detector(5,4.0,3,2)
-		Well4 = Detector(5,4,3.0,2)
-		Well5 = Detector(5,4,3,2.0)
-		Well6 = Detector(5.0,4,3.0,2)
-		Well7 = Detector(5,4.0,3,2.0)
-		Well8 = Detector(5//1,4,3,2)
+
 		@test Well0 === Well1 
 		@test Well1 === Well2 
 		@test Well2 === Well3
@@ -222,14 +224,17 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test Well5 === Well6
 		@test Well6 === Well7
 		@test Well7 === Well8
+	end #let
 
 		@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
 		@test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
 		@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
 
-		detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
+	let	detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
+
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
+	end #let
 
 	@info("test WellDetector()")
 		write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
