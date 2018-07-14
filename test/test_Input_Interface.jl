@@ -131,84 +131,87 @@ end #testset_getfloat
 	local detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
     local detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
 
-	local datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
-
-	local detectorfile = joinpath(datadirectory, "_Detector_test.csv")
-	local hightfile    = joinpath(datadirectory, "_hight_test.csv")
+	local detectorfile = "detectorfile.csv"
+	local hightfile    = "hightfile.csv"
 	local Rhosfile     = "Rhosfile.csv"
 	local Radiifile    = "Radiifile.csv"
-	local Lengthsfile  = "Lengthsfile.csv"
+	local Lengthsfile  = "Lengthsfile.csv"	
+
+	local datadirectory = tempdir(); isdir(datadirectory) || mkdir(datadirectory)
+	local detectorpath = joinpath(datadirectory, detectorfile)
+	local hightpath    = joinpath(datadirectory, hightfile)
+
 	setSrcToPoint(true) == true
 
 
 	@testset "Detectors write and read  - input type{Int}" begin	
-		@test  G.writecsv_head(detectorfile, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-		@test  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory) == sort(detectors)
+		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+		@test  G.detector_info_from_csvFile(detectorfile, datadirectory) == sort(detectors)
 	end #testset_input_type{Int}
 
 
 	@testset "write and read  - input type{Int}" begin
-		@test  G.writecsv_head(hightfile, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+		@test  G.writecsv_head(hightpath, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "rewrite, read and sort  - input type{Int}" begin
-		@test  G.writecsv_head(hightfile, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+		@test  G.writecsv_head(hightpath, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "rewrite, read and sort - input type{Rational-treated as any}" begin
-		@test  G.writecsv_head(hightfile, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+		@test  G.writecsv_head(hightpath, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 	end #testset
 
 
 	@testset "rewrite, read and sort - input type{Float64}" begin
-		@test  G.writecsv_head(hightfile, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+		@test  G.writecsv_head(hightpath, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	#@testset "rewrite, read and sort - input type{Irrational....}" begin
-	#	@test  G.writecsv_head(hightfile, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-	#	@test G.read_from_csvFile("_hight_test.csv", datadirectory) == [0]
+	#	@test  G.writecsv_head(hightpath, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+	#	@test G.read_from_csvFile(hightfile, datadirectory) == [0]
 	#end #testset
 
 
 	@testset "invalid data type {Unionall}" begin
-		@test  G.writecsv_head(hightfile, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
+		@test  G.writecsv_head(hightpath, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "invalid data type {String}" begin
-		@test  G.writecsv_head(hightfile, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+		@test  G.writecsv_head(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 	end #testset
 
 
 	@testset "invalid data type {Complex}" begin
-		@test  G.writecsv_head(hightfile, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]			
+		@test  G.writecsv_head(hightpath, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]			
 	end #testset
 
 
 	@testset "missing file - `Hights.csv`" begin
-		rm(hightfile, recursive=true)
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [0.0]
+		rm(hightpath, recursive=true)
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 		setSrcToPoint(false)
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
-		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+		@test  G.read_batch_info(datadirectory, detectorpath, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 	end #testset
 
 		
 	@testset "missing file - `Rhos.csv`" begin
-		@test  G.writecsv_head(hightfile, [4.0,], ["SrcHight"])  ==  nothing
-		@test  G.read_from_csvFile("_hight_test.csv", datadirectory) == [4.0]
+		@test  G.writecsv_head(hightpath, [4.0,], ["SrcHight"])  ==  nothing
+		@test  G.read_from_csvFile(hightfile, datadirectory) == [4.0]
 		setSrcToPoint(false)
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
@@ -219,7 +222,7 @@ end #testset_getfloat
 
 	@testset "missing file - Detectors.csv" begin
 		rm(datadirectory, recursive=true)
-		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("_Detector_test.csv", datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
+		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile(detectorfile, datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
 
 		rm(datadirectory, force=true, recursive=true)
 	
@@ -259,9 +262,9 @@ end #testset_reading_from_CSV
 	
 
 @testset "getDetectors" begin
-	detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
-	detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
-	detectors = detectors |> sort
+	local detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+	local detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
+	local detectors = detectors |> sort
     
 	@test getDetectors(detector_info_array) == detectors 
 	for det = detectors
@@ -269,11 +272,11 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 
-	detector_info_array = [5 0; 10 0; 15 0; 20 0]
-	detectors = getDetectors(detector_info_array)
+	local detector_info_array = [5 0; 10 0; 15 0; 20 0]
+	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
@@ -282,26 +285,26 @@ end #testset_reading_from_CSV
 	@test eltype(detectors) == Detector
 	det1, det2, det3, det4 = detectors
 		
-	detector_info_array = [5 1; 10 1; 15 1; 20 1]
-	detectors = getDetectors(detector_info_array)
+	local detector_info_array = [5 1; 10 1; 15 1; 20 1]
+	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 		
-	detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
-	detectors = getDetectors(detector_info_array)
+	local detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
+	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1.0]
@@ -312,14 +315,14 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 
-	detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
+	local detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
 	@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
-	detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+	local detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 	@test_throws MethodError getDetectors(detector_info_array; console_FB=false)
-	detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
+	local detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
 	@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 
 
