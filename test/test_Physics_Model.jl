@@ -13,13 +13,12 @@
 	@test show(Point(5,3)) == nothing
 
 
-	local pnt1 = Point(5)
 	local pnt11 = Point(1, 1)
 	local pnt5 = Point(5.0, 0.0)	
 	local pnt51 = Point(5.0, 1.0)	
 		
-	@test pnt1.Height === 5.0
-	@test pnt1.Rho    === 0.0
+	@test Point(5).Height === 5.0
+	@test Point(5).Rho    === 0.0
 	@test Point(-5).Height === -5.0
 	@test Point(-5).Rho    === 0.0
 	@test Point(-5,-1).Height === -5.0
