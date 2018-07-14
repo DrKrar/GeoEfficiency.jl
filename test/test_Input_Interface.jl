@@ -163,7 +163,7 @@ end #testset_getfloat
 
 
 	@testset "rewrite, read and sort - input eltype{Rational-treated as any}" begin
-		@test  G.writecsv_head(hightpath, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]	# bad format
 	end #testset
 
@@ -181,22 +181,22 @@ end #testset_getfloat
 
 
 	@testset "invalid data type {Unionall}" begin
-		@test  G.writecsv_head(hightpath, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "invalid data type {String}" begin
-		@test  G.writecsv_head(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 		
-		@test  G.writecsv_head(hightpath, string.([pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"]))  ==  nothing
+		@test  G.writecsv_head_any(hightpath, string.([pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"]))  ==  nothing
 		@test G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 	end #testset
 
 
 	@testset "invalid data type {Complex}" begin
-		@test  G.writecsv_head(hightpath, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]			
 	end #testset
 

@@ -116,17 +116,17 @@ end #function
 
 """ # unexported
 
-	writecsv_head(filename::AbstractString, content, head=[])
+	writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head=[])
 
 Write `content` to the comma delimited values file `filename`. 
 optionally with header `head`.
 
 """
-writecsv_head(filename::AbstractString, content::Union{Float64, Vector{Float64}, Array{Float64,2}}, head=[]) = writecsv_head_any(filename, content, head)
+writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head=[]) = writecsv_head_any(filename, content, head)
 
-function writecsv_head(filename::AbstractString, content, head=[])
+function writecsv_head_any(filename::AbstractString, content, head=[])
 	open(filename, "w") do io
-		writedlm(io, head, ',')
+		writedlm(io, head, ',') 
 		writedlm(io, content, ',')
 	end #do
 end #function
