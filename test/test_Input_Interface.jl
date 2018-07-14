@@ -137,9 +137,9 @@ end #testset_getfloat
 	local Radiifile    = "Radiifile.csv"
 	local Lengthsfile  = "Lengthsfile.csv"	
 
-	local datadirectory =  mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
-	local detectorpath = joinpath(datadirectory, detectorfile)
-	local hightpath    = joinpath(datadirectory, hightfile)
+	local datadirectory	=  mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
+	local detectorpath 	= joinpath(datadirectory, detectorfile)
+	local hightpath    	= joinpath(datadirectory, hightfile)
 
 	setSrcToPoint(true) == true
 
