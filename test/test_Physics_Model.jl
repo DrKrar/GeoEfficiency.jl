@@ -82,8 +82,7 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test G.id(CylDetector(5, 3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
   		@test show(CylDetector(5, 3)) == nothing
 	
-    	cyl0 = CylDetector(5)
-		cyl1 = Detector(5)
+   	let cyl0 = CylDetector(5), cyl1 = Detector(5)
 		@test_throws ErrorException  cyl0.CryRadius = 1
 		@test_throws ErrorException  cyl0.CryLength = 1
 		@test_throws MethodError     CylDetector(1+0im)
@@ -97,15 +96,18 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test isa(cyl1, CylDetector)
 		@test cyl1.CryRadius === 5.0
 		@test cyl1.CryLength === 0.0
+	end #let
 
-		cyl2 = Detector(5, 0)
-		cyl3 = Detector(5, 0.0)
-		cyl4 = Detector(5.0, 0)
-		cyl5 = Detector(5.0, 0.0)
-		cyl6 = Detector(5, 0, 0)
-		cyl7 = Detector(5, 0, 0, 0)
-		cyl8 = Detector(5//1, 0, 0, 0)
+	let cyl1 = Detector(5),
+		cyl2 = Detector(5, 0),
+		cyl3 = Detector(5, 0.0),
+		cyl4 = Detector(5.0, 0),
+		cyl5 = Detector(5.0, 0.0),
+		cyl6 = Detector(5, 0, 0),
+		cyl7 = Detector(5, 0, 0, 0),
+		cyl8 = Detector(5//1, 0, 0, 0),
 		cyl9 = Detector(5//1)
+			
 		@test cyl0 === cyl1 
 		@test cyl1 === cyl2 
 		@test cyl2 === cyl3
@@ -119,16 +121,15 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test G.volume(CylDetector(10.0,1)) <=   G.volume(CylDetector(15.0,1)) 
 		@test G.volume(CylDetector(15.0))   <=   G.volume(CylDetector(10.0)) 
 		@test CylDetector(5.0,1) < CylDetector(15.0,1)
+	end #let
 	
-		detectors = [Detector(6,2),Detector(5,1), Detector(7,10)]
+	let detectors = [Detector(6,2),Detector(5,1), Detector(7,10)]
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
+	end #let
 
-		cyl_51 = H.exec_consol_unattended(CylDetector, [5, 1])
-		@test cyl_51 == CylDetector(5.0, 1)
-
-		cyl_5  = H.exec_consol_unattended(CylDetector, [5, 0])
-		@test cyl_5  == CylDetector(5)
+	@test H.exec_consol_unattended(CylDetector, [5, 1]) == CylDetector(5.0, 1)
+	@test H.exec_consol_unattended(CylDetector, [5, 0])  == CylDetector(5)
 end #testset
 
 print("\n\t"); @info("test `Borehole Detector`...")	
