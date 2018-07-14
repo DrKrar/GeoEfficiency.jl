@@ -7,82 +7,82 @@
 #**************************************************************************************
 
 
-@testset "Physics Model" begin
-
-@info("test `Point`...")	
-	@testset "Point" begin
-		@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
-		@test show(Point(5,3)) == nothing
+@debug("Point")	
+@testset "Point" begin
+	@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
+	@test show(Point(5,3)) == nothing
 
 
-		pnt1 = Point(5)
-		pnt11 = Point(1, 1)
-		pnt5 = Point(5.0, 0.0)	
-		pnt51 = Point(5.0, 1.0)	
+	pnt1 = Point(5)
+	pnt11 = Point(1, 1)
+	pnt5 = Point(5.0, 0.0)	
+	pnt51 = Point(5.0, 1.0)	
 		
-		@test pnt1.Height === 5.0
-		@test pnt1.Rho    === 0.0
-		@test Point(-5).Height === -5.0
-		@test Point(-5).Rho    === 0.0
-		@test Point(-5,-1).Height === -5.0
-		@test Point(-5,-1).Rho    === -1.0
-		@test_throws MethodError     Point(1+0im,4)
-		@test_throws MethodError     Point(4, 1+0im)
-		@test_throws MethodError     Point(1+0im, 1+0im)
-		@test_throws ErrorException  Point(5.0, 0.0).Height = 1.0
-		@test_throws ErrorException  Point(5.0, 0.0).Rho    = 1.0
+	@test pnt1.Height === 5.0
+	@test pnt1.Rho    === 0.0
+	@test Point(-5).Height === -5.0
+	@test Point(-5).Rho    === 0.0
+	@test Point(-5,-1).Height === -5.0
+	@test Point(-5,-1).Rho    === -1.0
+	@test_throws MethodError     Point(1+0im,4)
+	@test_throws MethodError     Point(4, 1+0im)
+	@test_throws MethodError     Point(1+0im, 1+0im)
+	@test_throws ErrorException  Point(5.0, 0.0).Height = 1.0
+	@test_throws ErrorException  Point(5.0, 0.0).Rho    = 1.0
 		
-		@test Point(5)      === pnt5 
-		@test Point(5//1)   === pnt5
-		@test Point(5.0)    === pnt5
+	@test Point(5)      === pnt5 
+	@test Point(5//1)   === pnt5
+	@test Point(5.0)    === pnt5
 		
-		@test Point(5, 0)   === pnt5
-		@test Point(5, 0//1)=== pnt5
-		@test Point(5, 0.0) === pnt5
+	@test Point(5, 0)   === pnt5
+	@test Point(5, 0//1)=== pnt5
+	@test Point(5, 0.0) === pnt5
 
-		@test Point(5//1, 0)    === pnt5
-		@test Point(5//1, 0//1) === pnt5
-		@test Point(5//1, 0.0)  === pnt5
+	@test Point(5//1, 0)    === pnt5
+	@test Point(5//1, 0//1) === pnt5
+	@test Point(5//1, 0.0)  === pnt5
 
-		@test Point(5.0, 0)    === pnt5
-		@test Point(5.0, 0//1) === pnt5
-		@test Point(5.0, 0.0)  === pnt5
+	@test Point(5.0, 0)    === pnt5
+	@test Point(5.0, 0//1) === pnt5
+	@test Point(5.0, 0.0)  === pnt5
 	
-	
-		@test Point(5, 1)   === pnt51
-		@test Point(5, 1//1)=== pnt51
-		@test Point(5, 1.0) === pnt51
 
-		@test Point(5//1, 1)    === pnt51
-		@test Point(5//1, 1//1) === pnt51
-		@test Point(5//1, 1.0)  === pnt51
+	@test Point(5, 1)   === pnt51
+	@test Point(5, 1//1)=== pnt51
+	@test Point(5, 1.0) === pnt51
 
-		@test Point(5.0, 1)    === pnt51
-		@test Point(5.0, 1//1) === pnt51
-		@test Point(5.0, 1.0)  === pnt51	
+	@test Point(5//1, 1)    === pnt51
+	@test Point(5//1, 1//1) === pnt51
+	@test Point(5//1, 1.0)  === pnt51
+
+	@test Point(5.0, 1)    === pnt51
+	@test Point(5.0, 1//1) === pnt51
+	@test Point(5.0, 1.0)  === pnt51	
 		
-		pnt6 = Point(pnt5, 5)
-		@test pnt6.Height == pnt5.Height 
-		@test pnt6.Rho == 5.0
+	pnt6 = Point(pnt5, 5)
+	@test pnt6.Height == pnt5.Height 
+	@test pnt6.Rho == 5.0
 
-		pnt6 = Point(5, pnt5)
-		@test pnt6.Height == 5.0
-		@test pnt6.Rho == pnt5.Rho 
+	pnt6 = Point(5, pnt5)
+	@test pnt6.Height == 5.0
+	@test pnt6.Rho == pnt5.Rho 
 		
-		pnt_51 = H.exec_consol_unattended(Point, [5, 1])
-		@test pnt_51 == pnt51
+	pnt_51 = H.exec_consol_unattended(Point, [5, 1])
+	@test pnt_51 == pnt51
 
-		pnt_5 = H.exec_consol_unattended(Point, [5, 0])
-		@test pnt_5 == pnt5
-	end #testset
+	pnt_5 = H.exec_consol_unattended(Point, [5, 0])
+	@test pnt_5 == pnt5
+end #testset_Point
 
-print("\n\t"); @info("test `Cylindrical Detector`...")			
-	@testset "Cylindrical Detector" begin 
+
+@debug("CylDetector")			
+@testset "CylDetector" begin 
   
-		@test G.id(CylDetector(5, 3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
-  		@test show(CylDetector(5, 3)) == nothing
+	@test G.id(CylDetector(5, 3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+	@test show(CylDetector(5, 3)) == nothing
 	
-   	let cyl0 = CylDetector(5), cyl1 = Detector(5)
+	let cyl0 = CylDetector(5), cyl1 = Detector(5)
+	
 		@test_throws ErrorException  cyl0.CryRadius = 1
 		@test_throws ErrorException  cyl0.CryLength = 1
 		@test_throws MethodError     CylDetector(1+0im)
@@ -97,7 +97,7 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 		@test cyl1.CryRadius === 5.0
 		@test cyl1.CryLength === 0.0
 	end #let
-
+	
 	let cyl1 = Detector(5),
 		cyl2 = Detector(5, 0),
 		cyl3 = Detector(5, 0.0),
@@ -124,16 +124,19 @@ print("\n\t"); @info("test `Cylindrical Detector`...")
 	end #let
 	
 	let detectors = [Detector(6,2),Detector(5,1), Detector(7,10)]
+
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 	end #let
 
-	@test H.exec_consol_unattended(CylDetector, [5, 1]) == CylDetector(5.0, 1)
+	@debug("CylDetector()")
+	@test H.exec_consol_unattended(CylDetector, [5, 1]) == CylDetector(5, 1)
 	@test H.exec_consol_unattended(CylDetector, [5, 0])  == CylDetector(5)
-end #testset
+end #testset_CylDetector
 
-print("\n\t"); @info("test `Borehole Detector`...")	
-	@testset "Borehole Detector" begin 
+
+@debug("BoreDetector")	
+@testset "BoreDetector" begin 
 	
 		@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
   		@test show(BoreDetector(5,3,2)) == nothing  
@@ -151,7 +154,7 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test 4.0 == bore1.CryLength
 		@test 3.0 == bore1.HoleRadius
 	end #let
-  
+
 	let bore2 = Detector(5.0,4,3),
 		bore3 = Detector(5,4,3,0),
 		bore4 = Detector(5,4.0,3),
@@ -175,7 +178,6 @@ print("\n\t"); @info("test `Borehole Detector`...")
 
 	let	detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
 
-		detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
 	end #let
@@ -185,12 +187,15 @@ print("\n\t"); @info("test `Borehole Detector`...")
 
 		@test H.exec_consol_unattended(BoreDetector, [5, 4, 3]) === bore0
 		@test H.exec_consol_unattended(BoreDetector, [5, 4, 6, 3]) === bore0
-	end #testset
+	end #let
 
-print("\n\t"); @info("test `Well-type Detector`...")	
-	@testset "Well-type Detector" begin 
-		@test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-		@test show(WellDetector(5,3,2,1)) == nothing  
+end #testset_BoreDetector
+
+
+@debug("WellDetector")	
+@testset "WellDetector" begin 
+	@test G.id(WellDetector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+	@test show(WellDetector(5,3,2,1)) == nothing  
 
 	let	Well0 = WellDetector(5,4,3,2), 
 		Well1 = Detector(5,4,3,2),
@@ -226,9 +231,9 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test Well7 === Well8
 	end #let
 
-		@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
-		@test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
-		@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
+	@test G.volume(Detector(5.0,2,0.1,1))  <=   G.volume(Detector(15.0,2,0.1,1))
+	@test G.volume(Detector(10.0,2,0.1,1)) <=   G.volume(Detector(15.0,2,0.1,1)) 
+	@test Detector(5.0,2,0.1,1) < Detector(15.0,2,0.1,1)
 
 	let	detectors = [Detector(6,2,1,.1), Detector(5,1,.2,.1), Detector(7,10,5,.1)]
 
@@ -236,129 +241,138 @@ print("\n\t"); @info("test `Well-type Detector`...")
 		@test Vector{Detector}(detectors) == detectors
 	end #let
 
-	@info("test WellDetector()")
+	@debug("WellDetector()")
+	let Well0 = WellDetector(5,4,3,2)
+
 		write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
 		@test WellDetector() === Well0
 		write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
 		@test WellDetector() === Well0
-	end #testset
+	end #let
+end #testset_WellDetector
+
 		
-print("\n\t"); @info("test `RadiationDetector`...")    
-	@testset "RadiationDetector" begin 
+@debug("Detector")    
+@testset "Detector" begin 
 	
-		@test_throws MethodError  Detector(1+1im)
-		@test_throws MethodError  Detector(5+1im, 0)
-		@test_throws MethodError  Detector(1+1im, 1)
-		@test_throws MethodError  Detector(5+1im, 4,3)
-		@test_throws MethodError  Detector(1+1im, 4, 3,2)
-		@test_throws MethodError  Detector(5+1im, 4, 3,2)
-		@test_throws MethodError  Detector(1+1im, 4, 3,2)
-		@test_throws MethodError  Detector(4,1+1im, 3,2)
-		@test_throws MethodError  Detector(4,3,2+1im,1)
-		@test_throws MethodError  Detector(4,3,2,1+1im)
+	@test_throws MethodError  Detector(1+1im)
+	@test_throws MethodError  Detector(5+1im, 0)
+	@test_throws MethodError  Detector(1+1im, 1)
+	@test_throws MethodError  Detector(5+1im, 4,3)
+	@test_throws MethodError  Detector(1+1im, 4, 3,2)
+	@test_throws MethodError  Detector(5+1im, 4, 3,2)
+	@test_throws MethodError  Detector(1+1im, 4, 3,2)
+	@test_throws MethodError  Detector(4,1+1im, 3,2)
+	@test_throws MethodError  Detector(4,3,2+1im,1)
+	@test_throws MethodError  Detector(4,3,2,1+1im)
 		
-		@test Detector(5)       === CylDetector(5)
-		@test Detector(5,0)     === CylDetector(5)
-		@test Detector(5,0,0,0) === CylDetector(5)
-		@test Detector(5,1)     === CylDetector(5,1)
-		@test Detector(5,1,0)   === CylDetector(5,1)
-		@test Detector(5,1,0,0) === CylDetector(5,1)
-		@test Detector(5,2,1)   === BoreDetector(5,2, 1)
-		@test Detector(5,2,1,0) === BoreDetector(5,2, 1)
-		@test Detector(5,4,3,2) === WellDetector(5,4,3,2)
+	@test Detector(5)       === CylDetector(5)
+	@test Detector(5,0)     === CylDetector(5)
+	@test Detector(5,0,0,0) === CylDetector(5)
+	@test Detector(5,1)     === CylDetector(5,1)
+	@test Detector(5,1,0)   === CylDetector(5,1)
+	@test Detector(5,1,0,0) === CylDetector(5,1)
+	@test Detector(5,2,1)   === BoreDetector(5,2, 1)
+	@test Detector(5,2,1,0) === BoreDetector(5,2, 1)
+	@test Detector(5,4,3,2) === WellDetector(5,4,3,2)
 		
-		cyl0 = CylDetector(5)
-	    	@test Detector(cyl0)   === cyl0
-		bore0 = BoreDetector(5,4,3)
-		@test Detector(bore0)  === bore0
+	let cyl0 = CylDetector(5),
+		bore0 = BoreDetector(5,4,3),
 		Well0 = WellDetector(5,4,3,2)
+
+    	@test Detector(cyl0)   === cyl0
+		@test Detector(bore0)  === bore0
 		@test Detector(Well0) === Well0
-		for i=1:1000
-			det1 = Detector(rand())
-			@test Detector(det1)   === det1
-			det2 = Detector(rand(2)...)
-			@test Detector(det2)   === det2
-			det3 = Detector(rand(15:20), rand(10:14), rand(1:13))
-			@test Detector(det3)   === det3
+	end #let
+	for i=1:1000
+		let det1 = Detector(rand()),
+			det2 = Detector(rand(2)...),
+			det3 = Detector(rand(15:20), rand(10:14), rand(1:13)),
 			det4 = Detector(rand(15:20), rand(10:14), rand(9:13), rand(1:9))
+
+			@test Detector(det1)   === det1
+			@test Detector(det2)   === det2
+			@test Detector(det3)   === det3
 			@test Detector(det4)   === det4
-		end #for	
-		@test G.id(Detector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-		@test G.id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
-		@test G.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
-		@test G.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
+		end #let
+	end #for
 		
-		detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
+	@test G.id(Detector(5,3,2,1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
+	@test G.id(Detector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
+	@test G.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
+	@test G.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
+	
+	let detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
+
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
+	end #let
 
-		if true #!isapple()
-			@info("test Detector()")
-			write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
-			@test Detector() === Detector(5, 4, 3, 2)
-			write(stdin.buffer,"5\n" * "4\n" * "0\n")
-			@test Detector() === Detector(5, 4)
-			write(stdin.buffer,"5\n" * "4\n" * "\n")
-			@test Detector() === Detector(5, 4)
-			write(stdin.buffer,"5\n" * "4\n" * "33\n" * "3\n" * "22\n" * "2\n")
-			@test Detector() === Detector(5, 4, 3, 2)
-		end #if
-	end #testset	
+	@debug("Detector()")
+	write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
+	@test Detector() === Detector(5, 4, 3, 2)
+	write(stdin.buffer,"5\n" * "4\n" * "0\n")
+	@test Detector() === Detector(5, 4)
+	write(stdin.buffer,"5\n" * "4\n" * "\n")
+	@test Detector() === Detector(5, 4)
+	write(stdin.buffer,"5\n" * "4\n" * "33\n" * "3\n" * "22\n" * "2\n")
+	@test Detector() === Detector(5, 4, 3, 2)
+end #testset_Detector	
 
-@info("test `source`...")   
-	@testset "source" begin
-		setSrcToPoint(true)
-		pnt1 = Point(5)
+
+@debug("source")   
+@testset "source" begin
+	setSrcToPoint(true)
+	let	pnt1 = Point(5)
+
 		@test source(pnt1) == (pnt1, 0.0, 0.0)
-		if true #!isapple()
+	end #let
 			
-			setSrcToPoint(false)
-			write(stdin.buffer, 
-			"1\n" * "0\n" * #=axial point=#
-			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
-			@test  source() == (Point(1.0, 0.0), 2.0, 3.0)
+	setSrcToPoint(false)
+	write(stdin.buffer, 
+		"1\n" * "0\n" * #=axial point=#
+		"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
+	@test  source() == (Point(1.0, 0.0), 2.0, 3.0)
 			
-			setSrcToPoint(false)
-			write(stdin.buffer, 
-			"1\n" * "5\n" * #=non-axial point=#
-			"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
-			@test  source() == (Point(1.0, 0.0), 2.0, 3.0) # axial anchor point
+	setSrcToPoint(false)
+	write(stdin.buffer, 
+		"1\n" * "5\n" * #=non-axial point=#
+		"2\n" * "3\n" #=SrcRadius=2 SrcHeight=3=#)
+	@test  source() == (Point(1.0, 0.0), 2.0, 3.0) # axial anchor point
 			
-			setSrcToPoint(false)
-			write(stdin.buffer, 
-			"1\n" * "5\n" * #=non-axial point=#
-			"0\n" 			#=SrcRadius=2=# )
-			@test  source() == (Point(1.0, 5.0), 0.0, 0.0) # non-axial  point source
+	setSrcToPoint(false)
+	write(stdin.buffer, 
+		"1\n" * "5\n" * #=non-axial point=#
+		"0\n" 			#=SrcRadius=2=# )
+	@test  source() == (Point(1.0, 5.0), 0.0, 0.0) # non-axial  point source
 
-			setSrcToPoint(true)
-			write(stdin.buffer,	"1\n" * "5\n") # non-axial point
-			@test  source() == (Point(1.0, 5.0), 0.0, 0.0)
-		end #if
-	end #testset_source
-		
-	@testset "Invalid Detector Dimensions $dim"  for dim =  
-	    Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
+	setSrcToPoint(true)
+	write(stdin.buffer,	"1\n" * "5\n") # non-axial point
+	@test  source() == (Point(1.0, 5.0), 0.0, 0.0)
+end #testset_source
 
-		@test_throws AssertionError	 CylDetector(dim)  
-		@test_throws AssertionError	 CylDetector(dim, 0)
-		@test_throws AssertionError	 CylDetector(dim, 1)
-		@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
-		@test_throws AssertionError  BoreDetector(dim, 1, 0)
-		@test_throws AssertionError  WellDetector(dim, 2, 1, 0)
 
-		@test_throws AssertionError  Detector(dim)
-		@test_throws AssertionError	 Detector(dim, 0)
-		@test_throws AssertionError	 Detector(dim, 1)
-		@test_throws AssertionError  Detector(dim, 0, 0)
+@debug("Invalid Detector Dimensions")
+@testset "Invalid Detector Dimensions $dim"  for dim =  
+Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
-		dim == 0.0 && break
-		@test_throws AssertionError	 CylDetector(5, dim)
-		@test_throws AssertionError  BoreDetector(5, dim, 0)
-		@test_throws AssertionError	 CylDetector(5, dim)
-		@test_throws AssertionError  BoreDetector(5, dim, 0)
-		@test_throws AssertionError  BoreDetector(5,dim, 1)
-		@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
+	@test_throws AssertionError	 CylDetector(dim)  
+	@test_throws AssertionError	 CylDetector(dim, 0)
+	@test_throws AssertionError	 CylDetector(dim, 1)
+	@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
+	@test_throws AssertionError  BoreDetector(dim, 1, 0)
+	@test_throws AssertionError  WellDetector(dim, 2, 1, 0)
 
-		end #testset_for
-println()
-end #testset
+	@test_throws AssertionError  Detector(dim)
+	@test_throws AssertionError	 Detector(dim, 0)
+	@test_throws AssertionError	 Detector(dim, 1)
+	@test_throws AssertionError  Detector(dim, 0, 0)
+
+	dim == 0.0 && break
+	@test_throws AssertionError	 CylDetector(5, dim)
+	@test_throws AssertionError  BoreDetector(5, dim, 0)
+	@test_throws AssertionError	 CylDetector(5, dim)
+	@test_throws AssertionError  BoreDetector(5, dim, 0)
+	@test_throws AssertionError  BoreDetector(5,dim, 1)
+	@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
+end #testset_Invalid_Detector_Dimensions

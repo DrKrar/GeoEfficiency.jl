@@ -3,10 +3,11 @@
 #
 
 using Compat, Compat.Test , Compat.DelimitedFiles, Compat.MathConstants
-using Compat: @info, stdin
+using Compat: @debug, @info, stdin
 using GeoEfficiency
 const G = GeoEfficiency
 #logging(IOBuffer(), G)
+
 
 include("Helper.jl")
 
@@ -17,8 +18,8 @@ const SourceFiles = [
     "Calculations",
     "Output_Interface"]
 
-@testset "$SourceFile" for  SourceFile in SourceFiles
-	println(); @info("Begin test of.....", SourceFile); println()	   
+@testset "$SourceFile" for SourceFile = SourceFiles
+	@debug("Begin test of.....", SourceFile)   
 	include("test_$SourceFile.jl")
 end #testset
 
