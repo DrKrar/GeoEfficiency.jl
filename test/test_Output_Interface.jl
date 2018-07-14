@@ -37,6 +37,12 @@ consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * 
 end #testset_calcN
 
 
+@debug("writecsv_head")    
+@testset "writecsv_head" begin
+	# `writecsv_head` tests in the `reading from CSV` testset
+end #testset
+
+
 @debug("GeoEfficiecny._batch")    
 @testset "GeoEfficiecny._batch" begin
 	@test G._batch(Val(true),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
