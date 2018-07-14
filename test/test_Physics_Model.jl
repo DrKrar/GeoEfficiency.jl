@@ -138,8 +138,8 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
   		@test show(BoreDetector(5,3,2)) == nothing  
     
-		bore0 = BoreDetector(5,4,3)
-		bore1 = Detector(5,4,3)
+	let bore0 = BoreDetector(5,4,3), bore1 = Detector(5,4,3)
+
 		@test_throws ErrorException  bore0.CryRadius = 1
 		@test_throws ErrorException  bore0.CryLength = 1
 		@test_throws ErrorException  bore0.HoleRadius= 1
@@ -150,14 +150,16 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test 5.0 == bore1.CryRadius
 		@test 4.0 == bore1.CryLength
 		@test 3.0 == bore1.HoleRadius
+	end #let
   
-		bore2 = Detector(5.0,4,3)
-		bore3 = Detector(5,4,3,0)
-		bore4 = Detector(5,4.0,3)
-		bore5 = Detector(5.0,4,3.0)
-		bore6 = Detector(5.0,4.0,3.0)
-		bore7 = Detector(5.0,4.0,3.0, 0)
+	let bore2 = Detector(5.0,4,3),
+		bore3 = Detector(5,4,3,0),
+		bore4 = Detector(5,4.0,3),
+		bore5 = Detector(5.0,4,3.0),
+		bore6 = Detector(5.0,4.0,3.0),
+		bore7 = Detector(5.0,4.0,3.0, 0),
 		bore8 = Detector(5//1,4.0,3.0, 0)
+
 		@test bore0 === bore1
 		@test bore1 === bore2
 		@test bore2 === bore3
@@ -169,12 +171,18 @@ print("\n\t"); @info("test `Borehole Detector`...")
 		@test G.volume(Detector(5.0,1,.1))  <=   G.volume(Detector(15.0,1,0.1))
 		@test G.volume(Detector(10.0,1,.0)) <=   G.volume(Detector(15.0,1,0.1)) 
 		@test Detector(5.0,1,0.1) < Detector(15.0,1,0.1)
+	end #let
+
+	let	detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
 
 		detectors = [Detector(6,2,1), Detector(5,1,.2), Detector(7,10,5)]
 		@test eltype(Vector{Detector}(detectors)) === Detector
 		@test Vector{Detector}(detectors) == detectors
+	end #let
 
-	@info("test BoreDetector()")
+	@debug("BoreDetector()")
+	let bore0 = BoreDetector(5,4,3)
+
 		@test H.exec_consol_unattended(BoreDetector, [5, 4, 3]) === bore0
 		@test H.exec_consol_unattended(BoreDetector, [5, 4, 6, 3]) === bore0
 	end #testset
