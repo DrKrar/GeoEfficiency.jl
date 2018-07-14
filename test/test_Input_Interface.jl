@@ -174,10 +174,10 @@ end #testset_getfloat
 	end #testset
 
 
-	#@testset "rewrite, read and sort - input type{Irrational....}" begin
-	#	@test  G.writecsv_head(hightpath, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
-	#	@test G.read_from_csvFile(hightfile, datadirectory) == [0]
-	#end #testset
+	@testset "rewrite, read and sort - input type{Irrational}" begin
+		@test  G.writecsv_head(hightpath, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test G.read_from_csvFile(hightfile, datadirectory) == [1.0, 2.0, e, pi, 5.0, pi + e, 10.0, 15.0]	# Irrational converted to Float
+	end #testset
 
 
 	@testset "invalid data type {Unionall}" begin
