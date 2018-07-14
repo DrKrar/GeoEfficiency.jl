@@ -135,9 +135,9 @@ end #testset_getfloat
 
 	local detectorfile = joinpath(datadirectory, "_Detector_test.csv")
 	local hightfile    = joinpath(datadirectory, "_hight_test.csv")
-	local Rhosfile     = "Rhosfile "
-	local Radiifile    = "Radiifile"
-	local Lengthsfile  = "Lengthsfile"
+	local Rhosfile     = "Rhosfile.csv"
+	local Radiifile    = "Radiifile.csv"
+	local Lengthsfile  = "Lengthsfile.csv"
 	setSrcToPoint(true) == true
 
 
