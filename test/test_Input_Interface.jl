@@ -189,6 +189,9 @@ end #testset_getfloat
 	@testset "invalid data type {String}" begin
 		@test  G.writecsv_head(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
+		
+		@test  G.writecsv_head(hightpath, string.([pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"]))  ==  nothing
+		@test G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 	end #testset
 
 
