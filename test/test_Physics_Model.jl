@@ -274,12 +274,12 @@ end #testset_WellDetector
 	@test Detector(5,4,3,2) === WellDetector(5,4,3,2)
 		
 	let cyl0 = CylDetector(5),
-		bore0 = BoreDetector(5,4,3),
-		Well0 = WellDetector(5,4,3,2)
+		bore0 = BoreDetector(5, 4, 3),
+		Well0 = WellDetector(5, 4, 3, 2)
 
     	@test Detector(cyl0)   === cyl0
 		@test Detector(bore0)  === bore0
-		@test Detector(Well0) === Well0
+		@test Detector(Well0)  === Well0
 	end #let
 	for i=1:1000
 		let det1 = Detector(rand()),
