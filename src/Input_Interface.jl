@@ -246,7 +246,7 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = d
 		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		else
-		    #println(err)
+		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` formate is bad or empty")
 		
 		end		
 		return Float64[0.0]
