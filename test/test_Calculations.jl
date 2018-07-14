@@ -27,7 +27,7 @@ end #testset_for
 	@testset "cylindrical detector of cryRadius $cryRadius" for 
 	cryRadius    = 1.0:0.5:11.0
 	
-	acylDetector = CylDetector(cryRadius)
+	local acylDetector = CylDetector(cryRadius)
 
 		@test geoEff(acylDetector, Point(0)) ≈ 0.5
 		@test geoEff(acylDetector, Point(0, prevfloat(cryRadius)))  ≈ 0.5
@@ -55,8 +55,8 @@ end #testset_for
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 
-	holeradius::Float64 = cryRadius/k		# k > 1
-	aboreDetector = BoreDetector(cryRadius, height, holeradius)
+	local holeradius::Float64 = cryRadius/k		# k > 1
+	local aboreDetector = BoreDetector(cryRadius, height, holeradius)
 	
 		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0 
 		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
@@ -80,9 +80,9 @@ end #testset_for
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 		
-	holeradius::Float64 = cryRadius/k		# k > 1
-	welldepth::Float64 = height/k		# k > 1
-	awellDetector = WellDetector(cryRadius, height, holeradius, welldepth)
+	local holeradius::Float64 = cryRadius/k		# k > 1
+	local welldepth::Float64 = height/k		# k > 1
+	local awellDetector = WellDetector(cryRadius, height, holeradius, welldepth)
 
 		@test geoEff(awellDetector, Point(welldepth)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, prevfloat(holeradius))) ≈ 0.5
@@ -184,7 +184,8 @@ end #tesset_scalling
 	@testset "geoEff on WellDetector(5, 4, $holeRadius, $holeDepth)" for 
 	holeRadius = 3:0.5:4, 
 	holeDepth  = 0.1:1.0:3.1
-	mim, mam = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
+	
+	local mim, mam = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
 	
 		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= absoluteTol1
 		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam

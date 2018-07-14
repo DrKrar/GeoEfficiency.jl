@@ -54,8 +54,8 @@ end #testset
 
 @debug("batch")    
 @testset "batch" begin
-	acylDetector::CylDetector = CylDetector(eps(0.5))
-	path::String = batch(acylDetector, [0.0])
+	local acylDetector::CylDetector = CylDetector(eps(0.5))
+	local path::String = batch(acylDetector, [0.0])
 	@test occursin( G.id(acylDetector), path)
 	@test readdlm(path,',')[2,end] ≈ 0.5	
 
@@ -63,9 +63,9 @@ end #testset
 	@test occursin(G.id(acylDetector), path)
 	@test readdlm(path,',')[2,end] ≈ 0.5	
 
-	paths::Vector{String} = batch([acylDetector], [0.0]) # in fact `paths` is a one element vector
+	local paths::Vector{String} = batch([acylDetector], [0.0]) # in fact `paths` is a one element vector
 	@test occursin.(G.id(acylDetector), paths) |> any
-	every_path::Vector{String} = paths
+	local every_path::Vector{String} = paths
 
 	paths = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
 	@test occursin.(G.id(acylDetector), paths) |> any
