@@ -94,7 +94,8 @@ end #testset_Point
 		@test cyl1.CryLength === 0.0
 	end #let
 	
-	let cyl1 = Detector(5),
+	let cyl0 = CylDetector(5),
+		cyl1 = Detector(5),
 		cyl2 = Detector(5, 0),
 		cyl3 = Detector(5, 0.0),
 		cyl4 = Detector(5.0, 0),
@@ -137,7 +138,8 @@ end #testset_CylDetector
 		@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
   		@test show(BoreDetector(5,3,2)) == nothing  
     
-	let bore0 = BoreDetector(5,4,3), bore1 = Detector(5,4,3)
+	let bore0 = BoreDetector(5,4,3), 
+		bore1 = Detector(5,4,3)
 
 		@test_throws ErrorException  bore0.CryRadius = 1
 		@test_throws ErrorException  bore0.CryLength = 1
@@ -151,7 +153,9 @@ end #testset_CylDetector
 		@test 3.0 == bore1.HoleRadius
 	end #let
 
-	let bore2 = Detector(5.0,4,3),
+	let bore0 = BoreDetector(5,4,3), 
+		bore1 = Detector(5,4,3),
+		bore2 = Detector(5.0,4,3),
 		bore3 = Detector(5,4,3,0),
 		bore4 = Detector(5,4.0,3),
 		bore5 = Detector(5.0,4,3.0),
