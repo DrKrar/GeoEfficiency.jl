@@ -21,7 +21,7 @@ nd  = -20.0:2.0:30.0
 end #testset_for
 
 
-@testser "special cases" begin
+@testset "special cases" begin
 
 	@debug("special case - point at the surface of cylindrical detector; very restrict test")
 	@testset "cylindrical detector of cryRadius $cryRadius" for 
