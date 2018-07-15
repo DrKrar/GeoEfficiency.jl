@@ -66,10 +66,12 @@
 	@test setSrcToPoint(true)  === true
 end #testset
 
+
 @debug("GeoEfficiency.input")
 @testset "GeoEfficiency.input" begin
 	write( stdin.buffer," anbfyiQERFC \n"); @test G.input() == " anbfyiQERFC "
 end #testset_input
+
 
 @debug("GeoEfficiency.getfloat")
 @testset "GeoEfficiency.getfloat" begin  
@@ -120,6 +122,7 @@ end #testset_input
 		@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
 	end # for
 end #testset_getfloat
+
 
 @debug("reading from CSV")	
 @testset "reading from CSV" begin
