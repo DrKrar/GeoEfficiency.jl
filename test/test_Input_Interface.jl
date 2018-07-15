@@ -135,7 +135,7 @@ end #testset_getfloat
 	local Radiifile    = "Radiifile.csv"		# no file will created
 	local Lengthsfile  = "Lengthsfile.csv"		# no file will created
 
-	local datadirectory	=  mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
+	local datadirectory	= mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
 	local detectorpath 	= joinpath(datadirectory, detectorfile)
 	local hightpath    	= joinpath(datadirectory, hightfile)
 
@@ -200,14 +200,14 @@ end #testset_getfloat
 
 
 	@testset "missing file - `Hights.csv`" begin
-		rm(hightpath, recursive=true)
+		rm(hightpath, force=true)
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 		
 		setSrcToPoint(false)
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" 	#=SrcRadius SrcHeight=#)
-		@test  G.read_batch_info(datadirectory, detectorpath, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
+		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0], [0.0], [2.0], [3.0], false)
 	end #testset
 
 
@@ -219,16 +219,7 @@ end #testset_getfloat
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
 			"2\n" * "3\n" 	#=SrcRadius SrcHeight=#)
-		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
-	end #testset
-
-
-	@testset "missing file - Detectors.csv" begin
-		rm(datadirectory, recursive=true)
-		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile(detectorfile, datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
-
-		rm(datadirectory, force=true, recursive=true)
-		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("jskfdsiu.uty","fghpweuh.uty")
+		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0], [0.0], [2.0], [3.0], false)
 	end #testset
 
 
@@ -250,6 +241,10 @@ end #testset_getfloat
 		catch err
 		end #try
 
+
+		setSrcToPoint(true);
+		@test  G.writecsv_head(hightpath, [0, 10, 20, 3, 4, 5, 1, 15, 2,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
 		let batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  batch_info[1] == sort(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
@@ -257,9 +252,19 @@ end #testset_getfloat
 			@test  batch_info[4] == [0.0]
 			@test  batch_info[5] == [0.0]
 			@test  batch_info[6] == ( G.srcType === G.srcPoint)
-			@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
+			@test  batch_info 	 == (detectors |> sort, [0.0, 1, 2, 3, 4, 5, 10, 15, 20,], [0.0], [0.0], [0.0], G.srcType === G.srcPoint)
 		end #let
 	end #testset_read_batch_info
+
+
+	@testset "missing file - Detectors.csv" begin
+		rm(detectorpath, force=true)
+		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile(detectorfile, datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
+
+		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("jskfdsiu.uty",".fghpweuh")
+	end #testset
+	
+	rm(datadirectory, force=true, recursive=true) # remove tempdirectory 
 end #testset_reading_from_CSV
 
 
@@ -277,7 +282,7 @@ end #testset_reading_from_CSV
 	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 
-	local detector_info_array = [5 0; 10 0; 15 0; 20 0]
+	detector_info_array = [5 0; 10 0; 15 0; 20 0]
 	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
@@ -287,7 +292,7 @@ end #testset_reading_from_CSV
 	@test eltype(detectors) == Detector
 	det1, det2, det3, det4 = detectors
 		
-	local detector_info_array = [5 1; 10 1; 15 1; 20 1]
+	detector_info_array = [5 1; 10 1; 15 1; 20 1]
 	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
@@ -298,7 +303,7 @@ end #testset_reading_from_CSV
 	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 		
-	local detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
+	detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
 	local detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
@@ -320,11 +325,11 @@ end #testset_reading_from_CSV
 	local det1, det2, det3, det4 = detectors
 	@test det1 <= det2 <= det3 <= det4
 
-	local detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
+	detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
 	@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
-	local detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
+	detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 	@test_throws MethodError getDetectors(detector_info_array; console_FB=false)
-	local detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
+	detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
 	@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 
 
