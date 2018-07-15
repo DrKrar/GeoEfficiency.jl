@@ -66,14 +66,9 @@
 	@test setSrcToPoint(true)  === true
 end #testset
 
-@debug("input")
-@testset "input" begin
-	if true #!isapple()
-		write( stdin.buffer," anbfyiQERFC \n")
-		@test G.input() == " anbfyiQERFC "
-	else
-		@test_throws 	ErrorException	write(stdin.buffer," anbfyiQERFC \n")
-	end #if
+@debug("GeoEfficiency.input")
+@testset "GeoEfficiency.input" begin
+	write( stdin.buffer," anbfyiQERFC \n"); @test G.input() == " anbfyiQERFC "
 end #testset_input
 
 @debug("GeoEfficiency.getfloat")
