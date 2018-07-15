@@ -271,7 +271,7 @@ end #testset_reading_from_CSV
 @testset "getDetectors" begin
 	local detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 	local detectors = [Detector(5, 0, 0, 0), Detector(5, 10, 0, 0), Detector(5, 10, 2, 0), Detector(5, 10, 2, 5)]
-	local detectors = detectors |> sort
+	detectors = detectors |> sort
     
 	@test getDetectors(detector_info_array) == detectors 
 	for det = detectors
@@ -283,7 +283,7 @@ end #testset_reading_from_CSV
 	@test det1 <= det2 <= det3 <= det4
 
 	detector_info_array = [5 0; 10 0; 15 0; 20 0]
-	local detectors = getDetectors(detector_info_array)
+	detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
@@ -293,7 +293,7 @@ end #testset_reading_from_CSV
 	det1, det2, det3, det4 = detectors
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1]
-	local detectors = getDetectors(detector_info_array)
+	detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
@@ -304,7 +304,7 @@ end #testset_reading_from_CSV
 	@test det1 <= det2 <= det3 <= det4
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
-	local detectors = getDetectors(detector_info_array)
+	detectors = getDetectors(detector_info_array)
 	for det = detectors
 		@test typeof(det) == CylDetector
 		@test typeof(det) != Detector
