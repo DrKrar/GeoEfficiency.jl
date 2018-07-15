@@ -261,7 +261,7 @@ end #testset_getfloat
 		end #let
 	end #testset_read_batch_info
 end #testset_reading_from_CSV
-	
+
 
 @testset "getDetectors" begin
 	local detector_info_array = [5 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
