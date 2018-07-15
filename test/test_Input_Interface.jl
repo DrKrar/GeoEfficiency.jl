@@ -128,9 +128,9 @@ end #testset_getfloat
 
 	local detectorfile = "detectorfile.csv"
 	local hightfile    = "hightfile.csv"
-	local Rhosfile     = "Rhosfile.csv"
-	local Radiifile    = "Radiifile.csv"
-	local Lengthsfile  = "Lengthsfile.csv"	
+	local Rhosfile     = "Rhosfile.csv"			# no file will created
+	local Radiifile    = "Radiifile.csv"		# no file will created
+	local Lengthsfile  = "Lengthsfile.csv"		# no file will created
 
 	local datadirectory	=  mktempdir(); isdir(datadirectory) || mkdir(datadirectory)
 	local detectorpath 	= joinpath(datadirectory, detectorfile)
@@ -199,21 +199,23 @@ end #testset_getfloat
 	@testset "missing file - `Hights.csv`" begin
 		rm(hightpath, recursive=true)
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
+		
 		setSrcToPoint(false)
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
-			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
+			"2\n" * "3\n" 	#=SrcRadius SrcHeight=#)
 		@test  G.read_batch_info(datadirectory, detectorpath, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 	end #testset
 
-		
+
 	@testset "missing file - `Rhos.csv`" begin
 		@test  G.writecsv_head(hightpath, [4.0,], ["SrcHight"])  ==  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [4.0]
+		
 		setSrcToPoint(false)
 		write(stdin.buffer, 
 			"1\n" * "0\n" * #=axial point=#
-			"2\n" * "3\n" #=SrcRadius SrcHeight=#)
+			"2\n" * "3\n" 	#=SrcRadius SrcHeight=#)
 		@test  G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile) == (detectors |> sort, [1.0],	[0.0], [2.0], [3.0], false)
 	end #testset
 
@@ -223,7 +225,6 @@ end #testset_getfloat
 		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile(detectorfile, datadirectory)   # the Union{ArgumentError, SystemError} is used for compatibility in both 0.6 and 0.7-dev
 
 		rm(datadirectory, force=true, recursive=true)
-	
 		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("jskfdsiu.uty","fghpweuh.uty")
 	end #testset
 
