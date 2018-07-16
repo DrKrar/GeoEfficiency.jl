@@ -179,20 +179,17 @@ chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
 	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0]))|> eltype === String
 	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 		
-	try 
-		G.detector_info_from_csvFile()
-		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.dataDir)
-			setSrcToPoint(true);  
-			@test append!(every_path, batch())|> eltype === String
-			
-			if [0.0] != G.read_from_csvFile(G.srcRadii, G.dataDir) 
-				setSrcToPoint(false); 
-				@test append!(every_path, batch())|> eltype === String
-			end #if
-		end	#if
-	catch err
 
-	end #try
+	G.detector_info_from_csvFile()
+	if  [0.0] != G.read_from_csvFile(G.srcHeights, G.dataDir)
+		setSrcToPoint(true);  
+		@test append!(every_path, batch())|> eltype === String
+			
+		if [0.0] != G.read_from_csvFile(G.srcRadii, G.dataDir) 
+			setSrcToPoint(false); 
+			@test append!(every_path, batch())|> eltype === String
+		end #if
+	end	#if
 
 	rm.(every_path,  force=true)
 	#rm.(batch([aWDetector], [0.0]))
