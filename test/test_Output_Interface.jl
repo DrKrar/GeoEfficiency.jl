@@ -10,7 +10,7 @@ using Compat
 using Compat: occursin
 
 
-@testset"GeoEfficiecny.checkResultsDirs" begin 
+@testset "GeoEfficiecny.checkResultsDirs" begin 
 	@test G.checkResultsDirs() == nothing
 end #testset_checkResultsDirs
 
