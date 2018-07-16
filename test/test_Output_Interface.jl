@@ -20,31 +20,31 @@ let pnt::Point = Point(1),
 	cylDet::CylDetector = Detector(5, 10),
 	wellDet::WellDetector = Detector(5, 4, 3.2, 2)
 	
-@testset "calc - CylDetector, WellDetecto" for 
-SrcRadius = Real[1, 1//2, e, pi, 1.0], 
-SrcLength = Real[1, 1//2, e, pi, 1.0]
+	@testset "calc - CylDetector, WellDetecto" for 
+	SrcRadius = Real[1, 1//2, e, pi, 1.0], 
+	SrcLength = Real[1, 1//2, e, pi, 1.0]
 
-	@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
-	@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
-end #testset_calc
+		@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
+		@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
+	end #testset_calc
 end #let
 
 
 @debug("calcN")
 let consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
-@testset "calcN" for 	
-cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+	@testset "calcN" for 	
+	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
 
-	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
-	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
-end #testset_calcN
+		@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
+		@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
+	end #testset_calcN
 end #let
 
 
 @debug("writecsv_head")    
 @testset "writecsv_head" begin
 	# `writecsv_head` tests in the `reading from CSV` testset
-end #testset
+end #testset_writecsv_head
 
 
 @debug("GeoEfficiecny._batch")    
@@ -53,7 +53,7 @@ end #testset
 	@test G._batch(Val(false), CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
 	@test isnan(G._batch(Val(true), CylDetector(eps(0.3)), [0.0], [1.0], [0.0],[0.0])[2][end])
 	@test isnan(G._batch(Val(false), CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
-end #testset
+end #testset_GeoEfficiecny._batch
 
 
 @debug("batch")    
@@ -61,7 +61,7 @@ end #testset
 	local acylDetector::CylDetector = CylDetector(eps(0.5))
 	local path::String = batch(acylDetector, [0.0])
 	@test occursin( G.id(acylDetector), path)
-	@test readdlm(path,',')[2,end] ≈ 0.5	
+	@test readdlm(path,',')[2,end] ≈ 0.5
 
 	path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
 	@test occursin(G.id(acylDetector), path)
@@ -75,12 +75,12 @@ end #testset
 	@test occursin.(G.id(acylDetector), paths) |> any
 	append!(every_path, paths)
 
-	aBDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.2)); 
+	local aBDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.2)); 
 	paths = batch([aBDetector], [0.0])
 	@test occursin.(G.id(aBDetector), paths) |> any
 	append!(every_path, paths)
 
-	aWDetector = WellDetector(eps(0.5), eps(0.4), eps(0.2), eps(0.1))
+	local aWDetector = WellDetector(eps(0.5), eps(0.4), eps(0.2), eps(0.1))
 	paths = batch([aWDetector], [0.0])
 	@test occursin.(G.id(aWDetector), paths) |> any
 	append!(every_path, paths)
@@ -181,11 +181,11 @@ chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
 		
 	try 
 		G.detector_info_from_csvFile()
-		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
+		if  [0.0] != G.read_from_csvFile(G.srcHeights, G.dataDir)
 			setSrcToPoint(true);  
 			@test append!(every_path, batch())|> eltype === String
 			
-			if [0.0] != G.read_from_csvFile(G.srcRadii, G.datadir) 
+			if [0.0] != G.read_from_csvFile(G.srcRadii, G.dataDir) 
 				setSrcToPoint(false); 
 				@test append!(every_path, batch())|> eltype === String
 			end #if
@@ -201,4 +201,4 @@ chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
 		rm.(batch([Detector(eps(cr))], [0.0], [0.0], [0.0],[0.0],false) ; force=true)
 		rm.(batch([Detector(eps(cr))], [0.0]) ; force=true)
 	end #for
-end #testset_batch_GeoEfficiecny._batch
+end #testset_batch
