@@ -16,8 +16,10 @@ end #testset_checkResultsDirs
 
 
 @debug("calc - CylDetector, WellDetecto")
-pnt::Point = Point(1)
-cylDet = Detector(5, 10); wellDet = Detector(5, 4, 3.2, 2)
+let pnt::Point = Point(1),
+	cylDet::CylDetector = Detector(5, 10),
+	wellDet::WellDetector = Detector(5, 4, 3.2, 2)
+	
 @testset "calc - CylDetector, WellDetecto" for 
 SrcRadius = Real[1, 1//2, e, pi, 1.0], 
 SrcLength = Real[1, 1//2, e, pi, 1.0]
