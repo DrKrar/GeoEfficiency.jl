@@ -27,6 +27,7 @@ SrcLength = Real[1, 1//2, e, pi, 1.0]
 	@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
 	@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
 end #testset_calc
+end #let
 
 
 @debug("calcN")
