@@ -299,8 +299,8 @@ function _batch(
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
-		srcLengths_array::Vector{Float64},
-		)
+		srcLengths_array::Vector{Float64};
+		io::IO=stdout)
 
 	aPnt::Point = Point(0.0, 0.0)
 	calculatedEff::Float64 = 0.0
@@ -313,11 +313,11 @@ function _batch(
 			calculatedEff = try	geoEff(detector, aPnt); catch err;	NaN64 end
 			push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
 
-			printstyled(cellLabel, color=:yellow)
-			println(" - Source: ", id(aPnt))
-			println()
-			println(" - The detector Geometrical Efficiency = ", calculatedEff)
-			printstyled(repeat(" =",36),"\n", color=:red)
+			printstyled(io, cellLabel, color=:yellow)
+			println(io, " - Source: ", id(aPnt))
+			println(io)
+			println(io, " - The detector Geometrical Efficiency = ", calculatedEff)
+			printstyled(io, repeat(" =",36),"\n", color=:red)
 
 		end #for_Rho
 
@@ -370,8 +370,8 @@ function _batch(
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
-		srcLengths_array::Vector{Float64},
-		)
+		srcLengths_array::Vector{Float64};
+		io::IO=stdout)
 
 	aPnt::Point = Point(0.0, 0.0)
 	out_results::Vector{Float64} = Float64[];
@@ -393,11 +393,11 @@ function _batch(
 
 					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 
-					printstyled(cellLabel, color=:yellow)
-					println(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
-					println()
-					println(" - The detector Geometrical Efficiency = ", calculatedEff)
-					printstyled(repeat(" =",36),"\n", color=:red)
+					printstyled(io, cellLabel, color=:yellow)
+					println(io, " - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
+					println(io)
+					println(io, " - The detector Geometrical Efficiency = ", calculatedEff)
+					printstyled(io, repeat(" =",36),"\n", color=:red)
 
 				end #for_srcRadius
 
