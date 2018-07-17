@@ -235,7 +235,7 @@ return Vector{Float64} based on data in csv file named `csv_data`. directory `da
 where the file is located default to ``$(dataDir)`` as set by the constant `dataDir`.
 
 """
-function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = datadir)::Vector{Float64}
+function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = dataDir)::Vector{Float64}
 	@info("Opening `$(csv_data)`......")
 	try
 		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
@@ -243,10 +243,10 @@ function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = d
 
 	catch err
 	    if isa(err, SystemError) 
-		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(dataDir)`")
+		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
 		else
-		    @error("Some thing went wrong, may be `$(csv_data)` in `$(dataDir)` formate is bad or empty")
+		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` formate is bad or empty")
 		
 		end		
 		return Float64[0.0]
@@ -272,8 +272,8 @@ Return a tuple
 		GeoEfficiency_isPoint)
 
 """
-read_batch_info() = read_batch_info(datadir,
-                                  detectors, 
+read_batch_info() = read_batch_info(dataDir,
+                                  Detectors, 
 								 srcHeights,
 								    srcRhos,
 								   srcRadii,
