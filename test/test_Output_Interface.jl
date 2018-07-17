@@ -31,11 +31,11 @@ end #let
 
 
 @debug("calcN")
-@testset "calcN - $cylDet" for 	
-cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+@testset "calcN - $consol_input" for 
 consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
 
-	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
+	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
+	@test H.exec_consol_unattended(calcN, "eps(0.10)" *consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
 	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
 end #testset_calcN
 

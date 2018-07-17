@@ -12,10 +12,10 @@ const G = GeoEfficiency
 include("Helper.jl")
 
 const SourceFiles = [
-	"Helper",
-	"Input_Interface",
-    "Physics_Model",
-    "Calculations",
+	#"Helper",
+	#"Input_Interface",
+    #"Physics_Model",
+    #"Calculations",
     "Output_Interface"]
 
 @testset "$SourceFile" for SourceFile = SourceFiles
