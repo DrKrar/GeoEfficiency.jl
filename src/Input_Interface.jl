@@ -358,9 +358,9 @@ end #function
 
 """
 
-    getDetectors(detectors_array::Vector{<:Detector} = Detector[])
+    getDetectors(detectors_array::Vector{<:Detector} = Detector[])::Vector{Detector}
 
-return the  `detectors_array` extended by the entered detectors and sorted according to the 
+return the `detectors_array` as Vector{Detector} extended by the entered detectors and sorted according to the 
 detector volume. 
 prompt the user to input detector parameters from the `console`.
 
@@ -368,7 +368,7 @@ prompt the user to input detector parameters from the `console`.
     If no array received in the input an empty array will be created to receive the converted detectors.
 
 """
-function getDetectors(detectors_array::Vector{<:Detector} = Detector[])
+function getDetectors(detectors_array::Vector{<:Detector} = Detector[])::Vector{Detector}
 	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
 	while(true)
 		try
@@ -391,9 +391,11 @@ end #function
 
 """
 
-	getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ;console_FB=true) 
+	getDetectors(detector_info_array::Matrix{<:Real}, 
+					 detectors_array::Vector{<:Detector} = Detector[]; 
+					 						   console_FB=true)::Vector{Detector}
 
-return `detectors_array`, after extending it with the successfully converted detectors. while, 
+return `detectors_array` as Vector{Detector}, after extending it with the successfully converted detectors. while, 
 attempt to convert detectors from the information in `detector_info_array`. 
 
 !!! note
@@ -401,7 +403,9 @@ attempt to convert detectors from the information in `detector_info_array`.
     from the `console` if the `detector_info_array` is empty or contain no numerical element.
 
 """
-function getDetectors(detector_info_array::Matrix{<:Real}, detectors_array::Vector{<:Detector} = Detector[] ; console_FB=true) 
+function getDetectors(detector_info_array::Matrix{<:Real}, 
+						  detectors_array::Vector{<:Detector} = Detector[]; 
+						  							console_FB=true)::Vector{Detector}
 
 	if isempty(detector_info_array) 
 		if console_FB
