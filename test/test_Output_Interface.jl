@@ -31,14 +31,14 @@ end #let
 
 
 @debug("calcN")
-let consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
-	@testset "calcN" for 	
-	cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+@testset "calcN - $cylDet" for 	
+cylDet = [Detector(5,10), Detector(eps(),0)], #, wellDet= Detector(5, 4, 3, 2)
+consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
 
-		@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
-		@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
-	end #testset_calcN
-end #let
+	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[cylDet])  == nothing	 
+	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
+end #testset_calcN
+
 
 
 @debug("writecsv_head")    

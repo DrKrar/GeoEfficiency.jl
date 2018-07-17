@@ -18,7 +18,7 @@ nd  = -20.0:2.0:30.0
 	@test G.integrate(H.poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
 	@test G.integrate(H.poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
 	@test G.integrate(H.poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2	
-end #testset_for
+end #testset_integrate
 
 
 @testset "special cases" begin
