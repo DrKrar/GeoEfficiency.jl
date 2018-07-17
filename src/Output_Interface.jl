@@ -132,7 +132,7 @@ function writecsv_head_any(filename::AbstractString, content, head=[])
 end #function
 
 
-#---------------- batch() ----------------------------------
+#-------------------------- batch() ------------------------
 
 """
 
