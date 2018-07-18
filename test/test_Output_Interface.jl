@@ -32,11 +32,13 @@ end #let
 
 @debug("calcN")
 @testset "calcN - $consol_input" for 
-consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
+consol_input = ["4 0 1 2 Q", 
+				"4 0 1 3 " * "d " * "4 0 1 4 Q", 
+				"4 0 1 5 " * "n " * "11 6 0 " * "4 0 1 6 Q"]
 
 	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
-	@test_skip H.exec_consol_unattended(calcN, "eps(0.1) " * consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
-	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
+	@test H.exec_consol_unattended(calcN,  consol_input, Fn_ARGs =[Detector(eps())])  == nothing
+	@test H.exec_consol_unattended(calcN, "13 7 0 " * consol_input)      == nothing	
 end #testset_calcN
 
 
