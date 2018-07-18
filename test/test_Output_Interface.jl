@@ -35,7 +35,7 @@ end #let
 consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
 
 	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
-	@test H.exec_consol_unattended(calcN, "eps(0.1) " * consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
+	@test_skip H.exec_consol_unattended(calcN, "eps(0.1) " * consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
 	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
 end #testset_calcN
 
