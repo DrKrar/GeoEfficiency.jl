@@ -244,8 +244,8 @@ end #testset_BoreDetector
 	@debug("WellDetector()")
 	let Well0 = WellDetector(5, 4, 3, 2)
 
-		@test H.exec_consol_unattended(BorWellDetector, [5, 4, 3, 2])    == Well0
-		@test H.exec_consol_unattended(BorWellDetector, [5, 4, 3, 6, 2]) == Well0
+		@test H.exec_consol_unattended(BoreWellDetector, [5, 4, 3, 2])    == Well0
+		@test H.exec_consol_unattended(BoreWellDetector, [5, 4, 3, 6, 2]) == Well0
 	end #let
 end #testset_WellDetector
 
