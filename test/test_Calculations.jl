@@ -185,7 +185,7 @@ end #tesset_scalling
 	holeRadius = 3:0.5:4, 
 	holeDepth  = 0.1:1.0:3.1
 
-	local mim, mam = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
+	local (mim, mam) = holeDepth >= 1 ? (0.5, 1.0) : (0.0, 0.5)
 
 		@test geoEff(Detector(5, 4, holeRadius, 1),(Point(1),0, 0)) ≈ 0.5 atol= absoluteTol1
 		@test mim < geoEff(Detector(5, 4, holeRadius, holeDepth),(Point(1),0, 0))    < mam
