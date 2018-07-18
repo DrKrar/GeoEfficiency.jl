@@ -244,10 +244,8 @@ end #testset_BoreDetector
 	@debug("WellDetector()")
 	let Well0 = WellDetector(5, 4, 3, 2)
 
-		write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
-		@test WellDetector() === Well0
-		write(stdin.buffer,"5\n" * "4\n" * "6\n" * "3\n" * "6\n" * "2\n")
-		@test WellDetector() === Well0
+		@test H.exec_consol_unattended(BorWellDetector, [5, 4, 3, 2])=== Well0
+		@test H.exec_consol_unattended(BorWellDetector, [5, 4, 3, 6, 2])=== Well0
 	end #let
 end #testset_WellDetector
 
