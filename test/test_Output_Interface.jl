@@ -207,6 +207,6 @@ chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths
 		append!(every_path, batch([Detector(eps(cr))], [0.0], [0.0], [0.0],[0.0],false))
 		append!(every_path, batch([Detector(eps(cr))], [0.0]))
 	end #for
-println("gffffsdfghgdfghadbgvhbvdkjhvbkhfbvkhadfvkjdfvkfdjvk")
+
 rm.(every_path; force=true)
 end #testset_batch
