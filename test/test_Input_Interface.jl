@@ -279,7 +279,7 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	local det1, det2, det3, det4 = detectors
+	local (det1, det2, det3, det4) = detectors
 	@test det1 <= det2 <= det3 <= det4
 
 	detector_info_array = [5 0; 10 0; 15 0; 20 0]
@@ -290,7 +290,7 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	(det1, det2, det3, det4) = detectors
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1]
 	detectors = getDetectors(detector_info_array)
@@ -300,7 +300,7 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	(det1, det2, det3, det4) = detectors
 	@test det1 <= det2 <= det3 <= det4
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1//1]
@@ -311,7 +311,7 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	(det1, det2, det3, det4) = detectors
 	@test det1 <= det2 <= det3 <= det4
 		
 	detector_info_array = [5 1; 10 1; 15 1; 20 1.0]
@@ -322,7 +322,7 @@ end #testset_reading_from_CSV
 	end
 	@test eltype(detectors) != CylDetector
 	@test eltype(detectors) == Detector
-	det1, det2, det3, det4 = detectors
+	(det1, det2, det3, det4) = detectors
 	@test det1 <= det2 <= det3 <= det4
 
 	detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
