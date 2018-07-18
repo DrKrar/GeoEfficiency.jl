@@ -2,7 +2,7 @@ module Helper
 using Compat: stdin #, split
 
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
-	readavailable(stdin.buffer)		# empty input stream
+	@assert readavailable(stdin.buffer) == UInt8[]	# empty input stream
 	for input in  string.(consol_inputs)
 		 write(stdin.buffer, input, "\n")
 	end
