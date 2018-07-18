@@ -229,19 +229,19 @@ function batch( detectors_array::Vector{T},
 
 	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > max_batch 
 		for detector = detectors_array
-			_bt() = _batch(Val(ispnt), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 			push!(outpaths, redirect_stdout(_bt, stdout))
 		end # detectors_array
 
 	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
 		for detector = detectors_array
-			_bt() = _batch(Val(ispnt), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 			push!(outpaths, redirect_stdout(_bt, stdout))
 		end # detectors_array
 
 	else
 		for detector = detectors_array
-			_bt() = _batch(Val(ispnt), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 			push!(outpaths, _bt())
 		end # detectors_array
 
