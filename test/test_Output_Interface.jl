@@ -48,11 +48,18 @@ end #testset_writecsv_head
 
 
 @debug("GeoEfficiecny._batch")    
-@testset "GeoEfficiecny._batch" begin
-	@test G._batch(Val(true),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-	@test G._batch(Val(false), CylDetector(eps(0.2)), [0.0], [0.0], [0.0], [0.0])[2][end] ≈ 0.5
-	@test isnan(G._batch(Val(true), CylDetector(eps(0.3)), [0.0], [1.0], [0.0],[0.0])[2][end])
-	@test isnan(G._batch(Val(false), CylDetector(eps(0.4)), [0.0], [1.0], [0.0],[0.0])[2][end])
+@testset "GeoEfficiecny._batch" for	isSrcPoint = [true, false]
+
+	rtrn = G._batch(Val(isSrcPoint),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])
+	@test typeof(rtrn) <: Tuple{Detector, Matrix{Float64}, String}
+	@test rtrn[2][end] ≈ 0.5
+	rm(rtrn[end]; force=true)
+
+	rtrn = G._batch(Val(isSrcPoint), CylDetector(eps(0.1)), [0.0], [1.0], [0.0],[0.0])
+	@test typeof(rtrn) <: Tuple{Detector, Matrix{Float64}, String}
+	@test rtrn[2][end] |> isnan
+	rm(rtrn[end]; force=true)
+
 end #testset_GeoEfficiecny._batch
 
 
