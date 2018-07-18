@@ -307,14 +307,10 @@ end #testset_WellDetector
 	end #let
 
 	@debug("Detector()")
-	write(stdin.buffer,"5\n" * "4\n" * "3\n" * "2\n")
-	@test Detector() === Detector(5, 4, 3, 2)
-	write(stdin.buffer,"5\n" * "4\n" * "0\n")
-	@test Detector() === Detector(5, 4)
-	write(stdin.buffer,"5\n" * "4\n" * "\n")
-	@test Detector() === Detector(5, 4)
-	write(stdin.buffer,"5\n" * "4\n" * "33\n" * "3\n" * "22\n" * "2\n")
-	@test Detector() === Detector(5, 4, 3, 2)
+	@test H.exec_consol_unattended(Detector, [5, 4, 3, 6, 2]) 		== Detector(5, 4, 3, 2)
+	@test H.exec_consol_unattended(Detector, [5, 4, 0])				== Detector(5, 4)
+	@test H.exec_consol_unattended(Detector, "5\n" * "4\n" * "\n") 	== Detector(5, 4)
+	@test H.exec_consol_unattended(Detector, [5, 4, 33, 3, 22, 2]) 		== Detector(5, 4, 3, 2)
 end #testset_Detector	
 
 
