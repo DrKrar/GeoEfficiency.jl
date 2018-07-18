@@ -309,7 +309,7 @@ end #testset_WellDetector
 	@debug("Detector()")
 	@test H.exec_consol_unattended(Detector, [5, 4, 3, 6, 2]) 		== Detector(5, 4, 3, 2)
 	@test H.exec_consol_unattended(Detector, [5, 4, 0])				== Detector(5, 4)
-	@test H.exec_consol_unattended(Detector, "5\n" * "4\n" * "\n") 	== Detector(5, 4)
+	@test H.exec_consol_unattended(Detector, "5\n" * "4\n" * "0\n") 	== Detector(5, 4)
 	@test H.exec_consol_unattended(Detector, [5, 4, 33, 3, 22, 2]) 		== Detector(5, 4, 3, 2)
 end #testset_Detector	
 

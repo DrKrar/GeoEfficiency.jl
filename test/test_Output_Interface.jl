@@ -126,7 +126,7 @@ end #testset_GeoEfficiecny._batch
 	@test occursin.(G.id(aWDetector), paths) |> any
 	append!(every_path, paths)
 
-	acylDetector = CylDetector(eps(0.6))
+	acylDetector = CylDetector(eps(0.6), 5)
 	paths = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
 	@test occursin.(G.id(acylDetector), paths) |> any
 	@test occursin.(G.id(aBDetector), paths) |> any
@@ -140,7 +140,7 @@ append!(every_path, paths)
 append!(every_path, paths)
 chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777); # 0o100666
 
-	acylDetector = CylDetector(eps(0.7))
+	acylDetector = CylDetector(eps(0.7), 5)
 	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
 	@test occursin.(G.id(acylDetector), paths) |> any
 	@test occursin.(G.id(aBDetector)  , paths) |> any
