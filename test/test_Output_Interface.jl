@@ -38,6 +38,7 @@ consol_input = ["4 0 1 2 Q",
 
 	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
 	@test H.exec_consol_unattended(calcN,  consol_input, Fn_ARGs =[Detector(eps())])  == nothing
+	@test H.exec_consol_unattended(calcN, "13 7 0 " * consol_input)      == nothing
 	@test H.exec_consol_unattended(calcN, "13 7 0 Q " * consol_input)      == nothing	
 end #testset_calcN
 
