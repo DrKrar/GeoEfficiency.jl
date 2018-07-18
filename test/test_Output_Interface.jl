@@ -35,7 +35,7 @@ end #let
 consol_input = ["4 0 1 2 ", "4 0 1 2 " * "d " * "4 0 1 2 ", "4 0 1 2 " * "n " * "10 5 0 " * "4 0 1 2 "]
 
 	@test H.exec_consol_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
-	@test H.exec_consol_unattended(calcN, "eps(0.10)" *consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
+	@test H.exec_consol_unattended(calcN, "eps(0.1) " * consol_input, Fn_ARGs =[Detector(eps(), 0)])  == nothing
 	@test H.exec_consol_unattended(calcN, "10 5 0 " * consol_input)      == nothing	
 end #testset_calcN
 
@@ -47,7 +47,7 @@ end #testset_calcN
 end #testset_writecsv_head
 
 
-@debug("GeoEfficiecny._batch")    
+@debug("GeoEfficiecny._batch")
 @testset "GeoEfficiecny._batch" for	isSrcPoint = [true, false]
 
 	rtrn = G._batch(Val(isSrcPoint),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])
@@ -129,40 +129,40 @@ end #testset_GeoEfficiecny._batch
 	@test occursin.(G.id(acylDetector), paths) |> any
 	@test occursin.(G.id(aBDetector), paths) |> any
 	@test occursin.(G.id(aWDetector), paths) |> any
-chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444); chmod.(paths, 0o100444)
+chmod.(paths, 0o100444)	#chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444); chmod.(paths, 0o100444)
 append!(every_path, paths)
 	paths = batch([acylDetector, aBDetector, aWDetector], [0.0])
 	@test occursin.("_" * G.id(acylDetector), paths) |> any
 	@test occursin.("_" * G.id(aBDetector)  , paths) |> any
 	@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 append!(every_path, paths)
-chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777); # 0o100666
-		
+chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777); # 0o100666
+
 	acylDetector = CylDetector(eps(0.7))
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
 	@test occursin.(G.id(acylDetector), paths) |> any
 	@test occursin.(G.id(aBDetector)  , paths) |> any
 	@test occursin.(G.id(aWDetector)  , paths) |> any
 append!(every_path, paths)
-chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444);
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+chmod.(paths, 0o100444)	#chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444);
+	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
 	@test occursin.("_" * G.id(acylDetector), paths) |> any
 	@test occursin.("_" * G.id(aBDetector)  , paths) |> any
 	@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 append!(every_path, paths)
-chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
-	
-				
+chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
+
+		
 	@test append!(every_path, batch([eps() 0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
+	@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 	@test append!(every_path, batch([1.0 0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
+	@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 	@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
+	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 	@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
+	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 	@test append!(every_path, batch([e pi], [0.0]))|> eltype === String
-	@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0],false)) |> eltype === String
+	@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 
 	@test append!(every_path, batch([5.0 4 3], [0.0]))|> eltype === String
 	@test append!(every_path, batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
@@ -190,19 +190,21 @@ chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
 	G.detector_info_from_csvFile()
 	if  [0.0] != G.read_from_csvFile(G.srcHeights, G.dataDir)
 		setSrcToPoint(true);  
-		@test append!(every_path, batch())|> eltype === String
+		@test_skip append!(every_path, batch())|> eltype === String
 			
 		if [0.0] != G.read_from_csvFile(G.srcRadii, G.dataDir) 
 			setSrcToPoint(false); 
-			@test append!(every_path, batch())|> eltype === String
+			@test_skip append!(every_path, batch())|> eltype === String
 		end #if
 	end	#if
 
-	rm.(every_path,  force=true)
+
 	#rm.(batch([aWDetector], [0.0]))
 	#rm.(batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false))
-	for cr = 0.0:0.1:0.7	
-		rm.(batch([Detector(eps(cr))], [0.0], [0.0], [0.0],[0.0],false) ; force=true)
-		rm.(batch([Detector(eps(cr))], [0.0]) ; force=true)
+	for cr = 0.2:0.1:0.7	
+		append!(every_path, batch([Detector(eps(cr))], [0.0], [0.0], [0.0],[0.0],false))
+		append!(every_path, batch([Detector(eps(cr))], [0.0]))
 	end #for
+println("gffffsdfghgdfghadbgvhbvdkjhvbkhfbvkhadfvkjdfvkfdjvk")
+rm.(every_path; force=true)
 end #testset_batch
