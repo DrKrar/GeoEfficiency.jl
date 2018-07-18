@@ -20,7 +20,7 @@ const SourceFiles = [
 					]
 
 @testset "$SourceFile" for SourceFile = SourceFiles
-	@debug("Begin test of.....", SourceFile)   
+	@debug("Begin test", SourceFile)   
 	include("test_$SourceFile.jl")
 	println("\n")
 end #testset
