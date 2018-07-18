@@ -2,8 +2,9 @@ module Helper
 using Compat: stdin #, split
 
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
+	readavailable(stdin.buffer)		# empty input stream
 	for input in  string.(consol_inputs)
-		 write(stdin.buffer, input,"\n")
+		 write(stdin.buffer, input, "\n")
 	end
 	return Fn(Fn_ARGs...)
 end
