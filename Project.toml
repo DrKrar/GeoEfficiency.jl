@@ -1,7 +1,7 @@
 name = "GeoEfficiency"
 uuid = "b1f22607-7830-5ceb-9a8e-05ab1ac77008"
 repo = "https://github.com/DrKrar/GeoEfficiency.jl.git"
-version = "v0.9.1+"
+version = "v0.9.2"
 
 [deps]
 Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
