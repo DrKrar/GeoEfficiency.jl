@@ -16,6 +16,7 @@ import Compat: @info, @error
 const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
+const max_batch = 100   # max number of output 
 global countDetectors = 1
 
 
@@ -187,13 +188,19 @@ function batch(	detector::Detector,
 				srcLengths_array::Vector{S}=[0.0],
 				ispoint::Bool=true) where S <: Real
 				
-	return _batch(Val(ispoint),
-				detector,
-				srcHeights_array,
-				srcRhos_array,
-				srcRadii_array,
-				srcLengths_array
-				)[3]
+	_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+
+	if ispoint && length(srcHeights_array) * length(srcRhos_array) > max_batch 
+		redirect_stdout(_bt, stdout)
+
+	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
+		redirect_stdout(_bt, stdout)
+
+	else
+		_bt()
+
+	end #if
+
 end #function
 
 """
@@ -219,16 +226,23 @@ function batch( detectors_array::Vector{T},
 	       ispoint::Bool=true) where T <: Detector where S <: Real
 	
 	outpaths::Vector{String} = String[]
-	for detector = detectors_array
-		push!(outpaths ,  
-			batch(detector,
-					srcHeights_array,
-					srcRhos_array,
-					srcRadii_array,
-					srcLengths_array,
-					ispoint))
+	_bt() = _batch(Val(ispnt), detector,	srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > max_batch 
+		for detector = detectors_array
+			push!(outpaths, redirect_stdout(_bt, stdout))
+		end # detectors_array
 
-	end # detectors_array
+	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
+		for detector = detectors_array
+			push!(outpaths, redirect_stdout(_bt, stdout))
+		end # detectors_array
+
+	else
+		for detector = detectors_array
+			push!(outpaths, _bt())
+		end # detectors_array
+
+	end #if
 
 	print("\n\t"); @info("The program terminated, Thank you >>>>\n")
 	return outpaths
