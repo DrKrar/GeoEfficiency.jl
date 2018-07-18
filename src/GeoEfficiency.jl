@@ -68,13 +68,13 @@ const abt ="""
 \t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
 \t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 \t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-07-15")) old master)  
+\t Version:       v"0.9.2-DEV" - ($(Date(now()) - Date("2018-07-18")) old master)  
 \t Documentation: http://geoefficiencyjl.readthedocs.org
 \n
 \n\tBatch mode 
 \t-  read files by defaul from directory `$dataDir`
 \t-  save results by default to directory `$resultdir`
-\n\tfor more information see `batch`, `prepare_batch`.
+\n\tfor more information see `batch`, `batchInfo`.
 \n
 """
 
