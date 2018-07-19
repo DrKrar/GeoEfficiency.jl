@@ -88,7 +88,12 @@ end #testset
 
 @debug("GeoEfficiency.input")
 @testset "GeoEfficiency.input" begin
-	write( stdin.buffer," anbfyiQERFC \n"); @test G.input() == " anbfyiQERFC "
+	@test H.exec_consol_unattended(input, []) == ""
+    @test H.exec_consol_unattended(input, "") == ""
+    @test H.exec_consol_unattended(input, [1]) == "1"
+	@test H.exec_consol_unattended(input, "1") == "1"
+	@test H.exec_consol_unattended(input,  "anbfyiQERFC") == "anbfyiQERFC"
+	@test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 end #testset_input
 
 
@@ -138,7 +143,7 @@ end #testset_input
 		
 	for i = 0:5
 		write(stdin.buffer,"1.2+2im\n"^i * "3\n")
-		@test   3.0 == G.getfloat("\nthe first time input '1.2+2im': ")
+		@test G.getfloat("\nthe first time input '1.2+2im': ") == 3.0
 	end # for
 end #testset_getfloat
 

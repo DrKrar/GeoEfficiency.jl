@@ -9,8 +9,8 @@
 #------------------ consts - globals - imports -------------------
 
 using Compat
-import Base: show, isless
 using Compat: @info, @warn, @error
+using Base: show, isless
 
 
 #-------------------------- Point ----------------------------------

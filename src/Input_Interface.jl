@@ -8,10 +8,8 @@
 
 #------------------ consts - globals - imports ----------------------------
 
-using Compat
-using Compat.MathConstants
-using Compat.DelimitedFiles
-import Compat: @info, @warn, @error
+using Compat, Compat.MathConstants, Compat.DelimitedFiles
+using Compat: @info, @warn, @error, @__MODULE__
 
 isconst(@__MODULE__, :dataFolder ) 	||	const dataFolder = string(@__MODULE__)
 isconst(@__MODULE__, :dataDir )		||	const dataDir    = joinpath(homedir(), dataFolder) 	
@@ -35,7 +33,7 @@ global srcType = srcUnknown
 return the current value of the global `GeoEfficiency.srcType`.
 
 """
-typeofSrc()::SrcType = srcType  # srcType !== SrcType, but
+typeofSrc()::SrcType = srcType  # srcType != SrcType, but
 
 """
     typeofSrc(x::Int)::SrcType
