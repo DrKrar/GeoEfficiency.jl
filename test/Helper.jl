@@ -4,6 +4,7 @@ using Compat: stdin, @warn #, split
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
 	bffr = readavailable(stdin.buffer)
 	bffr == UInt8[] || @warn "buffer not empty, see the perivious call to `exec_consol_unattended`"  buffer = string(bffr) # empty input stream
+	
 	if 0 == length(consol_inputs)
 		write(stdin.buffer, "\n")
 
@@ -13,6 +14,7 @@ function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector;
 			end # for
 
 	end #IF
+	
 	return Fn(Fn_ARGs...)		# call and return the value	
 end
 exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs...; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, consol_inputs; Fn_ARGs=Fn_ARGs)
