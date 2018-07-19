@@ -19,10 +19,14 @@ const SourceFiles = [
 					"Output_Interface"
 					]
 
-@testset "$SourceFile" for SourceFile = SourceFiles
-	@debug("Begin test", SourceFile)   
-	include("test_$SourceFile.jl")
-	println("\n")
-end #testset
+@testset "GeoEfficiency" begin
 
-@test about() == nothing
+	@testset "$SourceFile" for SourceFile = SourceFiles
+		@debug("Begin test", SourceFile)   
+		include("test_$SourceFile.jl")
+		println("\n")
+	end #testset_SourceFile
+
+	@test about() == nothing
+
+end #testset_GeoEfficiency
