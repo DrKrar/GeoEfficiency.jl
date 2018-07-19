@@ -1,7 +1,7 @@
 module Helper
 using Compat: stdin, @warn #, split
 
-function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector; Fn_ARGs::Vector=[])
+function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector = []; Fn_ARGs::Vector=[])
 	bffr = readavailable(stdin.buffer)
 	bffr == UInt8[] || @warn "buffer not empty, see the perivious call to `exec_consol_unattended`"  buffer = String(bffr) # empty input stream
 	
