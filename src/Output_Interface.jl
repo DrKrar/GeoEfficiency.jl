@@ -342,12 +342,12 @@ function _batch(
 	end #for_Height
 	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
 	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
-	path = joinpath(resultdir_pnt,  "$(id(detector)).csv")
+	path::String = joinpath(resultdir_pnt,  "$(id(detector)).csv")
 	try
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	catch err
-		@error("'.$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
 		checkResultsDirs() # to make sure the directories do exist
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
@@ -429,7 +429,7 @@ function _batch(
 
 	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
 	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
-	path = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
+	path::String = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
 	try 
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
