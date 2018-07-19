@@ -10,7 +10,7 @@
 
 using Compat
 using Compat: @info, @warn, @error
-using Base: show, isless
+import Base: show, isless
 
 
 #-------------------------- Point ----------------------------------
