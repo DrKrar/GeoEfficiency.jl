@@ -1,16 +1,24 @@
 @testset "exec_consol_unattended" begin
     @test H.exec_consol_unattended(+, [] ;Fn_ARGs=[1, 2, 3]) == 6
-    @test readavailable(stdin.buffer) |> String == "\n"
+        @test readavailable(stdin.buffer) |> String == "\n"
     @test H.exec_consol_unattended(+ ;Fn_ARGs=[1, 2, 3]) == 6
-    @test readavailable(stdin.buffer) |> String == "\n"
+        @test readavailable(stdin.buffer) |> String == "\n"
     @test H.exec_consol_unattended(+, "";Fn_ARGs=[1, 2, 3]) == 6
-    @test readavailable(stdin.buffer) |> String == "\n"
+        @test readavailable(stdin.buffer) |> String == "\n"
 
     @test H.exec_consol_unattended(readline, []) == ""
     @test H.exec_consol_unattended(readline, "") == ""
     @test H.exec_consol_unattended(readline, [1]) == "1"
     @test H.exec_consol_unattended(readline, "1") == "1"
     #@test H.exec_consol_unattended(readline, 1,2) == "1\n2\n"
+
+    @test H.exec_consol_unattended(sin, "1 2 3 4" ;Fn_ARGs=[pi]) == sin(pi)
+        @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
+    @test H.exec_consol_unattended(sin, ["1", "2", "3", "4"] ;Fn_ARGs=[pi]) == sin(pi)
+        @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
+    @test H.exec_consol_unattended(sin, [1, 2, 3, 4] ;Fn_ARGs=[pi]) == sin(pi)
+        @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
+    @test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 
     @test H.exec_consol_unattended(readavailable, []    ;Fn_ARGs=[stdin])|> String   == "\n"
     @test H.exec_consol_unattended(readavailable, ""    ;Fn_ARGs=[stdin])|> String   == "\n"
