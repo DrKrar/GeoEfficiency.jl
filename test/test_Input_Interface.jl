@@ -9,61 +9,80 @@
 
 @debug("setSrcToPoint & typeofSrc")
 @testset "setSrcToPoint & typeofSrc" begin
-	@test G.srcType === G.srcUnknown  	# the initial value
+	@test G.srcType === G.srcUnknown  		# the initial value
 	@test typeofSrc() === G.srcUnknown  	# the initial value
-	@test setSrcToPoint() === false      # not defined, set to not point
+	@test setSrcToPoint() === false      	# not defined, set to not point
 
 	@test setSrcToPoint(false) === false
 	@test G.srcType == G.srcNotPoint
 	@test typeofSrc() === G.srcNotPoint
 	@test setSrcToPoint() === false
-	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false	
+	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false	# allredy set
 
-	@test setSrcToPoint(true) === true
+	@test setSrcToPoint(true)
 	@test G.srcType === G.srcPoint
 	@test typeofSrc() === G.srcPoint
-	@test setSrcToPoint() === true
-	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === true	
+	@test setSrcToPoint()
+	@test setSrcToPoint("\n Is it a point source {Y|n} ? ")				# allredy set
 
 	@test typeofSrc(-5) === G.srcUnknown
 	@test typeofSrc(-1) === G.srcUnknown
 	@test setSrcToPoint() === false
-	#@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false # require input
-		
-	@test typeofSrc(0) === G.srcPoint
-	@test setSrcToPoint() === true
-	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === true
-	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
 		
 	@test typeofSrc(1) === G.srcLine
 	@test setSrcToPoint() === false
 	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
 	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
+	@test setSrcToPoint(true)
 		
 	@test typeofSrc(2) === G.srcDisk
 	@test setSrcToPoint() === false
 	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
 	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
+	@test setSrcToPoint(true)
 		
 	@test typeofSrc(3) === G.srcVolume
 	@test setSrcToPoint() === false
 	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
 	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
+	@test setSrcToPoint(true)
 		
 	@test typeofSrc(4) === G.srcNotPoint
 	@test setSrcToPoint() === false
 	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") === false
 	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
-		
+	@test setSrcToPoint(true)
+	
+	@test typeofSrc(0) === G.srcPoint
+	@test setSrcToPoint()
+	@test setSrcToPoint("\n Is it a point source {Y|n} ? ") 	# allredy set
+	@test setSrcToPoint()
+
 	@test typeofSrc(5) === G.srcNotPoint
 	@test setSrcToPoint() === false
 	@test setSrcToPoint(false) === false
-	@test setSrcToPoint(true)  === true
+	@test setSrcToPoint(true)
+
+
+	@testset "setSrcToPoint(::Strin)" begin
+		@test typeofSrc(-1) === G.srcUnknown
+		@test H.exec_consol_unattended(setSrcToPoint, ["n"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		@test setSrcToPoint() === false
+	
+		@test typeofSrc(-1) === G.srcUnknown
+		@test H.exec_consol_unattended(setSrcToPoint, ["N"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		@test setSrcToPoint() === false
+	
+		@test typeofSrc(-1) === G.srcUnknown
+		@test H.exec_consol_unattended(setSrcToPoint, ["Y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "])  	# require input
+		@test setSrcToPoint()
+
+		@test typeofSrc(-1) === G.srcUnknown
+		@test H.exec_consol_unattended(setSrcToPoint, ["y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) 	# require input
+		@test setSrcToPoint()
+	end #testset_setSrcToPoint(::Strin)
+
+	@test typeofSrc(-1) === G.srcUnknown		#set back the default
 end #testset
 
 
