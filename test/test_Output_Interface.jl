@@ -210,5 +210,10 @@ chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths
 		append!(every_path, batch([Detector(eps(cr))], [0.0]))
 	end #for
 
+try 
+	rm.(every_path)
+catch err
+	@error "show(err)"
 rm.(every_path; force=true)
+end #try
 end #testset_batch
