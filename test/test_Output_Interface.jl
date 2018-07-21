@@ -177,7 +177,7 @@ chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths
 	@test append!(every_path, batch([5.0 4 3 2], [0.0]))|> eltype === String
 	@test append!(every_path, batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-	@test append!(every_path, batch([acylDetector, aWDetector], [0.0]))|> eltype === String
+		#=@test append!(every_path, batch([acylDetector, aWDetector], [0.0]))|> eltype === String
 	@test append!(every_path, batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
 	@test append!(every_path, batch([acylDetector, aBDetector], [0.0]))|> eltype === String
@@ -185,7 +185,7 @@ chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths
 
 	@test append!(every_path, batch([aBDetector, aWDetector], [0.0]))|> eltype === String
 	@test append!(every_path, batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
-
+		=#
 	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0]))|> eltype === String
 	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 		
