@@ -51,7 +51,7 @@ end #testset_writecsv_head
 
 
 @debug("GeoEfficiecny._batch")
-@testset "GeoEfficiecny._batch" for	isSrcPoint = [true, false]
+@testset "_batch, point is $isSrcPoint" for	isSrcPoint = [true, false]
 
 	rtrn = G._batch(Val(isSrcPoint),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])
 	@test typeof(rtrn) <: Tuple{Detector, Matrix{Float64}, String}
