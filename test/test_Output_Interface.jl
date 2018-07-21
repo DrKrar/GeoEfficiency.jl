@@ -204,11 +204,12 @@ chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths
 
 	#rm.(batch([aWDetector], [0.0]))
 	#rm.(batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false))
-	for cr = 0.2:0.1:0.7	
-		append!(every_path, batch([Detector(eps(cr))], [0.0], [0.0], [0.0],[0.0],false))
-		append!(every_path, batch([Detector(eps(cr))], collect(0.0:0.1:10), [0.0], [0.0],[0.0],false))
-		append!(every_path, batch([Detector(eps(cr))], [0.0]))
+	#=for cr = 0.2:0.1:0.7	
+		@test append!(every_path, batch([Detector(11, eps(cr))], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([Detector(22, eps(cr))], collect(0.0:0.1:10), [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([Detector(33, eps(cr))], [0.0]))|> eltype === String
 	end #for
+	=#
 
 try 
 	rm.(every_path)
