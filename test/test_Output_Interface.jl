@@ -246,7 +246,7 @@ local every_path::Vector{String} = String[]
 try 
 	rm.(every_path)
 catch err
-	@error "show(err)"
+	@error err
 	rm.(every_path; force=true)
 end #try
 end #testset_batch
