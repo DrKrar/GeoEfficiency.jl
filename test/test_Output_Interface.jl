@@ -68,127 +68,159 @@ end #testset_GeoEfficiecny._batch
 
 @debug("batch")    
 @testset "batch" begin
-	local acylDetector::CylDetector = CylDetector(eps(0.5))
-	local path::String = batch(acylDetector, [0.0])
-	@test occursin( G.id(acylDetector), path)
-	@test readdlm(path,',')[2,end] ≈ 0.5
 
-	path = batch(acylDetector, [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin(G.id(acylDetector), path)
-	@test readdlm(path,',')[2,end] ≈ 0.5	
+local paths::Vector{String} = String[]
+local every_path::Vector{String} = String[]
 
-	local paths::Vector{String} = batch([acylDetector], [0.0]) # in fact `paths` is a one element vector
-	@test occursin.(G.id(acylDetector), paths) |> any
-	local every_path::Vector{String} = paths
+	@testset "batch(<:Detector)" begin
+		acylDetector1::CylDetector = CylDetector(eps(0.1))
 
-	paths = batch([acylDetector], [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin.(G.id(acylDetector), paths) |> any
-	append!(every_path, paths)
+		path::String = batch(acylDetector1, [0.0])
+		@test occursin( G.id(acylDetector1), path)
+		@test readdlm(path,',')[2,end] ≈ 0.5
+		push!(every_path, path)
 
-	local aBDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.2)); 
-	paths = batch([aBDetector], [0.0])
-	@test occursin.(G.id(aBDetector), paths) |> any
-	append!(every_path, paths)
-
-	local aWDetector = WellDetector(eps(0.5), eps(0.4), eps(0.2), eps(0.1))
-	paths = batch([aWDetector], [0.0])
-	@test occursin.(G.id(aWDetector), paths) |> any
-	append!(every_path, paths)
-
-	paths = batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin.(G.id(aWDetector), paths) |> any
-	append!(every_path, paths)
-
-	paths = batch([acylDetector, aWDetector], [0.0])
-	@test occursin.(G.id(aWDetector), paths) |> any
-	append!(every_path, paths)
-
-	paths = batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin.(G.id(acylDetector), paths) |> any
-	@test occursin.(G.id(aWDetector)  , paths) |> any
-	append!(every_path, paths)
-
-	paths = batch([acylDetector, aBDetector], [0.0])
-	@test occursin.(G.id(acylDetector), paths) |> any
-	append!(every_path, paths)
-
-	paths = batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin.(G.id(acylDetector), paths) |> any
-	@test occursin.(G.id(aBDetector)  , paths) |> any
-	append!(every_path, paths)
+		path = batch(acylDetector1, [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin(G.id(acylDetector1), path)
+		@test readdlm(path,',')[2,end] ≈ 0.5
+		push!(every_path, path)
+	end #testset_batch(<:Detector)	
 	
-	paths = batch([aBDetector, aWDetector], [0.0])
-	@test occursin.(G.id(aBDetector), paths) |> any
-	@test occursin.(G.id(aWDetector), paths) |> any
+	let acylDetector2::CylDetector = CylDetector(eps(0.2))
+	
+		paths = batch([acylDetector2], [0.0]) # in fact `paths` is a one element vector
+		@test occursin.(G.id(acylDetector2), paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([acylDetector2], [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin.(G.id(acylDetector2), paths) |> any
+		append!(every_path, paths)
+	end #let
+
+	let aBDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.2))
+	
+		paths = batch([aBDetector], [0.0])
+		@test occursin.(G.id(aBDetector), paths) |> any
+		append!(every_path, paths)
+	end #let
+
+	let aWDetector = WellDetector(eps(0.5), eps(0.4), eps(0.2), eps(0.1))
+
+		paths = batch([aWDetector], [0.0])
+		@test occursin.(G.id(aWDetector), paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin.(G.id(aWDetector), paths) |> any
+		append!(every_path, paths)
+	end #let
+
+	let acylDetector3::CylDetector 	= CylDetector(eps(0.3)),
+		aBDetector::BoreDetector	= BoreDetector(6, eps(), eps(0.5)),
+		aWDetector::WellDetector 	= WellDetector(eps(), eps(0.4), eps(0.1), eps(0.1))
+
+		paths = batch([acylDetector3, aWDetector], [0.0])
+		@test occursin.(G.id(aWDetector), paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([acylDetector3, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin.(G.id(acylDetector3), paths) |> any
+		@test occursin.(G.id(aWDetector)  , paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([acylDetector3, aBDetector], [0.0])
+		@test occursin.(G.id(acylDetector3), paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([acylDetector3, aBDetector], [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin.(G.id(acylDetector3), paths) |> any
+		@test occursin.(G.id(aBDetector)  , paths) |> any
+		append!(every_path, paths)
+	end #let
+	
+	let aBDetector::BoreDetector = BoreDetector(eps(0.5), eps(0.4), eps(0.1)),
+		aWDetector::WellDetector = WellDetector(eps(0.5), eps(0.4), eps(0.1), eps(0.1))
+
+		paths = batch([aBDetector, aWDetector], [0.0])
+		@test occursin.(G.id(aBDetector), paths) |> any
+		@test occursin.(G.id(aWDetector), paths) |> any
+		append!(every_path, paths)
+
+		paths = batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
+		@test occursin.(G.id(aBDetector), paths) |> any
+		@test occursin.(G.id(aWDetector), paths) |> any
+		append!(every_path, paths)
+	end #let
+
+	let acylDetector = CylDetector(6, eps(0.65)),
+		aBDetector::BoreDetector  = BoreDetector(7, eps(), eps(0.5)),
+		aWDetector::WellDetector  = WellDetector(8, eps(), eps(0.5), eps(0.1))
+	
+		temppaths = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
+		@test occursin.(G.id(acylDetector), temppaths) |> any
+		@test occursin.(G.id(aBDetector), temppaths) |> any
+		@test occursin.(G.id(aWDetector), temppaths) |> any
+	chmod.(temppaths, 0o100444)		#make path read only
+
+		paths = batch([acylDetector, aBDetector, aWDetector], [0.0])
+		@test occursin.("_" * G.id(acylDetector), paths) |> any
+		@test occursin.("_" * G.id(aBDetector)  , paths) |> any
+		@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 	append!(every_path, paths)
+	append!(every_path, chmod.(temppaths, 0o777))   #
 
-	paths = batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false)
-	@test occursin.(G.id(aBDetector), paths) |> any
-	@test occursin.(G.id(aWDetector), paths) |> any
+
+		temppaths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
+		@test occursin.(G.id(acylDetector), temppaths) |> any
+		@test occursin.(G.id(aBDetector)  , temppaths) |> any
+		@test occursin.(G.id(aWDetector)  , temppaths) |> any
+	chmod.(temppaths, 0o100444)
+
+		paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
+		@test occursin.("_" * G.id(acylDetector), paths) |> any
+		@test occursin.("_" * G.id(aBDetector)  , paths) |> any
+		@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 	append!(every_path, paths)
+	append!(every_path, chmod.(temppaths, 0o777))   #
+	end #let
 
-	acylDetector = CylDetector(eps(0.6), 5)
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
-	@test occursin.(G.id(acylDetector), paths) |> any
-	@test occursin.(G.id(aBDetector), paths) |> any
-	@test occursin.(G.id(aWDetector), paths) |> any
-chmod.(paths, 0o100444)	#chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444); chmod.(paths, 0o100444)
-append!(every_path, paths)
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0])
-	@test occursin.("_" * G.id(acylDetector), paths) |> any
-	@test occursin.("_" * G.id(aBDetector)  , paths) |> any
-	@test occursin.("_" * G.id(aWDetector)  , paths) |> any
-append!(every_path, paths)
-chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777); # 0o100666
+	let acylDetector::CylDetector = CylDetector(5, eps()),
+		aBDetector::BoreDetector  = BoreDetector(5, eps(), eps(0.5)),
+		aWDetector::WellDetector  = WellDetector(5, eps(), eps(0.5), eps(0.1))
 
-	acylDetector = CylDetector(eps(0.7), 5)
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
-	@test occursin.(G.id(acylDetector), paths) |> any
-	@test occursin.(G.id(aBDetector)  , paths) |> any
-	@test occursin.(G.id(aWDetector)  , paths) |> any
-append!(every_path, paths)
-chmod.(paths, 0o100444)	#chmod(paths[1], 0o100444); chmod(paths[2], 0o100444); chmod(paths[3], 0o100444);
-	paths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
-	@test occursin.("_" * G.id(acylDetector), paths) |> any
-	@test occursin.("_" * G.id(aBDetector)  , paths) |> any
-	@test occursin.("_" * G.id(aWDetector)  , paths) |> any
-append!(every_path, paths)
-chmod.(paths, 0o777)	#chmod(paths[1],0o777); chmod(paths[2], 0o777); chmod(paths[3], 0o777);
+		@test append!(every_path, batch([eps() 0], [0.0]))|> eltype === String
+		@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
+		@test append!(every_path, batch([1.0 eps()], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1.0 eps()], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
+		@test append!(every_path, batch([1//2 eps()], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1//2 eps()], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
+		@test append!(every_path, batch([1//2 eps(0.5)], [0.0]))|> eltype === String
+		@test append!(every_path, batch([1//2 eps(0.5)], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
+		@test append!(every_path, batch([e pi], [0.0]))|> eltype === String
+		@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
 
-		
-	@test append!(every_path, batch([eps() 0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([eps() 0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
-	@test append!(every_path, batch([1.0 0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1.0 0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0]))|> eltype === String
-	@test append!(every_path, batch([1//2 0.0], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
-	@test append!(every_path, batch([e pi], [0.0]))|> eltype === String
-	@test append!(every_path, batch([e pi], [0.0], [0.0], [0.0], [0.0], false)) |> eltype === String
+		@test append!(every_path, batch([5.0 4 3.1], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3.1], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
+		@test append!(every_path, batch([5.0 4 3//1], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
+		@test append!(every_path, batch([5.0 4 pi], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false)) |> eltype === String
 
-	@test append!(every_path, batch([5.0 4 3], [0.0]))|> eltype === String
-	@test append!(every_path, batch([5.0 4 3], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
-	@test append!(every_path, batch([5.0 4 3//1], [0.0]))|> eltype === String
-	@test append!(every_path, batch([5.0 4 3//1], [0.0], [0.0],[0.0],[0.0],false)) |> eltype === String
-	@test append!(every_path, batch([5.0 4 pi], [0.0]))|> eltype === String
-	@test append!(every_path, batch([5.0 4 pi], [0.0], [0.0],[0.0], [0.0], false)) |> eltype === String
-
-	@test append!(every_path, batch([5.0 4 3 2], [0.0]))|> eltype === String
-	@test append!(every_path, batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3 2], [0.0]))|> eltype === String
+		@test append!(every_path, batch([5.0 4 3 2], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
 		#=@test append!(every_path, batch([acylDetector, aWDetector], [0.0]))|> eltype === String
-	@test append!(every_path, batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-	@test append!(every_path, batch([acylDetector, aBDetector], [0.0]))|> eltype === String
-	@test append!(every_path, batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aBDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aBDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 
-	@test append!(every_path, batch([aBDetector, aWDetector], [0.0]))|> eltype === String
-	@test append!(every_path, batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+		@test append!(every_path, batch([aBDetector, aWDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
 		=#
-	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0]))|> eltype === String
-	@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
-		
+		@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0]))|> eltype === String
+		@test append!(every_path, batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0],false))|> eltype === String
+	end #let
 
 	G.detector_info_from_csvFile()
 	if  [0.0] != G.read_from_csvFile(G.srcHeights, G.dataDir)
@@ -215,6 +247,6 @@ try
 	rm.(every_path)
 catch err
 	@error "show(err)"
-rm.(every_path; force=true)
+	rm.(every_path; force=true)
 end #try
 end #testset_batch
