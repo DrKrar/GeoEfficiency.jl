@@ -10,7 +10,7 @@
 
 using Compat
 using Compat.DelimitedFiles
-import Compat: @info, @error
+import Compat: @info, @error, @__MODULE__
 
 @compat isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
 const resultdir	        = joinpath(dataDir, resultsFolder)
@@ -83,7 +83,7 @@ Prompt the user `repeatedly` until it exit (give a choice to use the same
 detector or a new detector).
 
 """
-function calcN(	detector:: Detector = Detector())
+function calcN(	detector::Detector = Detector())
 
 	while (true)
 
