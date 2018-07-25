@@ -36,12 +36,12 @@ of the cylindrical detector `detector` face.
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 
-	function MaxPhi(theta::Float64 )
+	function MaxPhi(theta::Float64 )::Float64
 		side = aPnt.Height * sin(theta)
 		return clamp((aPnt.Rho^2 + side^2 - detector.CryRadius^2 )/ side / aPnt.Rho /2.0, -1.0, 1.0) |> acos
 	end # function
 
-	func(theta::Float64) = MaxPhi(theta) * sin(theta)
+	func(theta::Float64)::Float64 = MaxPhi(theta) * sin(theta)
 
 	if 0.0 == aPnt.Rho				# axial Point
 		strt = 0.0
@@ -92,7 +92,7 @@ end #function
 
 """
 
-	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
 **please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
@@ -128,7 +128,7 @@ end #function
 
 """
 
-	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
 **please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
@@ -186,7 +186,7 @@ end #function
 
 """
 
-	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
 **please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
 
@@ -194,7 +194,7 @@ end #function
     `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
 
 """
-function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+function geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 	
 	pnt::Point = deepcopy(aWellPnt)
 	Height = pnt.Height - detector.HoleDepth
@@ -222,7 +222,7 @@ end #function
 
 """
 
-	geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)
+	geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
 return the `geometrical efficiency` for a source (`point`, `disk` or `cylinder`) with 
 the detector `detector`. 
@@ -286,7 +286,7 @@ geoEff
 
 """
 
-	geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())
+	geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())::Float64
 
 same as `geoEff(::Detector, ::Point, ::Real, ::Real)` but splatting the argument 
 in the Tuple `aSource`.
@@ -296,5 +296,5 @@ in the Tuple `aSource`.
     it prompt the user to input a source (and detector) via the `console`.
 
 """
-geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source() ) = geoEff(detector, aSource...)
-geoEff(detector::Detector, aSource::Tuple{Point, Real, Real,}) = geoEff(detector, aSource...)
+geoEff(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source() )::Float64 = geoEff(detector, aSource...)
+geoEff(detector::Detector, aSource::Tuple{Point, Real, Real,})::Float64 = geoEff(detector, aSource...)

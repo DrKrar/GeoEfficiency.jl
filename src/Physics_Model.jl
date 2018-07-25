@@ -113,7 +113,7 @@ the input from the `console`.
     If the global variable `srcType` is set to ``srcPoint``, both `SrcRadius` and `SrcLength` 
     are set to zero.
 """
-function source(anchorPnt::Point = Point())
+function source(anchorPnt::Point = Point())::Tuple{Point, Float64, Float64}
     
 	if setSrcToPoint()
 		@info("""srcType is set to ``srcPoint``,
