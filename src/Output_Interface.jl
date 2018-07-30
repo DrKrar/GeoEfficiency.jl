@@ -8,11 +8,10 @@
 
 #------------------------- consts - globals - imports ----------------
 
-using Compat
-using Compat.DelimitedFiles
-import Compat: @info, @error, @__MODULE__
+using Compat, Compat.DelimitedFiles
+using Compat: @info, @error, @__MODULE__
 
-@compat isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
+isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
 const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
