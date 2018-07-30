@@ -17,7 +17,8 @@ const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
 const max_batch = 100   # max number of output
-const redirect_file = open(joinpath(resultdir, "GeoEfficiency.txt"), "w")
+const redirect  = joinpath(resultdir, "GeoEfficiency.txt"); mkpath(redirect)
+const redirect_file = open(redirect, "w")
 global countDetectors = 1
 
 
