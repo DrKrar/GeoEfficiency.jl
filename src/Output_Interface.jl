@@ -190,7 +190,7 @@ function batch(	detector::Detector,
 				ispoint::Bool=true) where S <: Real
 				
 	_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
-
+	write(redirect_file,"")
 	if ispoint && length(srcHeights_array) * length(srcRhos_array) > max_batch 
 		redirect_stdout(_bt, redirect_file)
 		close(redirect_file)
