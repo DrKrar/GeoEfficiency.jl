@@ -171,7 +171,8 @@ function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = I
 		@assert from <= val < to
 
     catch err
-        if isa(err, AssertionError)
+		if isa(err, AssertionError)
+			from == val && return val	# deal with the boundary case when from == to
 			@warn("""input `$value` evaluated to be outside the semi open interval [$from, $to[,
 			\n Please: provide an adequate value""")
         else
