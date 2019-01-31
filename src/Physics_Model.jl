@@ -343,7 +343,7 @@ function Detector()
 	printstyled( "\n I- The detector physical Dimensions :-\n", color=:yellow)
 	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
 	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
-	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, CryRadius)
+	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, nextfloat(CryRadius))
 	if   0.0 == HoleRadius
 		return CylDetector(CryRadius, CryLength)
 
