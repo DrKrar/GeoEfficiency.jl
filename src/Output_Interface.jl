@@ -356,6 +356,7 @@ function _batch(
 		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
 		checkResultsDirs() # to make sure the directories do exist
 		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
+		rm(path, force=true)	#delete the fallback file if it is already exist
 		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
 	end #try
@@ -444,6 +445,7 @@ function _batch(
 		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
 		checkResultsDirs() # to make sue that the directories do exist
 		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
+		rm(path, force=true)	#delete the fallback file if it is already exist
 		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
 	end #try
