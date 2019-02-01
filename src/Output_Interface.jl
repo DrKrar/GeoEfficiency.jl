@@ -356,6 +356,7 @@ function _batch(
 
 	end #try
 	global countDetectors += 1;
+	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
 	return (detector, results, path) # detector, results are for test purpose
 
 end #function
@@ -443,6 +444,7 @@ function _batch(
 
 	end #try
 	global countDetectors += 1;
+	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
 	return (detector, results, path) # detector, results are for test purpose
 
 end #function
