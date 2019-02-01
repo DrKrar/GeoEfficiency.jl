@@ -7,7 +7,7 @@
 #**************************************************************************************
 
 using Compat
-using Compat: occursin
+using Compat: occursin, @error
 
 
 @testset "GeoEfficiecny.checkResultsDirs" begin 
