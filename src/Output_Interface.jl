@@ -159,7 +159,7 @@ batch() ::Vector{String} = batch(read_batch_info()...)
 		srcRadii_array::Vector{S}=[0.0],
 		srcLengths_array::Vector{S}=[0.0],
 		ispoint::Bool=true
-		) where S <: Real 	::String
+		)::String 	where S <: Real 	
 
 provide batch calculation of the `geometrical efficiency` for the detector `detector`. 
 results are saved on a **``CSV``**  file named after the detector. 
@@ -186,9 +186,9 @@ function batch(	detector::Detector,
 				srcRhos_array::Vector{S}=[0.0],
 				srcRadii_array::Vector{S}=[0.0],
 				srcLengths_array::Vector{S}=[0.0],
-				ispoint::Bool=true) where S <: Real  ::String
+				ispoint::Bool=true)::String		where S <: Real  
 				
-	_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+	_bt()::String = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 	
 	open(redirect, "a+") do redirect_file
 	
@@ -216,18 +216,18 @@ end #function
 	    srcRadii_array::Vector{S}=[0.0],
 	    srcLengths_array::Vector{S}=[0.0],
 		ispoint::Bool=true
-	) where S <: Real
+		)::Vector{String} where S <: Real
 
 **same as [`batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but accept a list of detectors `detectors_array`.
 return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
 
 """
-function batch( detectors_array::Vector{T},
+function batch( detectors_array::Vector{<: Detector},
 	       srcHeights_array::Vector{S},
 	       srcRhos_array::Vector{S}=[0.0],
 	       srcRadii_array::Vector{S}=[0.0],
 	       srcLengths_array::Vector{S}=[0.0],
-	       ispoint::Bool=true) where T <: Detector where S <: Real  ::Vector{String}
+	       ispoint::Bool=true)::Vector{String} 	where S <: Real  
 	
 	outpaths::Vector{String} = String[]
 	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
@@ -268,7 +268,7 @@ end #function
 		srcRadii_array::Vector{S}=[0.0],
 		srcLengths_array::Vector{S}=[0.0],
 		ispoint::Bool=true
-	) where S <: Real 	::Vector{String}
+		)::Vector{String} 	where S <: Real 	
 
 **same as [`batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but provide batch calculation of the 
 `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`.
@@ -280,7 +280,7 @@ function batch(	detector_info_array::Matrix{S},
 				srcRhos_array::Vector{S}=[0.0],
 				srcRadii_array::Vector{S}=[0.0],
 				srcLengths_array::Vector{S}=[0.0],
-				ispoint::Bool=true) where S <: Real ::Vector{String}
+				ispoint::Bool=true)::Vector{String} 	where S <: Real 
 
 	return  batch(	getDetectors(detector_info_array),
 					srcHeights_array,
