@@ -17,7 +17,6 @@ const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
 const max_batch = 100   # max number of output
 const redirect  = joinpath(resultdir, "GeoEfficiency.txt"); #mkpath(redirect)
-const redirect_file = open(redirect, "a+")
 global countDetectors = 1
 
 
