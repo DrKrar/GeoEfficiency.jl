@@ -156,7 +156,7 @@ local every_path::Vector{String} = String[]
 		aBDetector::BoreDetector  = BoreDetector(7, eps(), eps(0.5)),
 		aWDetector::WellDetector  = WellDetector(8, eps(), eps(0.5), eps(0.1))
 	
-		temppaths = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
+		temppaths::Vector{String} = batch([acylDetector, aBDetector, aWDetector], [0.0]) 
 		@test occursin.(G.id(acylDetector), temppaths) |> any
 		@test occursin.(G.id(aBDetector), temppaths) |> any
 		@test occursin.(G.id(aWDetector), temppaths) |> any
@@ -167,7 +167,12 @@ local every_path::Vector{String} = String[]
 		@test occursin.("_" * G.id(aBDetector)  , paths) |> any
 		@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 	append!(every_path, paths)
-	append!(every_path, chmod.(temppaths, 0o777))   #
+	try
+		append!(every_path, chmod.(temppaths, 0o777))   #
+	catch err
+		append!(every_path, temppaths)
+		chmod.(temppaths, 0o777)
+	end
 
 
 		temppaths = batch([acylDetector, aBDetector, aWDetector], [0.0], [0.0], [0.0],[0.0], false)
