@@ -252,11 +252,9 @@ local every_path::Vector{String} = String[]
 		@test append!(every_path, batch([Detector(33, eps(cr))], [0.0]))|> eltype === String
 	end #for
 	=#
-for ep in every_path
-	try 
-		rm(ep, force=true)
-	catch err
-		@error err
-	end #try
-end #for
+try 
+	rm.(every_path, force=true)
+catch err
+	@error err
+end #try
 end #testset_batch
