@@ -190,19 +190,21 @@ function batch(	detector::Detector,
 				ispoint::Bool=true) where S <: Real
 				
 	_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
-	write(redirect_file,"")
+	
+	open(redirect, "a+") do redirect_file
+	
 	if ispoint && length(srcHeights_array) * length(srcRhos_array) > max_batch 
 		redirect_stdout(_bt, redirect_file)
-		close(redirect_file)
+
 
 	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
 		redirect_stdout(_bt, redirect_file)
-		close(redirect_file)
 
 	else
 		_bt()
 
 	end #if
+	end
 
 end #function
 
@@ -249,6 +251,7 @@ function batch( detectors_array::Vector{T},
 		end # detectors_array
 
 	end #if
+	close(redirect_file)
 
 	print("\n\t"); @info("The program terminated, Thank you >>>>\n")
 	return outpaths
