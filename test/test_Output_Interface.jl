@@ -186,7 +186,12 @@ local every_path::Vector{String} = String[]
 		@test occursin.("_" * G.id(aBDetector)  , paths) |> any
 		@test occursin.("_" * G.id(aWDetector)  , paths) |> any
 	append!(every_path, paths)
-	append!(every_path, chmod.(temppaths, 0o777))   #
+	try
+		append!(every_path, chmod.(temppaths, 0o777))   #
+	catch err
+		append!(every_path, temppaths)
+		chmod.(temppaths, 0o777)
+	end
 	end #let
 
 	let acylDetector::CylDetector = CylDetector(5, eps()),
