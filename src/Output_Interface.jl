@@ -231,22 +231,24 @@ function batch( detectors_array::Vector{T},
 	       ispoint::Bool=true) where T <: Detector where S <: Real
 	
 	outpaths::Vector{String} = String[]
+	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+	 redirect_file = open(redirect, "a+")
 
 	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > max_batch 
 		for detector = detectors_array
-			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
 		end # detectors_array
 
 	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
 		for detector = detectors_array
-			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
 		end # detectors_array
 
 	else
 		for detector = detectors_array
-			_bt() = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+			_bt() = _bt_det(detector)
 			push!(outpaths, _bt())
 		end # detectors_array
 
