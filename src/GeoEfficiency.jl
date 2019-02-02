@@ -40,7 +40,8 @@ export
 	geoEff,
 
  # Output_Interface
-	calc,
+ 	max_display,
+ 	calc,
 	calcN,
 	batch,
 	batchInfo

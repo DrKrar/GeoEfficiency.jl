@@ -15,9 +15,12 @@ isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
 const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
-const max_batch = 100   # max number of output
-const redirect  = joinpath(resultdir, "GeoEfficiency.txt"); #mkpath(redirect)
-global countDetectors = 1
+const redirect  		= joinpath(resultdir, "GeoEfficiency.txt")
+
+""" -ve value will display all batch results on
+"""
+global _max_batch 		= max_display	# max number of entries per detector displayed.   	
+global countDetectors 	= 1				# number of detectors
 
 
 #------------------ checkResultsDirs ----------------------------------
@@ -38,6 +41,36 @@ end
 checkResultsDirs()
 
 
+#--------------------------- max_batch ---------------------------------------
+
+"""
+
+	max_batch(n::Integer)
+
+set the value of '_max_batch' which default to $max_display which control the maxumam number of 
+entries per detector that permit the detector efficiency calculation to be displayed on console. 
+this function ```do not``` affect the saving of the batch calculation. 
+
+-ve value of n result in displaying all batch calculation results on the console.
+
+**see also: [`max_batch()`](@ref)**
+				
+"""
+function max_batch(n::Integer)
+	global _max_batch = n
+end
+
+"""
+
+	max_batch()
+
+set the value of '_max_batch' to its default value.
+
+**see also: [`max_batch(::Integer)`](@ref)**
+"""
+function max_batch()
+	global _max_batch = max_display
+end
 #--------------------------- calc ---------------------------------------
 
 """
@@ -192,11 +225,11 @@ function batch(	detector::Detector,
 	
 	open(redirect, "a+") do redirect_file
 	
-	if ispoint && length(srcHeights_array) * length(srcRhos_array) > max_batch 
+	if ispoint && length(srcHeights_array) * length(srcRhos_array) > _max_batch 
 		redirect_stdout(_bt, redirect_file)
 
 
-	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
+	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > _max_batch
 		redirect_stdout(_bt, redirect_file)
 
 	else
@@ -233,13 +266,13 @@ function batch( detectors_array::Vector{<: Detector},
 	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 	 redirect_file = open(redirect, "a+")
 
-	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > max_batch 
+	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > _max_batch 
 		for detector = detectors_array
 			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
 		end # detectors_array
 
-	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > max_batch
+	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > _max_batch
 		for detector = detectors_array
 			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
