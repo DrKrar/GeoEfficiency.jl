@@ -15,6 +15,14 @@ using Compat: occursin, @error
 end #testset_checkResultsDirs
 
 
+@debug("max_batch")
+@testset "max_batch" begin
+	@test max_batch(-1) 	== G._max_batch
+	@test max_batch(100) 	== G._max_batch
+	@test max_batch() 		== G.max_display
+end
+
+
 @debug("calc - CylDetector, WellDetecto")
 let pnt::Point = Point(1),
 	cylDet::CylDetector = Detector(5, 10),
@@ -29,12 +37,6 @@ let pnt::Point = Point(1),
 	end #testset_calc
 end #let
 
-@debug("max_batch")
-@testset "max_batch" begin
-	@test max_batch(-1) 	== G._max_batch
-	@test max_batch(100) 	== G._max_batch
-	@test max_batch() 		== G.max_display
-end
 
 @debug("calcN")
 @testset "calcN - $consol_input" for 
