@@ -33,7 +33,7 @@ end #let
 @testset "max_batch" begin
 	@test max_batch(-1) 	== G._max_batch
 	@test max_batch(100) 	== G._max_batch
-	@test max_batch() 		== max_display
+	@test max_batch() 		== G.max_display
 end
 
 @debug("calcN")
