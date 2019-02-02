@@ -29,6 +29,12 @@ let pnt::Point = Point(1),
 	end #testset_calc
 end #let
 
+@debug("max_batch")
+@testset "max_batch"
+	@test max_batch(-1) 	== G._max_batch
+	@test max_batch(100) 	== G._max_batch
+	@test max_batch() 		== max_display
+end
 
 @debug("calcN")
 @testset "calcN - $consol_input" for 
