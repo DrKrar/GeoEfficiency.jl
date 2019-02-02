@@ -36,4 +36,4 @@ build_script:
       Pkg.clone(pwd(), \"GeoEfficiency\"); Pkg.build(\"GeoEfficiency\")"
 
 test_script:
-  - C:\projects\julia\bin\julia --check-bounds=yes -e "Pkg.test(\"GeoEfficiency\")"
+  - C:\projects\julia\bin\julia --check-bounds=yes -e "try Pkg.dir; catch err; using Pkg; end; Pkg.test(\"GeoEfficiency\")"
