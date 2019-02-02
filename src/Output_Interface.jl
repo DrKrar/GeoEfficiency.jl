@@ -45,7 +45,7 @@ checkResultsDirs()
 
 """
 
-	max_batch(n::Integer)
+	max_batch(n<:Real)
 
 set the value of '_max_batch' which default to $max_display which control the maxumam number of 
 entries per detector that permit the detector efficiency calculation to be displayed on console. 
@@ -56,7 +56,7 @@ this function ```do not``` affect the saving of the batch calculation.
 **see also: [`max_batch()`](@ref)**
 				
 """
-function max_batch(n::Integer)
+function max_batch(n<:Rea) # for conveniante allow it to take any real number as argument.
 	global _max_batch = n
 end
 
