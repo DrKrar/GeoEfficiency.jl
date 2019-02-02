@@ -300,11 +300,24 @@ end #testset_WellDetector
 	@test G.id(Detector(5,3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
 	@test G.id(Detector(5)) == "CylDetector[CryRadius=5.0, CryLength=0.0]"
 	
-	let detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
+	@debug("Detector(detectors::Vector{<:Detector})")
+	@testset "Detector(detectors::Vector{<:Detector})" begin
+	mix_detectors = [Detector(6,2), Detector(5,1,.2), Detector(7,10,5,.1)]
+	cyl_detectors = [CylDetector(2,6), Detector(6,2), CylDetector(2), Detector(6)]
 
-		@test eltype(Vector{Detector}(detectors)) === Detector
-		@test Vector{Detector}(detectors) == detectors
-	end #let
+		@test eltype(Vector{Detector}(mix_detectors)) 	=== Detector
+		@test eltype(Vector{Detector}(cyl_detectors)) 	=== Detector
+
+		@test Vector{Detector}(mix_detectors) == mix_detectors
+		@test Vector{Detector}(cyl_detectors) == cyl_detectors
+
+
+		@test eltype(Detector(mix_detectors)) 	=== Detector
+		@test eltype(Detector(cyl_detectors)) 	=== Detector
+
+		@test Detector(mix_detectors) == mix_detectors
+		@test Detector(cyl_detectors) == cyl_detectors
+	end #Detector(detectors::Vector{<:Detector})
 
 	@debug("Detector()")
 	@test H.exec_consol_unattended(Detector, [5, 4, 3, 6, 2]) 		== Detector(5, 4, 3, 2)
