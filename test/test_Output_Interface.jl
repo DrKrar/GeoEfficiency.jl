@@ -30,7 +30,7 @@ let pnt::Point = Point(1),
 end #let
 
 @debug("max_batch")
-@testset "max_batch"
+@testset "max_batch" begin
 	@test max_batch(-1) 	== G._max_batch
 	@test max_batch(100) 	== G._max_batch
 	@test max_batch() 		== max_display
