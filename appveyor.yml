@@ -33,7 +33,7 @@ build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
   - C:\projects\julia\bin\julia -e "try; versioninfo(); catch err; using InteractiveUtils; versioninfo(); end;
-      Pkg.clone(pwd(), \"GeoEfficiency\"); Pkg.build(\"GeoEfficiency\")"
+      try Pkg.dir; catch err; using Pkg; end; Pkg.clone(pwd(), \"GeoEfficiency\"); Pkg.build(\"GeoEfficiency\")"
 
 test_script:
   - C:\projects\julia\bin\julia --check-bounds=yes -e "try Pkg.dir; catch err; using Pkg; end; Pkg.test(\"GeoEfficiency\")"
