@@ -1,4 +1,5 @@
 module Helper
+using Compat
 using Compat: stdin, @warn #, split
 
 function exec_consol_unattended(Fn::Union{Function,Type}, consol_inputs::Vector = []; Fn_ARGs::Vector=[])
