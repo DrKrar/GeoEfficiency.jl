@@ -9,9 +9,14 @@
     @test H.exec_consol_unattended(readline, []) == ""
     @test H.exec_consol_unattended(readline, "") == ""
     @test H.exec_consol_unattended(readline, [1]) == "1"
+    @test H.exec_consol_unattended(readline, [1, 2, 3]) == "1"
         @test [readline(), readline()] == ["2", "3"]
     @test H.exec_consol_unattended(readline, "1") == "1"
-    #@test H.exec_consol_unattended(readline, 1,2) == "1\n2\n"
+    @test H.exec_consol_unattended(readline, "1 2 3") == "1"
+        @test [readline(), readline()] == ["2", "3"]
+    @test H.exec_consol_unattended(readline, 1) == "1"
+    @test H.exec_consol_unattended(readline, 1, 2, 3) == "1"
+        @test [readline(), readline()] == ["2", "3"]
 
     @test H.exec_consol_unattended(sin, "1 2 3 4" ;Fn_ARGs=[pi]) == sin(pi)
         @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
