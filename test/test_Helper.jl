@@ -9,6 +9,7 @@
     @test H.exec_consol_unattended(readline, []) == ""
     @test H.exec_consol_unattended(readline, "") == ""
     @test H.exec_consol_unattended(readline, [1]) == "1"
+        @test [readline(), readline()] == ["2", "3"]
     @test H.exec_consol_unattended(readline, "1") == "1"
     #@test H.exec_consol_unattended(readline, 1,2) == "1\n2\n"
 
