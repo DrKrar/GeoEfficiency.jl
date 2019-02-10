@@ -24,6 +24,8 @@
         @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
     @test H.exec_consol_unattended(sin, [1, 2, 3, 4] ;Fn_ARGs=[pi]) == sin(pi)
         @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
+    @test H.exec_consol_unattended(sin, 1, 2, 3, 4 ;Fn_ARGs=[pi]) == sin(pi)
+        @test [readline(), readline(), readline(), readline()] == ["1", "2", "3", "4"]
     @test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 
     @test H.exec_consol_unattended(readavailable, []    ;Fn_ARGs=[stdin])|> String   == "\n"
@@ -35,7 +37,7 @@
     @test H.exec_consol_unattended(readavailable, "1 2 3";      Fn_ARGs=[stdin])|> String   == "1\n2\n3\n"
     @test H.exec_consol_unattended(readavailable, "1 2 3\n";    Fn_ARGs=[stdin])|> String   == "1\n2\n3\n"
     @test H.exec_consol_unattended(readavailable, "1 2 3 Q";    Fn_ARGs=[stdin])|> String   == "1\n2\n3\nQ\n"
-    #@test H.exec_consol_unattended(readavailable, 1, 2, 3;     Fn_ARGs=[stdin])|> String   == "1\n2\n3\n"
+    @test H.exec_consol_unattended(readavailable, 1, 2, 3;     Fn_ARGs=[stdin])|> String   == "1\n2\n3\n"
 
     @test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 end #testset_exec_consol_unattended
