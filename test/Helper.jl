@@ -11,7 +11,7 @@ function exec_consol_unattended(Fn::Union{Function, Type}, consol_inputs::Vector
 
 	else
 			for input in  string.(consol_inputs)
-				write(stdin.buffer, input, "\n")
+				write(stdin.buffer, input, "\n") 
 			end # for
 
 	end #IF
