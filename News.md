@@ -13,7 +13,7 @@
  *  now `getDetectors` methods can accept a `detectors_array::Vector{<:RadiationDetector}` as input to append new detector to it. It return a sorted array of all the detectors. 
  *  now `batch` methods return an array of paths where results are stored. 
  *  now `batch` methods when encounter an error in calculation assume `NaN` value and proceeds to the next calculation.
- *  new @enum SrcType where add to describe the source type
+ *  new `@enum SrcType` where add to describe the source type
 	  -  srcUnknown = -1, 
 	  -  srcPoint = 0, 
 	  -  srcLine = 1, 
