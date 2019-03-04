@@ -39,7 +39,7 @@
  *  new function `about()` give information about the software Package.
  *  new function `SetSrcToPoint()` to set source type.
  *  function `source()`, now did not take keyword argument instead it depend on the global variable `isPoint`. 
- *  function source(), now can take a point as its anchor poiint and if missing ask for one from the console.
+ *  function `source()`, now can take a point as its anchor point and if missing ask for one from the console.
  *  `RadiationDetector()` is unexported now. still `Detector()` is available. 
 
 
