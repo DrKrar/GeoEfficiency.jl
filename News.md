@@ -1,6 +1,7 @@
 # GeoEfficiency Package Release Notes
 
 ### Version 0.9.3-Dev
+*  a custamized error system has been add to the package.
 
 ### Version 0.9.2
 *  the unexported function `getfloat` change behavior to by default accept all numerical value not just the positive.

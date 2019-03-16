@@ -58,7 +58,8 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
                       			integrate(func, transition, fine, rtol=relativeError, atol=absoluteError)[1] / pi
 
 		else
-			 error("GeoEff_Pnt: Point off-axis, out of the detector face. This case is not implemented yet")
+			# This case is not implemented yet
+			@notImplementedError	"Point off-axis, out of the detector face" 
 			# TBD: (Top + Side) efficiencies
 		end #if
 

@@ -175,8 +175,8 @@ struct CylDetector <: Detector
     CryLength::Float64		#Real
 
 	function CylDetector(CryRadius::Float64, CryLength::Float64)
-		@assert CryRadius > 0.0	  	"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength >= 0.0  	"Crystal Length: expect +ve number or zero, get) $(CryLength)."
+		@validateDetector	CryRadius > 0.0		"Crystal Radius: expect +ve number, get '$(CryRadius)'"
+		@validateDetector	CryLength >= 0.0	"Crystal Length: expect +ve number or zero, get '$(CryLength)'"
 		new(CryRadius, CryLength)
 	end #function
 
@@ -238,9 +238,9 @@ struct BoreDetector <: Detector
 	HoleRadius::Float64    	#Real
 
 	function BoreDetector(CryRadius::Float64, CryLength::Float64, HoleRadius::Float64)
-		@assert CryRadius > 0.0		"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength > 0.0		"Crystal Length: expect +ve number, get $(CryLength)."
-		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
+		@validateDetector	CryRadius > 0.0		"Crystal Radius: expect +ve number, get '$(CryRadius)'"
+		@validateDetector	CryLength > 0.0		"Crystal Length: expect +ve number, get '$(CryLength)'"
+		@validateDetector	CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
 		new(CryRadius, CryLength, HoleRadius)
 	end #function
 
@@ -294,10 +294,10 @@ struct WellDetector <: Detector
 	HoleDepth::Float64
 
 	function WellDetector(CryRadius::Float64, CryLength::Float64, HoleRadius::Float64, HoleDepth::Float64)
-		@assert CryRadius > 0.0				"Crystal Radius: expect +ve number, get $(CryRadius)."
-		@assert CryLength > 0.0				"Crystal Length: expect +ve number, get $(CryLength)."
-		@assert CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get $(HoleRadius)."
-		@assert CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get $(HoleDepth)."
+		@validateDetector	CryRadius > 0.0				"Crystal Radius: expect +ve number, get '$(CryRadius)'"
+		@validateDetector	CryLength > 0.0				"Crystal Length: expect +ve number, get '$(CryLength)'"
+		@validateDetector	CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get '(HoleRadius)'"
+		@validateDetector	CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get '$(HoleDepth)'"
 		new(CryRadius, CryLength, HoleRadius, HoleDepth)
 	end #if
 

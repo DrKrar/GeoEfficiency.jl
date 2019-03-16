@@ -47,6 +47,7 @@ export
 	batchInfo
 
 include("Config.jl") # to overwrite defaults edit parameters; restore by comment out this line.
+include("Error.jl")	# defin error system for the package.
 include("Physics_Model.jl")
 include("Input_Interface.jl")
 include("Calculations.jl")
