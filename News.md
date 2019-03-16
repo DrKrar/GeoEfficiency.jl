@@ -2,6 +2,7 @@
 
 ### Version 0.9.3-Dev
 *  a custamized error system has been add to the package.
+*  the unexported function `getfloat` now acepts two more KW arguments, `lower=true` and `upper=false` to enclod the lower and upper limits.
 
 ### Version 0.9.2
 *  the unexported function `getfloat` change behavior to by default accept all numerical value not just the positive.

@@ -126,19 +126,23 @@ end # function
 
 """# UnExported
 
-	getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing")::Float64
+	getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; KW...)::Float64
 
 prompts the user with the massage `prompt` defaults to `? ` to input a numerical expression 
 evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[
 before returning it as a `Float64`.
+
+## KW arguments
+*  value::AbstractString``="nothing"`` : if provided the function will not ask for input from the 
+   `console` and take it as if it where inputted from the  `console` [``for test propose mainly``].
+*  lower::Bool``=true`` : whether or not to inculde `from` as accepted value.
+*  upper::Bool``=false`` : whether or not to inculde `to` as accepted value.
 
 !!! note
     *  a blank input (i.e just a return) is considered as being ``0.0``.
     *  input from the `console` can be numerical expression not just a number.
     *  All ``5/2``, ``5//2``, ``exp(2)``, ``pi``, ``1E-2``, ``5.2/3``, ``sin(1)``, ``pi/2/3`` 
        are valid mathematical expressions.
-    *  the key word  argument `value` , if provided the function will not ask for input from the 
-       `console` and take it as if it where inputted from the  `console` [``for test propose mainly``].
 
 # Examples
 ```
@@ -163,25 +167,25 @@ julia> getfloat("input a number:", value="-2")
 
 """
 function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; 
-					value::AbstractString="nothing", lowwer=true, upper=false)::Float64
+				value::AbstractString="nothing", lower::Bool=true, upper::Bool=false)::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
 	
 	local val::Float64
 	try
 		val =  Meta.parse(value) |> eval |> float
-		@assert from < val < to || from == val 	# deal with the boundary case when from == to
+		@assert from < val < to || (lower && from == val) || (upper && to == val) 	
 
     catch err
 		if isa(err, AssertionError)
-			@warn("""the input `$value` evaluated to be outside the semi open interval [$from, $to[,
+			@warn("""the input `$value` evaluated to be outside the interval $(lower ? '[' : ']') $from, $to $(upper ? ']' : '[').
 			\n Please: provide an adequate value""")
         else
 			@warn("""the input `$value` cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
         end #if
         
-        return getfloat(prompt, from, to)
+        return getfloat(prompt, from, to; lower=lower, upper=upper)
 
 	end #try
 	return val
