@@ -162,17 +162,18 @@ julia> getfloat("input a number:", value="-2")
 ```
 
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; value::AbstractString="nothing")::Float64
+function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; 
+					value::AbstractString="nothing", lowwer=true, upper=false)::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
+	
 	local val::Float64
 	try
 		val =  Meta.parse(value) |> eval |> float
-		@assert from <= val < to
+		@assert from < val < to || from == val 	# deal with the boundary case when from == to
 
     catch err
 		if isa(err, AssertionError)
-			# from == val && return val	# deal with the boundary case when from == to
 			@warn("""the input `$value` evaluated to be outside the semi open interval [$from, $to[,
 			\n Please: provide an adequate value""")
         else
