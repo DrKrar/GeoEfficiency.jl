@@ -163,6 +163,9 @@ julia> getfloat("input a number:", value="pi")
 
 julia> getfloat("input a number:", value="-2")
 -2.0
+
+julia> getfloat("input a number:", 1, 5, value="5", upper=true)
+5.0
 ```
 
 """
