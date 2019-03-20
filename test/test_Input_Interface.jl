@@ -183,6 +183,12 @@ end #testset_input
 	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =true, upper =true)	# when only one value (ex. 3.0) accepted
 	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =false, upper =true)	# when only one value (ex. 3.0) accepted
 	
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 3.0, 3.0, lower =false, upper =false, value="3")
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, value="3")
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, value="3")
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, upper =false, value="3")
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =false, value="3")
+	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =true, value="3")
 end #testset_getfloat
 
 
