@@ -167,6 +167,17 @@ end #testset_input
 	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true, lower=true)		# now input `5` is valide	 - explicit lower
 	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true, lower=false)		# now input `5` is valide	 - modified lower
 	
+
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3")		# by default intermediate value accepted
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=true)
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=true, upper=false)
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=true, upper=true)
+
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=false)
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=false, upper=false)
+	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=false, upper=true)
+	
+
 end #testset_getfloat
 
 
