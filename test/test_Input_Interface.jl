@@ -145,6 +145,12 @@ end #testset_input
 		write(stdin.buffer,"1.2+2im\n"^i * "3\n")
 		@test G.getfloat("\nthe first time input '1.2+2im': ") == 3.0
 	end # for
+
+	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1")					# by default lower limit is valide
+	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true)		# now explicit lower
+	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=false)	# now explicit lower - explicit upper
+	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=true))	# now explicit lower- modified upper
+
 end #testset_getfloat
 
 
