@@ -181,8 +181,12 @@ function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = I
 
     catch err
 		if isa(err, AssertionError)
-			@warn("""the input `$value` evaluated to be outside the interval $(lower ? '[' : ']') $from, $to $(upper ? ']' : '[').
+			let interval = "interval '$(lower ? '[' : ']') $from, $to $(upper ? ']' : '[')'"
+			lower || upper || from != to ||	ArgumentError("the $interval is not valid") |> throw
+			from <= to || ArgumentError("the $interval is not valid") |> throw
+			@warn("""the input '$value' evaluated to be outside the $interval.
 			\n Please: provide an adequate value""")
+			end
         else
 			@warn("""the input '$value' cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
