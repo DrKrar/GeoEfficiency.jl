@@ -132,6 +132,7 @@ end #testset_input
 
 
 	@debug("getfloat - invalide console input")
+	readavailable(stdin.buffer) == UInt8[] || @warn "buffer not empty, see the perivious call to `exec_consol_unattended`"  buffer = String(bffr) 
 	write(stdin.buffer,"\n"); 				@test 0.0 == G.getfloat("\njust press return: ")	# valide input but for completness	
 	write(stdin.buffer,"\n" * "3\n"); 		@test 3.0 == G.getfloat("\nthe first time just press return, then input `3` : ", 0.1, 4.0)
 	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput 5, then press return: ", 0.0, 4.0)
