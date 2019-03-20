@@ -156,6 +156,14 @@ end #testset_input
 	write(stdin.buffer,"1\n" * "3\n"); 		@test 3.0 == G.getfloat("\ninput '1' & Return, then '3' & Return: ", 1.0, 5.0, lower=false, upper=true))	# now lower limit `1` is not valide - modified upper
 
 
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0)		# by default upper limit is not valide
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, lower=true)		# by default upper limit is not valide - explicit lower
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, lower=false)		# by default upper limit is not valide - modified lower
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, 			  upper=false)		# explicit upper limit is not valide
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, lower=true, upper=false,)		# explicit upper limit is not valide - explicit lower
+	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, lower=false, upper=false, )	# explicit upper limit is not valide - modified lower
+
+	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true)		# now upper limit `5` is valide	
 end #testset_getfloat
 
 
