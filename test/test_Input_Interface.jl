@@ -178,6 +178,11 @@ end #testset_input
 	@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 1.0, 5.0, value="3", lower=false, upper=true)
 	
 
+	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0)								# when only one value (ex. 3.0) accepted
+	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, 			 upper =true)	# when only one value (ex. 3.0) accepted
+	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =true, upper =true)	# when only one value (ex. 3.0) accepted
+	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =false, upper =true)	# when only one value (ex. 3.0) accepted
+	
 end #testset_getfloat
 
 
