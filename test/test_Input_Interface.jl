@@ -146,6 +146,10 @@ end #testset_input
 		@test G.getfloat("\nthe first time input '1.2+2im': ") == 3.0
 	end # for
 
+
+	@debug("getfloat - interval boundaries")
+	# '1', '5' are to represnt the lower, upper limits; while '3' reprents an intermediate value.
+
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1")					# by default lower limit is valide
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true)		# now explicit lower
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=false)	# now explicit lower - explicit upper
