@@ -164,6 +164,9 @@ end #testset_input
 	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0, lower=false, upper=false, )	# explicit upper limit is not valide - modified lower
 
 	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true)		# now upper limit `5` is valide	
+	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true, lower=true)		# now input `5` is valide	 - explicit lower
+	@test 5.0 == G.getfloat("\ninput 5, then press Return: ", 1.0, 5.0, value="5", upper=true, lower=false)		# now input `5` is valide	 - modified lower
+	
 end #testset_getfloat
 
 
