@@ -129,8 +129,8 @@ end # function
 	getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; KW...)::Float64
 
 prompts the user with the massage `prompt` defaults to `? ` to input a numerical expression 
-evaluate to a numerical value and asserts that the value is in the semi open interval [`from`, `to`[
-before returning it as a `Float64`.
+evaluate to a numerical value and asserts that the value is by default in the semi open interval [`from`, `to`[
+before returning it as a `Float64`. throws `ArgumentError` when the given interval is not valid.
 
 ## KW arguments
 *  value::AbstractString``="nothing"`` : if provided the function will not ask for input from the 
@@ -169,7 +169,7 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 ```
 
 """
-function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf; 
+function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = Inf;
 				value::AbstractString="nothing", lower::Bool=true, upper::Bool=false)::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
