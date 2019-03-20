@@ -184,7 +184,7 @@ function getfloat(prompt::AbstractString = "? ", from::Real = -Inf, to::Real = I
 			@warn("""the input `$value` evaluated to be outside the interval $(lower ? '[' : ']') $from, $to $(upper ? ']' : '[').
 			\n Please: provide an adequate value""")
         else
-			@warn("""the input `$value` cannot be parsed to a valid numerical value!,
+			@warn("""the input '$value' cannot be parsed to a valid numerical value!,
 			\n Please: provide a valid expression""")
         end #if
         
