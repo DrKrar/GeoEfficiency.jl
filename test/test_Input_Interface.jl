@@ -154,11 +154,11 @@ end #testset_input
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1")					# by default lower limit is valide
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true)		# now explicit lower
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=false)	# now explicit lower - explicit upper
-	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=true))	# now explicit lower- modified upper
+	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true, upper=true)	# now explicit lower- modified upper
 
 	write(stdin.buffer,"1\n" * "3\n"); 		@test 3.0 == G.getfloat("\ninput '1' & Return, then '3' & Return: ", 1.0, 5.0, lower=false)					# now lower limit `1` is not valide	
 	write(stdin.buffer,"1\n" * "3\n"); 		@test 3.0 == G.getfloat("\ninput '1' & Return, then '3' & Return: ", 1.0, 5.0, lower=false, upper=false)	# now lower limit `1` is not valide - explicit upper
-	write(stdin.buffer,"1\n" * "3\n"); 		@test 3.0 == G.getfloat("\ninput '1' & Return, then '3' & Return: ", 1.0, 5.0, lower=false, upper=true))	# now lower limit `1` is not valide - modified upper
+	write(stdin.buffer,"1\n" * "3\n"); 		@test 3.0 == G.getfloat("\ninput '1' & Return, then '3' & Return: ", 1.0, 5.0, lower=false, upper=true)	# now lower limit `1` is not valide - modified upper
 
 
 	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5' & Return, then '3' & Return:", 1.0, 5.0)		# by default upper limit is not valide
@@ -188,12 +188,12 @@ end #testset_input
 	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =true, upper =true)	# when only one value (ex. 3.0) accepted
 	write(stdin.buffer,"5\n" * "1\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput '5', then '1', then '3': ", 3.0, 3.0, lower =false, upper =true)	# when only one value (ex. 3.0) accepted
 	
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 3.0, 3.0, lower =false, upper =false, value="3")
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, value="3")
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, value="3")
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, upper =false, value="3")
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =false, value="3")
-	@test_throws 	ArgumentError 		@test 3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =true, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 3.0, 3.0, lower =false, upper =false, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =true, upper =false, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =false, value="3")
+	@test_throws 	ArgumentError	3.0 == G.getfloat("\ninput '3', then press Return: ", 5.0, 1.0, lower =false, upper =true, value="3")
 end #testset_getfloat
 
 
