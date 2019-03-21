@@ -43,7 +43,7 @@ macro validateDetector(ex, msgs...)
     return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($msg)))
 end
 
-struct  notImplementedError <: GeoException
+struct  NotImplementedError <: GeoException
 	msg::AbstractString
 end
 
@@ -58,5 +58,5 @@ macro notImplementedError(msgs...)
         # string() might not be defined during bootstrap
         msg = :(Main.Base.string(msg))
     end
-    return :(throw(notImplementedError($msg)))
+    return :(throw(NotImplementedError($msg)))
 end
