@@ -13,6 +13,7 @@ include("Helper.jl")
 
 const SourceFiles = [
 					"Helper",
+					"Error"
 					"Input_Interface",
    					"Physics_Model",
     				"Calculations",
