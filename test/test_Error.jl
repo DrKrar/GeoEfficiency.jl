@@ -1,8 +1,8 @@
 @debug("test Error system")
 
-@test G.@validateDetector true
-@test G.@validateDetector true "massage"
-@test G.@validateDetector true "massage1" "massage2"
+@test nothing == G.@validateDetector true
+@test nothing == G.@validateDetector true "massage"
+@test nothing == G.@validateDetector true "massage1" "massage2"
 
 @test_throws  G.InValidDetectorDim  G.@validateDetector false
 @test_throws  G.InValidDetectorDim  G.@validateDetector false "massage"
