@@ -85,9 +85,9 @@ end #testset_Point
 		@test_throws MethodError     CylDetector(1+0im,4)
 		@test_throws MethodError     CylDetector(4, 1+0im)
 		@test_throws MethodError     CylDetector(1+0im, 1+0im)
-		@test_throws AssertionError  CylDetector(0)
-		@test_throws AssertionError  CylDetector(-5)
-		@test_throws AssertionError  CylDetector(5, -1)
+		@test_throws G.InValidDetectorDim  CylDetector(0)
+		@test_throws G.InValidDetectorDim  CylDetector(-5)
+		@test_throws G.InValidDetectorDim  CylDetector(5, -1)
 		@test isa(cyl1, Detector)
 		@test isa(cyl1, CylDetector)
 		@test cyl1.CryRadius === 5.0
@@ -363,23 +363,23 @@ end #testset_source
 @testset "Invalid Detector Dimensions $dim"  for dim =  
 Number[0, -1, 0//1, -1//1, -e, 0.0, -1.0, -Inf, Inf,]
 
-	@test_throws AssertionError	 CylDetector(dim)  
-	@test_throws AssertionError	 CylDetector(dim, 0)
-	@test_throws AssertionError	 CylDetector(dim, 1)
-	@test_throws AssertionError  BoreDetector(dim, 1, 0.2)
-	@test_throws AssertionError  BoreDetector(dim, 1, 0)
-	@test_throws AssertionError  WellDetector(dim, 2, 1, 0)
+	@test_throws G.InValidDetectorDim	CylDetector(dim)  
+	@test_throws G.InValidDetectorDim	CylDetector(dim, 0)
+	@test_throws G.InValidDetectorDim	CylDetector(dim, 1)
+	@test_throws G.InValidDetectorDim	BoreDetector(dim, 1, 0.2)
+	@test_throws G.InValidDetectorDim	BoreDetector(dim, 1, 0)
+	@test_throws G.InValidDetectorDim	WellDetector(dim, 2, 1, 0)
 
-	@test_throws AssertionError  Detector(dim)
-	@test_throws AssertionError	 Detector(dim, 0)
-	@test_throws AssertionError	 Detector(dim, 1)
-	@test_throws AssertionError  Detector(dim, 0, 0)
+	@test_throws G.InValidDetectorDim	Detector(dim)
+	@test_throws G.InValidDetectorDim	Detector(dim, 0)
+	@test_throws G.InValidDetectorDim	Detector(dim, 1)
+	@test_throws G.InValidDetectorDim	Detector(dim, 0, 0)
 
 	dim == 0.0 && break
-	@test_throws AssertionError	 CylDetector(5, dim)
-	@test_throws AssertionError  BoreDetector(5, dim, 0)
-	@test_throws AssertionError	 CylDetector(5, dim)
-	@test_throws AssertionError  BoreDetector(5, dim, 0)
-	@test_throws AssertionError  BoreDetector(5,dim, 1)
-	@test_throws AssertionError  WellDetector(5,dim, 1, 0.1)
+	@test_throws G.InValidDetectorDim	CylDetector(5, dim)
+	@test_throws G.InValidDetectorDim  	BoreDetector(5, dim, 0)
+	@test_throws G.InValidDetectorDim	CylDetector(5, dim)
+	@test_throws G.InValidDetectorDim	BoreDetector(5, dim, 0)
+	@test_throws G.InValidDetectorDim	BoreDetector(5,dim, 1)
+	@test_throws G.InValidDetectorDim	WellDetector(5,dim, 1, 0.1)
 end #testset_Invalid_Detector_Dimensions

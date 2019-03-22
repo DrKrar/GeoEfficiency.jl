@@ -44,8 +44,8 @@ end #testset_integrate
 		@test geoEff(acylDetector, Point(eps(cryRadius), cryRadius))  ≈ 0.25
 		@test 0.0 < geoEff(acylDetector, Point(cryRadius, cryRadius)) < 0.25		
 	
-		@test_throws ErrorException geoEff(acylDetector, Point(eps(cryRadius), nextfloat(cryRadius)))
-		@test_throws ErrorException geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
+		@test_throws G.NotImplementedError	geoEff(acylDetector, Point(eps(cryRadius), nextfloat(cryRadius)))
+		@test_throws G.NotImplementedError	geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
 	end #testset_cylindrical_detector
 
 
