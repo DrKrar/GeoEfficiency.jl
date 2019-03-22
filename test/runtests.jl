@@ -3,7 +3,7 @@
 #
 
 using Compat, Compat.Test , Compat.DelimitedFiles, Compat.MathConstants
-using Compat: @error, @debug, @info, stdin
+using Compat: @error, @debug, @warn, @info, stdin
 using GeoEfficiency
 const G = GeoEfficiency
 #logging(IOBuffer(), G)
