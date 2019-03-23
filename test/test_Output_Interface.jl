@@ -23,12 +23,12 @@ end #testset_checkResultsDirs
 end
 
 
-@debug("calc - CylDetector, WellDetecto")
+@debug("calc - CylDetector, WellDetector")
 let pnt::Point = Point(1),
 	cylDet::CylDetector = Detector(5, 10),
 	wellDet::WellDetector = Detector(5, 4, 3.2, 2)
 	
-	@testset "calc - CylDetector, WellDetecto" for 
+	@testset "calc - CylDetector, WellDetector" for 
 	SrcRadius = Real[1, 1//2, e, pi, 1.0], 
 	SrcLength = Real[1, 1//2, e, pi, 1.0]
 
