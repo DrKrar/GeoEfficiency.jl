@@ -123,8 +123,7 @@ function calcN(	detector::Detector = Detector())
 			calc(detector)
 
 		catch err
-			print("\n\t"); @warn("some error had happened\n")
-			calc()
+			print("\n\t"); @warn("some error had happened\n"); calc()
 		end #try
 
 		res = input("""\n
@@ -134,16 +133,13 @@ function calcN(	detector::Detector = Detector())
     	II- To quit just press return\n
 			\n\tyour Choice: """, :red) |> lowercase;
 		if res == "n"
-			print("\n\t"); @info("Please provide new detector dimention\n")
-            detector = Detector()
+			print("\n\t"); @info("Please provide new detector dimention\n"); detector = Detector()
 
 		elseif res == "d"
-			print("\n\t"); @info("using $detector \n")
-            continue
+			print("\n\t"); @info("using $detector \n");  continue
 
 		else
-			print("\n\t"); @info("The 'calcN' had terminated, Thank you\n")
-			break
+			print("\n\t"); @info("The 'calcN' had terminated, Thank you\n"); break
 
 		end #if
 
