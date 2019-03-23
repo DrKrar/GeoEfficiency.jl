@@ -267,13 +267,13 @@ function batch( detectors_array::Vector{<: Detector},
 	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 	 redirect_file = open(redirect, "a+")
 
-	if ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRhos_array) > _max_batch 
+	if ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRhos_array) < _max_batch 
 		for detector = detectors_array
 			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
 		end # detectors_array
 
-	elseif !ispoint && length(detectors_array)* length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > _max_batch
+	elseif !ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
 		for detector = detectors_array
 			_bt() = _bt_det(detector)
 			push!(outpaths, redirect_stdout(_bt, redirect_file))
