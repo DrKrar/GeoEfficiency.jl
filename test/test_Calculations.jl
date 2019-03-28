@@ -9,16 +9,20 @@
 const absoluteTol1 = 1.0e-14 #1.0e-16
 const absoluteTol2 = 1.0e-11 #1.0e-13
 
+let poly0(z::Float64) = @evalpoly(z, 1.0),
+	poly1(z::Float64) = @evalpoly(z, 1.0, 2.0),
+	poly2(z::Float64) = @evalpoly(z, 1.0, 2.0, 3.0)
+	
+	@testset "integrate start=$str, end=$nd" for 
+	str = -20.0:2.0:30.0, 
+	nd  = -20.0:2.0:30.0
+	#str === nd &&  continue
 
-@testset "integrate start=$str, end=$nd" for 
-str = -20.0:2.0:30.0, 
-nd  = -20.0:2.0:30.0
-#str === nd &&  continue
-
-	@test G.integrate(H.poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
-	@test G.integrate(H.poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
-	@test G.integrate(H.poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2	
-end #testset_integrate
+		@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
+		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
+		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2	
+	end #testset_integrate
+end #let
 
 
 @testset "special cases" begin
