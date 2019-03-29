@@ -25,6 +25,7 @@ const SourceFiles = [
 	@test G.srcType === G.srcUnknown  		# the initial program condition
 	@test typeofSrc() === G.srcUnknown  	# the initial program condition
 	@test setSrcToPoint() === false      	# not defined, set to not point
+	println("\n")
 	
 	@testset "$SourceFile" for SourceFile = SourceFiles
 		@debug("Begin test", SourceFile)   
