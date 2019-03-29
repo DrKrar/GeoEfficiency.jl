@@ -4,14 +4,14 @@ using Compat: stdin, @warn #, split
 
 """# UnExported
 
-	@consol 	expresion 	[consol_inputs...]
+	@console 	expresion 	[consol_inputs...]
 
 execute the expresion `expresion` after putting `consol_inputs` into the standar input buffer.
 
 for functions that meant to run iteractivelly while require user intput, this macro provid a tool to 
 allow for noninteractive testing such functions by providing the input in advance by `consol_inputs`.
 """
-macro consol(expresion, consol_inputs...)
+macro console(expresion, consol_inputs...)
 	quote
 		bffr = readavailable(stdin.buffer) # empty input stream to ensure later only the `consol_inputs` is in `stdin` buffer.
 		bffr == UInt8[] || @warn "buffer not empty, see the pervious process to 'stdin'"  buffer = String(bffr)
@@ -33,7 +33,7 @@ macro consol(expresion, consol_inputs...)
 end
 
 
-function exec_consol_unattended(Fn::Union{Function, Type}, consol_inputs::Vector = []; Fn_ARGs::Vector=[])
+function exec_console_unattended(Fn::Union{Function, Type}, consol_inputs::Vector = []; Fn_ARGs::Vector=[])
 	bffr = readavailable(stdin.buffer) # empty input stream to ensure later only the `consol_inputs` is in `stdin` buffer.
 	bffr == UInt8[] || @warn "buffer not empty, see the pervious process to 'stdin'"  buffer = String(bffr) 
 	
@@ -49,8 +49,8 @@ function exec_consol_unattended(Fn::Union{Function, Type}, consol_inputs::Vector
 	
 	return Fn(Fn_ARGs...)		# call and return the value	
 end
-exec_consol_unattended(Fn::Union{Function, Type}, consol_inputs...; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, [consol_inputs...]; Fn_ARGs=Fn_ARGs)
-exec_consol_unattended(Fn::Union{Function, Type}, consol_inputs::String; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, split(consol_inputs); Fn_ARGs=Fn_ARGs)
+exec_console_unattended(Fn::Union{Function, Type}, consol_inputs...; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, [consol_inputs...]; Fn_ARGs=Fn_ARGs)
+exec_console_unattended(Fn::Union{Function, Type}, consol_inputs::String; Fn_ARGs::Vector=[]) = exec_consol_unattended(Fn, split(consol_inputs); Fn_ARGs=Fn_ARGs)
 
 end
 const H = Helper
