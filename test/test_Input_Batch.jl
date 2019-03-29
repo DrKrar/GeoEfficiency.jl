@@ -67,22 +67,22 @@
 	@testset "setSrcToPoint(::Strin)" begin
 		@test typeofSrc(-1) === G.srcUnknown
 		#@test H.exec_consol_unattended(setSrcToPoint, ["n"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
-		@test false == H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"n"
+		@test false == H.@console 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"n"
 		@test setSrcToPoint() === false
 	
 		@test typeofSrc(-1) === G.srcUnknown
 		#@test H.exec_consol_unattended(setSrcToPoint, ["N"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
-		@test false == H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"N"
+		@test false == H.@console 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"N"
 		@test setSrcToPoint() === false
 	
 		@test typeofSrc(-1) === G.srcUnknown
 		#@test H.exec_consol_unattended(setSrcToPoint, ["Y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "])  	# require input
-		@test H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"Y"
+		@test H.@console 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"Y"
 		@test setSrcToPoint()
 
 		@test typeofSrc(-1) === G.srcUnknown
 		#@test H.exec_consol_unattended(setSrcToPoint, ["y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) 	# require input
-		@test H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"y"
+		@test H.@console 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"y"
 		@test setSrcToPoint()
 	end #testset_setSrcToPoint(::Strin)
 
