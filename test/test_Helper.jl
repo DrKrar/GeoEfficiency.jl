@@ -1,5 +1,5 @@
 @testset "@console" begin
-    @test 6 == H.@consol +(1, 2, 3)
+    @test 6 == H.@console +(1, 2, 3)
         @test readavailable(stdin.buffer) |> String == "\n"
 #
 #
