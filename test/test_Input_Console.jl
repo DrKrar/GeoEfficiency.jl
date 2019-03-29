@@ -9,11 +9,11 @@
 
 @debug("GeoEfficiency.input")
 @testset "GeoEfficiency.input" begin
-	@test H.exec_consol_unattended(G.input, []) == ""
-    @test H.exec_consol_unattended(G.input, "") == ""
-    @test H.exec_consol_unattended(G.input, [1]) == "1"
-	@test H.exec_consol_unattended(G.input, "1") == "1"
-	@test H.exec_consol_unattended(G.input,  "anbfyiQERFC") == "anbfyiQERFC"
+	@test H.exec_console_unattended(G.input, []) == ""
+    @test H.exec_console_unattended(G.input, "") == ""
+    @test H.exec_console_unattended(G.input, [1]) == "1"
+	@test H.exec_console_unattended(G.input, "1") == "1"
+	@test H.exec_console_unattended(G.input,  "anbfyiQERFC") == "anbfyiQERFC"
 	@test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 end #testset_input
 
