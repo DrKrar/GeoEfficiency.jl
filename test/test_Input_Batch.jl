@@ -9,10 +9,6 @@
 
 @debug("setSrcToPoint & typeofSrc")
 @testset "setSrcToPoint & typeofSrc" begin
-	@test G.srcType === G.srcUnknown  		# the initial value
-	@test typeofSrc() === G.srcUnknown  	# the initial value
-	@test setSrcToPoint() === false      	# not defined, set to not point
-
 	@test setSrcToPoint(false) === false
 	@test G.srcType == G.srcNotPoint
 	@test typeofSrc() === G.srcNotPoint

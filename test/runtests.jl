@@ -22,7 +22,10 @@ const SourceFiles = [
 					]
 
 @testset "GeoEfficiency" begin
-
+	@test G.srcType === G.srcUnknown  		# the initial program condition
+	@test typeofSrc() === G.srcUnknown  	# the initial program condition
+	@test setSrcToPoint() === false      	# not defined, set to not point
+	
 	@testset "$SourceFile" for SourceFile = SourceFiles
 		@debug("Begin test", SourceFile)   
 		include("test_$SourceFile.jl")
