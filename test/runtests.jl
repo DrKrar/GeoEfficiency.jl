@@ -14,8 +14,9 @@ include("Helper.jl")
 const SourceFiles = [
 					"Helper",
 					"Error",
-					"Input_Interface",
-   					"Physics_Model",
+					"Input_Console",
+					"Physics_Model",
+					"Input_Batch",
     				"Calculations",
 					"Output_Interface"
 					]

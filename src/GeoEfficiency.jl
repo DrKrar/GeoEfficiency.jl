@@ -23,10 +23,7 @@ export
 
  # Config
 
- # Input_Interface
-	getDetectors,
-	setSrcToPoint,
-	typeofSrc,
+ # Input_Console
 
  # Physics_Model
 	Point,
@@ -35,6 +32,11 @@ export
 	CylDetector,
 	BoreDetector,
 	WellDetector,
+
+# Input_Batch
+	getDetectors,
+	setSrcToPoint,
+	typeofSrc,
 
  # Calculations
 	geoEff,
@@ -48,8 +50,9 @@ export
 
 include("Config.jl") # to overwrite defaults edit parameters; restore by comment out this line.
 include("Error.jl")	# defin error system for the package.
+include("Input_Console.jl")
 include("Physics_Model.jl")
-include("Input_Interface.jl")
+include("Input_Batch.jl")
 include("Calculations.jl")
 include("Output_Interface.jl")
 
