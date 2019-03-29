@@ -66,6 +66,10 @@ end #testset_@consol
     @test H.exec_consol_unattended(readavailable, "10 20 30";      Fn_ARGs=[stdin]) == b"10\n20\n30\n"
     @test H.exec_consol_unattended(readavailable, "1 2 3\n";    Fn_ARGs=[stdin])    == b"1\n2\n3\n"
     @test H.exec_consol_unattended(readavailable, "10 20 30 Q";    Fn_ARGs=[stdin]) == b"10\n20\n30\nQ\n"
+
+    @test H.exec_consol_unattended(readavailable, "1.0 2.0 " * "3.0 Q";    Fn_ARGs=[stdin]) == b"1.0\n2.0\n3.0\nQ\n"
+    @test H.exec_consol_unattended(readavailable, "1.1 2.1 " * " 3.1 Q";    Fn_ARGs=[stdin]) == b"1.1\n2.1\n3.1\nQ\n"
+    
     @test H.exec_consol_unattended(readavailable, 1, 2, 3;     Fn_ARGs=[stdin])     == b"1\n2\n3\n"
 
     @test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
