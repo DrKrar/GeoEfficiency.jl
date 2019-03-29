@@ -66,8 +66,8 @@
 	@test pnt6.Height == 5.0
 	@test pnt6.Rho == pnt5.Rho 
 		
-	@test H.exec_consol_unattended(Point, [5, 1]) == pnt51
-	@test H.exec_consol_unattended(Point, [5, 0]) == pnt5
+	@test H.exec_console_unattended(Point, [5, 1]) == pnt51
+	@test H.exec_console_unattended(Point, [5, 0]) == pnt5
 end #testset_Point
 
 
@@ -127,8 +127,8 @@ end #testset_Point
 	end #let
 
 	@debug("CylDetector()")
-	@test H.exec_consol_unattended(CylDetector, [5, 1]) == CylDetector(5, 1)
-	@test H.exec_consol_unattended(CylDetector, [5, 0])  == CylDetector(5)
+	@test H.exec_console_unattended(CylDetector, [5, 1]) == CylDetector(5, 1)
+	@test H.exec_console_unattended(CylDetector, [5, 0])  == CylDetector(5)
 end #testset_CylDetector
 
 
@@ -185,8 +185,8 @@ end #testset_CylDetector
 	@debug("BoreDetector()")
 	let bore0 = BoreDetector(5,4,3)
 
-		@test H.exec_consol_unattended(BoreDetector, [5, 4, 3]) === bore0
-		@test H.exec_consol_unattended(BoreDetector, [5, 4, 6, 3]) === bore0
+		@test H.exec_console_unattended(BoreDetector, [5, 4, 3]) === bore0
+		@test H.exec_console_unattended(BoreDetector, [5, 4, 6, 3]) === bore0
 	end #let
 
 end #testset_BoreDetector
@@ -244,8 +244,8 @@ end #testset_BoreDetector
 	@debug("WellDetector()")
 	let Well0 = WellDetector(5, 4, 3, 2)
 
-		@test H.exec_consol_unattended(WellDetector, [5, 4, 3, 2])    == Well0
-		@test H.exec_consol_unattended(WellDetector, [5, 4, 3, 6, 2]) == Well0
+		@test H.exec_console_unattended(WellDetector, [5, 4, 3, 2])    == Well0
+		@test H.exec_console_unattended(WellDetector, [5, 4, 3, 6, 2]) == Well0
 	end #let
 end #testset_WellDetector
 
@@ -320,10 +320,10 @@ end #testset_WellDetector
 	end #Detector(detectors::Vector{<:Detector})
 
 	@debug("Detector()")
-	@test H.exec_consol_unattended(Detector, [5, 4, 3, 6, 2]) 		== Detector(5, 4, 3, 2)
-	@test H.exec_consol_unattended(Detector, [5, 4, 0])				== Detector(5, 4)
-	@test H.exec_consol_unattended(Detector, "5\n" * "4\n" * "0\n") 	== Detector(5, 4)
-	@test H.exec_consol_unattended(Detector, [5, 4, 33, 3, 22, 2]) 		== Detector(5, 4, 3, 2)
+	@test H.exec_console_unattended(Detector, [5, 4, 3, 6, 2]) 		== Detector(5, 4, 3, 2)
+	@test H.exec_console_unattended(Detector, [5, 4, 0])				== Detector(5, 4)
+	@test H.exec_console_unattended(Detector, "5\n" * "4\n" * "0\n") 	== Detector(5, 4)
+	@test H.exec_console_unattended(Detector, [5, 4, 33, 3, 22, 2]) 		== Detector(5, 4, 3, 2)
 end #testset_Detector	
 
 
