@@ -66,19 +66,23 @@
 
 	@testset "setSrcToPoint(::Strin)" begin
 		@test typeofSrc(-1) === G.srcUnknown
-		@test H.exec_consol_unattended(setSrcToPoint, ["n"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		#@test H.exec_consol_unattended(setSrcToPoint, ["n"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		@test false == H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"n"
 		@test setSrcToPoint() === false
 	
 		@test typeofSrc(-1) === G.srcUnknown
-		@test H.exec_consol_unattended(setSrcToPoint, ["N"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		#@test H.exec_consol_unattended(setSrcToPoint, ["N"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) === false # require input
+		@test false == H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"N"
 		@test setSrcToPoint() === false
 	
 		@test typeofSrc(-1) === G.srcUnknown
-		@test H.exec_consol_unattended(setSrcToPoint, ["Y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "])  	# require input
+		#@test H.exec_consol_unattended(setSrcToPoint, ["Y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "])  	# require input
+		@test H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"Y"
 		@test setSrcToPoint()
 
 		@test typeofSrc(-1) === G.srcUnknown
-		@test H.exec_consol_unattended(setSrcToPoint, ["y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) 	# require input
+		#@test H.exec_consol_unattended(setSrcToPoint, ["y"], Fn_ARGs =["\n Is it a point source {Y|n} ? "]) 	# require input
+		@test H.@consol 	setSrcToPoint("\n Is it a point source {Y|n} ? ")	"y"
 		@test setSrcToPoint()
 	end #testset_setSrcToPoint(::Strin)
 
@@ -132,7 +136,7 @@ end #testset_input
 
 
 	@debug("getfloat - invalide console input")
-	readavailable(stdin.buffer) == UInt8[] || @warn "buffer not empty, see the perivious call to `exec_consol_unattended`"  buffer = String(bffr) 
+	readavailable(stdin.buffer) == UInt8[] || @warn "buffer not empty, see the pervious process to `stdin`"  buffer = String(bffr) 
 	write(stdin.buffer,"\n"); 				@test 0.0 == G.getfloat("\njust press return: ")	# valide input but for completness	
 	write(stdin.buffer,"\n" * "3\n"); 		@test 3.0 == G.getfloat("\nthe first time just press return, then input `3` : ", 0.1, 4.0)
 	write(stdin.buffer,"5\n" * "3\n");  	@test 3.0 == G.getfloat("\ninput 5, then press return: ", 0.0, 4.0)
