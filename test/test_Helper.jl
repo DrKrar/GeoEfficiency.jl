@@ -70,8 +70,3 @@ end #testset_@consol
 
     @test readavailable(stdin.buffer) |> String == ""   # test that no thing is left in the stdin
 end #testset_exec_consol_unattended
-
-
-@testset "polynomial" begin
-    @test H.poly(4., [10., 20., 30.]) ≈ @evalpoly(4.0 , 10., 20., 30.)
-end #testset_polynomial
