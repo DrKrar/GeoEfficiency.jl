@@ -189,6 +189,8 @@ end #testset
 
 		try 
 			@test eltype(G.detector_info_from_csvFile()) == G.Detector
+			@test G.read_batch_info() isa Tuple{Vector,  Vector{Float64},  Vector{Float64}, Vector{Float64}, Vector{Float64}, Bool}
+			@test G.read_batch_info(tempname()) isa Tuple{Vector,  Vector{Float64},  Vector{Float64}, Vector{Float64}, Vector{Float64}, Bool}
 
 			if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
 				setSrcToPoint(true);  
