@@ -1,9 +1,8 @@
 abstract type GeoException <: Exception end
 
-function Base.showerror(io::IO, err::GeoException)
-	print(io, typeof(err), ": ")
-	print(io, err.msg)
-end
+import Base: showerror
+
+showerror(io::IO, err::GeoException) = print(io, typeof(err), ": ", err.msg)
 
 struct  InValidDetectorDim <: GeoException
 	msg::AbstractString
