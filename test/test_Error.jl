@@ -1,9 +1,9 @@
 @debug("test Error system")
 
 let x="1"
-    @test nothing == showerror(stderr, G.GeoException)
-    @test nothing == showerror(stderr, G.InValidDetectorDim)
-    @test nothing == showerror(stderr, G.NotImplementedError)
+    @test nothing == Base.showerror(stderr, G.GeoException)
+    @test nothing == Base.showerror(stderr, G.InValidDetectorDim)
+    @test nothing == Base.showerror(stderr, G.NotImplementedError)
     
 
     @test nothing == G.@validateDetector true
