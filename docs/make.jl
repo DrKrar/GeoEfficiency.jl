@@ -17,7 +17,10 @@ using Documenter, DocumenterLaTeX
 using GeoEfficiency
 
 const PAGES = Any[
-    "Home" => "index.md",
+    "Home" => [
+        "introduction.md"
+        "contents.md"
+        ],
     "Manual" => [
 		"manual/GeoEfficiency.md",
         "manual/Error.md",
@@ -27,16 +30,21 @@ const PAGES = Any[
         "manual/Calculations.md",
         "manual/Output_Interface.md",
      ],
+    "Function Index" => [
+        "index.md",
+        ],
 ]
 
 const formats = Any[
     Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
-        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/v0.9/"
+        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/v0.9/",
+        assets  = ["assets/custom.css"],
     ),
 ]
 if "pdf" in ARGS
-    push!(formats, LaTeX(platform = "docker"))
+    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
+                        push!(formats, LaTeX(platform = "docker"))
 end
 
 makedocs(
@@ -47,7 +55,6 @@ makedocs(
     sitename= "GeoEfficiency.jl",
     authors = "Mohamed E. Krar",
     pages   = PAGES,
-    assets  = ["assets/custom.css"],
 )
 
 mktempdir() do tmp
