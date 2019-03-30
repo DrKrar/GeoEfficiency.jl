@@ -79,7 +79,7 @@ The efficiency calculation can be done by one of the functions:
 *  [`calc`](@ref) ask for the required information from the 'console', 
 *  [`calcN`](@ref) just a repeat of the [`calc`](@ref) function 
 *  [`batch()`](@ref) which try to take required information from csv files located in 
-   the home directory inside a folder called [`GeoEfficiency`](@ref).
+   the home directory inside a folder called `GeoEfficiency`.
  
 For more on the function and its methods prefix the name of the function by `?`.
 
