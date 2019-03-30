@@ -289,6 +289,8 @@ end #testset_reading_from_CSV
 	(det1, det2, det3, det4) = detectors
 	@test det1 <= det2 <= det3 <= det4
 
+	@test  getDetectors([-2 0 ; 2 1]) ==  [CylDetector(2.0, 1.0)]	# invalid detector
+
 	detector_info_array = ["5" "0" "0" "0"; "10" "0" "0" "0"]
 	@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
 	detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
