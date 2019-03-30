@@ -10,6 +10,16 @@ julia:
   - nightly
 notifications:
  
+jobs:
+  include:
+    - stage: "Documentation"
+      julia: 1.1
+      os: linux
+      script:
+        - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
+                                               Pkg.instantiate()'
+        - julia --project=docs/ --color=yes docs/make.jl pdf clean
+      after_success: skip
   
 after_success:
     - julia -e 'try Pkg.dir; catch err; using Pkg; end'
