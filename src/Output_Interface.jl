@@ -226,11 +226,11 @@ function batch(	detector::Detector,
 	
 	open(redirect, "a+") do redirect_file
 	
-	if ispoint && length(srcHeights_array) * length(srcRhos_array) > _max_batch 
+	if ispoint && length(srcHeights_array) * length(srcRhos_array) < _max_batch 
 		redirect_stdout(_bt, redirect_file)
 
 
-	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) > _max_batch
+	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
 		redirect_stdout(_bt, redirect_file)
 
 	else
