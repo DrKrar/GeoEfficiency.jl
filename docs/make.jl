@@ -30,7 +30,7 @@ const PAGES = Any[
         "manual/Calculations.md",
         "manual/Output_Interface.md",
      ],
-    "Function Index" = "index.md",
+    "Function Index" => "index.md",
 ]
 
 const formats = Any[
