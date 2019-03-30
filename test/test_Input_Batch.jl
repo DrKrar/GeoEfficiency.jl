@@ -190,7 +190,10 @@ end #testset
 		try 
 			@test eltype(G.detector_info_from_csvFile()) == G.Detector
 			@test G.read_batch_info() isa Tuple{Vector,  Vector{Float64},  Vector{Float64}, Vector{Float64}, Vector{Float64}, Bool}
+			setSrcToPoint(true);  
 			@test H.@console(G.read_batch_info(tempname(),"","","","",""), "1 2 0 q 1 0") isa Tuple{Vector,  Vector{Float64},  Vector{Float64}, Vector{Float64}, Vector{Float64}, Bool}
+			setSrcToPoint(false);
+			@test H.@console(G.read_batch_info(tempname(),"","","","",""), "1 2 0 q 1 0 1 1") isa Tuple{Vector,  Vector{Float64},  Vector{Float64}, Vector{Float64}, Vector{Float64}, Bool}
 
 			if  [0.0] != G.read_from_csvFile(G.srcHeights, G.datadir)
 				setSrcToPoint(true);  
