@@ -19,7 +19,7 @@ using GeoEfficiency
 const PAGES = Any[
     "Home" => [
         "introduction.md"
-        "contents.md"
+        #"contents.md"
         ],
     "Manual" => [
 		"manual/GeoEfficiency.md",
@@ -30,9 +30,7 @@ const PAGES = Any[
         "manual/Calculations.md",
         "manual/Output_Interface.md",
      ],
-    "Function Index" => [
-        "index.md",
-        ],
+    "Function Index" = "index.md",
 ]
 
 const formats = Any[

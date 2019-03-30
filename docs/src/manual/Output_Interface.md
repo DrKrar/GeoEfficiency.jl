@@ -7,5 +7,6 @@ GeoEfficiency.batch
 GeoEfficiency.batchInfo
 GeoEfficiency.checkResultsDirs
 GeoEfficiency.writecsv_head
+GeoEfficiency._max_batch
 GeoEfficiency._batch
 ```
