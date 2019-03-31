@@ -17,7 +17,7 @@ input(prompt::AbstractString = "? ", incolor::Symbol = :green)
 return a string delimited by new line excluding the new line. prompt the user with the massage `prompt` defaults to `?`.  `incolor` specify the prompt text color, default to $green$.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Console.jl#L17-L25' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Input_Console.jl#L17-L25' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.getfloat' href='#GeoEfficiency.getfloat'>#</a>
 **`GeoEfficiency.getfloat`** &mdash; *Function*.
@@ -70,5 +70,5 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Console.jl#L32-L77' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Input_Console.jl#L32-L77' class='documenter-source'>source</a><br>
 
