@@ -22,7 +22,7 @@ introduce a fast and flexible tool to calculate in batch or individually the `ge
 **for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/GeoEfficiency.jl#L3-L21' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/GeoEfficiency.jl#L3-L21' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.about' href='#GeoEfficiency.about'>#</a>
 **`GeoEfficiency.about`** &mdash; *Function*.
@@ -39,7 +39,7 @@ introduce a fast and flexible tool to calculate in batch or individually the `ge
  Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
  Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
  Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
- Version:       v"0.9.3-DEV" - (0 days old master)  
+ Version:       v"0.9.3-DEV" - (1 day old master)  
  Documentation: http://geoefficiencyjl.readthedocs.org
 
 
@@ -52,5 +52,5 @@ for more information see `batch`, `batchInfo`.
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/GeoEfficiency.jl#L85-L109' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/GeoEfficiency.jl#L85-L109' class='documenter-source'>source</a><br>
 

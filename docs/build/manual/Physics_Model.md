@@ -26,7 +26,7 @@ construct and return a `Point` source that can be used as either a source by its
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L18-L37' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L18-L37' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.source' href='#GeoEfficiency.source'>#</a>
 **`GeoEfficiency.source`** &mdash; *Function*.
@@ -48,7 +48,7 @@ return a tuple that describe the source (`anchorPnt`, `SrcRadius`, `SrcLength`) 
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L100-L115' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L100-L115' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.CylDetector' href='#GeoEfficiency.CylDetector'>#</a>
 **`GeoEfficiency.CylDetector`** &mdash; *Type*.
@@ -69,7 +69,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L160-L172' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L160-L172' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.BoreDetector' href='#GeoEfficiency.BoreDetector'>#</a>
 **`GeoEfficiency.BoreDetector`** &mdash; *Type*.
@@ -91,7 +91,7 @@ construct and return a `bore-hole` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L220-L234' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L220-L234' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.WellDetector' href='#GeoEfficiency.WellDetector'>#</a>
 **`GeoEfficiency.WellDetector`** &mdash; *Type*.
@@ -114,7 +114,7 @@ construct and return a `Well-Type` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L273-L289' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L273-L289' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.RadiationDetector' href='#GeoEfficiency.RadiationDetector'>#</a>
 **`GeoEfficiency.RadiationDetector`** &mdash; *Type*.
@@ -124,7 +124,7 @@ construct and return a `Well-Type` detector of the given crystal dimensions:-
 abstract super-supertype of all detectors types
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L142' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L142' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Detector' href='#GeoEfficiency.Detector'>#</a>
 **`GeoEfficiency.Detector`** &mdash; *Type*.
@@ -138,5 +138,5 @@ Detector
 abstract supertype of all detectors types of cylidericalish shapes. also can be used to construct any leaf type.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Physics_Model.jl#L145-L152' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Physics_Model.jl#L145-L152' class='documenter-source'>source</a><br>
 

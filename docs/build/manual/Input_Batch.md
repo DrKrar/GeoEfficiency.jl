@@ -15,7 +15,7 @@ typeofSrc()::SrcType
 return the current value of the global `GeoEfficiency.srcType`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L30-L35' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L30-L35' class='documenter-source'>source</a><br>
 
 
 ```
@@ -32,7 +32,7 @@ set and return the value of the global `GeoEfficiency.srcType` corresponding to 
   * srcNotPoint = 4 also any greater than 4 integer treated as so.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L38-L50' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L38-L50' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.setSrcToPoint' href='#GeoEfficiency.setSrcToPoint'>#</a>
 **`GeoEfficiency.setSrcToPoint`** &mdash; *Function*.
@@ -46,7 +46,7 @@ setSrcToPoint()::Bool
 return whether the source type is a point or not.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L64-L68' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L64-L68' class='documenter-source'>source</a><br>
 
 
 ```
@@ -63,7 +63,7 @@ return whether the source type is a point or not after setting `srcType` to $src
 **see also:** [`typeofSrc(::Int)`](Input_Batch.html#GeoEfficiency.typeofSrc).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L71-L85' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L71-L85' class='documenter-source'>source</a><br>
 
 
 ```
@@ -75,7 +75,7 @@ return whether the source type is a point or not. only prompt the user to set th
 **see also:** [`typeofSrc(::Int)`](Input_Batch.html#GeoEfficiency.typeofSrc), [`setSrcToPoint(::Bool)`](Input_Batch.html#GeoEfficiency.setSrcToPoint).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L97-L105' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L97-L105' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.detector_info_from_csvFile' href='#GeoEfficiency.detector_info_from_csvFile'>#</a>
 **`GeoEfficiency.detector_info_from_csvFile`** &mdash; *Function*.
@@ -98,7 +98,7 @@ return a vector{Detector} based on information in the file of name `detectors` f
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L112-L127' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L112-L127' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.read_from_csvFile' href='#GeoEfficiency.read_from_csvFile'>#</a>
 **`GeoEfficiency.read_from_csvFile`** &mdash; *Function*.
@@ -115,7 +115,7 @@ read_from_csvFile(csv_data::AbstractString,
 return Vector{Float64} based on data in csv file named `csv_data`. directory `datadir` point to    where the file is located default to $C:\Users\Mohamed\GeoEfficiency$ as set by the constant `dataDir`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L148-L157' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L148-L157' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.read_batch_info' href='#GeoEfficiency.read_batch_info'>#</a>
 **`GeoEfficiency.read_batch_info`** &mdash; *Function*.
@@ -133,7 +133,7 @@ read `detectors` and `sources` parameters from the predefined csv files.
 Return a tuple 	   (detectors*array, 		srcHeights*array, 		srcRhos*array, 		srcRadii*array, 		srcLengths*array, 		GeoEfficiency*isPoint)
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L179-L194' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L179-L194' class='documenter-source'>source</a><br>
 
 
 **UnExported**
@@ -161,7 +161,7 @@ Return a tuple
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L202-L223' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L202-L223' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.getDetectors' href='#GeoEfficiency.getDetectors'>#</a>
 **`GeoEfficiency.getDetectors`** &mdash; *Function*.
@@ -179,7 +179,7 @@ return the `detectors_array` as Vector{Detector} extended by the entered detecto
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L282-L293' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L282-L293' class='documenter-source'>source</a><br>
 
 
 ```
@@ -195,5 +195,5 @@ return `detectors_array` as Vector{Detector}, after extending it with the succes
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Input_Batch.jl#L315-L328' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Input_Batch.jl#L315-L328' class='documenter-source'>source</a><br>
 

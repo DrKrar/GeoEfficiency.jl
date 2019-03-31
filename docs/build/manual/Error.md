@@ -11,7 +11,7 @@
 coustom abstract `Exception` that is the parent of all exception in the `GeoEfficiency` package
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Error.jl#L2' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Error.jl#L2' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.InValidDetectorDim' href='#GeoEfficiency.InValidDetectorDim'>#</a>
 **`GeoEfficiency.InValidDetectorDim`** &mdash; *Type*.
@@ -21,7 +21,7 @@ coustom abstract `Exception` that is the parent of all exception in the `GeoEffi
 coustom `Exception` indicating inValid radiation detector dimentions
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Error.jl#L9' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Error.jl#L9' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.@validateDetector' href='#GeoEfficiency.@validateDetector'>#</a>
 **`GeoEfficiency.@validateDetector`** &mdash; *Macro*.
@@ -44,7 +44,7 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Error.jl#L14-L27' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Error.jl#L14-L27' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.NotImplementedError' href='#GeoEfficiency.NotImplementedError'>#</a>
 **`GeoEfficiency.NotImplementedError`** &mdash; *Type*.
@@ -54,7 +54,7 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 coustom `Exception` source to detector condation which may be valid but not implemented yet
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Error.jl#L48' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Error.jl#L48' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.@notImplementedError' href='#GeoEfficiency.@notImplementedError'>#</a>
 **`GeoEfficiency.@notImplementedError`** &mdash; *Macro*.
@@ -64,5 +64,5 @@ coustom `Exception` source to detector condation which may be valid but not impl
 coustom macro to throw [`NotImplementedError`](Error.html#GeoEfficiency.NotImplementedError) `Exception` 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Error.jl#L53' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Error.jl#L53' class='documenter-source'>source</a><br>
 

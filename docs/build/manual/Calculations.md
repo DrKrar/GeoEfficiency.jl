@@ -63,7 +63,7 @@ julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Calculations.jl#L224-L285' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Calculations.jl#L224-L285' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.GeoEff_Pnt' href='#GeoEfficiency.GeoEff_Pnt'>#</a>
 **`GeoEfficiency.GeoEff_Pnt`** &mdash; *Function*.
@@ -85,7 +85,7 @@ return the `geometrical efficiency` for the point source `aPnt` located on front
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Calculations.jl#L23-L37' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Calculations.jl#L23-L37' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.GeoEff_Disk' href='#GeoEfficiency.GeoEff_Disk'>#</a>
 **`GeoEfficiency.GeoEff_Disk`** &mdash; *Function*.
@@ -103,5 +103,5 @@ return the `geometrical efficiency` for a `disk` source. The `disk` center is th
 produce a warning if the disk is out of the cylindrical detector face.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/938dc1c4630bbe122ecc2766beade3c02eab5566/src/Calculations.jl#L72-L82' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e5ffee5e1fad9546674a2a8813770c7d81cf1064/src/Calculations.jl#L72-L82' class='documenter-source'>source</a><br>
 
