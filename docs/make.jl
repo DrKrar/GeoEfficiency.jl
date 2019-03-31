@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-using Documenter, DocumenterLaTeX, DocumenterMarkdown
+using Documenter, DocumenterMarkdown, DocumenterLaTeX
 using GeoEfficiency
 
 const PAGES = Any[
