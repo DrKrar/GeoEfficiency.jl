@@ -6,7 +6,7 @@
 #
 #**************************************************************************************
 
-using Documenter, DocumenterLaTeX
+using Documenter, DocumenterLaTeX, DocumenterMarkdown
 using GeoEfficiency
 
 const PAGES = Any[
@@ -31,7 +31,8 @@ const formats = Any[
         prettyurls = get(ENV, "CI", nothing) == "true",
         canonical = "https://DrKrar.github.io/GeoEfficiency.jl/v0.9/",
         assets  = ["assets/custom.css"],
-    ),
+    ), 
+    Markdown(),
 ]
 if "pdf" in ARGS
     Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
@@ -61,6 +62,13 @@ mktempdir() do tmp
     @info "Deploying HTML pages"
     deploydocs(
         repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    )
+    # Deploy Markup pages
+    @info "Deploying MarkUp pages"
+    deploydocs(
+        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        target = "build/Mrk",
         versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
     )
     # Put back PDF into docs/build/pdf
