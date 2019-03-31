@@ -23,7 +23,7 @@ const PAGES = Any[
         "manual/Calculations.md",
         "manual/Output_Interface.md",
      ],
-    "Function Index" => "index.md",
+    "Index" => "list.md",
 ]
 
 const formats = Any[

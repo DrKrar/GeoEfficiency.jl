@@ -1,4 +1,3 @@
-# Function Index
-
-```@index
+# contents
+```@contents
 ```
