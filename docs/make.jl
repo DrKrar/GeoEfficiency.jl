@@ -1,47 +1,85 @@
-#include("E:\\Users\\DrKra\\.julia\\v0.7\\GeoEfficiency\\docs\\make.jl")
-cdir= pwd()
-info("Working Directory: ", @__DIR__)
-cd(@__DIR__)
+#**************************************************************************************
+# make.jl
+# =============== part of the GeoEfficiency.jl package.
+#
+# script for building documentaion of the GeoEfficiency.jl package.
+#
+#**************************************************************************************
 
-using Documenter, GeoEfficiency
+using Documenter, DocumenterMarkdown, DocumenterLaTeX
+using GeoEfficiency
 
-makedocs()
-
-cd(cdir)
-#=
-# Documenter Setup.
-
-const PAGES = [
+const PAGES = Any[
     "Home" => "index.md",
+    "Introduction" => "introduction.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
+        "manual/Error.md",
+        "manual/Input_Console.md",
         "manual/Physics_Model.md",
-        "manual/Input_Interface.md",
+        "manual/Input_Batch.md",
         "manual/Calculations.md",
         "manual/Output_Interface.md",
      ],
+    "Index" => "list.md",
 ]
 
+const formats = Any[
+    Documenter.HTML(
+        prettyurls = get(ENV, "CI", nothing) == "true",
+        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/dev/",
+        assets  = ["assets/custom.css"],
+    ), 
+    #Markdown(),
+]
+if "pdf" in ARGS
+    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
+                        push!(formats, LaTeX(platform = "docker"))
+end
+
 makedocs(
-    build     = joinpath(pwd(), "build/html/en"),
-    modules   = [GeoEfficiency],
-    clean     = false,
-    doctest   = "doctest" in ARGS,
-    linkcheck = "linkcheck" in ARGS,
-    linkcheck_ignore = ["https://bugs.kde.org/show_bug.cgi?id=136779"], # fails to load from nanosoldier?
-    strict    = true,
-    checkdocs = :none,
-    format    = "pdf" in ARGS ? :latex : :html,
-    sitename  = "The GeoEfficiency Software Pakage",
-    authors   = "Mohamed Krar",
-    analytics = "UA-28835595-6",
-    pages     = PAGES,
+    format  = formats,
+    modules = [GeoEfficiency],
+    clean   = "clean" in ARGS,
+    doctest = "doctest" in ARGS,
+    sitename= "GeoEfficiency.jl",
+    authors = "Mohamed E. Krar",
+    pages   = PAGES,
 )
 
-deploydocs(
-	repo = "github.com/DrKrar/GeoEfficiency.git",
-	target = "build/html/en",
-	dirname = "en",
-	deps = nothing,
-	make = nothing,
-)=#
+mktempdir() do tmp
+    # Hide the PDF from html-deploydocs
+    build = joinpath(@__DIR__, "build")
+    files = readdir(build)
+    idx = findfirst(f -> startswith(f, "GeoEfficiency.jl") && endswith(f, ".pdf"), files)
+    pdf = idx === nothing ? nothing : joinpath(build, files[idx])
+    if pdf !== nothing
+        pdf = mv(pdf, joinpath(tmp, basename(pdf)))
+    end
+    # Deploy HTML pages
+    @info "Deploying HTML pages"
+    deploydocs(
+        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    )
+    # Deploy Markup pages
+   #= @info "Deploying MarkUp pages"
+    deploydocs(
+        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        target = "build/Mrk",
+        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    )=#
+    # Put back PDF into docs/build/pdf
+    mkpath(joinpath(build, "pdf"))
+    if pdf !== nothing
+        pdf = mv(pdf, joinpath(build, "pdf", basename(pdf)))
+    end
+    # Deploy PDF
+    @info "Deploying PDF"
+    deploydocs(
+        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        target = "build/pdf",
+        branch = "gh-pages-pdf",
+        forcepush = true,
+    )
+end
