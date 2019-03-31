@@ -23,7 +23,7 @@ calculate and display on the `console` the `geometrical efficiency` of the  dete
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L76-L91' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L76-L91' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.calcN' href='#GeoEfficiency.calcN'>#</a>
 **`GeoEfficiency.calcN`** &mdash; *Function*.
@@ -37,7 +37,7 @@ calcN()
 calculate and display the `geometrical efficiency` repeatedly.  Prompt the user to input a `detector` and a `source` from the `console`. Prompt the user `repeatedly` until it exit (give a choice to use the same  detector or a new detector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L108-L117' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L108-L117' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.batch' href='#GeoEfficiency.batch'>#</a>
 **`GeoEfficiency.batch`** &mdash; *Function*.
@@ -55,7 +55,7 @@ results are saved on a **$CSV$**  file(s) named after the detector(s). the **$CS
 **for more information on batch refer to [`batchInfo`](Output_Interface.html#GeoEfficiency.batchInfo).**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L172-L184' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L172-L184' class='documenter-source'>source</a><br>
 
 
 ```
@@ -84,7 +84,7 @@ A set of sources is constructed of every valid **combination** of parameter in t
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L187-L217' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L187-L217' class='documenter-source'>source</a><br>
 
 
 ```
@@ -101,7 +101,7 @@ batch(
 **same as [`batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](Output_Interface.html#GeoEfficiency.batch)** but accept a list of detectors `detectors_array`. return a list of paths to the **$CSV$** of files (file for each detector) storing the results.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L244-L258' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L244-L258' class='documenter-source'>source</a><br>
 
 
 ```
@@ -118,7 +118,7 @@ batch(
 **same as [`batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](Output_Interface.html#GeoEfficiency.batch)** but provide batch calculation of the  `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`. return a list of paths to the **$CSV$** of files (file for each detector) storing the results.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L296-L311' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L296-L311' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.batchInfo' href='#GeoEfficiency.batchInfo'>#</a>
 **`GeoEfficiency.batchInfo`** &mdash; *Constant*.
@@ -179,7 +179,7 @@ results of batch calculation are saved on a **$CSV$**  file(s) named after the d
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L495-L546' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L495-L546' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.checkResultsDirs' href='#GeoEfficiency.checkResultsDirs'>#</a>
 **`GeoEfficiency.checkResultsDirs`** &mdash; *Function*.
@@ -195,7 +195,7 @@ checkResultsDirs()
 make sure that directories for saving the results are already exist or create  them if necessary.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L28-L36' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L28-L36' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.writecsv_head' href='#GeoEfficiency.writecsv_head'>#</a>
 **`GeoEfficiency.writecsv_head`** &mdash; *Function*.
@@ -211,7 +211,7 @@ writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}},
 Write `content` to the comma delimited values file `filename`.  optionally with header `head`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L152-L160' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L152-L160' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency._max_batch' href='#GeoEfficiency._max_batch'>#</a>
 **`GeoEfficiency._max_batch`** &mdash; *Constant*.
@@ -221,7 +221,7 @@ Write `content` to the comma delimited values file `filename`.  optionally with 
 -ve value will display all batch results on
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L20-L22' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L20-L22' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.max_batch' href='#GeoEfficiency.max_batch'>#</a>
 **`GeoEfficiency.max_batch`** &mdash; *Function*.
@@ -239,7 +239,7 @@ set the value of '*max*batch' which default to 20 which control the maxumam numb
 **see also: [`max_batch()`](Output_Interface.html#GeoEfficiency.max_batch)**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L46-L58' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L46-L58' class='documenter-source'>source</a><br>
 
 
 ```
@@ -251,7 +251,7 @@ set the value of '*max*batch' to its default value.
 **see also: [`max_batch(::Integer)`](Output_Interface.html#GeoEfficiency.max_batch)**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L63-L70' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L63-L70' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency._batch' href='#GeoEfficiency._batch'>#</a>
 **`GeoEfficiency._batch`** &mdash; *Function*.
@@ -284,7 +284,7 @@ The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L328-L354' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L328-L354' class='documenter-source'>source</a><br>
 
 
 **UnExported**
@@ -309,5 +309,5 @@ The `results` has columns of headers  `AnchorHeight`, `AnchorRho`, `srcRadius`, 
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1a10571702e3dae3a23fb7718c2bec2c312c1c42/src/Output_Interface.jl#L403-L427' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/170767107041c25c1b27b1db64cbef507f9688da/src/Output_Interface.jl#L403-L427' class='documenter-source'>source</a><br>
 

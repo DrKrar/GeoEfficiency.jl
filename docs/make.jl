@@ -10,10 +10,8 @@ using Documenter, DocumenterLaTeX, DocumenterMarkdown
 using GeoEfficiency
 
 const PAGES = Any[
-    "Home" => [
-        "introduction.md"
-        #"contents.md"
-        ],
+    "Home" => "index.md",
+    "Introduction" => "introduction.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
         "manual/Error.md",
@@ -29,7 +27,7 @@ const PAGES = Any[
 const formats = Any[
     Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
-        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/v0.9/",
+        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/v0.9.3-dev/",
         assets  = ["assets/custom.css"],
     ), 
     Markdown(),
