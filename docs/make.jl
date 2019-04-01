@@ -33,7 +33,7 @@ const formats = Any[
     Markdown(),
 ]
 if "pdf" in ARGS
-    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
+    #Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
                         push!(formats, LaTeX(platform = "docker"))
 end
 

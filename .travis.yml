@@ -10,6 +10,9 @@ julia:
   - nightly
 notifications:
  
+services:
+  - docker
+
 jobs:
   include:
     - stage: "Documentation"
@@ -25,5 +28,6 @@ after_success:
     - julia -e 'try Pkg.dir; catch err; using Pkg; end; 
                 cd(Pkg.dir("GeoEfficiency")); 
                 Pkg.add("Coverage"); using Coverage; 
-                Coveralls.submit(Coveralls.process_folder());
-                Codecov.submit(Codecov.process_folder());'
+                const fileCoverage = process_folder(); 
+                Coveralls.submit(fileCoverage);
+                Codecov.submit(fileCoverage);'
