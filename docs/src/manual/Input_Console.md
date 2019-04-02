@@ -1,5 +1,5 @@
 
-# Input_Console
+# Console Input
 
 
 ```@docs

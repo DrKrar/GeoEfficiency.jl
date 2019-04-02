@@ -1,4 +1,4 @@
-# Input_Batch
+# Batch Input
 
 ```@docs
 GeoEfficiency.typeofSrc

@@ -1,4 +1,4 @@
-# Physics_Module
+# Physics Model
 
 ```@docs
 GeoEfficiency.Point

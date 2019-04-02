@@ -1,4 +1,4 @@
-# Output_Interface
+# Output Interface
 
 ```@docs
 GeoEfficiency.calc
