@@ -240,15 +240,15 @@ the detector `detector`.
     for the details, please refer to each detector entry.
 	
 !!! note
-    *  if `SrcLength` equal to ``zero``; the method return Geometrical Efficiency of a disc 
+    *  if `SrcLength` equal to `zero`; the method return Geometrical Efficiency of a disc 
        source of Radius = `SrcRadius` and center at the point `aPNT`.
-    *  if both `SrcRadius` and `SrcLength` equal to ``zero``; 
+    *  if both `SrcRadius` and `SrcLength` equal to `zero`; 
        the method returns the Geometrical Efficiency of a point source at the anchoring point.
 
 # Example
 
-1.  to obtain the efficiency of a `cylindrical` detector of crystal radius ``2.0`` cm for axial 
-    source cylinder of radius ``1.0`` cm and height ``2.5`` cm on the detector surface. 
+*   to obtain the efficiency of a `cylindrical` detector of crystal radius `2.0` cm for axial 
+    source cylinder of radius `1.0` cm and height `2.5` cm on the detector surface. 
 
 ```jldoctest
 julia> using GeoEfficiency
@@ -257,8 +257,8 @@ julia> geoEff(CylDetector(2.0), Point(0.0), 1.0, 2.5)
 0.2923777934922748
 ```
 
-2.  to obtain the efficiency for a `bore-hole` detector of crystal radius of ``2.0`` and height of ``3.0`` with 
-    hole radius of ``1.5`` cm for axial source cylinder of radius ``1.0`` cm and height ``2.5`` cm starting from detector center.
+*   to obtain the efficiency for a `bore-hole` detector of crystal radius of `2.0` and height of `3.0` with 
+    hole radius of `1.5` cm for axial source cylinder of radius `1.0` cm and height `2.5` cm starting from detector center.
 
 ```jldoctest
 julia> using GeoEfficiency
@@ -269,9 +269,9 @@ julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
 0.5678174038944723
 ```
 
-3.  to obtain the efficiency for a `well-type` detector of crystal radius of ``2.0`` cm and 
-    height ``3.0`` cm with hole radius of ``1.5`` cm and depth of ``1.0`` for axial source cylinder of 
-    radius ``1.0`` cm and height ``2.5`` cm at the hole surface.
+*   to obtain the efficiency for a `well-type` detector of crystal radius of `2.0` cm and 
+    height `3.0` cm with hole radius of `1.5` cm and depth of `1.0` cm for axial source cylinder of 
+    radius `1.0` cm and height `2.5` cm at the hole surface.
 	
 ```jldoctest
 julia> using GeoEfficiency

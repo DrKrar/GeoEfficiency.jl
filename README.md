@@ -1,7 +1,7 @@
 Author | [Mohamed Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
 ----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
-Documentation |  [ReadTheDocs](http://geoefficiencyjl.readthedocs.org)
+Documentation |  [ReadTheDocs](http://geoefficiencyjl.readthedocs.org)*(stale)*
 Current version | [v"0.9.2"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
@@ -21,10 +21,11 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 # Accurate Geometrical Efficiency Calculator (GeoEfficiency)
 
 The Package `GeoEfficiency`, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
-The Package models a radiation detector irradiated by a radiative source. 
+The Package models a radiation detector irradiated by a radiactive source. 
 The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
 ## The following list show the current and planed features:-
+the checked items represent allready present feature.
 
  - [x] support of widely used detector geometries.
       - [x] `cylinder` detectors.
@@ -50,9 +51,9 @@ The Package relay directly on numerical evaluation of closed form analytical for
 
 
 ## Requirements
- *  Julia 0.6 (current) or above.
- *  QuadGK 0.3.0 or above, will be installed automatically during the package Installation.
- *  Compat 0.63.0 or above, will be installed automatically during the package Installation.
+ *  Julia 0.6 or above.
+ *  QuadGK 0.3.0 or above, will be installed automatically during the package installation.
+ *  Compat 0.63.0 or above, will be installed automatically during the package installation.
  
 ## Download and Install the Package
 The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
@@ -88,7 +89,7 @@ The efficiency calculation can be done by one of the functions:
 *  `geoEff` used with or without argument(s), 
 *  `calc` ask for the required information from the `console`, 
 *  `calcN` just a repeat of the `calc` function 
-*  batch() which try to take required information from csv files located in 
+*  `batch()` which try to take required information from csv files located in 
    the home directory inside a folder called `GeoEfficiency`.
  
 For more on the function and its methods prefix the name of the function by `?`.

@@ -6,12 +6,12 @@
 #
 #**************************************************************************************
 
-using Documenter, DocumenterMarkdown, DocumenterLaTeX
+using  Documenter, DocumenterLaTeX #, DocumenterMarkdown
 using GeoEfficiency
 
 const PAGES = Any[
+    #"Home" => "index.md",
     "Home" => "index.md",
-    "Introduction" => "introduction.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
         "manual/Error.md",
@@ -28,12 +28,15 @@ const formats = Any[
     Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
         canonical = "https://DrKrar.github.io/GeoEfficiency.jl/dev/",
-        assets  = ["assets/custom.css"],
+        
     ), 
-    Markdown(),
+    
 ]
+
+isdefined(@__MODULE__,:DocumenterMarkdown) &&  push!(formats, Markdown())
+
 if "pdf" in ARGS
-    #Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
+    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
                         push!(formats, LaTeX(platform = "docker"))
 end
 
@@ -45,6 +48,7 @@ makedocs(
     sitename= "GeoEfficiency.jl",
     authors = "Mohamed E. Krar",
     pages   = PAGES,
+    assets  = ["assets/custom.css"],
 )
 
 mktempdir() do tmp
@@ -62,13 +66,15 @@ mktempdir() do tmp
         repo = "github.com/DrKrar/GeoEfficiency.jl.git",
         versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
     )
-    # Deploy Markup pages
-    @info "Deploying MarkUp pages"
-    deploydocs(
-        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
-        target = "build/Mrk",
-        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
-    )
+    if isdefined(@__MODULE__,:DocumenterMarkdown)
+        # Deploy Markup pages
+        @info "Deploying MarkUp pages"
+        deploydocs(
+            repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+            target = "build/Mrk",
+            versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+        )
+    end #if
     # Put back PDF into docs/build/pdf
     mkpath(joinpath(build, "pdf"))
     if pdf !== nothing

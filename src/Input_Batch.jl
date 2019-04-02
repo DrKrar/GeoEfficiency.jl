@@ -72,9 +72,9 @@ setSrcToPoint()::Bool = srcType === srcPoint
 
     setSrcToPoint(yes::Bool)::Bool
 
-return whether the source type is a point or not after setting `srcType` to ``srcPoint`` if 
-`yes` = ``true`` else if `yes` = ``false`` setting it to ``srcNotPoint`` if it was not already 
-set to other non-point type (``srcDisk``, ``srcLine``, ``srcVolume``).
+return whether the source type is a point or not after setting `srcType` to `srcPoint` if 
+`yes` = `true` else if `yes` = `false` setting it to `srcNotPoint` if it was not already 
+set to other non-point type (`srcDisk`, `srcLine`, `srcVolume`).
 
 !!! note
     *  The user can use this function to change the source type any time.
@@ -117,11 +117,11 @@ return a vector{Detector} based on information in the file of name `detectors` f
 directory `datadir`.
 
 !!! note
-    *  if no path is given the second argument `datadir` is default to ``$(dataDir)`` as set by 
-       the constant ``dataDir``. 
-    *  if no file name is specified the name of the predefined file ``$Detectors`` as set by 
-       the constant ``Detectors``. 
-    *  the no argument method is the most useful; other methods are mainly for ``test propose``.
+    *  if no path is given the second argument `datadir` is default to `$(dataDir)` as set by 
+       the constant `dataDir`. 
+    *  if no file name is specified the name of the predefined file `$Detectors` as set by 
+       the constant `Detectors`. 
+    *  the no argument method is the most useful; other methods are mainly for `test propose`.
 
 """
 function detector_info_from_csvFile(detectors::AbstractString = Detectors, 

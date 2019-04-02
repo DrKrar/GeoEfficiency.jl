@@ -174,10 +174,10 @@ end #function
     batch()
 
 provide batch calculation of the `geometrical efficiency` based on the information provided 
-by the **``CSV``** files by default located in **``$(dataDir)``**.
+by the **`CSV`** files by default located in **`$(dataDir)`**.
 
-results are saved on a **``CSV``**  file(s) named after the detector(s). the **``CSV``**  file(s) 
-by default found in **``$(resultdir)``**, also a log of the results are displayed on the `console`.
+results are saved on a **`CSV`**  file(s) named after the detector(s). the **`CSV`**  file(s) 
+by default found in **`$(resultdir)`**, also a log of the results are displayed on the `console`.
 
 **for more information on batch refer to [`batchInfo`](@ref).**
 
@@ -196,9 +196,9 @@ batch() ::Vector{String} = batch(read_batch_info()...)
 		)::String 	where S <: Real 	
 
 provide batch calculation of the `geometrical efficiency` for the detector `detector`. 
-results are saved on a **``CSV``**  file named after the detector. 
-the **``CSV``**  file by default found in **``$(resultdir)``**. this method return the actual 
-path to the **``CSV``** file. 
+results are saved on a **`CSV`**  file named after the detector. 
+the **`CSV`**  file by default found in **`$(resultdir)`**. this method return the actual 
+path to the **`CSV`** file. 
 also a log of the results are displayed on the `console`.
 
 *  `srcHeights_array`: list of source heights to feed to batch.
@@ -210,9 +210,9 @@ A set of sources is constructed of every valid **combination** of parameter in t
 `srcRadii_array` and `srcLengths_array` arrays with conjunction with `ispoint`.
 
 !!! warning
-    *  If `ispoint` is ``true`` the source type is a point source and the parameters 
+    *  If `ispoint` is `true` the source type is a point source and the parameters 
        in `srcRadii_array` and `srcLengths_array` arrays is completely ignored.
-    *  If `ispoint` is ``false`` the parameters in srcRhos_array is completely ignored.
+    *  If `ispoint` is `false` the parameters in srcRhos_array is completely ignored.
 
 """
 function batch(	detector::Detector,
@@ -253,7 +253,7 @@ end #function
 		)::Vector{String} where S <: Real
 
 **same as [`batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but accept a list of detectors `detectors_array`.
-return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
+return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 """
 function batch( detectors_array::Vector{<: Detector},
@@ -306,7 +306,7 @@ end #function
 
 **same as [`batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](@ref)** but provide batch calculation of the 
 `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`.
-return a list of paths to the **``CSV``** of files (file for each detector) storing the results.
+return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 """
 function batch(	detector_info_array::Matrix{S},
@@ -336,16 +336,16 @@ end #function
 		srcLengths_array::Vector{Float64}
 		)
 
-batch calculation for specialized for **``point``** sources. 
-return a tuple of three arrays the `detector`, the `results`and the path of the **``CSV``** 
+batch calculation for specialized for **`point`** sources. 
+return a tuple of three arrays the `detector`, the `results`and the path of the **`CSV`** 
 file containing results. 
 
 The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 
 !!! note
      for all arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
-     element type should be ``Float64``. if any of them have other numerical element type it 
-     should converted to ``Float64`` using `float` before passing it to this method.
+     element type should be `Float64`. if any of them have other numerical element type it 
+     should converted to `Float64` using `float` before passing it to this method.
 
 !!! warning
      both `srcRadii_array`, `srcLengths_array` are completely ignored as this method is for point sources.
@@ -411,8 +411,8 @@ end #function
 		srcLengths_array::Vector{Float64},
 		)
 
-batch calculation for specialized for **``non-point``** sources. 
-return a tuple of three arrays the `detector`, the `results`and the path of the **``CSV``** 
+batch calculation for specialized for **`non-point`** sources. 
+return a tuple of three arrays the `detector`, the `results`and the path of the **`CSV`** 
 file containing results. 
 
 The `results` has columns of headers 
@@ -420,8 +420,8 @@ The `results` has columns of headers
 
 !!! note 
     for all arrays `srcHeights_array`, `srcRhos_array`, `srcRadii_array` and `srcLengths_array` 
-    element type should be ``Float64``. if any of them have other numerical element type it 
-    should converted to ``Float64`` using `float` before passing it to this method.
+    element type should be `Float64`. if any of them have other numerical element type it 
+    should converted to `Float64` using `float` before passing it to this method.
 
 """
 function _batch(
@@ -497,40 +497,40 @@ end #function
 The function `batch()` can be called with or without arrangement(s). 
 The without argument version relay on previously prepared Comma Saved  
 Values [CSV] files, that can be easily edit by Microsoft Excel, 
-by default located in the directory **``$dataDir``** .
+by default located in the directory **`$dataDir`** .
 
-results of batch calculation are saved on a **``CSV``**  file(s) named after the detector(s). 
-the **``CSV``**  file by default found in **``$(resultdir)``**.
+results of batch calculation are saved on a **`CSV`**  file(s) named after the detector(s). 
+the **`CSV`**  file by default found in **`$(resultdir)`**.
 
 # CSV input files
 
-*  ``Detectors.csv`` contains the detectors description; The line format is: 
+*  `Detectors.csv` contains the detectors description; The line format is: 
 	
 		 Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
     	 ---------------| ---------------|-------------|----------- |
 
-*  ``srcHeights.csv`` contains the source heights; 
+*  `srcHeights.csv` contains the source heights; 
 	
     	 Source_Heights | 
 		 ---------------|
 
-*  ``srcRhos.csv`` contains the source off-axis distances; 	 				
+*  `srcRhos.csv` contains the source off-axis distances; 	 				
 	
 		 Source_Rhos | 
      	 ------------|
 
-*  ``srcRadii.csv`` contains the source radii for disc and cylindrical sources; 			
+*  `srcRadii.csv` contains the source radii for disc and cylindrical sources; 			
 	
 		 Source_Radii| 
 		 ------------|
 
-*  ``srcLengths.csv`` contains the source length for cylindrical sources; 	
+*  `srcLengths.csv` contains the source length for cylindrical sources; 	
 	
 		 Source_Lengths| 
 		 --------------|
 
  # CSV results files
- **``CSV``**  file containing the results has columns of headers 
+ **`CSV`**  file containing the results has columns of headers 
  `AnchorHeight`, `AnchorRho`, `srcRadius`, `srcLength`, `GeoEfficiency` for `non-point` sources 
  and columns of headers `Height`, `Rho`, `GeoEfficiency` for `point` sources.
 
@@ -540,7 +540,7 @@ the **``CSV``**  file by default found in **``$(resultdir)``**.
 	 
 !!! warning
      the program expect each line to contain one number for all CSV files except
-     for ``Detectors.csv`` each line should contain at least one number or at 
+     for `Detectors.csv` each line should contain at least one number or at 
      most four separated numbers.
 
 """ 

@@ -38,15 +38,15 @@ evaluate to a numerical value and asserts that the value is by default in the se
 before returning it as a `Float64`. throws `ArgumentError` when the given interval is not valid.
 
 ## KW arguments
-*  value::AbstractString``="nothing"`` : if provided the function will not ask for input from the 
-   `console` and take it as if it where inputted from the  `console` [``for test propose mainly``].
-*  lower::Bool``=true`` : whether or not to inculde `from` as accepted value.
-*  upper::Bool``=false`` : whether or not to inculde `to` as accepted value.
+*  value::AbstractString`="nothing"` : if provided the function will not ask for input from the 
+   `console` and take it as if it where inputted from the  `console` [`for test propose mainly`].
+*  lower::Bool`=true` : whether or not to inculde `from` as accepted value.
+*  upper::Bool`=false` : whether or not to inculde `to` as accepted value.
 
 !!! note
-    *  a blank input (i.e just a return) is considered as being ``0.0``.
+    *  a blank input (i.e just a return) is considered as being `0.0`.
     *  input from the `console` can be numerical expression not just a number.
-    *  All ``5/2``, ``5//2``, ``exp(2)``, ``pi``, ``1E-2``, ``5.2/3``, ``sin(1)``, ``pi/2/3`` 
+    *  All `5/2`, `5//2`, `exp(2)`, `pi`, `1E-2`, `5.2/3`, `sin(1)`, `pi/2/3` 
        are valid mathematical expressions.
 
 # Examples
