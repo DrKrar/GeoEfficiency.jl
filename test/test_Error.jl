@@ -4,6 +4,9 @@ let x="1"
     @test nothing == Base.showerror(stderr, G.GeoException)
     @test nothing == Base.showerror(stderr, G.InValidDetectorDim)
     @test nothing == Base.showerror(stderr, G.NotImplementedError)
+    @test  occursin("GeoException", sprint(showerror, G.GeoException))
+    @test occursin("InValidDetectorDim", sprint(showerror, G.InValidDetectorDim))
+    @test occursin("NotImplementedError", sprint(showerror, G.NotImplementedError))
     
 
     @test nothing == G.@validateDetector true
