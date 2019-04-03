@@ -1,6 +1,6 @@
 # GeoEfficiency: Accurate Geometrical Efficiency Calculator
 
-The Package `GeoEfficiency`, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
+an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
 The Package models a radiation detector irradiated by a radioactive source. 
 The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
 
@@ -8,10 +8,11 @@ The Package relay directly on numerical evaluation of closed form analytical for
 Author | [Mohamed Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
 ----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
-Documentation |  [ReadTheDocs](http://geoefficiencyjl.readthedocs.org)*(stale)*
-Current version | [v"0.9.2"](https://github.com/DrKrar/GeoEfficiency.jl)
+Documentation |  [GitHub.io](GeoEfficiency.GitHub.io/index.html)
+Current version | [v"0.9.3-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
+this documentation is also available in [pfd](GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf) formate.
 
 ## The following list show the current and planed features:-
 the checked items represent allready present feature.
