@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
-    "text": "The Package GeoEfficiency, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation ReadTheDocs(stale)\nCurrent version v\"0.9.2\"\nFirst Created Fri Aug 14 20:12:01 2015"
+    "text": "an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.3-dev\"\nFirst Created Fri Aug 14 20:12:01 2015this documentation is also available in pfd formate."
 },
 
 {
@@ -85,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "GeoEfficiency",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-            **\n **  Accurate Geometrical Efficiency Calculator **\n **   First Created on Fri Aug 14 20:12:01 2015 **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.3-DEV\" - (3 days old master)  \n Documentation: http://geoefficiencyjl.readthedocs.org\n\n\n\nBatch mode \n-  read files by defaul from directory `/home/travis/GeoEfficiency`\n-  save results by default to directory `/home/travis/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " *************************************************\n **            -=) GeoEfficiency (=-            **\n **  Accurate Geometrical Efficiency Calculator **\n **   First Created on Fri Aug 14 20:12:01 2015 **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.3-DEV\" - (4 days old master)  \n Documentation: http://geoefficiencyjl.readthedocs.org\n\n\n\nBatch mode \n-  read files by defaul from directory `/home/travis/GeoEfficiency`\n-  save results by default to directory `/home/travis/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
