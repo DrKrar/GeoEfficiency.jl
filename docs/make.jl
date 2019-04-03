@@ -27,7 +27,7 @@ const PAGES = Any[
 const formats = Any[
     Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
-        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/dev/",
+        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/docs/build/dev/",
         
     ), 
     
