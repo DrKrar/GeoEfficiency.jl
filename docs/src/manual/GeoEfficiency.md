@@ -1,6 +1,6 @@
-# [GeoEfficiency]
+# GeoEfficiency
 
 ```@docs
-GeoEfficiency
-about
+GeoEfficiency.GeoEfficiency
+GeoEfficiency.about
 ```

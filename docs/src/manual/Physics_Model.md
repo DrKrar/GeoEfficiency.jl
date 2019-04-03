@@ -1,12 +1,11 @@
-# [Physics module]
+# Physics Model
 
 ```@docs
-Point
-source
-Detector
-CylDetector
-BoreDetector
-WellDetector
-Detector
-
+GeoEfficiency.Point
+GeoEfficiency.source
+GeoEfficiency.CylDetector
+GeoEfficiency.BoreDetector
+GeoEfficiency.WellDetector
+GeoEfficiency.RadiationDetector
+GeoEfficiency.Detector
 ```
