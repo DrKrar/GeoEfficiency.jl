@@ -1,13 +1,11 @@
-Author | [Mohamed Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
-----|:----: 
+Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
+:----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
 Documentation |  [GitHub.io](GeoEfficiency.GitHub.io/index.html)
 Current version | [v"0.9.3-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
-this documentation is also available in [pfd](GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf) formate.
-
-
+This documentation is also available in [pfd](GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf) format.
 
 ## Latest Release 
 [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
@@ -21,20 +19,21 @@ Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
 
 ---
 
-# Accurate Geometrical Efficiency Calculator (GeoEfficiency)
+# GeoEfficiency: Accurate Geometrical Efficiency Calculator
 
-The Package `GeoEfficiency`, an officially registered Julia program, provides a set of tools  to calculate the geometrical efficiency in a fast and accurate way. 
-The Package models a radiation detector irradiated by a radiactive source. 
-The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.
+An officially registered Julia program, provides a set of tools to calculate the geometrical efficiency in a fast and accurate way. 
+The Package models a radiation detector irradiated by a radioactive source. 
+The Package relay directly on numerical evaluation of a closed form analytical formula describing the geometrical efficiency.
 
-## The following list show the current and planed features:-
-the checked items represent allready present feature.
+## Current and Planned Features
+The following list describe the state of current feature and planed feature. 
+The checked items represent already present feature.
 
  - [x] support of widely used detector geometries.
       - [x] `cylinder` detectors.
       - [x] `bore-hole` detectors.
       - [x] `well-type` detectors.
-	
+     
  - [ ] support of specialized detector geometries.
  
  - [x] support of isotropic radioactive sources.
@@ -44,7 +43,7 @@ the checked items represent allready present feature.
 
  - [ ] support of anisotropic radioactive sources.
       - [ ] `point` sources.
-	
+     
  - [ ] consider more details of the measurement setup.
       - [ ] the detector effect.
       - [ ] the end cap effect.
@@ -52,14 +51,13 @@ the checked items represent allready present feature.
       
  - [ ] combine the effect of the source geometry and composition. 
 
-
 ## Requirements
  *  Julia 0.6 or above.
- *  QuadGK 0.3.0 or above, will be installed automatically during the package installation.
- *  Compat 0.63.0 or above, will be installed automatically during the package installation.
+ *  QuadGK 0.3.0 or above, installed automatically during the package installation.
+ *  Compat 0.63.0 or above, installed automatically during the package installation.
  
-## Download and Install the Package
-The package is registered in an officially METADATA.jl and so can be installed through the Julia package system by running 
+## Download and Installation
+the package is registered officially and so it can be installed through the Julia package management  system by typing the following into the REPL.
 
 ```julia
 julia> using Pkg
@@ -72,7 +70,17 @@ julia> using GeoEfficiency
 julia> calc()
 ```
 **see also: `geoEff()`, `calcN()`, `batch()`**
-	
+
+## Unit Test
+In scientific calculation, calculation accuracy and being error free is a highly demanded objective.
+Thus, the package is extensively tested method-wise in each supported operating system.
+Operating system fully supported include Windows, Linus, Apple OSx.
+
+After installing the package can be tested in your own system by typing the following into the REPL prompt.
+```julia
+julia> using Test, Pkg
+julia> Pkg.test("GeoEfficiency") 
+```
 
 ## Package Overview
 The following constructor can be used to construct a specific type of detector 
@@ -82,11 +90,9 @@ The following constructor can be used to construct a specific type of detector
 
  While the function `Detector` can be used to construct any of the above types. You may try also `getDetectors`.
 
-
-`Point` constructor is used to construct an anchoring point of a source relative to it its position to the detector is specified.
+`Point` constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified.
 For a point source, the anchoring point is the source itself. 
 The `source()` method take input from the `console` and return a tuple describing the source.
-
 
 The efficiency calculation can be done by one of the functions: 
 *  `geoEff` used with or without argument(s), 
@@ -100,15 +106,15 @@ For more on the function and its methods prefix the name of the function by `?`.
 ## note
 **Input from the `console` can be numerical expression not just a number.**
    
-   > **5/2, 5//2, pi, exp(2) , 1E-2, 5.2/3, sin(1), pi/2/3**
+   > **``5/2`` ; ``5//2`` ; ``pi`` ; ``π/2`` ; ``exp(2)`` ; ``1E-2 `` ; ``5.2/3`` ; ``sin(1)`` ;  ``sin(1)^2``**
    > **All are valid expressions.**
-	
+     
 ## Batch Calculation
 The package can be used to perform batch calculations by calling one of the 
 methods of the function `batch`. The output results of batch calculations is 
-found by default in `GeoEfficiency\results` folder inside the user home.
+found by default in `GeoEfficiency\results` folder inside the user home directory.
 
-**For example	`c:\users\yourusername\GeoEfficiency\results\`**.
+**For example  `c:\users\yourusername\GeoEfficiency\results\`**.
 
 The function `batch()` can be called with or without arrangement(s). 
 The without argument version relay on previously prepared Comma Saved  Values 
@@ -116,35 +122,34 @@ The without argument version relay on previously prepared Comma Saved  Values
 in the ``GeoEfficiency`` folder.
 
 Those Comma Saved  Values [CSV] files are:-
-	
-*  ``Detectors.csv`` contains the detectors description; The line format is: 
-	
-		 Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
-    	 ---------------| ---------------|-------------|----------- |
+    
+*  `Detectors.csv` contains the detectors description (`a detector per line`); The line format is: 
+     
+    Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
+    ---------------| ---------------|-------------|----------- |
 
-*  ``srcHeights.csv`` contains the source heights; 
-	
-    	 Source_Heights | 
-		 ---------------|
+*  `srcHeights.csv` contains the source heights; 
+     
+    Source_Heights | 
+    ---------------|
 
-*  ``srcRhos.csv`` contains the source off-axis distances; 	 				
-	
-		 Source_Rhos | 
-     	 ------------|
+*  `srcRhos.csv` contains the source off-axis distances;                        
+     
+    Source_Rhos | 
+    ------------|
 
-*  ``srcRadii.csv`` contains the source radii for disc and cylindrical sources; 			
-	
-		 Source_Radii| 
-		 ------------|
+*  `srcRadii.csv` contains the source radii for disc and cylindrical sources;             
+     
+    Source_Radii| 
+    ------------|
 
-*  ``srcLengths.csv`` contains the source length for cylindrical sources; 	
-	
-		 Source_Lengths| 
-		 --------------|
-
+*  `srcLengths.csv` contains the source length for cylindrical sources;    
+     
+    Source_Lengths| 
+    --------------|
 
 ## note
-**for Comma Saved Values [CSV] files each line represent an entry, the first line is always treated as the header.**
-	 
+**For Comma Saved Values [CSV] files each line represent an entry, the first line is always treated as the header.**
+      
 ## warning
-**the program expect each line to contain one number for all CSV files except for ``Detectors.csv`` each line should contain at least one number or at most four separated numbers.**
+**The program expect each line to contain one number for all CSV files except for ``Detectors.csv`` each line should contain at least one number or at most four separated numbers.**

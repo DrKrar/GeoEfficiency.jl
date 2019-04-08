@@ -4,29 +4,33 @@
 #
 # script for building documentaion of the GeoEfficiency.jl package.
 #
+#  _args = ["clean", "pdf", "doctest"]
+#  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
 
 using  Documenter, DocumenterLaTeX #, DocumenterMarkdown
 using GeoEfficiency
 
+_args = @isdefined(_args) ? _args : ARGS
 const PAGES = Any[
-    #"Home" => "index.md",
     "Home" => "index.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
-        "manual/Error.md",
-        "manual/Input_Console.md",
+        #"manual/Error.md",
+        #"manual/Input_Console.md",
         "manual/Physics_Model.md",
-        "manual/Input_Batch.md",
         "manual/Calculations.md",
+        "manual/Input_Batch.md",
         "manual/Output_Interface.md",
      ],
+    
     "Index" => "list.md",
+    "Development" => "manual/Development.md",
 ]
 
 const formats = Any[
     Documenter.HTML(
-        prettyurls = get(ENV, "CI", nothing) == "true",
+        prettyurls = false,  #get(ENV, "CI", nothing) == "true",
         canonical = "https://DrKrar.github.io/GeoEfficiency.jl/docs/build/dev/",
         
     ), 
@@ -35,7 +39,7 @@ const formats = Any[
 
 isdefined(@__MODULE__,:DocumenterMarkdown) &&  push!(formats, Markdown())
 
-if "pdf" in ARGS
+if "pdf" in _args
     Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
                         push!(formats, LaTeX(platform = "docker"))
 end
@@ -43,8 +47,8 @@ end
 makedocs(
     format  = formats,
     modules = [GeoEfficiency],
-    clean   = "clean" in ARGS,
-    doctest = "doctest" in ARGS,
+    clean   = "clean" in _args,
+    doctest = "doctest" in _args,
     sitename= "GeoEfficiency.jl",
     authors = "Mohamed E. Krar",
     pages   = PAGES,

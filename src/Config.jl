@@ -4,7 +4,7 @@
 #
 # this file contain the configurable parameters of the program. 
 # 	-  the values introduced here do hid any other values.
-# 	-  to retore defaults for a parameter just comment it out.
+# 	-  to restore defaults for a parameter just comment it out.
 #
 #**************************************************************************************
 

@@ -1,12 +1,12 @@
 
-"coustom abstract `Exception` that is the parent of all exception in the `GeoEfficiency` package"
+"custom abstract `exception` that is the parent of all exception in the `GeoEfficiency` package"
 abstract type GeoException <: Exception end
 
 import Base: showerror
 
 showerror(io::IO, err::GeoException) = print(io, typeof(err), ": ", err.msg)
 
-"coustom `Exception` indicating inValid radiation detector dimentions"
+"custom `exception` indicating invalid radiation detector dimensions"
 struct  InValidDetectorDim <: GeoException
 	msg::AbstractString
 end
@@ -14,7 +14,7 @@ end
 """
     @validateDetector cond [text]
 
-Throw an [`InValidDetectorDim`](@ref) if `cond` is `false`. 
+throw an [`InValidDetectorDim`](@ref) if `cond` is `false`. 
 Message `text` is optionally displayed upon validation failure.
 
 # Examples
@@ -45,12 +45,12 @@ macro validateDetector(ex, msgs...)
     return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($msg)))
 end
 
-"coustom `Exception` source to detector condation which may be valid but not implemented yet"
+"custom `exception` indicating a source to detector geometry which may be valid but not implemented yet"
 struct  NotImplementedError <: GeoException
 	msg::AbstractString
 end
 
-"coustom macro to throw [`NotImplementedError`](@ref) `Exception` "
+"custom macro to throw [`NotImplementedError`](@ref) `exception` "
 macro notImplementedError(msgs...)
     msg = isempty(msgs) ? "" : msgs[1]
     if isa(msg, AbstractString)

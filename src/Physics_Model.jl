@@ -19,8 +19,8 @@ import Base: show, isless
 
     Point(Height::Real, Rho::Real)
 
-construct and return a `Point` source that can be used as either a source by itself or an
-`anchor point` of a higher dimension source.
+construct and return a `Point` source.
+The `Point` can be used as either a source by itself or an `anchor point` of a higher dimension source.
 
 *  `Height` : point height relative to the detector surface.
 *  `Rho` : point off-axis relative to the detector axis of symmetry.
@@ -110,8 +110,8 @@ the input from the `console`.
 *  `SrcLength` : source length.
 
 !!! warning 
-    If the global variable `srcType` is set to ``srcPoint``, both `SrcRadius` and `SrcLength` 
-    are set to zero.
+	if source type set to point source, both `SrcRadius` and `SrcLength` are set to zero. 
+    for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)`](@ref).
 """
 function source(anchorPnt::Point = Point())::Tuple{Point, Float64, Float64}
     
@@ -378,7 +378,7 @@ Detector(CryRadius::Real, CryLength::Real) = CylDetector(CryRadius, CryLength)
 	Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 
 same as [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](@ref) except
-when `HoleRadius` = ``0.0`` it acts as  [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
+when `HoleRadius` = `0.0` it acts as  [`CylDetector(CryRadius::Real, CryLength::Real)`](@ref).
 
 """
 Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius ?
@@ -393,7 +393,7 @@ construct and return `well-type`, `bore-hole` or `cylindrical` detector accordin
 it inspect the arguments and call the appropriate leaf type constructor.
 
 !!! note
-    if the value(s) of the last argument(s) is\\are ``zero``, it acts as a missing argument(s).
+    if the value(s) of the last argument(s) is\\are `zero`, it acts as a missing argument(s).
 		
 **see also:** [`CylDetector`](@ref), [`BoreDetector`](@ref), [`WellDetector`](@ref).
 
