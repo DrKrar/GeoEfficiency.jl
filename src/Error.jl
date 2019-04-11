@@ -56,3 +56,15 @@ macro notImplementedError(msgs...)
     msg = isempty(msgs) ? "" : msgs[1]
     return :(throw(NotImplementedError($(to_string(msg)))
 end
+
+
+"custom `exception` indicating a not valid source to detector geometry"
+struct  InValidGeometry<: GeoException
+	msg::AbstractString
+end
+
+"custom macro to throw [`NotImplementedError`](@ref) `exception` "
+macro inValidGeometry(msgs...)
+    msg = isempty(msgs) ? "" : msgs[1]
+    return :(throw(InValidGeometry($(to_string(msg)))
+end
