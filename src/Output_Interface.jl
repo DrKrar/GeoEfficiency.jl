@@ -17,7 +17,13 @@ const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
 const redirect  		= joinpath(resultdir, "GeoEfficiency.txt")
 
-""" -ve value will display all batch results on
+"""
+Global variable that give a hint to the program on maxumam number of entries per detector displayed 
+on the `console` in btach mode.
+
+!!! note
+	Negative value will display prevent batch results from printed to the `console`. 
+	while `Inf` will print all  batch results to the `console`.
 """
 global _max_batch 		= max_display	# max number of entries per detector displayed.   	
 global countDetectors 	= 1				# number of detectors
@@ -45,13 +51,15 @@ checkResultsDirs()
 
 """
 
-	max_batch(n<:Real)
+	max_batch(n::Real)
 
-set the value of '_max_batch' which default to $max_display which control the maxumam number of 
-entries per detector that permit the detector efficiency calculation to be displayed on console. 
-this function ```do not``` affect the saving of the batch calculation. 
+set the value of `_max_batch` which give a hint to the program on maxumam number of entries per 
+detector displayed on the `console` in btach mode.
+This function ```do not``` affect the saving of the batch calculation. 
 
--ve value of n result in displaying all batch calculation results on the console.
+!!! note
+	Negative value will display prevent batch results from printed to the `console`. 
+	while `Inf` will print all  batch results to the `console`.
 
 **see also: [`max_batch()`](@ref)**
 				
@@ -64,9 +72,10 @@ end
 
 	max_batch()
 
-set the value of '_max_batch' to its default value.
+set the value of `_max_batch` which give a hint to the program on maxumam number of entries per 
+detector displayed on the `console` in btach mode. to its default value set by the contant [`max_display`](@ref).
 
-**see also: [`max_batch(::Integer)`](@ref)**
+**see also: [`max_batch(n::Real)`](@ref)**
 """
 function max_batch()
 	global _max_batch = max_display
@@ -80,7 +89,7 @@ end
 calculate and display on the `console` the `geometrical efficiency` of the 
 detector `detector` for the tuple `aSource` describing the source.
 
-**`Throw`** an Error if the source location is inappropriate.
+**`Throw`** an  `ArgumentError` if the source location is inappropriate.
 
 **see also:** [`geoEff(::Detector, ::Tuple{Point, Float64, Float64})`](@ref)
 

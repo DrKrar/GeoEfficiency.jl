@@ -1,7 +1,7 @@
 # Calculations
 
-calculation of the geometical effiency can be done via a call to the function `geoEff`.
+calculation of the geometical eeficiency can be done via a call to the function `geoEff`.
 ```@docs
 GeoEfficiency.geoEff
 ```
-This function has another method `geoEff()` that can prompot the user interactively to provid the needed information.
+This function has another method `geoEff()` that prompt the user to input a source and a detector via the `console`.

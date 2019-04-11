@@ -20,12 +20,12 @@ const PAGES = Any[
         #"manual/Input_Console.md",
         "manual/Physics_Model.md",
         "manual/Calculations.md",
-        "manual/Input_Batch.md",
         "manual/Output_Interface.md",
+        "manual/Input_Batch.md",
      ],
     
-    "Index" => "list.md",
     "Development" => "manual/Development.md",
+    "Index" => "list.md",
 ]
 
 const formats = Any[

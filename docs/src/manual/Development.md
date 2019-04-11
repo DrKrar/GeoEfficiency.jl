@@ -1,3 +1,5 @@
+# Introduction
+
 This section is provided for devloper who are intrested in extending the functionality of the `GeoEfficiency` package or just make use of some of its functionality. this softawre is licenced under
 the MIT licence. 
 
@@ -28,7 +30,7 @@ MIT "Expat" License
 
 # Configuration
 
-found in the source file `Config.jl`
+The package conatin many prameters that can be set within the program sourcecode. they can be found in the source file `Config.jl`
 
 parameter | describtion| default value
 :----------|:------------|:--------------:
@@ -64,6 +66,7 @@ GeoEfficiency.@notImplementedError
 ```
 
 # Console Input
+
 Julia language is quite reach langauge but it seems a good idea thought to collect repeated tasks involing input from console in compact and coustumized to the need function.
 this section provid two essential functions to deal with inputs from the console. the first:
 
@@ -117,6 +120,24 @@ Detector(CryRadius::Real, CryLength::Real)
 Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 ```
 
+# Batch Mode Input
+
+```@docs
+GeoEfficiency.detector_info_from_csvFile
+```
+
+```@docs
+GeoEfficiency.read_from_csvFile
+```
+
+```@docs
+GeoEfficiency.read_batch_info
+```
+
+```@docs
+GeoEfficiency.getDetectors
+```
+
 # Output Interface
 
 ```@docs
@@ -132,7 +153,7 @@ GeoEfficiency._max_batch
 ```
 
 ```@docs
-GeoEfficiency.max_batch
+GeoEfficiency.max_display
 ```
 
 ```@docs

@@ -7,19 +7,5 @@ GeoEfficiency.typeofSrc
 ```@docs
 GeoEfficiency.setSrcToPoint
 ```
-
-```@docs
-GeoEfficiency.detector_info_from_csvFile
-```
-
-```@docs
-GeoEfficiency.read_from_csvFile
-```
-
-```@docs
-GeoEfficiency.read_batch_info
-```
-
-```@docs
-GeoEfficiency.getDetectors
-```
+!!! warnning
+    Currently, the source type has no effect but to decide if the source is a point source or a higher dimention source. 

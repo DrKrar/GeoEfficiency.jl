@@ -20,14 +20,17 @@ isconst(@__MODULE__, :integrate )    ||  const integrate     = begin using QuadG
 
 #----------------------- GeoEff_Pnt -------------------------------
 
-"""# unexported
+"""# UnExported
 
 	GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 
 return the `geometrical efficiency` for the point source `aPnt` located on front
 of the cylindrical detector `detector` face.
 
-**`Throw`** an Error if the point is out of the cylindrical detector `detector` face.
+## Throw
+*  an `NotImplementedError` if the point is out of the cylindrical detector `detector` face.
+*  an `ArgumentError` if the point location is invalide.
+
 
 !!! note
     this is the base function that all other functions call directly or indirectly
@@ -35,6 +38,8 @@ of the cylindrical detector `detector` face.
 
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
+	aPnt.Rho > detector.CryRadius 	&& 	@notImplementedError("Point off-axis, out of the detector face")
+	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	ArgumentError("The point source location can not be inside the detector") |> throw
 
 	function MaxPhi(theta::Float64 )::Float64
 		side = aPnt.Height * sin(theta)
@@ -59,7 +64,6 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 
 		else
 			# This case is not implemented yet
-			@notImplementedError	"Point off-axis, out of the detector face" 
 			# TBD: (Top + Side) efficiencies
 		end #if
 
@@ -69,7 +73,7 @@ end #function
 
 #------------------------ GeoEff_Disk ----------------------------------
 
-"""# unexported
+"""# UnExported
 
 	GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)::Float64
 
@@ -95,14 +99,14 @@ end #function
 
 	geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
-**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref geoEff) for more information.**
 
 !!! warning
     `aSurfacePnt` : point `height` is considered to be measured from the detector surface.
 
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
-	detector.CryRadius > SrcRadius	||	@error(
+	detector.CryRadius < SrcRadius + aSurfacePnt.Rho   &&	@error(
 		"Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
 	
 	pnt::Point = deepcopy(aSurfacePnt)
@@ -131,7 +135,7 @@ end #function
 
 	geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
-**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref geoEff) for more information.**
 
 !!! warning
     `aCenterPNT` : point `height` is consider to be measured from the detector middle, +ve value are above the detector center while -ve are below.
@@ -189,7 +193,7 @@ end #function
 
 	geoEff(detector::WellDetector, aWellPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
-**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref) for more information.**
+**please refer to [`geoEff(::Detector, ::Point, ::Real, ::Real)`](@ref geoEff) for more information.**
 
 !!! warning
     `aWellPNT` : point `height` is considered to be measured from the detector hole surface.
@@ -227,13 +231,18 @@ end #function
 
 return the `geometrical efficiency` for a source (`point`, `disk` or `cylinder`) with 
 the detector `detector`. 
-`detector` can be any of the leaf detectors types (`CylDetector`, `BoreDetector`, `WellDetector`).
 
+## Arguments
+*  `detector` can be any of the leaf detectors types (`CylDetector`, `BoreDetector`, `WellDetector`).
 *  `aPNT`: a point represent the anchoring point of the source.
 *  `SrcRadius`: Radius of the source.
 *  `srcHeight`:  the height of an upright cylinder source.
 
-**`Throw`** an Error if the source location is inappropriate.
+
+## Throw
+*  an `ArgumentError` if the point location is invalide.
+*  an `NotImplementedError` if source-to-detector geometry not supported yet.
+
 
 !!! warning
     the point height of `aPnt` is measured differently for different detectors types.
