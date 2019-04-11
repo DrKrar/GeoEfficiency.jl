@@ -29,7 +29,7 @@ of the cylindrical detector `detector` face.
 
 ## Throw
 *  an `NotImplementedError` if the point is out of the cylindrical detector `detector` face.
-*  an `ArgumentError` if the point location is invalide.
+*  an `InValidGeometry` if the point location is invalide.
 
 
 !!! note
@@ -39,7 +39,7 @@ of the cylindrical detector `detector` face.
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
 	aPnt.Rho > detector.CryRadius 	&& 	@notImplementedError("Point off-axis, out of the detector face")
-	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	ArgumentError("The point source location can not be inside the detector") |> throw
+	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	@inValidGeometry("The point source location can not be inside the detector")
 
 	function MaxPhi(theta::Float64 )::Float64
 		side = aPnt.Height * sin(theta)
@@ -240,7 +240,7 @@ the detector `detector`.
 
 
 ## Throw
-*  an `ArgumentError` if the point location is invalide.
+*  an `InValidGeometry` if the point location is invalide.
 *  an `NotImplementedError` if source-to-detector geometry not supported yet.
 
 

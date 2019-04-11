@@ -89,7 +89,7 @@ end
 calculate and display on the `console` the `geometrical efficiency` of the 
 detector `detector` for the tuple `aSource` describing the source.
 
-**`Throw`** an  `ArgumentError` if the source location is inappropriate.
+**`Throw`** an  `inValidGeometry` if the source location is inappropriate.
 
 **see also:** [`geoEff(::Detector, ::Tuple{Point, Float64, Float64})`](@ref)
 
