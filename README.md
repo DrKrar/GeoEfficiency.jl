@@ -60,7 +60,7 @@ The checked items represent already present feature.
 the package is registered officially and so it can be installed through the Julia package management  system by typing the following into the REPL.
 
 ```julia
-julia> using Pkg
+julia> import Pkg
 julia> Pkg.add("GeoEfficiency") 
 ```
 
