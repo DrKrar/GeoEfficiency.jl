@@ -116,3 +116,25 @@ Detector(CryRadius::Real, CryLength::Real)
 ```@docs
 Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 ```
+
+# Output Interface
+
+```@docs
+GeoEfficiency.checkResultsDirs
+```
+
+```@docs
+GeoEfficiency.writecsv_head
+```
+
+```@docs
+GeoEfficiency._max_batch
+```
+
+```@docs
+GeoEfficiency.max_batch
+```
+
+```@docs
+GeoEfficiency._batch
+```
