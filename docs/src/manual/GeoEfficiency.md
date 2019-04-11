@@ -1,9 +1,9 @@
-# GeoEfficiency
-
-```@docs
-GeoEfficiency.GeoEfficiency
-```
+# Summery
 
 ```@docs
 GeoEfficiency.about
+```
+
+```@docs
+GeoEfficiency.GeoEfficiency
 ```
