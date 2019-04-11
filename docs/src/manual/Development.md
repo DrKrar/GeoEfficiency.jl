@@ -57,6 +57,15 @@ GeoEfficiency.@validateDetector
 ```
 
 ```@docs
+GeoEfficiency.InValidGeometry
+```
+
+```@docs
+GeoEfficiency.@inValidGeometry
+
+```
+
+```@docs
 GeoEfficiency.NotImplementedError
 ```
 
