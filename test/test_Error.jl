@@ -4,10 +4,11 @@ let x="1"
     @test nothing == Base.showerror(stderr, G.GeoException)
     @test nothing == Base.showerror(stderr, G.InValidDetectorDim)
     @test nothing == Base.showerror(stderr, G.NotImplementedError)
-    @test  occursin("GeoException", sprint(showerror, G.GeoException))
+    @test nothing == Base.showerror(stderr, G.InValidGeometry)
+    @test occursin("GeoException", sprint(showerror, G.GeoException))
     @test occursin("InValidDetectorDim", sprint(showerror, G.InValidDetectorDim))
     @test occursin("NotImplementedError", sprint(showerror, G.NotImplementedError))
-    
+    @test occursin("InValidGeometry", sprint(showerror, G.InValidGeometry))
 
     @test nothing == G.@validateDetector true
     @test nothing == G.@validateDetector true "massage"
@@ -36,4 +37,14 @@ let x="1"
     #@test_throws    G.NotImplementedError   G.@notImplementedError  1
     #@test_throws    G.NotImplementedError   G.@notImplementedError  :x
     @test_throws    G.NotImplementedError   G.@notImplementedError  :(a+b)
+
+
+    @test_throws    G.InValidGeometry   G.@inValidGeometry
+    @test_throws    G.InValidGeometry   G.@inValidGeometry "massage"
+    @test_throws    G.InValidGeometry   G.@inValidGeometry "massage $x"
+    @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" "massage2"
+    @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" * "massage2"
+    #@test_throws    G.InValidGeometry   G.@inValidGeometry  1
+    #@test_throws    G.InValidGeometry   G.@inValidGeometry  :x
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  :(a+b)
 end

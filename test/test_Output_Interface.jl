@@ -34,6 +34,9 @@ let pnt::Point = Point(1),
 
 		@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
 		@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
+	
+		@test_throws 	G.NotImplementedError  	@console(calc(cylDet), 0, 15, 0)
+		@test_throws 	G.InValidGeometry  		@console(calc(cylDet), -1, 0, 0)
 	end #testset_calc
 end #let
 
