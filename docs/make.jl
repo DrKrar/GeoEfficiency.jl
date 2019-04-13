@@ -96,7 +96,7 @@ mktempdir() do tmp
     deploydocs(
         repo = REPO,
         target = "build/pdf",
-        branch = BRANCH, #"gh-pages-pdf",
+        branch = BRANCH * "-pdf", #"gh-pages-pdf",
         forcepush = true,
     )
 end
