@@ -1,4 +1,4 @@
-macro to_string(msg)
+function to_string(msg)
     if isa(msg, AbstractString)
         msg # pass-through
 
