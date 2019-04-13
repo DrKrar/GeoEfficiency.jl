@@ -73,7 +73,7 @@ mktempdir() do tmp
     @info "Deploying HTML pages"
     deploydocs(
         repo = REPO,
-        branch = BRANCH #"gh-pages",
+        branch = BRANCH, #"gh-pages"
         versions = VERSIONS,
     )
     if isdefined(@__MODULE__,:DocumenterMarkdown)
@@ -81,7 +81,7 @@ mktempdir() do tmp
         @info "Deploying MarkUp pages"
         deploydocs(
             repo = REPO,
-            branch = BRANCH #"gh-pages",
+            branch = BRANCH, #"gh-pages",
             target = "build/Mrk",
             versions = VERSIONS,
         )
@@ -96,7 +96,7 @@ mktempdir() do tmp
     deploydocs(
         repo = REPO,
         target = "build/pdf",
-        branch = BRANCH #"gh-pages-pdf",
+        branch = BRANCH, #"gh-pages-pdf",
         forcepush = true,
     )
 end
