@@ -31,7 +31,7 @@ const PAGES = Any[
 const formats = Any[
     Documenter.HTML(
         prettyurls = false,  #get(ENV, "CI", nothing) == "true",
-        canonical = "https://github.com/DrKrar/GeoEfficiency.jl/v0.9.3/",
+        canonical = "https://github.com/DrKrar/GeoEfficiency.jl/v0.9.4-dev/",
         
     ), 
     
