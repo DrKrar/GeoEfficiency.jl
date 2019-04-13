@@ -34,8 +34,8 @@ let x="1"
     @test_throws    G.NotImplementedError   G.@notImplementedError "massage $x"
     @test_throws    G.NotImplementedError   G.@notImplementedError "massage1" "massage2"
     @test_throws    G.NotImplementedError   G.@notImplementedError "massage1" * "massage2"
-    #@test_throws    G.NotImplementedError   G.@notImplementedError  1
-    #@test_throws    G.NotImplementedError   G.@notImplementedError  :x
+    @test_throws    G.NotImplementedError   G.@notImplementedError  1
+    @test_throws    G.NotImplementedError   G.@notImplementedError  :x
     @test_throws    G.NotImplementedError   G.@notImplementedError  :(a+b)
 
 
@@ -44,14 +44,15 @@ let x="1"
     @test_throws    G.InValidGeometry   G.@inValidGeometry "massage $x"
     @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" "massage2"
     @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" * "massage2"
-    #@test_throws    G.InValidGeometry   G.@inValidGeometry  1
-    #@test_throws    G.InValidGeometry   G.@inValidGeometry  :x
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  1
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  :x
     @test_throws    G.InValidGeometry   G.@inValidGeometry  :(a+b)
+
 
     @test G.@to_string("massage")    == "massage"
     @test G.@to_string("")           ==  ""
     @test G.@to_string("5" * "l")    == "5l"
-    
+
     @test G.@to_string(:(1+x))       ==  "1 + x"
     @test G.@to_string(:(1+$x))       ==  "1 + 1"
     
