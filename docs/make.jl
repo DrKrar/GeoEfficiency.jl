@@ -56,9 +56,9 @@ makedocs(
 )
 
 
-const REPO = "github.com/GeoEfficiency/GeoEfficiency.github.io.git" #"github.com/DrKrar/GeoEfficiency.jl.git"
+const REPO = "github.com/DrKrar/GeoEfficiency.jl.git" # "github.com/GeoEfficiency/GeoEfficiency.github.io.git" 
 const VERSIONS =["stable" => "v^", "v#.#", "dev" => "dev"]  # order of versions in drop down menu.
-const BRANCH = "master"
+const BRANCH = "gh-pages" # "master"
 
 mktempdir() do tmp
     # Hide the PDF from html-deploydocs
