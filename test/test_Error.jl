@@ -50,5 +50,5 @@ let x="1"
 
     @test G.@to_string("massage")    == "massage"
     @test G.@to_string("")           ==  ""
-    @test G.@to_string(:x))           ==  "x"
+    @test G.@to_string(:x)remove           ==  "x"
 end
