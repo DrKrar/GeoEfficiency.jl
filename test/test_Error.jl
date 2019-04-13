@@ -54,9 +54,9 @@ let x="1"
     @test G.@to_string("5" * "l")    == "5l"
 
     @test G.@to_string(:(1+x))       ==  "1 + x"
-    @test G.@to_string(:(1+$x))       ==  "1 + 1"
+    @test G.@to_string(:(1+$x)) ==  "1 + 1" || G.@to_string(:(1+$x)) ==  "1 + \"1\""
     
-    @test G.@to_string(:x) ==  ":x" ||      G.@to_string(:x)  ==  "x"   # for Compt with Julia 0.6
+    @test G.@to_string(:x) ==  ":x" ||  G.@to_string(:x)  ==  "x"   # for Compt with Julia 0.6
     
     @test G.@to_string(true)         == "true"
     @test G.@to_string(1)            == "1"
