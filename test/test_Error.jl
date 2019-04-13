@@ -50,5 +50,11 @@ let x="1"
 
     @test G.@to_string("massage")    == "massage"
     @test G.@to_string("")           ==  ""
-    @test G.@to_string(:x)           ==  "x"
+    @test G.@to_string(:(1+x))       ==  "1 + x"
+    @test G.@to_string(:x)           ==  ":x"
+    @test G.@to_string(true)         == "true"
+    @test G.@to_string(1)            == "1"
+    @test G.@to_string(1+2)          == "3"
+    @test G.@to_string("5" * "l")    == "5l"
+    @test G.@to_string(+)            == "+"
 end
