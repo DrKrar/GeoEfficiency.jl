@@ -2,7 +2,7 @@
 # make.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# script for building documentaion of the GeoEfficiency.jl package.
+# script for building documentation of the GeoEfficiency.jl package.
 #
 #  _args = ["clean", "pdf", "doctest"]
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
@@ -31,7 +31,7 @@ const PAGES = Any[
 const formats = Any[
     Documenter.HTML(
         prettyurls = false,  #get(ENV, "CI", nothing) == "true",
-        canonical = "https://DrKrar.github.io/GeoEfficiency.jl/docs/build/dev/",
+        canonical = "https://GeoEfficiency.github.io/dev/",
         
     ), 
     
@@ -55,6 +55,11 @@ makedocs(
     assets  = ["assets/custom.css"],
 )
 
+
+const REPO = "github.com/GeoEfficiency/GeoEfficiency.github.io.git" #"github.com/DrKrar/GeoEfficiency.jl.git"
+const VERSIONS =["stable" => "v^", "v#.#", "dev" => "dev"]  # order of versions in drop down menu.
+const BRANCH = "master"
+
 mktempdir() do tmp
     # Hide the PDF from html-deploydocs
     build = joinpath(@__DIR__, "build")
@@ -67,16 +72,18 @@ mktempdir() do tmp
     # Deploy HTML pages
     @info "Deploying HTML pages"
     deploydocs(
-        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
-        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+        repo = REPO,
+        branch = BRANCH #"gh-pages",
+        versions = VERSIONS,
     )
     if isdefined(@__MODULE__,:DocumenterMarkdown)
         # Deploy Markup pages
         @info "Deploying MarkUp pages"
         deploydocs(
-            repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+            repo = REPO,
+            branch = BRANCH #"gh-pages",
             target = "build/Mrk",
-            versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+            versions = VERSIONS,
         )
     end #if
     # Put back PDF into docs/build/pdf
@@ -87,9 +94,9 @@ mktempdir() do tmp
     # Deploy PDF
     @info "Deploying PDF"
     deploydocs(
-        repo = "github.com/DrKrar/GeoEfficiency.jl.git",
+        repo = REPO,
         target = "build/pdf",
-        branch = "gh-pages-pdf",
+        branch = BRANCH #"gh-pages-pdf",
         forcepush = true,
     )
 end
