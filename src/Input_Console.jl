@@ -8,7 +8,7 @@
 
 #------------------ consts - globals - imports ----------------------------
 
-using MathConstants
+using .MathConstants
 
 
 #---------------------------- input ---------------------------------

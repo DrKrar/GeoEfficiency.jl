@@ -3,7 +3,6 @@
 # ====================== part of the GeoEfficiency.jl package.
 # 
 #   
-# ToDO: clean up some remaining isapple 
 #**************************************************************************************
 
 

@@ -2,7 +2,7 @@
 # Correctness Tests
 #
 
-using Test, DelimitedFiles, MathConstants
+using Test, DelimitedFiles, .MathConstants
 using GeoEfficiency
 const G = GeoEfficiency
 
