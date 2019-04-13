@@ -1,4 +1,4 @@
-function to_string(msg)
+macro to_string(msg)
     if isa(msg, AbstractString)
         msg # pass-through
 
@@ -43,7 +43,21 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 """
 macro validateDetector(ex, msgs...)
     msg = isempty(msgs) ? "'$ex' is not satisfied" : msgs[1]
-    return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($(to_string(msg))))
+    if isa(msg, AbstractString)
+        msg = msg # pass-through
+
+    elseif !isempty(msgs) && (isa(msg, Expr) || isa(msg, Symbol))
+        # message is an expression needing evaluating
+        msg = :(Main.Base.string($(esc(msg))))
+
+    elseif applicable(Main.Base.string, msg)
+        msg = Main.Base.string(msg)
+
+    else
+        # string() might not be defined during bootstrap
+        msg = :(Main.Base.string($(Expr(:quote,msg))))
+    end #if
+    return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($msg)))
 end
 
 "custom `exception` indicating a source to detector geometry which may be valid but not implemented yet"
@@ -54,7 +68,21 @@ end
 "custom macro to throw [`NotImplementedError`](@ref) `exception` "
 macro notImplementedError(msgs...)
     msg = isempty(msgs) ? "" : msgs[1]
-    return :(throw(NotImplementedError($(to_string(msg)))
+    if isa(msg, AbstractString)
+        msg = msg # pass-through
+
+    elseif !isempty(msgs) && (isa(msg, Expr) || isa(msg, Symbol))
+        # message is an expression needing evaluating
+        msg = :(Main.Base.string($(esc(msg))))
+
+    elseif applicable(Main.Base.string, msg)
+        msg = Main.Base.string(msg)
+
+    else
+        # string() might not be defined during bootstrap
+        msg = :(Main.Base.string($(Expr(:quote,msg))))
+    end #if
+    return :(throw(NotImplementedError($msg)))
 end
 
 
@@ -66,5 +94,19 @@ end
 "custom macro to throw [`NotImplementedError`](@ref) `exception` "
 macro inValidGeometry(msgs...)
     msg = isempty(msgs) ? "" : msgs[1]
-    return :(throw(InValidGeometry($(to_string(msg)))
+    if isa(msg, AbstractString)
+        msg = msg # pass-through
+
+    elseif !isempty(msgs) && (isa(msg, Expr) || isa(msg, Symbol))
+        # message is an expression needing evaluating
+        msg = :(Main.Base.string($(esc(msg))))
+
+    elseif applicable(Main.Base.string, msg)
+        msg = Main.Base.string(msg)
+
+    else
+        # string() might not be defined during bootstrap
+        msg = :(Main.Base.string($(Expr(:quote,msg))))
+    end #if
+    return :(throw(InValidGeometry($msg)))
 end
