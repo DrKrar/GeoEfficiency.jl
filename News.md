@@ -1,5 +1,8 @@
 # GeoEfficiency Package Release Notes
 
+### Version 0.9.4-dev
+* support for julia version before 1.1 dropped.
+
 ### Version 0.9.3
 *  a customized error system has been add to the package.
 *  the unexported function `getfloat` now accepts two more KW arguments, `lower=true` and `upper=false` to encloud the lower and upper limits.

@@ -2,7 +2,7 @@ Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (
 :----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
 Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/index.html)
-Current version | [v"0.9.3"](https://github.com/DrKrar/GeoEfficiency.jl/releases/tag/v0.9.3)
+Current version | [v"0.9.4-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
 
@@ -51,16 +51,14 @@ The checked items represent already present feature.
  - [ ] combine the effect of the source geometry and composition. 
 
 ## Requirements
- *  Julia 0.6 or above.
- *  QuadGK 0.3.0 or above, installed automatically during the package installation.
- *  Compat 0.63.0 or above, installed automatically during the package installation.
+ *  Julia 1.2 or above.
+ *  QuadGK 2.0 or above, installed automatically during the package installation.
  
 ## Download and Installation
-the package is registered officially and so it can be installed through the Julia package management  system by typing the following into the REPL.
+To install the latest stable version type the following into the REPL.
 
 ```julia
-julia> import Pkg
-julia> Pkg.add("GeoEfficiency") 
+] add GeoEfficiency 
 ```
 
 ## Quick Usage
@@ -71,11 +69,11 @@ julia> calc()
 **see also: `geoEff()`, `calcN()`, `batch()`**
 
 ## Unit Test
-In scientific calculation, calculation accuracy and being error free is a highly demanded objective.
+Being error free and accuracy is a highly demanded objective in scientific calculation.
 Thus, the package is extensively tested method-wise in each supported operating system.
-Operating system fully supported include Windows, Linus, Apple OSx.
+Operating system fully supported includes Windows, Linus, Apple OSx.
 
-After installing the package can be tested in your own system by typing the following into the REPL prompt.
+After installing, the package can be tested in your own system by typing the following into the REPL prompt.
 ```julia
 julia> using Test, Pkg
 julia> Pkg.test("GeoEfficiency") 

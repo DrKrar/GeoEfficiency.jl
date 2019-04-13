@@ -5,13 +5,16 @@ for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-typ
 the source can be a point, a disc or even a cylinder.
 
 ## Requirements
- *  Julia 0.6 or above.
- *  QuadGK 0.3.0 or above, will be installed automatically while the package Installation.
- *  Compat 0.63.0 or above, will be installed automatically while the package Installation. 
+ *  Julia 1.2 or above.
+ *  QuadGK 2.0.3 or above, will be installed automatically while the package Installation.
+
 
 ## Download and Install the Package
-	using Pkg
-	Pkg.add("GeoEfficiency") 
+just type in the REPL.
+
+```
+] add GeoEfficiency
+```
 
 ## Quick Usage
  * geoEff()	: Calculate the `geometrical efficiency` for one geometrical setup return only the value of the geometrical efficiency.\n
