@@ -1,4 +1,4 @@
-function to_string(msg)
+macro to_string(msg)
     if isa(msg, AbstractString)
         msg # pass-through
 
@@ -42,7 +42,7 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 ```
 """
 macro validateDetector(ex, msgs...)
-    msg = isempty(msgs) ? "'$ex' is not satisfied" : msgs[1] |> to_string
+    msg = isempty(msgs) ? "'$ex' is not satisfied" : msgs[1] |> @to_string
     return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($msg)))
 end
 
@@ -53,7 +53,7 @@ end
 
 "custom macro to throw [`NotImplementedError`](@ref) `exception` "
 macro notImplementedError(msgs...)
-    msg = isempty(msgs) ? "" : msgs[1] |> to_string
+    msg = isempty(msgs) ? "" : msgs[1] |> @to_string
     return :(throw(NotImplementedError($msg)))
 end
 
@@ -65,6 +65,6 @@ end
 
 "custom macro to throw [`NotImplementedError`](@ref) `exception` "
 macro inValidGeometry(msgs...)
-    msg = isempty(msgs) ? "" : msgs[1] |> to_string
+    msg = isempty(msgs) ? "" : msgs[1] |> @to_string
     return :(throw(InValidGeometry($msg)))
 end

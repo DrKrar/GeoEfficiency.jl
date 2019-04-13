@@ -48,7 +48,7 @@ let x="1"
     #@test_throws    G.InValidGeometry   G.@inValidGeometry  :x
     @test_throws    G.InValidGeometry   G.@inValidGeometry  :(a+b)
 
-    @test G.to_string("massage")    == "massage"
-    @test G.to_string("")           ==  ""
-    @test eval(G.to_string(:x))           ==  "x"
+    @test G.@to_string("massage")    == "massage"
+    @test G.@to_string("")           ==  ""
+    @test G.@to_string(:x))           ==  "x"
 end
