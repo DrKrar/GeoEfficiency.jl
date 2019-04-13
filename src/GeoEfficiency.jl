@@ -73,8 +73,8 @@ const abt ="""
 \t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 \t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
 \t Version:       v"0.9.3-DEV" - ($(Date(now()) - Date("2019-04-13")) old master)  
-\t Documentation: GeoEfficiency.GitHub.io/index.html
-\t PDF_Manual:    GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf
+\t Documentation: https://GeoEfficiency.GitHub.io/index.html
+\t PDF_Manual:    https://GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf
 \n
 \n\tBatch mode 
 \t-  read files by defaul from directory `$(join(split(dataDir,"/travis")))`

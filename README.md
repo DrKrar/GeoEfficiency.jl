@@ -1,11 +1,10 @@
 Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
 :----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
-Documentation |  [GitHub.io](GeoEfficiency.GitHub.io/index.html)
+Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/index.html)
 Current version | [v"0.9.3-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
-This documentation is also available in [pfd](GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf) format.
 
 ## Latest Release 
 [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
