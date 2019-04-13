@@ -6,8 +6,6 @@
 # 
 #**************************************************************************************
 
-using Compat
-using Compat: occursin, @error
 
 
 @testset "GeoEfficiecny.checkResultsDirs" begin 

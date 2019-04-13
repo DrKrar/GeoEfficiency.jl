@@ -2,11 +2,9 @@
 # Correctness Tests
 #
 
-using Compat, Compat.Test , Compat.DelimitedFiles, Compat.MathConstants
-using Compat: @error, @debug, @warn, @info, stdin
+using Test, DelimitedFiles, MathConstants
 using GeoEfficiency
 const G = GeoEfficiency
-#logging(IOBuffer(), G)
 
 
 include("Helper.jl")

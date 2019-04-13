@@ -1,6 +1,4 @@
 module Helper
-using Compat
-using Compat: stdin, @warn #, split
 
 """# UnExported
 
