@@ -70,7 +70,7 @@ end #testset_input
 
 
 	@debug("getfloat - interval boundaries")
-	# '1', '5' are to represnt the lower, upper limits; while '3' reprents an intermediate value.
+	# '1', '5' are to represent the lower, upper limits; while '3' represents an intermediate value.
 
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1")					# by default lower limit is valide
 	@test 1.0 == G.getfloat("\ninput '1', then press Return: ", 1.0, 5.0, value="1", lower=true)		# now explicit lower

@@ -1,6 +1,6 @@
 # Calculations
 
-calculation of the geometical eeficiency can be done via a call to the function `geoEff`.
+calculation of the geometrical efficiency can be done via a call to the function `geoEff`.
 ```@docs
 GeoEfficiency.geoEff
 ```

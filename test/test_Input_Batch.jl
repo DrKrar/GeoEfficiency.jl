@@ -231,7 +231,7 @@ end #testset
 		@test_throws Union{ArgumentError, SystemError}  G.detector_info_from_csvFile("jskfdsiu.uty",".fghpweuh")
 	end #testset
 	
-	rm(datadirectory, force=true, recursive=true) # remove tempdirectory 
+	rm(datadirectory, force=true, recursive=true) # remove temp directory 
 end #testset_reading_from_CSV
 
 

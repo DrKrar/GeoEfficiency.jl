@@ -1,7 +1,7 @@
 # Introduction
 
-This section is provided for devloper who are intrested in extending the functionality of the `GeoEfficiency` package or just make use of some of its functionality. this softawre is licenced under
-the MIT licence. 
+This section is provided for developer who are interested in extending the functionality of the `GeoEfficiency` package or just make use of some of its functionality. this software is licensed under
+the MIT license. 
 
 ```
 MIT "Expat" License
@@ -30,9 +30,9 @@ MIT "Expat" License
 
 # Configuration
 
-The package conatin many prameters that can be set within the program sourcecode. they can be found in the source file `Config.jl`
+The package contain many parameters that can be set within the program sourcecode. they can be found in the source file `Config.jl`
 
-parameter | describtion| default value
+parameter | description| default value
 :----------|:------------|:--------------:
 dataFolder | name of the root directory | "GeoEfficiency"
 dataDir    |  root directory            | joinpath(homedir(), dataFolder)
@@ -76,20 +76,20 @@ GeoEfficiency.@notImplementedError
 
 # Console Input
 
-Julia language is quite reach langauge but it seems a good idea thought to collect repeated tasks involing input from console in compact and coustumized to the need function.
-this section provid two essential functions to deal with inputs from the console. the first:
+Julia language is quite reach language but it seems a good idea thought to collect repeated tasks involving input from console in compact and customized to the need function.
+this section provide two essential functions to deal with inputs from the console. the first:
 
 ```@docs
 GeoEfficiency.input
 ```
 
-while the secand is a more complex function:
+while the second is a more complex function:
 
 ```@docs
 GeoEfficiency.getfloat
 ```
 
-Those function are not exported that is normally the user will not need to use them but they are documented here to allow a develober ranked user to make use of them.
+Those function are not exported that is normally the user will not need to use them but they are documented here to allow a developer ranked user to make use of them.
 
 # Physics Model
 
@@ -99,13 +99,13 @@ Two abstract detector types defined in the package to classify the detectors, th
 GeoEfficiency.RadiationDetector
 ```
 
-any future detector defination should inhert from `RadiationDetector`. The secand abstract detector   `Detector` is also a sub-type of `RadiationDetector` but it only acomodates cylinderical type only.
+any future detector definition should inherit from `RadiationDetector`. The second abstract detector   `Detector` is also a sub-type of `RadiationDetector` but it only accommodates cylindrical type only.
 
 ```@docs
 GeoEfficiency.Detector
 ```
 
-can be used to constract leaf detector.
+can be used to construct leaf detector.
 
 ```@docs
 Detector()

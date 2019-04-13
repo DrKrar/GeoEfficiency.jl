@@ -91,7 +91,7 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = Inf;
 				value::AbstractString="nothing", lower::Bool=true, upper::Bool=false)::Float64
 	"nothing" == value ? value = input(prompt) : nothing
-	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interapted as <0.0>
+	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interpreted as <0.0>
 	
 	local val::Float64
 	try

@@ -64,7 +64,7 @@ This function ```do not``` affect the saving of the batch calculation.
 **see also: [`max_batch()`](@ref)**
 				
 """
-function max_batch(n::Real) # for conveniante allow it to take any real number as argument.
+function max_batch(n::Real) # for convenient allow it to take any real number as argument.
 	global _max_batch = n
 end
 
@@ -158,7 +158,7 @@ end #function
 
 #---------------- writecsv_head -----------------------------
 
-""" # unexported
+""" # UnExported
 
 	writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head=[])
 

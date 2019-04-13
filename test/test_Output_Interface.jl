@@ -83,7 +83,7 @@ end #testset_GeoEfficiecny._batch
 
 local paths::Vector{String} = String[]
 local every_path::Vector{String} = String[]
-max_batch(-1)		# display the batch caluation results on the console
+max_batch(-1)		# display the batch calculation results on the console
 
 	@testset "batch(<:Detector)" begin
 		acylDetector1::CylDetector = CylDetector(eps(0.1))
@@ -99,7 +99,7 @@ max_batch(-1)		# display the batch caluation results on the console
 		push!(every_path, path)
 	end #testset_batch(<:Detector)
 
-max_batch(Inf)		# prevent the display of batch caluation results on the console
+max_batch(Inf)		# prevent the display of batch calculation results on the console
 	let acylDetector2::CylDetector = CylDetector(eps(0.2))
 	
 		paths = batch([acylDetector2], [0.0]) # in fact `paths` is a one element vector
