@@ -8,8 +8,7 @@
 
 #------------------ consts - globals - imports ----------------------------
 
-using Compat, Compat.MathConstants
-using Compat: @warn
+using MathConstants
 
 
 #---------------------------- input ---------------------------------

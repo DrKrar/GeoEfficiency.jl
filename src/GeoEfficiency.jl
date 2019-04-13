@@ -59,7 +59,7 @@ include("Output_Interface.jl")
 
 #------------------------ about ---------------------------
 
-using Compat, Compat.Dates
+using Dates
 
 const abt ="""
 \n

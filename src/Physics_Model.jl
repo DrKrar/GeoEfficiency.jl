@@ -8,8 +8,6 @@
 
 #------------------ consts - globals - imports -------------------
 
-using Compat
-using Compat: @info, @warn, @error
 import Base: show, isless
 
 

@@ -8,8 +8,7 @@
 
 #------------------ consts - globals - imports ----------------------------
 
-using Compat, Compat.MathConstants, Compat.DelimitedFiles
-using Compat: @info, @warn, @error, @__MODULE__
+using MathConstants, DelimitedFiles
 
 isconst(@__MODULE__, :dataFolder ) 	||	const dataFolder = string(@__MODULE__)
 isconst(@__MODULE__, :dataDir )		||	const dataDir    = joinpath(homedir(), dataFolder) 	

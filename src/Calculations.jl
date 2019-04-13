@@ -9,8 +9,6 @@
 
 #------------------ consts - globals - imports -------------------
 
-using Compat
-using Compat: @error, @__MODULE__
 
 # set the global minimum relative and absolute precession of the Geometrical Efficiency Calculations
 isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	

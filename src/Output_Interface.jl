@@ -8,8 +8,7 @@
 
 #------------------------- consts - globals - imports ----------------
 
-using Compat, Compat.DelimitedFiles
-using Compat: @info, @error, @__MODULE__
+using DelimitedFiles
 
 isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
 const resultdir	        = joinpath(dataDir, resultsFolder)
