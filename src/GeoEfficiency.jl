@@ -72,7 +72,7 @@ const abt ="""
 \t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
 \t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
 \t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-\t Version:       v"0.9.3" - ($(Date(now()) - Date("2019-04-13")) old master)  
+\t Version:       v"0.9.4-dev" - ($(Date(now()) - Date("2019-04-14")) old master)  
 \t Documentation: https://GeoEfficiency.GitHub.io/index.html
 \t PDF_Manual:    https://GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf
 \n
