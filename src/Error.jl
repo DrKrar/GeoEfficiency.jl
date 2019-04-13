@@ -2,7 +2,7 @@ function to_string(msg)
     if isa(msg, AbstractString)
         msg # pass-through
 
-    elseif !isempty(msgs) && (isa(msg, Expr) || isa(msg, Symbol))
+    elseif !isempty(msg) && (isa(msg, Expr) || isa(msg, Symbol))
         # message is an expression needing evaluating
         :(Main.Base.string($(esc(msg))))
 
