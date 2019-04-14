@@ -40,9 +40,8 @@ the checked items represent already present feature.
  - [ ] combine the effect of the source geometry and composition. 
 
 ## Requirements
- *  Julia 0.6 or above.
- *  QuadGK 0.3.0 or above, will be installed automatically during the package Installation.
- *  Compat 0.63.0 or above, will be installed automatically during the package Installation.
+ *  Julia 1.1 or above.
+ *  QuadGK 2.0.2 or above, will be installed automatically during the package Installation.
  
 ## Download and Installation
 the package is registered officially and so it can be installed through the Julia package management  system by typing the following into the REPL prompt.
