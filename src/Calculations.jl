@@ -61,7 +61,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
                       			integrate(func, transition, fine, rtol=relativeError, atol=absoluteError)[1] / pi
 
 		else
-			# This case is not implemented yet
+			@info("This case is not implemented yet")
 			# TBD: (Top + Side) efficiencies
 		end #if
 
