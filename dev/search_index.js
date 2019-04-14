@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Requirements",
     "category": "section",
-    "text": "Julia 0.6 or above.\nQuadGK 0.3.0 or above, will be installed automatically during the package Installation.\nCompat 0.63.0 or above, will be installed automatically during the package Installation."
+    "text": "Julia 1.1 or above.\nQuadGK 2.0.2 or above, will be installed automatically during the package Installation."
 },
 
 {
