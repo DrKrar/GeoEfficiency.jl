@@ -76,7 +76,7 @@ const abt ="""
 \t Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
 \t PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf
 \n
-\n\tBatch mode 
+\n\tBatch Mode Calculations 
 \t-  read files by defaul from directory `$(join(split(dataDir,"/travis")))`
 \t-  save results by default to directory `$(join(split(resultdir,"/travis")))`
 \n\tfor more information see `batch`, `batchInfo`.
