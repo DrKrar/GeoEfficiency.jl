@@ -4,6 +4,8 @@
 for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) as seen form a source.
 the source can be a point, a disc or even a cylinder.
 
+Documentation: [stable](https://GeoEfficiency.GitHub.io/stable/index.html), [latest](https://GeoEfficiency.GitHub.io/dev/index.html).
+
 ## Requirements
  *  Julia 1.2 or above.
  *  QuadGK 2.0.3 or above, will be installed automatically while the package Installation.

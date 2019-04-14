@@ -7,11 +7,11 @@ The Package relay directly on numerical evaluation of closed form analytical for
 Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
 :----|:----: 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
-Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/index.html)
-Current version | [v"0.9.3"](https://github.com/DrKrar/GeoEfficiency.jl/releases/tag/v0.9.3)
+Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/dev/index.html)
+Current version | [v"0.9.4-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
-This documentation is also available in [pfd](https://GeoEfficiency.GitHub.io/pdf/GeoEfficiency.pdf) format.
+This documentation is also available in [pfd](https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf) format.
 
 ## Current and Planed Features
 The following list show the state of current feature and planed feature.
