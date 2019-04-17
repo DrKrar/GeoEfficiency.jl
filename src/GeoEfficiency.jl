@@ -2,18 +2,23 @@ __precompile__()
 
 """
 
+
 # GeoEfficiency Package
 introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
 for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form 
 a source. The source can be a point, a disc or even a cylinder.
 
 # Quick Usage
-*  geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\n
-*  calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.\n
-*  calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\n
+*  geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
+
+*  calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
+
+*  calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
+
 *  batch()	: Calculate the geometrical efficiency using data in the **`$(join(split(dataDir,"/travis")))`** folder in batch mode.
 
-**for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)**
+!!! note
+    for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
 
 """
 module GeoEfficiency
@@ -61,7 +66,7 @@ include("Output_Interface.jl")
 
 using Dates
 
-const abt ="""
+const abt = """
 \n
 \t *************************************************
 \t **            -=) GeoEfficiency (=-             **
@@ -77,14 +82,16 @@ const abt ="""
 \t PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf
 \n
 \n\tBatch Mode Calculations 
-\t-  read files by defaul from directory `$(join(split(dataDir,"/travis")))`
-\t-  save results by default to directory `$(join(split(resultdir,"/travis")))`
+\t-  read files by defaul from directory `$(join(split(dataDir, "/travis")))`
+\t-  save results by default to directory `$(join(split(resultdir, "/travis")))`
 \n\tfor more information see `batch`, `batchInfo`.
 \n
 """
 
-"$abt"
-about() = printstyled(abt, color=:green, bold=true)
-about()
+"""
+$abt
+"""
+about() = printstyled(abt, color = :green, bold = true)
+__init__() = about()
 
 end #module

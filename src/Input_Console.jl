@@ -15,6 +15,7 @@ using .MathConstants
 
 """# UnExported
 
+
 	input(prompt::AbstractString = "?: ", incolor::Symbol = :green)
 
 return a string represent the user respond delimited by new line excluding the new line.
@@ -30,13 +31,14 @@ wait until the user type its respond and press return.
 
 """
 function input(prompt::AbstractString = "?: ", incolor::Symbol = :green)::AbstractString
-    printstyled(prompt, color=incolor, bold=true); chomp(readline())
+    printstyled(prompt, color = incolor, bold = true); chomp(readline())
 end # function
 
 
 #---------------------------- getfloat -----------------------------------
 
 """# UnExported
+
 
 	getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = Inf; KW...)::Float64
 
@@ -88,7 +90,7 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 
 """
 function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = Inf;
-				value::AbstractString="nothing", lower::Bool=true, upper::Bool=false)::Float64
+				value::AbstractString = "nothing", lower::Bool = true, upper::Bool = false)::Float64
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interpreted as <0.0>
 	
@@ -110,7 +112,7 @@ function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = 
 			\n Please: provide a valid expression""")
     end #if    
 		
-		return getfloat(prompt, from, to; lower=lower, upper=upper)
+		return getfloat(prompt, from, to; lower = lower, upper = upper)
 	end #try
 	return val
 end	

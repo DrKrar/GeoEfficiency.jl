@@ -2,32 +2,35 @@ function to_string(msg)
     if isa(msg, AbstractString)
         msg # pass-through
 
-    elseif (isa(msg, Expr) || isa(msg, Symbol)) # && !isempty(msg) 
+    elseif isa(msg, Expr) || isa(msg, Symbol) # && !isempty(msg) 
         # message is an expression needing evaluating
         :(Main.Base.string($(esc(msg))))
 
-    elseif applicable(Main.Base.string, msg)
+    else
         Main.Base.string(msg)
 
-    else
-        # string() might not be defined during bootstrap
-        :(Main.Base.string($(Expr(:quote,msg))))
     end #if
 end #function
 
-"custom abstract `exception` that is the parent of all exception in the `GeoEfficiency` package"
+"""
+custom abstract `Exception` that is the parent of all Exception in the `GeoEfficiency` package
+"""
 abstract type GeoException <: Exception end
 
 import Base: showerror
 
-showerror(io::IO, err::GeoException) = print(io, typeof(err), ": ", err.msg)
+showerror(io::IO, err::GeoException) = print(io, nameof(typeof(err)), ": ", err.msg)
 
-"custom `exception` indicating invalid radiation detector dimensions"
+"""
+custom `Exception` indicating invalid radiation detector dimensions
+"""
 struct  InValidDetectorDim <: GeoException
-	msg::AbstractString
+   	msg::AbstractString
 end
 
 """
+
+
     @validateDetector cond [text]
 
 throw an [`InValidDetectorDim`](@ref) if `cond` is `false`. 
@@ -46,24 +49,39 @@ macro validateDetector(ex, msgs...)
     return :($(esc(ex)) ? $(nothing) : throw(InValidDetectorDim($msg)))
 end
 
-"custom `exception` indicating a source to detector geometry which may be valid but not implemented yet"
+"""
+custom `Exception` indicating a source-to-detector geometry which may be valid but not implemented yet
+"""
 struct  NotImplementedError <: GeoException
-	msg::AbstractString
+   	msg::AbstractString
 end
 
-"custom macro to throw [`NotImplementedError`](@ref) `exception` "
+"""
+
+    @notImplementedError [msg]
+
+custom macro to throw [`NotImplementedError`](@ref) `Exception`.
+"""
 macro notImplementedError(msgs...)
     msg = isempty(msgs) ? "" : to_string(msgs[1])
     return :(throw(NotImplementedError($msg)))
 end
 
 
-"custom `exception` indicating a not valid source to detector geometry"
-struct  InValidGeometry<: GeoException
-	msg::AbstractString
+"""
+custom `Exception` indicating a not valid source to detector geometry
+"""
+struct  InValidGeometry <: GeoException
+   	msg::AbstractString
 end
 
-"custom macro to throw [`NotImplementedError`](@ref) `exception` "
+"""
+
+
+    @inValidGeometry [msg]
+
+custom macro to throw [`NotImplementedError`](@ref) `Exception`.
+"""
 macro inValidGeometry(msgs...)
     msg = isempty(msgs) ? "" : to_string(msgs[1])
     return :(throw(InValidGeometry($msg)))

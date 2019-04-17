@@ -30,5 +30,7 @@ const absoluteError = eps(1.0)                                  # eps(1.0)
 ##Output_Interface.jl##
 const resultsFolder = "results"                                 # "results"
 
-"set the default value for the global variable `_max_batch`"
+"""
+set the default value for the global variable `_max_batch`
+"""
 const max_display   =  20                                       # 20

@@ -10,8 +10,8 @@
 
 using .MathConstants, DelimitedFiles
 
-isconst(@__MODULE__, :dataFolder ) 	||	const dataFolder = string(@__MODULE__)
-isconst(@__MODULE__, :dataDir )		||	const dataDir    = joinpath(homedir(), dataFolder) 	
+isconst(@__MODULE__, :dataFolder) 	||	const dataFolder = string(@__MODULE__)
+isconst(@__MODULE__, :dataDir)		||	const dataDir    = joinpath(homedir(), dataFolder) 	
 mkpath(dataDir)
 
 const Detectors  = "Detectors.csv";
@@ -21,12 +21,13 @@ const srcRadii   = "srcRadii.csv";
 const srcLengths = "srcLengths.csv";
 
 
-@enum SrcType srcUnknown=-1 srcPoint=0 srcLine=1 srcDisk=2 srcVolume=3 srcNotPoint =4
+@enum SrcType srcUnknown = -1 srcPoint = 0 srcLine = 1 srcDisk = 2 srcVolume = 3 srcNotPoint = 4
 global srcType = srcUnknown
 
 #------------------ typeofSrc --------------------------------------
 
 """
+
     typeofSrc()::SrcType
 
 return the current value of the global `GeoEfficiency.srcType`.
@@ -35,6 +36,7 @@ return the current value of the global `GeoEfficiency.srcType`.
 typeofSrc()::SrcType = srcType  # srcType != SrcType, but
 
 """
+
     typeofSrc(x::Int)::SrcType
 
 set and return the value of the global `GeoEfficiency.srcType` corresponding to `x`.
@@ -48,12 +50,12 @@ set and return the value of the global `GeoEfficiency.srcType` corresponding to 
 
 """
 function typeofSrc(x::Int)::SrcType
-	global srcType = if x < 0
-					SrcType(-1)
+   	global srcType = if x < 0
+   					SrcType(-1)
 				elseif x > 4
-					SrcType(4)
+   					SrcType(4)
 				else
-					SrcType(x)
+   					SrcType(x)
 				end
 end #function
 
@@ -61,6 +63,7 @@ end #function
 #------------------------ setSrcToPoint ---------------------------
 
 """
+
     setSrcToPoint()::Bool
 
 return whether the source type is a point or not.
@@ -68,6 +71,7 @@ return whether the source type is a point or not.
 setSrcToPoint()::Bool = srcType === srcPoint
 
 """
+
 
     setSrcToPoint(yes::Bool)::Bool
 
@@ -83,17 +87,18 @@ set to other non-point type (`srcDisk`, `srcLine`, `srcVolume`).
 
 """
 function setSrcToPoint(yes::Bool)::Bool
-	global srcType = if yes 
-						srcPoint
-					elseif srcType in [srcUnknown, srcPoint] 
-						srcNotPoint
-					else
-						srcType 
-					end
-	return srcType === srcPoint
+   	global srcType = if yes 
+  						srcPoint
+				elseif srcType in [srcUnknown, srcPoint] 
+  						srcNotPoint
+				else
+  						srcType 
+				end
+   	return srcType === srcPoint
 end
 
 """
+
 	setSrcToPoint(prompt::AbstractString)::Bool
 
 return whether the source type is a point or not. only prompt the user to set the source 
@@ -103,12 +108,13 @@ type if it were not already set before.
 
 """
 setSrcToPoint(prompt::AbstractString)::Bool = srcType != srcUnknown ?	setSrcToPoint() :
-											setSrcToPoint(input(prompt) |> lowercase != "n" )
+											setSrcToPoint(input(prompt) |> lowercase != "n")
 
 
 #---------------------------- detector_info_from_csvFile ------------------------------
 
 """# UnExported
+
 
 	 detector_info_from_csvFile(detectors::AbstractString = Detectors, 
                                       datadir::AbstractString = dataDir)
@@ -128,13 +134,13 @@ function detector_info_from_csvFile(detectors::AbstractString = Detectors,
     detector_info_array::Matrix{Float64} = Matrix{Float64}(undef, 0, 0)
     @info("opening '$(detectors)'......")
     try
-        detector_info_array = readdlm(joinpath(datadir, detectors), ',', header=true)[1];
+        detector_info_array = readdlm(joinpath(datadir, detectors), ',', header = true)[1];
         return getDetectors(detector_info_array)
 		
     catch err
         if isa(err, SystemError) 
-		    @error("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath( datadir, detectors))' can't be found")
-		end
+      		    @error("detector_info_from_csvFile: Some thing went wrong, may be the file '$(joinpath(datadir, detectors))' can't be found")
+      		end
         rethrow()
 
     end #try
@@ -146,6 +152,7 @@ end #function
 
 """# UnExported
 
+
 	read_from_csvFile(csv_data::AbstractString, 
                        datadir::AbstractString = dataDir)::Vector{Float64}
 
@@ -154,28 +161,29 @@ where the file is located default to ``$(dataDir)`` as set by the constant `data
 
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = dataDir)::Vector{Float64}
-	@info("Opening `$(csv_data)`......")
-	try
-		indata = readdlm(joinpath(datadir, csv_data), ',',  header=true)[1][:,1]
-		return float(indata ) |> sort;
+   	@info("Opening `$(csv_data)`......")
+   	try
+      		indata = readdlm(joinpath(datadir, csv_data), ',',  header = true)[1][:,1]
+      		return float(indata) |> sort;
 
-	catch err
-	    if isa(err, SystemError) 
-		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+   	catch err
+   	    if isa(err, SystemError) 
+      		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
 		
-		else
-		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` format is bad or empty")
+      		else
+      		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` format is bad or empty")
 		
-		end		
-		return Float64[0.0]
+      		end		
+      		return Float64[0.0]
 
-	end #try
+   	end #try
 end #function
 
 
 #--------------------------- read_batch_info ------------------------------------
 
 """# UnExported
+
 
 	read_batch_info()
 
@@ -200,6 +208,7 @@ read_batch_info() = read_batch_info(dataDir,
 
 """# UnExported
 
+
 	read_batch_info(datadir::AbstractString,
                   detectors::AbstractString, 
                  srcHeights::AbstractString,
@@ -218,7 +227,7 @@ Return a tuple
 		srcLengths_array,
 		isPoint)
 
-"""								 
+"""
 function read_batch_info(datadir::AbstractString,
                        detectors::AbstractString, 
 					  srcHeights::AbstractString,
@@ -226,59 +235,58 @@ function read_batch_info(datadir::AbstractString,
 					    srcRadii::AbstractString,
 					  srcLengths::AbstractString)
 
-	@info("Starting the Batch Mode ....")
-	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
+   	@info("Starting the Batch Mode ....")
+   	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-	@info("Reading data from `CSV files` at $datadir .....")
-	detectors_array::Vector{Detector} = try  
-											detector_info_from_csvFile(detectors, datadir) 
-										catch err
-											getDetectors()
-										 end
-	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
-	srcRhos_array   ::Vector{Float64} = [0.0]
-	srcRadii_array  ::Vector{Float64} = [0.0]
-	srcLengths_array::Vector{Float64} = [0.0]
+   	@info("Reading data from `CSV files` at $datadir .....")
+   	detectors_array::Vector{Detector} = try  
+								detector_info_from_csvFile(detectors, datadir) 
+				catch err
+								getDetectors()
+			 end
+   	srcHeights_array::Vector{Float64} = read_from_csvFile(srcHeights, datadir)
+   	srcRhos_array::Vector{Float64} = [0.0]
+   	srcRadii_array::Vector{Float64} = [0.0]
+   	srcLengths_array::Vector{Float64} = [0.0]
 
-	function batchfailure(err::AbstractString)
-		@warn(err, ", transfer to direct data input via the `console`......")
-		sleep(3); src = source()
-		srcHeights_array, srcRhos_array, srcRadii_array  , srcLengths_array   = 
-		[src[1].Height] , [src[1].Rho] , [src[2]]        , [src[3]]
-		return nothing
-	end #function
+   	function batchfailure(err::AbstractString)
+      		@warn(err, ", transfer to direct data input via the `console`......")
+      		sleep(3); src = source()
+      		srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array   = 
+		[src[1].Height], [src[1].Rho], [src[2]], [src[3]]
+      		return nothing
+   	end #function
 
-	if srcHeights_array == [0.0]
-		batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
+   	if srcHeights_array == [0.0]
+      		batchfailure("`$(srcHeights)` is not found in `$(datadir)`)")
 
-	elseif isPoint
-		srcRhos_array =	read_from_csvFile(srcRhos, datadir)
+   	elseif isPoint
+      		srcRhos_array =	read_from_csvFile(srcRhos, datadir)
 
-	else
-		srcRadii_array = read_from_csvFile(srcRadii, datadir)
-		if srcRadii_array == [0.0]
-			batchfailure("`$(srcRadii)` is not found in `$(datadir)`)")
+   	else
+      		srcRadii_array = read_from_csvFile(srcRadii, datadir)
+      		if srcRadii_array == [0.0]
+         			batchfailure("`$(srcRadii)` is not found in `$(datadir)`)")
 
-		else
-			srcLengths_array = read_from_csvFile(srcLengths, datadir)
+      		else
+         			srcLengths_array = read_from_csvFile(srcLengths, datadir)
 
-		end #if
-	end #if
+      		end #if
+   	end #if
 	#println("\n Results log\n=============")
-	return (
-		detectors_array,
+   	return (detectors_array,
 		srcHeights_array,
 		srcRhos_array,
 		srcRadii_array,
 		srcLengths_array,
-		isPoint,
-		)
+		isPoint,)
 end #function
 
 
 #------------------------- getDetectors -------------------------------------
 
 """
+
 
     getDetectors(detectors_array::Vector{<:Detector} = Detector[])::Vector{Detector}
 
@@ -291,27 +299,27 @@ prompt the user to input detector parameters from the `console`.
 
 """
 function getDetectors(detectors_array::Vector{<:Detector} = Detector[])::Vector{Detector}
-	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
-	while(true)
-		try
-			push!(detectors_array, Detector());
+   	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
+   	while(true)
+      		try
+         			push!(detectors_array, Detector());
 
-		catch err	
-			println(err); @warn("Please: Enter a New Detector")
-			continue
-		end #try
+      		catch err	
+         			println(err); @warn("Please: Enter a New Detector")
+         			continue
+      		end #try
 
-		lowercase(input(
-			"""\n
+      		lowercase(input("""\n
     	                - To add a new detector press return\n
     	                - To quit press 'q'|'Q' then return\n
 			\n\t your Choice: """, :blue))  == "q" && break
-	end #while
-	return detectors_array |> sort
+   	end #while
+   	return detectors_array |> sort
 end #function
 
 
 """
+
 
 	getDetectors(detector_info_array::Matrix{<:Real}, 
 					 detectors_array::Vector{<:Detector} = Detector[]; 
@@ -327,26 +335,26 @@ attempt to convert detectors from the information in `detector_info_array`.
 """
 function getDetectors(detector_info_array::Matrix{<:Real}, 
 						  detectors_array::Vector{<:Detector} = Detector[]; 
-						  							console_FB=true)::Vector{Detector}
+						  							console_FB = true)::Vector{Detector}
 
-	if isempty(detector_info_array) 
-		if console_FB
-			@info("The new detectors information may entered via the console")
-			return getDetectors(detectors_array)
-		else
-		 	error("getDetectors: Empty `detector_info_array`")
-		end
+   	if isempty(detector_info_array) 
+      		if console_FB
+         			@info("The new detectors information may entered via the console")
+         			return getDetectors(detectors_array)
+      		else
+        		 	error("getDetectors: Empty `detector_info_array`")
+      		end
 
-	else
-		Vector{Detector}(detectors_array)
-		for i_th_line = 1:size(detector_info_array)[1]
-			try 
-				push!(detectors_array, Detector((detector_info_array[i_th_line,:])...))
+   	else
+      		Vector{Detector}(detectors_array)
+      		for i_th_line = 1:size(detector_info_array)[1]
+         			try 
+            				push!(detectors_array, Detector((detector_info_array[i_th_line,:])...))
 
-			catch err
-			end #try
-		end #for
+         			catch err
+         			end #try
+      		end #for
 
-		return detectors_array |> sort
-	end   #if
+      		return detectors_array |> sort
+   	end   #if
 end #function

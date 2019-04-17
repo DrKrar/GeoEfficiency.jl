@@ -8,7 +8,7 @@
 
 
 
-@testset "GeoEfficiecny.checkResultsDirs" begin 
+@testset "GeoEfficiency.checkResultsDirs" begin 
 	@test G.checkResultsDirs() == nothing
 end #testset_checkResultsDirs
 
@@ -40,27 +40,28 @@ end #let
 
 
 @debug("calcN")
-@testset "calcN - $consol_input" for 
-consol_input = ["4 0 1 2 Q", 
+@testset "calcN - $console_input" for 
+console_input = ["4 0 1 2 Q", 
 				"4 0 1 3 " * "d " * "4 0 1 4 Q", 
 				"4 0 1 5 " * "n " * "11 6 0 " * "4 0 1 6 Q"]
 
-	@test H.exec_console_unattended(calcN, consol_input, Fn_ARGs =[Detector(5, 10)])  == nothing
-	@test H.exec_console_unattended(calcN,  consol_input, Fn_ARGs =[Detector(eps())])  == nothing
-	@test H.exec_console_unattended(calcN, "13 7 0 " * consol_input)      == nothing
-	@test H.exec_console_unattended(calcN, "13 7 0 Q " * consol_input)      == nothing
-	#@test H.exec_consol_unattended(calcN, "-13 -7 0 Q " * consol_input)      == nothing
+	@test H.exec_console_unattended(calcN, console_input, Fn_ARGs =[Detector(5, 10)])  == nothing
+	@test H.exec_console_unattended(calcN,  console_input, Fn_ARGs =[Detector(eps())])  == nothing
+	@test H.exec_console_unattended(calcN, "13 7 0 " * console_input)      == nothing
+	@test H.exec_console_unattended(calcN, "13 7 0 Q " * console_input)      == nothing
+	#@test H.exec_console_unattended(calcN, "-13 -7 0 Q " * console_input)      == nothing
 end #testset_calcN
 
 
 
 @debug("writecsv_head")    
 @testset "writecsv_head" begin
-	# `writecsv_head` tests in the `reading_from _CSV` testset in test_Output_Interface.
+	# `writecsv_head` 		tests in the `reading_from _CSV` testset in `test_Input_Batch`.
+	# `writecsv_head_any` 	tests in the `reading_from _CSV` testset in `test_Input_Batch`.
 end #testset_writecsv_head
 
 
-@debug("GeoEfficiecny._batch")
+@debug("GeoEfficiency._batch")
 @testset "_batch, point is $isSrcPoint" for	isSrcPoint = [true, false]
 
 	rtrn = G._batch(Val(isSrcPoint),  CylDetector(eps(0.1)), [0.0], [0.0], [0.0], [0.0])
@@ -73,7 +74,7 @@ end #testset_writecsv_head
 	@test rtrn[2][end] |> isnan
 	rm(rtrn[end]; force=true)
 
-end #testset_GeoEfficiecny._batch
+end #testset_GeoEfficiency._batch
 
 
 @debug("batch")    

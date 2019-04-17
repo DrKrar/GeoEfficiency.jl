@@ -17,6 +17,8 @@ const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
 const redirect  		= joinpath(resultdir, "GeoEfficiency.txt")
 
 """
+
+
 Global variable that give a hint to the program on maxumam number of entries per detector displayed 
 on the `console` in btach mode.
 
@@ -30,7 +32,9 @@ global countDetectors 	= 1				# number of detectors
 
 #------------------ checkResultsDirs ----------------------------------
 
-"""# UnExported
+"""
+
+# UnExported
 
 	checkResultsDirs()
 
@@ -39,9 +43,9 @@ them if necessary.
 
 """
 function checkResultsDirs()
-	mkpath(resultdir_pnt)
-	mkpath(resultdir_nonPnt)
-	return nothing
+   	mkpath(resultdir_pnt)
+   	mkpath(resultdir_nonPnt)
+   	return nothing
 end
 checkResultsDirs()
 
@@ -50,10 +54,11 @@ checkResultsDirs()
 
 """
 
+
 	max_batch(n::Real)
 
-set the value of `_max_batch` which give a hint to the program on maxumam number of entries per 
-detector displayed on the `console` in btach mode.
+set the value of `_max_batch` which give a hint to the program on maximum number of entries per 
+detector displayed on the `console` in batch mode.
 This function ```do not``` affect the saving of the batch calculation. 
 
 !!! note
@@ -64,24 +69,26 @@ This function ```do not``` affect the saving of the batch calculation.
 				
 """
 function max_batch(n::Real) # for convenient allow it to take any real number as argument.
-	global _max_batch = n
+   	global _max_batch = n
 end
 
 """
 
+
 	max_batch()
 
-set the value of `_max_batch` which give a hint to the program on maxumam number of entries per 
-detector displayed on the `console` in btach mode. to its default value set by the contant [`max_display`](@ref).
+set the value of `_max_batch` which give a hint to the program on maximum number of entries per 
+detector displayed on the `console` in batch mode. to its default value set by the constant [`max_display`](@ref).
 
 **see also: [`max_batch(n::Real)`](@ref)**
 """
 function max_batch()
-	global _max_batch = max_display
+   	global _max_batch = max_display
 end
 #--------------------------- calc ---------------------------------------
 
 """
+
 
 	calc(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source())
 
@@ -97,23 +104,24 @@ detector `detector` for the tuple `aSource` describing the source.
      are missing, the method prompt the user to complete the missing data via the `console`.
 
 """
-function calc(detector::Detector = Detector(), aSource::Tuple{Point, Real, Real} = source())
+function calc(detector::Detector = Detector(), aSource::Tuple{Point,Real,Real} = source())
 
-	aPnt, srcRadius, srcLength = aSource
-	printstyled("\n<$(countDetectors)> $(id(detector))", color=:yellow)
-	println("\n - Source(", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, ")")
+   	aPnt, srcRadius, srcLength = aSource
+   	printstyled("\n<$(countDetectors)> $(id(detector))", color = :yellow)
+   	println("\n - Source(", id(aPnt), ", srcRadius=", srcRadius, ", srcLength=", srcLength, ")")
 
-	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
-	println("\n - The detector Geometrical Efficiency = ", calculatedEff)
+   	calculatedEff::Float64 = geoEff(detector, aPnt, srcRadius, srcLength)
+   	println("\n - The detector Geometrical Efficiency = ", calculatedEff)
 
-	global countDetectors += 1
-	printstyled(repeat(" =",36),"\n\n", color=:red)
-	return nothing
+   	global countDetectors += 1
+   	printstyled(repeat(" =", 36), "\n\n", color = :red)
+   	return nothing
 end #function
 
 #------------------------ calcN ------------------------------------
 
 """
+
 
     calcN()
 
@@ -123,41 +131,42 @@ Prompt the user `repeatedly` until it exit (give a choice to use the same
 detector or a new detector).
 
 """
-function calcN(	detector::Detector = Detector())
+function calcN(detector::Detector = Detector())
 
-	while (true)
+   	while (true)
 
-		try	
-			calc(detector)
+      		try	
+         			calc(detector)
 
-		catch err
-			print("\n\t"); @warn("some error had happened\n"); calc()
-		end #try
+      		catch err
+         			print("\n\t"); @warn("some error had happened\n"); calc()
+      		end #try
 
-		res = input("""\n
+      		res = input("""\n
     	I- To continue make a choice:
 			> using the same detector Press 'd'|'D'
 			> using a new detector Press 'n'|'N'\n
     	II- To quit just press return\n
 			\n\tyour Choice: """, :red) |> lowercase;
-		if res == "n"
-			print("\n\t"); @info("Please provide new detector dimention\n"); detector = Detector()
+      		if res == "n"
+         			print("\n\t"); @info("Please provide new detector dimention\n"); detector = Detector()
 
-		elseif res == "d"
-			print("\n\t"); @info("using $detector \n");  continue
+      		elseif res == "d"
+         			print("\n\t"); @info("using $detector \n");  continue
 
-		else
-			print("\n\t"); @info("The 'calcN' had terminated, Thank you\n"); break
+      		else
+         			print("\n\t"); @info("The 'calcN' had terminated, Thank you\n"); break
 
-		end #if
+      		end #if
 
-	end #while
-	nothing
+   	end #while
+   	nothing
 end #function
 
 #---------------- writecsv_head -----------------------------
 
-""" # UnExported
+"""# UnExported
+
 
 	writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head=[])
 
@@ -165,19 +174,20 @@ Write `content` to the comma delimited values file `filename`.
 optionally with header `head`.
 
 """
-writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head=[]) = writecsv_head_any(filename, content, head)
+writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}}, head = []) = writecsv_head_any(filename, content, head)
 
-function writecsv_head_any(filename::AbstractString, content, head=[])
-	open(filename, "w") do io
-		writedlm(io, head, ',') 
-		writedlm(io, content, ',')
-	end #do
+function writecsv_head_any(filename::AbstractString, content, head = [])
+   	open(filename, "w") do io
+      		writedlm(io, head, ',') 
+      		writedlm(io, content, ',')
+   	end #do
 end #function
 
 
 #-------------------------- batch() ------------------------
 
 """
+
 
     batch()
 
@@ -190,9 +200,10 @@ by default found in **`$(resultdir)`**, also a log of the results are displayed 
 **for more information on batch refer to [`batchInfo`](@ref).**
 
 """
-batch() ::Vector{String} = batch(read_batch_info()...)
+batch()::Vector{String} = batch(read_batch_info()...)
 
 """
+
 
     batch(
 		detector::Detector,
@@ -223,33 +234,35 @@ A set of sources is constructed of every valid **combination** of parameter in t
     *  If `ispoint` is `false` the parameters in srcRhos_array is completely ignored.
 
 """
-function batch(	detector::Detector,
+function batch(detector::Detector,
 				srcHeights_array::Vector{S},
-				srcRhos_array::Vector{S}=[0.0],
-				srcRadii_array::Vector{S}=[0.0],
-				srcLengths_array::Vector{S}=[0.0],
-				ispoint::Bool=true)::String		where S <: Real  
+				srcRhos_array::Vector{S} = [0.0],
+				srcRadii_array::Vector{S} = [0.0],
+				srcLengths_array::Vector{S} = [0.0],
+				ispoint::Bool = true)::String		where S <: Real  
 				
-	_bt()::String = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+   	_bt()::String = _batch(Val(ispoint), detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
 	
-	open(redirect, "a+") do redirect_file
+   	open(redirect, "a+") do redirect_file
 	
-	if ispoint && length(srcHeights_array) * length(srcRhos_array) < _max_batch 
-		redirect_stdout(_bt, redirect_file)
+       	if ispoint && length(srcHeights_array) * length(srcRhos_array) < _max_batch 
+          		redirect_stdout(_bt, redirect_file)
 
 
-	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
-		redirect_stdout(_bt, redirect_file)
+       	elseif !ispoint && length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
+          		redirect_stdout(_bt, redirect_file)
 
-	else
-		_bt()
+       	else
+          		_bt()
 
-	end #if
-	end
+       	end #if
+   	end
 
 end #function
 
 """
+
+
 
     batch( 
 		detectors_array::Vector{<: Detector},
@@ -264,44 +277,46 @@ end #function
 return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 """
-function batch( detectors_array::Vector{<: Detector},
+function batch(detectors_array::Vector{<: Detector},
 	       srcHeights_array::Vector{S},
-	       srcRhos_array::Vector{S}=[0.0],
-	       srcRadii_array::Vector{S}=[0.0],
-	       srcLengths_array::Vector{S}=[0.0],
-	       ispoint::Bool=true)::Vector{String} 	where S <: Real  
+	       srcRhos_array::Vector{S} = [0.0],
+	       srcRadii_array::Vector{S} = [0.0],
+	       srcLengths_array::Vector{S} = [0.0],
+	       ispoint::Bool = true)::Vector{String} 	where S <: Real  
 	
-	outpaths::Vector{String} = String[]
-	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
-	 redirect_file = open(redirect, "a+")
+   	outpaths::Vector{String} = String[]
+   	_bt_det(_detector) = _batch(Val(ispoint), _detector, srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array)[3]
+  	 redirect_file = open(redirect, "a+")
 
-	if ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRhos_array) < _max_batch 
-		for detector = detectors_array
-			_bt() = _bt_det(detector)
-			push!(outpaths, redirect_stdout(_bt, redirect_file))
-		end # detectors_array
+   	if ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRhos_array) < _max_batch 
+      		for detector = detectors_array
+         			_bt() = _bt_det(detector)
+         			push!(outpaths, redirect_stdout(_bt, redirect_file))
+      		end # detectors_array
 
-	elseif !ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
-		for detector = detectors_array
-			_bt() = _bt_det(detector)
-			push!(outpaths, redirect_stdout(_bt, redirect_file))
-		end # detectors_array
+   	elseif !ispoint && length(detectors_array) * length(srcHeights_array) * length(srcRadii_array) * length(srcLengths_array) < _max_batch
+      		for detector = detectors_array
+         			_bt() = _bt_det(detector)
+         			push!(outpaths, redirect_stdout(_bt, redirect_file))
+      		end # detectors_array
 
-	else
-		for detector = detectors_array
-			_bt() = _bt_det(detector)
-			push!(outpaths, _bt())
-		end # detectors_array
+   	else
+      		for detector = detectors_array
+         			_bt() = _bt_det(detector)
+         			push!(outpaths, _bt())
+      		end # detectors_array
 
-	end #if
-	close(redirect_file)
+   	end #if
+   	close(redirect_file)
 
-	print("\n\t"); @info("The program terminated, Thank you >>>>\n")
-	return outpaths
+   	print("\n\t"); @info("The program terminated, Thank you >>>>\n")
+   	return outpaths
 
 end #function
 
 """
+
+
 
     batch(
 		detector_info_array::Matrix{S},
@@ -317,14 +332,14 @@ end #function
 return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 """
-function batch(	detector_info_array::Matrix{S},
+function batch(detector_info_array::Matrix{S},
 				srcHeights_array::Vector{S},
-				srcRhos_array::Vector{S}=[0.0],
-				srcRadii_array::Vector{S}=[0.0],
-				srcLengths_array::Vector{S}=[0.0],
-				ispoint::Bool=true)::Vector{String} 	where S <: Real 
+				srcRhos_array::Vector{S} = [0.0],
+				srcRadii_array::Vector{S} = [0.0],
+				srcLengths_array::Vector{S} = [0.0],
+				ispoint::Bool = true)::Vector{String} 	where S <: Real 
 
-	return  batch(	getDetectors(detector_info_array),
+   	return  batch(getDetectors(detector_info_array),
 					srcHeights_array,
 					srcRhos_array,
 					srcRadii_array,
@@ -334,6 +349,7 @@ end #function
 
 
 """# UnExported
+
 
     _batch(
 		::Val{true},
@@ -359,56 +375,55 @@ The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
      both `srcRadii_array`, `srcLengths_array` are completely ignored as this method is for point sources.
 
 """
-function _batch(
-		::Val{true},
+function _batch(::Val{true},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
-		srcLengths_array::Vector{Float64};
-		)
+		srcLengths_array::Vector{Float64})
 
-	aPnt::Point = Point(0.0, 0.0)
-	calculatedEff::Float64 = 0.0
-	out_results::Vector{Float64} = Float64[];
-	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
-	for srcHeight = srcHeights_array
-		for srcRho = srcRhos_array
-		aPnt = Point(srcHeight, srcRho)
+   	aPnt::Point = Point(0.0, 0.0)
+   	calculatedEff::Float64 = 0.0
+   	out_results::Vector{Float64} = Float64[];
+   	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
+   	for srcHeight = srcHeights_array
+      		for srcRho = srcRhos_array
+          		aPnt = Point(srcHeight, srcRho)
 			
-			calculatedEff = try	geoEff(detector, aPnt); catch err;	NaN64 end
-			push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
+         			calculatedEff = try	geoEff(detector, aPnt); catch err;	NaN64 end
+         			push!(out_results, aPnt.Height, aPnt.Rho, calculatedEff)
 
-			printstyled(cellLabel, color=:yellow)
-			println(" - Source: ", id(aPnt))
-			println()
-			println(" - The detector Geometrical Efficiency = ", calculatedEff)
-			printstyled(repeat(" =",36),"\n", color=:red)
+         			printstyled(cellLabel, color = :yellow)
+         			println(" - Source: ", id(aPnt))
+         			println()
+         			println(" - The detector Geometrical Efficiency = ", calculatedEff)
+         			printstyled(repeat(" =", 36), "\n", color = :red)
 
-		end #for_Rho
+      		end #for_Rho
 
-	end #for_Height
-	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
-	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
-	path::String = joinpath(resultdir_pnt,  "$(id(detector)).csv")
-	try
-		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
+   	end #for_Height
+   	results::Matrix{Float64} = reshape(out_results, 3, :) |> transpose
+   	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+   	path::String = joinpath(resultdir_pnt,  "$(id(detector)).csv")
+   	try
+      		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
-	catch err
-		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
-		checkResultsDirs() # to make sure the directories do exist
-		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
-		rm(path, force=true)	#delete the fallback file if it is already exist
-		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
+   	catch err
+      		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+      		checkResultsDirs() # to make sure the directories do exist
+      		path = joinpath(resultdir_pnt,  "_$(id(detector)).csv")
+      		rm(path, force = true)	#delete the fallback file if it is already exist
+      		writecsv_head(path, results, ["Height" "Rho" "GeoEfficiency"])
 
-	end #try
-	global countDetectors += 1;
-	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
-	return (detector, results, path) # detector, results are for test purpose
+   	end #try
+   	global countDetectors += 1;
+   	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
+   	return (detector, results, path) # detector, results are for test purpose
 
 end #function
 
 """# UnExported
+
 
     _batch(
 		::Val{false},
@@ -432,68 +447,66 @@ The `results` has columns of headers
     should converted to `Float64` using `float` before passing it to this method.
 
 """
-function _batch(
-		::Val{false},
+function _batch(::Val{false},
 		detector::Detector,
 		srcHeights_array::Vector{Float64},
 		srcRhos_array::Vector{Float64},
 		srcRadii_array::Vector{Float64},
-		srcLengths_array::Vector{Float64};
-		)
+		srcLengths_array::Vector{Float64})
 
-	aPnt::Point = Point(0.0, 0.0)
-	out_results::Vector{Float64} = Float64[];
-	calculatedEff::Float64 = 0.0
-	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
-	for srcHeight = srcHeights_array
-		for srcRho = srcRhos_array
-		aPnt = Point(srcHeight, srcRho)
-			for  srcLength = srcLengths_array;
-				for srcRadius = srcRadii_array
-					try
-						calculatedEff = geoEff(detector, aPnt, srcRadius , srcLength)
+   	aPnt::Point = Point(0.0, 0.0)
+   	out_results::Vector{Float64} = Float64[];
+   	calculatedEff::Float64 = 0.0
+   	cellLabel = "\n\n<$(countDetectors)>$(id(detector))\n"
+   	for srcHeight = srcHeights_array
+      		for srcRho = srcRhos_array
+          		aPnt = Point(srcHeight, srcRho)
+         			for  srcLength = srcLengths_array;
+            				for srcRadius = srcRadii_array
+               					try
+                  						calculatedEff = geoEff(detector, aPnt, srcRadius, srcLength)
 
-					catch err
+               					catch err
 						#isa(err, AssertionError) && @goto(Next_srcLength)
-						calculatedEff = NaN
+                  						calculatedEff = NaN
 
-					end #try
+               					end #try
 
-					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
+               					push!(out_results, aPnt.Height, aPnt.Rho, srcRadius, srcLength, calculatedEff)
 
-					printstyled(cellLabel, color=:yellow)
-					println(" - Source[Anchor_", id(aPnt), ", srcRadius=",srcRadius, ", srcLength=", srcLength, "]")
-					println()
-					println(" - The detector Geometrical Efficiency = ", calculatedEff)
-					printstyled(repeat(" =",36),"\n", color=:red)
+               					printstyled(cellLabel, color = :yellow)
+               					println(" - Source[Anchor_", id(aPnt), ", srcRadius=", srcRadius, ", srcLength=", srcLength, "]")
+               					println()
+               					println(" - The detector Geometrical Efficiency = ", calculatedEff)
+               					printstyled(repeat(" =", 36), "\n", color = :red)
 
-				end #for_srcRadius
+            				end #for_srcRadius
 
-			@label(Next_srcLength)
-			end #for_srcLength
+             			@label(Next_srcLength)
+         			end #for_srcLength
 
-		end #for_Rho
+      		end #for_Rho
 
-	@label(Next_Height)
-	end #for_Height
+       	@label(Next_Height)
+   	end #for_Height
 
-	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
-	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
-	path::String = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
-	try 
-		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+   	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose
+   	@info("Saving <$countDetectors> to '$(id(detector)).csv'......\n")
+   	path::String = joinpath(resultdir_nonPnt, "$(id(detector)).csv")
+   	try 
+      		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
-	catch err
-		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
-		checkResultsDirs() # to make sue that the directories do exist
-		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
-		rm(path, force=true)	#delete the fallback file if it is already exist
-		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
+   	catch err
+      		@error("'$(id(detector)).csv': can't be created,\n trying to save results in an alternative file")
+      		checkResultsDirs() # to make sue that the directories do exist
+      		path = joinpath(resultdir_nonPnt, "_$(id(detector)).csv")
+      		rm(path, force = true)	#delete the fallback file if it is already exist
+      		writecsv_head(path, results, ["AnchorHeight" "AnchorRho" "srcRadius" "srcLength" "GeoEfficiency"])
 
-	end #try
-	global countDetectors += 1;
-	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
-	return (detector, results, path) # detector, results are for test purpose
+   	end #try
+   	global countDetectors += 1;
+   	println("\n\n\n\n\t++++++++++++++++++++\n\t++++++++++++++++++++\n\n\n")
+   	return (detector, results, path) # detector, results are for test purpose
 
 end #function
 
@@ -501,6 +514,8 @@ end #function
 #------------------- batchInfo -----------------
 
 """
+
+
 
 The function `batch()` can be called with or without arrangement(s). 
 The without argument version relay on previously prepared Comma Saved  
@@ -551,5 +566,5 @@ the **`CSV`**  file by default found in **`$(resultdir)`**.
      for `Detectors.csv` each line should contain at least one number or at 
      most four separated numbers.
 
-""" 
+"""
 const batchInfo = "refer to `batchInfo` help for information about batch calculation"
