@@ -4,11 +4,11 @@
 #
 # script for building documentation of the GeoEfficiency.jl package.
 #
-#  _args = ["clean", "pdf", "doctest"]
+#  _args = ["clean", "doctest"]
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
 
-using  Documenter #, DocumenterMarkdown
+using Documenter #, DocumenterMarkdown
 using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
@@ -69,7 +69,7 @@ if isdefined(@__MODULE__,:DocumenterMarkdown)
     deploydocs(
         repo = REPO,
         branch = BRANCH, #"gh-pages",
-        target = "build/Mrk",
+        target = "build",
         versions = VERSIONS,
     )
 end #if
