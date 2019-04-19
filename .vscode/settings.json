@@ -1,0 +1,12 @@
+{
+    "julia.executablePath": "E:\\julia\\Julia-1.1.0\\bin\\julia.exe",
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "julia"
+    ]
+}
