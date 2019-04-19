@@ -15,7 +15,7 @@ include("Helper.jl")
 
 convert the expresion `ex` to a string. 
 """
-macro to_string(exp2)
+macro to_string(ex)
 	:($(G.to_string(ex)))
 end
 
