@@ -1,7 +1,7 @@
 name = "GeoEfficiency"
 uuid = "b1f22607-7830-5ceb-9a8e-05ab1ac77008"
 repo = "https://github.com/DrKrar/GeoEfficiency.jl.git"
-authors = ["Mohamed Krar <DrKrar@gmail.com>"]
+authors = ["Mohamed E. Krar <DrKrar@gmail.com>"]
 version = "v0.9.4+"
 
 [deps]
