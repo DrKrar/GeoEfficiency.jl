@@ -65,12 +65,9 @@ let x="1", y=2, apnt=Point(1,2)
     @test G.to_string(apnt)         == "Point(1.0, 2.0)"
 
     # to be able to test for Expr, Symbol as `esc()` is not allowed outside macro
-    macro to_string(msg)
-        :($(G.to_string(msg)))
-    end
-    @test @to_string(:(1+x))       ==  "1 + x"
-    @test @to_string(:(1+$y))      ==  "1 + 2"
-    @test @to_string(:(1+$x))      ==  "1 + \"1\""
+    @test H.@to_string(:(1+x))       ==  "1 + x"
+    @test H.@to_string(:(1+$y))      ==  "1 + 2"
+    @test H.@to_string(:(1+$x))      ==  "1 + \"1\""
     
     @test @to_string(:x)           ==  ":x"             # ||  G.@to_string(:x)  ==  "x"   # for Compt with Julia 0.6
 end

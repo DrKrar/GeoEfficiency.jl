@@ -84,5 +84,15 @@ allow for noninteractive testing such functions by providing the input in advanc
 """
 exec_console_unattended(Fn::Union{Function, Type}, console_inputs::String; Fn_ARGs::Vector=[]) = exec_console_unattended(Fn, split(console_inputs); Fn_ARGs=Fn_ARGs)
 
+"""# UnExported
+
+	@to_string ex
+
+convert the expresion `ex` to a string. 
+"""
+macro to_string(exp2)
+	:($(G.to_string(ex)))
+end
+
 end
 const H = Helper
