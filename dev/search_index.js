@@ -13,13 +13,13 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
-    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015This documentation is also available in pfd format."
+    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015note: Note\nThis documentation is also available in pfd format."
 },
 
 {
-    "location": "index.html#Current-and-Planed-Features-1",
+    "location": "index.html#Current/Planed-Features-1",
     "page": "Home",
-    "title": "Current and Planed Features",
+    "title": "Current/Planed Features",
     "category": "section",
     "text": "The following list show the state of current feature and planed feature. the checked items represent already present feature.[x] support of widely used detector geometries.\n[x] cylinder detectors.\n[x] bore-hole detectors.\n[x] well-type detectors.\n[ ] support of specialized detector geometries.[x] support of isotropic radioactive sources.\n[x] point sources.\n[x] disc sources.\n[x] cylinder sources.\n[ ] support of anisotropic radioactive sources.\n[ ] point sources.\n[ ] consider more details of the measurement setup.\n[ ] the detector effect.\n[ ] the end cap effect.\n[ ] the medium and absorber effect.\n[ ] combine the effect of the source geometry and composition. "
 },
@@ -33,11 +33,27 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Download-and-Installation-1",
+    "location": "index.html#Download/Installation-1",
     "page": "Home",
-    "title": "Download and Installation",
+    "title": "Download/Installation",
     "category": "section",
-    "text": "the package is registered officially and so it can be installed through the Julia package management  system by typing the following into the REPL prompt.julia> import Pkg\njulia> Pkg.add(\"GeoEfficiency\") "
+    "text": "Getting the GeoEfficiency package to work involves two steps: "
+},
+
+{
+    "location": "index.html#.-Installing-Julia-Language-1",
+    "page": "Home",
+    "title": "1. Installing Julia Language",
+    "category": "section",
+    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: Note\nHead to JuliaBox.com to run julia in your browser without any local installation."
+},
+
+{
+    "location": "index.html#.-Installing-Package-1",
+    "page": "Home",
+    "title": "2. Installing Package",
+    "category": "section",
+    "text": "GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.julia> import Pkg\njulia> Pkg.add(\"GeoEfficiency\") "
 },
 
 {
@@ -45,7 +61,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick Usage",
     "category": "section",
-    "text": "julia> using GeoEfficiency\njulia> calc()see also: geoEff(), calcN(), batch()"
+    "text": "After installing the package, you can load it to your current workspace by typing the following:julia> using GeoEfficiencyNow the package is available to use, try typing:julia> calc()see also: geoEff(), calcN(), batch()"
 },
 
 {
@@ -85,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (0 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (1 day old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
@@ -93,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.GeoEfficiency",
     "category": "module",
-    "text": "GeoEfficiency Package\n\nintroduce a fast and flexible tool to calculate in batch or individually the geometrical efficiency  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.\n\nQuick Usage\n\ngeoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\ncalc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.\ncalcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\nbatch()	: Calculate the geometrical efficiency using data in the /home/GeoEfficiency folder in batch mode.\n\nfor more information and updates refer to the repository at GitHub.com\n\n\n\n\n\n"
+    "text": "GeoEfficiency Package\n\nintroduce a fast and flexible tool to calculate in batch or individually the geometrical efficiency  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.\n\nQuick Usage\n\ngeoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.\ncalc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.\ncalcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.\nbatch()	: Calculate the geometrical efficiency using data in the /home/GeoEfficiency folder in batch mode.\n\nnote: Note\nfor more information and updates refer to the repository at GitHub.com\n\n\n\n\n\n"
 },
 
 {
@@ -133,7 +149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "GeoEfficiency.CylDetector",
     "category": "type",
-    "text": "CylDetector(CryRadius::Real, CryLength::Real)\n\nconstruct and return a cylindrical detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\n\nwarning: Warning\nboth CryRadius and CryLength should be positive, while CryLength can also be set to zero.\n\n\n\n\n\n"
+    "text": "CylDetector(CryRadius::Real, CryLength::Real)\n\nconstruct and return a cylindrical detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\n\nwarning: Invalid Arguments\nboth CryRadius and CryLength should be positive, while CryLength can also be set to zero.\n\n\n\n\n\n"
 },
 
 {
@@ -165,7 +181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "GeoEfficiency.BoreDetector",
     "category": "type",
-    "text": "BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)\n\nconstruct and return a bore-hole detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\nHoleRadius : the detector hole radius.\n\nwarning: Warning\nCryRadius and CryLength, HoleRadius should be positive numbers, also  CryRadius should be greater than HoleRadius.\n\n\n\n\n\n"
+    "text": "BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)\n\nconstruct and return a bore-hole detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\nHoleRadius : the detector hole radius.\n\nwarning: Invalid Arguments\nCryRadius and CryLength, HoleRadius should be positive numbers, also  CryRadius should be greater than HoleRadius.\n\n\n\n\n\n"
 },
 
 {
@@ -189,7 +205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "GeoEfficiency.WellDetector",
     "category": "type",
-    "text": "WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)\n\nconstruct and return a Well-Type detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\nHoleRadius : the detector hole radius.\nHoleDepth : the detector hole length.\n\nwarning: Warning\nall arguments should be positive numbers, also  CryRadius should be greater than HoleRadius and  CryLength should be greater than  HoleDepth. \n\n\n\n\n\n"
+    "text": "WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)\n\nconstruct and return a Well-Type detector of the given crystal dimensions:-\n\nCryRadius : the detector crystal radius.\nCryLength : the detector crystal length.\nHoleRadius : the detector hole radius.\nHoleDepth : the detector hole length.\n\nwarning: Invalid Arguments\nall arguments should be positive numbers, also  CryRadius should be greater than HoleRadius and  CryLength should be greater than  HoleDepth. \n\n\n\n\n\n"
 },
 
 {
@@ -213,7 +229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "GeoEfficiency.source",
     "category": "function",
-    "text": "source(anchorPnt::Point = Point())\n\nreturn a tuple that describe the source (anchorPnt, SrcRadius, SrcLength) according to  the input from the console.\n\nanchorPnt : the source anchoring point. if it is missing the user is prompt   to input it via the console.\nSrcRadius : source radius.\nSrcLength : source length.\n\nwarning: Warning\n\n\nif source type set to point source, both `SrcRadius` and `SrcLength` are set to zero. \nfor more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)`](@ref).\n\n\n\n\n\n"
+    "text": "source(anchorPnt::Point = Point())\n\nreturn a tuple that describe the source (anchorPnt, SrcRadius, SrcLength) according to  the input from the console.\n\nanchorPnt : the source anchoring point. if it is missing the user is prompt   to input it via the console.\nSrcRadius : source radius.\nSrcLength : source length.\n\nwarning: Point/Cylinder Source\n\n\nif source type set to point source, both `SrcRadius` and `SrcLength` are set to zero. \nfor more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)`](@ref).\n\n\n\n\n\n"
 },
 
 {
@@ -229,7 +245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "type",
-    "text": "Point(Height::Real, Rho::Real)\n\nconstruct and return a Point source. The Point can be used as either a source by itself or an anchor point of a higher dimension source.\n\nHeight : point height relative to the detector surface.\nRho : point off-axis relative to the detector axis of symmetry.\n\nnote: Note\nEach detector type give different interpretation to the height as follow:-for CylDetector the point source height is consider to be measured   from the detector face surface. \nfor BoreDetector the point source height is consider to be measured   from the detector middle, +ve value are above the detector center while -ve are below. \nfor WellDetector the point source height is considered to be measured   from the detector hole surface. \n\n\n\n\n\n"
+    "text": "Point(Height::Real, Rho::Real)\n\nconstruct and return a Point source. The Point can be used as either a source by itself or an anchor point of a higher dimension source.\n\nHeight : point height relative to the detector surface.\nRho : point off-axis relative to the detector axis of symmetry.\n\nwarning: Interpretation of `Height`\nEach detector type give different interpretation to the Height as follow:-for CylDetector the point source height is consider to be measured   from the detector face surface. \nfor BoreDetector the point source height is consider to be measured   from the detector middle, +ve value are above the detector center while -ve are below. \nfor WellDetector the point source height is considered to be measured   from the detector hole surface. \n\n\n\n\n\n"
 },
 
 {
@@ -317,7 +333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "GeoEfficiency.calc",
     "category": "function",
-    "text": "calc(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source())\n\ncalculate and display on the console the geometrical efficiency of the  detector detector for the tuple aSource describing the source.\n\nThrow an  inValidGeometry if the source location is inappropriate.\n\nsee also: geoEff(::Detector, ::Tuple{Point, Float64, Float64})\n\nnote: Note\nif source description aSource alone or even both source description and detector detect   are missing, the method prompt the user to complete the missing data via the console.\n\n\n\n\n\n"
+    "text": "calc(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source())\n\ncalculate and display on the console the geometrical efficiency of the  detector detector for the tuple aSource describing the source.\n\nThrow an  inValidGeometry if the source location is inappropriate.\n\nsee also: geoEff(::Detector, ::Tuple{Point, Float64, Float64})\n\nnote: Missing/No Argument(s)\nif source description aSource alone or even both source description and detector detect   are missing, the method prompt the user to complete the missing data via the console.\n\n\n\n\n\n"
 },
 
 {
@@ -341,7 +357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "GeoEfficiency.batch",
     "category": "function",
-    "text": "batch()\n\nprovide batch calculation of the geometrical efficiency based on the information provided  by the CSV files by default located in /home/travis/GeoEfficiency.\n\nresults are saved on a CSV  file(s) named after the detector(s). the CSV  file(s)  by default found in /home/travis/GeoEfficiency/results, also a log of the results are displayed on the console.\n\nfor more information on batch refer to batchInfo.\n\n\n\n\n\nbatch(\n	detector::Detector,\n	srcHeights_array::Vector{S},\n	srcRhos_array::Vector{S}=[0.0],\n	srcRadii_array::Vector{S}=[0.0],\n	srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::String 	where S <: Real\n\nprovide batch calculation of the geometrical efficiency for the detector detector.  results are saved on a CSV  file named after the detector.  the CSV  file by default found in /home/travis/GeoEfficiency/results. this method return the actual  path to the CSV file.  also a log of the results are displayed on the console.\n\nsrcHeights_array: list of source heights to feed to batch.\nsrcRhos_array: list of source off-axis distances to feed to batch. \nsrcRadii_array: list of source radii to feed to batch.\nsrcLengths_array: list of source lengths to feed to batch.\n\nA set of sources is constructed of every valid combination of parameter in the srcRhos_array, srcRadii_array and srcLengths_array arrays with conjunction with ispoint.\n\nwarning: Warning\nIf ispoint is true the source type is a point source and the parameters   in srcRadii_array and srcLengths_array arrays is completely ignored.\nIf ispoint is false the parameters in srcRhos_array is completely ignored.\n\n\n\n\n\nbatch( \n	detectors_array::Vector{<: Detector},\n    srcHeights_array::Vector{S},\n    srcRhos_array::Vector{S}=[0.0],\n    srcRadii_array::Vector{S}=[0.0],\n    srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::Vector{String} where S <: Real\n\nsame as batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool) but accept a list of detectors detectors_array. return a list of paths to the CSV of files (file for each detector) storing the results.\n\n\n\n\n\nbatch(\n	detector_info_array::Matrix{S},\n	srcHeights_array::Vector{S},\n	srcRhos_array::Vector{S}=[0.0],\n	srcRadii_array::Vector{S}=[0.0],\n	srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::Vector{String} 	where S <: Real\n\nsame as batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool) but provide batch calculation of the  geometrical efficiency for the detector in the detector_info_array after applying getDetectors. return a list of paths to the CSV of files (file for each detector) storing the results.\n\n\n\n\n\n"
+    "text": "batch()\n\nprovide batch calculation of the geometrical efficiency based on the information provided  by the CSV files by default located in /home/travis/GeoEfficiency.\n\nresults are saved on a CSV  file(s) named after the detector(s). the CSV  file(s)  by default found in /home/travis/GeoEfficiency/results, also a log of the results are displayed on the console.\n\nfor more information on batch refer to batchInfo.\n\n\n\n\n\nbatch(\n	detector::Detector,\n	srcHeights_array::Vector{S},\n	srcRhos_array::Vector{S}=[0.0],\n	srcRadii_array::Vector{S}=[0.0],\n	srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::String 	where S <: Real\n\nprovide batch calculation of the geometrical efficiency for the detector detector.  results are saved on a CSV  file named after the detector.  the CSV  file by default found in /home/travis/GeoEfficiency/results. this method return the actual  path to the CSV file.  also a log of the results are displayed on the console.\n\nsrcHeights_array: list of source heights to feed to batch.\nsrcRhos_array: list of source off-axis distances to feed to batch. \nsrcRadii_array: list of source radii to feed to batch.\nsrcLengths_array: list of source lengths to feed to batch.\n\nA set of sources is constructed of every valid combination of parameter in the srcRhos_array, srcRadii_array and srcLengths_array arrays with conjunction with ispoint.\n\nwarning: point/cylinder source\nIf ispoint is true (the default) the source type is a point source and the parameters   in srcRadii_array and srcLengths_array arrays is completely ignored.\nIf ispoint is false the parameters in srcRhos_array is completely ignored.\n\n\n\n\n\nbatch( \n	detectors_array::Vector{<: Detector},\n    srcHeights_array::Vector{S},\n    srcRhos_array::Vector{S}=[0.0],\n    srcRadii_array::Vector{S}=[0.0],\n    srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::Vector{String} where S <: Real\n\nsame as batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool) but accept a list of detectors detectors_array. return a list of paths to the CSV of files (file for each detector) storing the results.\n\n\n\n\n\nbatch(\n	detector_info_array::Matrix{S},\n	srcHeights_array::Vector{S},\n	srcRhos_array::Vector{S}=[0.0],\n	srcRadii_array::Vector{S}=[0.0],\n	srcLengths_array::Vector{S}=[0.0],\n	ispoint::Bool=true\n	)::Vector{String} 	where S <: Real\n\nsame as batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool) but provide batch calculation of the  geometrical efficiency for the detector in the detector_info_array after applying getDetectors. return a list of paths to the CSV of files (file for each detector) storing the results.\n\n\n\n\n\n"
 },
 
 {
@@ -357,7 +373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "GeoEfficiency.max_batch",
     "category": "method",
-    "text": "max_batch(n::Real)\n\nset the value of _max_batch which give a hint to the program on maxumam number of entries per  detector displayed on the console in btach mode. This function do not affect the saving of the batch calculation. \n\nnote: Note\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all  batch results to the `console`.\n\nsee also: max_batch()\n\n\n\n\n\n"
+    "text": "max_batch(n::Real)\n\nset the value of _max_batch which give a hint to the program on maximum number of entries per  detector displayed on the console in batch mode. This function do not affect the saving of the batch calculation. \n\nnote: Note\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all  batch results to the `console`.\n\nsee also: max_batch()\n\n\n\n\n\n"
 },
 
 {
@@ -365,7 +381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "GeoEfficiency.max_batch",
     "category": "method",
-    "text": "max_batch()\n\nset the value of _max_batch which give a hint to the program on maxumam number of entries per  detector displayed on the console in btach mode. to its default value set by the contant max_display.\n\nsee also: max_batch(n::Real)\n\n\n\n\n\n"
+    "text": "max_batch()\n\nset the value of _max_batch which give a hint to the program on maximum number of entries per  detector displayed on the console in batch mode. to its default value set by the constant max_display.\n\nsee also: max_batch(n::Real)\n\n\n\n\n\n"
 },
 
 {
@@ -437,7 +453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.GeoException",
     "category": "type",
-    "text": "custom abstract exception that is the parent of all exception in the GeoEfficiency package\n\n\n\n\n\n"
+    "text": "custom abstract Exception that is the parent of all Exception in the GeoEfficiency package\n\n\n\n\n\n"
 },
 
 {
@@ -445,7 +461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.InValidDetectorDim",
     "category": "type",
-    "text": "custom exception indicating invalid radiation detector dimensions\n\n\n\n\n\n"
+    "text": "custom Exception indicating invalid radiation detector dimensions\n\n\n\n\n\n"
 },
 
 {
@@ -461,7 +477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.InValidGeometry",
     "category": "type",
-    "text": "custom exception indicating a not valid source to detector geometry\n\n\n\n\n\n"
+    "text": "custom Exception indicating a not valid source to detector geometry\n\n\n\n\n\n"
 },
 
 {
@@ -469,7 +485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.@inValidGeometry",
     "category": "macro",
-    "text": "custom macro to throw NotImplementedError exception \n\n\n\n\n\n"
+    "text": "@inValidGeometry [msg]\n\ncustom macro to throw NotImplementedError Exception.\n\n\n\n\n\n"
 },
 
 {
@@ -477,7 +493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.NotImplementedError",
     "category": "type",
-    "text": "custom exception indicating a source to detector geometry which may be valid but not implemented yet\n\n\n\n\n\n"
+    "text": "custom Exception indicating a source-to-detector geometry which may be valid but not implemented yet\n\n\n\n\n\n"
 },
 
 {
@@ -485,7 +501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.@notImplementedError",
     "category": "macro",
-    "text": "custom macro to throw NotImplementedError exception \n\n\n\n\n\n"
+    "text": "@notImplementedError [msg]\n\ncustom macro to throw NotImplementedError Exception.\n\n\n\n\n\n"
 },
 
 {
@@ -549,7 +565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
-    "text": "Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)\n\nconstruct and return well-type, bore-hole or cylindrical detector according to the arguments.  it inspect the arguments and call the appropriate leaf type constructor.\n\nnote: Note\nif the value(s) of the last argument(s) is\\are zero, it acts as a missing argument(s).\n\nsee also: CylDetector, BoreDetector, WellDetector.\n\n\n\n\n\n"
+    "text": "Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)\n\nconstruct and return well-type, bore-hole or cylindrical detector according to the arguments.  it inspect the arguments and call the appropriate leaf type constructor.\n\nnote: Missing Argument(s)\nif the value(s) of the last argument(s) isre zero, it acts as a missing argument(s).\n\nsee also: CylDetector, BoreDetector, WellDetector.\n\n\n\n\n\n"
 },
 
 {
