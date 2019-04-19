@@ -99,7 +99,7 @@ detector `detector` for the tuple `aSource` describing the source.
 
 **see also:** [`geoEff(::Detector, ::Tuple{Point, Float64, Float64})`](@ref)
 
-!!! note
+!!! note "Missing/No Argument(s)"
      if source description `aSource` alone or even both source description and detector `detect` 
      are missing, the method prompt the user to complete the missing data via the `console`.
 
@@ -228,8 +228,8 @@ also a log of the results are displayed on the `console`.
 A set of sources is constructed of every valid **combination** of parameter in the `srcRhos_array`,
 `srcRadii_array` and `srcLengths_array` arrays with conjunction with `ispoint`.
 
-!!! warning
-    *  If `ispoint` is `true` the source type is a point source and the parameters 
+!!! warning "point/cylinder source"
+    *  If `ispoint` is `true` (the default) the source type is a point source and the parameters 
        in `srcRadii_array` and `srcLengths_array` arrays is completely ignored.
     *  If `ispoint` is `false` the parameters in srcRhos_array is completely ignored.
 

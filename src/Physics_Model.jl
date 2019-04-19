@@ -24,8 +24,8 @@ The `Point` can be used as either a source by itself or an `anchor point` of a h
 *  `Height` : point height relative to the detector surface.
 *  `Rho` : point off-axis relative to the detector axis of symmetry.
 
-!!! note
-    Each detector type give different interpretation to the `height` as follow:-
+!!! warning "Interpretation of `Height`"
+    Each detector type give different interpretation to the `Height` as follow:-
     *  for `CylDetector` the point source `height` is consider to be measured 
        from the detector `face surface`. 
     *  for `BoreDetector` the point source `height` is consider to be measured 
@@ -113,7 +113,7 @@ the input from the `console`.
 *  `SrcRadius` : source radius.
 *  `SrcLength` : source length.
 
-!!! warning 
+!!! warning "Point/Cylinder Source"
 	if source type set to point source, both `SrcRadius` and `SrcLength` are set to zero. 
     for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)`](@ref).
 """
@@ -174,7 +174,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
 *  `CryRadius` : the detector crystal radius.
 *  `CryLength` : the detector crystal length.
 
-!!! warning
+!!! warning "Invalid Arguments"
     both `CryRadius` and `CryLength` should be `positive`, while `CryLength` can also be set to **`zero`**.
 
 """
@@ -238,7 +238,7 @@ construct and return a `bore-hole` detector of the given crystal dimensions:-
 *  `CryLength` : the detector crystal length.
 *  `HoleRadius` : the detector hole radius.
 
-!!! warning
+!!! warning "Invalid Arguments"
     `CryRadius` and `CryLength`, `HoleRadius` should be `positive` numbers, also 
     `CryRadius` should be greater than `HoleRadius`.
 
@@ -294,7 +294,7 @@ construct and return a `Well-Type` detector of the given crystal dimensions:-
 *  `HoleRadius` : the detector hole radius.
 *  `HoleDepth` : the detector hole length.
 
-!!! warning
+!!! warning "Invalid Arguments"
     all arguments should be `positive` numbers, also 
     `CryRadius` should be greater than `HoleRadius` and 
     `CryLength` should be greater than  `HoleDepth`. 
@@ -411,7 +411,7 @@ Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real) = 0.0 == HoleRadius
 construct and return `well-type`, `bore-hole` or `cylindrical` detector according to the arguments. 
 it inspect the arguments and call the appropriate leaf type constructor.
 
-!!! note
+!!! note "Missing Argument(s)"
     if the value(s) of the last argument(s) is\are `zero`, it acts as a missing argument(s).
 		
 **see also:** [`CylDetector`](@ref), [`BoreDetector`](@ref), [`WellDetector`](@ref).

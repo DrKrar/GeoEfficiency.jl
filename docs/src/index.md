@@ -11,9 +11,10 @@ Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/dev/index.html)
 Current version | [v"0.9.4-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
-This documentation is also available in [pfd](https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf) format.
+!!! note
+    This documentation is also available in [pfd](https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf) format.
 
-## Current and Planed Features
+## Current/Planed Features
 The following list show the state of current feature and planed feature.
 the checked items represent already present feature.
 
@@ -43,7 +44,7 @@ the checked items represent already present feature.
  *  Julia 1.1 or above.
  *  QuadGK 2.0.2 or above, will be installed automatically during the package Installation.
  
-## Installation
+## Download/Installation
 Getting the GeoEfficiency package to work involves two steps: 
 
 ### 1. Installing Julia Language

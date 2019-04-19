@@ -22,6 +22,7 @@ let x="1", y=2, apnt=Point(1,2)
     @test_throws    G.InValidDetectorDim    G.@validateDetector false
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage $y $x $apnt"
+    @test_throws    G.InValidDetectorDim    G.@validateDetector x==y  "massage $y $x $apnt"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage1" * "massage2"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage1" "massage2"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false 1

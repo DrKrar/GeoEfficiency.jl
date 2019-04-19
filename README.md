@@ -24,7 +24,7 @@ An officially registered Julia program, provides a set of tools to calculate the
 The Package models a radiation detector irradiated by a radioactive source. 
 The Package relay directly on numerical evaluation of a closed form analytical formula describing the geometrical efficiency.
 
-## Current and Planned Features
+## Current/Planned Features
 The following list describe the state of current feature and planed feature. 
 The checked items represent already present feature.
 
@@ -54,7 +54,7 @@ The checked items represent already present feature.
  *  Julia 1.1 or above.
  *  QuadGK 2.0 or above, installed automatically during the package installation.
  
-## Installation
+## Download/Installation
 Getting the GeoEfficiency package to work involves two steps: 
 
 ### 1. Installing Julia Language
