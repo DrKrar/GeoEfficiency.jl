@@ -8,7 +8,7 @@
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
 
-using  Documenter, DocumenterLaTeX #, DocumenterMarkdown
+using  Documenter #, DocumenterMarkdown
 using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
@@ -39,10 +39,6 @@ const formats = Any[
 
 isdefined(@__MODULE__,:DocumenterMarkdown) &&  push!(formats, Markdown())
 
-if "pdf" in _args
-    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
-                        push!(formats, LaTeX(platform = "docker"))
-end
 
 makedocs(
     format  = formats,
@@ -60,43 +56,21 @@ const REPO = "github.com/DrKrar/GeoEfficiency.jl.git" # "github.com/GeoEfficienc
 const VERSIONS =["stable" => "v^", "v#.#", "dev" => "dev"]  # order of versions in drop down menu.
 const BRANCH = "gh-pages" # "master"
 
-mktempdir() do tmp
-    # Hide the PDF from html-deploydocs
-    build = joinpath(@__DIR__, "build")
-    files = readdir(build)
-    idx = findfirst(f -> startswith(f, "GeoEfficiency.jl") && endswith(f, ".pdf"), files)
-    pdf = idx === nothing ? nothing : joinpath(build, files[idx])
-    if pdf !== nothing
-        pdf = mv(pdf, joinpath(tmp, basename(pdf)))
-    end
-    # Deploy HTML pages
-    @info "Deploying HTML pages"
+# Deploy HTML pages
+ @info "Deploying HTML pages"
+deploydocs(
+    repo = REPO,
+    branch = BRANCH, #"gh-pages"
+    versions = VERSIONS,
+)
+if isdefined(@__MODULE__,:DocumenterMarkdown)
+    # Deploy Markup pages
+    @info "Deploying MarkUp pages"
     deploydocs(
         repo = REPO,
-        branch = BRANCH, #"gh-pages"
+        branch = BRANCH, #"gh-pages",
+        target = "build/Mrk",
         versions = VERSIONS,
     )
-    if isdefined(@__MODULE__,:DocumenterMarkdown)
-        # Deploy Markup pages
-        @info "Deploying MarkUp pages"
-        deploydocs(
-            repo = REPO,
-            branch = BRANCH, #"gh-pages",
-            target = "build/Mrk",
-            versions = VERSIONS,
-        )
-    end #if
-    # Put back PDF into docs/build/pdf
-    mkpath(joinpath(build, "pdf"))
-    if pdf !== nothing
-        pdf = mv(pdf, joinpath(build, "pdf", basename(pdf)))
-    end
-    # Deploy PDF
-    @info "Deploying PDF"
-    deploydocs(
-        repo = REPO,
-        target = "build/pdf",
-        branch = BRANCH * "-pdf", #"gh-pages-pdf",
-        forcepush = true,
-    )
-end
+end #if
+
