@@ -9,6 +9,16 @@ const G = GeoEfficiency
 
 include("Helper.jl")
 
+"""# UnExported
+
+	@to_string ex
+
+convert the expresion `ex` to a string. 
+"""
+macro to_string(exp2)
+	:($(G.to_string(ex)))
+end
+
 const SourceFiles = [
 					"Helper",
 					"Error",
