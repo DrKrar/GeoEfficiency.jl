@@ -8,7 +8,7 @@
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
 
-using Documenter
+using Documenter, DocumenterMarkdown
 using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
@@ -28,25 +28,16 @@ const PAGES = Any[
     "Index" => "list.md",
 ]
 
-const formats = Any[
-    Documenter.HTML(
-        prettyurls = false,  #get(ENV, "CI", nothing) == "true",
-        canonical = "https://github.com/DrKrar/GeoEfficiency.jl/v0.9.4-dev/",
-        
-    ), 
-    
-]
-
 
 makedocs(
-    format  = formats,
+    format  = Markdown(),
     modules = [GeoEfficiency],
     clean   = "clean" in _args,
     doctest = "doctest" in _args,
     sitename= "GeoEfficiency.jl",
     authors = "Mohamed E. Krar",
     pages   = PAGES,
-    assets  = ["assets/custom.css"],
+    #assets  = ["assets/custom.css"],
 )
 
 
@@ -54,10 +45,11 @@ const REPO = "github.com/DrKrar/GeoEfficiency.jl.git" # "github.com/GeoEfficienc
 const VERSIONS =["stable" => "v^", "v#.#", "dev" => "dev"]  # order of versions in drop down menu.
 const BRANCH = "gh-pages" # "master"
 
-# Deploy HTML pages
-@info "Deploying HTML pages"
+# Deploy Markup pages
+@info "Deploying MarkUp pages"
 deploydocs(
     repo = REPO,
-    branch = BRANCH, #"gh-pages"
-    versions = VERSIONS,
+    branch = "gh-pages-mrk", #BRANCH, "gh-pages",
+    target = "build",
+	versions = VERSIONS,
 )
