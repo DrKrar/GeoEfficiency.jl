@@ -7,8 +7,8 @@ First Created | Fri Aug 14 20:12:01 2015
 
 
 ## Latest Release 
-[![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.4.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.5.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency)  | [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_0.6.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
-----|----|----
+ [![GeoEfficiency](http://pkg.julialang.org/badges/GeoEfficiency_1.1.svg)](http://pkg.julialang.org/?pkg=GeoEfficiency) 
+----|
 
 ## Nightly Builds
 
@@ -83,11 +83,6 @@ Now the package is available to use, try typing:
 julia> calc()
 ```
 
-## Quick Usage
-```julia
-julia> using GeoEfficiency
-julia> calc()
-```
 **see also: `geoEff()`, `calcN()`, `batch()`**
 
 ## Unit Test
