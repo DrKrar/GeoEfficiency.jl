@@ -1,7 +1,7 @@
 var documenterSearchIndex = {"docs": [
 
 {
-    "location": "index.html#",
+    "location": "Guid.html#",
     "page": "Home",
     "title": "Home",
     "category": "page",
@@ -9,7 +9,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
+    "location": "Guid.html#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
@@ -17,7 +17,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Current/Planed-Features-1",
+    "location": "Guid.html#Current/Planed-Features-1",
     "page": "Home",
     "title": "Current/Planed Features",
     "category": "section",
@@ -25,7 +25,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Requirements-1",
+    "location": "Guid.html#Requirements-1",
     "page": "Home",
     "title": "Requirements",
     "category": "section",
@@ -33,7 +33,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Download/Installation-1",
+    "location": "Guid.html#Download/Installation-1",
     "page": "Home",
     "title": "Download/Installation",
     "category": "section",
@@ -41,7 +41,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#.-Installing-Julia-Language-1",
+    "location": "Guid.html#.-Installing-Julia-Language-1",
     "page": "Home",
     "title": "1. Installing Julia Language",
     "category": "section",
@@ -49,7 +49,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#.-Installing-Package-1",
+    "location": "Guid.html#.-Installing-Package-1",
     "page": "Home",
     "title": "2. Installing Package",
     "category": "section",
@@ -57,7 +57,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Quick-Usage-1",
+    "location": "Guid.html#Quick-Usage-1",
     "page": "Home",
     "title": "Quick Usage",
     "category": "section",
@@ -65,7 +65,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Unit-Test-1",
+    "location": "Guid.html#Unit-Test-1",
     "page": "Home",
     "title": "Unit Test",
     "category": "section",
@@ -73,7 +73,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Package-Overview-1",
+    "location": "Guid.html#Package-Overview-1",
     "page": "Home",
     "title": "Package Overview",
     "category": "section",
@@ -81,7 +81,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Batch-Calculation-1",
+    "location": "Guid.html#Batch-Calculation-1",
     "page": "Home",
     "title": "Batch Calculation",
     "category": "section",
