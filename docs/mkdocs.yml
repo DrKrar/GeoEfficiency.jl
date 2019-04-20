@@ -22,12 +22,11 @@ markdown_extensions:
   - extra
   - tables
   - fenced_code
-  - mdx_math
   - admonition
   - def_list
   - toc:
         permalink: True
-
+  #- mdx_math
 docs_dir: 'docs/MarkDown/'
 
 nav:
