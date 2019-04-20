@@ -57,7 +57,7 @@ deploydocs(
 @info "Deploying MkDocs pages"
 deploydocs(
     repo = REPO,
-    deps   = Deps.pip("mkdocs", "pygments", "python-markdown-math"),
+    deps   = Deps.pip("install --upgrade pip", "mkdocs", "pygments", "python-markdown-math"),
     make   = () -> run(`mkdocs build`),
     branch = "gh-pages-MkDocs", #BRANCH, "gh-pages",
     target = "site"
