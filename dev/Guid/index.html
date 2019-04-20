@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Mohamed E. Krar">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Home - GeoEfficiency.jl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../assets/Documenter.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "Guid.md";
+    var mkdocs_page_url = "/Guid/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="./" class="icon icon-home"> GeoEfficiency.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#geoefficiency-accurate-geometrical-efficiency-calculator">GeoEfficiency: Accurate Geometrical Efficiency Calculator</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#currentplaned-features">Current/Planed Features</a></li>
+        
+            <li><a class="toctree-l3" href="#requirements">Requirements</a></li>
+        
+            <li><a class="toctree-l3" href="#downloadinstallation">Download/Installation</a></li>
+        
+            <li><a class="toctree-l3" href="#quick-usage">Quick Usage</a></li>
+        
+            <li><a class="toctree-l3" href="#unit-test">Unit Test</a></li>
+        
+            <li><a class="toctree-l3" href="#package-overview">Package Overview</a></li>
+        
+            <li><a class="toctree-l3" href="#batch-calculation">Batch Calculation</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mauual</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../manual/GeoEfficiency/">About</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manual/Physics_Model/">Physics_Model</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manual/Calculations/">Calculations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manual/Output_Interface/">Output_Interface</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manual/Input_Batch/">Input_Batch</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../manual/Development/">Development</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../list/">Index</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="./">GeoEfficiency.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="./">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/DrKrar/ GeoEfficiency.jl/edit/master/docs/Guid.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1'></a></p>
+<h1 id="geoefficiency-accurate-geometrical-efficiency-calculator">GeoEfficiency: Accurate Geometrical Efficiency Calculator</h1>
+<p>An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Author</th>
+<th align="center"><a href="https://www.researchgate.net/profile/Mohamed_Krar3">Mohamed E. Krar</a> (DrKrar@gmail.com)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Repository</td>
+<td align="center"><a href="https://github.com/DrKrar/GeoEfficiency.jl/">GitHub.com</a></td>
+</tr>
+<tr>
+<td align="left">Documentation</td>
+<td align="center"><a href="https://GeoEfficiency.GitHub.io/dev/index.html">GitHub.io</a></td>
+</tr>
+<tr>
+<td align="left">Current version</td>
+<td align="center"><a href="https://github.com/DrKrar/GeoEfficiency.jl">v"0.9.4-dev"</a></td>
+</tr>
+<tr>
+<td align="left">First Created</td>
+<td align="center">Fri Aug 14 20:12:01 2015</td>
+</tr>
+</tbody>
+</table>
+<p>!!! note
+    This documentation is also available in <a href="https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf">pfd</a> format.</p>
+<p><a id='Current/Planed-Features-1'></a></p>
+<h2 id="currentplaned-features">Current/Planed Features</h2>
+<p>The following list show the state of current feature and planed feature. the checked items represent already present feature.</p>
+<ul>
+<li>
+<p>[x] support of widely used detector geometries.</p>
+<ul>
+<li>[x] <code>cylinder</code> detectors.</li>
+<li>[x] <code>bore-hole</code> detectors.</li>
+<li>[x] <code>well-type</code> detectors.</li>
+<li>[ ] support of specialized detector geometries.</li>
+</ul>
+</li>
+<li>
+<p>[x] support of isotropic radioactive sources.</p>
+<ul>
+<li>[x] <code>point</code> sources.</li>
+<li>[x] <code>disc</code> sources.</li>
+<li>[x] <code>cylinder</code> sources.</li>
+<li>
+<p>[ ] support of anisotropic radioactive sources.</p>
+</li>
+<li>
+<p>[ ] <code>point</code> sources.</p>
+</li>
+<li>
+<p>[ ] consider more details of the measurement setup.</p>
+</li>
+<li>
+<p>[ ] the detector effect.</p>
+</li>
+<li>[ ] the end cap effect.</li>
+<li>[ ] the medium and absorber effect.</li>
+<li>[ ] combine the effect of the source geometry and composition.</li>
+</ul>
+</li>
+</ul>
+<p><a id='Requirements-1'></a></p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Julia 1.1 or above.</li>
+<li>QuadGK 2.0.2 or above, will be installed automatically during the package Installation.</li>
+</ul>
+<p><a id='Download/Installation-1'></a></p>
+<h2 id="downloadinstallation">Download/Installation</h2>
+<p>Getting the GeoEfficiency package to work involves two steps: </p>
+<p><a id='.-Installing-Julia-Language-1'></a></p>
+<h3 id="1-installing-julia-language">1. Installing Julia Language</h3>
+<p>Just head over to the Julia language <a href="https://www.julialang.org/downloads/">download page</a> and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. </p>
+<p>!!! note
+    Head to <a href="https://www.juliabox.com">JuliaBox.com</a> to run julia in your browser without any local installation.</p>
+<p><a id='.-Installing-Package-1'></a></p>
+<h3 id="2-installing-package">2. Installing Package</h3>
+<p>GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.</p>
+<pre><code class="julia">julia&gt; import Pkg
+julia&gt; Pkg.add(&quot;GeoEfficiency&quot;) 
+</code></pre>
+
+<p><a id='Quick-Usage-1'></a></p>
+<h2 id="quick-usage">Quick Usage</h2>
+<p>After installing the package, you can load it to your current workspace by typing the following:</p>
+<pre><code class="julia">julia&gt; using GeoEfficiency
+</code></pre>
+
+<p>Now the package is available to use, try typing:</p>
+<pre><code class="julia">julia&gt; calc()
+</code></pre>
+
+<p><strong>see also: <a href="../manual/Calculations/#GeoEfficiency.geoEff"><code>geoEff()</code></a>, <a href="../manual/Output_Interface/#GeoEfficiency.calcN"><code>calcN()</code></a>, <a href="../manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a></strong></p>
+<p><a id='Unit-Test-1'></a></p>
+<h2 id="unit-test">Unit Test</h2>
+<p>For scientific calculation accuracy in calculation and being error free is a highly demanded objective. Thus, the package is extensively tested method-wise in each supported operating system. Operating system fully supported include Windows, Linus, Apple OSx.</p>
+<p>After installing the package can be tested in your own system by typing the following into the REPL prompt.</p>
+<pre><code class="julia">julia&gt; using Test, Pkg
+julia&gt; Pkg.test(&quot;GeoEfficiency&quot;) 
+</code></pre>
+
+<p><a id='Package-Overview-1'></a></p>
+<h2 id="package-overview">Package Overview</h2>
+<p>The following constructor can be used to construct a specific type of detector </p>
+<ul>
+<li><a href="../manual/Physics_Model/#GeoEfficiency.CylDetector"><code>CylDetector</code></a> for cylindrical detector,</li>
+<li><a href="../manual/Physics_Model/#GeoEfficiency.BoreDetector"><code>BoreDetector</code></a> for bore hole,</li>
+<li><a href="../manual/Physics_Model/#GeoEfficiency.WellDetector"><code>WellDetector</code></a> for well type detector.</li>
+</ul>
+<p>While the function <a href="../manual/Development/#GeoEfficiency.Detector"><code>Detector</code></a> can be used to construct any of the above types. You may try also <a href="../manual/Development/#GeoEfficiency.getDetectors"><code>getDetectors</code></a>.</p>
+<p><a href="../manual/Physics_Model/#GeoEfficiency.Point"><code>Point</code></a> constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified. For a point source, the anchoring point is the source itself.  The <a href="../manual/Physics_Model/#GeoEfficiency.source"><code>source()</code></a> method take input from the 'console' and return a tuple describing the source.</p>
+<p>The efficiency calculation can be done by one of the functions: </p>
+<ul>
+<li><a href="../manual/Calculations/#GeoEfficiency.geoEff"><code>geoEff</code></a> used with or without argument(s),</li>
+<li><a href="../manual/Output_Interface/#GeoEfficiency.calc"><code>calc</code></a> ask for the required information from the 'console',</li>
+<li><a href="../manual/Output_Interface/#GeoEfficiency.calcN"><code>calcN</code></a> just a repeat of the <a href="../manual/Output_Interface/#GeoEfficiency.calc"><code>calc</code></a> function</li>
+<li><a href="../manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a> which try to take required information from csv files located in   the home directory inside a folder called <code>GeoEfficiency</code>.</li>
+</ul>
+<p>For more on the function and its methods prefix the name of the function by <code>?</code>.</p>
+<p>!!! note
+    Input from the 'console' can be numerical expression not just a number. <code>5/2</code> ; <code>5//2</code> ; <code>pi</code> ; <code>π/2</code> ; <code>exp(2)</code> ; <code>1E-2</code> ; <code>5.2/3</code> ; <code>sin(1)</code> ;  <code>sin(1)^2</code> are all valid expressions.</p>
+<p><a id='Batch-Calculation-1'></a></p>
+<h2 id="batch-calculation">Batch Calculation</h2>
+<p>The package can be used to perform batch calculations by calling one of the  methods of the function <code>batch</code>. The output results of batch calculations is  found by default in <code>GeoEfficiency\results</code> folder inside the user home directory.</p>
+<p><strong>For example  <code>c:\users\yourusername\GeoEfficiency\results\</code></strong>.</p>
+<p>The function <a href="../manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a> can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved  Values  [CSV] files, that can be easily edit by Microsoft Excel, located by default  in the <code>GeoEfficiency</code> folder.</p>
+<p>Those Comma Saved Values [CSV] files are:-</p>
+<ul>
+<li>
+<p><code>Detectors.csv</code> contains the detectors description (<code>a detector per line</code>); The line format is: </p>
+<p><code>Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
+  ---------------| ---------------|-------------|----------- |</code>
+  * <code>srcHeights.csv</code> contains the source heights; </p>
+<p><code>Source_Heights | 
+  ---------------|</code>
+  * <code>srcRhos.csv</code> contains the source off-axis distances;                        </p>
+<p><code>Source_Rhos | 
+  ------------|</code>
+  * <code>srcRadii.csv</code> contains the source radii for disc and cylindrical sources;             </p>
+<p><code>Source_Radii| 
+  ------------|</code>
+  * <code>srcLengths.csv</code> contains the source length for cylindrical sources;    </p>
+<p><code>Source_Lengths| 
+  --------------|</code></p>
+</li>
+</ul>
+<p>!!! note
+    For Comma Saved Values [CSV] files each line represent an entry, the first line is always treated as the header.</p>
+<p>!!! warning
+    The program expect each line to contain one number for all CSV files except for <code>Detectors.csv</code> each line should contain at least one number or at most four separated numbers</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../manual/GeoEfficiency/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/DrKrar/ GeoEfficiency.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="../manual/GeoEfficiency/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+      <script src="../assets/mathjaxhelper.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

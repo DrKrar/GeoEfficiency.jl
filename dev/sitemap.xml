@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>/indexmk/</loc>
+     <loc>/Guid/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/GeoEfficiency/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/Physics_Model/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/Calculations/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/Output_Interface/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/Input_Batch/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/manual/Development/</loc>
+     <lastmod>2019-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/list/</loc>
      <lastmod>2019-04-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
