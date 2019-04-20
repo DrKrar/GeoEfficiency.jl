@@ -21,4 +21,12 @@ markdown_extensions:
 docs_dir: 'build'
 
 pages:
-  - Home: indexmk.md
+  - Home: build/index.md
+  - Mauual: 
+    - About: build/manual/GeoEfficiency.md
+    - Physics_Model: build/manual/Physics_Model.md
+    - Calculations: build/manual/Calculations.md
+    - Output_Interface: build/manual/Output_Interface.md
+    - Input_Batch: build/manual/Input_Batch.md
+  - Development: build/manual/Development.md
+  - Index: build/list.md
