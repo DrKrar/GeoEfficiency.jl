@@ -64,7 +64,7 @@ The package contain many parameters that can be set within the program sourcecod
 custom abstract `Exception` that is the parent of all Exception in the `GeoEfficiency` package
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L15-L17' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L15-L17' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.InValidDetectorDim' href='#GeoEfficiency.InValidDetectorDim'>#</a>
 **`GeoEfficiency.InValidDetectorDim`** &mdash; *Type*.
@@ -74,7 +74,7 @@ custom abstract `Exception` that is the parent of all Exception in the `GeoEffic
 custom `Exception` indicating invalid radiation detector dimensions
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L24-L26' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L24-L26' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.@validateDetector' href='#GeoEfficiency.@validateDetector'>#</a>
 **`GeoEfficiency.@validateDetector`** &mdash; *Macro*.
@@ -97,7 +97,7 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L31-L46' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L31-L46' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.InValidGeometry' href='#GeoEfficiency.InValidGeometry'>#</a>
 **`GeoEfficiency.InValidGeometry`** &mdash; *Type*.
@@ -107,7 +107,7 @@ julia> @validateDetector isodd(3) "What even are numbers?"
 custom `Exception` indicating a not valid source to detector geometry
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L71-L73' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L71-L73' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.@inValidGeometry' href='#GeoEfficiency.@inValidGeometry'>#</a>
 **`GeoEfficiency.@inValidGeometry`** &mdash; *Macro*.
@@ -121,7 +121,7 @@ custom `Exception` indicating a not valid source to detector geometry
 custom macro to throw [`NotImplementedError`](Development.md#GeoEfficiency.NotImplementedError) `Exception`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L78-L84' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L78-L84' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.NotImplementedError' href='#GeoEfficiency.NotImplementedError'>#</a>
 **`GeoEfficiency.NotImplementedError`** &mdash; *Type*.
@@ -131,7 +131,7 @@ custom macro to throw [`NotImplementedError`](Development.md#GeoEfficiency.NotIm
 custom `Exception` indicating a source-to-detector geometry which may be valid but not implemented yet
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L52-L54' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L52-L54' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.@notImplementedError' href='#GeoEfficiency.@notImplementedError'>#</a>
 **`GeoEfficiency.@notImplementedError`** &mdash; *Macro*.
@@ -145,7 +145,7 @@ custom `Exception` indicating a source-to-detector geometry which may be valid b
 custom macro to throw [`NotImplementedError`](Development.md#GeoEfficiency.NotImplementedError) `Exception`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Error.jl#L59-L64' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Error.jl#L59-L64' class='documenter-source'>source</a><br>
 
 
 <a id='Console-Input-1'></a>
@@ -178,7 +178,7 @@ return a string represent the user respond delimited by new line excluding the n
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Console.jl#L16-L33' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Console.jl#L16-L33' class='documenter-source'>source</a><br>
 
 
 while the second is a more complex function:
@@ -242,7 +242,7 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Console.jl#L40-L92' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Console.jl#L40-L92' class='documenter-source'>source</a><br>
 
 
 Those function are not exported that is normally the user will not need to use them but they are documented here to allow a developer ranked user to make use of them.
@@ -263,7 +263,7 @@ Two abstract detector types defined in the package to classify the detectors, th
 abstract super-supertype of all detectors types
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L146-L148' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L146-L148' class='documenter-source'>source</a><br>
 
 
 any future detector definition should inherit from `RadiationDetector`. The second abstract detector   `Detector` is also a sub-type of `RadiationDetector` but it only accommodates cylindrical type only.
@@ -280,7 +280,7 @@ Detector
 abstract supertype of all detectors types of cylidericalish shapes. also can be used to construct any leaf type.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L151-L159' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L151-L159' class='documenter-source'>source</a><br>
 
 
 can be used to construct leaf detector.
@@ -301,7 +301,7 @@ construct and return an object of the `Detector` leaf types  (`CylDetector`, `Bo
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L345-L356' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L345-L356' class='documenter-source'>source</a><br>
 
 
 also it can be used to construct a concrete detector depend on the provided arguments.
@@ -324,7 +324,7 @@ construct and return `well-type`, `bore-hole` or `cylindrical` detector accordin
 **see also:** [`CylDetector`](Physics_Model.md#GeoEfficiency.CylDetector), [`BoreDetector`](Physics_Model.md#GeoEfficiency.BoreDetector), [`WellDetector`](Physics_Model.md#GeoEfficiency.WellDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L406-L419' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L406-L419' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Detector-Tuple{Real}' href='#GeoEfficiency.Detector-Tuple{Real}'>#</a>
 **`GeoEfficiency.Detector`** &mdash; *Method*.
@@ -338,7 +338,7 @@ Detector(CryRadius::Real)
 same as [`CylDetector(CryRadius::Real)`](Physics_Model.md#GeoEfficiency.CylDetector-Tuple{Real}).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L373-L380' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L373-L380' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Detector-Tuple{Real,Real}' href='#GeoEfficiency.Detector-Tuple{Real,Real}'>#</a>
 **`GeoEfficiency.Detector`** &mdash; *Method*.
@@ -352,7 +352,7 @@ Detector(CryRadius::Real, CryLength::Real)
 same as [`CylDetector(CryRadius::Real, CryLength::Real)`](Physics_Model.md#GeoEfficiency.CylDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L383-L390' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L383-L390' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Detector-Tuple{Real,Real,Real}' href='#GeoEfficiency.Detector-Tuple{Real,Real,Real}'>#</a>
 **`GeoEfficiency.Detector`** &mdash; *Method*.
@@ -366,7 +366,7 @@ Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 same as [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](Physics_Model.md#GeoEfficiency.BoreDetector) except when `HoleRadius` = `0.0` it acts as  [`CylDetector(CryRadius::Real, CryLength::Real)`](Physics_Model.md#GeoEfficiency.CylDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Physics_Model.jl#L393-L401' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Physics_Model.jl#L393-L401' class='documenter-source'>source</a><br>
 
 
 <a id='Batch-Mode-Input-1'></a>
@@ -394,7 +394,7 @@ return a vector{Detector} based on information in the file of name `detectors` f
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L116-L132' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L116-L132' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.read_from_csvFile' href='#GeoEfficiency.read_from_csvFile'>#</a>
 **`GeoEfficiency.read_from_csvFile`** &mdash; *Function*.
@@ -411,7 +411,7 @@ read_from_csvFile(csv_data::AbstractString,
 return Vector{Float64} based on data in csv file named `csv_data`. directory `datadir` point to    where the file is located default to $/home/travis/GeoEfficiency$ as set by the constant `dataDir`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L153-L163' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L153-L163' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.read_batch_info' href='#GeoEfficiency.read_batch_info'>#</a>
 **`GeoEfficiency.read_batch_info`** &mdash; *Function*.
@@ -429,7 +429,7 @@ read `detectors` and `sources` parameters from the predefined csv files.
 Return a tuple 	   (detectors*array, 		srcHeights*array, 		srcRhos*array, 		srcRadii*array, 		srcLengths*array, 		GeoEfficiency*isPoint)
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L185-L201' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L185-L201' class='documenter-source'>source</a><br>
 
 
 **UnExported**
@@ -457,7 +457,7 @@ Return a tuple
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L209-L231' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L209-L231' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.getDetectors' href='#GeoEfficiency.getDetectors'>#</a>
 **`GeoEfficiency.getDetectors`** &mdash; *Function*.
@@ -475,7 +475,7 @@ return the `detectors_array` as Vector{Detector} extended by the entered detecto
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L288-L300' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L288-L300' class='documenter-source'>source</a><br>
 
 
 ```
@@ -491,7 +491,7 @@ return `detectors_array` as Vector{Detector}, after extending it with the succes
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Input_Batch.jl#L321-L335' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Input_Batch.jl#L321-L335' class='documenter-source'>source</a><br>
 
 
 <a id='Output-Interface-1'></a>
@@ -512,7 +512,7 @@ checkResultsDirs()
 make sure that directories for saving the results are already exist or create  them if necessary.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Output_Interface.jl#L35-L44' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L35-L44' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.writecsv_head' href='#GeoEfficiency.writecsv_head'>#</a>
 **`GeoEfficiency.writecsv_head`** &mdash; *Function*.
@@ -528,7 +528,7 @@ writecsv_head(filename::AbstractString, content::VecOrMat{<:Union{Int,Float64}},
 Write `content` to the comma delimited values file `filename`.  optionally with header `head`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Output_Interface.jl#L168-L177' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L168-L177' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency._max_batch' href='#GeoEfficiency._max_batch'>#</a>
 **`GeoEfficiency._max_batch`** &mdash; *Constant*.
@@ -547,7 +547,7 @@ while `Inf` will print all  batch results to the `console`.
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Output_Interface.jl#L19-L28' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L19-L28' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.max_display' href='#GeoEfficiency.max_display'>#</a>
 **`GeoEfficiency.max_display`** &mdash; *Constant*.
@@ -557,7 +557,7 @@ while `Inf` will print all  batch results to the `console`.
 set the default value for the global variable `_max_batch`
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Config.jl#L33-L35' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Config.jl#L33-L35' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency._batch' href='#GeoEfficiency._batch'>#</a>
 **`GeoEfficiency._batch`** &mdash; *Function*.
@@ -590,7 +590,7 @@ The `results` has columns of headers `Height`, `Rho`, `GeoEfficiency`.
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Output_Interface.jl#L351-L378' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L351-L378' class='documenter-source'>source</a><br>
 
 
 **UnExported**
@@ -615,5 +615,5 @@ The `results` has columns of headers  `AnchorHeight`, `AnchorRho`, `srcRadius`, 
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/89ed5d886ec26d4403fc998dfa31cb70eb1b15b1/src/Output_Interface.jl#L425-L450' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L425-L450' class='documenter-source'>source</a><br>
 
