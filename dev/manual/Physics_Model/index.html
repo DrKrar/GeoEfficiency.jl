@@ -180,7 +180,7 @@
 </ul>
 <p>!!! warning "Invalid Arguments"
     both <code>CryRadius</code> and <code>CryLength</code> should be <code>positive</code>, while <code>CryLength</code> can also be set to <strong><code>zero</code></strong>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L167-L180' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L167-L180' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.CylDetector-Tuple{Real}' href='#GeoEfficiency.CylDetector-Tuple{Real}'>#</a>
 <strong><code>GeoEfficiency.CylDetector</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>CylDetector(CryRadius::Real)
@@ -188,7 +188,7 @@
 
 <p>construct and return a <code>cylindrical</code> (really <code>disk</code>) detector with crystal length equal to <strong><code>zero</code></strong>.</p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.CylDetector"><code>CylDetector(CryRadius::Real, CryLength::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L194-L203' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L194-L203' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.CylDetector-Tuple{}' href='#GeoEfficiency.CylDetector-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.CylDetector</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>CylDetector()
@@ -196,7 +196,7 @@
 
 <p>construct and return a <code>cylindrical</code> detector according to the input from the <code>console</code>.</p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.CylDetector"><code>CylDetector(CryRadius::Real, CryLength::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L207-L216' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L207-L216' class='documenter-source'>source</a><br></p>
 <p>!!! note
     the positon of the source is reported relative to the detector anchoring point,  for a cylinder detector it is taking as a point in the plain surface nearest to the source  which lies on the detector axis of symmetry.</p>
 <p><a id='Bore-hole-Detector-1'></a></p>
@@ -214,7 +214,7 @@
 </ul>
 <p>!!! warning "Invalid Arguments"
     <code>CryRadius</code> and <code>CryLength</code>, <code>HoleRadius</code> should be <code>positive</code> numbers, also  <code>CryRadius</code> should be greater than <code>HoleRadius</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L230-L245' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L230-L245' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.BoreDetector-Tuple{}' href='#GeoEfficiency.BoreDetector-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.BoreDetector</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>BoreDetector()
@@ -222,7 +222,7 @@
 
 <p>construct and return a <code>bore-hole</code> detector according to the input from the <code>console</code>.</p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.BoreDetector"><code>BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L261-L270' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L261-L270' class='documenter-source'>source</a><br></p>
 <p>!!! note
     the positon of the source is reported relative to the detector anchoring point,  for a bore-hole detector it is taking as the middle point of its axis of symmetry.</p>
 <p><a id='Well-type-Detector-1'></a></p>
@@ -241,7 +241,7 @@
 </ul>
 <p>!!! warning "Invalid Arguments"
     all arguments should be <code>positive</code> numbers, also  <code>CryRadius</code> should be greater than <code>HoleRadius</code> and  <code>CryLength</code> should be greater than  <code>HoleDepth</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L285-L302' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L285-L302' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.WellDetector-Tuple{}' href='#GeoEfficiency.WellDetector-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.WellDetector</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>WellDetector()
@@ -249,7 +249,7 @@
 
 <p>construct and return a Well-Type detector according to the input from the <code>console</code>.</p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.WellDetector"><code>WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L320-L329' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L320-L329' class='documenter-source'>source</a><br></p>
 <p>!!! note
     the positon of the source is reported relative to the detector anchoring point,  for well-type detector it is taking as the point detector hole surface that  lies on the detector axis of symmetry.</p>
 <p><a id='Source-1'></a></p>
@@ -270,7 +270,7 @@
 for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)`](@ref).
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L103-L119' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L103-L119' class='documenter-source'>source</a><br></p>
 <p><a id='Source-Anchoring-Point-1'></a></p>
 <h1 id="source-anchoring-point">Source Anchoring Point</h1>
 <p><a id='GeoEfficiency.Point' href='#GeoEfficiency.Point'>#</a>
@@ -289,7 +289,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
   * for `BoreDetector` the point source `height` is consider to be measured   from the `detector middle`, +ve value are above the detector center while -ve are below.
   * for `WellDetector` the point source `height` is considered to be measured   from the detector `hole surface`.
 </code></pre>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L16-L36' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L16-L36' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Point-Tuple{Real}' href='#GeoEfficiency.Point-Tuple{Real}'>#</a>
 <strong><code>GeoEfficiency.Point</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>Point(Height::Real)
@@ -297,7 +297,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 
 <p>construct and return an <code>axial point</code>.</p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.Point"><code>Point(Height::Real, Rho::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L44-L53' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L44-L53' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Point-Tuple{}' href='#GeoEfficiency.Point-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.Point</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>Point()
@@ -305,7 +305,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 
 <p>construct and return a <code>point</code>. prompt to input information via the <code>console</code>. </p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.Point"><code>Point(Height::Real, Rho::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L56-L65' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L56-L65' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Point-Tuple{Real,Point}' href='#GeoEfficiency.Point-Tuple{Real,Point}'>#</a>
 <strong><code>GeoEfficiency.Point</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>Point(xHeight::Real, aPnt::Point)
@@ -313,7 +313,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 
 <p>construct and return a <code>point</code> that has the same off-axis distance as <code>aPnt</code> but of new  height <code>xHeight</code>. </p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.Point"><code>Point(Height::Real, Rho::Real)</code></a></p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L73-L82' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L73-L82' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Point-Tuple{Point,Real}' href='#GeoEfficiency.Point-Tuple{Point,Real}'>#</a>
 <strong><code>GeoEfficiency.Point</code></strong> &mdash; <em>Method</em>.</p>
 <pre><code>Point(aPnt::Point, xRho::Real)
@@ -321,7 +321,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 
 <p>construct and return a <code>point</code> that has the same height as <code>aPnt</code> but of new  off-axis distance <code>Rho</code>. </p>
 <p><strong>see also:</strong> <a href="./#GeoEfficiency.Point"><code>Point(Height::Real, Rho::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7c1c83a3b86d70ff37ea1ddf467eba19f6ee7986/src/Physics_Model.jl#L85-L94' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/20d03d8a783a484a025b0c83be03732185c3f3e8/src/Physics_Model.jl#L85-L94' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
