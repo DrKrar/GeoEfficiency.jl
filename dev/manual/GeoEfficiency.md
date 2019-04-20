@@ -32,7 +32,7 @@ for more information see `batch`, `batchInfo`.
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/08a4a20b0904a1d98cb40e455fafad3afb3e602f/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/9ac0cc0368cdbe2b306a5413b0fc17cc962df572/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.GeoEfficiency' href='#GeoEfficiency.GeoEfficiency'>#</a>
 **`GeoEfficiency.GeoEfficiency`** &mdash; *Module*.
@@ -55,5 +55,5 @@ introduce a fast and flexible tool to calculate in batch or individually the `ge
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/08a4a20b0904a1d98cb40e455fafad3afb3e602f/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/9ac0cc0368cdbe2b306a5413b0fc17cc962df572/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br>
 
