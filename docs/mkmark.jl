@@ -49,7 +49,16 @@ const BRANCH = "gh-pages" # "master"
 @info "Deploying MarkUp pages"
 deploydocs(
     repo = REPO,
-    branch = "gh-pages-mrk", #BRANCH, "gh-pages",
+    branch = "gh-pages-Mark", #BRANCH, "gh-pages",
     target = "build",
 	versions = VERSIONS,
+)
+
+@info "Deploying MkDocs pages"
+deploydocs(
+    repo = REPO,
+    deps   = Deps.pip("mkdocs", "pygments", "python-markdown-math"),
+    make   = () -> run(`mkdocs build`)
+    branch = "gh-pages-MkDocs", #BRANCH, "gh-pages",
+    target = "site"
 )
