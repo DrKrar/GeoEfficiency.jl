@@ -1,5 +1,5 @@
 
-  *  [`index.md`]
+  *  [`Guid.md`]
   *  [`manual/GeoEfficiency.md"`]
   *  [`manual/Physics_Model.md`]
   *  [`manual/Calculations.md`]
