@@ -72,7 +72,7 @@ julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/d0db24a5db44de7fd4257384736406660df2bfec/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/2b4ad55e500fbca229852cb7d31834a6662e9ceb/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br>
 
 
 This function has another method `geoEff()` that prompt the user to input a source and a detector via the `console`.
