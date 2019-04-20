@@ -1,6 +1,6 @@
 site_name:        GeoEfficiency.jl
 repo_url:         https://github.com/DrKrar/ GeoEfficiency.jl
-site_description: GeoEfficiency: Acurate geometrical efficiency calculator
+site_description: Acurate geometrical efficiency calculator
 site_author:      Mohamed E. Krar
 
 theme: readthedocs
