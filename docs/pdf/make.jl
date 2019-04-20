@@ -20,7 +20,7 @@ const PAGES = Any[
 
 # GeoEfficiency package docs
 doc = makedocs(
-    debug 	= true,
+    #debug 	= true,
     root 	= ROOT,
     build 	= "pdf/build",
     modules = [GeoEfficiency],
