@@ -18,15 +18,15 @@ markdown_extensions:
   - fenced_code
   - mdx_math
 
-docs_dir: 'build'
+docs_dir: 'docs/build'
 
-pages:
+nav:
   - Home: Guid.md
   - Mauual: 
-    - About: manual/GeoEfficiency.md
-    - Physics_Model: manual/Physics_Model.md
-    - Calculations: manual/Calculations.md
-    - Output_Interface: manual/Output_Interface.md
-    - Input_Batch: manual/Input_Batch.md
+    - 'About': 'manual/GeoEfficiency.md'
+    - 'Physics_Model': 'manual/Physics_Model.md'
+    - 'Calculations': 'manual/Calculations.md'
+    - 'Output_Interface': 'manual/Output_Interface.md'
+    - 'Input_Batch': 'manual/Input_Batch.md'
   - Development: manual/Development.md
   - Index: list.md
