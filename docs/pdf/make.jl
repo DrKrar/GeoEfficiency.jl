@@ -30,7 +30,7 @@ doc = makedocs(
     authors = "Mohamed E. Krar",
     pages 	= PAGES,
 	doctest = "doctest" in ARGS,
-    #assets  = ["assets/custom.css"],
+    assets  = ["assets/custom.css"],
 );
 
 # hack to only deploy the actual pdf-file
