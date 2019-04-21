@@ -9,9 +9,9 @@
 # Manual
 
 
-<a id='[manual/GeoEfficiency.md"](@ref)-1'></a>
+<a id='[manual/GeoEfficiency.md](@ref)-1'></a>
 
-## [`manual/GeoEfficiency.md"`](@ref)
+## [`manual/GeoEfficiency.md`](@ref)
 
 
 <a id='[manual/Physics_Model.md](@ref)-1'></a>
