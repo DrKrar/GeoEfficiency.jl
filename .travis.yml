@@ -22,9 +22,9 @@ jobs:
       script:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
         - julia --project=docs/ --color=yes docs/mkdocs.jl clean
-        name: "Markdown/MkDocs"
-        before_install:	pip install --upgrade pip #install: pip install --upgrade pip
-        after_success: skip
+      name: "Markdown/MkDocs"
+      before_install:	pip install --upgrade pip #install: pip install --upgrade pip
+      after_success: skip
 
     - script:
       - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
