@@ -8,9 +8,11 @@ julia:
   - nightly
 notifications:
 
+codecov: true
+coveralls: true
 after_success:
-  - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
-  - julia --project=coverage/ coverage/coverage.jl
+#  - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
+#  - julia --project=coverage/ coverage/coverage.jl
 
 jobs:
   include:
@@ -21,7 +23,7 @@ jobs:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
         - julia --project=docs/ --color=yes docs/mkdocs.jl clean
         name: "Markdown/MkDocs"
-        #install: pip install --upgrade pip
+        #before_install:	pip install --upgrade pip #install: pip install --upgrade pip
         after_success: skip
 
     - script:
