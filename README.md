@@ -61,8 +61,8 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install. 
 At the end of this step you should be able to run julia from your system. 
 
-!!! note
-    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation.
+## note
+**Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation.**
 
 ### 2. Installing Package
 GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.
