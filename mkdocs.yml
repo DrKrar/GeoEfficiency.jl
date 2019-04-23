@@ -18,9 +18,9 @@ markdown_extensions:
   - fenced_code
   - mdx_math
 
-docs_dir: 'docs/MarkDown'
+docs_dir: '/docs/MarkDown'
 
-nav:
+pages:
   - Home: Guid.md
   - Mauual: 
     - 'About': 'manual/GeoEfficiency.md'
