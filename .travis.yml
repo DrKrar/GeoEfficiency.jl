@@ -21,27 +21,27 @@ jobs:
       os: linux
       script:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-        - julia --project=docs/ --color=yes docs/mkdocs.jl clean
+        - julia --project=docs/ --color=yes docs/mkdocs.jl 
       name: "Markdown/MkDocs"
       #before_install:	pip install --upgrade pip #install: pip install --upgrade pip
       after_success: skip
 
     - script:
       - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-      - julia --project=docs/ --color=yes docs/make.jl clean
+      - julia --project=docs/ --color=yes docs/make.jl 
       name: "HTML"
       after_success: skip
 
     - script:
         - julia --project=docs/pdf/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-        - julia --project=docs/pdf/ --color=yes docs/pdf/make.jl clean
+        - julia --project=docs/pdf/ --color=yes docs/pdf/make.jl
       name: "PDF"
       after_success: skip
       services: docker
 
     - script:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-        - julia --project=docs/ --color=yes docs/testmake.jl clean pdf
+        - julia --project=docs/ --color=yes docs/testmake.jl 
       name: "teset old script PDF/HTML"
       after_success: skip
       services: docker
