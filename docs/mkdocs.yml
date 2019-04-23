@@ -27,9 +27,9 @@ markdown_extensions:
   - toc:
         permalink: True
   #- mdx_math
-docs_dir: 'docs/MarkDown/'
+docs_dir: 'MarkDown'
 
-nav:
+pages:
   - Home: Guid.md
   - Mauual: 
     - About: manual/GeoEfficiency.md
