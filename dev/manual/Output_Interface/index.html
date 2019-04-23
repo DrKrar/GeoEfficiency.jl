@@ -8,7 +8,7 @@
   
   <meta name="author" content="Mohamed E. Krar">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Output_Interface - GeoEfficiency.jl</title>
+  <title>Output Interface - GeoEfficiency.jl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Output_Interface";
+    var mkdocs_page_name = "Output Interface";
     var mkdocs_page_input_path = "manual/Output_Interface.md";
     var mkdocs_page_url = "/manual/Output_Interface/";
   </script>
@@ -63,7 +63,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Physics_Model/">Physics_Model</a>
+    <a class="" href="../Physics_Model/">Physics Model</a>
                 </li>
                 <li class="">
                     
@@ -71,7 +71,7 @@
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Output_Interface</a>
+    <a class="current" href="./">Output Interface</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#output-interface">Output Interface</a></li>
@@ -89,7 +89,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Input_Batch/">Input_Batch</a>
+    <a class="" href="../Input_Batch/">Input Batch</a>
                 </li>
     </ul>
 	    </li>
@@ -130,11 +130,8 @@
         
       
     
-    <li>Output_Interface</li>
+    <li>Output Interface</li>
     <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/DrKrar/ GeoEfficiency.jl/edit/master/docs/manual/Output_Interface.md"
-          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -144,10 +141,10 @@
             <div class="section">
               
                 <p><a id='Output-Interface-1'></a></p>
-<h1 id="output-interface">Output Interface</h1>
+<h1 id="output-interface">Output Interface<a class="headerlink" href="#output-interface" title="Permanent link">&para;</a></h1>
 <p>Calculation of the geometrical efficiency can be run in one of two modes aside from using <code>geoEff</code>,  the interactive mode and the batch mode.</p>
 <p><a id='Interactive-Mode-1'></a></p>
-<h2 id="interactive-mode">Interactive Mode</h2>
+<h2 id="interactive-mode">Interactive Mode<a class="headerlink" href="#interactive-mode" title="Permanent link">&para;</a></h2>
 <p><a id='GeoEfficiency.calc' href='#GeoEfficiency.calc'>#</a>
 <strong><code>GeoEfficiency.calc</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>calc(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source())
@@ -156,9 +153,11 @@
 <p>calculate and display on the <code>console</code> the <code>geometrical efficiency</code> of the  detector <code>detector</code> for the tuple <code>aSource</code> describing the source.</p>
 <p><strong><code>Throw</code></strong> an  <code>inValidGeometry</code> if the source location is inappropriate.</p>
 <p><strong>see also:</strong> <a href="../Calculations/#GeoEfficiency.geoEff"><code>geoEff(::Detector, ::Tuple{Point, Float64, Float64})</code></a></p>
-<p>!!! note "Missing/No Argument(s)"
-    if source description <code>aSource</code> alone or even both source description and detector <code>detect</code>   are missing, the method prompt the user to complete the missing data via the <code>console</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L90-L106' class='documenter-source'>source</a><br></p>
+<div class="admonition note">
+<p class="admonition-title">Missing/No Argument(s)</p>
+<p>if source description <code>aSource</code> alone or even both source description and detector <code>detect</code>   are missing, the method prompt the user to complete the missing data via the <code>console</code>.</p>
+</div>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L90-L106' class='documenter-source'>source</a><br></p>
 <p>for repeated calculations.</p>
 <p><a id='GeoEfficiency.calcN' href='#GeoEfficiency.calcN'>#</a>
 <strong><code>GeoEfficiency.calcN</code></strong> &mdash; <em>Function</em>.</p>
@@ -166,9 +165,9 @@
 </code></pre>
 
 <p>calculate and display the <code>geometrical efficiency</code> repeatedly.  Prompt the user to input a <code>detector</code> and a <code>source</code> from the <code>console</code>. Prompt the user <code>repeatedly</code> until it exit (give a choice to use the same  detector or a new detector).</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L123-L133' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L123-L133' class='documenter-source'>source</a><br></p>
 <p><a id='Batch-Mode-1'></a></p>
-<h2 id="batch-mode">Batch Mode</h2>
+<h2 id="batch-mode">Batch Mode<a class="headerlink" href="#batch-mode" title="Permanent link">&para;</a></h2>
 <p><a id='GeoEfficiency.batch' href='#GeoEfficiency.batch'>#</a>
 <strong><code>GeoEfficiency.batch</code></strong> &mdash; <em>Function</em>.</p>
 <pre><code>batch()
@@ -177,7 +176,7 @@
 <p>provide batch calculation of the <code>geometrical efficiency</code> based on the information provided  by the <strong><code>CSV</code></strong> files by default located in <strong><code>/home/travis/GeoEfficiency</code></strong>.</p>
 <p>results are saved on a <strong><code>CSV</code></strong>  file(s) named after the detector(s). the <strong><code>CSV</code></strong>  file(s)  by default found in <strong><code>/home/travis/GeoEfficiency/results</code></strong>, also a log of the results are displayed on the <code>console</code>.</p>
 <p><strong>for more information on batch refer to <a href="./#GeoEfficiency.batchInfo"><code>batchInfo</code></a>.</strong></p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L189-L202' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L189-L202' class='documenter-source'>source</a><br></p>
 <pre><code>batch(
     detector::Detector,
     srcHeights_array::Vector{S},
@@ -196,10 +195,14 @@
 <li><code>srcLengths_array</code>: list of source lengths to feed to batch.</li>
 </ul>
 <p>A set of sources is constructed of every valid <strong>combination</strong> of parameter in the <code>srcRhos_array</code>, <code>srcRadii_array</code> and <code>srcLengths_array</code> arrays with conjunction with <code>ispoint</code>.</p>
-<p>!!! warning "point/cylinder source"
-      * If <code>ispoint</code> is <code>true</code> (the default) the source type is a point source and the parameters   in <code>srcRadii_array</code> and <code>srcLengths_array</code> arrays is completely ignored.
-      * If <code>ispoint</code> is <code>false</code> the parameters in srcRhos_array is completely ignored.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L205-L236' class='documenter-source'>source</a><br></p>
+<div class="admonition warning">
+<p class="admonition-title">point/cylinder source</p>
+<ul>
+<li>If <code>ispoint</code> is <code>true</code> (the default) the source type is a point source and the parameters   in <code>srcRadii_array</code> and <code>srcLengths_array</code> arrays is completely ignored.</li>
+<li>If <code>ispoint</code> is <code>false</code> the parameters in srcRhos_array is completely ignored.</li>
+</ul>
+</div>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L205-L236' class='documenter-source'>source</a><br></p>
 <pre><code>batch( 
     detectors_array::Vector{&lt;: Detector},
     srcHeights_array::Vector{S},
@@ -211,7 +214,7 @@
 </code></pre>
 
 <p><strong>same as <a href="./#GeoEfficiency.batch"><code>batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)</code></a></strong> but accept a list of detectors <code>detectors_array</code>. return a list of paths to the <strong><code>CSV</code></strong> of files (file for each detector) storing the results.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L263-L279' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L263-L279' class='documenter-source'>source</a><br></p>
 <pre><code>batch(
     detector_info_array::Matrix{S},
     srcHeights_array::Vector{S},
@@ -223,7 +226,7 @@
 </code></pre>
 
 <p><strong>same as <a href="./#GeoEfficiency.batch"><code>batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)</code></a></strong> but provide batch calculation of the  <code>geometrical efficiency</code> for the detector in the <code>detector_info_array</code> after applying <code>getDetectors</code>. return a list of paths to the <strong><code>CSV</code></strong> of files (file for each detector) storing the results.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L317-L334' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L317-L334' class='documenter-source'>source</a><br></p>
 <p>The batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.</p>
 <p><a id='GeoEfficiency.batchInfo' href='#GeoEfficiency.batchInfo'>#</a>
 <strong><code>GeoEfficiency.batchInfo</code></strong> &mdash; <em>Constant</em>.</p>
@@ -267,11 +270,15 @@
 
 <p><strong>CSV results files</strong></p>
 <p><strong><code>CSV</code></strong>  file containing the results has columns of headers   <code>AnchorHeight</code>, <code>AnchorRho</code>, <code>srcRadius</code>, <code>srcLength</code>, <code>GeoEfficiency</code> for <code>non-point</code> sources   and columns of headers <code>Height</code>, <code>Rho</code>, <code>GeoEfficiency</code> for <code>point</code> sources.</p>
-<p>!!! note
-    for Comma Saved Values [CSV] files each line represent an entry,   the first line is always treated as the header.</p>
-<p>!!! warning
-    the program expect each line to contain one number for all CSV files except  for <code>Detectors.csv</code> each line should contain at least one number or at   most four separated numbers.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L516-L569' class='documenter-source'>source</a><br></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for Comma Saved Values [CSV] files each line represent an entry,   the first line is always treated as the header.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the program expect each line to contain one number for all CSV files except  for <code>Detectors.csv</code> each line should contain at least one number or at   most four separated numbers.</p>
+</div>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L516-L569' class='documenter-source'>source</a><br></p>
 <p>The result of the batch calculation is also displayed in the <code>console</code>. the function <code>max_batch(n::Real)</code> can be used to give a hint (thus it may or may not apply) to the program to limit displayed results.</p>
 <p><a id='GeoEfficiency.max_batch-Tuple{Real}' href='#GeoEfficiency.max_batch-Tuple{Real}'>#</a>
 <strong><code>GeoEfficiency.max_batch</code></strong> &mdash; <em>Method</em>.</p>
@@ -279,13 +286,15 @@
 </code></pre>
 
 <p>set the value of <code>_max_batch</code> which give a hint to the program on maximum number of entries per  detector displayed on the <code>console</code> in batch mode. This function <code>do not</code> affect the saving of the batch calculation. </p>
-<p>!!! note</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
 <pre><code>Negative value will display prevent batch results from printed to the `console`. 
 while `Inf` will print all  batch results to the `console`.
 </code></pre>
 
 <p><strong>see also: <a href="./#GeoEfficiency.max_batch-Tuple{}"><code>max_batch()</code></a></strong></p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L55-L70' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L55-L70' class='documenter-source'>source</a><br></p>
 <p>also the without arguments <code>max_batch()</code> restore back the default vaule.</p>
 <p><a id='GeoEfficiency.max_batch-Tuple{}' href='#GeoEfficiency.max_batch-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.max_batch</code></strong> &mdash; <em>Method</em>.</p>
@@ -294,7 +303,7 @@ while `Inf` will print all  batch results to the `console`.
 
 <p>set the value of <code>_max_batch</code> which give a hint to the program on maximum number of entries per  detector displayed on the <code>console</code> in batch mode. to its default value set by the constant <a href="../Development/#GeoEfficiency.max_display"><code>max_display</code></a>.</p>
 <p><strong>see also: <a href="./#GeoEfficiency.max_batch-Tuple{Real}"><code>max_batch(n::Real)</code></a></strong></p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Output_Interface.jl#L75-L84' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Output_Interface.jl#L75-L84' class='documenter-source'>source</a><br></p>
 <p>Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current seting for the source or modifiy it. for details see the next section.</p>
               
             </div>
@@ -303,7 +312,7 @@ while `Inf` will print all  batch results to the `console`.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Input_Batch/" class="btn btn-neutral float-right" title="Input_Batch">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Input_Batch/" class="btn btn-neutral float-right" title="Input Batch">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../Calculations/" class="btn btn-neutral" title="Calculations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -315,6 +324,8 @@ while `Inf` will print all  batch results to the `console`.
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019</p>
     
   </div>
 
@@ -331,7 +342,7 @@ while `Inf` will print all  batch results to the `console`.
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/DrKrar/ GeoEfficiency.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/DrKrar/ GeoEfficiency.jl" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../Calculations/" style="color: #fcfcfc;">&laquo; Previous</a></span>

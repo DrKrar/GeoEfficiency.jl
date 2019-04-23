@@ -63,7 +63,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Physics_Model/">Physics_Model</a>
+    <a class="" href="../Physics_Model/">Physics Model</a>
                 </li>
                 <li class=" current">
                     
@@ -77,11 +77,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Output_Interface/">Output_Interface</a>
+    <a class="" href="../Output_Interface/">Output Interface</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../Input_Batch/">Input_Batch</a>
+    <a class="" href="../Input_Batch/">Input Batch</a>
                 </li>
     </ul>
 	    </li>
@@ -125,9 +125,6 @@
     <li>Calculations</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/DrKrar/ GeoEfficiency.jl/edit/master/docs/manual/Calculations.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
@@ -136,7 +133,7 @@
             <div class="section">
               
                 <p><a id='Calculations-1'></a></p>
-<h1 id="calculations">Calculations</h1>
+<h1 id="calculations">Calculations<a class="headerlink" href="#calculations" title="Permanent link">&para;</a></h1>
 <p>calculation of the geometrical efficiency can be done via a call to the function <code>geoEff</code>.</p>
 <p><a id='GeoEfficiency.geoEff' href='#GeoEfficiency.geoEff'>#</a>
 <strong><code>GeoEfficiency.geoEff</code></strong> &mdash; <em>Function</em>.</p>
@@ -156,11 +153,17 @@
 <li>an <code>InValidGeometry</code> if the point location is invalide.</li>
 <li>an <code>NotImplementedError</code> if source-to-detector geometry not supported yet.</li>
 </ul>
-<p>!!! warning
-    the point height of <code>aPnt</code> is measured differently for different detectors types. for the details, please refer to each detector entry.</p>
-<p>!!! note
-      * if <code>SrcLength</code> equal to <code>zero</code>; the method return Geometrical Efficiency of a disc   source of Radius = <code>SrcRadius</code> and center at the point <code>aPNT</code>.
-      * if both <code>SrcRadius</code> and <code>SrcLength</code> equal to <code>zero</code>;   the method returns the Geometrical Efficiency of a point source at the anchoring point.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the point height of <code>aPnt</code> is measured differently for different detectors types. for the details, please refer to each detector entry.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>if <code>SrcLength</code> equal to <code>zero</code>; the method return Geometrical Efficiency of a disc   source of Radius = <code>SrcRadius</code> and center at the point <code>aPNT</code>.</li>
+<li>if both <code>SrcRadius</code> and <code>SrcLength</code> equal to <code>zero</code>;   the method returns the Geometrical Efficiency of a point source at the anchoring point.</li>
+</ul>
+</div>
 <p><strong>Example</strong></p>
 <ul>
 <li>to obtain the efficiency of a <code>cylindrical</code> detector of crystal radius <code>2.0</code> cm for axial    source cylinder of radius <code>1.0</code> cm and height <code>2.5</code> cm on the detector surface.</li>
@@ -193,7 +196,7 @@ julia&gt; geoEff(newDet, Point(0.0), 1.0, 2.5)
 0.4669614527701105
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/de95f63fba1a5496bc74f5583779379e3d06309d/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/492528aa6d6c6260d5b3bd76e90347b3ba95b639/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br></p>
 <p>This function has another method <code>geoEff()</code> that prompt the user to input a source and a detector via the <code>console</code>.</p>
               
             </div>
@@ -202,10 +205,10 @@ julia&gt; geoEff(newDet, Point(0.0), 1.0, 2.5)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Output_Interface/" class="btn btn-neutral float-right" title="Output_Interface">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Output_Interface/" class="btn btn-neutral float-right" title="Output Interface">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Physics_Model/" class="btn btn-neutral" title="Physics_Model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Physics_Model/" class="btn btn-neutral" title="Physics Model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -214,6 +217,8 @@ julia&gt; geoEff(newDet, Point(0.0), 1.0, 2.5)
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019</p>
     
   </div>
 
@@ -230,7 +235,7 @@ julia&gt; geoEff(newDet, Point(0.0), 1.0, 2.5)
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/DrKrar/ GeoEfficiency.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/DrKrar/ GeoEfficiency.jl" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../Physics_Model/" style="color: #fcfcfc;">&laquo; Previous</a></span>
