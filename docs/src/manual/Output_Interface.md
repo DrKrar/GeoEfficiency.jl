@@ -1,8 +1,8 @@
 # Output Interface
 Calculation of the geometrical efficiency can be run in one of two modes aside from using `geoEff`, 
-the interactive mode and the batch mode.
+the interactive/direct mode and the batch mode.
 
-## Interactive Mode
+## Interactive/Direct Mode
 
 ```@docs
 GeoEfficiency.calc
@@ -14,12 +14,13 @@ GeoEfficiency.calcN
 ```
 
 ## Batch Mode
+Use `batch()` to let the program inspect the excel files containing the required information and run the calculations.
 
 ```@docs
 GeoEfficiency.batch
 ```
 
-The batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.
+As mentioned above, the batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.
 
 ```@docs
 GeoEfficiency.batchInfo
@@ -31,10 +32,10 @@ The result of the batch calculation is also displayed in the `console`. the func
 GeoEfficiency.max_batch(n::Real)
 ```
 
-also the without arguments `max_batch()` restore back the default vaule.
+Also the without arguments `max_batch()` restore back the default value.
 
 ```@docs
 GeoEfficiency.max_batch()
 ```
 
-Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current seting for the source or modifiy it. for details see the next section.
+Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current setting for the source or modify it. for details see the next section.
