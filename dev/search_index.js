@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
-    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015note: Note\nThis documentation is also available in pfd format."
+    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015note: Note\nThis documentation is also available in PDF format."
 },
 
 {
@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (7 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (1 day old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
@@ -173,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "Cylindrical Detector",
     "category": "section",
-    "text": "GeoEfficiency.CylDetectorGeoEfficiency.CylDetector(CryRadius::Real)GeoEfficiency.CylDetector()note: Note\nthe positon of the source is reported relative to the detector anchoring point,  for a cylinder detector it is taking as a point in the plain surface nearest to the source  which lies on the detector axis of symmetry."
+    "text": "To construct a cylinder detector type CylDetector(CryRadius, CryLength)GeoEfficiency.CylDetectorTo construct a planer cylinder  detector or Disc CylDetector(CryRadius)GeoEfficiency.CylDetector(CryRadius::Real)user may also just type CylDetector() to enter dimension from the console.GeoEfficiency.CylDetector()note: Note\nthe position of the source is reported relative to the detector anchoring point,  for a cylinder detector it is taking as a point in the plain surface nearest to the source  which lies on the detector axis of symmetry."
 },
 
 {
@@ -197,7 +197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "Bore-hole Detector",
     "category": "section",
-    "text": "GeoEfficiency.BoreDetectorGeoEfficiency.BoreDetector()note: Note\nthe positon of the source is reported relative to the detector anchoring point,  for a bore-hole detector it is taking as the middle point of its axis of symmetry."
+    "text": "To construct a bore-hole detector type BoreDetector(CryRadius, CryLength, HoleRadius). GeoEfficiency.BoreDetectoruser may also just type BoreDetector() to enter dimension from the console.GeoEfficiency.BoreDetector()note: Note\nthe position of the source is reported relative to the detector anchoring point,  for a bore-hole detector it is taking as the middle point of its axis of symmetry."
 },
 
 {
@@ -221,7 +221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Physics Model",
     "title": "Well-type Detector",
     "category": "section",
-    "text": "GeoEfficiency.WellDetectorGeoEfficiency.WellDetector()note: Note\nthe positon of the source is reported relative to the detector anchoring point,  for well-type detector it is taking as the point detector hole surface that  lies on the detector axis of symmetry."
+    "text": "GeoEfficiency.WellDetectorGeoEfficiency.WellDetector()note: Note\nthe position of the source is reported relative to the detector anchoring point,  for well-type detector it is taking as the point detector hole surface that  lies on the detector axis of symmetry.note: Note\nto let the program determine the detector type as well as dimension just type Detector()"
 },
 
 {
@@ -309,7 +309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Calculations",
     "title": "Calculations",
     "category": "section",
-    "text": "calculation of the geometrical efficiency can be done via a call to the function geoEff.GeoEfficiency.geoEffThis function has another method geoEff() that prompt the user to input a source and a detector via the console."
+    "text": "calculation of the geometrical efficiency can be done via a call to the function geoEff.GeoEfficiency.geoEffnote: Information\nthe function has another method geoEff() that prompt the user to input a source and a detector via the console."
 },
 
 {
@@ -325,7 +325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "Output Interface",
     "category": "section",
-    "text": "Calculation of the geometrical efficiency can be run in one of two modes aside from using geoEff,  the interactive mode and the batch mode."
+    "text": "Calculation of the geometrical efficiency can be run in one of two modes aside from using geoEff,  the interactive/direct mode and the batch mode."
 },
 
 {
@@ -345,9 +345,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#Interactive-Mode-1",
+    "location": "manual/Output_Interface.html#Interactive/Direct-Mode-1",
     "page": "Output Interface",
-    "title": "Interactive Mode",
+    "title": "Interactive/Direct Mode",
     "category": "section",
     "text": "GeoEfficiency.calcfor repeated calculations.GeoEfficiency.calcN"
 },
@@ -389,7 +389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "Batch Mode",
     "category": "section",
-    "text": "GeoEfficiency.batchThe batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.GeoEfficiency.batchInfoThe result of the batch calculation is also displayed in the console. the function max_batch(n::Real) can be used to give a hint (thus it may or may not apply) to the program to limit displayed results.GeoEfficiency.max_batch(n::Real)also the without arguments max_batch() restore back the default vaule.GeoEfficiency.max_batch()Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current seting for the source or modifiy it. for details see the next section."
+    "text": "Use batch() to let the program inspect the excel files containing the required information and run the calculations.GeoEfficiency.batchAs mentioned above, the batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.GeoEfficiency.batchInfoThe result of the batch calculation is also displayed in the console. the function max_batch(n::Real) can be used to give a hint (thus it may or may not apply) to the program to limit displayed results.GeoEfficiency.max_batch(n::Real)Also the without arguments max_batch() restore back the default value.GeoEfficiency.max_batch()Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current setting for the source or modify it. for details see the next section."
 },
 
 {
@@ -421,7 +421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Batch Mode Input",
     "title": "Batch Mode Input",
     "category": "section",
-    "text": "GeoEfficiency.typeofSrcGeoEfficiency.setSrcToPointwarnning: Warnning\nCurrently, the source type has no effect but to decide if the source is a point source or a higher dimention source. "
+    "text": "GeoEfficiency.typeofSrcGeoEfficiency.setSrcToPointwarnning: Warnning\nCurrently, the source type has no effect but to decide if the source is a point source or a higher dimension source. "
 },
 
 {
