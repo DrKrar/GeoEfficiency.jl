@@ -27,7 +27,7 @@
 - [Output Interface](manual/Development.md#Output-Interface-1)
 - [Console Input](manual/Input_Console.md#Console-Input-1)
 - [Output Interface](manual/Output_Interface.md#Output-Interface-1)
-    - [Interactive Mode](manual/Output_Interface.md#Interactive-Mode-1)
+    - [Interactive/Direct Mode](manual/Output_Interface.md#Interactive/Direct-Mode-1)
     - [Batch Mode](manual/Output_Interface.md#Batch-Mode-1)
 - [Index](list.md#Index-1)
 - [Physics Model](manual/Physics_Model.md#Physics-Model-1)
