@@ -1,13 +1,20 @@
-Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com)
-:----|:----: 
+Project Status: | [![Active – The project has reached a stable, usable state and is being actively developed.][repostatus-img]](http://www.repostatus.org/#active)
+:----|:----:
+Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (DrKrar@gmail.com) 
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
 Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/dev/index.html)
 Current version | [v"0.9.4-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
 First Created | Fri Aug 14 20:12:01 2015
 
-Project Status | Linux, OSX | Windows | Code Coverage | codecov.io
-----|----|----|----|----
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![Build Status](https://travis-ci.org/DrKrar/GeoEfficiency.jl.svg)](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![Build Status](https://ci.appveyor.com/api/projects/status/ew595nn4njmm4dbl?svg=true)](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl) | [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov.io](http://codecov.io/github/DrKrar/GeoEfficiency.jl/coverage.svg?branch=master)](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
+Build status: | [![travis][travis-img]](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![appveyor][appveyor-img]](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl)
+----|----|----
+Code coverage: | [![coveralls][coveralls-img]](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov][codecov-img]](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
+
+[repostatus-img]: http://www.repostatus.org/badges/latest/active.svg
+[travis-img]: https://img.shields.io/travis/JuliaLang/julia/master.svg?label=Linux+/+macOS
+[appveyor-img]: https://img.shields.io/appveyor/ci/JuliaLang/julia/master.svg?label=Windows
+[coveralls-img]: https://img.shields.io/coveralls/github/JuliaLang/julia/master.svg?label=coveralls
+[codecov-img]: https://img.shields.io/codecov/c/github/JuliaLang/julia/master.svg?label=codecov
 
 ---
 
@@ -54,7 +61,7 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install. 
 At the end of this step you should be able to run julia from your system. 
 
-## note
+## _Note_
 **Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation.**
 
 ### 2. Installing Package
@@ -110,7 +117,7 @@ The efficiency calculation can be done by one of the functions:
  
 For more on the function and its methods prefix the name of the function by `?`.
 
-## note
+## _Note_
 **Input from the `console` can be numerical expression not just a number.**
    
    > **``5/2`` ; ``5//2`` ; ``pi`` ; ``π/2`` ; ``exp(2)`` ; ``1E-2 `` ; ``5.2/3`` ; ``sin(1)`` ;  ``sin(1)^2``**
@@ -155,8 +162,8 @@ Those Comma Saved  Values [CSV] files are:-
     Source_Lengths| 
     --------------|
 
-## note
+## _Note_
 **For Comma Saved Values [CSV] files each line represent an entry, the first line is always treated as the header.**
       
-## warning
+## _warning_
 **The program expect each line to contain one number for all CSV files except for ``Detectors.csv`` each line should contain at least one number or at most four separated numbers.**
