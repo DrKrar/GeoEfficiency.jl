@@ -125,7 +125,7 @@ julia> calc()
 ## Unit Test
 
 
-For scientific calculation accuracy in calculation and being error free is a highly demanded objective. Thus, the package is extensively tested method-wise in each supported operating system. Operating system fully supported include Windows, Linus, Apple OSx.
+For scientific calculation accuracy in calculation and being error free is a highly demanded objective. Thus, the package is extensively tested method-wise in each supported operating system. Operating system fully supported include Windows, Linus, Apple OSX.
 
 
 After installing the package can be tested in your own system by typing the following into the REPL prompt.
