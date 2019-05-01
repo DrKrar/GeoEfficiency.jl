@@ -26,6 +26,7 @@ const PAGES = Any[
     
     "Development" => "manual/Development.md",
     "Index" => "list.md",
+    "LICENSE" => "../LICENSE.md",
 ]
 
 
