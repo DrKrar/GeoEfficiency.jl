@@ -16,7 +16,7 @@ const PAGES = Any[
     
     "Development" => "manual/Development.md",
     "Index" => "list.md",
-    "LICENSE" => "../LICENSE.md",
+    "LICENSE" => "LICENSE.md",
 ]
 
 # GeoEfficiency package docs
