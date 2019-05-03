@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (2 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (8 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
@@ -437,7 +437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "Introduction",
     "category": "section",
-    "text": "This section is provided for developer who are interested in extending the functionality of the GeoEfficiency package or just make use of some of its functionality. this software is licensed under the MIT license. MIT \"Expat\" License\n\n Copyright (c) 2019: Mohamed Krar.\n \n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n \n The above copyright notice and this permission notice shall be included in all\n copies or substantial portions of the Software with an appropriate reference to \n the original work.\n \n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n SOFTWARE."
+    "text": "This section is provided for developer who are interested in extending the functionality of the GeoEfficiency package or just make use of some of its functionality. this software is licensed under the MIT license. "
 },
 
 {
@@ -702,6 +702,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Index",
     "category": "section",
     "text": ""
+},
+
+{
+    "location": "LICENSE.html#",
+    "page": "LICENSE",
+    "title": "LICENSE",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "LICENSE.html#LICENSE-1",
+    "page": "LICENSE",
+    "title": "LICENSE",
+    "category": "section",
+    "text": "The GeoEfficiency.jl package is licensed under the MIT \"Expat\" LicenseCopyright (c) 2019: Mohamed E. Krar <DrKrar@gmail.com>.Permission is hereby granted, free of charge, to any person obtaining a copy  of this software and associated documentation files (the \"Software\"), to deal  in the Software without restriction, including without limitation the rights  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  copies of the Software, and to permit persons to whom the Software is  furnished to do so, subject to the following conditions:The above copyright notice and this permission notice shall be included in all  copies or substantial portions of the Software with an appropriate reference to   the original work.THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE."
 },
 
 ]}
