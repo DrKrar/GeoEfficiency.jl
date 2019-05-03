@@ -30,6 +30,7 @@
     - [Interactive/Direct Mode](manual/Output_Interface.md#Interactive/Direct-Mode-1)
     - [Batch Mode](manual/Output_Interface.md#Batch-Mode-1)
 - [Index](list.md#Index-1)
+- [LICENSE](LICENSE.md#LICENSE-1)
 - [Physics Model](manual/Physics_Model.md#Physics-Model-1)
 - [Detector](manual/Physics_Model.md#Detector-1)
     - [Cylindrical Detector](manual/Physics_Model.md#Cylindrical-Detector-1)
