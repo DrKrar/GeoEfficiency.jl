@@ -39,7 +39,7 @@ pages:
     - Input Batch: manual/Input_Batch.md
   - Development: manual/Development.md
   - Index: list.md
-
+  - LICENSE: LICENSE.md
 plugins:
   - search
 
