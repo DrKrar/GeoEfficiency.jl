@@ -105,11 +105,11 @@ function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = 
 				lower || upper || from != to ||	ArgumentError("the $interval is not valid") |> throw
 				from <= to || ArgumentError("the $interval is not valid") |> throw
 				@warn("""the input '$value' evaluated to be outside the $interval.
-				\n Please: provide an adequate value""")
+				\n Please: provide an adequate value""", _file=nothing)
 			end #let
     else
 			@warn("""the input '$value' cannot be parsed to a valid numerical value!,
-			\n Please: provide a valid expression""")
+			\n Please: provide a valid expression""", _file=nothing)
     end #if    
 		
 		return getfloat(prompt, from, to; lower = lower, upper = upper)

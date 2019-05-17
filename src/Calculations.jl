@@ -62,7 +62,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
                       			integrate(func, transition, fine, rtol = relativeError, atol = absoluteError)[1] / pi
 
       		else
-         			@info("This case is not implemented yet")
+         			@info("This case is not implemented yet", _file=nothing)
 			# TBD: (Top + Side) efficiencies
       		end #if
 
@@ -85,7 +85,7 @@ produce a warning if the disk is out of the cylindrical detector face.
 """
 function GeoEff_Disk(detector::CylDetector, SurfacePnt::Point, SrcRadius::Real)::Float64
    	detector.CryRadius > SurfacePnt.Rho + SrcRadius || @error(
-	"off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)")
+	"off the detector face sources is not supported yet SrcRadius = $(SrcRadius), CryRadius = $(detector.CryRadius ), Rho = $(SurfacePnt.Rho)", _file=nothing)
 	
    	integrand(xRho) = xRho * GeoEff_Pnt(detector, Point(SurfacePnt, xRho))
    	return  integrate(integrand, 0.0, SrcRadius, rtol = relativeError, atol = absoluteError)[1] / SrcRadius^2
@@ -108,14 +108,14 @@ end #function
 """
 function geoEff(detector::CylDetector, aSurfacePnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
    	detector.CryRadius < SrcRadius + aSurfacePnt.Rho   &&	@error(
-		"Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.")
+		"Source Radius: Expected less than 'detector Radius=$(detector.CryRadius)', get $SrcRadius.", _file=nothing)
 	
    	pnt::Point = deepcopy(aSurfacePnt)
 		
    	if 0.0 == SrcRadius                         #Point source
 	
       		detector.CryRadius > pnt.Rho || @error(
-			"geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).")
+			"geoEffPoint off-axis: Expected less than 'detector Radius=$(detector.CryRadius)', get $(pnt.Rho).", _file=nothing)
         return GeoEff_Pnt(detector, pnt) / 2.0            	
 
    	elseif 0.0 == SrcLength						#Disk source

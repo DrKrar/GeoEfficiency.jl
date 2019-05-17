@@ -132,7 +132,7 @@ directory `datadir`.
 function detector_info_from_csvFile(detectors::AbstractString = Detectors, 
                                       datadir::AbstractString = dataDir)
     detector_info_array::Matrix{Float64} = Matrix{Float64}(undef, 0, 0)
-    @info("opening '$(detectors)'......")
+    @info("opening '$(detectors)'......", _file=nothing)
     try
         detector_info_array = readdlm(joinpath(datadir, detectors), ',', header = true)[1];
         return getDetectors(detector_info_array)
@@ -161,17 +161,17 @@ where the file is located default to ``$(dataDir)`` as set by the constant `data
 
 """
 function read_from_csvFile(csv_data::AbstractString, datadir::AbstractString = dataDir)::Vector{Float64}
-   	@info("Opening `$(csv_data)`......")
+   	@info("Opening `$(csv_data)`......", _file=nothing)
    	try
       		indata = readdlm(joinpath(datadir, csv_data), ',',  header = true)[1][:,1]
       		return float(indata) |> sort;
 
    	catch err
    	    if isa(err, SystemError) 
-      		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`")
+      		    @error("Some thing went wrong, may be `$(csv_data)` can't be found in `$(datadir)`", _file=nothing)
 		
       		else
-      		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` format is bad or empty")
+      		    @error("Some thing went wrong, may be `$(csv_data)` in `$(datadir)` format is bad or empty", _file=nothing)
 		
       		end		
       		return Float64[0.0]
@@ -235,10 +235,10 @@ function read_batch_info(datadir::AbstractString,
 					    srcRadii::AbstractString,
 					  srcLengths::AbstractString)
 
-   	@info("Starting the Batch Mode ....")
+   	@info("Starting the Batch Mode ....", _file=nothing)
    	isPoint = setSrcToPoint("\n Is it a point source {Y|n} ?")
 
-   	@info("Reading data from `CSV files` at $datadir .....")
+   	@info("Reading data from `CSV files` at $datadir .....", _file=nothing)
    	detectors_array::Vector{Detector} = try  
 								detector_info_from_csvFile(detectors, datadir) 
 				catch err
@@ -250,7 +250,7 @@ function read_batch_info(datadir::AbstractString,
    	srcLengths_array::Vector{Float64} = [0.0]
 
    	function batchfailure(err::AbstractString)
-      		@warn(err, ", transfer to direct data input via the `console`......")
+      		@warn(err, ", transfer to direct data input via the `console`......", _file=nothing)
       		sleep(3); src = source()
       		srcHeights_array, srcRhos_array, srcRadii_array, srcLengths_array   = 
 		[src[1].Height], [src[1].Rho], [src[2]], [src[3]]
@@ -299,13 +299,13 @@ prompt the user to input detector parameters from the `console`.
 
 """
 function getDetectors(detectors_array::Vector{<:Detector} = Detector[])::Vector{Detector}
-   	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console")
+   	Vector{Detector}(detectors_array); @info("Please, input the detector information via the console", _file=nothing)
    	while(true)
       		try
          			push!(detectors_array, Detector());
 
       		catch err	
-         			println(err); @warn("Please: Enter a New Detector")
+         			println(err); @warn("Please: Enter a New Detector", _file=nothing)
          			continue
       		end #try
 
@@ -339,10 +339,10 @@ function getDetectors(detector_info_array::Matrix{<:Real},
 
    	if isempty(detector_info_array) 
       		if console_FB
-         			@info("The new detectors information may entered via the console")
+         			@info("The new detectors information may entered via the console", _file=nothing)
          			return getDetectors(detectors_array)
       		else
-        		 	error("getDetectors: Empty `detector_info_array`")
+        		 	error("getDetectors: Empty `detector_info_array`", _file=nothing)
       		end
 
    	else
