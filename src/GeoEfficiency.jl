@@ -92,6 +92,6 @@ const abt = """
 $abt
 """
 about() = printstyled(abt, color = :green, bold = true)
-__init__() = about()
+about()
 
 end #module
