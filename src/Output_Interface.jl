@@ -22,9 +22,9 @@ const redirect  		= joinpath(resultdir, "GeoEfficiency.txt")
 Global variable that give a hint to the program on maxumam number of entries per detector displayed 
 on the `console` in btach mode.
 
-!!! note
+!!! note "Special Values"
 	Negative value will display prevent batch results from printed to the `console`. 
-	while `Inf` will print all  batch results to the `console`.
+	while `Inf` will print all batch results to the `console`.
 """
 global _max_batch 		= max_display	# max number of entries per detector displayed.   	
 global countDetectors 	= 1				# number of detectors
@@ -61,7 +61,7 @@ set the value of `_max_batch` which give a hint to the program on maximum number
 detector displayed on the `console` in batch mode.
 This function ```do not``` affect the saving of the batch calculation. 
 
-!!! note
+!!! note "Special Values"
 	Negative value will display prevent batch results from printed to the `console`. 
 	while `Inf` will print all  batch results to the `console`.
 
@@ -514,7 +514,6 @@ end #function
 #------------------- batchInfo -----------------
 
 """
-
 
 
 The function `batch()` can be called with or without arrangement(s). 
