@@ -16,7 +16,7 @@ An officially registered Julia program that provides a set of tools to calculate
 
 
 !!! note
-    This documentation is also available in [pfd](https://GeoEfficiency.GitHub.io/dev/pdf/GeoEfficiency.jl.pdf) format.
+    This documentation is also available in [PDF](https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf) format.
 
 
 
