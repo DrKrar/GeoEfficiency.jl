@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (8 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (23 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
@@ -373,7 +373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Interface",
     "title": "GeoEfficiency.max_batch",
     "category": "method",
-    "text": "max_batch(n::Real)\n\nset the value of _max_batch which give a hint to the program on maximum number of entries per  detector displayed on the console in batch mode. This function do not affect the saving of the batch calculation. \n\nnote: Note\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all  batch results to the `console`.\n\nsee also: max_batch()\n\n\n\n\n\n"
+    "text": "max_batch(n::Real)\n\nset the value of _max_batch which give a hint to the program on maximum number of entries per  detector displayed on the console in batch mode. This function do not affect the saving of the batch calculation. \n\nnote: Special Values\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all  batch results to the `console`.\n\nsee also: max_batch()\n\n\n\n\n\n"
 },
 
 {
@@ -661,7 +661,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Development",
     "title": "GeoEfficiency._max_batch",
     "category": "constant",
-    "text": "Global variable that give a hint to the program on maxumam number of entries per detector displayed  on the console in btach mode.\n\nnote: Note\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all  batch results to the `console`.\n\n\n\n\n\n"
+    "text": "Global variable that give a hint to the program on maxumam number of entries per detector displayed  on the console in btach mode.\n\nnote: Special Values\n\n\nNegative value will display prevent batch results from printed to the `console`. \nwhile `Inf` will print all batch results to the `console`.\n\n\n\n\n\n"
 },
 
 {
