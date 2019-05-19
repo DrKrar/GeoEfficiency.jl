@@ -13,7 +13,7 @@ using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
 const PAGES = Any[
-    "Home" => "Guid.md",
+    "Home" => "index.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
         #"manual/Error.md",
