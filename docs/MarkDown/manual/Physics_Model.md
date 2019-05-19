@@ -35,7 +35,7 @@ To construct a **cylinder** detector type `CylDetector(CryRadius, CryLength)`
 
 
 
-```
+```julia
 CylDetector(CryRadius::Real, CryLength::Real)
 ```
 
@@ -49,7 +49,7 @@ construct and return a `cylindrical` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L167-L180' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L167-L180' class='documenter-source'>source</a><br>
 
 
 To construct a planer **cylinder**  detector or **Disc** `CylDetector(CryRadius)`
@@ -59,7 +59,7 @@ To construct a planer **cylinder**  detector or **Disc** `CylDetector(CryRadius)
 
 
 
-```
+```julia
 CylDetector(CryRadius::Real)
 ```
 
@@ -68,7 +68,7 @@ construct and return a `cylindrical` (really `disk`) detector with crystal lengt
 **see also:** [`CylDetector(CryRadius::Real, CryLength::Real)`](Physics_Model.md#GeoEfficiency.CylDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L194-L203' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L194-L203' class='documenter-source'>source</a><br>
 
 
 user may also just type `CylDetector()` to enter dimension from the console.
@@ -78,7 +78,7 @@ user may also just type `CylDetector()` to enter dimension from the console.
 
 
 
-```
+```julia
 CylDetector()
 ```
 
@@ -87,7 +87,7 @@ construct and return a `cylindrical` detector according to the input from the `c
 **see also:** [`CylDetector(CryRadius::Real, CryLength::Real)`](Physics_Model.md#GeoEfficiency.CylDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L207-L216' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L207-L216' class='documenter-source'>source</a><br>
 
 
 !!! note
@@ -107,7 +107,7 @@ To construct a bore-hole detector type `BoreDetector(CryRadius, CryLength, HoleR
 
 
 
-```
+```julia
 BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 ```
 
@@ -122,7 +122,7 @@ construct and return a `bore-hole` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L230-L245' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L230-L245' class='documenter-source'>source</a><br>
 
 
 user may also just type `BoreDetector()` to enter dimension from the console.
@@ -132,7 +132,7 @@ user may also just type `BoreDetector()` to enter dimension from the console.
 
 
 
-```
+```julia
 BoreDetector()
 ```
 
@@ -141,7 +141,7 @@ construct and return a `bore-hole` detector according to the input from the `con
 **see also:** [`BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)`](Physics_Model.md#GeoEfficiency.BoreDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L261-L270' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L261-L270' class='documenter-source'>source</a><br>
 
 
 !!! note
@@ -158,7 +158,7 @@ construct and return a `bore-hole` detector according to the input from the `con
 
 
 
-```
+```julia
 WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 ```
 
@@ -174,14 +174,14 @@ construct and return a `Well-Type` detector of the given crystal dimensions:-
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L285-L302' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L285-L302' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.WellDetector-Tuple{}' href='#GeoEfficiency.WellDetector-Tuple{}'>#</a>
 **`GeoEfficiency.WellDetector`** &mdash; *Method*.
 
 
 
-```
+```julia
 WellDetector()
 ```
 
@@ -190,7 +190,7 @@ construct and return a Well-Type detector according to the input from the `conso
 **see also:** [`WellDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)`](Physics_Model.md#GeoEfficiency.WellDetector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L320-L329' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L320-L329' class='documenter-source'>source</a><br>
 
 
 !!! note
@@ -212,7 +212,7 @@ construct and return a Well-Type detector according to the input from the `conso
 
 
 
-```
+```julia
 source(anchorPnt::Point = Point())
 ```
 
@@ -232,7 +232,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L103-L119' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L103-L119' class='documenter-source'>source</a><br>
 
 
 <a id='Source-Anchoring-Point-1'></a>
@@ -244,7 +244,7 @@ for more information **see also:** [`typeofSrc()`](@ref) and [`typeofSrc(x::Int)
 
 
 
-```
+```julia
 Point(Height::Real, Rho::Real)
 ```
 
@@ -262,14 +262,14 @@ construct and return a `Point` source. The `Point` can be used as either a sourc
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L16-L36' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L16-L36' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Point-Tuple{Real}' href='#GeoEfficiency.Point-Tuple{Real}'>#</a>
 **`GeoEfficiency.Point`** &mdash; *Method*.
 
 
 
-```
+```julia
 Point(Height::Real)
 ```
 
@@ -278,14 +278,14 @@ construct and return an `axial point`.
 **see also:** [`Point(Height::Real, Rho::Real)`](Physics_Model.md#GeoEfficiency.Point).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L44-L53' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L44-L53' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Point-Tuple{}' href='#GeoEfficiency.Point-Tuple{}'>#</a>
 **`GeoEfficiency.Point`** &mdash; *Method*.
 
 
 
-```
+```julia
 Point()
 ```
 
@@ -294,14 +294,14 @@ construct and return a `point`. prompt to input information via the `console`.
 **see also:** [`Point(Height::Real, Rho::Real)`](Physics_Model.md#GeoEfficiency.Point).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L56-L65' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L56-L65' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Point-Tuple{Real,Point}' href='#GeoEfficiency.Point-Tuple{Real,Point}'>#</a>
 **`GeoEfficiency.Point`** &mdash; *Method*.
 
 
 
-```
+```julia
 Point(xHeight::Real, aPnt::Point)
 ```
 
@@ -310,14 +310,14 @@ construct and return a `point` that has the same off-axis distance as `aPnt` but
 **see also:** [`Point(Height::Real, Rho::Real)`](Physics_Model.md#GeoEfficiency.Point)
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L73-L82' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L73-L82' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.Point-Tuple{Point,Real}' href='#GeoEfficiency.Point-Tuple{Point,Real}'>#</a>
 **`GeoEfficiency.Point`** &mdash; *Method*.
 
 
 
-```
+```julia
 Point(aPnt::Point, xRho::Real)
 ```
 
@@ -326,5 +326,5 @@ construct and return a `point` that has the same height as `aPnt` but of new  of
 **see also:** [`Point(Height::Real, Rho::Real)`](Physics_Model.md#GeoEfficiency.Point).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L85-L94' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L85-L94' class='documenter-source'>source</a><br>
 

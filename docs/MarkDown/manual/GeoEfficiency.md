@@ -8,7 +8,7 @@
 
 
 
-```
+```julia
  *************************************************
  **            -=) GeoEfficiency (=-             **
  **  Accurate Geometrical Efficiency Calculator  **
@@ -18,21 +18,21 @@
  Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
  Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
  Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
- Version:       v"0.9.4-dev" - (1 day old master)  
+ Version:       v"0.9.4-dev" - (24 days old master)  
  Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
  PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
 
 
 
 Batch Mode Calculations 
--  read files by defaul from directory `/home/GeoEfficiency`
--  save results by default to directory `/home/GeoEfficiency/results`
+-  read files by defaul from directory `C:\Users\Mohamed\GeoEfficiency`
+-  save results by default to directory `C:\Users\Mohamed\GeoEfficiency\results`
 
 for more information see `batch`, `batchInfo`.
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.GeoEfficiency' href='#GeoEfficiency.GeoEfficiency'>#</a>
 **`GeoEfficiency.GeoEfficiency`** &mdash; *Module*.
@@ -48,12 +48,12 @@ introduce a fast and flexible tool to calculate in batch or individually the `ge
   * geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
   * calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
   * calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
-  * batch()	: Calculate the geometrical efficiency using data in the **`/home/GeoEfficiency`** folder in batch mode.
+  * batch()	: Calculate the geometrical efficiency using data in the **`C:\Users\Mohamed\GeoEfficiency`** folder in batch mode.
 
 !!! note
     for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br>
 
