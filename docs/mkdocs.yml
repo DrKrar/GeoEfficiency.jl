@@ -30,7 +30,7 @@ markdown_extensions:
 docs_dir: 'MarkDown'
 
 pages:
-  - Home: Guid.md
+  - Home: index.md
   - Mauual: 
     - About: manual/GeoEfficiency.md
     - Physics Model: manual/Physics_Model.md

@@ -5,7 +5,7 @@
 # script for building documentation of the GeoEfficiency.jl package.
 #
 #  _args = ["clean", "doctest"]
-#  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
+#  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\mkdocs.jl")
 #**************************************************************************************
 
 using Documenter, DocumenterMarkdown
@@ -13,7 +13,7 @@ using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
 const PAGES = Any[
-    "Home" => "Guid.md",
+    "Home" => "index.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
         #"manual/Error.md",
