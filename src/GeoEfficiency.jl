@@ -68,11 +68,11 @@ using Dates
 
 const abt = """
 \n
-\t *************************************************
+\t **************************************************
 \t **            -=) GeoEfficiency (=-             **
 \t **  Accurate Geometrical Efficiency Calculator  **
 \t **   First Created on Fri Aug 14 20:12:01 2015  **
-\t *************************************************
+\t **************************************************
 
 \t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
 \t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
