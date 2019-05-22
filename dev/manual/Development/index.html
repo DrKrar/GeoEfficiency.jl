@@ -36,7 +36,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../../Guid/" class="icon icon-home"> GeoEfficiency.jl</a>
+        <a href="../.." class="icon icon-home"> GeoEfficiency.jl</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -50,7 +50,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../Guid/">Home</a>
+    <a class="" href="../..">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -129,7 +129,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../Guid/">GeoEfficiency.jl</a>
+        <a href="../..">GeoEfficiency.jl</a>
       </nav>
 
       
@@ -137,7 +137,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../Guid/">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
       
     
@@ -154,30 +154,6 @@
                 <p><a id='Introduction-1'></a></p>
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
 <p>This section is provided for developer who are interested in extending the functionality of the <code>GeoEfficiency</code> package or just make use of some of its functionality. this software is licensed under the MIT license. </p>
-<pre><code>MIT &quot;Expat&quot; License
-
- Copyright (c) 2019: Mohamed Krar.
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the &quot;Software&quot;), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software with an appropriate reference to 
- the original work.
-
- THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
-</code></pre>
-
 <p><a id='Configuration-1'></a></p>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
 <p>The package contain many parameters that can be set within the program sourcecode. they can be found in the source file <code>Config.jl</code></p>
@@ -232,14 +208,14 @@
 <p><a id='GeoEfficiency.GeoException' href='#GeoEfficiency.GeoException'>#</a>
 <strong><code>GeoEfficiency.GeoException</code></strong> &mdash; <em>Type</em>.</p>
 <p>custom abstract <code>Exception</code> that is the parent of all Exception in the <code>GeoEfficiency</code> package</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L15-L17' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L15-L17' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.InValidDetectorDim' href='#GeoEfficiency.InValidDetectorDim'>#</a>
 <strong><code>GeoEfficiency.InValidDetectorDim</code></strong> &mdash; <em>Type</em>.</p>
 <p>custom <code>Exception</code> indicating invalid radiation detector dimensions</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L24-L26' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L24-L26' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.@validateDetector' href='#GeoEfficiency.@validateDetector'>#</a>
 <strong><code>GeoEfficiency.@validateDetector</code></strong> &mdash; <em>Macro</em>.</p>
-<pre><code>@validateDetector cond [text]
+<pre><code class="julia">@validateDetector cond [text]
 </code></pre>
 
 <p>throw an <a href="./#GeoEfficiency.InValidDetectorDim"><code>InValidDetectorDim</code></a> if <code>cond</code> is <code>false</code>.  Message <code>text</code> is optionally displayed upon validation failure.</p>
@@ -250,29 +226,29 @@ ERROR: InValidDetectorDim: 3 is an odd number!
 julia&gt; @validateDetector isodd(3) &quot;What even are numbers?&quot;
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L31-L46' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L31-L46' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.InValidGeometry' href='#GeoEfficiency.InValidGeometry'>#</a>
 <strong><code>GeoEfficiency.InValidGeometry</code></strong> &mdash; <em>Type</em>.</p>
 <p>custom <code>Exception</code> indicating a not valid source to detector geometry</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L71-L73' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L71-L73' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.@inValidGeometry' href='#GeoEfficiency.@inValidGeometry'>#</a>
 <strong><code>GeoEfficiency.@inValidGeometry</code></strong> &mdash; <em>Macro</em>.</p>
-<pre><code>@inValidGeometry [msg]
+<pre><code class="julia">@inValidGeometry [msg]
 </code></pre>
 
 <p>custom macro to throw <a href="./#GeoEfficiency.NotImplementedError"><code>NotImplementedError</code></a> <code>Exception</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L78-L84' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L78-L84' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.NotImplementedError' href='#GeoEfficiency.NotImplementedError'>#</a>
 <strong><code>GeoEfficiency.NotImplementedError</code></strong> &mdash; <em>Type</em>.</p>
 <p>custom <code>Exception</code> indicating a source-to-detector geometry which may be valid but not implemented yet</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L52-L54' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L52-L54' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.@notImplementedError' href='#GeoEfficiency.@notImplementedError'>#</a>
 <strong><code>GeoEfficiency.@notImplementedError</code></strong> &mdash; <em>Macro</em>.</p>
-<pre><code>@notImplementedError [msg]
+<pre><code class="julia">@notImplementedError [msg]
 </code></pre>
 
 <p>custom macro to throw <a href="./#GeoEfficiency.NotImplementedError"><code>NotImplementedError</code></a> <code>Exception</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Error.jl#L59-L64' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Error.jl#L59-L64' class='documenter-source'>source</a><br></p>
 <p><a id='Console-Input-1'></a></p>
 <h1 id="console-input">Console Input<a class="headerlink" href="#console-input" title="Permanent link">&para;</a></h1>
 <p>Julia language is quite reach language but it seems a good idea thought to collect repeated tasks involving input from console in compact and customized to the need function. this section provide two essential functions to deal with inputs from the console. the first:</p>
@@ -290,7 +266,7 @@ julia&gt; @validateDetector isodd(3) &quot;What even are numbers?&quot;
     ignored by some teriminals.
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Console.jl#L16-L33' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Console.jl#L16-L33' class='documenter-source'>source</a><br></p>
 <p>while the second is a more complex function:</p>
 <p><a id='GeoEfficiency.getfloat' href='#GeoEfficiency.getfloat'>#</a>
 <strong><code>GeoEfficiency.getfloat</code></strong> &mdash; <em>Function</em>.</p>
@@ -340,7 +316,7 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 5.0
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Console.jl#L40-L92' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Console.jl#L40-L92' class='documenter-source'>source</a><br></p>
 <p>Those function are not exported that is normally the user will not need to use them but they are documented here to allow a developer ranked user to make use of them.</p>
 <p><a id='Physics-Model-1'></a></p>
 <h1 id="physics-model">Physics Model<a class="headerlink" href="#physics-model" title="Permanent link">&para;</a></h1>
@@ -348,19 +324,19 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <p><a id='GeoEfficiency.RadiationDetector' href='#GeoEfficiency.RadiationDetector'>#</a>
 <strong><code>GeoEfficiency.RadiationDetector</code></strong> &mdash; <em>Type</em>.</p>
 <p>abstract super-supertype of all detectors types</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L146-L148' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L146-L148' class='documenter-source'>source</a><br></p>
 <p>any future detector definition should inherit from <code>RadiationDetector</code>. The second abstract detector   <code>Detector</code> is also a sub-type of <code>RadiationDetector</code> but it only accommodates cylindrical type only.</p>
 <p><a id='GeoEfficiency.Detector' href='#GeoEfficiency.Detector'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Type</em>.</p>
-<pre><code>Detector
+<pre><code class="julia">Detector
 </code></pre>
 
 <p>abstract supertype of all detectors types of cylidericalish shapes. also can be used to construct any leaf type.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L151-L159' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L151-L159' class='documenter-source'>source</a><br></p>
 <p>can be used to construct leaf detector.</p>
 <p><a id='GeoEfficiency.Detector-Tuple{}' href='#GeoEfficiency.Detector-Tuple{}'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Method</em>.</p>
-<pre><code>Detector()
+<pre><code class="julia">Detector()
 </code></pre>
 
 <p>construct and return an object of the <code>Detector</code> leaf types  (<code>CylDetector</code>, <code>BoreDetector</code> or <code>WellDetector</code>) according to the input from the console.</p>
@@ -368,11 +344,11 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <p class="admonition-title">Note</p>
 <p>all required information is acquired from the <code>console</code> and would warn user on invalid data.</p>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L345-L356' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L345-L356' class='documenter-source'>source</a><br></p>
 <p>also it can be used to construct a concrete detector depend on the provided arguments.</p>
 <p><a id='GeoEfficiency.Detector-NTuple{4,Real}' href='#GeoEfficiency.Detector-NTuple{4,Real}'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Method</em>.</p>
-<pre><code>Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
+<pre><code class="julia">Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real, HoleDepth::Real)
 </code></pre>
 
 <p>construct and return <code>well-type</code>, <code>bore-hole</code> or <code>cylindrical</code> detector according to the arguments.  it inspect the arguments and call the appropriate leaf type constructor.</p>
@@ -381,28 +357,28 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <p>if the value(s) of the last argument(s) isre <code>zero</code>, it acts as a missing argument(s).</p>
 </div>
 <p><strong>see also:</strong> <a href="../Physics_Model/#GeoEfficiency.CylDetector"><code>CylDetector</code></a>, <a href="../Physics_Model/#GeoEfficiency.BoreDetector"><code>BoreDetector</code></a>, <a href="../Physics_Model/#GeoEfficiency.WellDetector"><code>WellDetector</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L406-L419' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L406-L419' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Detector-Tuple{Real}' href='#GeoEfficiency.Detector-Tuple{Real}'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Method</em>.</p>
-<pre><code>Detector(CryRadius::Real)
+<pre><code class="julia">Detector(CryRadius::Real)
 </code></pre>
 
 <p>same as <a href="../Physics_Model/#GeoEfficiency.CylDetector-Tuple{Real}"><code>CylDetector(CryRadius::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L373-L380' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L373-L380' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Detector-Tuple{Real,Real}' href='#GeoEfficiency.Detector-Tuple{Real,Real}'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Method</em>.</p>
-<pre><code>Detector(CryRadius::Real, CryLength::Real)
+<pre><code class="julia">Detector(CryRadius::Real, CryLength::Real)
 </code></pre>
 
 <p>same as <a href="../Physics_Model/#GeoEfficiency.CylDetector"><code>CylDetector(CryRadius::Real, CryLength::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L383-L390' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L383-L390' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.Detector-Tuple{Real,Real,Real}' href='#GeoEfficiency.Detector-Tuple{Real,Real,Real}'>#</a>
 <strong><code>GeoEfficiency.Detector</code></strong> &mdash; <em>Method</em>.</p>
-<pre><code>Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
+<pre><code class="julia">Detector(CryRadius::Real, CryLength::Real, HoleRadius::Real)
 </code></pre>
 
 <p>same as <a href="../Physics_Model/#GeoEfficiency.BoreDetector"><code>BoreDetector(CryRadius::Real, CryLength::Real, HoleRadius::Real)</code></a> except when <code>HoleRadius</code> = <code>0.0</code> it acts as  <a href="../Physics_Model/#GeoEfficiency.CylDetector"><code>CylDetector(CryRadius::Real, CryLength::Real)</code></a>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Physics_Model.jl#L393-L401' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Physics_Model.jl#L393-L401' class='documenter-source'>source</a><br></p>
 <p><a id='Batch-Mode-Input-1'></a></p>
 <h1 id="batch-mode-input">Batch Mode Input<a class="headerlink" href="#batch-mode-input" title="Permanent link">&para;</a></h1>
 <p><a id='GeoEfficiency.detector_info_from_csvFile' href='#GeoEfficiency.detector_info_from_csvFile'>#</a>
@@ -416,12 +392,12 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li>if no path is given the second argument <code>datadir</code> is default to <code>/home/travis/GeoEfficiency</code> as set by   the constant <code>dataDir</code>.</li>
+<li>if no path is given the second argument <code>datadir</code> is default to <code>C:\Users\Mohamed\GeoEfficiency</code> as set by   the constant <code>dataDir</code>.</li>
 <li>if no file name is specified the name of the predefined file <code>Detectors.csv</code> as set by   the constant <code>Detectors</code>.</li>
 <li>the no argument method is the most useful; other methods are mainly for <code>test propose</code>.</li>
 </ul>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L116-L132' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L116-L132' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.read_from_csvFile' href='#GeoEfficiency.read_from_csvFile'>#</a>
 <strong><code>GeoEfficiency.read_from_csvFile</code></strong> &mdash; <em>Function</em>.</p>
 <p><strong>UnExported</strong></p>
@@ -429,8 +405,8 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
                    datadir::AbstractString = dataDir)::Vector{Float64}
 </code></pre>
 
-<p>return Vector{Float64} based on data in csv file named <code>csv_data</code>. directory <code>datadir</code> point to    where the file is located default to $/home/travis/GeoEfficiency$ as set by the constant <code>dataDir</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L153-L163' class='documenter-source'>source</a><br></p>
+<p>return Vector{Float64} based on data in csv file named <code>csv_data</code>. directory <code>datadir</code> point to    where the file is located default to $C:\Users\Mohamed\GeoEfficiency$ as set by the constant <code>dataDir</code>.</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L153-L163' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.read_batch_info' href='#GeoEfficiency.read_batch_info'>#</a>
 <strong><code>GeoEfficiency.read_batch_info</code></strong> &mdash; <em>Function</em>.</p>
 <p><strong>UnExported</strong></p>
@@ -439,7 +415,7 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 
 <p>read <code>detectors</code> and <code>sources</code> parameters from the predefined csv files.</p>
 <p>Return a tuple     (detectors<em>array,        srcHeights</em>array,       srcRhos<em>array,      srcRadii</em>array,         srcLengths<em>array,       GeoEfficiency</em>isPoint)</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L185-L201' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L185-L201' class='documenter-source'>source</a><br></p>
 <p><strong>UnExported</strong></p>
 <pre><code>read_batch_info(datadir::AbstractString,
               detectors::AbstractString, 
@@ -459,10 +435,10 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
     isPoint)
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L209-L231' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L209-L231' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.getDetectors' href='#GeoEfficiency.getDetectors'>#</a>
 <strong><code>GeoEfficiency.getDetectors</code></strong> &mdash; <em>Function</em>.</p>
-<pre><code>getDetectors(detectors_array::Vector{&lt;:Detector} = Detector[])::Vector{Detector}
+<pre><code class="julia">getDetectors(detectors_array::Vector{&lt;:Detector} = Detector[])::Vector{Detector}
 </code></pre>
 
 <p>return the <code>detectors_array</code> as Vector{Detector} extended by the entered detectors and sorted according to the  detector volume.  prompt the user to input detector parameters from the <code>console</code>.</p>
@@ -470,7 +446,7 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <p class="admonition-title">Note</p>
 <p>If no array received in the input an empty array will be created to receive the converted detectors.</p>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L288-L300' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L288-L300' class='documenter-source'>source</a><br></p>
 <pre><code>getDetectors(detector_info_array::Matrix{&lt;:Real}, 
                  detectors_array::Vector{&lt;:Detector} = Detector[]; 
                                            console_FB=true)::Vector{Detector}
@@ -481,7 +457,7 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 <p class="admonition-title">Note</p>
 <p>if <code>console_FB</code> argument is set to true , the function will call <code>getDetectors()</code> to take input from the <code>console</code> if the <code>detector_info_array</code> is empty or contain no numerical element.</p>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Input_Batch.jl#L321-L335' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L321-L335' class='documenter-source'>source</a><br></p>
 <p><a id='Output-Interface-1'></a></p>
 <h1 id="output-interface">Output Interface<a class="headerlink" href="#output-interface" title="Permanent link">&para;</a></h1>
 <p><a id='GeoEfficiency.checkResultsDirs' href='#GeoEfficiency.checkResultsDirs'>#</a>
@@ -491,7 +467,7 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 </code></pre>
 
 <p>make sure that directories for saving the results are already exist or create  them if necessary.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Output_Interface.jl#L35-L44' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L35-L44' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.writecsv_head' href='#GeoEfficiency.writecsv_head'>#</a>
 <strong><code>GeoEfficiency.writecsv_head</code></strong> &mdash; <em>Function</em>.</p>
 <p><strong>UnExported</strong></p>
@@ -499,22 +475,22 @@ julia&gt; getfloat(&quot;input a number:&quot;, 1, 5, value=&quot;5&quot;, upper
 </code></pre>
 
 <p>Write <code>content</code> to the comma delimited values file <code>filename</code>.  optionally with header <code>head</code>.</p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Output_Interface.jl#L168-L177' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L168-L177' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency._max_batch' href='#GeoEfficiency._max_batch'>#</a>
 <strong><code>GeoEfficiency._max_batch</code></strong> &mdash; <em>Constant</em>.</p>
 <p>Global variable that give a hint to the program on maxumam number of entries per detector displayed  on the <code>console</code> in btach mode.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">Special Values</p>
 </div>
 <pre><code>Negative value will display prevent batch results from printed to the `console`. 
-while `Inf` will print all  batch results to the `console`.
+while `Inf` will print all batch results to the `console`.
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Output_Interface.jl#L19-L28' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L19-L28' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.max_display' href='#GeoEfficiency.max_display'>#</a>
 <strong><code>GeoEfficiency.max_display</code></strong> &mdash; <em>Constant</em>.</p>
 <p>set the default value for the global variable <code>_max_batch</code></p>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Config.jl#L33-L35' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Config.jl#L33-L35' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency._batch' href='#GeoEfficiency._batch'>#</a>
 <strong><code>GeoEfficiency._batch</code></strong> &mdash; <em>Function</em>.</p>
 <p><strong>UnExported</strong></p>
@@ -538,7 +514,7 @@ while `Inf` will print all  batch results to the `console`.
 <p class="admonition-title">Warning</p>
 <p>both <code>srcRadii_array</code>, <code>srcLengths_array</code> are completely ignored as this method is for point sources.</p>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Output_Interface.jl#L351-L378' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L351-L378' class='documenter-source'>source</a><br></p>
 <p><strong>UnExported</strong></p>
 <pre><code>_batch(
     ::Val{false},
@@ -556,7 +532,7 @@ while `Inf` will print all  batch results to the `console`.
 <p class="admonition-title">Note</p>
 <p>for all arrays <code>srcHeights_array</code>, <code>srcRhos_array</code>, <code>srcRadii_array</code> and <code>srcLengths_array</code>  element type should be <code>Float64</code>. if any of them have other numerical element type it  should converted to <code>Float64</code> using <code>float</code> before passing it to this method.</p>
 </div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/8f47899e8f15f4237d51d4c0e73027a14a8275aa/src/Output_Interface.jl#L425-L450' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L425-L450' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
