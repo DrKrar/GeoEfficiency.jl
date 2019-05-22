@@ -1,7 +1,7 @@
 var documenterSearchIndex = {"docs": [
 
 {
-    "location": "Guid.html#",
+    "location": "index.html#",
     "page": "Home",
     "title": "Home",
     "category": "page",
@@ -9,15 +9,15 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
+    "location": "index.html#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
-    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015note: Note\nThis documentation is also available in PDF format."
+    "text": "An officially registered Julia program that provides a set of tools to calculate the geometrical efficiency in a fast and accurate way.  The Package models a radiation detector irradiated by a radioactive source.  The Package relay directly on numerical evaluation of closed form analytical formula describing the geometrical efficiency.Author Mohamed E. Krar (DrKrar@gmail.com)\nRepository GitHub.com\nDocumentation GitHub.io\nCurrent version v\"0.9.4-dev\"\nFirst Created Fri Aug 14 20:12:01 2015note: Portable Document Format\nThis documentation is also available in PDF format."
 },
 
 {
-    "location": "Guid.html#Current/Planed-Features-1",
+    "location": "index.html#Current/Planed-Features-1",
     "page": "Home",
     "title": "Current/Planed Features",
     "category": "section",
@@ -25,7 +25,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Requirements-1",
+    "location": "index.html#Requirements-1",
     "page": "Home",
     "title": "Requirements",
     "category": "section",
@@ -33,7 +33,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Download/Installation-1",
+    "location": "index.html#Download/Installation-1",
     "page": "Home",
     "title": "Download/Installation",
     "category": "section",
@@ -41,15 +41,15 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#.-Installing-Julia-Language-1",
+    "location": "index.html#.-Installing-Julia-Language-1",
     "page": "Home",
     "title": "1. Installing Julia Language",
     "category": "section",
-    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: Note\nHead to JuliaBox.com to run julia in your browser without any local installation."
+    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: JuliaBox.com\nHead to JuliaBox.com to run julia in your browser without any local installation. no registration is required just a Google account."
 },
 
 {
-    "location": "Guid.html#.-Installing-Package-1",
+    "location": "index.html#.-Installing-Package-1",
     "page": "Home",
     "title": "2. Installing Package",
     "category": "section",
@@ -57,7 +57,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Quick-Usage-1",
+    "location": "index.html#Quick-Usage-1",
     "page": "Home",
     "title": "Quick Usage",
     "category": "section",
@@ -65,7 +65,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Unit-Test-1",
+    "location": "index.html#Unit-Test-1",
     "page": "Home",
     "title": "Unit Test",
     "category": "section",
@@ -73,7 +73,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Package-Overview-1",
+    "location": "index.html#Package-Overview-1",
     "page": "Home",
     "title": "Package Overview",
     "category": "section",
@@ -81,7 +81,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "Guid.html#Batch-Calculation-1",
+    "location": "index.html#Batch-Calculation-1",
     "page": "Home",
     "title": "Batch Calculation",
     "category": "section",
@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "GeoEfficiency.about",
     "category": "function",
-    "text": " *************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n *************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (23 days old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
+    "text": " **************************************************\n **            -=) GeoEfficiency (=-             **\n **  Accurate Geometrical Efficiency Calculator  **\n **   First Created on Fri Aug 14 20:12:01 2015  **\n **************************************************\n\n Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com \n Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3\n Repository:    https://github.com/DrKrar/GeoEfficiency.jl/\n Version:       v\"0.9.4-dev\" - (1 day old master)  \n Documentation: https://GeoEfficiency.GitHub.io/dev/index.html\n PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf\n\n\n\nBatch Mode Calculations \n-  read files by defaul from directory `/home/GeoEfficiency`\n-  save results by default to directory `/home/GeoEfficiency/results`\n\nfor more information see `batch`, `batchInfo`.\n\n\n\n\n\n"
 },
 
 {
