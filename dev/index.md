@@ -15,7 +15,7 @@ An officially registered Julia program that provides a set of tools to calculate
 | First Created   |                                 Fri Aug 14 20:12:01 2015                                 |
 
 
-!!! note
+!!! note "Portable Document Format"
     This documentation is also available in [PDF](https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf) format.
 
 
@@ -77,8 +77,8 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. 
 
 
-!!! note
-    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation.
+!!! note "JuliaBox.com"
+    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation. no registration is required just a Google account.
 
 
 
