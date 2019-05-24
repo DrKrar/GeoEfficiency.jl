@@ -72,7 +72,7 @@ julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/b4445ec4b2a3d41687ae3f9682ee22f02b433057/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/421c7eafda7bd2f19a1c59029130c40d955941b8/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br>
 
 
 !!! note "Information"
