@@ -3,7 +3,7 @@ using GeoEfficiency
 
 const ROOT = joinpath(@__DIR__, "..")
 const PAGES = Any[
-    "Home" => "Guid.md",
+    "Home" => "index.md",
     "Manual" => [
 		"manual/GeoEfficiency.md",
         #"manual/Error.md",
