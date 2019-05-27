@@ -8,7 +8,7 @@
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
 
-using Documenter
+using Documenter, DocumenterLaTeX
 using GeoEfficiency
 
 _args = @isdefined(_args) ? _args : ARGS
@@ -38,6 +38,10 @@ const formats = Any[
     
 ]
 
+if "pdf" in _args
+    Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
+                        push!(formats, LaTeX(platform = "docker"))
+end
 
 makedocs(
     format  = formats,
@@ -55,10 +59,34 @@ const REPO = "github.com/DrKrar/GeoEfficiency.jl.git" # "github.com/GeoEfficienc
 const VERSIONS =["stable" => "v^", "v#.#", "dev" => "dev"]  # order of versions in drop down menu.
 const BRANCH = "gh-pages" # "master"
 
-# Deploy HTML pages
-@info "Deploying HTML pages"
-deploydocs(
-    repo = REPO,
-    branch = BRANCH, #"gh-pages"
-    versions = VERSIONS,
-)
+mktempdir() do tmp
+    # Hide the PDF from html-deploydocs
+    build = joinpath(@__DIR__, "build")
+    files = readdir(build)
+    idx = findfirst(f -> startswith(f, "GeoEfficiency.jl") && endswith(f, ".pdf"), files)
+    pdf = idx === nothing ? nothing : joinpath(build, files[idx])
+    if pdf !== nothing
+        pdf = mv(pdf, joinpath(tmp, basename(pdf)))
+    end
+    # Deploy HTML pages
+    @info "Deploying HTML pages"
+    deploydocs(
+        repo = REPO,
+        branch = BRANCH, #"gh-pages"
+        versions = VERSIONS,
+    )
+
+    # Put back PDF into docs/build/pdf
+    mkpath(joinpath(build, "pdf"))
+    if pdf !== nothing
+        pdf = mv(pdf, joinpath(build, "pdf", basename(pdf)))
+    end
+    # Deploy PDF
+    @info "Deploying PDF"
+    deploydocs(
+        repo = REPO,
+        target = "build/pdf",
+        branch = BRANCH * "-pdf", #"gh-pages-pdf",
+        forcepush = true,
+    )
+end
