@@ -1,7 +1,8 @@
 language: julia
 os:
-  - linux
   - osx
+  - linux
+  
 
 julia:
   - 1.1
@@ -23,14 +24,11 @@ jobs:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
         - julia --project=docs/ --color=yes docs/mkdocs.jl 
       name: "Markdown/MkDocs"
-      #before_install:	pip install --upgrade pip #install: pip install --upgrade pip
       after_success: skip
 
     - script:
       - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
       - julia --project=docs/ --color=yes docs/make.jl pdf
       name: "HTML/PDF"
-      after_success: skip
-
       after_success: skip
       services: docker
