@@ -15,6 +15,9 @@ after_success:
   - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
   - julia --project=coverage/ coverage/coverage.jl
 
+services:
+  - docker
+
 jobs:
   include:
     - stage: "Documentation"
@@ -31,4 +34,4 @@ jobs:
       - julia --project=docs/ --color=yes docs/make.jl pdf
       name: "HTML/PDF"
       after_success: skip
-      services: docker
+      #services: docker
