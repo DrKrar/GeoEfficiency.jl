@@ -1,10 +1,9 @@
 
-  *  [`index.md`]@(Ref)
+  *  [`index.md`](index.md)
   * Manual
-     *  [`manual/GeoEfficiency.md`]@(Ref)
-     *  [`manual/Physics_Model.md`]@(Ref)
-     *  [`manual/Calculations.md`]@(Ref)
-     *  [`manual/Output_Interface.md`]@(Ref)
-     *  [`manual/Input_Batch.md`]@(Ref)
-  *  [`manual/Development.md`]@(Ref)
-  *  [`manual/list.md`]@(Ref)
+     *  [`manual/Physics_Model.md`](manual/Physics_Model.md)
+     *  [`manual/Calculations.md`](`manual/Calculations.md)
+     *  [`manual/Output_Interface.md`](manual/Output_Interface.md))
+     *  [`manual/Input_Batch.md`](manual/Input_Batch.md))
+  *  [`manual/Development.md`](manual/Development.md))
+  *  [`manual/list.md`](manual/list.md))
