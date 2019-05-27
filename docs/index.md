@@ -1,5 +1,5 @@
 
-  *  [`Guid.md`]@(Ref)
+  *  [`index.md`]@(Ref)
   * Manual
      *  [`manual/GeoEfficiency.md`]@(Ref)
      *  [`manual/Physics_Model.md`]@(Ref)
