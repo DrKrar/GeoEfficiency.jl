@@ -1,7 +1,12 @@
 # GeoEfficiency Package Release Notes
+All notable changes to this project will be documented in this file.
 
-### Version 0.9.4-dev
-* support for julia version before 1.1 dropped.
+The format now is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Version 0.9.4-dev]
+### Removed
+* support for julia versions before 1.0 dropped.
 
 ### Version 0.9.3
 *  a customized error system has been add to the package.
