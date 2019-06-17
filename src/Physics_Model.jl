@@ -216,7 +216,7 @@ construct and return a `cylindrical` detector according to the input from the `c
 """
 function CylDetector()
    	printstyled(" I- The Cylindrical Detector physical Dimensions:-\n", color = :yellow)
-   	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
+   	CryRadius = getfloat("\n\t > Crystal Radius (cm) = ", 0.0, lower=false)
    	CryLength = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
    	CylDetector(CryRadius, CryLength)
 end #function
@@ -270,8 +270,8 @@ construct and return a `bore-hole` detector according to the input from the `con
 """
 function BoreDetector()
    	printstyled(" I- The Bore Hole Detector physical Dimensions:-\n", color = :yellow)
-   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
-   	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
+   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0, lower=false)
+   	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0, lower=false)
    	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
    	BoreDetector(CryRadius, CryLength, HoleRadius)
 end #function
@@ -329,10 +329,10 @@ construct and return a Well-Type detector according to the input from the `conso
 """
 function WellDetector()
    	printstyled(" I- The Well-Type Detector physical Dimensions:-\n", color = :yellow)
-   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
-   	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
+   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0, lower=false)
+   	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0, lower=false)
    	HoleRadius = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryRadius)
-   	HoleDepth  = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryLength)
+   	HoleDepth  = getfloat("\n\t > Hole Radius (cm) = ", 0.0, CryLength, lower=false)
    	WellDetector(CryRadius, CryLength, HoleRadius, HoleDepth)
 end #function
 
@@ -356,9 +356,9 @@ construct and return an object of the `Detector` leaf types
 """
 function Detector()
    	printstyled("\n I- The detector physical Dimensions :-\n", color = :yellow)
-   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0)
+   	CryRadius  = getfloat("\n\t > Crystal Radius (cm) = ", 0.0, lower=false)
    	CryLength  = getfloat("\n\t > Crystal Length (cm) = ", 0.0)
-   	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, nextfloat(CryRadius))
+   	HoleRadius = getfloat("\n(zero for cylindrical detectors) > Hole Radius (cm) = ", 0.0, CryRadius, upper=false)
    	if   0.0 == HoleRadius
       		return CylDetector(CryRadius, CryLength)
 
