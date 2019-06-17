@@ -309,8 +309,8 @@ struct WellDetector <: Detector
    	function WellDetector(CryRadius::Float64, CryLength::Float64, HoleRadius::Float64, HoleDepth::Float64)
       		@validateDetector	CryRadius > 0.0				"Crystal Radius: expect +ve number, get '$(CryRadius)'"
       		@validateDetector	CryLength > 0.0				"Crystal Length: expect +ve number, get '$(CryLength)'"
-      		@validateDetector	CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number Less than 'Crystal Radius=$(CryRadius)', get '(HoleRadius)'"
-      		@validateDetector	CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number Less than 'Crystal Length=$(CryLength)', get '$(HoleDepth)'"
+      		@validateDetector	CryRadius > HoleRadius > 0.0	"Hole Radius: expect +ve number less than 'Crystal Radius = $(CryRadius)', get '$(HoleRadius)'"
+      		@validateDetector	CryLength > HoleDepth > 0.0	   	"Hole Depth: expect +ve number less than 'Crystal Length = $(CryLength)', get '$(HoleDepth)'"
       		new(CryRadius, CryLength, HoleRadius, HoleDepth)
    	end #if
 
