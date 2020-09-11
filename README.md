@@ -63,6 +63,7 @@ At the end of this step you should be able to run julia from your system.
 
 ## _Note_
 **Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation.**
+[![Run on Repl.it](https://repl.it/badge/github/DrKrar/GeoEfficiency.jl)](https://repl.it/github/DrKrar/GeoEfficiency.jl)
 
 ### 2. Installing Package
 GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.
