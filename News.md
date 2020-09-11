@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Version 0.9.4-dev]
 ### Removed
 -  support for julia versions before 1.0 dropped.
+-  Meta function `about()` removed.
 
 ### Changed
 -  input from console promptly detect invalid dimensions while constructing detectors

@@ -4,7 +4,7 @@ __precompile__()
 
 
 # GeoEfficiency Package
-introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
+Introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
 for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form 
 a source. The source can be a point, a disc or even a cylinder.
 
@@ -15,16 +15,27 @@ a source. The source can be a point, a disc or even a cylinder.
 
 *  calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
 
-*  batch()	: Calculate the geometrical efficiency using data in the **`$(join(split(dataDir,"/travis")))`** folder in batch mode.
+*  batch()	: Calculate  in ``batch mode`` the geometrical efficiency using data in the **`$(join(split(dataDir,"/travis")))`** folder.
+   For more information see `batch`, `batchInfo`.
 
-!!! note
-    for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
+# Documentation and Updates
+
+\t Repository:    [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
+\t Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
+\t                https://juliahub.com/docs/GeoEfficiency/
+\t PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
+
+To use Julia pakage manger to check for and obtaining the latest stable vesrion
+
+``julia> import Pkg``
+
+``julia> Pkg.update("GeoEfficiency")``
 
 """
 module GeoEfficiency
+const GeoEfficiency_Version = v"0.9.4-dev"
 
 export 
-	about,
 
  # Config
 
@@ -62,11 +73,10 @@ include("Calculations.jl")
 include("Output_Interface.jl")
 
 
-#------------------------ about ---------------------------
+#------------------------ splash ---------------------------
 
-using Dates
 
-const abt = """
+printstyled("""
 \n
 \t **************************************************
 \t **            -=) GeoEfficiency (=-             **
@@ -76,22 +86,15 @@ const abt = """
 
 \t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
 \t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
-\t Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
-\t Version:       v"0.9.4-dev" - ($(Date(now()) - Date("2019-05-21")) old master)  
-\t Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
-\t PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
-\n
-\n\tBatch Mode Calculations 
-\t-  read files by defaul from directory `$(join(split(dataDir, "/travis")))`
-\t-  save results by default to directory `$(join(split(resultdir, "/travis")))`
-\n\tfor more information see `batch`, `batchInfo`.
-\n
-"""
 
-"""
-$abt
-"""
-about() = printstyled(abt, color = :green, bold = true)
-about()
+\t Welome to GeoEfficiency $GeoEfficiency_Version
+
+\t Start a calculation by using:
+    julia> calc()
+
+\t Type ? just after 'julia>' to open help system:
+    julia>? GeoEfficiency
+\n
+""", color = :blue, bold = true)
 
 end #module
