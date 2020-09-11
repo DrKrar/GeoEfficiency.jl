@@ -17,6 +17,6 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 test = ["Test"]
 
 [compat]
-julia = "1"
-#Compat = ">= 0.63.0"
-QuadGK = ">= 2.0.2"
+julia = ">=1.5"
+#Compat = ">= 3.15"
+QuadGK = ">= 2.4"

@@ -51,8 +51,8 @@ The checked items represent already present feature.
  - [ ] combine the effect of the source geometry and composition. 
 
 ## Requirements
- *  Julia 1.1 or above.
- *  QuadGK 2.0 or above, installed automatically during the package installation.
+ *  Julia 1.5 or above.
+ *  QuadGK 2.4 or above, installed automatically during the package installation.
  
 ## Download/Installation
 Getting the GeoEfficiency package to work involves two steps: 
