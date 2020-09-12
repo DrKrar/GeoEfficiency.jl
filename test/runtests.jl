@@ -4,7 +4,7 @@
 
 using Test, DelimitedFiles, .MathConstants
 using GeoEfficiency
-const G = GeoEfficiency
+const G = GeoEfficiency		# to qualify non exported objects
 
 
 include("Helper.jl")
