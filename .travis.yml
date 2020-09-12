@@ -10,15 +10,15 @@ julia:
   - nightly
 notifications:
 
-## UnComment this block to replace after_success section
-#codecov: true
-#coveralls: true
-# using Pkg
-# Pkg.build(; verbose = true) # for Julia 1.1 and up
-# Pkg.test(coverage=true)
-after_success:
-  - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
-  - julia --project=coverage/ coverage/coverage.jl
+# UnComment this block to replace after_success section
+codecov: true
+coveralls: true
+using Pkg
+Pkg.build(; verbose = true) # for Julia 1.1 and up
+Pkg.test(coverage=true)
+#after_success:
+#  - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
+#  - julia --project=coverage/ coverage/coverage.jl
 
 services:
   - docker
