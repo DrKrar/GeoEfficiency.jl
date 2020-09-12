@@ -3,36 +3,10 @@
 
 # Summery
 
-<a id='GeoEfficiency.about' href='#GeoEfficiency.about'>#</a>
-**`GeoEfficiency.about`** &mdash; *Function*.
-
-
 
 ```
- **************************************************
- **            -=) GeoEfficiency (=-             **
- **  Accurate Geometrical Efficiency Calculator  **
- **   First Created on Fri Aug 14 20:12:01 2015  **
- **************************************************
-
- Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
- Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
- Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
- Version:       v"0.9.4-dev" - (188 days old master)  
- Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
- PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
-
-
-
-Batch Mode Calculations 
--  read files by defaul from directory `/home/GeoEfficiency`
--  save results by default to directory `/home/GeoEfficiency/results`
-
-for more information see `batch`, `batchInfo`.
+GeoEfficiency.about
 ```
-
-
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/9bc17c31b0b2a6722a07d0524ea41f62a1f861f1/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.GeoEfficiency' href='#GeoEfficiency.GeoEfficiency'>#</a>
 **`GeoEfficiency.GeoEfficiency`** &mdash; *Module*.
@@ -41,19 +15,30 @@ for more information see `batch`, `batchInfo`.
 
 **GeoEfficiency Package**
 
-introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency`  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.
+Introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency`  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.
 
 **Quick Usage**
 
   * geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
   * calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
   * calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
-  * batch()	: Calculate the geometrical efficiency using data in the **`/home/GeoEfficiency`** folder in batch mode.
+  * batch()	: Calculate  in $batch mode$ the geometrical efficiency using data in the **`/home/GeoEfficiency`** folder.  For more information see `batch`, `batchInfo`.
 
-!!! note
-    for more information and updates refer to the repository at [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
+**Documentation and Updates**
+
+```
+ Repository:    [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
+ Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
+                https://juliahub.com/docs/GeoEfficiency/
+ PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
+```
+
+To use Julia pakage manger to check for and obtaining the latest stable vesrion
+
+$julia> import Pkg$
+
+$julia> Pkg.update("GeoEfficiency")$
 
 
-
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/9bc17c31b0b2a6722a07d0524ea41f62a1f861f1/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/aa8fbdca6b605bd4a77600d9cd5183afcdf6c9b2/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
 
