@@ -41,6 +41,4 @@ const SourceFiles = [
 		println("\n")
 	end #testset_SourceFile
 
-	@test about() == nothing
-
 end #testset_GeoEfficiency
