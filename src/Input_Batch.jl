@@ -342,7 +342,7 @@ function getDetectors(detector_info_array::Matrix{<:Real},
          			@info("The new detectors information may entered via the console", _file=nothing)
          			return getDetectors(detectors_array)
       		else
-        		 	error("getDetectors: Empty `detector_info_array`", _file=nothing)
+        		 	error("getDetectors: Empty `detector_info_array`")
       		end
 
    	else
