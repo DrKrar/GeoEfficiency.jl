@@ -298,7 +298,7 @@ end #testset_reading_from_CSV
 	@test_throws  MethodError getDetectors(detector_info_array; console_FB=false)
 	detector_info_array = [5+1im 0 0 0; 5 10 0 0; 5 10 2 0; 5 10 2 5]
 	@test_throws MethodError getDetectors(detector_info_array; console_FB=false)
-	detector_info_array = detector_info_array = Matrix{Int}(undef, 0, 0)
+	detector_info_array = Matrix{Int}(undef, 0, 0)
 	@test_throws ErrorException getDetectors(detector_info_array; console_FB=false)
 
 
