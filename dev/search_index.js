@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Requirements",
     "category": "section",
-    "text": "Julia 1.1 or above.\nQuadGK 2.0.2 or above, will be installed automatically during the package Installation."
+    "text": "Julia 1.5 or above.\nQuadGK 2.4 or above, will be installed automatically during the package Installation."
 },
 
 {
@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "1. Installing Julia Language",
     "category": "section",
-    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: JuliaBox.com\nHead to JuliaBox.com to run julia in your browser without any local installation. no registration is required just a Google account."
+    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: Jupter Notebook\nHead to (Image: Binder) to run julia in your browser without any local installation."
 },
 
 {
@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Summery",
     "title": "Summery",
     "category": "section",
-    "text": "GeoEfficiency.aboutGeoEfficiency.GeoEfficiency"
+    "text": "GeoEfficiency.GeoEfficiency"
 },
 
 {
