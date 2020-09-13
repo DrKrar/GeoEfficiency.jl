@@ -41,8 +41,8 @@ the checked items represent already present feature.
  - [ ] combine the effect of the source geometry and composition. 
 
 ## Requirements
- *  Julia 1.1 or above.
- *  QuadGK 2.0.2 or above, will be installed automatically during the package Installation.
+ *  Julia 1.5 or above.
+ *  QuadGK 2.4 or above, will be installed automatically during the package Installation.
  
 ## Download/Installation
 Getting the GeoEfficiency package to work involves two steps: 
@@ -51,8 +51,8 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install. 
 At the end of this step you should be able to run julia from your system. 
 
-!!! note "JuliaBox.com"
-    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation. no registration is required just a Google account.
+!!! note "Jupter Notebook"
+    Head to [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
 
 ### 2. Installing Package
 GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.
