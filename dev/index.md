@@ -57,8 +57,8 @@ The following list show the state of current feature and planed feature. the che
 ## Requirements
 
 
-  * Julia 1.1 or above.
-  * QuadGK 2.0.2 or above, will be installed automatically during the package Installation.
+  * Julia 1.5 or above.
+  * QuadGK 2.4 or above, will be installed automatically during the package Installation.
 
 
 <a id='Download/Installation-1'></a>
@@ -77,8 +77,8 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. 
 
 
-!!! note "JuliaBox.com"
-    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation. no registration is required just a Google account.
+!!! note "Jupter Notebook"
+    Head to [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
 
 
 

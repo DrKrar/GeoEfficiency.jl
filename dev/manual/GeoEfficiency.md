@@ -3,11 +3,6 @@
 
 # Summery
 
-
-```
-GeoEfficiency.about
-```
-
 <a id='GeoEfficiency.GeoEfficiency' href='#GeoEfficiency.GeoEfficiency'>#</a>
 **`GeoEfficiency.GeoEfficiency`** &mdash; *Module*.
 
@@ -40,5 +35,5 @@ $julia> import Pkg$
 $julia> Pkg.update("GeoEfficiency")$
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/ad9377a2691f8b2effc9b9bdb8901ed165796731/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/164822b66391a97e455aa0123d4bcab29165ba14/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
 
