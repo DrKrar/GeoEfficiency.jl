@@ -10,7 +10,7 @@
 
 using .MathConstants, DelimitedFiles
 
-isconst(@__MODULE__, :dataFolder) 	||	const dataFolder = string(@__MODULE__)
+isconst(@__MODULE__, :dataFolder) 	||	const dataFolder = string(".", @__MODULE__)
 isconst(@__MODULE__, :dataDir)		||	const dataDir    = joinpath(homedir(), dataFolder) 	
 mkpath(dataDir)
 

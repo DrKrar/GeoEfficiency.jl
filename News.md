@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Meta function `about()` removed.
 
 ### Changed
+-  change batch data directory to ~/.GeoEfficiency.
 -  input from console promptly detect invalid dimensions while constructing detectors
 
 ### Version 0.9.3

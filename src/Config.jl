@@ -14,10 +14,11 @@
 
 
 ##Physics_Model.jl##
+##Input_Consolejl##
 
 
-##Input_Interface.jl##
-const dataFolder    = "GeoEfficiency"                          # "GeoEfficiency"
+##Input_Batch.jl##
+const dataFolder    = ".GeoEfficiency"                          # ".GeoEfficiency"
 const dataDir       = joinpath(homedir(), dataFolder)          # joinpath(homedir(), dataFolder)
 
 
