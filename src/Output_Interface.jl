@@ -11,6 +11,7 @@
 using DelimitedFiles
 
 isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
+
 const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")
 const resultdir_nonPnt  = joinpath(resultdir, "non-Point")
