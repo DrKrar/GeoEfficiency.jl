@@ -10,6 +10,7 @@
 
 using DelimitedFiles
 
+# Work with `Config.jl` to give default values to [resultsFolder] if needed.
 isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
 
 const resultdir	        = joinpath(dataDir, resultsFolder)
