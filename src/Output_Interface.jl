@@ -469,7 +469,7 @@ function _batch(::Val{false},
                   						calculatedEff = geoEff(detector, aPnt, srcRadius, srcLength)
 
                					catch err
-						#isa(err, AssertionError) && @goto(Next_srcLength)
+						##isa(err, AssertionError) && @goto(Next_srcLength)
                   						calculatedEff = NaN
 
                					end #try
@@ -484,12 +484,12 @@ function _batch(::Val{false},
 
             				end #for_srcRadius
 
-             			@label(Next_srcLength)
+             			##@label(Next_srcLength)
          			end #for_srcLength
 
       		end #for_Rho
 
-       	@label(Next_Height)
+       	##@label(Next_Height)
    	end #for_Height
 
    	results::Matrix{Float64} = reshape(out_results, 5, :) |> transpose

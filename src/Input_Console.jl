@@ -94,7 +94,7 @@ function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = 
 	"nothing" == value ? value = input(prompt) : nothing
 	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interpreted as <0.0>
 	
-	local val::Float64
+	local val::Float64 = 0.0
 	try
 		val =  Meta.parse(value) |> eval |> float
 		@assert from < val < to || (lower && from == val) || (upper && to == val) 	
