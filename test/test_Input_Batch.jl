@@ -105,58 +105,58 @@ end #testset
 
 
 	@testset "Detectors write and read - input eltype{Int}" begin	
-		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
-		@test  G.detector_info_from_csvFile(detectorfile, datadirectory) == sort(detectors)
+		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ===  nothing
+		@test  G.detector_info_from_csvFile(detectorfile, datadirectory) === sort(detectors)
 	end #testset_input_type{Int}
 
 
 	@testset "write and read - input eltype{Int}" begin
-		@test  G.writecsv_head(hightpath, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [0, 1, 2, 3, 4, 5, 10, 15, 20,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "rewrite, read and sort  - input eltype{Int}" begin
-		@test  G.writecsv_head(hightpath, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [3, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "rewrite, read and sort - input eltype{Rational-treated as any}" begin
-		@test  G.writecsv_head_any(hightpath, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, [3//2, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]	# bad format
 	end #testset
 
 
 	@testset "rewrite, read and sort - input eltype{Float64}" begin
-		@test  G.writecsv_head(hightpath, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [3.0, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "rewrite, read and sort - input eltype{Irrational}" begin
-		@test  G.writecsv_head(hightpath, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test G.read_from_csvFile(hightfile, datadirectory) == [1.0, 2.0, e, pi, 5.0, pi + e, 10.0, 15.0]	# Irrational converted to Float
 	end #testset
 
 
 	@testset "invalid data type {Unionall}" begin
-		@test  G.writecsv_head_any(hightpath, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, ["3.0", 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) ==  [0, 1, 2, 3, 4, 5, 10, 15, 20,]
 	end #testset
 
 
 	@testset "invalid data type {String}" begin
-		@test  G.writecsv_head_any(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, ["pi", "20", "4", "0", "1", "2", "5", "10", "15",], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 		
-		@test  G.writecsv_head_any(hightpath, string.([pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"]))  ==  nothing
+		@test  G.writecsv_head_any(hightpath, string.([pi, e, pi + e, 1, 2, 5, 10, 15,], ["SrcHight"]))  ===  nothing
 		@test G.read_from_csvFile(hightfile, datadirectory) == [0.0]
 	end #testset
 
 
 	@testset "invalid data type {Complex}" begin
-		@test  G.writecsv_head_any(hightpath, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head_any(hightpath, [3.0+0.0im, 20, 4, 0, 1, 2, 5, 10, 15,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [0.0]			
 	end #testset
 
@@ -174,7 +174,7 @@ end #testset
 
 
 	@testset "missing file - `Rhos.csv`" begin
-		@test  G.writecsv_head(hightpath, [4.0,], ["SrcHight"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [4.0,], ["SrcHight"])  ===  nothing
 		@test  G.read_from_csvFile(hightfile, datadirectory) == [4.0]
 		
 		setSrcToPoint(false)
@@ -210,8 +210,8 @@ end #testset
 
 
 		setSrcToPoint(true);
-		@test  G.writecsv_head(hightpath, [0, 10, 20, 3, 4, 5, 1, 15, 2,], ["SrcHight"])  ==  nothing
-		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ==  nothing
+		@test  G.writecsv_head(hightpath, [0, 10, 20, 3, 4, 5, 1, 15, 2,], ["SrcHight"])  ===  nothing
+		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ===  nothing
 		let batch_info = G.read_batch_info(datadirectory, detectorfile, hightfile, Rhosfile, Radiifile, Lengthsfile)
 			@test  batch_info[1] == sort(detectors)
 			@test  batch_info[2] == [0, 1, 2, 3, 4, 5, 10, 15, 20,]

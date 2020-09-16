@@ -9,7 +9,7 @@
 @debug("Point")	
 @testset "Point" begin
 	@test G.id(Point(5,3)) == "Point[Height=5.0, Rho=3.0]"
-	@test show(Point(5,3)) == nothing
+	@test show(Point(5,3)) === nothing
 
 
 	local pnt11 = Point(1, 1)
@@ -74,7 +74,7 @@ end #testset_Point
 @testset "CylDetector" begin 
   
 	@test G.id(CylDetector(5, 3)) == "CylDetector[CryRadius=5.0, CryLength=3.0]"
-	@test show(CylDetector(5, 3)) == nothing
+	@test show(CylDetector(5, 3)) === nothing
 	
 	let cyl0 = CylDetector(5), cyl1 = Detector(5)
 	
@@ -135,7 +135,7 @@ end #testset_CylDetector
 @testset "BoreDetector" begin 
 	
 		@test G.id(BoreDetector(5,3,2)) == "BoreDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0]"
-  		@test show(BoreDetector(5,3,2)) == nothing  
+  		@test show(BoreDetector(5,3,2)) === nothing  
     
 	let bore0 = BoreDetector(5,4,3), 
 		bore1 = Detector(5,4,3)
@@ -194,7 +194,7 @@ end #testset_BoreDetector
 @debug("WellDetector")	
 @testset "WellDetector" begin 
 	@test G.id(WellDetector(5, 3, 2, 1)) == "WellDetector[CryRadius=5.0, CryLength=3.0, HoleRadius=2.0, HoleDepth=1.0]"
-	@test show(WellDetector(5, 3, 2, 1)) == nothing  
+	@test show(WellDetector(5, 3, 2, 1)) === nothing  
 
 	let	Well0 = WellDetector(5,4,3,2), 
 		Well1 = Detector(5,4,3,2),

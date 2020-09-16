@@ -9,7 +9,7 @@
 
 
 @testset "GeoEfficiency.checkResultsDirs" begin 
-	@test G.checkResultsDirs() == nothing
+	@test G.checkResultsDirs() === nothing
 end #testset_checkResultsDirs
 
 
@@ -30,8 +30,8 @@ let pnt::Point = Point(1),
 	SrcRadius = Real[1, 1//2, e, pi, 1.0], 
 	SrcLength = Real[1, 1//2, e, pi, 1.0]
 
-		@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    == nothing
-		@test calc(wellDet, (pnt, SrcRadius , SrcLength))    == nothing
+		@test calc(cylDet,  (pnt, SrcRadius , SrcLength))    === nothing
+		@test calc(wellDet, (pnt, SrcRadius , SrcLength))    === nothing
 	
 		@test_throws 	G.NotImplementedError  	H.@console(calc(cylDet), 0, 15, 0)
 		@test_throws 	G.InValidGeometry  		H.@console(calc(cylDet), -1, 0, 0)
@@ -45,11 +45,11 @@ console_input = ["4 0 1 2 Q",
 				"4 0 1 3 " * "d " * "4 0 1 4 Q", 
 				"4 0 1 5 " * "n " * "11 6 0 " * "4 0 1 6 Q"]
 
-	@test H.exec_console_unattended(calcN, console_input, Fn_ARGs =[Detector(5, 10)])  == nothing
-	@test H.exec_console_unattended(calcN,  console_input, Fn_ARGs =[Detector(eps())])  == nothing
-	@test H.exec_console_unattended(calcN, "13 7 0 " * console_input)      == nothing
-	@test H.exec_console_unattended(calcN, "13 7 0 Q " * console_input)      == nothing
-	#@test H.exec_console_unattended(calcN, "-13 -7 0 Q " * console_input)      == nothing
+	@test H.exec_console_unattended(calcN, console_input, Fn_ARGs =[Detector(5, 10)])  === nothing
+	@test H.exec_console_unattended(calcN,  console_input, Fn_ARGs =[Detector(eps())])  === nothing
+	@test H.exec_console_unattended(calcN, "13 7 0 " * console_input)      === nothing
+	@test H.exec_console_unattended(calcN, "13 7 0 Q " * console_input)      === nothing
+	#@test H.exec_console_unattended(calcN, "-13 -7 0 Q " * console_input)      === nothing
 end #testset_calcN
 
 
