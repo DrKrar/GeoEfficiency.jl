@@ -19,10 +19,11 @@ import Base: show, isless
     Point(Height::Real, Rho::Real)
 
 construct and return a `Point` source.
-The `Point` can be used as either a source by itself or an `anchor point` of a higher dimension source.
+The `Point` represent either a source by itself or an `anchor point` of a higher dimension source [line - Disc - Cylinder - etc].
 
-*  `Height` : point height relative to the detector surface.
-*  `Rho` : point off-axis relative to the detector axis of symmetry.
+*  `Height` : point height relative to the detector.
+*  `Rho`    : point off-axis relative to the detector axis of symmetry.
+
 
 !!! warning "Interpretation of `Height`"
     Each detector type give different interpretation to the `Height` as follow:-
@@ -35,11 +36,14 @@ The `Point` can be used as either a source by itself or an `anchor point` of a h
 
 """
 struct Point
-   	Height::Float64
-   	Rho::Float64
+	"point height relative to the detector."
+	Height::Float64
+	"point off-axis relative to the detector axis of symmetry."
+	Rho::Float64
+
    	Point(Height::Float64, Rho::Float64) = new(Height, Rho)
 end #type
-Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
+@doc (@doc Point) Point(Height::Real, Rho::Real) = Point(float(Height), float(Rho))
 
 """
 
@@ -67,7 +71,7 @@ function Point()
    	printstyled("\n II- The Radioactive Source Anchor Point:-\n", color = :yellow)
    	Height = getfloat("\n\t > Height (cm) = ")
    	Rho = getfloat("\n\t > Off-axis (cm) = ")
-   	Point(Height, Rho)
+   	Point(Height, Rho) 
 end #function
 
 """
