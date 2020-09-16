@@ -106,7 +106,7 @@ end #testset
 
 	@testset "Detectors write and read - input eltype{Int}" begin	
 		@test  G.writecsv_head(detectorpath, detector_info_array, ["CryRadius"	 "CryLength" "HoleRadius" "HoleDepth"])  ===  nothing
-		@test  G.detector_info_from_csvFile(detectorfile, datadirectory) === sort(detectors)
+		@test  G.detector_info_from_csvFile(detectorfile, datadirectory) == sort(detectors)
 	end #testset_input_type{Int}
 
 
