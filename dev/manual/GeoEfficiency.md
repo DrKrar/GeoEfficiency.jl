@@ -17,7 +17,7 @@ Introduce a fast and flexible tool to calculate in batch or individually the `ge
   * geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
   * calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
   * calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
-  * batch()	: Calculate  in $batch mode$ the geometrical efficiency using data in the **`/home/GeoEfficiency`** folder.  For more information see `batch`, `batchInfo`.
+  * batch()	: Calculate  in $batch mode$ the geometrical efficiency using data in the **`/home/.GeoEfficiency`** folder.  For more information see `batch`, `batchInfo`.
 
 **Documentation and Updates**
 
@@ -35,5 +35,5 @@ $julia> import Pkg$
 $julia> Pkg.update("GeoEfficiency")$
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/164822b66391a97e455aa0123d4bcab29165ba14/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/0793f7d088522ea7c50cf6614055a3043fa64776/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
 
