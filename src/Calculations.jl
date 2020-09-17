@@ -10,10 +10,8 @@
 #------------------ consts - globals - imports -------------------
 
 
-# Work with `Config.jl` to give default values to [relative and absolute precession - interation method ] if needed.
-isconst(@__MODULE__, :relativeError) ||  const relativeError = 1.0E-4	
-isconst(@__MODULE__, :absoluteError) ||  const absoluteError = eps(1.0)
-isconst(@__MODULE__, :integrate)     ||  const integrate     = begin using QuadGK; QuadGK.quadgk; end
+# [relative and absolute precession - interation method ] are assigned in `Config.jl`.
+# include("Config.jl")
 
 
 #----------------------- GeoEff_Pnt -------------------------------

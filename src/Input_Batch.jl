@@ -10,9 +10,8 @@
 
 using .MathConstants, DelimitedFiles
 
-# Work with `Config.jl` to give default values to [dataFolder - dataDir ] if needed.
-isconst(@__MODULE__, :dataFolder) 	||	const dataFolder = string(".", @__MODULE__)
-isconst(@__MODULE__, :dataDir)		||	const dataDir    = joinpath(homedir(), dataFolder) 	
+# [dataDir - dataFolder] are assigned in `Config.jl`.
+# include("Config.jl")
 mkpath(dataDir)
 
 const Detectors  = "Detectors.csv";

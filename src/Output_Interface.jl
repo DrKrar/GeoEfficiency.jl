@@ -10,8 +10,8 @@
 
 using DelimitedFiles
 
-# Work with `Config.jl` to give default values to [resultsFolder] if needed.
-isconst(@__MODULE__, :resultsFolder) || const resultsFolder = "results"
+# [dataDir - resultsFolder - max_display ] are assigned in `Config.jl`.
+# include("Config.jl")
 
 const resultdir	        = joinpath(dataDir, resultsFolder)
 const resultdir_pnt     = joinpath(resultdir, "Point")

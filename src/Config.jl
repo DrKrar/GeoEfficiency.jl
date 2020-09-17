@@ -3,8 +3,6 @@
 # =============== part of the GeoEfficiency.jl package.
 #
 # this file contain the configurable parameters of the program. 
-# 	-  the values introduced here do hid any other values.
-# 	-  to restore defaults for a parameter just comment it out.
 #
 #**************************************************************************************
 
@@ -18,7 +16,7 @@
 
 
 ##Input_Batch.jl##
-const dataFolder    = ".GeoEfficiency"                          # ".GeoEfficiency"
+const dataFolder    = string(".", @__MODULE__)                 # string(".", @__MODULE__) = ".GeoEfficiency"
 const dataDir       = joinpath(homedir(), dataFolder)          # joinpath(homedir(), dataFolder)
 
 
