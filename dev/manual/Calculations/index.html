@@ -144,7 +144,7 @@
 <p>calculation of the geometrical efficiency can be done via a call to the function <code>geoEff</code>.</p>
 <p><a id='GeoEfficiency.geoEff' href='#GeoEfficiency.geoEff'>#</a>
 <strong><code>GeoEfficiency.geoEff</code></strong> &mdash; <em>Function</em>.</p>
-<pre><code class="julia">geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
+<pre><code>geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 </code></pre>
 
 <p>return the <code>geometrical efficiency</code> for a source (<code>point</code>, <code>disk</code> or <code>cylinder</code>) with  the detector <code>detector</code>. </p>
@@ -203,7 +203,7 @@ julia&gt; geoEff(newDet, Point(0.0), 1.0, 2.5)
 0.4669614527701105
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Calculations.jl#L231-L298' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Calculations.jl#L229-L296' class='documenter-source'>source</a><br></p>
 <div class="admonition note">
 <p class="admonition-title">Information</p>
 <p>the function has another method <code>geoEff()</code> that prompt the user to input a source and a detector via the <code>console</code>.</p>

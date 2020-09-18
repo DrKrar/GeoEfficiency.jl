@@ -205,12 +205,12 @@
 <li>[x] <code>point</code> sources.</li>
 <li>[x] <code>disc</code> sources.</li>
 <li>[x] <code>cylinder</code> sources.</li>
-</ul>
-</li>
 <li>
 <p>[ ] support of anisotropic radioactive sources.</p>
-<ul>
-<li>[ ] <code>point</code> sources.</li>
+</li>
+<li>
+<p>[ ] <code>point</code> sources.</p>
+</li>
 <li>
 <p>[ ] consider more details of the measurement setup.</p>
 </li>
@@ -226,8 +226,8 @@
 <p><a id='Requirements-1'></a></p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Julia 1.1 or above.</li>
-<li>QuadGK 2.0.2 or above, will be installed automatically during the package Installation.</li>
+<li>Julia 1.5 or above.</li>
+<li>QuadGK 2.4 or above, will be installed automatically during the package Installation.</li>
 </ul>
 <p><a id='Download/Installation-1'></a></p>
 <h2 id="downloadinstallation">Download/Installation<a class="headerlink" href="#downloadinstallation" title="Permanent link">&para;</a></h2>
@@ -236,8 +236,8 @@
 <h3 id="1-installing-julia-language">1. Installing Julia Language<a class="headerlink" href="#1-installing-julia-language" title="Permanent link">&para;</a></h3>
 <p>Just head over to the Julia language <a href="https://www.julialang.org/downloads/">download page</a> and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. </p>
 <div class="admonition note">
-<p class="admonition-title">JuliaBox.com</p>
-<p>Head to <a href="https://www.juliabox.com">JuliaBox.com</a> to run julia in your browser without any local installation. no registration is required just a Google account.</p>
+<p class="admonition-title">Jupter Notebook</p>
+<p>Head to <a href="https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> to run julia in your browser without any local installation.</p>
 </div>
 <p><a id='.-Installing-Package-1'></a></p>
 <h3 id="2-installing-package">2. Installing Package<a class="headerlink" href="#2-installing-package" title="Permanent link">&para;</a></h3>
@@ -256,7 +256,7 @@ julia&gt; Pkg.add(&quot;GeoEfficiency&quot;)
 <pre><code class="julia">julia&gt; calc()
 </code></pre>
 
-<p><strong>see also: <a href="manual\Calculations.md#GeoEfficiency.geoEff"><code>geoEff()</code></a>, <a href="manual\Output_Interface.md#GeoEfficiency.calcN"><code>calcN()</code></a>, <a href="manual\Output_Interface.md#GeoEfficiency.batch"><code>batch()</code></a></strong></p>
+<p><strong>see also: <a href="manual/Calculations/#GeoEfficiency.geoEff"><code>geoEff()</code></a>, <a href="manual/Output_Interface/#GeoEfficiency.calcN"><code>calcN()</code></a>, <a href="manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a></strong></p>
 <p><a id='Unit-Test-1'></a></p>
 <h2 id="unit-test">Unit Test<a class="headerlink" href="#unit-test" title="Permanent link">&para;</a></h2>
 <p>For scientific calculation accuracy in calculation and being error free is a highly demanded objective. Thus, the package is extensively tested method-wise in each supported operating system. Operating system fully supported include Windows, Linus, Apple OSX.</p>
@@ -269,18 +269,18 @@ julia&gt; Pkg.test(&quot;GeoEfficiency&quot;)
 <h2 id="package-overview">Package Overview<a class="headerlink" href="#package-overview" title="Permanent link">&para;</a></h2>
 <p>The following constructor can be used to construct a specific type of detector </p>
 <ul>
-<li><a href="manual\Physics_Model.md#GeoEfficiency.CylDetector"><code>CylDetector</code></a> for cylindrical detector,</li>
-<li><a href="manual\Physics_Model.md#GeoEfficiency.BoreDetector"><code>BoreDetector</code></a> for bore hole,</li>
-<li><a href="manual\Physics_Model.md#GeoEfficiency.WellDetector"><code>WellDetector</code></a> for well type detector.</li>
+<li><a href="manual/Physics_Model/#GeoEfficiency.CylDetector"><code>CylDetector</code></a> for cylindrical detector,</li>
+<li><a href="manual/Physics_Model/#GeoEfficiency.BoreDetector"><code>BoreDetector</code></a> for bore hole,</li>
+<li><a href="manual/Physics_Model/#GeoEfficiency.WellDetector"><code>WellDetector</code></a> for well type detector.</li>
 </ul>
-<p>While the function <a href="manual\Development.md#GeoEfficiency.Detector"><code>Detector</code></a> can be used to construct any of the above types. You may try also <a href="manual\Development.md#GeoEfficiency.getDetectors"><code>getDetectors</code></a>.</p>
-<p><a href="manual\Physics_Model.md#GeoEfficiency.Point"><code>Point</code></a> constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified. For a point source, the anchoring point is the source itself.  The <a href="manual\Physics_Model.md#GeoEfficiency.source"><code>source()</code></a> method take input from the 'console' and return a tuple describing the source.</p>
+<p>While the function <a href="manual/Development/#GeoEfficiency.Detector"><code>Detector</code></a> can be used to construct any of the above types. You may try also <a href="manual/Development/#GeoEfficiency.getDetectors"><code>getDetectors</code></a>.</p>
+<p><a href="manual/Physics_Model/#GeoEfficiency.Point"><code>Point</code></a> constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified. For a point source, the anchoring point is the source itself.  The <a href="manual/Physics_Model/#GeoEfficiency.source"><code>source()</code></a> method take input from the 'console' and return a tuple describing the source.</p>
 <p>The efficiency calculation can be done by one of the functions: </p>
 <ul>
-<li><a href="manual\Calculations.md#GeoEfficiency.geoEff"><code>geoEff</code></a> used with or without argument(s),</li>
-<li><a href="manual\Output_Interface.md#GeoEfficiency.calc"><code>calc</code></a> ask for the required information from the 'console',</li>
-<li><a href="manual\Output_Interface.md#GeoEfficiency.calcN"><code>calcN</code></a> just a repeat of the <a href="manual\Output_Interface.md#GeoEfficiency.calc"><code>calc</code></a> function</li>
-<li><a href="manual\Output_Interface.md#GeoEfficiency.batch"><code>batch()</code></a> which try to take required information from csv files located in   the home directory inside a folder called <code>GeoEfficiency</code>.</li>
+<li><a href="manual/Calculations/#GeoEfficiency.geoEff"><code>geoEff</code></a> used with or without argument(s),</li>
+<li><a href="manual/Output_Interface/#GeoEfficiency.calc"><code>calc</code></a> ask for the required information from the 'console',</li>
+<li><a href="manual/Output_Interface/#GeoEfficiency.calcN"><code>calcN</code></a> just a repeat of the <a href="manual/Output_Interface/#GeoEfficiency.calc"><code>calc</code></a> function</li>
+<li><a href="manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a> which try to take required information from csv files located in   the home directory inside a folder called <code>GeoEfficiency</code>.</li>
 </ul>
 <p>For more on the function and its methods prefix the name of the function by <code>?</code>.</p>
 <div class="admonition note">
@@ -291,31 +291,23 @@ julia&gt; Pkg.test(&quot;GeoEfficiency&quot;)
 <h2 id="batch-calculation">Batch Calculation<a class="headerlink" href="#batch-calculation" title="Permanent link">&para;</a></h2>
 <p>The package can be used to perform batch calculations by calling one of the  methods of the function <code>batch</code>. The output results of batch calculations is  found by default in <code>GeoEfficiency\results</code> folder inside the user home directory.</p>
 <p><strong>For example  <code>c:\users\yourusername\GeoEfficiency\results\</code></strong>.</p>
-<p>The function <a href="manual\Output_Interface.md#GeoEfficiency.batch"><code>batch()</code></a> can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved  Values  [CSV] files, that can be easily edit by Microsoft Excel, located by default  in the <code>GeoEfficiency</code> folder.</p>
+<p>The function <a href="manual/Output_Interface/#GeoEfficiency.batch"><code>batch()</code></a> can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved  Values  [CSV] files, that can be easily edit by Microsoft Excel, located by default  in the <code>GeoEfficiency</code> folder.</p>
 <p>Those Comma Saved Values [CSV] files are:-</p>
 <ul>
 <li>
 <p><code>Detectors.csv</code> contains the detectors description (<code>a detector per line</code>); The line format is: </p>
 <p><code>Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
-  ---------------| ---------------|-------------|----------- |</code></p>
-</li>
-<li>
-<p><code>srcHeights.csv</code> contains the source heights; </p>
+  ---------------| ---------------|-------------|----------- |</code>
+  * <code>srcHeights.csv</code> contains the source heights; </p>
 <p><code>Source_Heights | 
-  ---------------|</code></p>
-</li>
-<li>
-<p><code>srcRhos.csv</code> contains the source off-axis distances;                        </p>
+  ---------------|</code>
+  * <code>srcRhos.csv</code> contains the source off-axis distances;                        </p>
 <p><code>Source_Rhos | 
-  ------------|</code></p>
-</li>
-<li>
-<p><code>srcRadii.csv</code> contains the source radii for disc and cylindrical sources;             </p>
+  ------------|</code>
+  * <code>srcRadii.csv</code> contains the source radii for disc and cylindrical sources;             </p>
 <p><code>Source_Radii| 
-  ------------|</code></p>
-</li>
-<li>
-<p><code>srcLengths.csv</code> contains the source length for cylindrical sources;    </p>
+  ------------|</code>
+  * <code>srcLengths.csv</code> contains the source length for cylindrical sources;    </p>
 <p><code>Source_Lengths| 
   --------------|</code></p>
 </li>
@@ -382,5 +374,5 @@ julia&gt; Pkg.test(&quot;GeoEfficiency&quot;)
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-09-18 13:30:29
+Build Date UTC : 2020-09-18 14:08:57
 -->

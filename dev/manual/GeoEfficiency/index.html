@@ -141,47 +141,28 @@
               
                 <p><a id='Summery-1'></a></p>
 <h1 id="summery">Summery<a class="headerlink" href="#summery" title="Permanent link">&para;</a></h1>
-<p><a id='GeoEfficiency.about' href='#GeoEfficiency.about'>#</a>
-<strong><code>GeoEfficiency.about</code></strong> &mdash; <em>Function</em>.</p>
-<pre><code class="julia"> *************************************************
- **            -=) GeoEfficiency (=-             **
- **  Accurate Geometrical Efficiency Calculator  **
- **   First Created on Fri Aug 14 20:12:01 2015  **
- *************************************************
-
- Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
- Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
- Repository:    https://github.com/DrKrar/GeoEfficiency.jl/
- Version:       v&quot;0.9.4-dev&quot; - (24 days old master)  
- Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
- PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
-
-
-
-Batch Mode Calculations 
--  read files by defaul from directory `C:\Users\Mohamed\GeoEfficiency`
--  save results by default to directory `C:\Users\Mohamed\GeoEfficiency\results`
-
-for more information see `batch`, `batchInfo`.
-</code></pre>
-
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/GeoEfficiency.jl#L91-L116' class='documenter-source'>source</a><br></p>
 <p><a id='GeoEfficiency.GeoEfficiency' href='#GeoEfficiency.GeoEfficiency'>#</a>
 <strong><code>GeoEfficiency.GeoEfficiency</code></strong> &mdash; <em>Module</em>.</p>
 <p><strong>GeoEfficiency Package</strong></p>
-<p>introduce a fast and flexible tool to calculate in batch or individually the <code>geometrical efficiency</code>  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.</p>
+<p>Introduce a fast and flexible tool to calculate in batch or individually the <code>geometrical efficiency</code>  for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form  a source. The source can be a point, a disc or even a cylinder.</p>
 <p><strong>Quick Usage</strong></p>
 <ul>
 <li>geoEff()    : Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.</li>
 <li>calc()  : Calculate the geometrical efficiency for one geometrical setup and display full information on the console.</li>
 <li>calcN() : Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.</li>
-<li>batch() : Calculate the geometrical efficiency using data in the <strong><code>C:\Users\Mohamed\GeoEfficiency</code></strong> folder in batch mode.</li>
+<li>batch() : Calculate  in $batch mode$ the geometrical efficiency using data in the <strong><code>/home/.GeoEfficiency</code></strong> folder.  For more information see <code>batch</code>, <code>batchInfo</code>.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>for more information and updates refer to the repository at <a href="https://github.com/DrKrar/GeoEfficiency.jl/"><code>GitHub.com</code></a></p>
-</div>
-<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/GeoEfficiency.jl#L3-L23' class='documenter-source'>source</a><br></p>
+<p><strong>Documentation and Updates</strong></p>
+<pre><code> Repository:    [`GitHub.com`](https://github.com/DrKrar/GeoEfficiency.jl/)
+ Documentation: https://GeoEfficiency.GitHub.io/dev/index.html
+                https://juliahub.com/docs/GeoEfficiency/
+ PDF_Manual:    https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf
+</code></pre>
+
+<p>To use Julia pakage manger to check for and obtaining the latest stable vesrion</p>
+<p>$julia&gt; import Pkg$</p>
+<p>$julia&gt; Pkg.update("GeoEfficiency")$</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
