@@ -50,6 +50,7 @@ end #let
 		@test_throws G.NotImplementedError	geoEff(acylDetector, Point(eps(cryRadius), nextfloat(cryRadius)))
 		@test_throws G.NotImplementedError	geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
 		@test_throws G.InValidGeometry		geoEff(acylDetector, Point(-1, 0))
+		@test_throws G.InValidGeometry		geoEff(acylDetector, Point(-1, prevfloat(cryRadius)))
 	end #testset_cylindrical_detector
 
 
