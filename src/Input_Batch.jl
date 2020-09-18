@@ -10,7 +10,7 @@
 
 using .MathConstants, DelimitedFiles
 
-# [dataDir - dataFolder] are assigned in `Config.jl`.
+# parameters [dataDir - dataFolder] are assigned in `Config.jl`.
 # include("Config.jl")
 mkpath(dataDir)
 

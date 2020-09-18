@@ -10,7 +10,7 @@
 
 using DelimitedFiles
 
-# [dataDir - resultsFolder - max_display ] are assigned in `Config.jl`.
+# parameters [dataDir - resultsFolder - max_display ] are assigned in `Config.jl`.
 # include("Config.jl")
 
 const resultdir	        = joinpath(dataDir, resultsFolder)

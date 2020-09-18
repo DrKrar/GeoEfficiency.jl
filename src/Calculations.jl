@@ -10,7 +10,7 @@
 #------------------ consts - globals - imports -------------------
 
 
-# [relative and absolute precession - interation method ] are assigned in `Config.jl`.
+# parameters [relative and absolute precession - interation method ] are assigned in `Config.jl`.
 # include("Config.jl")
 
 
@@ -35,8 +35,8 @@ of the cylindrical detector `detector` face.
 
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
-   	aPnt.Rho > detector.CryRadius 	&& 	@notImplementedError("Point off-axis, out of the detector face")
-   	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	@inValidGeometry("The point source location can not be inside the detector")
+   	#aPnt.Rho > detector.CryRadius 	&& 	@notImplementedError("Point off-axis, out of the detector face")
+   	#detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	@inValidGeometry("The point source location can not be inside the detector")
 
    	function MaxPhi(theta::Float64)::Float64
       		side = aPnt.Height * sin(theta)
@@ -55,16 +55,19 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
       		transition = atan(detector.CryRadius - aPnt.Rho, aPnt.Height)
       		fine = atan(detector.CryRadius + aPnt.Rho, aPnt.Height)
       		if transition >= 0.0
-
-        		 	return integrate(sin, strt, transition, rtol = relativeError, atol = absoluteError)[1] +
+				if aPnt.Height < 0.0 	
+					@inValidGeometry("The point source location can not be inside the detector")
+				else
+        		return integrate(sin, strt, transition, rtol = relativeError, atol = absoluteError)[1] +
                       			integrate(func, transition, fine, rtol = relativeError, atol = absoluteError)[1] / pi
-
+				end #aPnt.Height < 0.0 
       		else
-         			@info("This case is not implemented yet", _file=nothing)
+				@info("This case is not implemented yet", _file=nothing)
+				@notImplementedError("Point off-axis, out of the detector face")
 			# TBD: (Top + Side) efficiencies
-      		end #if
+      		end #if transition >= 0.0
 
-   	end #if
+   	end #if axial Point
 end #function
 
 
