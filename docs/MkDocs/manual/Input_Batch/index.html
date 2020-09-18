@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Mohamed E. Krar">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Input Batch - GeoEfficiency.jl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Input Batch";
+    var mkdocs_page_input_path = "manual/Input_Batch.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/Julia.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> GeoEfficiency.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mauual</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GeoEfficiency/">Summery</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Physics_Model/">Physics Model</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Calculations/">Calculations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Output_Interface/">Output Interface</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Input Batch</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#batch-mode-input">Batch Mode Input</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Development/">Development</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../list/">Index</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../LICENSE/">LICENSE</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">GeoEfficiency.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Mauual &raquo;</li>
+        
+      
+    
+    <li>Input Batch</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Batch-Mode-Input-1'></a></p>
+<h1 id="batch-mode-input">Batch Mode Input<a class="headerlink" href="#batch-mode-input" title="Permanent link">&para;</a></h1>
+<p><a id='GeoEfficiency.typeofSrc' href='#GeoEfficiency.typeofSrc'>#</a>
+<strong><code>GeoEfficiency.typeofSrc</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code class="julia">typeofSrc()::SrcType
+</code></pre>
+
+<p>return the current value of the global <code>GeoEfficiency.srcType</code>.</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L29-L35' class='documenter-source'>source</a><br></p>
+<pre><code>typeofSrc(x::Int)::SrcType
+</code></pre>
+
+<p>set and return the value of the global <code>GeoEfficiency.srcType</code> corresponding to <code>x</code>.</p>
+<ul>
+<li>srcUnknown = -1 also any negative integer treated as so,</li>
+<li>srcPoint   = 0,</li>
+<li>srcLine    = 1,</li>
+<li>srcDisk    = 2,</li>
+<li>srcVolume  = 3,</li>
+<li>srcNotPoint = 4 also any greater than 4 integer treated as so.</li>
+</ul>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L38-L51' class='documenter-source'>source</a><br></p>
+<p><a id='GeoEfficiency.setSrcToPoint' href='#GeoEfficiency.setSrcToPoint'>#</a>
+<strong><code>GeoEfficiency.setSrcToPoint</code></strong> &mdash; <em>Function</em>.</p>
+<pre><code class="julia">setSrcToPoint()::Bool
+</code></pre>
+
+<p>return whether the source type is a point or not.</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L65-L70' class='documenter-source'>source</a><br></p>
+<pre><code>setSrcToPoint(yes::Bool)::Bool
+</code></pre>
+
+<p>return whether the source type is a point or not after setting <code>srcType</code> to <code>srcPoint</code> if  <code>yes</code> = <code>true</code> else if <code>yes</code> = <code>false</code> setting it to <code>srcNotPoint</code> if it was not already  set to other non-point type (<code>srcDisk</code>, <code>srcLine</code>, <code>srcVolume</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>The user can use this function to change the source type any time.</li>
+<li>The source type is set the fist time asked for source.</li>
+</ul>
+</div>
+<p><strong>see also:</strong> <a href="./#GeoEfficiency.typeofSrc"><code>typeofSrc(::Int)</code></a>.</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L73-L88' class='documenter-source'>source</a><br></p>
+<pre><code>setSrcToPoint(prompt::AbstractString)::Bool
+</code></pre>
+
+<p>return whether the source type is a point or not. only prompt the user to set the source  type if it were not already set before. </p>
+<p><strong>see also:</strong> <a href="./#GeoEfficiency.typeofSrc"><code>typeofSrc(::Int)</code></a>, <a href="./#GeoEfficiency.setSrcToPoint"><code>setSrcToPoint(::Bool)</code></a>.</p>
+<p><a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Input_Batch.jl#L100-L109' class='documenter-source'>source</a><br></p>
+<div class="admonition warnning">
+<p class="admonition-title">Warnning</p>
+<p>Currently, the source type has no effect but to decide if the source is a point source or a higher dimension source.</p>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Development/" class="btn btn-neutral float-right" title="Development">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Output_Interface/" class="btn btn-neutral" title="Output Interface"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/DrKrar/ GeoEfficiency.jl" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Output_Interface/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Development/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../assets/mathjaxhelper.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

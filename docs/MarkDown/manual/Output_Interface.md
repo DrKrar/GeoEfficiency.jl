@@ -16,7 +16,7 @@ Calculation of the geometrical efficiency can be run in one of two modes aside f
 
 
 
-```julia
+```
 calc(detector::Detector = Detector(), aSource::Tuple{Point, Float64, Float64,} = source())
 ```
 
@@ -31,7 +31,7 @@ calculate and display on the `console` the `geometrical efficiency` of the  dete
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L90-L106' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L92-L108' class='documenter-source'>source</a><br>
 
 
 for repeated calculations.
@@ -41,14 +41,14 @@ for repeated calculations.
 
 
 
-```julia
+```
 calcN()
 ```
 
 calculate and display the `geometrical efficiency` repeatedly.  Prompt the user to input a `detector` and a `source` from the `console`. Prompt the user `repeatedly` until it exit (give a choice to use the same  detector or a new detector).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L123-L133' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L125-L135' class='documenter-source'>source</a><br>
 
 
 <a id='Batch-Mode-1'></a>
@@ -63,18 +63,18 @@ Use `batch()` to let the program inspect the excel files containing the required
 
 
 
-```julia
+```
 batch()
 ```
 
-provide batch calculation of the `geometrical efficiency` based on the information provided  by the **`CSV`** files by default located in **`C:\Users\Mohamed\GeoEfficiency`**.
+provide batch calculation of the `geometrical efficiency` based on the information provided  by the **`CSV`** files by default located in **`/home/travis/.GeoEfficiency`**.
 
-results are saved on a **`CSV`**  file(s) named after the detector(s). the **`CSV`**  file(s)  by default found in **`C:\Users\Mohamed\GeoEfficiency\results`**, also a log of the results are displayed on the `console`.
+results are saved on a **`CSV`**  file(s) named after the detector(s). the **`CSV`**  file(s)  by default found in **`/home/travis/.GeoEfficiency/results`**, also a log of the results are displayed on the `console`.
 
 **for more information on batch refer to [`batchInfo`](Output_Interface.md#GeoEfficiency.batchInfo).**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L189-L202' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L191-L204' class='documenter-source'>source</a><br>
 
 
 ```
@@ -88,7 +88,7 @@ batch(
 	)::String 	where S <: Real
 ```
 
-provide batch calculation of the `geometrical efficiency` for the detector `detector`.  results are saved on a **`CSV`**  file named after the detector.  the **`CSV`**  file by default found in **`C:\Users\Mohamed\GeoEfficiency\results`**. this method return the actual  path to the **`CSV`** file.  also a log of the results are displayed on the `console`.
+provide batch calculation of the `geometrical efficiency` for the detector `detector`.  results are saved on a **`CSV`**  file named after the detector.  the **`CSV`**  file by default found in **`/home/travis/.GeoEfficiency/results`**. this method return the actual  path to the **`CSV`** file.  also a log of the results are displayed on the `console`.
 
   * `srcHeights_array`: list of source heights to feed to batch.
   * `srcRhos_array`: list of source off-axis distances to feed to batch.
@@ -103,7 +103,7 @@ A set of sources is constructed of every valid **combination** of parameter in t
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L205-L236' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L207-L238' class='documenter-source'>source</a><br>
 
 
 ```
@@ -120,7 +120,7 @@ batch(
 **same as [`batch(::Detector, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](Output_Interface.md#GeoEfficiency.batch)** but accept a list of detectors `detectors_array`. return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L263-L279' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L265-L281' class='documenter-source'>source</a><br>
 
 
 ```
@@ -137,7 +137,7 @@ batch(
 **same as [`batch(::Vector{Detector}, ::Vector{Real},::Vector{Real},::Vector{Real},::Vector{Real},::Bool)`](Output_Interface.md#GeoEfficiency.batch)** but provide batch calculation of the  `geometrical efficiency` for the detector in the `detector_info_array` after applying `getDetectors`. return a list of paths to the **`CSV`** of files (file for each detector) storing the results.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L317-L334' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L319-L336' class='documenter-source'>source</a><br>
 
 
 As mentioned above, the batch calculation controlled by CSV files. the following refer to information on the CSV files structure and location.
@@ -147,9 +147,9 @@ As mentioned above, the batch calculation controlled by CSV files. the following
 
 
 
-The function `batch()` can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved   Values [CSV] files, that can be easily edit by Microsoft Excel,  by default located in the directory **`C:\Users\Mohamed\GeoEfficiency`** .
+The function `batch()` can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved   Values [CSV] files, that can be easily edit by Microsoft Excel,  by default located in the directory **`/home/travis/.GeoEfficiency`** .
 
-results of batch calculation are saved on a **`CSV`**  file(s) named after the detector(s).  the **`CSV`**  file by default found in **`C:\Users\Mohamed\GeoEfficiency\results`**.
+results of batch calculation are saved on a **`CSV`**  file(s) named after the detector(s).  the **`CSV`**  file by default found in **`/home/travis/.GeoEfficiency/results`**.
 
 **CSV input files**
 
@@ -201,7 +201,7 @@ results of batch calculation are saved on a **`CSV`**  file(s) named after the d
 
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L516-L568' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L518-L570' class='documenter-source'>source</a><br>
 
 
 The result of the batch calculation is also displayed in the `console`. the function `max_batch(n::Real)` can be used to give a hint (thus it may or may not apply) to the program to limit displayed results.
@@ -211,7 +211,7 @@ The result of the batch calculation is also displayed in the `console`. the func
 
 
 
-```julia
+```
 max_batch(n::Real)
 ```
 
@@ -229,7 +229,7 @@ while `Inf` will print all  batch results to the `console`.
 **see also: [`max_batch()`](Output_Interface.md#GeoEfficiency.max_batch-Tuple{})**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L55-L70' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L57-L72' class='documenter-source'>source</a><br>
 
 
 Also the without arguments `max_batch()` restore back the default value.
@@ -239,7 +239,7 @@ Also the without arguments `max_batch()` restore back the default value.
 
 
 
-```julia
+```
 max_batch()
 ```
 
@@ -248,7 +248,7 @@ set the value of `_max_batch` which give a hint to the program on maximum number
 **see also: [`max_batch(n::Real)`](Output_Interface.md#GeoEfficiency.max_batch-Tuple{Real})**
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1aa7746a40e073b68e4ceade7536af85cb9f0212/src/Output_Interface.jl#L75-L84' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/83c258218fa45f7e9d609e92c59890d2f293ff91/src/Output_Interface.jl#L77-L86' class='documenter-source'>source</a><br>
 
 
 Before the batch mode start  the user is asked to decide the source type. once the calculation is done the user can check the current setting for the source or modify it. for details see the next section.

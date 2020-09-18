@@ -41,8 +41,6 @@ The following list show the state of current feature and planed feature. the che
       * [x] `point` sources.
       * [x] `disc` sources.
       * [x] `cylinder` sources.
-
-
   * [ ] support of anisotropic radioactive sources.
 
       * [ ] `point` sources.
@@ -59,8 +57,8 @@ The following list show the state of current feature and planed feature. the che
 ## Requirements
 
 
-  * Julia 1.1 or above.
-  * QuadGK 2.0.2 or above, will be installed automatically during the package Installation.
+  * Julia 1.5 or above.
+  * QuadGK 2.4 or above, will be installed automatically during the package Installation.
 
 
 <a id='Download/Installation-1'></a>
@@ -79,8 +77,8 @@ Getting the GeoEfficiency package to work involves two steps:
 Just head over to the Julia language [download page](https://www.julialang.org/downloads/) and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. 
 
 
-!!! note "JuliaBox.com"
-    Head to [JuliaBox.com](https://www.juliabox.com) to run julia in your browser without any local installation. no registration is required just a Google account.
+!!! note "Jupter Notebook"
+    Head to [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
 
 
 
@@ -119,7 +117,7 @@ julia> calc()
 ```
 
 
-**see also: [`geoEff()`](manual\Calculations.md#GeoEfficiency.geoEff), [`calcN()`](manual\Output_Interface.md#GeoEfficiency.calcN), [`batch()`](manual\Output_Interface.md#GeoEfficiency.batch)**
+**see also: [`geoEff()`](manual/Calculations.md#GeoEfficiency.geoEff), [`calcN()`](manual/Output_Interface.md#GeoEfficiency.calcN), [`batch()`](manual/Output_Interface.md#GeoEfficiency.batch)**
 
 
 <a id='Unit-Test-1'></a>
@@ -147,24 +145,24 @@ julia> Pkg.test("GeoEfficiency")
 The following constructor can be used to construct a specific type of detector 
 
 
-  * [`CylDetector`](manual\Physics_Model.md#GeoEfficiency.CylDetector) for cylindrical detector,
-  * [`BoreDetector`](manual\Physics_Model.md#GeoEfficiency.BoreDetector) for bore hole,
-  * [`WellDetector`](manual\Physics_Model.md#GeoEfficiency.WellDetector) for well type detector.
+  * [`CylDetector`](manual/Physics_Model.md#GeoEfficiency.CylDetector) for cylindrical detector,
+  * [`BoreDetector`](manual/Physics_Model.md#GeoEfficiency.BoreDetector) for bore hole,
+  * [`WellDetector`](manual/Physics_Model.md#GeoEfficiency.WellDetector) for well type detector.
 
 
-While the function [`Detector`](manual\Development.md#GeoEfficiency.Detector) can be used to construct any of the above types. You may try also [`getDetectors`](manual\Development.md#GeoEfficiency.getDetectors).
+While the function [`Detector`](manual/Development.md#GeoEfficiency.Detector) can be used to construct any of the above types. You may try also [`getDetectors`](manual/Development.md#GeoEfficiency.getDetectors).
 
 
-[`Point`](manual\Physics_Model.md#GeoEfficiency.Point) constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified. For a point source, the anchoring point is the source itself.  The [`source()`](manual\Physics_Model.md#GeoEfficiency.source) method take input from the 'console' and return a tuple describing the source.
+[`Point`](manual/Physics_Model.md#GeoEfficiency.Point) constructor is used to construct an anchoring point of a source. relative to source anchoring point the source position is specified. For a point source, the anchoring point is the source itself.  The [`source()`](manual/Physics_Model.md#GeoEfficiency.source) method take input from the 'console' and return a tuple describing the source.
 
 
 The efficiency calculation can be done by one of the functions: 
 
 
-  * [`geoEff`](manual\Calculations.md#GeoEfficiency.geoEff) used with or without argument(s),
-  * [`calc`](manual\Output_Interface.md#GeoEfficiency.calc) ask for the required information from the 'console',
-  * [`calcN`](manual\Output_Interface.md#GeoEfficiency.calcN) just a repeat of the [`calc`](manual\Output_Interface.md#GeoEfficiency.calc) function
-  * [`batch()`](manual\Output_Interface.md#GeoEfficiency.batch) which try to take required information from csv files located in   the home directory inside a folder called `GeoEfficiency`.
+  * [`geoEff`](manual/Calculations.md#GeoEfficiency.geoEff) used with or without argument(s),
+  * [`calc`](manual/Output_Interface.md#GeoEfficiency.calc) ask for the required information from the 'console',
+  * [`calcN`](manual/Output_Interface.md#GeoEfficiency.calcN) just a repeat of the [`calc`](manual/Output_Interface.md#GeoEfficiency.calc) function
+  * [`batch()`](manual/Output_Interface.md#GeoEfficiency.batch) which try to take required information from csv files located in   the home directory inside a folder called `GeoEfficiency`.
 
 
 For more on the function and its methods prefix the name of the function by `?`.
@@ -186,7 +184,7 @@ The package can be used to perform batch calculations by calling one of the  met
 **For example  `c:\users\yourusername\GeoEfficiency\results\`**.
 
 
-The function [`batch()`](manual\Output_Interface.md#GeoEfficiency.batch) can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved  Values  [CSV] files, that can be easily edit by Microsoft Excel, located by default  in the `GeoEfficiency` folder.
+The function [`batch()`](manual/Output_Interface.md#GeoEfficiency.batch) can be called with or without arrangement(s).  The without argument version relay on previously prepared Comma Saved  Values  [CSV] files, that can be easily edit by Microsoft Excel, located by default  in the `GeoEfficiency` folder.
 
 
 Those Comma Saved Values [CSV] files are:-
@@ -198,32 +196,24 @@ Those Comma Saved Values [CSV] files are:-
       Crystal_Radius | Crystal_Length | Hole_Radius | Hole_Depth |
       ---------------| ---------------|-------------|----------- |
     ```
-
-
   * `srcHeights.csv` contains the source heights; 
 
     ```
       Source_Heights | 
       ---------------|
     ```
-
-
   * `srcRhos.csv` contains the source off-axis distances;                        
 
     ```
       Source_Rhos | 
       ------------|
     ```
-
-
   * `srcRadii.csv` contains the source radii for disc and cylindrical sources;             
 
     ```
       Source_Radii| 
       ------------|
     ```
-
-
   * `srcLengths.csv` contains the source length for cylindrical sources;    
 
     ```
