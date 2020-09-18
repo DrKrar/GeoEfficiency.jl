@@ -132,7 +132,7 @@ function source(anchorPnt::Point = Point())::Tuple{Point,Float64,Float64}
    	SrcRadius = getfloat("\n\t > Source Radius (cm) = ", 0.0)
     if 0.0 != SrcRadius
         SrcLength = getfloat("\n\t > Source Length (cm) = ", 0.0)
-		if 0.0 != anchorPnt.Radius 
+		if 0.0 != anchorPnt.Rho 
 			@error("currently only axial non-point sources are allowed", _file=nothing)
       		@warn("the off-axis will be set to `Zero`", _file=nothing)
 			anchorPnt = Point(anchorPnt, 0.0)
