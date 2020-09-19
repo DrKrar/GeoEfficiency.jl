@@ -7,7 +7,7 @@
 #  _args = ["clean", "doctest"]
 #  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
 #**************************************************************************************
-
+ 
 using Documenter, DocumenterLaTeX
 using GeoEfficiency
 
@@ -31,8 +31,9 @@ const PAGES = Any[
 
 const formats = Any[
     Documenter.HTML(
-        prettyurls = false,  #get(ENV, "CI", nothing) == "true",
+        prettyurls = get(ENV, "CI", nothing) == "true",
         canonical = "https://github.com/DrKrar/GeoEfficiency.jl/v0.9.4-dev/",
+        assets  = ["assets/custom.css"],
         
     ), 
     
@@ -51,7 +52,6 @@ makedocs(
     sitename= "GeoEfficiency.jl",
     authors = "Mohamed E. Krar",
     pages   = PAGES,
-    assets  = ["assets/custom.css"],
 )
 
 
