@@ -1,4 +1,6 @@
 
+<a id='Calculations'></a>
+
 <a id='Calculations-1'></a>
 
 # Calculations
@@ -11,7 +13,7 @@ calculation of the geometrical efficiency can be done via a call to the function
 
 
 
-```
+```julia
 geoEff(detector::Detector, aPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 ```
 
@@ -72,7 +74,7 @@ julia> geoEff(newDet, Point(0.0), 1.0, 2.5)
 ```
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/1e924cdc083308fe33575975856b06270d620e85/src/Calculations.jl#L229-L296' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/003bba1bcea1a970abd36dc3454edeefdc4328aa/src/Calculations.jl#L229-L296' class='documenter-source'>source</a><br>
 
 
 !!! note "Information"

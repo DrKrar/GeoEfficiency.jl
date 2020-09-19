@@ -1,4 +1,6 @@
 
+<a id='GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator'></a>
+
 <a id='GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1'></a>
 
 # GeoEfficiency: Accurate Geometrical Efficiency Calculator
@@ -19,6 +21,8 @@ An officially registered Julia program that provides a set of tools to calculate
     This documentation is also available in [PDF](https://GeoEfficiency.GitHub.io/dev/GeoEfficiency.jl.pdf) format.
 
 
+
+<a id='Current/Planed-Features'></a>
 
 <a id='Current/Planed-Features-1'></a>
 
@@ -52,6 +56,8 @@ The following list show the state of current feature and planed feature. the che
   * [ ] combine the effect of the source geometry and composition.
 
 
+<a id='Requirements'></a>
+
 <a id='Requirements-1'></a>
 
 ## Requirements
@@ -61,6 +67,8 @@ The following list show the state of current feature and planed feature. the che
   * QuadGK 2.4 or above, will be installed automatically during the package Installation.
 
 
+<a id='Download/Installation'></a>
+
 <a id='Download/Installation-1'></a>
 
 ## Download/Installation
@@ -68,6 +76,8 @@ The following list show the state of current feature and planed feature. the che
 
 Getting the GeoEfficiency package to work involves two steps: 
 
+
+<a id='.-Installing-Julia-Language'></a>
 
 <a id='.-Installing-Julia-Language-1'></a>
 
@@ -82,6 +92,8 @@ Just head over to the Julia language [download page](https://www.julialang.org/d
 
 
 
+<a id='.-Installing-Package'></a>
+
 <a id='.-Installing-Package-1'></a>
 
 ### 2. Installing Package
@@ -95,6 +107,8 @@ julia> import Pkg
 julia> Pkg.add("GeoEfficiency") 
 ```
 
+
+<a id='Quick-Usage'></a>
 
 <a id='Quick-Usage-1'></a>
 
@@ -120,6 +134,8 @@ julia> calc()
 **see also: [`geoEff()`](manual/Calculations.md#GeoEfficiency.geoEff), [`calcN()`](manual/Output_Interface.md#GeoEfficiency.calcN), [`batch()`](manual/Output_Interface.md#GeoEfficiency.batch)**
 
 
+<a id='Unit-Test'></a>
+
 <a id='Unit-Test-1'></a>
 
 ## Unit Test
@@ -136,6 +152,8 @@ julia> using Test, Pkg
 julia> Pkg.test("GeoEfficiency") 
 ```
 
+
+<a id='Package-Overview'></a>
 
 <a id='Package-Overview-1'></a>
 
@@ -172,6 +190,8 @@ For more on the function and its methods prefix the name of the function by `?`.
     Input from the 'console' can be numerical expression not just a number. `5/2` ; `5//2` ; `pi` ; `π/2` ; `exp(2)` ; `1E-2` ; `5.2/3` ; `sin(1)` ;  `sin(1)^2` are all valid expressions.
 
 
+
+<a id='Batch-Calculation'></a>
 
 <a id='Batch-Calculation-1'></a>
 

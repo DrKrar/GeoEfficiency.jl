@@ -1,8 +1,12 @@
 
+<a id='GeoEfficiency-Documentation'></a>
+
 <a id='GeoEfficiency-Documentation-1'></a>
 
 # GeoEfficiency Documentation
 
+
+<a id='Manual'></a>
 
 <a id='Manual-1'></a>
 
