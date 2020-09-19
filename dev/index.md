@@ -78,7 +78,7 @@ Just head over to the Julia language [download page](https://www.julialang.org/d
 
 
 !!! note "Jupter Notebook"
-    Head to [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
+    Head to [Binder](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
 
 
 
