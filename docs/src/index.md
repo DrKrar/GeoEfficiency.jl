@@ -52,7 +52,7 @@ Just head over to the Julia language [download page](https://www.julialang.org/d
 At the end of this step you should be able to run julia from your system. 
 
 !!! note "Jupter Notebook"
-    Head to [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
+    Head to [Binder](https://mybinder.org/v2/gh/DrKrar/GeoEfficiency.jl/master) to run julia in your browser without any local installation.
 
 ### 2. Installing Package
 GeoEfficiency is registered officially and so the latest stable release can be installed through the Julia package management system just by typing the following into the julia REPL prompt.
