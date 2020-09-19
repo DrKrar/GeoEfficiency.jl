@@ -8,7 +8,7 @@ First Created | Fri Aug 14 20:12:01 2015
 
 Build status: | [![travis][travis-img]](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![appveyor][appveyor-img]](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl)
 ----|----|----
-Code coverage: | [![coveralls][coveralls-img]](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov][codecov-img]](http://codecov.io/github/DrKrar/GeoEfficiency.jl?branch=master)
+Code coverage: | [![Coverage Status](https://coveralls.io/repos/github/DrKrar/GeoEfficiency.jl/badge.svg?branch=master)](https://coveralls.io/github/DrKrar/GeoEfficiency.jl?branch=master) | [![codecov](https://codecov.io/gh/DrKrar/GeoEfficiency.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/DrKrar/GeoEfficiency.jl)
 
 [repostatus-img]: http://www.repostatus.org/badges/latest/active.svg
 [travis-img]: https://img.shields.io/travis/JuliaLang/julia/master.svg?label=Linux+/+macOS
