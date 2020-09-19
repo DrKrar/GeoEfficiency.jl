@@ -11,8 +11,8 @@ julia:
 notifications:
 
 # UnComment this block to replace after_success section
-codecov: true
-coveralls: true
+#codecov: true
+#coveralls: true
 
 after_success:
   - julia --project=coverage/ -e 'using Pkg; Pkg.instantiate()'
