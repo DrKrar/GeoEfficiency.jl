@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "1. Installing Julia Language",
     "category": "section",
-    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: Jupter Notebook\nHead to (Image: Binder) to run julia in your browser without any local installation."
+    "text": "Just head over to the Julia language download page and choose the suitable binary for your platform to download and install.  At the end of this step you should be able to run julia from your system. note: Jupter Notebook\nHead to Binder to run julia in your browser without any local installation."
 },
 
 {
