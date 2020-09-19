@@ -1,7 +1,7 @@
 var documenterSearchIndex = {"docs": [
 
 {
-    "location": "index.html#",
+    "location": "#",
     "page": "Home",
     "title": "Home",
     "category": "page",
@@ -9,7 +9,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
+    "location": "#GeoEfficiency:-Accurate-Geometrical-Efficiency-Calculator-1",
     "page": "Home",
     "title": "GeoEfficiency: Accurate Geometrical Efficiency Calculator",
     "category": "section",
@@ -17,7 +17,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Current/Planed-Features-1",
+    "location": "#Current/Planed-Features-1",
     "page": "Home",
     "title": "Current/Planed Features",
     "category": "section",
@@ -25,7 +25,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Requirements-1",
+    "location": "#Requirements-1",
     "page": "Home",
     "title": "Requirements",
     "category": "section",
@@ -33,7 +33,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Download/Installation-1",
+    "location": "#Download/Installation-1",
     "page": "Home",
     "title": "Download/Installation",
     "category": "section",
@@ -41,7 +41,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#.-Installing-Julia-Language-1",
+    "location": "#.-Installing-Julia-Language-1",
     "page": "Home",
     "title": "1. Installing Julia Language",
     "category": "section",
@@ -49,7 +49,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#.-Installing-Package-1",
+    "location": "#.-Installing-Package-1",
     "page": "Home",
     "title": "2. Installing Package",
     "category": "section",
@@ -57,7 +57,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Quick-Usage-1",
+    "location": "#Quick-Usage-1",
     "page": "Home",
     "title": "Quick Usage",
     "category": "section",
@@ -65,7 +65,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Unit-Test-1",
+    "location": "#Unit-Test-1",
     "page": "Home",
     "title": "Unit Test",
     "category": "section",
@@ -73,7 +73,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Package-Overview-1",
+    "location": "#Package-Overview-1",
     "page": "Home",
     "title": "Package Overview",
     "category": "section",
@@ -81,7 +81,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Batch-Calculation-1",
+    "location": "#Batch-Calculation-1",
     "page": "Home",
     "title": "Batch Calculation",
     "category": "section",
@@ -89,7 +89,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/GeoEfficiency.html#",
+    "location": "manual/GeoEfficiency/#",
     "page": "Summery",
     "title": "Summery",
     "category": "page",
@@ -97,7 +97,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/GeoEfficiency.html#GeoEfficiency.GeoEfficiency",
+    "location": "manual/GeoEfficiency/#GeoEfficiency.GeoEfficiency",
     "page": "Summery",
     "title": "GeoEfficiency.GeoEfficiency",
     "category": "module",
@@ -105,7 +105,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/GeoEfficiency.html#Summery-1",
+    "location": "manual/GeoEfficiency/#Summery-1",
     "page": "Summery",
     "title": "Summery",
     "category": "section",
@@ -113,7 +113,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#",
+    "location": "manual/Physics_Model/#",
     "page": "Physics Model",
     "title": "Physics Model",
     "category": "page",
@@ -121,7 +121,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Physics-Model-1",
+    "location": "manual/Physics_Model/#Physics-Model-1",
     "page": "Physics Model",
     "title": "Physics Model",
     "category": "section",
@@ -129,7 +129,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Detector-1",
+    "location": "manual/Physics_Model/#Detector-1",
     "page": "Physics Model",
     "title": "Detector",
     "category": "section",
@@ -137,7 +137,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.CylDetector",
+    "location": "manual/Physics_Model/#GeoEfficiency.CylDetector",
     "page": "Physics Model",
     "title": "GeoEfficiency.CylDetector",
     "category": "type",
@@ -145,7 +145,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.CylDetector-Tuple{Real}",
+    "location": "manual/Physics_Model/#GeoEfficiency.CylDetector-Tuple{Real}",
     "page": "Physics Model",
     "title": "GeoEfficiency.CylDetector",
     "category": "method",
@@ -153,7 +153,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.CylDetector-Tuple{}",
+    "location": "manual/Physics_Model/#GeoEfficiency.CylDetector-Tuple{}",
     "page": "Physics Model",
     "title": "GeoEfficiency.CylDetector",
     "category": "method",
@@ -161,7 +161,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Cylindrical-Detector-1",
+    "location": "manual/Physics_Model/#Cylindrical-Detector-1",
     "page": "Physics Model",
     "title": "Cylindrical Detector",
     "category": "section",
@@ -169,7 +169,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.BoreDetector",
+    "location": "manual/Physics_Model/#GeoEfficiency.BoreDetector",
     "page": "Physics Model",
     "title": "GeoEfficiency.BoreDetector",
     "category": "type",
@@ -177,7 +177,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.BoreDetector-Tuple{}",
+    "location": "manual/Physics_Model/#GeoEfficiency.BoreDetector-Tuple{}",
     "page": "Physics Model",
     "title": "GeoEfficiency.BoreDetector",
     "category": "method",
@@ -185,7 +185,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Bore-hole-Detector-1",
+    "location": "manual/Physics_Model/#Bore-hole-Detector-1",
     "page": "Physics Model",
     "title": "Bore-hole Detector",
     "category": "section",
@@ -193,7 +193,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.WellDetector",
+    "location": "manual/Physics_Model/#GeoEfficiency.WellDetector",
     "page": "Physics Model",
     "title": "GeoEfficiency.WellDetector",
     "category": "type",
@@ -201,7 +201,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.WellDetector-Tuple{}",
+    "location": "manual/Physics_Model/#GeoEfficiency.WellDetector-Tuple{}",
     "page": "Physics Model",
     "title": "GeoEfficiency.WellDetector",
     "category": "method",
@@ -209,7 +209,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Well-type-Detector-1",
+    "location": "manual/Physics_Model/#Well-type-Detector-1",
     "page": "Physics Model",
     "title": "Well-type Detector",
     "category": "section",
@@ -217,7 +217,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.source",
+    "location": "manual/Physics_Model/#GeoEfficiency.source",
     "page": "Physics Model",
     "title": "GeoEfficiency.source",
     "category": "function",
@@ -225,7 +225,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Source-1",
+    "location": "manual/Physics_Model/#Source-1",
     "page": "Physics Model",
     "title": "Source",
     "category": "section",
@@ -233,7 +233,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.Point",
+    "location": "manual/Physics_Model/#GeoEfficiency.Point",
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "type",
@@ -241,7 +241,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.Point-Tuple{Real}",
+    "location": "manual/Physics_Model/#GeoEfficiency.Point-Tuple{Real}",
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "method",
@@ -249,7 +249,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.Point-Tuple{}",
+    "location": "manual/Physics_Model/#GeoEfficiency.Point-Tuple{}",
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "method",
@@ -257,7 +257,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.Point-Tuple{Real,Point}",
+    "location": "manual/Physics_Model/#GeoEfficiency.Point-Tuple{Real,Point}",
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "method",
@@ -265,7 +265,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#GeoEfficiency.Point-Tuple{Point,Real}",
+    "location": "manual/Physics_Model/#GeoEfficiency.Point-Tuple{Point,Real}",
     "page": "Physics Model",
     "title": "GeoEfficiency.Point",
     "category": "method",
@@ -273,7 +273,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Physics_Model.html#Source-Anchoring-Point-1",
+    "location": "manual/Physics_Model/#Source-Anchoring-Point-1",
     "page": "Physics Model",
     "title": "Source Anchoring Point",
     "category": "section",
@@ -281,7 +281,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Calculations.html#",
+    "location": "manual/Calculations/#",
     "page": "Calculations",
     "title": "Calculations",
     "category": "page",
@@ -289,7 +289,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Calculations.html#GeoEfficiency.geoEff",
+    "location": "manual/Calculations/#GeoEfficiency.geoEff",
     "page": "Calculations",
     "title": "GeoEfficiency.geoEff",
     "category": "function",
@@ -297,7 +297,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Calculations.html#Calculations-1",
+    "location": "manual/Calculations/#Calculations-1",
     "page": "Calculations",
     "title": "Calculations",
     "category": "section",
@@ -305,7 +305,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#",
+    "location": "manual/Output_Interface/#",
     "page": "Output Interface",
     "title": "Output Interface",
     "category": "page",
@@ -313,7 +313,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#Output-Interface-1",
+    "location": "manual/Output_Interface/#Output-Interface-1",
     "page": "Output Interface",
     "title": "Output Interface",
     "category": "section",
@@ -321,7 +321,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.calc",
+    "location": "manual/Output_Interface/#GeoEfficiency.calc",
     "page": "Output Interface",
     "title": "GeoEfficiency.calc",
     "category": "function",
@@ -329,7 +329,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.calcN",
+    "location": "manual/Output_Interface/#GeoEfficiency.calcN",
     "page": "Output Interface",
     "title": "GeoEfficiency.calcN",
     "category": "function",
@@ -337,7 +337,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#Interactive/Direct-Mode-1",
+    "location": "manual/Output_Interface/#Interactive/Direct-Mode-1",
     "page": "Output Interface",
     "title": "Interactive/Direct Mode",
     "category": "section",
@@ -345,7 +345,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.batch",
+    "location": "manual/Output_Interface/#GeoEfficiency.batch",
     "page": "Output Interface",
     "title": "GeoEfficiency.batch",
     "category": "function",
@@ -353,7 +353,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.batchInfo",
+    "location": "manual/Output_Interface/#GeoEfficiency.batchInfo",
     "page": "Output Interface",
     "title": "GeoEfficiency.batchInfo",
     "category": "constant",
@@ -361,7 +361,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.max_batch-Tuple{Real}",
+    "location": "manual/Output_Interface/#GeoEfficiency.max_batch-Tuple{Real}",
     "page": "Output Interface",
     "title": "GeoEfficiency.max_batch",
     "category": "method",
@@ -369,7 +369,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#GeoEfficiency.max_batch-Tuple{}",
+    "location": "manual/Output_Interface/#GeoEfficiency.max_batch-Tuple{}",
     "page": "Output Interface",
     "title": "GeoEfficiency.max_batch",
     "category": "method",
@@ -377,7 +377,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Output_Interface.html#Batch-Mode-1",
+    "location": "manual/Output_Interface/#Batch-Mode-1",
     "page": "Output Interface",
     "title": "Batch Mode",
     "category": "section",
@@ -385,7 +385,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Input_Batch.html#",
+    "location": "manual/Input_Batch/#",
     "page": "Batch Mode Input",
     "title": "Batch Mode Input",
     "category": "page",
@@ -393,7 +393,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Input_Batch.html#GeoEfficiency.typeofSrc",
+    "location": "manual/Input_Batch/#GeoEfficiency.typeofSrc",
     "page": "Batch Mode Input",
     "title": "GeoEfficiency.typeofSrc",
     "category": "function",
@@ -401,7 +401,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Input_Batch.html#GeoEfficiency.setSrcToPoint",
+    "location": "manual/Input_Batch/#GeoEfficiency.setSrcToPoint",
     "page": "Batch Mode Input",
     "title": "GeoEfficiency.setSrcToPoint",
     "category": "function",
@@ -409,7 +409,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Input_Batch.html#Batch-Mode-Input-1",
+    "location": "manual/Input_Batch/#Batch-Mode-Input-1",
     "page": "Batch Mode Input",
     "title": "Batch Mode Input",
     "category": "section",
@@ -417,7 +417,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#",
+    "location": "manual/Development/#",
     "page": "Development",
     "title": "Development",
     "category": "page",
@@ -425,7 +425,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Introduction-1",
+    "location": "manual/Development/#Introduction-1",
     "page": "Development",
     "title": "Introduction",
     "category": "section",
@@ -433,7 +433,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Configuration-1",
+    "location": "manual/Development/#Configuration-1",
     "page": "Development",
     "title": "Configuration",
     "category": "section",
@@ -441,7 +441,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.GeoException",
+    "location": "manual/Development/#GeoEfficiency.GeoException",
     "page": "Development",
     "title": "GeoEfficiency.GeoException",
     "category": "type",
@@ -449,7 +449,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.InValidDetectorDim",
+    "location": "manual/Development/#GeoEfficiency.InValidDetectorDim",
     "page": "Development",
     "title": "GeoEfficiency.InValidDetectorDim",
     "category": "type",
@@ -457,7 +457,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.@validateDetector",
+    "location": "manual/Development/#GeoEfficiency.@validateDetector",
     "page": "Development",
     "title": "GeoEfficiency.@validateDetector",
     "category": "macro",
@@ -465,7 +465,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.InValidGeometry",
+    "location": "manual/Development/#GeoEfficiency.InValidGeometry",
     "page": "Development",
     "title": "GeoEfficiency.InValidGeometry",
     "category": "type",
@@ -473,7 +473,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.@inValidGeometry",
+    "location": "manual/Development/#GeoEfficiency.@inValidGeometry",
     "page": "Development",
     "title": "GeoEfficiency.@inValidGeometry",
     "category": "macro",
@@ -481,7 +481,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.NotImplementedError",
+    "location": "manual/Development/#GeoEfficiency.NotImplementedError",
     "page": "Development",
     "title": "GeoEfficiency.NotImplementedError",
     "category": "type",
@@ -489,7 +489,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.@notImplementedError",
+    "location": "manual/Development/#GeoEfficiency.@notImplementedError",
     "page": "Development",
     "title": "GeoEfficiency.@notImplementedError",
     "category": "macro",
@@ -497,7 +497,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Error-System-1",
+    "location": "manual/Development/#Error-System-1",
     "page": "Development",
     "title": "Error System",
     "category": "section",
@@ -505,7 +505,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.input",
+    "location": "manual/Development/#GeoEfficiency.input",
     "page": "Development",
     "title": "GeoEfficiency.input",
     "category": "function",
@@ -513,7 +513,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.getfloat",
+    "location": "manual/Development/#GeoEfficiency.getfloat",
     "page": "Development",
     "title": "GeoEfficiency.getfloat",
     "category": "function",
@@ -521,7 +521,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Console-Input-1",
+    "location": "manual/Development/#Console-Input-1",
     "page": "Development",
     "title": "Console Input",
     "category": "section",
@@ -529,7 +529,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.RadiationDetector",
+    "location": "manual/Development/#GeoEfficiency.RadiationDetector",
     "page": "Development",
     "title": "GeoEfficiency.RadiationDetector",
     "category": "type",
@@ -537,7 +537,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector",
+    "location": "manual/Development/#GeoEfficiency.Detector",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "type",
@@ -545,7 +545,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector-Tuple{}",
+    "location": "manual/Development/#GeoEfficiency.Detector-Tuple{}",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
@@ -553,7 +553,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector-NTuple{4,Real}",
+    "location": "manual/Development/#GeoEfficiency.Detector-NTuple{4,Real}",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
@@ -561,7 +561,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector-Tuple{Real}",
+    "location": "manual/Development/#GeoEfficiency.Detector-Tuple{Real}",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
@@ -569,7 +569,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector-Tuple{Real,Real}",
+    "location": "manual/Development/#GeoEfficiency.Detector-Tuple{Real,Real}",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
@@ -577,7 +577,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.Detector-Tuple{Real,Real,Real}",
+    "location": "manual/Development/#GeoEfficiency.Detector-Tuple{Real,Real,Real}",
     "page": "Development",
     "title": "GeoEfficiency.Detector",
     "category": "method",
@@ -585,7 +585,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Physics-Model-1",
+    "location": "manual/Development/#Physics-Model-1",
     "page": "Development",
     "title": "Physics Model",
     "category": "section",
@@ -593,7 +593,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.detector_info_from_csvFile",
+    "location": "manual/Development/#GeoEfficiency.detector_info_from_csvFile",
     "page": "Development",
     "title": "GeoEfficiency.detector_info_from_csvFile",
     "category": "function",
@@ -601,7 +601,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.read_from_csvFile",
+    "location": "manual/Development/#GeoEfficiency.read_from_csvFile",
     "page": "Development",
     "title": "GeoEfficiency.read_from_csvFile",
     "category": "function",
@@ -609,7 +609,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.read_batch_info",
+    "location": "manual/Development/#GeoEfficiency.read_batch_info",
     "page": "Development",
     "title": "GeoEfficiency.read_batch_info",
     "category": "function",
@@ -617,7 +617,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.getDetectors",
+    "location": "manual/Development/#GeoEfficiency.getDetectors",
     "page": "Development",
     "title": "GeoEfficiency.getDetectors",
     "category": "function",
@@ -625,7 +625,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Batch-Mode-Input-1",
+    "location": "manual/Development/#Batch-Mode-Input-1",
     "page": "Development",
     "title": "Batch Mode Input",
     "category": "section",
@@ -633,7 +633,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.checkResultsDirs",
+    "location": "manual/Development/#GeoEfficiency.checkResultsDirs",
     "page": "Development",
     "title": "GeoEfficiency.checkResultsDirs",
     "category": "function",
@@ -641,7 +641,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.writecsv_head",
+    "location": "manual/Development/#GeoEfficiency.writecsv_head",
     "page": "Development",
     "title": "GeoEfficiency.writecsv_head",
     "category": "function",
@@ -649,7 +649,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency._max_batch",
+    "location": "manual/Development/#GeoEfficiency._max_batch",
     "page": "Development",
     "title": "GeoEfficiency._max_batch",
     "category": "constant",
@@ -657,7 +657,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency.max_display",
+    "location": "manual/Development/#GeoEfficiency.max_display",
     "page": "Development",
     "title": "GeoEfficiency.max_display",
     "category": "constant",
@@ -665,7 +665,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#GeoEfficiency._batch",
+    "location": "manual/Development/#GeoEfficiency._batch",
     "page": "Development",
     "title": "GeoEfficiency._batch",
     "category": "function",
@@ -673,7 +673,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "manual/Development.html#Output-Interface-1",
+    "location": "manual/Development/#Output-Interface-1",
     "page": "Development",
     "title": "Output Interface",
     "category": "section",
@@ -681,7 +681,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "list.html#",
+    "location": "list/#",
     "page": "Index",
     "title": "Index",
     "category": "page",
@@ -689,7 +689,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "list.html#Index-1",
+    "location": "list/#Index-1",
     "page": "Index",
     "title": "Index",
     "category": "section",
@@ -697,7 +697,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "LICENSE.html#",
+    "location": "LICENSE/#",
     "page": "LICENSE",
     "title": "LICENSE",
     "category": "page",
@@ -705,7 +705,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "LICENSE.html#LICENSE-1",
+    "location": "LICENSE/#LICENSE-1",
     "page": "LICENSE",
     "title": "LICENSE",
     "category": "section",
