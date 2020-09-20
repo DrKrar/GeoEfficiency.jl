@@ -38,10 +38,12 @@ Message `text` is optionally displayed upon validation failure.
 
 # Examples
 ```jldoctest
-julia> @validateDetector iseven(3) "3 is an odd number!"
+julia> using GeoEfficiency;
+
+julia> GeoEfficiency.@validateDetector iseven(3) "3 is an odd number!"
 ERROR: InValidDetectorDim: 3 is an odd number!
 
-julia> @validateDetector isodd(3) "What even are numbers?"
+julia> GeoEfficiency.@validateDetector isodd(3) "What even are numbers?"
 ```
 """
 macro validateDetector(ex, msgs...)
