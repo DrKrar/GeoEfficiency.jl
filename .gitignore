@@ -1,4 +1,4 @@
 .vscode
 src/.vscode
-docs/build
-deps/build.log
+#docs/build
+#deps/build.log

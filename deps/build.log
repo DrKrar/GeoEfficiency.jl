@@ -1,0 +1,6 @@
+[ Info: Creating '.GeoEfficiency' folder at 'C:\Users\MohamedElsayedKrar'.....
+┌ Error: 'GeoEfficiency' folder: could not be created,
+│ 
+│   the package may be unable to work in patch mode. Try 'import Pkg; Pkg.build("GeoEfficiency")' to rebuild.
+└ @ Main C:\Users\MohamedElsayedKrar\.julia\dev\GeoEfficiency\deps\build.jl:21
+Main
