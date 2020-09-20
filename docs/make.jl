@@ -44,6 +44,8 @@ const formats = Any[
     
 ]
 
+push!(formats, LaTeX(platform = "none") # add an uncompiled .tex LaTeX file.
+
 if "pdf" in _args
     Sys.iswindows() ?   push!(formats, LaTeX(platform = "native")) : 
                         push!(formats, LaTeX(platform = "docker"))
