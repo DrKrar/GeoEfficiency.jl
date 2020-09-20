@@ -27,9 +27,11 @@ a source. The source can be a point, a disc or even a cylinder.
 
 To use Julia pakage manger to check for and obtaining the latest stable vesrion
 
-``julia> import Pkg``
+```julia
+julia> import Pkg
 
-``julia> Pkg.update("GeoEfficiency")``
+julia> Pkg.update("GeoEfficiency")
+````
 
 """
 module GeoEfficiency

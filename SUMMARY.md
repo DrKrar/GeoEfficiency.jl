@@ -13,9 +13,11 @@ for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type
 
 To install the latest stable version 
 
-``julia> import Pkg``
+```julia
+julia> import Pkg
 
-``julia> Pkg.add("GeoEfficiency")``
+julia> Pkg.add("GeoEfficiency")
+```
 
 ## Documentation and Updates
 
@@ -26,9 +28,11 @@ To install the latest stable version
 
 To use Julia pakage manger to check for and obtaining the latest stable vesrion
 
-``julia> import Pkg``
+```julia
+julia> import Pkg
 
-``julia> Pkg.update("GeoEfficiency")``
+julia> Pkg.update("GeoEfficiency")
+```
 
 ## Quick Usage
 
