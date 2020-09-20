@@ -82,7 +82,7 @@ Operating system fully supported include Windows, Linus, Apple OSX.
 
 After installing the package can be tested in your own system by typing the following into the REPL prompt.
 ```julia
-julia> using Test, Pkg
+julia> import Pkg
 julia> Pkg.test("GeoEfficiency") 
 ```  
 
