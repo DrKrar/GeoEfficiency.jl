@@ -1,4 +1,4 @@
-__precompile__()
+__precompile__() #First Created on Fri Aug 14 20:12:01 2015 
 
 """
 
@@ -83,7 +83,6 @@ printstyled("""
 \t **************************************************
 \t **            -=) GeoEfficiency (=-             **
 \t **  Accurate Geometrical Efficiency Calculator  **
-\t **   First Created on Fri Aug 14 20:12:01 2015  **
 \t **************************************************
 
 \t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 

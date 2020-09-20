@@ -4,7 +4,7 @@ Author | [Mohamed E. Krar](https://www.researchgate.net/profile/Mohamed_Krar3) (
 Repository | [GitHub.com](https://github.com/DrKrar/GeoEfficiency.jl/)
 Documentation |  [GitHub.io](https://GeoEfficiency.GitHub.io/dev/index.html)
 Current version | [v"0.9.4-dev"](https://github.com/DrKrar/GeoEfficiency.jl)
-First Created | Fri Aug 14 20:12:01 2015
+
 
 Build status: | [![travis][travis-img]](https://travis-ci.org/DrKrar/GeoEfficiency.jl) | [![appveyor][appveyor-img]](https://ci.appveyor.com/project/DrKrar/GeoEfficiency-jl)
 ----|----|----
