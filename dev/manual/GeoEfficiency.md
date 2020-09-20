@@ -32,10 +32,10 @@ Introduce a fast and flexible tool to calculate in batch or individually the `ge
 
 To use Julia pakage manger to check for and obtaining the latest stable vesrion
 
-$julia> import Pkg$
+```julia julia> import Pkg
 
-$julia> Pkg.update("GeoEfficiency")$
+julia> Pkg.update("GeoEfficiency") ````
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/26efb0d3aced599b0a38e0a0e7b4972b523f1a7d/src/GeoEfficiency.jl#L3-L34' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/7f5dfb27db0120afee630f142fb4f49ccb197656/src/GeoEfficiency.jl#L3-L36' class='documenter-source'>source</a><br>
 
