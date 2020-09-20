@@ -4,10 +4,15 @@
 #
 # script for building documentation of the GeoEfficiency.jl package.
 #
-#  _args = ["clean", "doctest"]
-#  include(raw"C:\Users\Mohamed\.julia\dev\GeoEfficiency\docs\make.jl")
+# copy and paste the code in julia REPL directly
+#=
+  _args = ["clean", "doctest", "pdf"]   # you may keep only need parameter(s).
+  cd(joinpath(homedir(), raw".julia\dev\GeoEfficiency\docs")) do
+  include("make.jl")
+  end
+=#
 #**************************************************************************************
- 
+
 using Documenter, DocumenterLaTeX
 using GeoEfficiency
 
