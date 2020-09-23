@@ -20,6 +20,7 @@ let poly1(z::Float64) = @evalpoly(z, 1.0, 2.0),
 		#@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
 		@test G.integrate(poly1, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0) atol=absoluteTol2
 		@test G.integrate(poly2, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0, 1.0, 1.0) - @evalpoly(str, 0.0, 1.0, 1.0, 1.0) atol=absoluteTol2	
+	
 		@test G.integrate(sin, str/10.0, nd/10.0)[1] ≈ cos(str/10.0) - cos(nd/10.0) atol=absoluteTol2	
 	end #testset_integrate
 end #let
@@ -29,9 +30,10 @@ end #let
 
 	@debug("special case - point at the surface of cylindrical detector; very restrict test")
 	@testset "cylindrical detector of cryRadius $cryRadius" for 
-	cryRadius    = 1.0:0.5:11.0
+	cryRadius    = 1.0:0.5:3.0,
+	cryLegth = 0.0:.5:2.0
 	
-	local acylDetector = CylDetector(cryRadius)
+	let acylDetector = CylDetector(cryRadius, cryLegth)
 
 		@test geoEff(acylDetector, Point(0)) ≈ 0.5
 		@test geoEff(acylDetector, Point(0, prevfloat(cryRadius)))  ≈ 0.5
@@ -52,6 +54,7 @@ end #let
 		@test_throws G.NotImplementedError	geoEff(acylDetector, Point(nextfloat(cryRadius), nextfloat(cryRadius)))
 		@test_throws G.InValidGeometry		geoEff(acylDetector, Point(-1, 0))
 		@test_throws G.InValidGeometry		geoEff(acylDetector, Point(-1, prevfloat(cryRadius)))
+	end #let
 	end #testset_cylindrical_detector
 
 
@@ -61,8 +64,8 @@ end #let
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 
-	local holeradius::Float64 = cryRadius/k		# k > 1
-	local aboreDetector = BoreDetector(cryRadius, height, holeradius)
+	let holeradius::Float64 = cryRadius/k,		# k > 1
+		aboreDetector = BoreDetector(cryRadius, height, holeradius)
 	
 		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0 
 		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
@@ -77,6 +80,7 @@ end #let
 		@test_skip   0.0 < geoEff(aboreDetector, Point(1.5*height))   < 1.0
 		@test_skip   0.0 < geoEff(aboreDetector, Point(-1.5*height))  < 1.0
 		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
+	end #let
 	end #testset_Borehole_detector
 
 
@@ -86,9 +90,9 @@ end #let
 	height    = 1.0:0.5:11.0, 
 	k         = 1.1:0.5:11.0
 		
-	local holeradius::Float64 = cryRadius/k		# k > 1
-	local welldepth::Float64 = height/k		# k > 1
-	local awellDetector = WellDetector(cryRadius, height, holeradius, welldepth)
+	let holeradius::Float64 = cryRadius/k,		# k > 1
+		welldepth::Float64 = height/k,			# k > 1
+		awellDetector = WellDetector(cryRadius, height, holeradius, welldepth)
 
 		@test geoEff(awellDetector, Point(welldepth)) ≈ 0.5
 		@test geoEff(awellDetector, Point(welldepth, prevfloat(holeradius))) ≈ 0.5
@@ -102,6 +106,7 @@ end #let
 		@test geoEff(awellDetector, Point(nextfloat(welldepth),  holeradius/2.0)) ≈ 0.5
 		@test geoEff(awellDetector, Point(nextfloat(welldepth), -holeradius/2.0)) ≈ 0.5
 
+	end #let	
 	end #testset_Well_detector
 end #testset_spectial_cases
 
