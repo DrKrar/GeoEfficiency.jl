@@ -13,8 +13,8 @@ let poly1(z::Float64) = @evalpoly(z, 1.0, 2.0),
 	poly2(z::Float64) = @evalpoly(z, 1.0, 2.0, 3.0)
 	
 	@testset "integrate start=$str, end=$nd" for 
-	str = -30.0:5.0:30.0, 
-	nd  = -30.0:5.0:30.0
+	str::Float64 = -30.0:5.0:30.0, 
+	nd::Float64  = -30.0:5.0:30.0
 	#str === nd &&  continue
 
 		#@test G.integrate(poly0, str, nd)[1] ≈ @evalpoly(nd, 0.0, 1.0) - @evalpoly(str, 0.0, 1.0) atol=absoluteTol2
@@ -30,8 +30,8 @@ end #let
 
 	@debug("special case - point at the surface of cylindrical detector; very restrict test")
 	@testset "cylindrical detector of cryRadius $cryRadius" for 
-	cryRadius    = 1.0:0.5:3.0,
-	cryLegth = 0.0:.5:2.0
+	cryRadius::Float64    = 1.0:0.5:3.0,
+	cryLegth::Float64 = 0.0:.5:2.0
 	
 	let acylDetector = CylDetector(cryRadius, cryLegth)
 
@@ -42,8 +42,8 @@ end #let
 		@test geoEff(acylDetector, Point(0,        -cryRadius/2.0)) ≈ 0.5
 
 		@test geoEff(acylDetector, Point(eps())) ≈ 0.5
-		@test 0.0 < geoEff(acylDetector, Point(eps(), prevfloat(cryRadius)))  <= 0.5
-		@test 0.0 < geoEff(acylDetector, Point(eps(), nextfloat(-cryRadius))) <= 0.5
+		@test 0.25 < geoEff(acylDetector, Point(eps(), prevfloat(cryRadius)))  <= 0.5	#  0.37485153429958035
+		@test 0.25 < geoEff(acylDetector, Point(eps(), nextfloat(-cryRadius))) <= 0.5	#  0.3749998497981526
 		@test geoEff(acylDetector, Point(eps(),          cryRadius/2.0)) ≈ 0.5
 		@test geoEff(acylDetector, Point(eps(),         -cryRadius/2.0)) ≈ 0.5
 
@@ -60,9 +60,9 @@ end #let
 
 	@debug("special case - point at the surface of Borehole detector")
 	@testset "Borehole detector of cryRadius $cryRadius and height $height, k $k" for 
-	cryRadius = 1.0:0.5:11.0, 
-	height    = 1.0:0.5:11.0, 
-	k         = 1.1:0.5:11.0
+	cryRadius::Float64 = 1.0:0.5:11.0, 
+	height::Float64    = 1.0:0.5:11.0, 
+	k::Float64         = 1.1:0.5:11.0
 
 	let holeradius::Float64 = cryRadius/k,		# k > 1
 		aboreDetector = BoreDetector(cryRadius, height, holeradius)
@@ -86,9 +86,9 @@ end #let
 
 	@debug("special case - point at the surface of well detector")
 	@testset "Well detectors of cryRadius $cryRadius and height $height, k $k" for 
-	cryRadius = 1.0:0.5:11.0, 
-	height    = 1.0:0.5:11.0, 
-	k         = 1.1:0.5:11.0
+	cryRadius::Float64 = 1.0:0.5:11.0, 
+	height::Float64    = 1.0:0.5:11.0, 
+	k::Float64         = 1.1:0.5:11.0
 		
 	let holeradius::Float64 = cryRadius/k,		# k > 1
 		welldepth::Float64 = height/k,			# k > 1
@@ -131,7 +131,7 @@ end #testset_spectial_cases
 	@debug("scaling test - Borehole detector with point source")
 	@testset "cryRadius=$cryRadius, holeRadius=$holeRadius" for 
 	cryRadius  = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6],
-	holeRadius = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
+	holeRadius::Float64 = [1,2,3,4,5,6,7,8,9,10.1,10.5,10.6]/2.2
 	holeRadius > cryRadius && continue	
 		
 		for j=2:100, k=2:100
