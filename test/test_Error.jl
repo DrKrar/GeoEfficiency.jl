@@ -74,7 +74,7 @@ let x="1", y=2, apnt=Point(1,2)
 
     @test G.to_string(+)            == "+"
     @test G.to_string(x)            == "1"
-    @test G.to_string(y)            == "1"
+    @test G.to_string(y)            == "2"
     @test G.to_string(apnt)         == "Point(1.0, 2.0)"
 
     # to be able to test for Expr, Symbol as `esc()` is not allowed outside macro
