@@ -16,6 +16,9 @@ let x="1", y=2, apnt=Point(1,2)
     @test nothing == G.@validateDetector true "massage1" * "massage2"
     @test nothing == G.@validateDetector true "massage1" "massage2"
     @test nothing == G.@validateDetector true 1
+    @test nothing == G.@validateDetector true x
+    @test nothing == G.@validateDetector true y
+    @test nothing == G.@validateDetector true apnt
     @test nothing == G.@validateDetector true :x
     @test nothing == G.@validateDetector true :(a+b)
 
@@ -26,6 +29,9 @@ let x="1", y=2, apnt=Point(1,2)
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage1" * "massage2"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false "massage1" "massage2"
     @test_throws    G.InValidDetectorDim    G.@validateDetector false 1
+    @test_throws    G.InValidDetectorDim    G.@validateDetector false x
+    @test_throws    G.InValidDetectorDim    G.@validateDetector false y
+    @test_throws    G.InValidDetectorDim    G.@validateDetector false apnt
     @test_throws    G.InValidDetectorDim    G.@validateDetector false :x
     @test_throws    G.InValidDetectorDim    G.@validateDetector false :(a+b)
 
@@ -36,6 +42,9 @@ let x="1", y=2, apnt=Point(1,2)
     @test_throws    G.NotImplementedError   G.@notImplementedError "massage1" "massage2"
     @test_throws    G.NotImplementedError   G.@notImplementedError "massage1" * "massage2"
     @test_throws    G.NotImplementedError   G.@notImplementedError  1
+    @test_throws    G.NotImplementedError   G.@notImplementedError  x
+    @test_throws    G.NotImplementedError   G.@notImplementedError  y
+    @test_throws    G.NotImplementedError   G.@notImplementedError  apnt
     @test_throws    G.NotImplementedError   G.@notImplementedError  :x
     @test_throws    G.NotImplementedError   G.@notImplementedError  :(a+b)
 
@@ -46,6 +55,9 @@ let x="1", y=2, apnt=Point(1,2)
     @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" "massage2"
     @test_throws    G.InValidGeometry   G.@inValidGeometry "massage1" * "massage2"
     @test_throws    G.InValidGeometry   G.@inValidGeometry  1
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  x
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  y
+    @test_throws    G.InValidGeometry   G.@inValidGeometry  apnt
     @test_throws    G.InValidGeometry   G.@inValidGeometry  :x
     @test_throws    G.InValidGeometry   G.@inValidGeometry  :(a+b)
 
@@ -62,6 +74,7 @@ let x="1", y=2, apnt=Point(1,2)
 
     @test G.to_string(+)            == "+"
     @test G.to_string(x)            == "1"
+    @test G.to_string(y)            == "1"
     @test G.to_string(apnt)         == "Point(1.0, 2.0)"
 
     # to be able to test for Expr, Symbol as `esc()` is not allowed outside macro
