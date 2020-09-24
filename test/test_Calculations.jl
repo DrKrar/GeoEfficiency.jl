@@ -69,17 +69,17 @@ end #let
 	
 		@test  0.0 < geoEff(aboreDetector, Point(0.0))        < 1.0 
 		@test  0.0 < geoEff(aboreDetector, Point(-0.1))       < 1.0 ### invert Detector
-		@test_skip  0.0 < geoEff(aboreDetector, Point(height/2.0))  < 1.0 # StackOverflowError
-		@test_skip  0.0 < geoEff(aboreDetector, Point(-height/2.0)) < 1.0
-		@test_skip  geoEff(aboreDetector, Point(height/2.0)) ≈ geoEff(aboreDetector, Point(-height/2.0))
+		@test  0.0 < geoEff(aboreDetector, Point(height/2.0))  < 1.0 
+		@test  0.0 < geoEff(aboreDetector, Point(-height/2.0)) < 1.0 
+		@test_skip  geoEff(aboreDetector, Point(height/2.0)) ≈ geoEff(aboreDetector, Point(-height/2.0)) #Test Failed
 
-		@test_skip   0.0 < geoEff(aboreDetector, Point(height))  < 1.0
-		@test_skip   0.0 < geoEff(aboreDetector, Point(-height)) < 1.0
-		@test_skip   geoEff(aboreDetector, Point(height)) ≈ geoEff(aboreDetector, Point(-height))
+		@test   0.0 < geoEff(aboreDetector, Point(height))  < 1.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(-height)) < 1.0	#StackOverflowError
+		@test_skip   geoEff(aboreDetector, Point(height)) ≈ geoEff(aboreDetector, Point(-height)) #StackOverflowError
 		
-		@test_skip   0.0 < geoEff(aboreDetector, Point(1.5*height))   < 1.0
-		@test_skip   0.0 < geoEff(aboreDetector, Point(-1.5*height))  < 1.0
-		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height))
+		@test  0.0 < geoEff(aboreDetector, Point(1.5*height))   < 1.0
+		@test_skip   0.0 < geoEff(aboreDetector, Point(-1.5*height))  < 1.0 #StackOverflowError
+		@test_skip   geoEff(aboreDetector, Point(1.5*height)) ≈ geoEff(aboreDetector, Point(-1.5*height)) #StackOverflowError
 	end #let
 	end #testset_Borehole_detector
 
