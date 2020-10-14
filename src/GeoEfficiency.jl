@@ -85,8 +85,8 @@ printstyled("""
 \t **  Accurate Geometrical Efficiency Calculator  **
 \t **************************************************
 
-\t Author:        Mohamed E. Krar,  @e-mail: DrKrar@gmail.com 
-\t Auth_Profile:  https://www.researchgate.net/profile/Mohamed_Krar3
+\t Author:     Mohamed E. Krar [ DrKrar@gmail.com ]
+\t Profile:    https://www.researchgate.net/profile/Mohamed_Krar3
 
 \t Welome to GeoEfficiency $GeoEfficiency_Version
 
