@@ -59,7 +59,7 @@ function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
                       			integrate(func, transition, fine, rtol = relativeError, atol = absoluteError)[1] / pi
 
       		else
-				@info("This case is not implemented yet", _file=nothing)
+				#@info("This case is not implemented yet", _file=nothing)
 				@notImplementedError("Point off-axis, out of the detector face")
 			# TBD: (Top + Side) efficiencies
       		end #if transition >= 0.0
@@ -143,8 +143,8 @@ end #function
 """
 function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0, SrcLength::Real = 0.0)::Float64
 
-   	HeightWup = aCenterPnt.Height - detector.CryLength / 2.0
-   	HeightWdown = aCenterPnt.Height + detector.CryLength / 2.0
+   	HeightWup::Float64	  = aCenterPnt.Height - detector.CryLength / 2.0
+   	HeightWdown::Float64  = aCenterPnt.Height + detector.CryLength / 2.0
    	if HeightWdown < 0.0
       		if HeightWup + SrcLength < 0.0 		#invert the source.
          			return geoEff(detector, Point(aCenterPnt.Height - detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
