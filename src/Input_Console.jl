@@ -16,12 +16,17 @@ using .MathConstants
 """# UnExported
 
 
-	input(prompt::AbstractString = "?: ", incolor::Symbol = :green)
+	input(message::AbstractString = "?: ", incolor::Symbol = :green; default::AbstractString ="", timeout::Union{Nothing, Int} = nothing)
 
 return a string represent the user respond delimited by new line excluding the new line.
-prompt the user with the massage `prompt` defaults to `? `. 
+prompt the user with the massage `message` defaults to `? `. 
 wait until the user type its respond and press return. 
-`incolor` specify the prompt text color, default to ``:green`` may take any of the values 
+
+## KW arguments
+*  default : the default value if the user just prress return or did not give respose in time.
+*  timeout : time in seconds that the prompt is waiting for the user respose.
+
+`incolor` specify the prompt message text color, default to ``:green`` may take any of the values 
 `:black`, `:blue`, `:cyan`, `:green`, `:light_black`, `:light_blue`, `:light_cyan`, `:light_green`,
 `:light_magenta`, `:light_red`, `:light_yellow`, `:magenta`, `:red`, `:white`, or `:yellow`.
 
@@ -30,8 +35,31 @@ wait until the user type its respond and press return.
 		ignored by some teriminals.
 
 """
-function input(prompt::AbstractString = "?: ", incolor::Symbol = :green)::AbstractString
-    printstyled(prompt, color = incolor, bold = true); chomp(readline())
+function input(message::AbstractString = "?", incolor::Symbol = :green; default::AbstractString = "", timeout::Union{Nothing, Int} = nothing)::AbstractString
+	if !isnothing(timeout)
+        @assert timeout > 0 "Timeout must be greater than 0 seconds"
+        msg = !isempty(default) ? "$message [$default] timeout $timeout seconds: " : "$message: "
+        tr = Timer(timeout)
+    else
+        msg = !isempty(default) ? "$message [$default]: " : "$message: "
+    end
+	
+	printstyled(msg, color = incolor, bold = true)
+	t = @async readline( keep=false)
+	
+	while !istaskdone(t) && (!isnothing(timeout) && isopen(tr))
+        sleep(0.1)
+    end
+    if !isnothing(timeout) && !istaskdone(t)
+        try
+            Base.throwto(t, InterruptException())
+        catch
+        end
+        return default
+	end
+
+	uinput = fetch(t)
+    isempty(uinput) ? default : uinput
 end # function
 
 
@@ -90,9 +118,13 @@ julia> getfloat("input a number:", 1, 5, value="5", upper=true)
 
 """
 function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = Inf;
-				value::AbstractString = "nothing", lower::Bool = true, upper::Bool = false)::Float64
-	"nothing" == value ? value = input(prompt) : nothing
-	"" 		  == value ? value = "0.0" : nothing		# just pressing return is interpreted as <0.0>
+				value::Union{Nothing, AbstractString} = nothing , lower::Bool = true, upper::Bool = false)::Float64
+	if isnothing(value)
+		value = input(prompt)
+
+	elseif isempty(value)
+		value = "0.0"  # just pressing return is interpreted as <0.0>
+	end
 	
 	local val::Float64 = 0.0
 	try

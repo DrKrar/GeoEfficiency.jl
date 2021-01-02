@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 -  change batch data directory to ~/.GeoEfficiency.
--  input from console promptly detect invalid dimensions while constructing detectors
+  input from console promptly detect invalid dimensions while constructing detectors.
+-  input function now provide two keyWord timeout for time to wait for respond and default for the default value returned.
 
 ### Version 0.9.3
 *  a customized error system has been add to the package.
