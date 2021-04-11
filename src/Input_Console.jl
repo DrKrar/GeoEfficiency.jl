@@ -121,8 +121,9 @@ function getfloat(prompt::AbstractString = "?: ", from::Real = -Inf, to::Real = 
 				value::Union{Nothing, AbstractString} = nothing , lower::Bool = true, upper::Bool = false)::Float64
 	if isnothing(value)
 		value = input(prompt)
-
-	elseif isempty(value)
+	end
+	
+	if isempty(value)
 		value = "0.0"  # just pressing return is interpreted as <0.0>
 	end
 	
