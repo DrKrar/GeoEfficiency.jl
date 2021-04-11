@@ -17,7 +17,7 @@ typeofSrc()::SrcType
 return the current value of the global `GeoEfficiency.srcType`.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e86a66553f5a94c9aa5cab895768e515d926c055/src/Input_Batch.jl#L29-L35' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/3ddde113584438fda29ce843201e058d1355c05e/src/Input_Batch.jl#L29-L35' class='documenter-source'>source</a><br>
 
 
 ```
@@ -34,7 +34,7 @@ set and return the value of the global `GeoEfficiency.srcType` corresponding to 
   * srcNotPoint = 4 also any greater than 4 integer treated as so.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e86a66553f5a94c9aa5cab895768e515d926c055/src/Input_Batch.jl#L38-L51' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/3ddde113584438fda29ce843201e058d1355c05e/src/Input_Batch.jl#L38-L51' class='documenter-source'>source</a><br>
 
 <a id='GeoEfficiency.setSrcToPoint' href='#GeoEfficiency.setSrcToPoint'>#</a>
 **`GeoEfficiency.setSrcToPoint`** &mdash; *Function*.
@@ -48,7 +48,7 @@ setSrcToPoint()::Bool
 return whether the source type is a point or not.
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e86a66553f5a94c9aa5cab895768e515d926c055/src/Input_Batch.jl#L65-L70' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/3ddde113584438fda29ce843201e058d1355c05e/src/Input_Batch.jl#L65-L70' class='documenter-source'>source</a><br>
 
 
 ```
@@ -65,7 +65,7 @@ return whether the source type is a point or not after setting `srcType` to `src
 **see also:** [`typeofSrc(::Int)`](Input_Batch.md#GeoEfficiency.typeofSrc).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e86a66553f5a94c9aa5cab895768e515d926c055/src/Input_Batch.jl#L73-L88' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/3ddde113584438fda29ce843201e058d1355c05e/src/Input_Batch.jl#L73-L88' class='documenter-source'>source</a><br>
 
 
 ```
@@ -77,7 +77,7 @@ return whether the source type is a point or not. only prompt the user to set th
 **see also:** [`typeofSrc(::Int)`](Input_Batch.md#GeoEfficiency.typeofSrc), [`setSrcToPoint(::Bool)`](Input_Batch.md#GeoEfficiency.setSrcToPoint).
 
 
-<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/e86a66553f5a94c9aa5cab895768e515d926c055/src/Input_Batch.jl#L100-L109' class='documenter-source'>source</a><br>
+<a target='_blank' href='https://github.com/DrKrar/GeoEfficiency.jl/blob/3ddde113584438fda29ce843201e058d1355c05e/src/Input_Batch.jl#L100-L109' class='documenter-source'>source</a><br>
 
 
 !!! warnning
