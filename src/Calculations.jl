@@ -2,7 +2,7 @@
 # Calculations.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# this file collects all the functions which are responsible for 
+# This file collects all the functions which are responsible for 
 # the calculations of the Geometrical Efficiency.
 #
 #**************************************************************************************
@@ -10,7 +10,7 @@
 #------------------ consts - globals - imports -------------------
 
 
-# parameters [relative and absolute precession - interation method ] are assigned in `Config.jl`.
+# parameters [relative and absolute precession - integration method ] are assigned in `Config.jl`.
 # include("Config.jl")
 
 
@@ -26,7 +26,7 @@ of the cylindrical detector `detector` face.
 
 ## Throw
 *  an `NotImplementedError` if the point is out of the cylindrical detector `detector` face.
-*  an `InValidGeometry` if the point location is invalide.
+*  an `InValidGeometry` if the point location is invalid.
 
 
 !!! note
@@ -36,7 +36,7 @@ of the cylindrical detector `detector` face.
 """
 function GeoEff_Pnt(detector::CylDetector, aPnt::Point)::Float64
    	#aPnt.Rho > detector.CryRadius 	&& 	@notImplementedError("Point off-axis, out of the detector face")
-   	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	@inValidGeometry("The point source location can not be inside the detector")
+   	detector.CryRadius > aPnt.Rho 	&& 	aPnt.Height < 0.0 	&&	@inValidGeometry("The point source location can’t be inside the detector")
 
    	function MaxPhi(theta::Float64)::Float64
       		side = aPnt.Height * sin(theta)
@@ -149,7 +149,7 @@ function geoEff(detector::BoreDetector, aCenterPnt::Point, SrcRadius::Real = 0.0
       		if HeightWup + SrcLength < 0.0 		#invert the source.
          			return geoEff(detector, Point(aCenterPnt.Height - detector.CryLength, aCenterPnt.Rho), SrcRadius, SrcLength)
 
-      		else # the source span the detector and emerges from both sides, split the source into two sources.
+      		else # the source spans the detector and emerges from both sides, split the source into two sources.
 			#res = (1 - 2 * geoEff(detin, Point(0.0), SrcRadius, SrcLength))* detector.CryLength /SrcLength
          			return geoEff(detector, Point(0.0), SrcRadius, -aCenterPnt.Height) * (-aCenterPnt.Height / SrcLength) +
 			       geoEff(detector, Point(0.0), SrcRadius, SrcLength + aCenterPnt.Height) * (1.0 + aCenterPnt.Height / SrcLength)
@@ -235,8 +235,8 @@ return the `geometrical efficiency` for a source (`point`, `disk` or `cylinder`)
 the detector `detector`. 
 
 ## Arguments
-*  `detector` can be any of the leaf detectors types (`CylDetector`, `BoreDetector`, `WellDetector`).
-*  `aPNT`: a point represent the anchoring point of the source.
+*  `detector` can be any of the leaf detector types (`CylDetector`, `BoreDetector`, `WellDetector`).
+*  `aPNT`: a point represents the anchoring point of the source.
 *  `SrcRadius`: Radius of the source.
 *  `srcHeight`:  the height of an upright cylinder source.
 
@@ -247,11 +247,11 @@ the detector `detector`.
 
 
 !!! warning
-    the point height of `aPnt` is measured differently for different detectors types.
+    the point height of `aPnt` is measured differently for different detector types.
     for the details, please refer to each detector entry.
 	
 !!! note
-    *  if `SrcLength` equal to `zero`; the method return Geometrical Efficiency of a disc 
+    *  if `SrcLength` equal to `zero`; the method returns Geometrical Efficiency of a disc 
        source of Radius = `SrcRadius` and center at the point `aPNT`.
     *  if both `SrcRadius` and `SrcLength` equal to `zero`; 
        the method returns the Geometrical Efficiency of a point source at the anchoring point.
@@ -306,7 +306,7 @@ in the Tuple `aSource`.
 
 !!! note
     in the case of both no detector and no source Tuple or just the source Tuple is not supplied,
-    it prompt the user to input a source (and detector) via the `console`.
+    it prompts the user to input a source (and detector) via the `console`.
 
 """
 geoEff(detector::Detector = Detector(), aSource::Tuple{Point,Float64,Float64,} = source())::Float64 = geoEff(detector, aSource...)

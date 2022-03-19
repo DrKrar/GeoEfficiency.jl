@@ -2,7 +2,7 @@
 # Config.jl
 # =============== part of the GeoEfficiency.jl package.
 #
-# this file contain the configurable parameters of the program. 
+# This file contain the configurable parameters of the program. 
 #
 #**************************************************************************************
 

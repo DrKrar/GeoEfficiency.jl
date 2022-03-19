@@ -5,15 +5,15 @@ __precompile__() #First Created on Fri Aug 14 20:12:01 2015
 
 # GeoEfficiency Package
 Introduce a fast and flexible tool to calculate in batch or individually the `geometrical efficiency` 
-for a set of common radiation detectors shapes (cylindrical,Bore-hole, Well-type) as seen form 
+for a set of common radiation detectors shapes (cylindrical, Bore-hole, Well-type) as seen form 
 a source. The source can be a point, a disc or even a cylinder.
 
 # Quick Usage
-*  geoEff()	: Calculate the geometrical efficiency for one geometrical setup return only the value of the geometrical efficiency.
+*  geoEff()	: Calculate the geometrical efficiency (GE) for one geometrical setup; returns a numerical value represent the calculated GE.
 
-*  calc() 	: Calculate the geometrical efficiency for one geometrical setup and display full information on the console.
+*  calc() 	: Calculate the geometrical efficiency (GE) for one geometrical setup and display full information on the console.
 
-*  calcN()	: Calculate the geometrical efficiency for geometrical setup(s) and display full information on the console until the user quit.
+*  calcN()	: Calculate the geometrical efficiency (GE) for geometrical setup(s) recusevily and display full information on the console until the user quit.
 
 *  batch()	: Calculate  in ``batch mode`` the geometrical efficiency using data in the **`$(join(split(dataDir,"/travis")))`** folder.
    For more information see `batch`, `batchInfo`.
@@ -88,13 +88,13 @@ printstyled("""
 \t Author:     Mohamed E. Krar [ DrKrar@gmail.com ]
 \t Profile:    https://www.researchgate.net/profile/Mohamed_Krar3
 
-\t Welome to GeoEfficiency $GeoEfficiency_Version
+\t Welcome to GeoEfficiency $GeoEfficiency_Version
 
 \t Start a calculation by using:
-    julia> calc()
+\t julia> calc()
 
 \t Type ? just after 'julia>' to open help system:
-    julia>? GeoEfficiency
+\t julia>? GeoEfficiency
 \n
 """, color = :blue, bold = true)
 
