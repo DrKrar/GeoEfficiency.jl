@@ -1,0 +1,8 @@
+type,radius,length,hole_radius,hole_depth
+cyl,5.0,30.0,,
+cyl,5.0,50.0,,
+cyl,10.0,30.0,,
+bore,5.0,30.0,1.0,
+bore,5.0,30.0,2.0,
+well,5.0,30.0,1.0,10.0
+well,10.0,50.0,2.0,20.0
